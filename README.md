@@ -8,7 +8,9 @@
 
 ## Uso de CMake (info para el grupo)
 
-Para la compilacion de cliente y servidor se recomienda utilizar CMakeLists.txt. Para su utilizacion se debe copiar el siguiente codigo en un terminal.
+Para la compilacion de cliente y servidor se recomienda utilizar
+ CMakeLists.txt. Para su utilizacion se debe copiar el siguiente
+  codigo en un terminal.
 
 ~~~
 mkdir build
@@ -17,5 +19,7 @@ cmake ..
 make
 ~~~
 
-El codigo anterior crea una carpeta `build` y con `cmake ..` se crea un Makefile para la compilacion del `client` y `server`. Para no agregar al repo archivos innecesarios `build` es ignorado (ver `.gitignore`).
-
+El codigo anterior crea una carpeta `build` y con `cmake ..` se crea
+ un Makefile para la compilacion del `client` y `server`. Para no
+ agregar al repo archivos innecesarios `build` es ignorado (ver
+`.gitignore`).
