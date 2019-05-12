@@ -4,7 +4,7 @@
 |----------------|--------|
 | Blanco Joaquin |        |
 | Bravo Victor   | 98882  |
-| Rack Lucas     |        |
+| Rack Lucas     | 99425  |
 
 ## Uso de CMake (info para el grupo)
 
