@@ -8,6 +8,9 @@ set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O0 -Werror -pedantic")
 # debugging flags
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -DDEBUG -fno-inline")
+# threads
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+
 
 # Including CxxTest
 file(GLOB TEST_HEADERS ./test/*.h)
