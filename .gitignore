@@ -31,5 +31,6 @@
 *.out
 *.app
 
-# build directory
+# build directories
 build/
+libs/Box2D-master/build/

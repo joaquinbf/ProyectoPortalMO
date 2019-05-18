@@ -59,12 +59,16 @@ project 'Testbed'
 		'Testbed/glfw/monitor.c',
 		'Testbed/glfw/vulkan.c',
 		'Testbed/glfw/window.c',
-		'Testbed/imgui/*'
+		'Testbed/imgui/*',
+		'../../common/include/*.h',
+		'../../server/include/*.h',
+		'../../common/src/position.cpp',
+		'../../server/src/block.cpp'
 	}
 
     filter { 'system:windows' }
     	files
-    	{ 
+    	{
     		'Testbed/glad/*',
 			'Testbed/glfw/win32_platform.h',
 			'Testbed/glfw/win32_joystick.h',
@@ -108,7 +112,7 @@ project 'Testbed'
 			'CoreFoundation.framework',
 			'CoreVideo.framework'
 		}
-    
+
     filter { 'system:linux' }
     	files
     	{
@@ -144,5 +148,5 @@ project 'Testbed'
 			'pthread',
 			'dl'
 		}
-	
+
 	filter {}

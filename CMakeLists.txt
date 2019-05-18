@@ -32,10 +32,8 @@ endif()
 # Including Box2D
 include_directories(./libs/Box2D-master)
 file(GLOB_RECURSE BOX2D_SRCS ./libs/Box2D-master/Box2D/*.cpp)
-add_library(libBox2D STATIC ${BOX2D_SRCS})
 
 # Executables
 add_executable(client ${COMMON_SRCS} ${CLIENT_SRCS})
-target_link_libraries(client libBox2D)
 
-add_executable(server ${COMMON_SRCS} ${SERVER_SRCS})
+add_executable(server ${COMMON_SRCS} ${SERVER_SRCS} ${BOX2D_SRCS})
