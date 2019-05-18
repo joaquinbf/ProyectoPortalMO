@@ -61,7 +61,4 @@ bool ProtectedQueue<T>::try_pop(T &elem) {
     return true;
 }
 
-
-
-
 #endif

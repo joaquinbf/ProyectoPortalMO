@@ -33,7 +33,6 @@ public:
          * 100milisec hasta que otro_hilo agregue un elemento a la cola */
         ProtectedQueue<int> pq;
         int waiting_time = 100;
-
         auto t1 = std::chrono::high_resolution_clock::now();
         std::thread otro_hilo([&]{
             std::this_thread::sleep_for(std::chrono::milliseconds(waiting_time));
