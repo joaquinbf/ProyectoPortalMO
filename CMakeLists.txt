@@ -20,7 +20,7 @@ file(GLOB_RECURSE SERVER_SRCS ./server/src/*.cpp)
 file(GLOB_RECURSE TEST_HEADERS ./test/*.h)
 file(GLOB_RECURSE ALL_SRCS ${COMMON_SRCS} ${CLIENT_SRCS} ${SERVER_SRCS})
 # Se quitan los main de client y server porque runner.cpp es el main del test
-list(REMOVE_ITEM ALL_SRCS ./client/main.cpp ./server/main.cpp)
+list(REMOVE_ITEM ALL_SRCS ./client/src/main.cpp ./server/src/main.cpp)
 
 find_package(CxxTest)
 if(CXXTEST_FOUND)
