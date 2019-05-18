@@ -9,10 +9,11 @@ class Area;
 
 class SdlTexture {
 public:
+    explicit SdlTexture(const SdlWindow& window);
     /**
      * Crea un SDL_Texture, lanza una excepción si el filename es inválido
      **/
-    SdlTexture(const std::string &filename, const SdlWindow& window);
+    explicit SdlTexture(const std::string &filename, const SdlWindow& window);
     /**
      * Libera la memoria reservada por la textura
      **/
@@ -21,8 +22,8 @@ public:
      * Renderiza la textura cargada
      **/
     int render(const Area& src, const Area& dest) const;
-private:
     SDL_Texture* loadTexture(const std::string &filename);
+private:
     SDL_Renderer* renderer;
     SDL_Texture* texture;
 };

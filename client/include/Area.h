@@ -1,9 +1,9 @@
-#ifndef __AREA_H__
-#define __AREA_H_
+#ifndef _AREA_H_
+#define _AREA_H_
 
-class Area {
+class Area{
 public:
-	Area(int x, int y, int width, int height);
+	explicit Area(int x, int y, int width, int height);
 	int getX() const;
 	int getY() const;
 	int getWidth() const;

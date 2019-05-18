@@ -5,6 +5,9 @@
 #include "../include/SdlWindow.h"
 #include "../include/SdlException.h"
 
+SdlTexture::SdlTexture(const SdlWindow& window)   
+    : renderer(window.getRenderer()){}
+
 SdlTexture::SdlTexture(const std::string &filename, const SdlWindow& window)
     : renderer(window.getRenderer()) {
     this->texture = loadTexture(filename);
