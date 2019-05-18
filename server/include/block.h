@@ -1,7 +1,6 @@
 #ifndef __BLOCK_H__
 #define __BLOCK_H__
 
-#include "../../common/include/position.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 

@@ -63,7 +63,9 @@ project 'Testbed'
 		'../../common/include/*.h',
 		'../../server/include/*.h',
 		'../../common/src/position.cpp',
-		'../../server/src/block.cpp'
+		'../../server/src/block.cpp',
+		'../../server/src/character.cpp'
+
 	}
 
     filter { 'system:windows' }

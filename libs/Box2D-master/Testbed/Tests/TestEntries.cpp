@@ -71,7 +71,11 @@
 #include "VaryingRestitution.h"
 #include "VerticalStack.h"
 #include "Web.h"
+
+/* Propios */
 #include "b2d_block_test.h"
+#include "b2d_character_test.h"
+
 
 TestEntry g_testEntries[] =
 {
@@ -129,5 +133,6 @@ TestEntry g_testEntries[] =
 	{"Varying Friction", VaryingFriction::Create},
 	{"Add Pair Stress Test", AddPair::Create},
 	{"b2d block", B2DBlockTest::Create},
+	{"b2d character", B2DCharacterTest::Create},
 	{NULL, NULL}
 };
