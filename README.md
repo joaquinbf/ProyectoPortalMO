@@ -21,13 +21,12 @@ estructura.
 # Suponer que esta en ./test/my_test.h
 #include <cxxtest/TestSuite.h>
 
-class MyTestSuite : public CxxTest::TestSuite
-{
+class MyTestSuite : public CxxTest::TestSuite {
 public:
-   void testAddition( void )
-   {
-      TS_ASSERT( 1 + 1 > 1 );
-      TS_ASSERT_EQUALS( 1 + 1, 2 );
+   void testAddition() {
+       int a = 3;
+       int b = 2;  
+       TS_ASSERT_EQUALS(5, a + b);
    }
 };
 ~~~
@@ -35,11 +34,11 @@ public:
 - Deben ser headers (.h)
 - Deben incluir la biblioteca `#include <cxxtest/TestSuite.h>`.
 - Son clases que heredan de `CxxTest::TestSuite`
-- Los test son metodos de la clase y siguen el estilo
+- Los test son metodos y siguen el estilo
   `void testXXXXX(void) { <codigo> }`
 - Para checkear condiciones se suele utilizar `TEST_ASSERT(expr)`,
  `TEST_ASSERT_EQUALS(x, y)`, `TS_ASSERT_THROWS(expr,type)`. Hay mas en
-  `http://cxxtest.com/guide.html#testAssertions`.
+  http://cxxtest.com/guide.html#testAssertions.
 
 ## Ejecucion
 Solo basta con ejecutar en build
