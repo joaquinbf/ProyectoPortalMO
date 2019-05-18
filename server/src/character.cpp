@@ -23,5 +23,13 @@ Character::Character(b2World *b2world, float x, float y) {
 }
 
 void Character::walkLeft() {
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-1, 0), true);
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-10, 0), true);
+}
+
+void Character::walkRight() {
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(10, 0), true);
+}
+
+void Character::jump() {
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, -10), true);
 }

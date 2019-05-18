@@ -17,7 +17,14 @@ public:
      * posicion (x, y) de world. */
     Character(b2World *b2world, float x, float y);
 
+    /* Camina a la izquierda */
     void walkLeft();
+
+    /* Camina  ala derecha */
+    void walkRight();
+
+    /* Salta */
+    void jump();
 };
 
 #endif
