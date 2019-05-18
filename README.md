@@ -6,20 +6,59 @@
 | Bravo Victor   | 98882  |
 | Rack Lucas     | 99425  |
 
-## Uso de CMake (info para el grupo)
+## Instalacion de CxxTest
+Para poder correr los tests lo mas facil es instalar CxxTest en ubuntu mediante
+~~~
+sudo apt update
+sudo apt install cxxtest
+~~~
 
-Para la compilacion de cliente y servidor se recomienda utilizar
- CMakeLists.txt. Para su utilizacion se debe copiar el siguiente
-  codigo en un terminal.
+## Agregar tests
+Los test deben ser agregados en el directorio test y deben seguir la siguiente
+estructura.
 
 ~~~
-mkdir build
-cd build
+# Suponer que esta en ./test/my_test.h
+#include <cxxtest/TestSuite.h>
+
+class MyTestSuite : public CxxTest::TestSuite
+{
+public:
+   void testAddition( void )
+   {
+      TS_ASSERT( 1 + 1 > 1 );
+      TS_ASSERT_EQUALS( 1 + 1, 2 );
+   }
+};
+~~~
+
+- Deben ser headers (.h)
+- Deben incluir la biblioteca `#include <cxxtest/TestSuite.h>`.
+- Son clases que heredan de `CxxTest::TestSuite`
+- Los test son metodos de la clase y siguen el estilo
+  `void testXXXXX(void) { <codigo> }`
+- Para checkear condiciones se suele utilizar `TEST_ASSERT(expr)`,
+ `TEST_ASSERT_EQUALS(x, y)`, `TS_ASSERT_THROWS(expr,type)`. Hay mas en
+  `http://cxxtest.com/guide.html#testAssertions`.
+
+## Ejecucion
+Solo basta con ejecutar en build
+~~~
 cmake ..
 make
+./unittest
 ~~~
 
-El codigo anterior crea una carpeta `build` y con `cmake ..` se crea
- un Makefile para la compilacion del `client` y `server`. Para no
- agregar al repo archivos innecesarios `build` es ignorado (ver
-`.gitignore`).
+Una correcta ejecucion deberia verse como
+~~~
+Running cxxtest tests (1 test).OK!
+~~~
+
+Y una con problemas
+~~~
+Running cxxtest tests (1 test)
+In MyTestSuite::testAddition:
+../test/foo_test.h:10: Error: Expected (99 == a + b), found (99 != 5)
+Failed 1 and Skipped 0 of 1 test
+Success rate: 0%
+~~~
