@@ -1,3 +1,6 @@
+#include "../include/client.h"
+
 int main() {
-    return 0;
+    Client client;
+    return client.main();
 }
