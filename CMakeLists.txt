@@ -35,5 +35,4 @@ file(GLOB_RECURSE BOX2D_SRCS ./libs/Box2D-master/Box2D/*.cpp)
 
 # Executables
 add_executable(client ${COMMON_SRCS} ${CLIENT_SRCS})
-
 add_executable(server ${COMMON_SRCS} ${SERVER_SRCS} ${BOX2D_SRCS})
