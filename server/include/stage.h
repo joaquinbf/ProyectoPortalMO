@@ -18,6 +18,9 @@ public:
     Stage();
     virtual void run() override;
     void stop();
+
+    /* modo de prueba: Crea un stage con un unico bloque */
+    void createStageOne();
 };
 
 #endif

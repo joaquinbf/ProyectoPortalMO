@@ -4,6 +4,7 @@
 
 int Server::main() {
     Stage stage;
+    stage.createStageOne();
     stage.start();
 
     char quit = 'q';
