@@ -1,12 +1,51 @@
 # TP Final Taller de Programacion 1
 
 | Integrantes    | Padron |
-|----------------|--------|
-| Blanco Joaquin |        |
+| -------------- | ------ |
+| Blanco Joaquin | 94653  |
 | Bravo Victor   | 98882  |
 | Rack Lucas     | 99425  |
 
+## Instalacion de CMAKE
+
+```
+sudo apt-get -y install cmake
+```
+
+
+
+## Instalacion de YAML
+
+- Clonar el siguiente repositorio: <https://github.com/jbeder/yaml-cpp/>
+- Descomprimir el .zip en $HOME o algun lugar destinado a aplicaciones.
+- Abrir terminal en la carpeta descomprimida y ejecutar los siguientes comando
+
+```
+mkdir build
+cd build/
+cmake ..
+make
+sudo make install
+```
+
+**Opcional:** para agregar a cmake incluir las siguientes lineas en las en el archivo CMakeLists.txt
+
+```
+find_package(yaml-cpp REQUIRED)
+#add_executable(main main.cpp)
+target_link_libraries(main yaml-cpp)
+```
+
+## Instalacion de QT
+
+```
+sudo apt-get install build-essential
+sudo apt-get install qtcreator
+sudo apt-get install qt5-default
+```
+
 ## Instalacion de CxxTest
+
 Para poder correr los tests lo mas facil es instalar CxxTest en ubuntu mediante
 ~~~
 sudo apt update
