@@ -16,10 +16,10 @@ private:
 	Area frameArea;
 	int framex;
 	int framey;
-public:
+public:	
 	explicit Chell(const SdlWindow& window);
 	~Chell();
-	int render(int x, int y);	
+	int render(const Area& renderArea);	
 	void idleAction();
 	void jigAction();
 };
