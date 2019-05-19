@@ -6,6 +6,8 @@
 
 #define IDLE_TEXTURE "../resources/textures/chell-idle.png"
 #define JIG_TEXTURE "../resources/textures/chell-jig.png"
+#define RUNNING_TEXTURE "../resources/textures/chell-running.png"
+#define STOPING_TEXTURE "../resources/textures/chell-stoping.png"
 
 class Chell{
 private:
@@ -13,6 +15,8 @@ private:
 	void(Chell::* actionPtr)();
 	SdlTexture idleTexture;
 	SdlTexture jigTexture;
+	SdlTexture runTexture;
+	SdlTexture stopTexture;	
 	Area frameArea;
 	int framex;
 	int framey;
@@ -22,6 +26,8 @@ public:
 	int render(const Area& renderArea);	
 	void idleAction();
 	void jigAction();
+	void runRightAction();
+	void stopRightAction();
 };
 
 #endif

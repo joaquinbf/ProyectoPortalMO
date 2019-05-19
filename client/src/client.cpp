@@ -50,6 +50,7 @@ void Client::eventManager(){
                         this->x -= 10;
                         break;
                     case SDLK_RIGHT:
+                        this->chellPtr->runRightAction();
                         this->x += 10;
                         break;
                     case SDLK_UP:
@@ -64,6 +65,25 @@ void Client::eventManager(){
                     }
             } // Fin KEY_DOWN
             break;
+        case SDL_KEYUP:{
+        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
+                switch (keyEvent.keysym.sym) {
+                    case SDLK_LEFT:
+                        this->x -= 5;
+                        break;
+                    case SDLK_RIGHT:
+                    	this->chellPtr->stopRightAction();
+                        this->x += 5;
+                        break;
+                    case SDLK_UP:
+                        this->y -= 5;
+                        break;
+                    case SDLK_DOWN:
+                        this->y += 5;
+                        break;
+                    }
+            } // Fin KEY_UP
+        	break;
         case SDL_QUIT:
             this->running = false;
             break;
