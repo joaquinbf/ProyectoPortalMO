@@ -55,7 +55,7 @@ void Chell::runRightAction(){
 			this->framey = 0;	
 		}
 	}
-	if(this->framex == 10){
+	if(this->framex == 8){
 		this->framex = 0;
 		this->framey+=1;
 	}
