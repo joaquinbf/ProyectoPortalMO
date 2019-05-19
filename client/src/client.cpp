@@ -47,10 +47,11 @@ void Client::eventManager(){
                 SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
                 switch (keyEvent.keysym.sym) {
                     case SDLK_LEFT:
+                        this->chellPtr->run(0);
                         this->x -= 10;
                         break;
                     case SDLK_RIGHT:
-                        this->chellPtr->runRightAction();
+                        this->chellPtr->run(1);
                         this->x += 10;
                         break;
                     case SDLK_UP:
@@ -60,7 +61,7 @@ void Client::eventManager(){
                         this->y += 10;
                         break;
                     case SDLK_b:
-                    	this->chellPtr->jigAction();
+                    	this->chellPtr->jig();
                     	break;
                     }
             } // Fin KEY_DOWN
@@ -69,10 +70,11 @@ void Client::eventManager(){
         	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
                 switch (keyEvent.keysym.sym) {
                     case SDLK_LEFT:
+                    	this->chellPtr->stop(0);
                         this->x -= 5;
                         break;
                     case SDLK_RIGHT:
-                    	this->chellPtr->stopRightAction();
+                    	this->chellPtr->stop(1);
                         this->x += 5;
                         break;
                     case SDLK_UP:

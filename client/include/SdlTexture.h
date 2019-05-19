@@ -22,6 +22,7 @@ public:
      * Renderiza la textura cargada
      **/
     int render(const Area& src, const Area& dest) const;
+    int renderFliped(const Area& src, const Area& dest) const;
     SDL_Texture* loadTexture(const std::string &filename);
 private:
     SDL_Renderer* renderer;
