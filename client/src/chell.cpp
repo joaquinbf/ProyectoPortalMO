@@ -3,12 +3,39 @@
 #include "../include/SdlTexture.h"
 
 Chell::Chell(const SdlWindow& window)
-: texture(window), area(0, 0, 104, 215){
-	this->texture.loadTexture(IDLE_TEXTURE);
+: idleTexture(IDLE_TEXTURE,window), jigTexture(JIG_TEXTURE,window),
+ frameArea(0, 0, 168, 243){
+	this->texturePtr = &this->idleTexture;
+	this->actionPtr = &Chell::jigAction;
+	this->framex = 0;	
+	this->framey = 0;	
 }
 
 Chell::~Chell(){}
 
+void Chell::idleAction(){
+	this->texturePtr = &this->idleTexture;
+	frameArea = Area(0, 0, 168, 243);
+}
+
+void Chell::jigAction(){
+	this->texturePtr = &this->jigTexture;
+	this->framex+=1;
+	if(this->framey == 8){
+		if(this->framex == 7){
+			this->framex = 0;
+			this->framey = 0;	
+			this->actionPtr = &Chell::idleAction;
+		}
+	}
+	if(this->framex == 9){
+		this->framex = 0;
+		this->framey+=1;
+	}
+	this->frameArea = Area(169*this->framex, 244*this->framey, 168, 243);
+}
+
 int Chell::render(int x, int y){
-	return this->texture.render(this->area, Area(x,y,104,215));
+	(*this.*actionPtr)();
+	return (*this->texturePtr).render(this->frameArea, Area(x,y,104,215));
 }

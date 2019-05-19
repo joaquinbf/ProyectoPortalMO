@@ -1,5 +1,6 @@
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <unistd.h>
 #include <exception>
 
 #include "../include/SdlWindow.h"
@@ -22,13 +23,13 @@ int Client::main(){
         int x = 100;
         int y = 150;
         while (running) {
-            SDL_Event event;
+            //SDL_Event event;
             //Area destArea(x, y, 104, 215);
             window.fill(); // Repinto el fondo gris
             //im.render(srcArea, destArea);
             chell.render(x,y);
             // Para el alumno: Buscar diferencia entre waitEvent y pollEvent
-            SDL_WaitEvent(&event);
+            /*SDL_WaitEvent(&event);
             switch(event.type) {
                 case SDL_KEYDOWN: {
                         SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
@@ -51,8 +52,9 @@ int Client::main(){
                 case SDL_QUIT:
                     running = false;
                     break;
-            }
+            }*/
             window.render();
+            usleep(100000);
         }
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;
