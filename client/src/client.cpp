@@ -19,12 +19,12 @@ int Client::main(){
         Chell chell(window);
         this->chellPtr = &chell;
         this->running = true;
-       	this->x = 100;
-        this->y = 150;
+       	this->x = 200;
+        this->y = 250;
         std::thread inputManager([=]{this->eventManager();});
         while (this->running){
             window.fill(); // Repinto el fondo gris
-            chell.render(Area(this->x,this->y,104,215));
+            chell.render(Area(this->x,this->y,200,300));
             window.render();
             usleep(100000);
         }
@@ -54,10 +54,12 @@ void Client::eventManager(){
                         this->chellPtr->run(1);
                         this->x += 10;
                         break;
-                    case SDLK_UP:
+                    case SDLK_UP:                    
+                    	this->chellPtr->jump();
                         this->y -= 10;
                         break;
                     case SDLK_DOWN:
+                    	this->chellPtr->fall();
                         this->y += 10;
                         break;
                     case SDLK_b:

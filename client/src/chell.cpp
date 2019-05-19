@@ -7,7 +7,9 @@
 Chell::Chell(const SdlWindow& window)
 : idleTexture(IDLE_TEXTURE,window), jigTexture(JIG_TEXTURE,window), 
 runTexture(RUNNING_TEXTURE,window), stopTexture(STOPING_TEXTURE,window),
-turnTexture(TURN_TEXTURE,window), frameArea(0, 0, 165, 215){
+turnTexture(TURN_TEXTURE,window), jumpRiseTexture(JUMP_RISE_TEXTURE,window),
+jumpApexTexture(JUMP_APEX_TEXTURE,window), jumpFallTexture(JUMP_FALL_TEXTURE,window),
+jumpLandTexture(JUMP_LAND_TEXTURE,window), frameArea(0, 0, 165, 215){
 	this->texturePtr = &this->idleTexture;
 	this->actionPtr = &Chell::idleAction;
 	this->framex = 0;	
@@ -33,7 +35,7 @@ int Chell::render(const Area& renderArea){
 void Chell::idleAction(){
 	this->actionPtr = &Chell::idleAction;
 	this->texturePtr = &this->idleTexture;
-	frameArea = Area(0, 0, 165, 215);
+	frameArea = Area(0, 0, 155, 215);
 }
 void Chell::jig(){
 	this->framex = 0;
@@ -127,7 +129,7 @@ void Chell::turn(int dir){
 void Chell::turnAction(){
 	this->actionPtr = &Chell::turnAction;
 	this->texturePtr = &this->turnTexture;	
-	this->frameArea = Area(191*this->framex+5, 1, 190, 200);
+	this->frameArea = Area(193*this->framex+6, 1, 185, 200);
 	this->framex+=1;
 	if(this->framex == 8){
 		this->turning = false;
@@ -137,5 +139,54 @@ void Chell::turnAction(){
 			this->direction = 1;
 		}
 		this->stop(this->direction);
+	}
+}
+
+void Chell::jump(){
+	this->framex = 0;
+	this->jumpAction();
+}
+
+void Chell::jumpAction(){
+	this->actionPtr = &Chell::jumpAction;
+	this->texturePtr = &this->jumpRiseTexture;
+	this->frameArea = Area(144*this->framex+1, 0, 143, 227);
+	this->framex+=1;
+	if(this->framex == 5){
+		this->texturePtr = &this->jumpApexTexture;
+		this->frameArea = Area(0, 0, 137, 207);
+		this->actionPtr = &Chell::idleAction;
+	}	
+	
+}
+
+void Chell::fall(){
+	this->framex = 0;
+	this->fallAction();
+}
+
+void Chell::fallAction(){
+	this->actionPtr = &Chell::fallAction;
+	this->texturePtr = &this->jumpFallTexture;
+	this->frameArea = Area(157*this->framex, 0, 156, 217);
+	this->framex+=1;
+	if(this->framex == 4){		
+		//this->fall();
+		this->land();
+	}
+}
+
+void Chell::land(){
+	this->framex = 0;
+	this->landAction();
+}
+
+void Chell::landAction(){
+	this->actionPtr = &Chell::landAction;
+	this->texturePtr = &this->jumpLandTexture;
+	this->frameArea = Area(231*this->framex+80, 2, 150, 196);
+	this->framex+=1;
+	if(this->framex == 2){		
+		this->actionPtr = &Chell::idleAction;
 	}
 }

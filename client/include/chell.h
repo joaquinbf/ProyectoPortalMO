@@ -9,6 +9,10 @@
 #define RUNNING_TEXTURE "../resources/textures/chell-running.png"
 #define STOPING_TEXTURE "../resources/textures/chell-stoping.png"
 #define TURN_TEXTURE "../resources/textures/chell-turn.png"
+#define JUMP_RISE_TEXTURE "../resources/textures/chell-jump-rise.png"
+#define JUMP_APEX_TEXTURE "../resources/textures/chell-jump-apex.png"
+#define JUMP_FALL_TEXTURE "../resources/textures/chell-jump-fall.png"
+#define JUMP_LAND_TEXTURE "../resources/textures/chell-jump-land.png"
 
 class Chell{
 private:
@@ -18,7 +22,11 @@ private:
 	SdlTexture jigTexture;
 	SdlTexture runTexture;
 	SdlTexture stopTexture;
-	SdlTexture turnTexture;	
+	SdlTexture turnTexture;
+	SdlTexture jumpRiseTexture;
+	SdlTexture jumpApexTexture;
+	SdlTexture jumpFallTexture;
+	SdlTexture jumpLandTexture;
 	Area frameArea;
 	int framex;
 	int framey;
@@ -38,6 +46,12 @@ public:
 	void stopAction();
 	void turn(int dir);
 	void turnAction();
+	void jump();
+	void jumpAction();
+	void fall();
+	void fallAction();
+	void land();
+	void landAction();
 };
 
 #endif
