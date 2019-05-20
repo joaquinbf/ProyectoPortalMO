@@ -26,11 +26,17 @@ int Client::main(){
         std::thread inputManager([=]{this->eventManager();});
         while (this->running){
             window.fill(); // Repinto el fondo gris                       
+            //lista de objetos dinamicos->render
+            //lista objetos estaticos->render
+
             background.render(this->x-300,this->y-280,800,600);
             chell.render(Area(300,280,200,300));
+            
+
             window.render();
             usleep(100000);
         }
+        inputManager.stop();
         inputManager.join();
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;
@@ -47,19 +53,19 @@ void Client::eventManager(){
 	        case SDL_KEYDOWN: {
 	                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 	                switch (keyEvent.keysym.sym) {
-	                    case SDLK_LEFT:
+	                    case SDLK_a:
 	                        this->chellPtr->run(0);
 	                        this->x -= 10;
 	                        break;
-	                    case SDLK_RIGHT:
+	                    case SDLK_d:
 	                        this->chellPtr->run(1);
 	                        this->x += 10;
 	                        break;
-	                    case SDLK_UP:                    
+	                    case SDLK_w:                    
 	                    	this->chellPtr->jump();
 	                        this->y -= 10;
 	                        break;
-	                    case SDLK_DOWN:
+	                    case SDLK_s:
 	                    	this->chellPtr->fall();
 	                        this->y += 10;
 	                        break;
@@ -75,18 +81,18 @@ void Client::eventManager(){
 	        case SDL_KEYUP:{
 	        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 	                switch (keyEvent.keysym.sym) {
-	                    case SDLK_LEFT:
+	                    case SDLK_a:
 	                    	this->chellPtr->stop(0);
 	                        this->x -= 5;
 	                        break;
-	                    case SDLK_RIGHT:
+	                    case SDLK_d:
 	                    	this->chellPtr->stop(1);
 	                        this->x += 5;
 	                        break;
-	                    case SDLK_UP:
+	                    case SDLK_w:
 	                        this->y -= 5;
 	                        break;
-	                    case SDLK_DOWN:
+	                    case SDLK_s:
 	                        this->y += 5;
 	                        break;
 	                    }

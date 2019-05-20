@@ -5,6 +5,8 @@
 #include "../include/SdlTexture.h"
 
 #define BACKGROUND_TEXTURE "../resources/textures/background.jpg"
+#define SIZE_X 600
+#define SIZE_Y 400
 
 class Background{
 private: 

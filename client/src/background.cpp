@@ -23,7 +23,7 @@ int Background::render(int x, int y, int resx, int resy){
 		this->backgroundTexture.render(Area(400+100+x,290+y,-100-x,200),
 		 Area(0,0,(int)a,resy));
 		this->backgroundTexture.render(Area(0,290+y,400+100+x,200), 
-			Area((int)a,0,(int)b,resy));
+			Area((int)a,0,(int)b+1,resy));
 		return 0;
 	}else if(100+x>600-400 ){
 		while(100+x>resx){
