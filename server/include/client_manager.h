@@ -8,6 +8,7 @@
 class ClientManager {
 private:
     RealSocket socket;
+    RealSocket peer;
 public:
     ClientManager(const char *node);
     void sendInt();
