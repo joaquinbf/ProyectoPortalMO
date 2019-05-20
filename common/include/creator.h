@@ -1,6 +1,8 @@
 #ifndef _CREATOR_H_
 #define _CREATOR_H_
 
+#include <cstdint>
+
 class Creator{
 private:
 	uint32_t id_class;

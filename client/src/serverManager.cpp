@@ -1,4 +1,8 @@
+#include <cstdlib>
+
 #include "../include/serverManager.h"
+#include "../../common/include/creator.h"
+
 
 ServerManager::ServerManager(const char* address,const char * port){
 	Socket skt;
@@ -14,10 +18,10 @@ void ServerManager::recvInt(){
 }
 
 void ServerManager::createStage(){
-	/*int total = this->protocol.recvQuad();
+	int total = this->protocol.receiveQuad();
 	while(total){
-		creator = this->protocol.recvcreatror();
-		client.create(creator);
+		Creator creator = this->protocol.receiveCreator();
+		//client.create(creator);
 		--total;	
-	}	*/
+	}	
 }

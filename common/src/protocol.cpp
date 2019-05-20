@@ -123,7 +123,7 @@ Creator Protocol::receiveCreator() const{
 	uint32_t idc = this->receiveQuad();
 	uint32_t ido = this->receiveQuad();
 	float posx = this->receiveQuad();
-	float posy = = this->receiveQuad();
+	float posy = this->receiveQuad();
 	return Creator(idc,ido,posx,posy);
 }
 
