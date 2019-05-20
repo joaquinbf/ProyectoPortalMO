@@ -17,6 +17,8 @@ void Stage::run() {
     accepterSocket.bindAndListen("4545");
     Protocol protocol(accepterSocket.accept());
 
+    protocol.sendQuad(1);
+
     this->keep_running = true;
     while (this->keep_running) {
         this->b2world.Step(
@@ -30,6 +32,7 @@ void Stage::run() {
             protocol.sendCreator(creator);
             ++bodies;
         }
+        break;
 
     }
 }
