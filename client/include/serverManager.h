@@ -3,9 +3,8 @@
 
 #include <iostream>
 
-#include "../../common/include/real_socket_factory.h"
-#include "../../common/include/real_socket.h"
-#include "../../common/include/protocolo.h"
+#include "../../common/include/socket.h"
+#include "../../common/include/protocol.h"
 
 class ServerManager{
 private:

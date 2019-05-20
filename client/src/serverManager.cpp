@@ -1,7 +1,7 @@
 #include "../include/serverManager.h"
 
 ServerManager::ServerManager(const char* addres,const char * port){
-	this->socket = RealSocketFactory::getClientSocket(addres,port);
+	this->socket = Socket(addres,port);
 }
 
 ServerManager::~ServerManager(){}
