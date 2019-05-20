@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <arpa/inet.h>
 
+RealSocket::RealSocket(): skt(-1) {
+}
+
 RealSocket::RealSocket(int skt) {
     this->skt = skt;
 }
