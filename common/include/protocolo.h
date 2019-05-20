@@ -46,7 +46,6 @@ public:
     /* Recibe una accion */
     uint8_t recvAction();
 
-private:
     /* Envia un entero de 8bits sin signo */
     void sendUINT8(uint8_t integer);
 
