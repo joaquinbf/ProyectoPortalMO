@@ -17,6 +17,9 @@ private:
     int skt;
 
 public:
+    /* Instancia un socket por defecto sin posibilidad de conexion */
+    RealSocket();
+
     /* Instancia un socket en base a un socket file destriptor */
     explicit RealSocket(int skt);
 
