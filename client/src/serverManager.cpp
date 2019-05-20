@@ -1,4 +1,4 @@
-#include <cstdlib>
+#include <list>
 
 #include "../include/serverManager.h"
 #include "../../common/include/creator.h"
@@ -17,11 +17,13 @@ void ServerManager::recvInt(){
 	std::cout << this->protocol.receiveQuad() << std::endl;
 }
 
-void ServerManager::createStage(){
+std::list<Creator> ServerManager::createStage(){
+	std::list<Creator> list;
 	int total = this->protocol.receiveQuad();
 	while(total){
 		Creator creator = this->protocol.receiveCreator();
-		//client.create(creator);
+		list.push_back(creator);
 		--total;	
 	}	
+	return list;
 }
