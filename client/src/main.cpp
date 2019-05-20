@@ -1,10 +1,6 @@
-#include <iostream>
-
-#include "../include/serverManager.h"
+#include "../include/client.h"
 
 int main() {    
-	ServerManager sm("localhost","4545");
-	sm.recvInt();
-
-    return 0;
+	Client client;
+    return client.main();
 }
