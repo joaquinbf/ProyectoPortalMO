@@ -13,6 +13,7 @@ public:
 	explicit ServerManager(const char* address,const char * port);
 	~ServerManager();
 	void recvInt();
+	void createStage();
 	
 };
 

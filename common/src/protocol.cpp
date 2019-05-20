@@ -112,3 +112,18 @@ std::string Protocol::receiveLine() const{
 	return line;
 }
 
+void Protocol::sendCreator(const Creator creator) const{
+	this->sendQuad(creator.getIdClass());
+	this->sendQuad(creator.getIdObject());
+	this->sendQuad(creator.getPosX());
+	this->sendQuad(creator.getPosY());
+}
+
+Creator Protocol::receiveCreator() const{
+	uint32_t idc = this->receiveQuad();
+	uint32_t ido = this->receiveQuad();
+	float posx = this->receiveQuad();
+	float posy = = this->receiveQuad();
+	return Creator(idc,ido,posx,posy);
+}
+

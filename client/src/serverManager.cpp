@@ -12,3 +12,12 @@ ServerManager::~ServerManager(){}
 void ServerManager::recvInt(){
 	std::cout << this->protocol.receiveQuad() << std::endl;
 }
+
+void ServerManager::createStage(){
+	/*int total = this->protocol.recvQuad();
+	while(total){
+		creator = this->protocol.recvcreatror();
+		client.create(creator);
+		--total;	
+	}	*/
+}

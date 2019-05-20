@@ -3,7 +3,8 @@
 
 #include <string>
 
-#include "socket.h"
+#include "../include/socket.h"
+#include "../include/creator.h"
 
 class Protocol{
 private:
@@ -22,6 +23,8 @@ public:
 	uint16_t receiveDoble() const;
 	uint32_t receiveQuad() const;
 	std::string receiveLine() const;
+	void sendCreator(const Creator creator) const;
+	Creator receiveCreator() const;
 };
 
 #endif
