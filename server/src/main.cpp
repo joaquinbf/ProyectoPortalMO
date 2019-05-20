@@ -1,12 +1,14 @@
 #include "../include/clientManager.h"
 #include "../../common/include/socket.h"
+#include "../include/stage.h"
 
 int main() {
-	Socket accepterSocket;
-	accepterSocket.bindAndListen("4545");	
+	Stage stage;
+	stage.createStageOne();
 
-	ClientManager cm(accepterSocket.accept());
-	cm.sendInt(32);
+	stage.start();
+	stage.stop();
+	stage.join();
 
     return 0;
 }
