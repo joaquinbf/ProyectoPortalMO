@@ -72,11 +72,6 @@
 #include "VerticalStack.h"
 #include "Web.h"
 
-/* Propios */
-#include "b2d_block_test.h"
-#include "b2d_character_test.h"
-
-
 TestEntry g_testEntries[] =
 {
 	{"Shape Cast", ShapeCast::Create },
@@ -132,7 +127,5 @@ TestEntry g_testEntries[] =
 	{"Sensor Test", SensorTest::Create},
 	{"Varying Friction", VaryingFriction::Create},
 	{"Add Pair Stress Test", AddPair::Create},
-	{"b2d block", B2DBlockTest::Create},
-	{"b2d character", B2DCharacterTest::Create},
 	{NULL, NULL}
 };
