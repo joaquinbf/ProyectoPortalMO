@@ -9,10 +9,12 @@
 class Background{
 private: 
 	SdlTexture backgroundTexture;
+	int widthRendered;
+	int heightRendered;
 public:
 	explicit Background(const SdlWindow& window);
 	~Background();
-	int render(const Area& renderArea);
+	int render(int x, int y,int resx, int resy);
 };
 
 #endif
