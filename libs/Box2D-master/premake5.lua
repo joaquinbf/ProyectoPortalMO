@@ -61,11 +61,7 @@ project 'Testbed'
 		'Testbed/glfw/window.c',
 		'Testbed/imgui/*',
 		'../../common/include/*.h',
-		'../../server/include/*.h',
-		'../../common/src/position.cpp',
-		'../../server/src/block.cpp',
-		'../../server/src/character.cpp'
-
+		'../../server/include/*.h'
 	}
 
     filter { 'system:windows' }
