@@ -2,6 +2,7 @@
 #define _SERVER_MANAGER_H_
 
 #include <iostream>
+#include <list>
 
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
@@ -13,7 +14,7 @@ public:
 	explicit ServerManager(const char* address,const char * port);
 	~ServerManager();
 	void recvInt();
-	void createStage();
+	std::list<Creator> createStage();
 	
 };
 
