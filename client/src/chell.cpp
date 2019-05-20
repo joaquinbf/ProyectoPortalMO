@@ -5,11 +5,18 @@
 #include "../include/SdlTexture.h"
 
 Chell::Chell(const SdlWindow& window)
-: idleTexture(IDLE_TEXTURE,window), jigTexture(JIG_TEXTURE,window), 
-runTexture(RUNNING_TEXTURE,window), stopTexture(STOPING_TEXTURE,window),
-turnTexture(TURN_TEXTURE,window), jumpRiseTexture(JUMP_RISE_TEXTURE,window),
-jumpApexTexture(JUMP_APEX_TEXTURE,window), jumpFallTexture(JUMP_FALL_TEXTURE,window),
-jumpLandTexture(JUMP_LAND_TEXTURE,window), frameArea(0, 0, 165, 215){
+: idleTexture(CHELL_IDLE_TEXTURE,window), 
+jigTexture(CHELL_JIG_TEXTURE,window), 
+runTexture(CHELL_RUNNING_TEXTURE,window), 
+stopTexture(CHELL_STOPING_TEXTURE,window),
+turnTexture(CHELL_TURN_TEXTURE,window), 
+jumpRiseTexture(CHELL_JUMP_RISE_TEXTURE,window),
+jumpApexTexture(CHELL_JUMP_APEX_TEXTURE,window), 
+jumpFallTexture(CHELL_JUMP_FALL_TEXTURE,window),
+jumpLandTexture(CHELL_JUMP_LAND_TEXTURE,window), 
+fireTexture(CHELL_FIRE_TEXTURE,window),
+fireToIdleTexture(CHELL_FIRE_TO_IDLE_TEXTURE,window),
+frameArea(0, 0, 165, 215){
 	this->texturePtr = &this->idleTexture;
 	this->actionPtr = &Chell::idleAction;
 	this->framex = 0;	
@@ -187,6 +194,32 @@ void Chell::landAction(){
 	this->frameArea = Area(231*this->framex+80, 2, 150, 196);
 	this->framex+=1;
 	if(this->framex == 2){		
+		this->actionPtr = &Chell::idleAction;
+	}
+}
+
+void Chell::fire(){
+	if(this->turning){
+		return;
+	}
+	this->framex = 0;
+	if(this->running){
+
+	}else{
+		this->fireAction();	
+	}	
+}
+
+void Chell::fireAction(){
+	this->actionPtr = &Chell::fireAction;
+	this->texturePtr = &this->fireTexture;
+	this->frameArea = Area(171*this->framex, 0, 170, 212);
+	this->framex+=1;
+	if(this->framex >= 5){
+		this->texturePtr = &this->fireToIdleTexture;		
+		this->frameArea = Area(144*(this->framex-5), 0, 143, 212);
+	}
+	if(this->framex == 8){
 		this->actionPtr = &Chell::idleAction;
 	}
 }

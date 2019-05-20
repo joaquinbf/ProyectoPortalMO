@@ -8,6 +8,7 @@
 #include "../include/SdlTexture.h"
 #include "../include/chell.h"
 #include "../include/client.h"
+#include "../include/background.h"
 
 Client::Client(){}
 Client::~Client(){}
@@ -17,13 +18,15 @@ int Client::main(){
         SdlWindow window(800, 600);
         window.fill();
         Chell chell(window);
+        Background background(window);
         this->chellPtr = &chell;
         this->running = true;
        	this->x = 200;
-        this->y = 250;
+        this->y = 280;
         std::thread inputManager([=]{this->eventManager();});
         while (this->running){
-            window.fill(); // Repinto el fondo gris
+            window.fill(); // Repinto el fondo gris                       
+            background.render(Area(0,0,800,600));
             chell.render(Area(this->x,this->y,200,300));
             window.render();
             usleep(100000);
@@ -64,6 +67,9 @@ void Client::eventManager(){
                         break;
                     case SDLK_b:
                     	this->chellPtr->jig();
+                    	break;
+                    case SDLK_SPACE:
+                    	this->chellPtr->fire();
                     	break;
                     }
             } // Fin KEY_DOWN

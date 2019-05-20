@@ -4,15 +4,17 @@
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 
-#define IDLE_TEXTURE "../resources/textures/chell-idle.png"
-#define JIG_TEXTURE "../resources/textures/chell-jig.png"
-#define RUNNING_TEXTURE "../resources/textures/chell-running.png"
-#define STOPING_TEXTURE "../resources/textures/chell-stoping.png"
-#define TURN_TEXTURE "../resources/textures/chell-turn.png"
-#define JUMP_RISE_TEXTURE "../resources/textures/chell-jump-rise.png"
-#define JUMP_APEX_TEXTURE "../resources/textures/chell-jump-apex.png"
-#define JUMP_FALL_TEXTURE "../resources/textures/chell-jump-fall.png"
-#define JUMP_LAND_TEXTURE "../resources/textures/chell-jump-land.png"
+#define CHELL_IDLE_TEXTURE "../resources/textures/chell-idle.png"
+#define CHELL_JIG_TEXTURE "../resources/textures/chell-jig.png"
+#define CHELL_RUNNING_TEXTURE "../resources/textures/chell-running.png"
+#define CHELL_STOPING_TEXTURE "../resources/textures/chell-stoping.png"
+#define CHELL_TURN_TEXTURE "../resources/textures/chell-turn.png"
+#define CHELL_JUMP_RISE_TEXTURE "../resources/textures/chell-jump-rise.png"
+#define CHELL_JUMP_APEX_TEXTURE "../resources/textures/chell-jump-apex.png"
+#define CHELL_JUMP_FALL_TEXTURE "../resources/textures/chell-jump-fall.png"
+#define CHELL_JUMP_LAND_TEXTURE "../resources/textures/chell-jump-land.png"
+#define CHELL_FIRE_TEXTURE "../resources/textures/chell-fire.png"
+#define CHELL_FIRE_TO_IDLE_TEXTURE "../resources/textures/chell-fire-to-idle.png"
 
 class Chell{
 private:
@@ -27,6 +29,8 @@ private:
 	SdlTexture jumpApexTexture;
 	SdlTexture jumpFallTexture;
 	SdlTexture jumpLandTexture;
+	SdlTexture fireTexture;
+	SdlTexture fireToIdleTexture;
 	Area frameArea;
 	int framex;
 	int framey;
@@ -52,6 +56,8 @@ public:
 	void fallAction();
 	void land();
 	void landAction();
+	void fire();
+	void fireAction();
 };
 
 #endif
