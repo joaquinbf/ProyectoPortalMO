@@ -8,9 +8,9 @@
 
 class ServerManager{
 private:
-	RealSocket socket;
+	Protocol protocol;
 public:
-	explicit ServerManager(const char* addres,const char * port);
+	explicit ServerManager(const char* address,const char * port);
 	~ServerManager();
 	void recvInt();
 	

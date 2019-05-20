@@ -3,9 +3,12 @@
 #include "../include/protocol.h"
 #include "../include/socket.h"
 
+Protocol::Protocol(){}
+
 Protocol::Protocol(Socket&& socket) : socket(std::move(socket)){}
 
 Protocol::~Protocol(){}
+
 
 Protocol::Protocol(Protocol&& other){
 	this->socket=std::move(other.socket);

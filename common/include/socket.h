@@ -44,7 +44,7 @@ public:
   	Socket& operator=(Socket &&other);
 	void close();	
 	void setSocket(struct addrinfo *p);
-	void connect(const std::string hostName, const std::string& port);
+	void connect(const std::string& hostName, const std::string& port);
 	void bindSocket(struct addrinfo *p);
 	void bindAndListen(const std::string& port);
 	void shutdown(char mode);

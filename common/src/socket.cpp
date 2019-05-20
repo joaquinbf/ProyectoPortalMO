@@ -45,7 +45,7 @@ void Socket::close(){
 }
 
 //De uso para el cliente, conecta el socket a un determinado puerto.
-void Socket::connect(const std::string host, const std::string& port){
+void Socket::connect(const std::string& host, const std::string& port){
 	try {
 		int s;
 		this->getClientAddrinfo(host.c_str(), port.c_str());
