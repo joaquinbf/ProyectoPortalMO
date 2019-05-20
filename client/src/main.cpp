@@ -1,15 +1,10 @@
-#include "../../common/include/real_socket_factory.h"
-#include "../../common/include/real_socket.h"
-#include "../../common/include/protocolo.h"
-
 #include <iostream>
 
+#include "../include/serverManager.h"
 
-int main() {
-    RealSocket socket = RealSocketFactory::getClientSocket("localhost", "4545");
-    Protocolo protocolo(&socket);
-
-    std::cout << protocolo.recvString() << std::endl;
+int main() {    
+	ServerManager sm("localhost","4545");
+	sm.recvInt();
 
     return 0;
 }
