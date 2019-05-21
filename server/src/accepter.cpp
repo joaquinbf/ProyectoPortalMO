@@ -4,7 +4,7 @@
 #include "../include/player.h"
 #include "../include/world.h"
 #include <vector>
-
+#include <iostream>
 
 Accepter::Accepter(World *world) {
     this->socket.bindAndListen(PORT);
@@ -19,6 +19,7 @@ void Accepter::run() {
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
+            std::cout << "acepto un cliente " << std::endl;
             Player *new_player = new Player(peer);
             new_player->start();
             players.emplace_back(new_player);
@@ -28,6 +29,7 @@ void Accepter::run() {
     }
 
     for (Player *player: players) {
+        player->stop();
         player->join();
         delete player;
     }

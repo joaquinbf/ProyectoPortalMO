@@ -14,8 +14,10 @@ int Server::main() {
     while (std::cin.get() != QUIT) {
     }
 
+    accepter.stop();
     accepter.join();
+    world.stop();
     world.join();
-    
+
     return 0;
 }
