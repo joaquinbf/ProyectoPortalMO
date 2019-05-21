@@ -1,8 +1,23 @@
 #ifndef __WORLD_H__
 #define __WORLD_H__
 
-class World {
+#include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
+#include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
+#include "../../common/include/thread.h"
 
+class World: public Thread {
+private:
+    bool keep_running;
+    b2World b2world;
+    const float TIME_STEP = 1/20.0;
+    const uint32_t VELOCITY_ITERATIONS = 8;
+    const uint32_t POSITION_ITERATIONS = 3;
+
+public:
+    /* Ejecuta a world */
+    World();
+    virtual void run() override;
+    void stop();
 };
 
 #endif

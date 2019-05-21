@@ -1,9 +1,13 @@
 #include "../include/server.h"
 #include "../include/accepter.h"
+#include "../include/world.h"
 #include <iostream>
 
 int Server::main() {
-    Accepter accepter;
+    World world;
+    world.start();
+
+    Accepter accepter(&world);
     accepter.start();
 
     const char QUIT = 'q';

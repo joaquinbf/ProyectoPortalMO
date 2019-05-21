@@ -1,11 +1,15 @@
 #include "../include/accepter.h"
 #include "../../common/include/exceptions.h"
+#include "../../common/include/socket.h"
+#include "../include/player.h"
+#include "../include/world.h"
 #include <vector>
 
 
-Accepter::Accepter() {
+Accepter::Accepter(World *world) {
     this->socket.bindAndListen(PORT);
     this->keep_running = true;
+    this->world = world;
 }
 
 void Accepter::run() {
@@ -15,7 +19,7 @@ void Accepter::run() {
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
-            Player *new_player = new Player(peer);
+            Player *new_player = new Player(peer, this->world);
             new_player->start();
             players.emplace_back(new_player);
         }
