@@ -10,7 +10,7 @@ void World::run() {
     for (Player *player: this->players) {
         ProtectedQueue<Action> *queue = player->getInputReceiver()->getQueue();
         Action action;
-        if (queue->try_pop(action)) {
+        while (queue->try_pop(action)) {
             std::cout << "world: action recibida  = "
                       << action.getAction()
                       << std::endl;
