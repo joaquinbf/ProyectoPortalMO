@@ -15,6 +15,7 @@ int Server::main() {
     }
 
     accepter.join();
-
+    world.join();
+    
     return 0;
 }
