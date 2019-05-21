@@ -3,12 +3,13 @@
 
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
-#include "../player.h"
+#include "../include/player.h"
 
 class Player: public Thread {
 private:
-    Socket socket;
     bool keep_running;
+    Socket socket;
+
 public:
     Player(Socket &socket);
     virtual void run() override;

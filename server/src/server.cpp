@@ -1,11 +1,15 @@
 #include "../include/server.h"
-
-Server::Server() {
-    this->socket.bindAndListen(PORT);
-}
-
+#include <iostream>
 
 int Server::main() {
-    Accepter accepter(&this->socket);
+    Accepter accepter;
+    accepter.start();
+
+    const char QUIT = 'q';
+    while (std::cin.get() != QUIT) {
+    }
+
+    accepter.join();
+
     return 0;
 }

@@ -28,13 +28,13 @@ class Socket{
 private:
 	bool connected;
   	struct addrinfo *ptr;
-  	int fileDescriptor;	
+  	int fileDescriptor;
 
 public:
 	Socket();
 	explicit Socket(int fd);
 	~Socket();
-	
+
 	int get();
 	Socket &operator=(const Socket &other) = delete;
 	Socket &operator=(Socket &other) = delete;
@@ -42,7 +42,7 @@ public:
 	Socket(Socket &other) = delete;
   	Socket(Socket &&other);
   	Socket& operator=(Socket &&other);
-	void close();	
+	void close();
 	void setSocket(struct addrinfo *p);
 	void connect(const std::string& hostName, const std::string& port);
 	void bindSocket(struct addrinfo *p);
@@ -51,7 +51,7 @@ public:
 	Socket accept();
 	int receive(void * ptr, size_t len) const;
 	int send(const void * ptr, size_t len) const;
-	
+
 private:
 	void setClientHints(struct addrinfo *hints);
 	void setServerHints(struct addrinfo *hints);
