@@ -37,6 +37,5 @@ void Accepter::run() {
 
 void Accepter::stop() {
     this->keep_running = false;
-    this->socket.shutdown('f');
     this->socket.close();
 }

@@ -21,6 +21,8 @@ frameArea(0, 0, 165, 215){
 	this->actionPtr = &Chell::idleAction;
 	this->framex = 0;	
 	this->framey = 0;	
+	this->width = 200;
+	this->height = 300;
 	this->direction = 1;
 	this->turning = false;
 	this->running = false;
@@ -28,15 +30,20 @@ frameArea(0, 0, 165, 215){
 
 Chell::~Chell(){}
 
-int Chell::render(const Area& renderArea){
-	int s;
+void Chell::renderCentered(int resx,int resy, float scale){
+	int a=(resx/2)-((this->width*scale)/2);//200 harcoded
+    int b=(7*resy/8)-(this->height*scale);//300 harcoded
+    Area renderArea(a,b,this->width*scale,this->height*scale);
 	if( this-> direction == 1){
-		s = (*this->texturePtr).render(this->frameArea, renderArea);
+		(*this->texturePtr).render(this->frameArea, renderArea);
 	} else if(this-> direction == 0){
-		s = (*this->texturePtr).renderFliped(this->frameArea, renderArea);
+		(*this->texturePtr).renderFliped(this->frameArea, renderArea);
 	}
 	(*this.*actionPtr)();
-	return s;
+}
+
+void Chell::render(int resx,int resy,int width,int height){
+	return;
 }
 
 void Chell::idleAction(){

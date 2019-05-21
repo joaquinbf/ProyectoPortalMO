@@ -3,6 +3,7 @@
 
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
+#include "../include/renderableObject.h"
 
 #define CHELL_IDLE_TEXTURE "../resources/textures/chell-idle.png"
 #define CHELL_JIG_TEXTURE "../resources/textures/chell-jig.png"
@@ -16,7 +17,7 @@
 #define CHELL_FIRE_TEXTURE "../resources/textures/chell-fire.png"
 #define CHELL_FIRE_TO_IDLE_TEXTURE "../resources/textures/chell-fire-to-idle.png"
 
-class Chell{
+class Chell : public RenderableObject{
 private:
 	SdlTexture * texturePtr;
 	void(Chell::* actionPtr)();
@@ -34,13 +35,17 @@ private:
 	Area frameArea;
 	int framex;
 	int framey;
-	int direction; //0 izquierda 1 derecha
+	int width;
+	int height;
+	
+	int direction; //0 izquierda 1 derecha??
 	bool turning;
 	bool running;
 public:	
 	explicit Chell(const SdlWindow& window);
 	~Chell();
-	int render(const Area& renderArea);	
+	void renderCentered(int resx, int resy, float scale);	
+	void render(int resx,int resy,int width,int height) override;	
 	void idleAction();
 	void jig();
 	void jigAction();

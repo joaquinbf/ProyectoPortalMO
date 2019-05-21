@@ -5,8 +5,8 @@
 #include <exception>
 #include <list>
 
-#include "../include/serverManager.h"
 #include "../../common/include/creator.h"
+#include "../include/serverManager.h"
 #include "../include/SdlWindow.h"
 #include "../include/SdlTexture.h"
 #include "../include/chell.h"
@@ -24,35 +24,21 @@ Client::Client(int x, int y)
 
 Client::~Client(){}
 
-int Client::main(){
-	try {
-        SdlWindow window(this->resx, this->resy);
-        window.fill();
-        Chell chell(window);
-        Background background(window);
-        this->running = true;
-        std::thread inputManager([=]{this->inputManager();});
-        while (this->running){
-            window.fill(); // Repinto el fondo gris                       
-            //lista de objetos dinamicos->render
-            //lista objetos estaticos->render
+void Client::main(){
+    SdlWindow window(this->resx, this->resy);
+    window.fill();
+    Chell myChell(window);
 
-            background.render(0,0,this->resx,this->resy);
-            
-            int a=(this->resx/2)-((200/2)*this->scale);
-            int b=(7*this->resy/8)-(300*this->scale);
-            chell.render(Area(a,b,200*this->scale,300*this->scale));
-            
-
-            window.render();
-            usleep(100000);
-        }
-        inputManager.join();
-    } catch (std::exception& e) {
-        std::cout << e.what() << std::endl;
-        return 1;
+    this->running = true;
+    std::thread inputManager([=]{this->inputManager();});
+    while (this->running){
+        window.fill(); // Repinto el fondo gris                       
+        myChell.renderCentered(this->resx,this->resy,this->scale);
+        //lista de objetos->render        
+        window.render();
+        usleep(100000);
     }
-	return 0;
+    inputManager.join();
 }
 
 void Client::inputManager(){	
@@ -73,10 +59,10 @@ void Client::inputManager(){
 	                    	this->serverManager.sendAction(Action(JUMP,0));
 	                        break;
 	                    case SDLK_o:
-	                    	this->scale += 0.1;
+	                    	this->zoomIn();
 	                        break;
 	                    case SDLK_p:
-	                    	this->scale -= 0.1;
+	                    	this->zoomOut();
 	                        break;
 	                    case SDLK_b:
 	                    	this->serverManager.sendAction(Action(JIG,0));
@@ -110,4 +96,16 @@ void Client::inputManager(){
 	    }	
     }
     
+}
+
+void Client::zoomIn(){
+	if(this->scale < 1){
+		this->scale+=0.05;
+	}
+}
+
+void Client::zoomOut(){
+	if(this->scale > 0.5){
+		this->scale-=0.05;
+	}
 }

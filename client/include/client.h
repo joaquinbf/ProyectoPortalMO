@@ -15,9 +15,11 @@ private:
 public:
 	explicit Client(int,int);
 	~Client();
-	int main();	
+	void main();	
 private:
 	void inputManager();
+	void zoomIn();
+	void zoomOut();
 };
 
 #endif
