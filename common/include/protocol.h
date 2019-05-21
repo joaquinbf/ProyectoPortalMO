@@ -5,6 +5,7 @@
 
 #include "../include/socket.h"
 #include "../include/creator.h"
+#include "../../common/include/action.h"
 
 class Protocol{
 private:
@@ -25,6 +26,8 @@ public:
 	std::string receiveLine() const;
 	void sendCreator(const Creator creator) const;
 	Creator receiveCreator() const;
+	void sendAction(const Action action) const;
+	Action receiveAction() const;
 };
 
 #endif

@@ -27,3 +27,7 @@ std::list<Creator> ServerManager::createStage(){
 	}	
 	return list;
 }
+
+void ServerManager::sendAction(const Action ac){
+	this->protocol.sendAction(ac);
+}

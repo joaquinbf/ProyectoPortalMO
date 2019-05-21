@@ -127,3 +127,13 @@ Creator Protocol::receiveCreator() const{
 	return Creator(idc,ido,posx,posy);
 }
 
+void Protocol::sendAction(const Action action) const{
+	this->sendByte(action.getAction());
+	this->sendQuad(action.getParam());
+}
+
+Action Protocol::receiveAction() const{
+	ACTION ac =(ACTION) this->receiveByte();
+	uint32_t param = this->receiveQuad();
+	return Action(ac,param);
+}

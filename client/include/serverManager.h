@@ -6,6 +6,7 @@
 
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
+#include "../../common/include/action.h"
 
 class ServerManager{
 private:
@@ -15,7 +16,8 @@ public:
 	~ServerManager();
 	void recvInt();
 	std::list<Creator> createStage();
-	
+	void sendAction(const Action ac);
+	//void updateManager();
 };
 
 #endif

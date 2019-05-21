@@ -3,6 +3,7 @@
 
 #include <thread>
 #include "../include/chell.h"
+#include "../include/serverManager.h"
 
 class Client{
 private:
@@ -10,12 +11,13 @@ private:
 	int y;
 	bool running;
 	Chell* chellPtr;
+	ServerManager serverManager;
 public:
 	Client();
 	~Client();
 	int main();	
 private:
-	void eventManager();
+	void inputManager();
 };
 
 #endif
