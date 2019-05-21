@@ -1,7 +1,6 @@
-
+#include "../include/server.h"
 
 int main() {
-
-
-    return 0;
+	Server server;
+    return server.main();
 }
