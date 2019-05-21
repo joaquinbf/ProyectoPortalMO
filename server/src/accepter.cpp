@@ -16,6 +16,7 @@ void Accepter::run() {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
             Player *new_player = new Player(peer);
+            new_player->start();
             players.emplace_back(new_player);
         }
     } catch (const ConnectionErrorException &e) {

@@ -4,6 +4,6 @@ Player::Player(Socket &socket):
     socket(std::move(socket)){
 }
 
-
 void Player::run() {
+    
 }
