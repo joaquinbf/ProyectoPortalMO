@@ -13,35 +13,35 @@
 #include "../include/client.h"
 #include "../include/background.h"
 
-Client::Client() : serverManager("localhost","4545"){
+Client::Client(int x, int y) 
+: resx(x),resy(y), scale(1),serverManager("localhost","4545"){
 	std::list<Creator> mylist = this->serverManager.createStage();
 	for (Creator& c: mylist){
-		std::cout<< c.getIdClass()<<std::endl;
-		std::cout<< c.getIdObject()<<std::endl;
-		std::cout<< c.getPosX()<<std::endl;
-		std::cout<< c.getPosY()<<std::endl;
+		c.getIdClass();
+		//do something
 	}
 }
+
 Client::~Client(){}
 
 int Client::main(){
 	try {
-        SdlWindow window(800, 600);
+        SdlWindow window(this->resx, this->resy);
         window.fill();
         Chell chell(window);
         Background background(window);
-        this->chellPtr = &chell;
         this->running = true;
-       	this->x = 300;
-        this->y = 280;
         std::thread inputManager([=]{this->inputManager();});
         while (this->running){
             window.fill(); // Repinto el fondo gris                       
-            //lista de objetos dinamicos->dAW             render
-            //lisyta objetos estaticos->render
+            //lista de objetos dinamicos->render
+            //lista objetos estaticos->render
 
-            background.render(this->x-300,this->y-280,800,600);
-            chell.render(Area(300,280,200,300));
+            background.render(0,0,this->resx,this->resy);
+            
+            int a=(this->resx/2)-((200/2)*this->scale);
+            int b=(7*this->resy/8)-(300*this->scale);
+            chell.render(Area(a,b,200*this->scale,300*this->scale));
             
 
             window.render();
@@ -72,7 +72,11 @@ void Client::inputManager(){
 	                    case SDLK_w:                    
 	                    	this->serverManager.sendAction(Action(JUMP,0));
 	                        break;
-	                    case SDLK_s:
+	                    case SDLK_o:
+	                    	this->scale += 0.1;
+	                        break;
+	                    case SDLK_p:
+	                    	this->scale -= 0.1;
 	                        break;
 	                    case SDLK_b:
 	                    	this->serverManager.sendAction(Action(JIG,0));

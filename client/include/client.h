@@ -7,13 +7,13 @@
 
 class Client{
 private:
-	int x;
-	int y;
+	int resx;
+	int resy;
 	bool running;
-	Chell* chellPtr;
+	float scale;
 	ServerManager serverManager;
 public:
-	Client();
+	explicit Client(int,int);
 	~Client();
 	int main();	
 private:

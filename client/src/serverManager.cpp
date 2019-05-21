@@ -19,7 +19,8 @@ void ServerManager::recvInt(){
 
 std::list<Creator> ServerManager::createStage(){
 	std::list<Creator> list;
-	int total = this->protocol.receiveQuad();
+	//int total = this->protocol.receiveQuad();
+	int total = 0;
 	while(total){
 		Creator creator = this->protocol.receiveCreator();
 		list.push_back(creator);
