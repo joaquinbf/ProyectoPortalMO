@@ -137,3 +137,23 @@ Action Protocol::receiveAction() const{
 	uint32_t param = this->receiveQuad();
 	return Action(ac,param);
 }
+
+
+void Protocol::sendUpdate(const Update update) const{
+	this->sendQuad(update.getId());
+	this->sendByte(update.getStatus());
+	this->sendQuad(update.getPosX());
+	this->sendQuad(update.getPosY());
+	this->sendQuad(update.getSpeedX());
+	this->sendQuad(update.getSpeedY());
+}
+
+Update Protocol::receiveUpdate() const{
+	uint32_t id = this->receiveQuad();
+	STATUS st =(STATUS) this->receiveByte();
+	float posx = this->receiveQuad();
+	float posy = this->receiveQuad();
+	float speedx = this->receiveQuad();
+	float speedy = this->receiveQuad();
+	return Update(id,st,posx,posy,speedx,speedy);
+}

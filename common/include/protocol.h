@@ -2,10 +2,12 @@
 #define _COMMON_PROTOCOL_H_
 
 #include <string>
+#include <cstdint>
 
-#include "../include/socket.h"
-#include "../include/creator.h"
-#include "../../common/include/action.h"
+#include "socket.h"
+#include "creator.h"
+#include "update.h"
+#include "action.h"
 
 class Protocol{
 private:
@@ -28,6 +30,8 @@ public:
 	Creator receiveCreator() const;
 	void sendAction(const Action action) const;
 	Action receiveAction() const;
+	void sendUpdate(const Update update) const;
+	Update receiveUpdate() const;
 };
 
 #endif

@@ -10,6 +10,7 @@
 #include "../include/exceptions.h"
 
 Socket::Socket() {
+	this->fileDescriptor = -1;
 	this->connected = false;
 	this->ptr = nullptr;
 }
