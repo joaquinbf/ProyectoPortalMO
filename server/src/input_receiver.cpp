@@ -12,9 +12,14 @@ void InputReceiver::run() {
     while (this->keep_running) {
         Action action = this->protocol->receiveAction();
         std::cout << action.getAction() << std::endl;
+        this->queue.push(action);
     }
 }
 
 void InputReceiver::stop() {
     this->keep_running = false;
+}
+
+ProtectedQueue<Action> *InputReceiver::getQueue() {
+    return &this->queue;
 }

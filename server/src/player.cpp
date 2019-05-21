@@ -20,3 +20,7 @@ void Player::run() {
 void Player::stop() {
     this->keep_running = false;
 }
+
+InputReceiver *Player::getInputReceiver() {
+    return &this->input_recv;
+}

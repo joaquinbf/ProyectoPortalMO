@@ -5,6 +5,9 @@
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
 #include "../../common/include/thread.h"
 #include "../include/player.h"
+#include "../include/input_receiver.h"
+#include "../../common/include/protected_queue.h"
+#include "../../common/include/action.h"
 #include <vector>
 
 class World: public Thread {

@@ -1,5 +1,8 @@
 #include "../include/action.h"
 
+Action::Action() {
+}
+
 Action::Action(ACTION ac,uint32_t param): action(ac), param(param){}
 
 Action::~Action(){}

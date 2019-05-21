@@ -7,17 +7,24 @@
 #include "../../common/include/action.h"
 #include <iostream>
 
+/* Clase encargada de recibir el input del cliente */
 class InputReceiver: public Thread {
 private:
     bool keep_running;
     Protocol *protocol;
-    ProtectedQueue<uint8_t> inputs;
+    ProtectedQueue<Action> queue;
 
 public:
+    /* Instancia un input receiver */
     InputReceiver(Protocol *protocol);
-    virtual void run() override;
-    void stop();
-};
 
+    /* Ejecuta el input recv */
+    virtual void run() override;
+
+    /* Detiene al input recv */
+    void stop();
+
+    ProtectedQueue<Action> *getQueue();
+};
 
 #endif

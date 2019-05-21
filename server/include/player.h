@@ -17,6 +17,7 @@ public:
     Player(Socket &socket);
     virtual void run() override;
     void stop();
+    InputReceiver *getInputReceiver();
 };
 
 #endif
