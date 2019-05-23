@@ -57,19 +57,19 @@ void Client::main(){
         this->window.render();
         usleep(100000);
     }
-    updateReceiver.join();
+    this->serverManager.stop();
     inputManager.join();
+    updateReceiver.join();
 }
 
 void Client::updateReceiver(){
 	try{
 		while(this->running){	
 			Update up = this->serverManager.receiveUpdate();	
-			std::cout<<"UPDATE\n";
 			this->updates.push(up);
 		}
 	}catch(const ConnectionErrorException &e){
-			
+		
 	}
 }
 

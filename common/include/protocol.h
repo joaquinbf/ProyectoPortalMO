@@ -17,6 +17,7 @@ public:
 	explicit Protocol(Socket&& socket);
 	explicit Protocol(Protocol&&);
 	~Protocol();
+	void close();
 	Protocol& operator=(Protocol&& other);
 	void sendByte(const uint8_t byte) const;
 	void sendDoble(const uint16_t byte) const;

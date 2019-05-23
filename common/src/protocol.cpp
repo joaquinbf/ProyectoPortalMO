@@ -9,6 +9,9 @@ Protocol::Protocol(Socket&& socket) : socket(std::move(socket)){}
 
 Protocol::~Protocol(){}
 
+void Protocol::close(){
+	this->socket.close();
+}
 
 Protocol::Protocol(Protocol&& other){
 	this->socket=std::move(other.socket);

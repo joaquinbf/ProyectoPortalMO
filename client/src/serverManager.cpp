@@ -11,8 +11,8 @@ ServerManager::ServerManager(const char* address,const char * port){
 
 ServerManager::~ServerManager(){}
 
-void ServerManager::recvInt(){
-	std::cout << this->protocol.receiveQuad() << std::endl;
+void ServerManager::stop(){
+	this->protocol.close();
 }
 
 

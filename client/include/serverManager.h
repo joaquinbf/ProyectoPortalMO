@@ -16,7 +16,7 @@ private:
 public:
 	explicit ServerManager(const char* address,const char * port);
 	~ServerManager();
-	void recvInt();
+	void stop();
 	std::list<CreatorMessage> receiveStage();
 	void sendAction(const Action ac);
 	Update receiveUpdate();
