@@ -18,7 +18,7 @@ void Player::run() {
     this->world->sendBodiesToPlayer(this);
 
     std::cout << "START inpur recv" << std::endl;
-    // this->input_recv.start();
+    this->input_recv.start();
     while (this->keep_running) {
     }
 }
