@@ -5,10 +5,10 @@ EntityFactory::EntityFactory(){}
 
 EntityFactory::~EntityFactory(){}
 
-Entity* EntityFactory::create(CreatorMesage cm,const SdlWindow& window){
+Entity* EntityFactory::create(CreatorMessage cm,const SdlWindow& window){
 	switch(cm.getIdClass()){
 		case CHELL:
-			return new Chell(window); 
+			return new Chell(window);
 			break;
 		default:
 			return nullptr;

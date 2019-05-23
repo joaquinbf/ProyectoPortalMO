@@ -8,7 +8,7 @@
 #include "../include/input_receiver.h"
 #include "../include/body.h"
 #include "../../common/include/entity.h"
-#include "../../common/include/creatorMesage.h"
+#include "../../common/include/creatorMessage.h"
 #include <vector>
 
 class Player: public Thread {

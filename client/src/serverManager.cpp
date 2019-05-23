@@ -15,15 +15,15 @@ void ServerManager::recvInt(){
 	std::cout << this->protocol.receiveQuad() << std::endl;
 }
 
-std::list<CreatorMesage> ServerManager::receiveStage(){
-	std::list<CreatorMesage> list;
-	uint32_t total = this->protocol.receiveQuad();	
+std::list<CreatorMessage> ServerManager::receiveStage(){
+	std::list<CreatorMessage> list;
+	uint32_t total = this->protocol.receiveQuad();
 	std::cout<<"TOTAL: "<<total<<std::endl;
 	while(total){
-		CreatorMesage creator = this->protocol.receiveCreator();
+		CreatorMessage creator = this->protocol.receiveCreator();
 		list.push_back(creator);
 		--total;
-	}	
+	}
 	return list;
 }
 

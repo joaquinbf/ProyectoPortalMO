@@ -5,7 +5,7 @@
 #include <exception>
 #include <list>
 
-#include "../../common/include/creatorMesage.h"
+#include "../../common/include/creatorMessage.h"
 #include "../include/entityFactory.h"
 #include "../include/serverManager.h"
 #include "../include/SdlWindow.h"
@@ -14,25 +14,25 @@
 #include "../include/client.h"
 #include "../include/background.h"
 
-Client::Client(int x, int y) 
+Client::Client(int x, int y)
 : resx(x),resy(y),window(x,y),myChell(NULL), scale(1),serverManager("localhost","4545"){
-	std::list<CreatorMesage> mylist = this->serverManager.receiveStage();
+	std::list<CreatorMessage> mylist = this->serverManager.receiveStage();
 	EntityFactory ef;
 	//this->myChell = new Chell(this->window);
-	for (CreatorMesage& c: mylist){
+	for (CreatorMessage& c: mylist){
 		this->entities[c.getIdObject()]=ef.create(c,this->window);
 	}
 }
 
 Client::~Client(){
 	if(this->myChell != nullptr){
-		delete this->myChell;	
+		delete this->myChell;
 	}
-	
-	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
+
+	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
 		if(it->second != nullptr){
-			delete it->second;	
-		}		
+			delete it->second;
+		}
 	}
 }
 
@@ -40,10 +40,10 @@ void Client::main(){
     this->running = true;
     std::thread inputManager([=]{this->inputManager();});
     while (this->running){
-		//proceso updates       
+		//proceso updates
 
-        this->window.fill(); // Repinto el fondo gris                           	
-    	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
+        this->window.fill(); // Repinto el fondo gris
+    	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
 			//render de las cosas
 			it->second->render(this->resx,this->resy,200,300);
 		}
@@ -55,7 +55,7 @@ void Client::main(){
     inputManager.join();
 }
 
-void Client::inputManager(){	
+void Client::inputManager(){
 	SDL_Event event;
     while(this->running){
 	    if(SDL_PollEvent(&event) != 0){
@@ -69,7 +69,7 @@ void Client::inputManager(){
 	                    case SDLK_d:
 	                        this->serverManager.sendAction(Action(RUN_RIGHT,0));
 	                        break;
-	                    case SDLK_w:                    
+	                    case SDLK_w:
 	                    	this->serverManager.sendAction(Action(JUMP,0));
 	                        break;
 	                    case SDLK_o:
@@ -107,9 +107,9 @@ void Client::inputManager(){
 	            this->running = false;
 	            break;
 	    }
-	    }	
+	    }
     }
-    
+
 }
 
 void Client::zoomIn(){

@@ -29,14 +29,14 @@ void Protocol::sendByte(const uint8_t byte) const{
 
 void Protocol::sendDoble(const uint16_t byte) const{
 	uint16_t aux = htons(byte);
-	this->sendByte((aux) & 0xFF); 
-	this->sendByte((aux >> 8) & 0xFF); 
+	this->sendByte((aux) & 0xFF);
+	this->sendByte((aux >> 8) & 0xFF);
 }
 
 void Protocol::sendQuad(const uint32_t byte) const{
 	uint32_t aux = htonl(byte);
 	for(int i = 0; i<4; ++i){
-		this->sendByte((aux >> 8*i) & 0xFF); 
+		this->sendByte((aux >> 8*i) & 0xFF);
 	}
 }
 
@@ -46,7 +46,7 @@ void Protocol::sendLine(const std::string& line) const{
 	int len = line.size();
 	this->sendQuad((uint32_t)len);
 	while(len > charsSent){
-		s = this->socket.send(line.c_str()+charsSent, len-charsSent);	
+		s = this->socket.send(line.c_str()+charsSent, len-charsSent);
 		if(s >= 0){
 		 	charsSent += s;
 		}else{
@@ -104,7 +104,7 @@ std::string Protocol::receiveLine() const{
 		}
 		if(s <= 0){
 			throw ConnectionErrorException("Error en Protocol::shutdown: %s\n",
-                                     strerror(errno));	
+                                     strerror(errno));
 		}
 		charsReceived += s;
 		line +=std::string(aux);
@@ -112,19 +112,19 @@ std::string Protocol::receiveLine() const{
 	return line;
 }
 
-void Protocol::sendCreator(const CreatorMesage creator) const{
+void Protocol::sendCreator(const CreatorMessage creator) const{
 	this->sendByte(creator.getIdClass());
 	this->sendQuad(creator.getIdObject());
 	this->sendQuad(creator.getPosX());
 	this->sendQuad(creator.getPosY());
 }
 
-CreatorMesage Protocol::receiveCreator() const{
+CreatorMessage Protocol::receiveCreator() const{
 	ENTITY idc = (ENTITY) this->receiveByte();
 	uint32_t ido = this->receiveQuad();
 	float posx = this->receiveQuad();
 	float posy = this->receiveQuad();
-	return CreatorMesage(idc,ido,posx,posy);
+	return CreatorMessage(idc,ido,posx,posy);
 }
 
 void Protocol::sendAction(const Action action) const{

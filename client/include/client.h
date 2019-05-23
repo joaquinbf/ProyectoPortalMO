@@ -3,14 +3,14 @@
 
 #include <thread>
 #include <cstdint>
-#include <map> 
+#include <map>
 
 #include "../include/chell.h"
 #include "../include/serverManager.h"
 #include "../include/SdlWindow.h"
 #include "../include/entityFactory.h"
 #include "../../common/include/entity.h"
-#include "../../common/include/creatorMesage.h"
+#include "../../common/include/creatorMessage.h"
 
 class Client{
 private:
@@ -25,7 +25,7 @@ private:
 public:
 	explicit Client(int,int);
 	~Client();
-	void main();	
+	void main();
 private:
 	void inputManager();
 	void zoomIn();

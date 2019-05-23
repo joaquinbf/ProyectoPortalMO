@@ -13,6 +13,7 @@ Player::Player(Socket &socket):
 
 void Player::run() {
     std::cout << "corriendo en player " << std::endl;
+    this->input_recv.start();
     while (this->keep_running) {
     }
 }
@@ -32,5 +33,5 @@ Protocol *Player::getProtocol() {
 void Player::sendBodies(const std::vector<Body *> &bodies) {
     std::cout << "send bodies" << std::endl;
     this->protocol.sendQuad(bodies.size());
-    this->protocol.sendCreator(CreatorMesage(ENTITY::CHELL, 0, -1, -18));
+    this->protocol.sendCreator(CreatorMessage(ENTITY::CHELL, 0, -1, -18));
 }

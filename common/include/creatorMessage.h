@@ -5,20 +5,21 @@
 
 #include "../include/entity.h"
 
-class CreatorMesage{
+/* TODO: es Message (doble s). */
+class CreatorMessage{
 private:
 	ENTITY id_class;
 	uint32_t id_object;
 	float posx;
 	float posy;
 public:
-	explicit CreatorMesage(ENTITY id_class,	uint32_t id_object,
+	explicit CreatorMessage(ENTITY id_class,	uint32_t id_object,
 	float posx,	float posy);
-	~CreatorMesage();
+	~CreatorMessage();
 	ENTITY getIdClass() const;
 	uint32_t getIdObject() const;
 	float getPosX() const;
-	float getPosY() const;	
+	float getPosY() const;
 };
 
 #endif
