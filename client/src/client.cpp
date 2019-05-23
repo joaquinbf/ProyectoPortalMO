@@ -82,13 +82,13 @@ void Client::inputManager(){
 	                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 	                switch (keyEvent.keysym.sym) {
 	                    case SDLK_a:
-	                        this->serverManager.sendAction(Action(RUN_LEFT,0));
+	                        this->serverManager.sendAction(Action(ACTION::RUN_LEFT,0));
 	                        break;
 	                    case SDLK_d:
-	                        this->serverManager.sendAction(Action(RUN_RIGHT,0));
+	                        this->serverManager.sendAction(Action(ACTION::RUN_RIGHT,0));
 	                        break;
 	                    case SDLK_w:
-	                    	this->serverManager.sendAction(Action(JUMP,0));
+	                    	this->serverManager.sendAction(Action(ACTION::JUMP,0));
 	                        break;
 	                    case SDLK_o:
 	                    	this->zoomIn();
@@ -97,10 +97,10 @@ void Client::inputManager(){
 	                    	this->zoomOut();
 	                        break;
 	                    case SDLK_b:
-	                    	this->serverManager.sendAction(Action(JIG,0));
+	                    	this->serverManager.sendAction(Action(ACTION::JIG,0));
 	                    	break;
 	                    case SDLK_SPACE:
-	                    	this->serverManager.sendAction(Action(FIRE,0));
+	                    	this->serverManager.sendAction(Action(ACTION::FIRE,0));
 	                    	break;
 	                    }
 	            } // Fin KEY_DOWN
@@ -109,10 +109,10 @@ void Client::inputManager(){
 	        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 	                switch (keyEvent.keysym.sym) {
 	                    case SDLK_a:
-	                    	this->serverManager.sendAction(Action(STOP_LEFT,0));
+	                    	this->serverManager.sendAction(Action(ACTION::STOP_LEFT,0));
 	                        break;
 	                    case SDLK_d:
-	                    	this->serverManager.sendAction(Action(STOP_RIGHT,0));
+	                    	this->serverManager.sendAction(Action(ACTION::STOP_RIGHT,0));
 	                        break;
 	                    case SDLK_w:
 	                        break;

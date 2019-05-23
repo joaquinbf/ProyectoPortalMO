@@ -65,8 +65,12 @@ void Chell::update(const Update& update){
 
 void Chell::idleAction(){
 	this->actionPtr = &Chell::idleAction;
-	this->texturePtr = &this->idleTexture;
-	frameArea = Area(0, 0, 155, 215);
+	this->texturePtr = &this->idleTexture;	
+	frameArea = Area(105*this->framex, 0, 104, 215);
+	this->framex+=1;
+	if(this->framex == 7){
+		this->framex = 0;
+	}
 }
 void Chell::jig(){
 	this->framex = 0;

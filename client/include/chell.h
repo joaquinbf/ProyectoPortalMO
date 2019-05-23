@@ -5,7 +5,8 @@
 #include "../include/Area.h"
 #include "../../common/include/entity.h"
 
-#define CHELL_IDLE_TEXTURE "../resources/textures/chell-idle.png"
+//#define CHELL_IDLE_TEXTURE "../resources/textures/chell-idle.png"
+#define CHELL_IDLE_TEXTURE "../resources/textures/chell-resting-idle.png"
 #define CHELL_JIG_TEXTURE "../resources/textures/chell-jig.png"
 #define CHELL_RUNNING_TEXTURE "../resources/textures/chell-running.png"
 #define CHELL_STOPING_TEXTURE "../resources/textures/chell-stoping.png"
