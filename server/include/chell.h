@@ -15,6 +15,9 @@ private:
 
 public:
     Chell(b2World *b2world, float x, float y);
+    void walkLeft();
+    void walkRight();
+    void jump();
 };
 
 #endif

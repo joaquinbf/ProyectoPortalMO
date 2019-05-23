@@ -19,6 +19,8 @@ void Player::run() {
 
     std::cout << "START inpur recv" << std::endl;
     this->input_recv.start();
+
+    std::cout << "START update sender" << std::endl;
     while (this->keep_running) {
     }
 }
