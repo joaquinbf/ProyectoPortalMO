@@ -7,12 +7,8 @@
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
 #include "../../common/include/action.h"
-<<<<<<< Updated upstream
 #include "../../common/include/creatorMessage.h"
-=======
-#include "../../common/include/creatorMesage.h"
 #include "../../common/include/update.h"
->>>>>>> Stashed changes
 
 class ServerManager{
 private:

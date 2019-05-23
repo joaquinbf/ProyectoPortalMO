@@ -28,12 +28,8 @@ Client::~Client(){
 	if(this->myChell != nullptr){
 		delete this->myChell;
 	}
-<<<<<<< Updated upstream
 
 	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-=======
-	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
->>>>>>> Stashed changes
 		if(it->second != nullptr){
 			delete it->second;
 		}
@@ -43,13 +39,6 @@ Client::~Client(){
 void Client::main(){
     this->running = true;
     std::thread inputManager([=]{this->inputManager();});
-<<<<<<< Updated upstream
-    while (this->running){
-		//proceso updates
-
-        this->window.fill(); // Repinto el fondo gris
-    	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-=======
     std::thread updateReceiver([=]{this->updateReceiver();});
     while (this->running){		
 		Update update;
@@ -60,7 +49,7 @@ void Client::main(){
         this->window.fill(); // Repinto el fondo gris                           	
     	
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
->>>>>>> Stashed changes
+
 			//render de las cosas
 			it->second->render(this->resx,this->resy,200,300);
 		}
@@ -73,9 +62,7 @@ void Client::main(){
     inputManager.join();
 }
 
-<<<<<<< Updated upstream
-void Client::inputManager(){
-=======
+
 void Client::updateReceiver(){
 	while(this->running){
 		Update up = this->serverManager.receiveUpdate();
@@ -85,7 +72,6 @@ void Client::updateReceiver(){
 }
 
 void Client::inputManager(){	
->>>>>>> Stashed changes
 	SDL_Event event;
     while(this->running){
 	    if(SDL_PollEvent(&event) != 0){

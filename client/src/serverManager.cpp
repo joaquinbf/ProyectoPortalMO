@@ -15,16 +15,10 @@ void ServerManager::recvInt(){
 	std::cout << this->protocol.receiveQuad() << std::endl;
 }
 
-<<<<<<< Updated upstream
+
 std::list<CreatorMessage> ServerManager::receiveStage(){
 	std::list<CreatorMessage> list;
-	uint32_t total = this->protocol.receiveQuad();
-	std::cout<<"TOTAL: "<<total<<std::endl;
-=======
-std::list<CreatorMesage> ServerManager::receiveStage(){
-	std::list<CreatorMesage> list;
 	uint32_t total = this->protocol.receiveQuad();	
->>>>>>> Stashed changes
 	while(total){
 		CreatorMessage creator = this->protocol.receiveCreator();
 		list.push_back(creator);
