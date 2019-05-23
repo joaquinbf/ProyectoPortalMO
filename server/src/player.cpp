@@ -27,14 +27,22 @@ void Player::run() {
     while (this->keep_running) {
     }
 
+
     this->input_recv.stop();
+    std::cout << "input recv: parado" << std::endl;
+
     this->input_recv.join();
+    std::cout << "input recv: joineado" << std::endl;
 
     this->update_sender.stop();
+    std::cout << "update sender: parado" << std::endl;
+
     this->update_sender.join();
+    std::cout << "update sender: joineado" << std::endl;
 }
 
 void Player::stop() {
+    this->protocol.close();
     this->keep_running = false;
 }
 

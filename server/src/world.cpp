@@ -14,7 +14,7 @@ void World::run() {
             this->VELOCITY_ITERATIONS,
             this->POSITION_ITERATIONS);
         this->updateAllPlayers();
-        usleep(10000000);
+        usleep(100000);
     }
 }
 

@@ -6,15 +6,17 @@ UpdateSender::UpdateSender(Protocol *protocol):
 }
 
 void UpdateSender::run() {
-    std::cout << "corriend update sender" << std::endl;
-    while (this->keep_running) {
-        Update update;
-        while (this->queue.try_pop(update)) {
-            std::cout << "pre: send update" << std::endl;
-            this->protocol->sendUpdate(update);
-            std::cout << "post: send update" << std::endl;
-
+    try {
+        std::cout << "corriend update sender" << std::endl;
+        while (this->keep_running) {
+            Update update;
+            while (this->queue.try_pop(update)) {
+                std::cout << "pre: send update" << std::endl;
+                this->protocol->sendUpdate(update);
+                std::cout << "post: send update" << std::endl;
+            }
         }
+    } catch (const ConnectionErrorException &e) {
     }
 }
 
