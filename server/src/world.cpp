@@ -7,7 +7,8 @@ World::World():
 }
 
 void World::run() {
-    
+    while (this->keep_running) {
+    }
 }
 
 void World::stop() {
