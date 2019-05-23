@@ -31,18 +31,19 @@ frameArea(0, 0, 165, 215){
 Chell::~Chell(){}
 
 void Chell::renderCentered(int resx,int resy, float scale){
-	int a=(resx/2)-((this->width*scale)/2);//200 harcoded
-    int b=(7*resy/8)-(this->height*scale);//300 harcoded
+	int a=(resx/2)-((this->width*scale)/2);
+    int b=(7*resy/8)-(this->height*scale);
     Area renderArea(a,b,this->width*scale,this->height*scale);
 	if( this-> direction == 1){
 		(*this->texturePtr).render(this->frameArea, renderArea);
 	} else if(this-> direction == 0){
 		(*this->texturePtr).renderFliped(this->frameArea, renderArea);
 	}
-	(*this.*actionPtr)();
+	(this->*actionPtr)();
 }
 
 void Chell::render(int resx,int resy,int width,int height){
+
 	return;
 }
 

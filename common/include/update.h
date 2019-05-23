@@ -14,6 +14,7 @@ private:
 	float speedX;
 	float speedY;
 public:
+	Update();
 	explicit Update(uint32_t id, STATUS status, float posx,
 	float posy, float speedx, float speedy);
 	~Update();

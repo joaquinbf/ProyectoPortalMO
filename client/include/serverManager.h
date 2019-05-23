@@ -7,7 +7,12 @@
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
 #include "../../common/include/action.h"
+<<<<<<< Updated upstream
 #include "../../common/include/creatorMessage.h"
+=======
+#include "../../common/include/creatorMesage.h"
+#include "../../common/include/update.h"
+>>>>>>> Stashed changes
 
 class ServerManager{
 private:
@@ -18,7 +23,7 @@ public:
 	void recvInt();
 	std::list<CreatorMessage> receiveStage();
 	void sendAction(const Action ac);
-	//void updateManager();
+	Update receiveUpdate();
 };
 
 #endif

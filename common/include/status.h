@@ -4,6 +4,7 @@
 #include <cstdint>
 
 enum STATUS: uint8_t {
+	NONE,
 	CHELL_RUNNING_LEFT,
 	CHELL_RUNNING_RIGHT
 };

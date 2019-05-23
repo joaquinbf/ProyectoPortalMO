@@ -10,7 +10,13 @@
 #include "../include/SdlWindow.h"
 #include "../include/entityFactory.h"
 #include "../../common/include/entity.h"
+<<<<<<< Updated upstream
 #include "../../common/include/creatorMessage.h"
+=======
+#include "../../common/include/creatorMesage.h"
+#include "../../common/include/update.h"
+#include "../../common/include/protected_queue.h"
+>>>>>>> Stashed changes
 
 class Client{
 private:
@@ -22,12 +28,14 @@ private:
 	float scale;
 	ServerManager serverManager;
 	std::map<uint32_t,Entity *> entities;
+	ProtectedQueue<Update> updates;
 public:
 	explicit Client(int,int);
 	~Client();
 	void main();
 private:
 	void inputManager();
+	void updateReceiver();
 	void zoomIn();
 	void zoomOut();
 };

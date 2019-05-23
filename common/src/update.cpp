@@ -1,5 +1,8 @@
 #include "../include/update.h"
 
+Update::Update() : idObject(0),status(NONE), posX(0), posY(0), speedX(0),
+speedY(0){}
+
 Update::Update(uint32_t id, STATUS status, float posx,
 	float posy, float speedx, float speedy) 
 : idObject(id),status(status), posX(posx), posY(posy), speedX(speedx),
