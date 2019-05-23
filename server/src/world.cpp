@@ -89,7 +89,6 @@ void World::updatePlayer(Player *player) {
                 STATUS::CHELL_FALLING,
                 pos.x - 1 ,
                 pos.y - 2,
-                0,
                 0);
             for (Player *player: this->players) {
                 ProtectedQueue<Update> *queue = player->getUpdateSender()->getQueue();

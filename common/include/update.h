@@ -11,19 +11,17 @@ private:
 	STATUS status;
 	float posX;
 	float posY;
-	float speedX;
-	float speedY;
+	uint32_t direction;
 public:
 	Update();
 	explicit Update(uint32_t id, STATUS status, float posx,
-	float posy, float speedx, float speedy);
+	float posy, uint32_t dir);
 	~Update();
 	uint32_t getId() const;
 	STATUS getStatus() const;
 	float getPosX() const;
 	float getPosY() const;
-	float getSpeedX() const;
-	float getSpeedY() const;
+	uint32_t getDirection() const;
 };
 
 #endif

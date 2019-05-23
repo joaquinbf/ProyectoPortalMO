@@ -1,12 +1,10 @@
 #include "../include/update.h"
 
-Update::Update() : idObject(0),status(NONE), posX(0), posY(0), speedX(0),
-speedY(0){}
+Update::Update() : idObject(0),status(NONE), posX(0), posY(0), direction(0){}
 
 Update::Update(uint32_t id, STATUS status, float posx,
-	float posy, float speedx, float speedy) 
-: idObject(id),status(status), posX(posx), posY(posy), speedX(speedx),
-speedY(speedy) {}
+	float posy, uint32_t dir) 
+: idObject(id),status(status), posX(posx), posY(posy), direction(dir) {}
 
 Update::~Update(){}
 
@@ -26,10 +24,6 @@ float Update::getPosY() const{
 	return this->posY;
 }
 
-float Update::getSpeedX() const{
-	return this->speedX;
-}
-
-float Update::getSpeedY() const{
-	return this->speedY;
+uint32_t Update::getDirection() const{
+	return this->direction;
 }

@@ -25,8 +25,6 @@ status(CHELL_IDLE){
 	this->width = 200;
 	this->height = 300;
 	this->direction = 1;
-	this->turning = false;
-	this->running = false;
 }
 
 Chell::~Chell(){}
@@ -50,23 +48,54 @@ void Chell::render(int resx,int resy,int width,int height){
 
 void Chell::update(const Update& update){
 	switch(update.getStatus()){
-		case CHELL_RUNNING_LEFT:
+		case CHELL_RUNNING:
+			this->run(update.getDirection());
 			break;
-		case CHELL_RUNNING_RIGHT:
+		case CHELL_STOPING:
+			this->stop(update.getDirection());
 			break;
 		case CHELL_FALLING:
-			if(this->status != CHELL_FALLING){
-				this->fall(1);	
-			} 			
+			this->fall(update.getDirection());						
 			break;
 		case CHELL_LANDING:
 			break;
-		default:
+		case CHELL_FIRE:
+			this->fire(update.getDirection());
+			break;
+		case CHELL_IDLE:
+			this->idle();
+			break;
+		case CHELL_TURNING:
+			this->turn(update.getDirection());
+			break;
+		case CHELL_JUMPING:
+			this->jump();
+			break;
+		case CHELL_JIGING:
+			this->jig();
+			break;
+		default:	
+			this->idle();
 			break;
 	}
 }
 
+void Chell::idle(){
+	if(this->status == CHELL_RUNNING || 
+		this->status == CHELL_FALLING ||
+		this->status == CHELL_JIGING ){
+		return;
+	}
+	if(this->status != CHELL_IDLE){
+		this->framex = 0;
+		this->framey = 0;
+		this->idleAction();	
+	}
+}
+
+
 void Chell::idleAction(){
+	this->status = CHELL_IDLE;
 	this->actionPtr = &Chell::idleAction;
 	this->texturePtr = &this->idleTexture;	
 	frameArea = Area(105*this->framex, 0, 104, 215);
@@ -75,13 +104,16 @@ void Chell::idleAction(){
 		this->framex = 0;
 	}
 }
-void Chell::jig(){
-	this->framex = 0;
-	this->framey = 0;
-	this->jigAction();
+void Chell::jig(){	
+	if(this->status == CHELL_IDLE){
+		this->framex = 0;
+		this->framey = 0;
+		this->jigAction();	
+	}	
 }
 
 void Chell::jigAction(){
+	this->status = CHELL_JIGING;
 	this->actionPtr = &Chell::jigAction;
 	this->texturePtr = &this->jigTexture;
 	this->frameArea = Area(169*this->framex, 244*this->framey, 168, 243);
@@ -98,36 +130,20 @@ void Chell::jigAction(){
 }
 
 void Chell::run(int dir){
-	if(this->turning){
-		this->turnAction();	
-		return;
-	}
-	if(dir != this->direction){
-		this->turn(dir);
-		return;
-	}
-	if(!this->running){
+	if(this->status == CHELL_RUNNING ||
+		this->status == CHELL_TURNING ||
+		this->status == CHELL_LANDING){
+		this->direction = dir;
 		this->framex = 0;
 		this->framey = 0;
-	}
-	this->runAction();
-}
-
-void Chell::stop(int dir){
-	this->running = false;
-	if(this->turning){
-		this->turnAction();	
-		return;
-	}
-	this->framex = 0;
-	this->framey = 0;
-	this->stopAction();
+		this->runAction();	
+	}	
 }
 
 void Chell::runAction(){
+	this->status = CHELL_RUNNING;
 	this->actionPtr = &Chell::runAction;
 	this->texturePtr = &this->runTexture;
-	this->running = true;
 	this->frameArea = Area(195*this->framex, 205*this->framey+1, 194, 204);
 	this->framex+=1;
 	if(this->framey == 1){
@@ -142,7 +158,16 @@ void Chell::runAction(){
 	}
 }
 
+void Chell::stop(int dir){
+	if(this->status == CHELL_RUNNING){
+		this->framex = 0;
+		this->framey = 0;
+		this->stopAction();	
+	}	
+}
+
 void Chell::stopAction(){
+	this->status = CHELL_STOPING;
 	this->actionPtr = &Chell::stopAction;
 	this->texturePtr = &this->stopTexture;
 	this->frameArea = Area(166*this->framex, 216*this->framey+1, 165, 215);
@@ -159,18 +184,21 @@ void Chell::stopAction(){
 }
 
 void Chell::turn(int dir){
-	this->turning = true;
-	this->framex = 0;
-	this->turnAction();	
+	if(this->status == CHELL_RUNNING ||
+		this->status == CHELL_IDLE ||
+		this->status == CHELL_LANDING){
+		this->framex = 0;
+		this->turnAction();	
+	}
 }
 
 void Chell::turnAction(){
+	this->status = CHELL_TURNING;
 	this->actionPtr = &Chell::turnAction;
 	this->texturePtr = &this->turnTexture;	
 	this->frameArea = Area(193*this->framex+6, 1, 185, 200);
 	this->framex+=1;
 	if(this->framex == 8){
-		this->turning = false;
 		if(this->direction == 1){
 			this->direction = 0;
 		}else{
@@ -181,11 +209,15 @@ void Chell::turnAction(){
 }
 
 void Chell::jump(){
-	this->framex = 0;
-	this->jumpAction();
+	if(this->status == CHELL_IDLE ||
+		this->status == CHELL_RUNNING){
+		this->framex = 0;
+		this->jumpAction();
+	}
 }
 
 void Chell::jumpAction(){
+	this->status = CHELL_JUMPING;
 	this->actionPtr = &Chell::jumpAction;
 	this->texturePtr = &this->jumpRiseTexture;
 	this->frameArea = Area(144*this->framex+1, 0, 143, 227);
@@ -199,13 +231,15 @@ void Chell::jumpAction(){
 }
 
 void Chell::fall(int dir){
-	this->status = CHELL_FALLING;
 	this->direction=dir;
-	this->framex = 0;
-	this->fallAction();
+	if(this->status != CHELL_FALLING){
+		this->framex = 0;
+		this->fallAction();
+	}
 }
 
 void Chell::fallAction(){
+	this->status = CHELL_FALLING;
 	this->actionPtr = &Chell::fallAction;
 	this->texturePtr = &this->jumpFallTexture;
 	this->frameArea = Area(157*this->framex, 0, 156, 217);
@@ -216,11 +250,14 @@ void Chell::fallAction(){
 }
 
 void Chell::land(){
-	this->framex = 0;
-	this->landAction();
+	if(this->status == CHELL_FALLING){
+		this->framex = 0;
+		this->landAction();
+	}
 }
 
 void Chell::landAction(){
+	this->status = CHELL_LANDING;
 	this->actionPtr = &Chell::landAction;
 	this->texturePtr = &this->jumpLandTexture;
 	this->frameArea = Area(231*this->framex+80, 2, 150, 196);
@@ -230,19 +267,24 @@ void Chell::landAction(){
 	}
 }
 
-void Chell::fire(){
-	if(this->turning){
-		return;
-	}
-	this->framex = 0;
-	if(this->running){
-
-	}else{
+void Chell::fire(int dir){
+	if(this->status == CHELL_IDLE ){
+		this->framex = 0;
 		this->fireAction();	
-	}	
+	}else if(this->status == CHELL_RUNNING){
+		this->framex = 0;
+		//this->fireRunningAction();	
+		this->fireAction();	
+	}else if(this->status == CHELL_JUMPING || 
+			this->status == CHELL_FALLING){
+		this->framex = 0;
+		//this->fireRunningAction();	
+		this->fireAction();	
+	}		
 }
 
 void Chell::fireAction(){
+	this->status = CHELL_FIRE;
 	this->actionPtr = &Chell::fireAction;
 	this->texturePtr = &this->fireTexture;
 	this->frameArea = Area(171*this->framex, 0, 170, 212);

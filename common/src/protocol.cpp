@@ -147,8 +147,7 @@ void Protocol::sendUpdate(const Update update) const{
 	this->sendByte(update.getStatus());
 	this->sendQuad(update.getPosX());
 	this->sendQuad(update.getPosY());
-	this->sendQuad(update.getSpeedX());
-	this->sendQuad(update.getSpeedY());
+	this->sendQuad(update.getDirection());
 }
 
 Update Protocol::receiveUpdate() const{
@@ -156,7 +155,6 @@ Update Protocol::receiveUpdate() const{
 	STATUS st =(STATUS) this->receiveByte();
 	float posx = this->receiveQuad();
 	float posy = this->receiveQuad();
-	float speedx = this->receiveQuad();
-	float speedy = this->receiveQuad();
-	return Update(id,st,posx,posy,speedx,speedy);
+	uint32_t dir = this->receiveQuad();
+	return Update(id,st,posx,posy,dir);
 }
