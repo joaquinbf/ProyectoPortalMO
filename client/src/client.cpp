@@ -15,7 +15,7 @@
 #include "../include/background.h"
 
 Client::Client(int x, int y)
-: resx(x),resy(y),window(x,y),myChell(NULL), scale(1),serverManager("localhost","4545"){
+: resx(x),resy(y),window(x,y),myChell(NULL),myChellId(0), scale(1),serverManager("localhost","4545"){
 	std::list<CreatorMessage> mylist = this->serverManager.receiveStage();
 	EntityFactory ef;
 	//this->myChell = new Chell(this->window);
@@ -29,7 +29,6 @@ Client::~Client(){
 	if(this->myChell != nullptr){
 		delete this->myChell;
 	}
-
 	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
 		if(it->second != nullptr){
 			delete it->second;
@@ -39,22 +38,23 @@ Client::~Client(){
 
 void Client::main(){
     this->running = true;
+    Update update;
     std::thread inputManager([=]{this->inputManager();});
     std::thread updateReceiver([=]{this->updateReceiver();});
     while (this->running){		
-		Update update;
+		/*PROCESO UPDATES*/
 		while(this->updates.try_pop(update)){
-			//proceso updates 
+			this->updateHandler(update);
 		}
 
-        this->window.fill(); // Repinto el fondo gris                           	
-    	
+		/*RENDER*/
+        this->window.fill(); // Repinto el fondo gris                           	    	
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
 			it->second->render(this->resx,this->resy,200,300);
 		}
-
-        this->myChell->renderCentered(this->resx,this->resy,this->scale);
+        this->myChell->renderCentered(this->resx,this->resy,this->scale);        
         this->window.render();
+
         usleep(100000);
     }
     this->serverManager.stop();
@@ -127,7 +127,14 @@ void Client::inputManager(){
 	    }
 	    }
     }
+}
 
+void Client::updateHandler(Update update){
+	uint32_t id = update.getId();
+	if(id == this->myChellId){
+		this->myChell->update(update);
+	}
+	this->entities[id]->update(update);
 }
 
 void Client::zoomIn(){

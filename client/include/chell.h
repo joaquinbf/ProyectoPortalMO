@@ -45,7 +45,8 @@ public:
 	explicit Chell(const SdlWindow& window);
 	~Chell();
 	void renderCentered(int resx, int resy, float scale);	
-	void render(int resx,int resy,int width,int height) override;	
+	void render(int resx,int resy,int width,int height) override;
+	void update(const Update& update) override;	
 	void idleAction();
 	void jig();
 	void jigAction();
@@ -57,7 +58,7 @@ public:
 	void turnAction();
 	void jump();
 	void jumpAction();
-	void fall();
+	void fall(int dir);
 	void fallAction();
 	void land();
 	void landAction();

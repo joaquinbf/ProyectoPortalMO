@@ -20,6 +20,7 @@ private:
 	int resy;
 	SdlWindow window;
 	Chell* myChell;
+	uint32_t myChellId;
 	bool running;
 	float scale;
 	ServerManager serverManager;
@@ -32,6 +33,7 @@ public:
 private:
 	void inputManager();
 	void updateReceiver();
+	void updateHandler(Update update);
 	void zoomIn();
 	void zoomOut();
 };

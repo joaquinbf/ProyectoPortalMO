@@ -47,6 +47,22 @@ void Chell::render(int resx,int resy,int width,int height){
 	return;
 }
 
+void Chell::update(const Update& update){
+	switch(update.getStatus()){
+		case CHELL_RUNNING_LEFT:
+			break;
+		case CHELL_RUNNING_RIGHT:
+			break;
+		case CHELL_FALLING:
+			this->fall(1);
+			break;
+		case CHELL_LANDING:
+			break;
+		default:
+			break;
+	}
+}
+
 void Chell::idleAction(){
 	this->actionPtr = &Chell::idleAction;
 	this->texturePtr = &this->idleTexture;
@@ -175,7 +191,8 @@ void Chell::jumpAction(){
 	
 }
 
-void Chell::fall(){
+void Chell::fall(int dir){
+	this->direction=dir;
 	this->framex = 0;
 	this->fallAction();
 }
@@ -186,8 +203,7 @@ void Chell::fallAction(){
 	this->frameArea = Area(157*this->framex, 0, 156, 217);
 	this->framex+=1;
 	if(this->framex == 4){		
-		//this->fall();
-		this->land();
+		this->framex = 0;
 	}
 }
 
