@@ -5,7 +5,7 @@
 #include <cstdint>
 
 #include "socket.h"
-#include "creator.h"
+#include "creatorMesage.h"
 #include "update.h"
 #include "action.h"
 
@@ -26,8 +26,8 @@ public:
 	uint16_t receiveDoble() const;
 	uint32_t receiveQuad() const;
 	std::string receiveLine() const;
-	void sendCreator(const Creator creator) const;
-	Creator receiveCreator() const;
+	void sendCreator(const CreatorMesage creator) const;
+	CreatorMesage receiveCreator() const;
 	void sendAction(const Action action) const;
 	Action receiveAction() const;
 	void sendUpdate(const Update update) const;

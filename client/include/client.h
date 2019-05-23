@@ -2,16 +2,25 @@
 #define _CLIENT_H_
 
 #include <thread>
+#include <cstdint>
+#include <map> 
+
 #include "../include/chell.h"
 #include "../include/serverManager.h"
+#include "../include/SdlWindow.h"
+#include "../include/entity.h"
+#include "../include/entityFactory.h"
+#include "../../common/include/creatorMesage.h"
 
 class Client{
 private:
 	int resx;
 	int resy;
+	SdlWindow window;
 	bool running;
 	float scale;
 	ServerManager serverManager;
+	std::map<uint32_t,Entity *> entities;
 public:
 	explicit Client(int,int);
 	~Client();

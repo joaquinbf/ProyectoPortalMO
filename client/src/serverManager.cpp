@@ -1,8 +1,6 @@
 #include <list>
 
 #include "../include/serverManager.h"
-#include "../../common/include/creator.h"
-
 
 ServerManager::ServerManager(const char* address,const char * port){
 	Socket skt;
@@ -17,12 +15,12 @@ void ServerManager::recvInt(){
 	std::cout << this->protocol.receiveQuad() << std::endl;
 }
 
-std::list<Creator> ServerManager::createStage(){
-	std::list<Creator> list;
-	//int total = this->protocol.receiveQuad();
-	int total = 0;
+std::list<CreatorMesage> ServerManager::createStage(){
+	std::list<CreatorMesage> list;
+	int total = this->protocol.receiveQuad();	
+	std::cout<< total << std::endl;
 	while(total){
-		Creator creator = this->protocol.receiveCreator();
+		CreatorMesage creator = this->protocol.receiveCreator();
 		list.push_back(creator);
 		--total;	
 	}	

@@ -1,18 +1,18 @@
-#ifndef _CREATOR_H_
-#define _CREATOR_H_
+#ifndef _CREATOR_MESAGE_H_
+#define _CREATOR_MESAGE_H_
 
 #include <cstdint>
 
-class Creator{
+class CreatorMesage{
 private:
 	uint32_t id_class;
 	uint32_t id_object;
 	float posx;
 	float posy;
 public:
-	explicit Creator(uint32_t id_class,	uint32_t id_object,
+	explicit CreatorMesage(uint32_t id_class,	uint32_t id_object,
 	float posx,	float posy);
-	~Creator();
+	~CreatorMesage();
 	uint32_t getIdClass() const;
 	uint32_t getIdObject() const;
 	float getPosX() const;

@@ -3,7 +3,7 @@
 
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
-#include "../include/renderableObject.h"
+#include "../include/entity.h"
 
 #define CHELL_IDLE_TEXTURE "../resources/textures/chell-idle.png"
 #define CHELL_JIG_TEXTURE "../resources/textures/chell-jig.png"
@@ -17,7 +17,7 @@
 #define CHELL_FIRE_TEXTURE "../resources/textures/chell-fire.png"
 #define CHELL_FIRE_TO_IDLE_TEXTURE "../resources/textures/chell-fire-to-idle.png"
 
-class Chell : public RenderableObject{
+class Chell : public Entity{
 private:
 	SdlTexture * texturePtr;
 	void(Chell::* actionPtr)();

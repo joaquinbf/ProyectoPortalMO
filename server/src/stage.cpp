@@ -1,5 +1,5 @@
 #include "../include/stage.h"
-#include "../../common/include/creator.h"
+#include "../../common/include/creatorMesage.h"
 #include "../../common/include/protocol.h"
 #include "../../common/include/socket.h"
 
@@ -38,7 +38,7 @@ void Stage::createStageOne() {
     b2Body *bodies = this->b2world.GetBodyList();
     while (bodies != 0) {
         b2Vec2 pos = bodies->GetPosition();
-        Creator creator(0, 0, pos.x, pos.y);
+        CreatorMesage creator(0, 0, pos.x, pos.y);
         protocol.sendCreator(creator);
         ++bodies;
     }

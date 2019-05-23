@@ -5,7 +5,8 @@
 #include <exception>
 #include <list>
 
-#include "../../common/include/creator.h"
+#include "../../common/include/creatorMesage.h"
+#include "../include/entityFactory.h"
 #include "../include/serverManager.h"
 #include "../include/SdlWindow.h"
 #include "../include/SdlTexture.h"
@@ -14,10 +15,11 @@
 #include "../include/background.h"
 
 Client::Client(int x, int y) 
-: resx(x),resy(y), scale(1),serverManager("localhost","4545"){
-	std::list<Creator> mylist = this->serverManager.createStage();
-	for (Creator& c: mylist){
-		c.getIdClass();
+: resx(x),resy(y),window(x,y), scale(1),serverManager("localhost","4545"){
+	std::list<CreatorMesage> mylist = this->serverManager.createStage();
+	EntityFactory ef;
+	for (CreatorMesage& c: mylist){
+		this->entities[c.getIdObject()]=ef.create(c,this->window);
 		//do something
 	}
 }
@@ -25,17 +27,17 @@ Client::Client(int x, int y)
 Client::~Client(){}
 
 void Client::main(){
-    SdlWindow window(this->resx, this->resy);
-    window.fill();
-    Chell myChell(window);
+    this->window.fill();
+    Chell myChell(this->window);
 
     this->running = true;
     std::thread inputManager([=]{this->inputManager();});
     while (this->running){
-        window.fill(); // Repinto el fondo gris                       
+ 
+        this->window.fill(); // Repinto el fondo gris                       
         myChell.renderCentered(this->resx,this->resy,this->scale);
         //lista de objetos->render        
-        window.render();
+        this->window.render();
         usleep(100000);
     }
     inputManager.join();
