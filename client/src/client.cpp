@@ -20,7 +20,8 @@ Client::Client(int x, int y)
 	EntityFactory ef;
 	//this->myChell = new Chell(this->window);
 	for (CreatorMessage& c: mylist){
-		this->entities[c.getIdObject()]=ef.create(c,this->window);
+		//this->entities[c.getIdObject()]=ef.create(c,this->window);
+		this->myChell=(Chell *)ef.create(c,this->window);
 	}
 }
 
@@ -52,7 +53,7 @@ void Client::main(){
 			it->second->render(this->resx,this->resy,200,300);
 		}
 
-        //this->myChell->renderCentered(this->resx,this->resy,this->scale);
+        this->myChell->renderCentered(this->resx,this->resy,this->scale);
         this->window.render();
         usleep(100000);
     }
@@ -61,15 +62,14 @@ void Client::main(){
 }
 
 void Client::updateReceiver(){
-	while(this->running){
-		try{
+	try{
+		while(this->running){	
 			Update up = this->serverManager.receiveUpdate();	
-		}catch(){
-			
+			std::cout<<"UPDATE\n";
+			this->updates.push(up);
 		}
-		
-		std::cout<<"UPDATE\n";
-		this->updates.push(up);
+	}catch(const ConnectionErrorException &e){
+			
 	}
 }
 
