@@ -49,8 +49,6 @@ void Client::main(){
         this->window.fill(); // Repinto el fondo gris                           	
     	
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
-
-			//render de las cosas
 			it->second->render(this->resx,this->resy,200,300);
 		}
 
@@ -62,10 +60,14 @@ void Client::main(){
     inputManager.join();
 }
 
-
 void Client::updateReceiver(){
 	while(this->running){
-		Update up = this->serverManager.receiveUpdate();
+		try{
+			Update up = this->serverManager.receiveUpdate();	
+		}catch(){
+			
+		}
+		
 		std::cout<<"UPDATE\n";
 		this->updates.push(up);
 	}
