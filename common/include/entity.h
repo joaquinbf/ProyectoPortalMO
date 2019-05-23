@@ -6,7 +6,7 @@ enum ENTITY: uint8_t {
 	ROCK
 };
 
-class Entity{
+class Entity {
 public:
 	Entity(){}
 	virtual ~Entity(){}

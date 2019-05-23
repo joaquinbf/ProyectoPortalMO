@@ -5,9 +5,13 @@
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
 #include "../../common/include/thread.h"
 #include "../include/player.h"
+#include "../include/chell.h"
+#include "../include/body.h"
 #include "../include/input_receiver.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
+#include "../../common/include/creatorMesage.h"
+#include "../../common/include/entity.h"
 #include <vector>
 
 class World: public Thread {
@@ -18,6 +22,7 @@ private:
     const uint32_t VELOCITY_ITERATIONS = 8;
     const uint32_t POSITION_ITERATIONS = 3;
     std::vector<Player *> players;
+    std::vector<Body *> bodies;
 
 public:
     /* Ejecuta a world */
@@ -25,6 +30,7 @@ public:
     virtual void run() override;
     void stop();
     void addPlayer(Player *player);
+    void createWorldOne();
 };
 
 #endif

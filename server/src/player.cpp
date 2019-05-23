@@ -24,3 +24,7 @@ void Player::stop() {
 InputReceiver *Player::getInputReceiver() {
     return &this->input_recv;
 }
+
+Protocol *Player::getProtocol() {
+    return &this->protocol;
+}

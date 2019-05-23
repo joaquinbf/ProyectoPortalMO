@@ -25,3 +25,14 @@ void World::stop() {
 void World::addPlayer(Player *player) {
     this->players.emplace_back(player);
 }
+
+void World::createWorldOne() {
+    Chell *chell = new Chell(&this->b2world, 0, 20);
+    this->bodies.emplace_back(chell);
+
+    for (Player *player: this->players) {
+        player->getProtocol()->sendQuad(this->bodies.size());
+        player->getProtocol()->sendCreator(
+            CreatorMesage(ENTITY::CHELL, 0, -1, -18));
+    }
+}

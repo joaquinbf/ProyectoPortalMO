@@ -18,6 +18,7 @@ public:
     virtual void run() override;
     void stop();
     InputReceiver *getInputReceiver();
+    Protocol *getProtocol();
 };
 
 #endif
