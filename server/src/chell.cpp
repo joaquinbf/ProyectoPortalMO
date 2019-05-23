@@ -22,3 +22,15 @@ Chell::Chell(b2World *b2world, float x, float y) {
 
     this->b2body->CreateFixture(&boxFixtureDef);
 }
+
+void Chell::walkLeft() {
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-10, 0), true);
+}
+
+void Chell::walkRight() {
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(10, 0), true);
+}
+
+void Chell::jump() {
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, -10), true);
+}

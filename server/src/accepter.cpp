@@ -20,11 +20,10 @@ void Accepter::run() {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
             std::cout << "acepto un cliente " << std::endl;
-            Player *new_player = new Player(peer);
-            new_player->start();
+            Player *new_player = new Player(std::move(peer), this->world);
             players.emplace_back(new_player);
             this->world->addPlayer(new_player);
-            this->world->sendBodiesToPlayer(new_player);
+            new_player->start();
         }
     } catch (const ConnectionErrorException &e) {
     }

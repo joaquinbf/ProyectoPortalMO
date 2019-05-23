@@ -9,16 +9,20 @@
 #include "../include/body.h"
 #include "../../common/include/entity.h"
 #include "../../common/include/creatorMessage.h"
+#include "../include/world.h"
 #include <vector>
+
+class World;
 
 class Player: public Thread {
 private:
     bool keep_running;
     Protocol protocol;
     InputReceiver input_recv;
+    World *world;
 
 public:
-    Player(Socket &socket);
+    Player(Socket socket, World *world);
     virtual void run() override;
     void stop();
     InputReceiver *getInputReceiver();
