@@ -17,12 +17,12 @@ void ServerManager::recvInt(){
 
 std::list<CreatorMesage> ServerManager::receiveStage(){
 	std::list<CreatorMesage> list;
-	//int total = this->protocol.receiveQuad();	
-	int total = 0;
+	uint32_t total = this->protocol.receiveQuad();	
+	std::cout<<"TOTAL: "<<total<<std::endl;
 	while(total){
 		CreatorMesage creator = this->protocol.receiveCreator();
 		list.push_back(creator);
-		--total;	
+		--total;
 	}	
 	return list;
 }

@@ -18,35 +18,37 @@ Client::Client(int x, int y)
 : resx(x),resy(y),window(x,y),myChell(NULL), scale(1),serverManager("localhost","4545"){
 	std::list<CreatorMesage> mylist = this->serverManager.receiveStage();
 	EntityFactory ef;
-	this->myChell = new Chell(this->window);
+	//this->myChell = new Chell(this->window);
 	for (CreatorMesage& c: mylist){
 		this->entities[c.getIdObject()]=ef.create(c,this->window);
 	}
 }
 
 Client::~Client(){
-	delete this->myChell;
+	if(this->myChell != nullptr){
+		delete this->myChell;	
+	}
+	
 	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
-		delete it->second;
+		if(it->second != nullptr){
+			delete it->second;	
+		}		
 	}
 }
 
 void Client::main(){
-    this->window.fill();
-
     this->running = true;
     std::thread inputManager([=]{this->inputManager();});
     while (this->running){
-        
-
+		//proceso updates       
 
         this->window.fill(); // Repinto el fondo gris                           	
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
 			//render de las cosas
-			//it->second.render();
+			it->second->render(this->resx,this->resy,200,300);
 		}
 
-        this->myChell->renderCentered(this->resx,this->resy,this->scale);
+        //this->myChell->renderCentered(this->resx,this->resy,this->scale);
         this->window.render();
         usleep(100000);
     }
