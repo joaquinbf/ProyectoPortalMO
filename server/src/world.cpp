@@ -31,8 +31,6 @@ void World::createWorldOne() {
     this->bodies.emplace_back(chell);
 
     for (Player *player: this->players) {
-        player->getProtocol()->sendQuad(this->bodies.size());
-        player->getProtocol()->sendCreator(
-            CreatorMesage(ENTITY::CHELL, 0, -1, -18));
+        player->sendBodies(this->bodies);
     }
 }

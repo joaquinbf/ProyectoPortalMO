@@ -3,6 +3,7 @@
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
 #include <iostream>
+#include <vector>
 
 Player::Player(Socket &socket):
     keep_running(true),
@@ -27,4 +28,9 @@ InputReceiver *Player::getInputReceiver() {
 
 Protocol *Player::getProtocol() {
     return &this->protocol;
+}
+
+void Player::sendBodies(const std::vector<Body *> &bodies) {
+    this->protocol.sendQuad(bodies.size());
+    this->protocol.sendCreator(CreatorMesage(ENTITY::CHELL, 0, -1, -18));
 }

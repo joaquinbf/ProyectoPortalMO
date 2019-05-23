@@ -6,6 +6,10 @@
 #include "../../common/include/protocol.h"
 #include "../include/player.h"
 #include "../include/input_receiver.h"
+#include "../include/body.h"
+#include "../../common/include/entity.h"
+#include "../../common/include/creatorMesage.h"
+#include <vector>
 
 class Player: public Thread {
 private:
@@ -19,6 +23,7 @@ public:
     void stop();
     InputReceiver *getInputReceiver();
     Protocol *getProtocol();
+    void sendBodies(const std::vector<Body *> &bodies);
 };
 
 #endif
