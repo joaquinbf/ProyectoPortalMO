@@ -24,6 +24,7 @@ public:
     /* Detiene al input recv */
     void stop();
 
+    /* Devuelve un puntero a la cola */
     ProtectedQueue<Action> *getQueue();
 };
 

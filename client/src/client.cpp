@@ -14,8 +14,10 @@
 #include "../include/client.h"
 #include "../include/background.h"
 
+#define CLI_PORT "4547"
+
 Client::Client(int x, int y)
-: resx(x),resy(y),window(x,y),myChell(NULL),myChellId(0), scale(1),serverManager("localhost","4545"){
+: resx(x),resy(y),window(x,y),myChell(NULL),myChellId(0), scale(1),serverManager("localhost",CLI_PORT){
 	std::list<CreatorMessage> mylist = this->serverManager.receiveStage();
 	EntityFactory ef;
 	//this->myChell = new Chell(this->window);
@@ -41,18 +43,18 @@ void Client::main(){
     Update update;
     std::thread inputManager([=]{this->inputManager();});
     std::thread updateReceiver([=]{this->updateReceiver();});
-    while (this->running){		
+    while (this->running){
 		/*PROCESO UPDATES*/
 		while(this->updates.try_pop(update)){
 			this->updateHandler(update);
 		}
 
 		/*RENDER*/
-        this->window.fill(); // Repinto el fondo gris                           	    	
-    	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
+        this->window.fill(); // Repinto el fondo gris
+    	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
 			it->second->render(this->resx,this->resy,200,300);
 		}
-        this->myChell->renderCentered(this->resx,this->resy,this->scale);        
+        this->myChell->renderCentered(this->resx,this->resy,this->scale);
         this->window.render();
 
         usleep(100000);
@@ -64,16 +66,16 @@ void Client::main(){
 
 void Client::updateReceiver(){
 	try{
-		while(this->running){	
-			Update up = this->serverManager.receiveUpdate();	
+		while(this->running){
+			Update up = this->serverManager.receiveUpdate();
 			this->updates.push(up);
 		}
 	}catch(const ConnectionErrorException &e){
-		
+
 	}
 }
 
-void Client::inputManager(){	
+void Client::inputManager(){
 	SDL_Event event;
     while(this->running){
 	    if(SDL_PollEvent(&event) != 0){

@@ -6,7 +6,7 @@
 #include "../include/player.h"
 #include "../include/world.h"
 
-#define PORT "4545"
+#define PORT "4547"
 
 class Accepter: public Thread {
 private:

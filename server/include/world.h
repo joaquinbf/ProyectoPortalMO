@@ -36,6 +36,8 @@ public:
     void sendBodiesToPlayer(Player *player);
     void addInputsFromAllPlayers();
     void addInputsFrom(Player *player);
+    void updateAllPlayers();
+    void updatePlayer(Player *player);
 };
 
 #endif

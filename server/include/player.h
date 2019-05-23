@@ -6,6 +6,7 @@
 #include "../../common/include/protocol.h"
 #include "../include/player.h"
 #include "../include/input_receiver.h"
+#include "../include/update_sender.h"
 #include "../include/body.h"
 #include "../../common/include/entity.h"
 #include "../../common/include/creatorMessage.h"
@@ -20,6 +21,7 @@ private:
     Protocol protocol;
     InputReceiver input_recv;
     World *world;
+    UpdateSender update_sender;
 
 public:
     Player(Socket socket, World *world);
@@ -28,6 +30,7 @@ public:
     InputReceiver *getInputReceiver();
     Protocol *getProtocol();
     void sendBodies(const std::vector<Body *> &bodies);
+    UpdateSender *getUpdateSender();
 };
 
 #endif

@@ -5,8 +5,8 @@
 
 int Server::main() {
     World world;
-    world.start();
     world.createWorldOne();
+    world.start();
 
     Accepter accepter(&world);
     accepter.start();
