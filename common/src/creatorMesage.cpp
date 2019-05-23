@@ -1,12 +1,12 @@
 #include "../include/creatorMesage.h"
 
-CreatorMesage::CreatorMesage(uint32_t id_class,	uint32_t id_object,
+CreatorMesage::CreatorMesage(ENTITY id_class,	uint32_t id_object,
 	float posx,	float posy) : id_class(id_class), id_object(id_object),
 posx(posx),posy(posy){}
 
 CreatorMesage::~CreatorMesage(){}
 
-uint32_t CreatorMesage::getIdClass() const{
+ENTITY CreatorMesage::getIdClass() const{
 	return this->id_class;
 }
 

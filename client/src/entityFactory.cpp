@@ -7,7 +7,7 @@ EntityFactory::~EntityFactory(){}
 
 Entity* EntityFactory::create(CreatorMesage cm,const SdlWindow& window){
 	switch(cm.getIdClass()){
-		case 0:
+		case CHELL:
 			return new Chell(window); 
 			break;
 		default:

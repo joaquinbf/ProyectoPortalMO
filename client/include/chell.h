@@ -3,7 +3,7 @@
 
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
-#include "../include/entity.h"
+#include "../../common/include/entity.h"
 
 #define CHELL_IDLE_TEXTURE "../resources/textures/chell-idle.png"
 #define CHELL_JIG_TEXTURE "../resources/textures/chell-jig.png"

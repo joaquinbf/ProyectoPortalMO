@@ -16,7 +16,7 @@ public:
 	explicit ServerManager(const char* address,const char * port);
 	~ServerManager();
 	void recvInt();
-	std::list<CreatorMesage> createStage();
+	std::list<CreatorMesage> receiveStage();
 	void sendAction(const Action ac);
 	//void updateManager();
 };

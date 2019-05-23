@@ -3,7 +3,7 @@
 
 #include "../../common/include/creatorMesage.h"
 #include "../include/SdlWindow.h"
-#include "../include/entity.h"
+#include "../../common/include/entity.h"
 #include "../include/chell.h"
 
 class EntityFactory{

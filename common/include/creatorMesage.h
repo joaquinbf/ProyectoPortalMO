@@ -3,17 +3,19 @@
 
 #include <cstdint>
 
+#include "../include/entity.h"
+
 class CreatorMesage{
 private:
-	uint32_t id_class;
+	ENTITY id_class;
 	uint32_t id_object;
 	float posx;
 	float posy;
 public:
-	explicit CreatorMesage(uint32_t id_class,	uint32_t id_object,
+	explicit CreatorMesage(ENTITY id_class,	uint32_t id_object,
 	float posx,	float posy);
 	~CreatorMesage();
-	uint32_t getIdClass() const;
+	ENTITY getIdClass() const;
 	uint32_t getIdObject() const;
 	float getPosX() const;
 	float getPosY() const;	
