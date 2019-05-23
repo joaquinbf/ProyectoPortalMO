@@ -5,15 +5,20 @@
 #include <iostream>
 #include <vector>
 
-Player::Player(Socket &socket):
+Player::Player(Socket socket, World *world):
     keep_running(true),
     protocol(std::move(socket)),
-    input_recv(&this->protocol) {
+    input_recv(&this->protocol),
+    world(world) {
 }
 
 void Player::run() {
     std::cout << "corriendo en player " << std::endl;
-    this->input_recv.start();
+    std::cout << "recibiendo world" << std::endl;
+    this->world->sendBodiesToPlayer(this);
+
+    std::cout << "START inpur recv" << std::endl;
+    // this->input_recv.start();
     while (this->keep_running) {
     }
 }

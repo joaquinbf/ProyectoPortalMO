@@ -14,6 +14,8 @@
 #include "../../common/include/entity.h"
 #include <vector>
 
+class Player;
+
 class World: public Thread {
 private:
     bool keep_running;
@@ -32,6 +34,8 @@ public:
     void addPlayer(Player *player);
     void createWorldOne();
     void sendBodiesToPlayer(Player *player);
+    void addInputsFromAllPlayers();
+    void addInputsFrom(Player *player);
 };
 
 #endif
