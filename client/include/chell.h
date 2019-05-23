@@ -4,6 +4,7 @@
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../../common/include/entity.h"
+#include "../../common/include/status.h"
 
 //#define CHELL_IDLE_TEXTURE "../resources/textures/chell-idle.png"
 #define CHELL_IDLE_TEXTURE "../resources/textures/chell-resting-idle.png"
@@ -40,8 +41,11 @@ private:
 	int height;
 	
 	int direction; //0 izquierda 1 derecha??
+	STATUS status;
+	
 	bool turning;
 	bool running;
+
 public:	
 	explicit Chell(const SdlWindow& window);
 	~Chell();

@@ -16,7 +16,8 @@ jumpFallTexture(CHELL_JUMP_FALL_TEXTURE,window),
 jumpLandTexture(CHELL_JUMP_LAND_TEXTURE,window), 
 fireTexture(CHELL_FIRE_TEXTURE,window),
 fireToIdleTexture(CHELL_FIRE_TO_IDLE_TEXTURE,window),
-frameArea(0, 0, 165, 215){
+frameArea(0, 0, 104, 215),
+status(CHELL_IDLE){
 	this->texturePtr = &this->idleTexture;
 	this->actionPtr = &Chell::idleAction;
 	this->framex = 0;	
@@ -54,7 +55,9 @@ void Chell::update(const Update& update){
 		case CHELL_RUNNING_RIGHT:
 			break;
 		case CHELL_FALLING:
-			this->fall(1);
+			if(this->status != CHELL_FALLING){
+				this->fall(1);	
+			} 			
 			break;
 		case CHELL_LANDING:
 			break;
@@ -196,6 +199,7 @@ void Chell::jumpAction(){
 }
 
 void Chell::fall(int dir){
+	this->status = CHELL_FALLING;
 	this->direction=dir;
 	this->framex = 0;
 	this->fallAction();

@@ -48,7 +48,6 @@ void Client::main(){
 		while(this->updates.try_pop(update)){
 			this->updateHandler(update);
 		}
-
 		/*RENDER*/
         this->window.fill(); // Repinto el fondo gris
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
@@ -66,8 +65,9 @@ void Client::main(){
 
 void Client::updateReceiver(){
 	try{
+		Update up;
 		while(this->running){
-			Update up = this->serverManager.receiveUpdate();
+			up = this->serverManager.receiveUpdate();
 			this->updates.push(up);
 		}
 	}catch(const ConnectionErrorException &e){
@@ -135,8 +135,10 @@ void Client::updateHandler(Update update){
 	uint32_t id = update.getId();
 	if(id == this->myChellId){
 		this->myChell->update(update);
+	}else{
+		this->entities[id]->update(update);	
 	}
-	this->entities[id]->update(update);
+	
 }
 
 void Client::zoomIn(){
