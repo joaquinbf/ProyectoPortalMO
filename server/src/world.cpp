@@ -20,10 +20,12 @@ void World::addPlayer(Player *player) {
 }
 
 void World::createWorldOne() {
+    std::cout << "create world one" << std::endl;
     Chell *chell = new Chell(&this->b2world, 0, 20);
     this->bodies.emplace_back(chell);
+}
 
-    for (Player *player: this->players) {
-        player->sendBodies(this->bodies);
-    }
+void World::sendBodiesToPlayer(Player *player) {
+    std::cout << "send bodies to player" << std::endl;
+    player->sendBodies(this->bodies);
 }

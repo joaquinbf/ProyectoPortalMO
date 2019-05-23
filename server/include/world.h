@@ -31,6 +31,7 @@ public:
     void stop();
     void addPlayer(Player *player);
     void createWorldOne();
+    void sendBodiesToPlayer(Player *player);
 };
 
 #endif

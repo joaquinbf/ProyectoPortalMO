@@ -24,6 +24,7 @@ void Accepter::run() {
             new_player->start();
             players.emplace_back(new_player);
             this->world->addPlayer(new_player);
+            this->world->sendBodiesToPlayer(new_player);
         }
     } catch (const ConnectionErrorException &e) {
     }
