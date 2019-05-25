@@ -27,8 +27,8 @@ private:
     std::vector<Body *> bodies;
 
 public:
-    /* Ejecuta a world */
     World();
+    ~World();
     virtual void run() override;
     void stop();
     void addPlayer(Player *player);
@@ -38,6 +38,7 @@ public:
     void addInputsFrom(Player *player);
     void updateAllPlayers();
     void updatePlayer(Player *player);
+    void freeBodies();
 };
 
 #endif

@@ -6,6 +6,11 @@ World::World():
     b2world(b2Vec2(0.0, 9.8)) {
 }
 
+World::~World() {
+    this->freeBodies();
+}
+
+
 void World::run() {
     while (this->keep_running) {
         this->addInputsFromAllPlayers();
@@ -97,4 +102,10 @@ void World::updatePlayer(Player *player) {
         }
     }
     std::cout << "saliendo del for de update" << std::endl;
+}
+
+void World::freeBodies() {
+    for (Body *body: this->bodies) {
+        delete body;
+    }
 }
