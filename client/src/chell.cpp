@@ -1,8 +1,4 @@
-#include <iostream>
-
 #include "../include/chell.h"
-#include "../include/Area.h"
-#include "../include/SdlTexture.h"
 
 Chell::Chell(const SdlWindow& window)
 : idleTexture(CHELL_IDLE_TEXTURE,window), 
@@ -34,9 +30,9 @@ void Chell::renderCentered(int resx,int resy, float scale){
     int b=(7*resy/8)-(this->height*scale);
     Area renderArea(a,b,this->width*scale,this->height*scale);
 	if( this-> direction == 1){
-		(*this->texturePtr).render(this->frameArea, renderArea);
+		this->texturePtr->render(this->frameArea, renderArea);
 	} else if(this-> direction == 0){
-		(*this->texturePtr).renderFliped(this->frameArea, renderArea);
+		this->texturePtr->renderFlipedHorizontal(this->frameArea, renderArea);
 	}
 	(this->*actionPtr)();
 }

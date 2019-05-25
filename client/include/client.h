@@ -9,6 +9,7 @@
 #include "../include/serverManager.h"
 #include "../include/SdlWindow.h"
 #include "../include/entityFactory.h"
+#include "../include/textureManager.h"
 #include "../../common/include/entity.h"
 #include "../../common/include/creatorMessage.h"
 #include "../../common/include/update.h"
@@ -23,6 +24,7 @@ private:
 	uint32_t myChellId;
 	bool running;
 	float scale;
+	TextureManager textureManager;
 	ServerManager serverManager;
 	std::map<uint32_t,Entity *> entities;
 	ProtectedQueue<Update> updates;

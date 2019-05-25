@@ -5,7 +5,10 @@
 
 enum ENTITY: uint8_t {
 	CHELL,
-	ROCK
+	STONE_BLOCK,
+	METAL_BLOCK,
+	METAL_TRIAG_BLOCK,
+	LAUNCH_BLOCK
 };
 
 class Entity {

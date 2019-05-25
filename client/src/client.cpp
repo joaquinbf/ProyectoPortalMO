@@ -11,13 +11,15 @@
 #include "../include/SdlWindow.h"
 #include "../include/SdlTexture.h"
 #include "../include/chell.h"
+#include "../include/block.h"
 #include "../include/client.h"
 #include "../include/background.h"
 
 #define CLI_PORT "4547"
 
 Client::Client(int x, int y)
-: resx(x),resy(y),window(x,y),myChell(NULL),myChellId(0), scale(1),serverManager("localhost",CLI_PORT){
+: resx(x),resy(y),window(x,y),myChell(NULL),myChellId(0), scale(1),
+textureManager(window),serverManager("localhost",CLI_PORT){
 	std::list<CreatorMessage> mylist = this->serverManager.receiveStage();
 	EntityFactory ef;
 	//this->myChell = new Chell(this->window);
@@ -43,6 +45,11 @@ void Client::main(){
     Update update;
     std::thread inputManager([=]{this->inputManager();});
     std::thread updateReceiver([=]{this->updateReceiver();});
+    Block mb1(this->textureManager,ENTITY::STONE_BLOCK);
+    Block mb2(this->textureManager,ENTITY::METAL_BLOCK);
+    Block mb3(this->textureManager,ENTITY::METAL_TRIAG_BLOCK);
+    Block mb4(this->textureManager,ENTITY::LAUNCH_BLOCK);
+    int i = 0;
     while (this->running){
 		/*PROCESO UPDATES*/
 		while(this->updates.try_pop(update)){
@@ -53,6 +60,17 @@ void Client::main(){
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
 			it->second->render(this->resx,this->resy,200,300);
 		}
+		++i;
+		if(i == 4){
+			i = 0;
+		}
+		mb1.render(100,100,100,100);
+		mb2.render(200,100,100,100);
+		mb3.render(300,100,100,100);
+		mb4.render(400,100,100,100);
+		mb3.setDirection(i);
+		mb4.setDirection(i);
+
         this->myChell->renderCentered(this->resx,this->resy,this->scale);
         this->window.render();
 
