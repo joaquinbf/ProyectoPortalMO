@@ -22,17 +22,15 @@ Client::Client(int x, int y)
 textureManager(window),serverManager("localhost",CLI_PORT){
 	std::list<CreatorMessage> mylist = this->serverManager.receiveStage();
 	EntityFactory ef;
-	//this->myChell = new Chell(this->window);
+	int32_t i;
 	for (CreatorMessage& c: mylist){
-		//this->entities[c.getIdObject()]=ef.create(c,this->window);
-		this->myChell=(Chell *)ef.create(c,this->window,this->textureManager);
+		i = c.getIdObject();
+		if(i == 0){ //HARDCODED
+			this->myChell=(Chell *)ef.create(c,this->window,this->textureManager);	
+		} else {
+			this->entities[i] = ef.create(c,this->window,this->textureManager);
+		}
 	}
-	this->entities[1]=ef.create(CreatorMessage(ENTITY::METAL_BLOCK,1,0,-250,1),
-		this->window,this->textureManager);
-	this->entities[2]=ef.create(CreatorMessage(ENTITY::METAL_BLOCK,2,-200,-250,1)
-		,this->window,this->textureManager);
-	this->entities[3]=ef.create(CreatorMessage(ENTITY::METAL_BLOCK,3,200,-250,1)
-		,this->window,this->textureManager);
 }
 
 Client::~Client(){

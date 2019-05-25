@@ -50,6 +50,8 @@ int32_t Chell::getPosY(){
 }
 
 void Chell::update(const Update& update){
+	this->posx = update.getPosX();
+	this->posy = update.getPosY();
 	switch(update.getStatus()){
 		case CHELL_RUNNING:
 			this->run(update.getDirection());
