@@ -1,7 +1,7 @@
 #ifndef _CHELL_H_
 #define _CHELL_H_
 
-//#include <iostream>
+#include <iostream>
 
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
@@ -25,6 +25,8 @@ class Chell : public Entity{
 private:
 	SdlTexture * texturePtr;
 	void(Chell::* actionPtr)();
+	
+	//SE TIENEN QUE IR
 	SdlTexture idleTexture;
 	SdlTexture jigTexture;
 	SdlTexture runTexture;
@@ -36,17 +38,16 @@ private:
 	SdlTexture jumpLandTexture;
 	SdlTexture fireTexture;
 	SdlTexture fireToIdleTexture;
+
 	Area frameArea;
 	int framex;
 	int framey;
-	int width;
-	int height;
-	
-	int direction; //0 izquierda 1 derecha??
+
 	STATUS status;
 
 public:	
-	explicit Chell(const SdlWindow& window);
+	explicit Chell(const SdlWindow& window,uint32_t posx,uint32_t posy,
+		uint32_t width,uint32_t height,uint32_t dir);
 	~Chell();
 	void renderCentered(int resx, int resy, float scale);	
 	void render(int resx,int resy,int width,int height) override;

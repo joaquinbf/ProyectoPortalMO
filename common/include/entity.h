@@ -12,10 +12,17 @@ enum ENTITY: uint8_t {
 };
 
 class Entity {
+protected:
+	uint32_t posx;
+	uint32_t posy;
+	uint32_t width;
+	uint32_t height;
+	uint32_t direction; //0 izquierda 1 derecha
 public:
-	Entity(){}
+	Entity(uint32_t x,uint32_t y,uint32_t w,uint32_t h,uint32_t d)
+		: posx(x),posy(y),width(w),height(h),direction(d){}
 	virtual ~Entity(){}
-	virtual void render(int resx,int resy,int width,int height){}
+	virtual void render(int chellPosX,int chellPosY,int width,int height){}
 	virtual void update(const Update&){}
 };
 

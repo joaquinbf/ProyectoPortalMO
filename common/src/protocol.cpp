@@ -120,6 +120,7 @@ void Protocol::sendCreator(const CreatorMessage creator) const{
 	this->sendQuad(creator.getIdObject());
 	this->sendQuad(creator.getPosX());
 	this->sendQuad(creator.getPosY());
+	this->sendQuad(creator.getDir());
 }
 
 CreatorMessage Protocol::receiveCreator() const{
@@ -127,7 +128,8 @@ CreatorMessage Protocol::receiveCreator() const{
 	uint32_t ido = this->receiveQuad();
 	float posx = this->receiveQuad();
 	float posy = this->receiveQuad();
-	return CreatorMessage(idc,ido,posx,posy);
+	uint32_t dir = this->receiveQuad();
+	return CreatorMessage(idc,ido,posx,posy,dir);
 }
 
 void Protocol::sendAction(const Action action) const{

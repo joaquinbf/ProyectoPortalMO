@@ -17,9 +17,10 @@ class Block : public Entity{
 private:
 	SdlTexture* texturePtr;
 	Area frameArea;
-	uint32_t direction;
+	ENTITY entity;
 public:
-	explicit Block(TextureManager& tm,const ENTITY e);
+	explicit Block(const TextureManager& tm,const ENTITY e,uint32_t x, uint32_t y, 
+		uint32_t width, uint32_t height);
 	~Block();
 	void setDirection(uint32_t dir);
 	void render(int resx,int resy,int width,int height) override;

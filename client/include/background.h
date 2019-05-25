@@ -4,7 +4,7 @@
 #include "../include/Area.h"
 #include "../include/SdlTexture.h"
 
-#define BACKGROUND_TEXTURE "../resources/textures/background.jpg"
+#define BACKGROUND_TEXTURE "../resources/textures/backgrounds/1.jpg"
 #define SIZE_X 600
 #define SIZE_Y 400
 

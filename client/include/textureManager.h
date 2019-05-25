@@ -41,7 +41,7 @@ class TextureManager{
 public:	
 	explicit TextureManager(const SdlWindow& window);
 	~TextureManager();
-	SdlTexture * getBlockTexturePointer(const ENTITY e);
+	const SdlTexture * getBlockTexturePointer(const ENTITY e) const;
 	
 };
 

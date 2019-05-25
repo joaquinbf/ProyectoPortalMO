@@ -20,7 +20,7 @@ launchBlockTexture(LAUNCH_BLOCK_TEXTURE,window)
 
 TextureManager::~TextureManager(){}
 	
-SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e){
+const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
 	switch(e){
 		case STONE_BLOCK:
 			return &(this->stoneBlockTexture);

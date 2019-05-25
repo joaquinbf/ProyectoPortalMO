@@ -25,7 +25,7 @@ textureManager(window),serverManager("localhost",CLI_PORT){
 	//this->myChell = new Chell(this->window);
 	for (CreatorMessage& c: mylist){
 		//this->entities[c.getIdObject()]=ef.create(c,this->window);
-		this->myChell=(Chell *)ef.create(c,this->window);
+		this->myChell=(Chell *)ef.create(c,this->window,this->textureManager);
 	}
 }
 
@@ -45,11 +45,7 @@ void Client::main(){
     Update update;
     std::thread inputManager([=]{this->inputManager();});
     std::thread updateReceiver([=]{this->updateReceiver();});
-    Block mb1(this->textureManager,ENTITY::STONE_BLOCK);
-    Block mb2(this->textureManager,ENTITY::METAL_BLOCK);
-    Block mb3(this->textureManager,ENTITY::METAL_TRIAG_BLOCK);
-    Block mb4(this->textureManager,ENTITY::LAUNCH_BLOCK);
-    int i = 0;
+
     while (this->running){
 		/*PROCESO UPDATES*/
 		while(this->updates.try_pop(update)){
@@ -60,16 +56,6 @@ void Client::main(){
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
 			it->second->render(this->resx,this->resy,200,300);
 		}
-		++i;
-		if(i == 4){
-			i = 0;
-		}
-		mb1.render(100,100,100,100);
-		mb2.render(200,100,100,100);
-		mb3.render(300,100,100,100);
-		mb4.render(400,100,100,100);
-		mb3.setDirection(i);
-		mb4.setDirection(i);
 
         this->myChell->renderCentered(this->resx,this->resy,this->scale);
         this->window.render();

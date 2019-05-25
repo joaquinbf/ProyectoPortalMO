@@ -5,12 +5,13 @@
 #include "../include/SdlWindow.h"
 #include "../../common/include/entity.h"
 #include "../include/chell.h"
+#include "../include/block.h"
 
 class EntityFactory{
 public:
 	EntityFactory();
 	~EntityFactory();
-	Entity* create(CreatorMessage cm,const SdlWindow& window);
+	Entity* create(CreatorMessage cm,const SdlWindow& window, const TextureManager& tm);
 };
 
 #endif

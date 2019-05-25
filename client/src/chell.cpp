@@ -1,7 +1,9 @@
 #include "../include/chell.h"
 
-Chell::Chell(const SdlWindow& window)
-: idleTexture(CHELL_IDLE_TEXTURE,window), 
+Chell::Chell(const SdlWindow& window,uint32_t posx,uint32_t posy,
+		uint32_t width,uint32_t height,uint32_t dir)
+: Entity(posx,posy,width,height,dir),
+idleTexture(CHELL_IDLE_TEXTURE,window), 
 jigTexture(CHELL_JIG_TEXTURE,window), 
 runTexture(CHELL_RUNNING_TEXTURE,window), 
 stopTexture(CHELL_STOPING_TEXTURE,window),
@@ -17,10 +19,7 @@ status(CHELL_IDLE){
 	this->texturePtr = &this->idleTexture;
 	this->actionPtr = &Chell::idleAction;
 	this->framex = 0;	
-	this->framey = 0;	
-	this->width = 200;
-	this->height = 300;
-	this->direction = 1;
+	this->framey = 0;
 }
 
 Chell::~Chell(){}
