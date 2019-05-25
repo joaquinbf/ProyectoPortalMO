@@ -1,6 +1,6 @@
 #include "../include/chell.h"
 
-Chell::Chell(const SdlWindow& window,uint32_t posx,uint32_t posy,
+Chell::Chell(const SdlWindow& window,int32_t posx,int32_t posy,
 		uint32_t width,uint32_t height,uint32_t dir)
 : Entity(posx,posy,width,height,dir),
 idleTexture(CHELL_IDLE_TEXTURE,window), 
@@ -26,7 +26,7 @@ Chell::~Chell(){}
 
 void Chell::renderCentered(int resx,int resy, float scale){
 	int a=(resx/2)-((this->width*scale)/2);
-    int b=(7*resy/8)-(this->height*scale);
+    int b=(2*resy/3)-(this->height*scale)/2;
     Area renderArea(a,b,this->width*scale,this->height*scale);
 	if( this-> direction == 1){
 		this->texturePtr->render(this->frameArea, renderArea);
@@ -36,9 +36,17 @@ void Chell::renderCentered(int resx,int resy, float scale){
 	(this->*actionPtr)();
 }
 
-void Chell::render(int resx,int resy,int width,int height){
+void Chell::render(int resx,int resy,int width,int height,float scale){
 
 	return;
+}
+
+int32_t Chell::getPosX(){
+	return this->posx;
+}
+
+int32_t Chell::getPosY(){
+	return this->posy;
 }
 
 void Chell::update(const Update& update){

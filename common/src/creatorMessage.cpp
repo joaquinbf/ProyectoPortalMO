@@ -1,7 +1,7 @@
 #include "../include/creatorMessage.h"
 
 CreatorMessage::CreatorMessage(ENTITY id_class,	uint32_t id_object,
-	float posx,	float posy,uint32_t dir) : id_class(id_class), id_object(id_object),
+	int32_t posx,	int32_t posy,uint32_t dir) : id_class(id_class), id_object(id_object),
 posx(posx),posy(posy),dir(dir){}
 
 CreatorMessage::~CreatorMessage(){}
@@ -14,11 +14,11 @@ uint32_t CreatorMessage::getIdObject() const{
 	return this->id_object;
 }
 
-float CreatorMessage::getPosX() const{
+int32_t CreatorMessage::getPosX() const{
 	return this->posx;
 }
 
-float CreatorMessage::getPosY() const{
+int32_t CreatorMessage::getPosY() const{
 	return this->posy;
 }
 

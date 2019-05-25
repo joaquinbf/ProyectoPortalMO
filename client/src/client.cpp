@@ -27,6 +27,12 @@ textureManager(window),serverManager("localhost",CLI_PORT){
 		//this->entities[c.getIdObject()]=ef.create(c,this->window);
 		this->myChell=(Chell *)ef.create(c,this->window,this->textureManager);
 	}
+	this->entities[1]=ef.create(CreatorMessage(ENTITY::METAL_BLOCK,1,0,-250,1),
+		this->window,this->textureManager);
+	this->entities[2]=ef.create(CreatorMessage(ENTITY::METAL_BLOCK,2,-200,-250,1)
+		,this->window,this->textureManager);
+	this->entities[3]=ef.create(CreatorMessage(ENTITY::METAL_BLOCK,3,200,-250,1)
+		,this->window,this->textureManager);
 }
 
 Client::~Client(){
@@ -49,12 +55,13 @@ void Client::main(){
     while (this->running){
 		/*PROCESO UPDATES*/
 		while(this->updates.try_pop(update)){
-			this->updateHandler(update);
+			//this->updateHandler(update);
 		}
 		/*RENDER*/
         this->window.fill(); // Repinto el fondo gris
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-			it->second->render(this->resx,this->resy,200,300);
+			it->second->render(this->myChell->getPosX(),this->myChell->getPosY(),
+				this->resx,this->resy,this->scale);
 		}
 
         this->myChell->renderCentered(this->resx,this->resy,this->scale);

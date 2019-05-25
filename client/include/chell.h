@@ -46,11 +46,13 @@ private:
 	STATUS status;
 
 public:	
-	explicit Chell(const SdlWindow& window,uint32_t posx,uint32_t posy,
+	explicit Chell(const SdlWindow& window,int32_t posx,int32_t posy,
 		uint32_t width,uint32_t height,uint32_t dir);
 	~Chell();
+	int32_t getPosX();
+	int32_t getPosY();
 	void renderCentered(int resx, int resy, float scale);	
-	void render(int resx,int resy,int width,int height) override;
+	void render(int resx,int resy,int width,int height,float scale) override;
 	void update(const Update& update) override;	
 	void idle();
 	void idleAction();

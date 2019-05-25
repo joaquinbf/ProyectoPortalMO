@@ -126,8 +126,8 @@ void Protocol::sendCreator(const CreatorMessage creator) const{
 CreatorMessage Protocol::receiveCreator() const{
 	ENTITY idc = (ENTITY) this->receiveByte();
 	uint32_t ido = this->receiveQuad();
-	float posx = this->receiveQuad();
-	float posy = this->receiveQuad();
+	int32_t posx = this->receiveQuad();
+	int32_t posy = this->receiveQuad();
 	uint32_t dir = this->receiveQuad();
 	return CreatorMessage(idc,ido,posx,posy,dir);
 }
@@ -155,8 +155,8 @@ void Protocol::sendUpdate(const Update update) const{
 Update Protocol::receiveUpdate() const{
 	uint32_t id = this->receiveQuad();
 	STATUS st =(STATUS) this->receiveByte();
-	float posx = this->receiveQuad();
-	float posy = this->receiveQuad();
+	int32_t posx = this->receiveQuad();
+	int32_t posy = this->receiveQuad();
 	uint32_t dir = this->receiveQuad();
 	return Update(id,st,posx,posy,dir);
 }

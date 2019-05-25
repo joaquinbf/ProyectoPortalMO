@@ -57,7 +57,7 @@ Protocol *Player::getProtocol() {
 void Player::sendBodies(const std::vector<Body *> &bodies) {
     std::cout << "send bodies" << std::endl;
     this->protocol.sendQuad(bodies.size());
-    this->protocol.sendCreator(CreatorMessage(ENTITY::CHELL, 0, -1, -18,1));
+    this->protocol.sendCreator(CreatorMessage(ENTITY::CHELL, 0, 0, 0,1));
 }
 
 UpdateSender *Player::getUpdateSender() {
