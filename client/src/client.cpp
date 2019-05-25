@@ -55,7 +55,7 @@ void Client::main(){
     while (this->running){
 		/*PROCESO UPDATES*/
 		while(this->updates.try_pop(update)){
-			//this->updateHandler(update);
+			this->updateHandler(update);
 		}
 		/*RENDER*/
         this->window.fill(); // Repinto el fondo gris
