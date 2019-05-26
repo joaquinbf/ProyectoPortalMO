@@ -6,6 +6,9 @@ Command *CommandFactory::create(const Action &action) const {
         case ACTION::RUN_LEFT:
             command =  this->createRunLeft(action);
             break;
+        case ACTION::STOP_LEFT:
+            command = this->createStopLeft(action);
+            break;
         default:
             command = this->createDefault();
             break;
@@ -15,6 +18,10 @@ Command *CommandFactory::create(const Action &action) const {
 
 Command *CommandFactory::createRunLeft(const Action &action) const {
     return new RunLeftCommand();
+}
+
+Command *CommandFactory::createStopLeft(const Action &action) const {
+    return new StopLeftCommand();
 }
 
 Command *CommandFactory::createDefault() const {

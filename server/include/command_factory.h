@@ -4,6 +4,7 @@
 #include "command.h"
 #include "run_left_command.h"
 #include "default_command.h"
+#include "stop_left_command.h"
 #include "../../common/include/action.h"
 
 /* CommandFactory crea commands que se aplican sobre los caracteres del mundo.
@@ -17,7 +18,10 @@ private:
     /* Instancia un command de correr a la izquierda */
     Command *createRunLeft(const Action &action) const;
 
-    /* Instancia un command por defautl que no hace nada. */
+    /* Instancia un command para detener un movimiento a la izquierda */
+    Command *createStopLeft(const Action &action) const;
+
+    /* Instancia un command por default que no hace nada. */
     Command *createDefault() const;
 };
 

@@ -100,3 +100,12 @@ void Chell::changeStateIfFalling() {
     this->current_state->changeStateIfFalling();
     this->deleteOldStateIfChanged();
 }
+
+void Chell::stop() {
+    this->current_state->stop();
+}
+
+void Chell::stopVelocityOnX() {
+    b2Vec2 old_vel = this->b2body->GetLinearVelocity();
+    this->b2body->SetLinearVelocity(b2Vec2(0, old_vel.y));
+}

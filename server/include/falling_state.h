@@ -9,7 +9,7 @@ public:
     FallingState(Chell *chell);
     void runLeft() override;
     virtual void changeStateIfFalling() override;
-
+    virtual void stop() override;
 };
 
 #endif

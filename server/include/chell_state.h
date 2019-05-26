@@ -17,6 +17,7 @@ public:
     virtual ~ChellState();
     virtual void changeStateIfFalling();
     virtual void runLeft() = 0;
+    virtual void stop();
 };
 
 #endif

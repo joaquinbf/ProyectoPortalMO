@@ -22,3 +22,7 @@ void ChellState::changeStateIfFalling() {
         this->chell->updateCurrentState(new FallingState(this->chell));
     }
 }
+
+void ChellState::stop() {
+    this->chell->stopVelocityOnX();
+}

@@ -34,6 +34,8 @@ public:
     void fillUpdate(Update &update);
     bool isFalling() const;
     void changeStateIfFalling();
+    void stop();
+    void stopVelocityOnX();
 };
 
 #endif

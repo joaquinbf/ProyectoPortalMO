@@ -9,3 +9,6 @@ void FallingState::runLeft() {
 
 void FallingState::changeStateIfFalling() {
 }
+
+void FallingState::stop() {
+}
