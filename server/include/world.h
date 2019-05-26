@@ -12,6 +12,7 @@
 #include "player.h"
 #include "chell.h"
 #include "body.h"
+#include "block.h"
 #include "input_receiver.h"
 #include <vector>
 #include <map>

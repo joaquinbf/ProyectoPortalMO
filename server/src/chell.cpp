@@ -3,10 +3,11 @@
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
+#include <iostream>
 
 Chell::Chell(b2World *b2world, float x, float y) {
     b2BodyDef bodyDef;
-    bodyDef.type = b2_staticBody;
+    bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
     bodyDef.angle = this->ANGLE;
     bodyDef.userData = (void *) this;
@@ -41,15 +42,16 @@ void Chell::jump() {
 }
 
 void Chell::applyLinearImpulseToLeft() {
+    std::cout << "Chell::applyLinearImpulseToLeft()" << std::endl;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-10, 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(10, 0), true);
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(10, 0), false);
 }
 
 void Chell::applyLinearImpulseUp() {
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, -10), true);
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, -10), false);
 }
 
 void Chell::updateCurrentState(ChellState *new_current_state) {
@@ -75,4 +77,11 @@ void Chell::fillUpdate(Update &update) {
     update.setPosY(this->b2body->GetPosition().y);
     /* HARDCODEADO, cambiar */
     update.setDirection(1);
+
+    std::cout << "chell position: X, Y =  "
+              << "(" << this->b2body->GetPosition().x
+              << ", " << this->b2body->GetPosition().y
+              << ") " << std::endl;
+    std::cout << "chell STATUS: " << this->current_state->getStatus()
+              << std::endl;
 }

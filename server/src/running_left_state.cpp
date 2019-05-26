@@ -5,5 +5,5 @@ RunningLeftState::RunningLeftState(Chell *chell):
 }
 
 void RunningLeftState::runLeft() {
-    this->getChell()->setOldState(0);
+    this->getChell()->applyLinearImpulseToLeft();
 }

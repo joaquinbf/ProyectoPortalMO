@@ -35,6 +35,10 @@ void World::addPlayer(Player *player) {
 
 void World::createWorldOne() {
     std::cout << "create world one" << std::endl;
+    for (int i = -3; i <= 3; i = i + 2) {
+        Block *block = new Block(&this->b2world, i, 30);
+        this->bodies.emplace_back(block);
+    }
 }
 
 void World::sendBodiesToPlayer(Player *player) {
@@ -65,11 +69,15 @@ void World::updateAllPlayers() {
 }
 
 void World::updatePlayer(Player *player) {
-    Chell *chell = this->chells[player];
-    ProtectedQueue<Update> *queue = player->getUpdateSender()->getQueue();
-    Update update;
-    chell->fillUpdate(update);
-    queue->push(update);
+    b2Body *body = this->b2world.GetBodyList();
+    Chell *chell = (Chell *) body->GetUserData();
+
+    if (body->IsActive()) {
+        ProtectedQueue<Update> *queue = player->getUpdateSender()->getQueue();
+        Update update;
+        chell->fillUpdate(update);
+        queue->push(update);
+    }
 }
 
 void World::freeBodies() {
