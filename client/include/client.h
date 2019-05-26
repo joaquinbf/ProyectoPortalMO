@@ -11,7 +11,6 @@
 #include "../include/entityFactory.h"
 #include "../include/textureManager.h"
 #include "../../common/include/entity.h"
-#include "../../common/include/creatorMessage.h"
 #include "../../common/include/update.h"
 #include "../../common/include/protected_queue.h"
 

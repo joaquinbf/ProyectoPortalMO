@@ -7,7 +7,6 @@
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
 #include "../../common/include/action.h"
-#include "../../common/include/creatorMessage.h"
 #include "../../common/include/update.h"
 
 class ServerManager{
@@ -17,7 +16,7 @@ public:
 	explicit ServerManager(const char* address,const char * port);
 	~ServerManager();
 	void stop();
-	std::list<CreatorMessage> receiveStage();
+	//std::list<CreatorMessage> receiveStage();
 	void sendAction(const Action ac);
 	Update receiveUpdate();
 };

@@ -1,15 +1,7 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
 
-#include "update.h"
-
-enum ENTITY: uint8_t {
-	CHELL,
-	STONE_BLOCK,
-	METAL_BLOCK,
-	METAL_TRIAG_BLOCK,
-	LAUNCH_BLOCK
-};
+#include "../include/update.h"
 
 class Entity {
 protected:

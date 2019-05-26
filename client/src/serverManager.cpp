@@ -1,5 +1,3 @@
-#include <list>
-
 #include "../include/serverManager.h"
 
 ServerManager::ServerManager(const char* address,const char * port){
@@ -15,7 +13,7 @@ void ServerManager::stop(){
 	this->protocol.close();
 }
 
-
+/*
 std::list<CreatorMessage> ServerManager::receiveStage(){
 	std::list<CreatorMessage> list;
 	uint32_t total = this->protocol.receiveQuad();	
@@ -25,7 +23,7 @@ std::list<CreatorMessage> ServerManager::receiveStage(){
 		--total;
 	}
 	return list;
-}
+}*/
 
 void ServerManager::sendAction(const Action ac){
 	this->protocol.sendAction(ac);

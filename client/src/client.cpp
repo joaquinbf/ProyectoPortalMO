@@ -5,7 +5,6 @@
 #include <exception>
 #include <list>
 
-#include "../../common/include/creatorMessage.h"
 #include "../include/entityFactory.h"
 #include "../include/serverManager.h"
 #include "../include/SdlWindow.h"
@@ -18,19 +17,11 @@
 #include "../../common/include/port.h"
 
 Client::Client(int x, int y)
-: resx(x),resy(y),window(x,y),myChell(NULL),myChellId(0), scale(1),
+: resx(x),resy(y),window(x,y),myChell(NULL), scale(1),
 textureManager(window),serverManager("localhost", PORT){
-	std::list<CreatorMessage> mylist = this->serverManager.receiveStage();
-	EntityFactory ef;
-	int32_t i;
-	for (CreatorMessage& c: mylist){
-		i = c.getIdObject();
-		if(i == 0){ //HARDCODED
-			this->myChell=(Chell *)ef.create(c,this->textureManager);
-		} else {
-			this->entities[i] = ef.create(c,this->textureManager);
-		}
-	}
+	//myChellId = this->serverManager.GetChellId();
+	//FALTA RECIBIR CHELL ID
+	myChellId = 0;
 }
 
 Client::~Client(){
@@ -142,13 +133,32 @@ void Client::inputManager(){
 }
 
 void Client::updateHandler(Update update){
-	uint32_t id = update.getId();
-	if(id == this->myChellId){
-		this->myChell->update(update);
-	}else{
-		this->entities[id]->update(update);
+	EntityFactory ef;
+	uint32_t id;
+	switch(update.getCommand()){
+		case COMMAND::CREATE_COMMAND:
+			
+			id = update.getIdObject();
+			if(id == this->myChellId){ 
+				this->myChell=(Chell *)ef.create(update,this->textureManager);
+			} else {
+				this->entities[id] = ef.create(update,this->textureManager);
+			}
+			break;
+		case COMMAND::UPDATE_COMMAND:
+			id = update.getIdObject();
+			if(id == this->myChellId){
+				this->myChell->update(update);
+			}else{
+				this->entities[id]->update(update);
+			}
+			break;
+		case COMMAND::DESTROY_COMMAND:
+			//FALTA IMPLEMENTAR
+			break;
+		default:
+			break;
 	}
-
 }
 
 void Client::zoomIn(){

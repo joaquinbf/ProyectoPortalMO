@@ -114,7 +114,7 @@ std::string Protocol::receiveLine() const{
 	}
 	return line;
 }
-
+/*
 void Protocol::sendCreator(const CreatorMessage creator) const{
 	this->sendByte(creator.getIdClass());
 	this->sendQuad(creator.getIdObject());
@@ -130,7 +130,7 @@ CreatorMessage Protocol::receiveCreator() const{
 	int32_t posy = this->receiveQuad();
 	uint32_t dir = this->receiveQuad();
 	return CreatorMessage(idc,ido,posx,posy,dir);
-}
+}*/
 
 void Protocol::sendAction(const Action action) const{
 	this->sendByte(action.getAction());
@@ -145,7 +145,9 @@ Action Protocol::receiveAction() const{
 
 
 void Protocol::sendUpdate(const Update update) const{
-	this->sendQuad(update.getId());
+	this->sendByte(update.getCommand());
+	this->sendByte(update.getIdClass());
+	this->sendQuad(update.getIdObject());
 	this->sendByte(update.getStatus());
 	this->sendQuad(update.getPosX());
 	this->sendQuad(update.getPosY());
@@ -153,10 +155,12 @@ void Protocol::sendUpdate(const Update update) const{
 }
 
 Update Protocol::receiveUpdate() const{
+	COMMAND cm = (COMMAND) this->receiveByte();
+	ENTITY en = (ENTITY) this->receiveByte();
 	uint32_t id = this->receiveQuad();
 	STATUS st =(STATUS) this->receiveByte();
 	int32_t posx = this->receiveQuad();
 	int32_t posy = this->receiveQuad();
 	uint32_t dir = this->receiveQuad();
-	return Update(id,st,posx,posy,dir);
+	return Update(cm,en,id,st,posx,posy,dir);
 }

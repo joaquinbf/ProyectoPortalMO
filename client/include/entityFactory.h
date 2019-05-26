@@ -1,9 +1,9 @@
 #ifndef _ENTITY_FACTORY_H_
 #define _ENTITY_FACTORY_H_
 
-#include "../../common/include/creatorMessage.h"
 #include "../include/SdlWindow.h"
 #include "../../common/include/entity.h"
+#include "../../common/include/update.h"
 #include "../include/chell.h"
 #include "../include/block.h"
 
@@ -11,7 +11,7 @@ class EntityFactory{
 public:
 	EntityFactory();
 	~EntityFactory();
-	Entity* create(CreatorMessage cm, const TextureManager& tm);
+	Entity* create(const Update& up, const TextureManager& tm);
 };
 
 #endif

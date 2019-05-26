@@ -1,14 +1,26 @@
 #include "../include/update.h"
+#include "../include/status.h"
+#include "../include/entity.h"
 
-Update::Update() : idObject(0),status(NONE), posX(0), posY(0), direction(0){}
+Update::Update() : command(COMMAND::NONE_COMMAND), idClass(ENTITY::NONE_ENTITY), idObject(0),
+	status(STATUS::NONE_STATUS), posX(0), posY(0), direction(0){}
 
-Update::Update(uint32_t id, STATUS status, int32_t posx,
+Update::Update(COMMAND command, ENTITY entity,uint32_t id, STATUS status, int32_t posx,
 	int32_t posy, uint32_t dir)
-: idObject(id),status(status), posX(posx), posY(posy), direction(dir) {}
+: command(command), idClass(entity), idObject(id),status(status), posX(posx), posY(posy), 
+	direction(dir) {}
 
 Update::~Update(){}
 
-uint32_t Update::getId() const{
+COMMAND Update::getCommand() const{
+	return this->command;
+}
+
+ENTITY Update::getIdClass() const{
+	return this->idClass;
+}
+
+uint32_t Update::getIdObject() const{
 	return this->idObject;
 }
 

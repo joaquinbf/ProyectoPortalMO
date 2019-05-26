@@ -4,7 +4,7 @@
 #include <cstdint>
 
 enum STATUS: uint8_t {
-	NONE,
+	NONE_STATUS,
 	CHELL_IDLE,
 	CHELL_RUNNING,
 	CHELL_TURNING,
