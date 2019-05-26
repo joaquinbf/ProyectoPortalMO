@@ -73,6 +73,9 @@ const SdlTexture * TextureManager::getChellTexturePointer(const STATUS st) const
 		case STATUS::CHELL_JIGING:
 			return &(this->chellJigTexture);
 			break;
+		case STATUS::CHELL_FIRE_TO_IDLE:
+			return &(this->chellFireToIdleTexture);
+			break;
 		default:
 			return nullptr;
 			break;
@@ -120,6 +123,8 @@ Area TextureManager::getChellFrameArea(const STATUS st, int frame) const{
 			b = frame / 9;
 			return Area(169*a, 244*b, 168, 243);
 			break;
+		case STATUS::CHELL_FIRE_TO_IDLE:
+			return Area(144*frame, 0, 143, 212);
 		default:
 			
 			break;

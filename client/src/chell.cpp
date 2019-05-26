@@ -50,7 +50,7 @@ void Chell::update(const Update& update){
 			this->stop(update.getDirection());
 			break;
 		case CHELL_FALLING:
-			this->land();
+			this->fire(update.getDirection());
 			//this->fall(update.getDirection());						
 			break;
 		case CHELL_LANDING:
@@ -277,8 +277,9 @@ void Chell::fireAction(){
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame >= 5){
+		this->status = CHELL_FIRE_TO_IDLE;
 		this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
-		this->frameArea = Area(144*(this->frame-5), 0, 143, 212);
+		this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame-5);
 	}
 	if(this->frame == 8){
 		this->actionPtr = &Chell::idleAction;
