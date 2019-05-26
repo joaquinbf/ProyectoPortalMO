@@ -5,6 +5,8 @@
 #include "../../common/include/protocol.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
+#include "command.h"
+#include "command_factory.h"
 #include <iostream>
 
 /* Clase encargada de recibir el input del cliente */
@@ -12,7 +14,7 @@ class InputReceiver: public Thread {
 private:
     bool keep_running;
     Protocol *protocol;
-    ProtectedQueue<Action> queue;
+    ProtectedQueue<Command *> queue;
 
 public:
     /* Instancia un input receiver */
@@ -25,7 +27,7 @@ public:
     void stop();
 
     /* Devuelve un puntero a la cola */
-    ProtectedQueue<Action> *getQueue();
+    ProtectedQueue<Command *> *getQueue();
 };
 
 #endif

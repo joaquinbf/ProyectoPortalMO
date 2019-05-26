@@ -7,6 +7,7 @@ InputReceiver::InputReceiver(Protocol *protocol):
 }
 
 void InputReceiver::run() {
+    CommandFactory cf;
     try {
         std::cout << "corriendo en input receiver" << std::endl;
         this->keep_running = true;
@@ -15,9 +16,8 @@ void InputReceiver::run() {
             Action action = this->protocol->receiveAction();
             std::cout << "input recv : despues recvAction()" << std::endl;
 
-
-            std::cout << action.getAction() << std::endl;
-            this->queue.push(action);
+            Command *command = cf.create(action);
+            this->queue.push(command);
         }
     } catch (const ConnectionErrorException &e) {
     }
@@ -27,6 +27,6 @@ void InputReceiver::stop() {
     this->keep_running = false;
 }
 
-ProtectedQueue<Action> *InputReceiver::getQueue() {
+ProtectedQueue<Command *> *InputReceiver::getQueue() {
     return &this->queue;
 }

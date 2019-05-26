@@ -28,11 +28,11 @@ Chell::Chell(b2World *b2world, float x, float y) {
     this->state = new IdleState(this);
 }
 
-void Chell::walkLeft() {
+void Chell::runLeft() {
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-10, 0), true);
 }
 
-void Chell::walkRight() {
+void Chell::runRight() {
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(10, 0), true);
 }
 

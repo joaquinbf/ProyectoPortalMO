@@ -7,11 +7,15 @@ Command *CommandFactory::create(const Action &action) const {
             command =  this->createRunLeft(action);
             break;
         default:
-            command = 0;
+            command = this->createDefault();
     }
     return command;
 }
 
 Command *CommandFactory::createRunLeft(const Action &action) const {
     return 0;
+}
+
+Command *CommandFactory::createDefault() const {
+    return new DefaultCommand();
 }

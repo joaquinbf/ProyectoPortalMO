@@ -28,13 +28,13 @@ void World::stop() {
 
 void World::addPlayer(Player *player) {
     this->players.emplace_back(player);
-
+    Chell *chell = new Chell(&this->b2world, 0, 20);
+    this->bodies.emplace_back(chell);
+    this->chells[player] = chell;
 }
 
 void World::createWorldOne() {
     std::cout << "create world one" << std::endl;
-    Chell *chell = new Chell(&this->b2world, 0, 20);
-    this->bodies.emplace_back(chell);
 }
 
 void World::sendBodiesToPlayer(Player *player) {
@@ -49,28 +49,12 @@ void World::addInputsFromAllPlayers() {
 }
 
 void World::addInputsFrom(Player *player) {
-    ProtectedQueue<Action> *queue = player->getInputReceiver()->getQueue();
-    Action action;
-    Chell *chell = (Chell *) this->bodies.front();
-
-    while (queue->try_pop(action)) {
-        switch (action.getAction()) {
-            case ACTION::RUN_LEFT:
-                std::cout << "run left" << std::endl;
-                chell->walkLeft();
-                break;
-            case ACTION::RUN_RIGHT:
-                std::cout << "run right" << std::endl;
-                chell->walkRight();
-                break;
-            case ACTION::JUMP:
-                std::cout << "jump" << std::endl;
-                chell->jump();
-                break;
-            default:
-                std::cout << "action no reconocida!" << std::endl;
-                break;
-        }
+    ProtectedQueue<Command *> *pq = player->getInputReceiver()->getQueue();
+    Command *command;
+    while (pq->try_pop(command)) {
+        Chell *chell = this->chells[player];
+        command->execute(chell);
+        delete command;
     }
 }
 
