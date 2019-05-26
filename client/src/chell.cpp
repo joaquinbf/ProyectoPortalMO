@@ -26,7 +26,11 @@ Chell::~Chell(){}
 
 void Chell::renderCentered(int resx,int resy, float scale){
 	int a=(resx/2)-((this->width*scale)/2);
+<<<<<<< Updated upstream
     int b=(2*resy/3)-(this->height*scale)/2;
+=======
+    int b=(7*resy/8)-(this->height*scale);
+>>>>>>> Stashed changes
     Area renderArea(a,b,this->width*scale,this->height*scale);
 	if( this-> direction == 1){
 		this->texturePtr->render(this->frameArea, renderArea);
@@ -36,7 +40,11 @@ void Chell::renderCentered(int resx,int resy, float scale){
 	(this->*actionPtr)();
 }
 
+<<<<<<< Updated upstream
 void Chell::render(int resx,int resy,int width,int height,float scale){
+=======
+void Chell::render(int resx,int resy,int width,int height){
+>>>>>>> Stashed changes
 
 	return;
 }

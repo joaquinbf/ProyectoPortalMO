@@ -11,7 +11,11 @@
 #include "../include/entityFactory.h"
 #include "../include/textureManager.h"
 #include "../../common/include/entity.h"
+<<<<<<< Updated upstream
 #include "../../common/include/creatorMessage.h"
+=======
+#include "../../common/include/creatorMesage.h"
+>>>>>>> Stashed changes
 #include "../../common/include/update.h"
 #include "../../common/include/protected_queue.h"
 
@@ -35,7 +39,10 @@ public:
 private:
 	void inputManager();
 	void updateReceiver();
+<<<<<<< Updated upstream
 	void updateHandler(Update update);
+=======
+>>>>>>> Stashed changes
 	void zoomIn();
 	void zoomOut();
 };

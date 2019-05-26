@@ -5,6 +5,7 @@
 
 enum STATUS: uint8_t {
 	NONE,
+<<<<<<< Updated upstream
 	CHELL_IDLE,
 	CHELL_RUNNING,
 	CHELL_TURNING,
@@ -14,6 +15,10 @@ enum STATUS: uint8_t {
 	CHELL_LANDING,
 	CHELL_FIRE,
 	CHELL_JIGING
+=======
+	CHELL_RUNNING_LEFT,
+	CHELL_RUNNING_RIGHT
+>>>>>>> Stashed changes
 };
 
 #endif
