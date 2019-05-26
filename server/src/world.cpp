@@ -65,27 +65,11 @@ void World::updateAllPlayers() {
 }
 
 void World::updatePlayer(Player *player) {
-    b2Body *b2body = this->b2world.GetBodyList();
-
-    for (; b2body != NULL; b2body = b2body->GetNext()) {
-        std::cout << "PTR a BODY:  " << b2body << std::endl;
-        b2Vec2 vel = b2body->GetLinearVelocity();
-        b2Vec2 pos = b2body->GetPosition();
-
-        if (vel.y >= 0) {
-            Update update(
-                0,
-                STATUS::CHELL_FALLING,
-                pos.x - 1 ,
-                pos.y - 2,
-                1);
-            for (Player *player: this->players) {
-                ProtectedQueue<Update> *queue = player->getUpdateSender()->getQueue();
-                queue->push(update);
-            }
-        }
-    }
-    std::cout << "saliendo del for de update" << std::endl;
+    Chell *chell = this->chells[player];
+    ProtectedQueue<Update> *queue = player->getUpdateSender()->getQueue();
+    Update update;
+    chell->fillUpdate(update);
+    queue->push(update);
 }
 
 void World::freeBodies() {

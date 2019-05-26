@@ -5,6 +5,8 @@
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "idle_state.h"
+#include "../../common/include/update.h"
+
 
 class ChellState;
 
@@ -29,6 +31,7 @@ public:
     void updateCurrentState(ChellState *new_current_state);
     void setOldState(ChellState *old_state);
     void deleteOldStateIfChanged();
+    void fillUpdate(Update &update);
 };
 
 #endif

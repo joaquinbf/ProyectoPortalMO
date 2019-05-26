@@ -67,3 +67,12 @@ void Chell::deleteOldStateIfChanged() {
         this->old_state = 0;
     }
 }
+
+void Chell::fillUpdate(Update &update) {
+    update.setIdObject(0);
+    update.setStatus(this->current_state->getStatus());
+    update.setPosX(this->b2body->GetPosition().x);
+    update.setPosY(this->b2body->GetPosition().y);
+    /* HARDCODEADO, cambiar */
+    update.setDirection(1);
+}
