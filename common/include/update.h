@@ -14,13 +14,8 @@ private:
 	uint32_t direction;
 public:
 	Update();
-<<<<<<< Updated upstream
 	explicit Update(uint32_t id, STATUS status, int32_t posx,
 	int32_t posy, uint32_t dir);
-=======
-	explicit Update(uint32_t id, STATUS status, float posx,
-	float posy, float speedx, float speedy);
->>>>>>> Stashed changes
 	~Update();
 	uint32_t getId() const;
 	STATUS getStatus() const;

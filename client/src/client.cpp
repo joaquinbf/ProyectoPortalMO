@@ -37,11 +37,7 @@ Client::~Client(){
 	if(this->myChell != nullptr){
 		delete this->myChell;
 	}
-<<<<<<< Updated upstream
 	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-=======
-	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
->>>>>>> Stashed changes
 		if(it->second != nullptr){
 			delete it->second;
 		}
@@ -53,7 +49,6 @@ void Client::main(){
     Update update;
     std::thread inputManager([=]{this->inputManager();});
     std::thread updateReceiver([=]{this->updateReceiver();});
-<<<<<<< Updated upstream
 
     while (this->running){
 		/*PROCESO UPDATES*/
@@ -65,19 +60,6 @@ void Client::main(){
     	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
 			it->second->render(this->myChell->getPosX(),this->myChell->getPosY(),
 				this->resx,this->resy,this->scale);
-=======
-    while (this->running){		
-		Update update;
-		while(this->updates.try_pop(update)){
-			//proceso updates 
-		}
-
-        this->window.fill(); // Repinto el fondo gris                           	
-    	
-    	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){    
-			//render de las cosas
-			it->second->render(this->resx,this->resy,200,300);
->>>>>>> Stashed changes
 		}
 
         this->myChell->renderCentered(this->resx,this->resy,this->scale);
@@ -85,17 +67,12 @@ void Client::main(){
 
         usleep(100000);
     }
-<<<<<<< Updated upstream
     this->serverManager.stop();
-=======
-    updateReceiver.join();
->>>>>>> Stashed changes
     inputManager.join();
     updateReceiver.join();
 }
 
 void Client::updateReceiver(){
-<<<<<<< Updated upstream
 	try{
 		Update up;
 		while(this->running){
@@ -108,16 +85,6 @@ void Client::updateReceiver(){
 }
 
 void Client::inputManager(){
-=======
-	while(this->running){
-		Update up = this->serverManager.receiveUpdate();
-		std::cout<<"UPDATE\n";
-		this->updates.push(up);
-	}
-}
-
-void Client::inputManager(){	
->>>>>>> Stashed changes
 	SDL_Event event;
     while(this->running){
 	    if(SDL_PollEvent(&event) != 0){
