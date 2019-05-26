@@ -43,15 +43,21 @@ void Chell::jump() {
 
 void Chell::applyLinearImpulseToLeft() {
     std::cout << "Chell::applyLinearImpulseToLeft()" << std::endl;
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-10, 0), true);
+    float VOL = 2 * this->HALF_WIDTH * this->HALF_HEIGHT;
+    float MASS = this->DENSITY * VOL;
+    float VEL = 3000;
+    float IMP = MASS * VEL;
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(- IMP , 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(10, 0), false);
+    //this->b2body->ApplyLinearImpulseToCenter(b2Vec2(100, 0), true);
+    b2Vec2 vel(-100000000, 0);
+    this->b2body->SetLinearVelocity(vel);
 }
 
 void Chell::applyLinearImpulseUp() {
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, -10), false);
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, -100), true);
 }
 
 void Chell::updateCurrentState(ChellState *new_current_state) {
@@ -74,7 +80,7 @@ void Chell::fillUpdate(Update &update) {
     update.setIdObject(0);
     update.setStatus(this->current_state->getStatus());
     update.setPosX(this->b2body->GetPosition().x);
-    update.setPosY(this->b2body->GetPosition().y);
+    update.setPosY(-1 * this->b2body->GetPosition().y);
     /* HARDCODEADO, cambiar */
     update.setDirection(1);
 

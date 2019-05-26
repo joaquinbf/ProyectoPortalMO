@@ -28,15 +28,15 @@ void World::stop() {
 
 void World::addPlayer(Player *player) {
     this->players.emplace_back(player);
-    Chell *chell = new Chell(&this->b2world, 0, 20);
+    Chell *chell = new Chell(&this->b2world, 0, -200);
     this->bodies.emplace_back(chell);
     this->chells[player] = chell;
 }
 
 void World::createWorldOne() {
     std::cout << "create world one" << std::endl;
-    for (int i = -3; i <= 3; i = i + 2) {
-        Block *block = new Block(&this->b2world, i, 30);
+    for (int i = -384; i <= 384; i = i + 192) {
+        Block *block = new Block(&this->b2world, i, 100);
         this->bodies.emplace_back(block);
     }
 }

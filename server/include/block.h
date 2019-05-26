@@ -8,8 +8,8 @@
 class Block: public Body {
 private:
     b2Body *b2body;
-    const float HALF_WIDTH = 1;
-    const float HALF_HEIGHT = 1;
+    const float HALF_WIDTH = 96;
+    const float HALF_HEIGHT = 96;
     const float DENSITY = 1;
     const float ANGLE = 0;
 

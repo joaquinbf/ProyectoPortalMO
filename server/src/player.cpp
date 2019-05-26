@@ -57,11 +57,13 @@ Protocol *Player::getProtocol() {
 void Player::sendBodies(const std::vector<Body *> &bodies) {
     std::cout << "send bodies" << std::endl;
     this->protocol.sendQuad(bodies.size());
-    this->protocol.sendCreator(CreatorMessage(ENTITY::CHELL, 0, 0, 20, 1));
-    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 1, -3, 30, 1));
-    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 2, -1, 30, 1));
-    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 3, 1, 30, 1));
-    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 4, 3, 30, 1));
+    this->protocol.sendCreator(CreatorMessage(ENTITY::CHELL, 0, 0, -200, 1));
+    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 1, -384, 100, 1));
+    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 2, -196, 100, 1));
+    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 3, 0, 100, 1));
+    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 4, 196, 100, 1));
+    this->protocol.sendCreator(CreatorMessage(ENTITY::STONE_BLOCK, 5, 384, 100, 1));
+
 }
 
 UpdateSender *Player::getUpdateSender() {
