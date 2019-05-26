@@ -4,7 +4,8 @@
 #include "chell_state.h"
 
 class IdleState: public ChellState {
-
+public:
+    IdleState(Chell *chell);
 };
 
 #endif

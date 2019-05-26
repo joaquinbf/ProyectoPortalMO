@@ -10,6 +10,8 @@ Chell::Chell(b2World *b2world, float x, float y) {
     bodyDef.position.Set(x, y);
     bodyDef.angle = this->ANGLE;
     bodyDef.userData = (void *) this;
+    /* evita que el cuerpo gire */
+    bodyDef.fixedRotation = true;
 
     this->b2body = b2world->CreateBody(&bodyDef);
 
@@ -21,6 +23,9 @@ Chell::Chell(b2World *b2world, float x, float y) {
     boxFixtureDef.density = this->DENSITY;
 
     this->b2body->CreateFixture(&boxFixtureDef);
+
+    this->looking_right = true;
+    this->state = new IdleState(this);
 }
 
 void Chell::walkLeft() {

@@ -1,8 +1,13 @@
 #ifndef __CHELL_STATE_H__
 #define __CHELL_STATE_H__
 
-class ChellState {
+class Chell;
 
+class ChellState {
+private:
+    Chell *chell;
+public:
+    ChellState(Chell *chell);
 };
 
 #endif
