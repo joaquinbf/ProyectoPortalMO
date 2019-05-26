@@ -5,11 +5,10 @@ EntityFactory::EntityFactory(){}
 
 EntityFactory::~EntityFactory(){}
 
-Entity* EntityFactory::create(CreatorMessage cm,const SdlWindow& window,
-	const TextureManager& tm){
+Entity* EntityFactory::create(CreatorMessage cm, const TextureManager& tm){
 	switch(cm.getIdClass()){
 		case CHELL:
-			return new Chell(window,cm.getPosX(),cm.getPosY(),200,300,cm.getDir());
+			return new Chell(tm,cm.getPosX(),cm.getPosY(),200,300,cm.getDir());
 			break;
 		case STONE_BLOCK:
 			return new Block(tm,STONE_BLOCK,cm.getPosX(),cm.getPosY(),200,200);

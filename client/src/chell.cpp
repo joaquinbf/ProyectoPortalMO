@@ -1,24 +1,14 @@
 #include "../include/chell.h"
 
-Chell::Chell(const SdlWindow& window,int32_t posx,int32_t posy,
+Chell::Chell(const TextureManager& tm,int32_t posx,int32_t posy,
 		uint32_t width,uint32_t height,uint32_t dir)
 : Entity(posx,posy,width,height,dir),
-idleTexture(CHELL_IDLE_TEXTURE,window), 
-jigTexture(CHELL_JIG_TEXTURE,window), 
-runTexture(CHELL_RUNNING_TEXTURE,window), 
-stopTexture(CHELL_STOPING_TEXTURE,window),
-turnTexture(CHELL_TURN_TEXTURE,window), 
-jumpRiseTexture(CHELL_JUMP_RISE_TEXTURE,window),
-jumpApexTexture(CHELL_JUMP_APEX_TEXTURE,window), 
-jumpFallTexture(CHELL_JUMP_FALL_TEXTURE,window),
-jumpLandTexture(CHELL_JUMP_LAND_TEXTURE,window), 
-fireTexture(CHELL_FIRE_TEXTURE,window),
-fireToIdleTexture(CHELL_FIRE_TO_IDLE_TEXTURE,window),
+textureManager(tm),
 frameArea(0, 0, 104, 215),
 status(CHELL_IDLE){
-	this->texturePtr = &this->idleTexture;
+	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
 	this->actionPtr = &Chell::idleAction;
-	this->framex = 0;	
+	this->frame = 0;	
 	this->framey = 0;
 }
 
@@ -60,7 +50,8 @@ void Chell::update(const Update& update){
 			this->stop(update.getDirection());
 			break;
 		case CHELL_FALLING:
-			this->fall(update.getDirection());						
+			this->land();
+			//this->fall(update.getDirection());						
 			break;
 		case CHELL_LANDING:
 			break;
@@ -92,7 +83,7 @@ void Chell::idle(){
 		return;
 	}
 	if(this->status != CHELL_IDLE){
-		this->framex = 0;
+		this->frame = 0;
 		this->framey = 0;
 		this->idleAction();	
 	}
@@ -102,17 +93,18 @@ void Chell::idle(){
 void Chell::idleAction(){
 	this->status = CHELL_IDLE;
 	this->actionPtr = &Chell::idleAction;
-	this->texturePtr = &this->idleTexture;	
-	frameArea = Area(105*this->framex, 0, 104, 215);
-	this->framex+=1;
-	if(this->framex == 7){
-		this->framex = 0;
+	this->texturePtr = (SdlTexture *) 
+		this->textureManager.getChellTexturePointer(this->status);
+	frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame == 7){
+		this->frame = 0;
 	}
 }
+
 void Chell::jig(){	
 	if(this->status == CHELL_IDLE){
-		this->framex = 0;
-		this->framey = 0;
+		this->frame = 0;
 		this->jigAction();	
 	}	
 }
@@ -120,27 +112,23 @@ void Chell::jig(){
 void Chell::jigAction(){
 	this->status = CHELL_JIGING;
 	this->actionPtr = &Chell::jigAction;
-	this->texturePtr = &this->jigTexture;
-	this->frameArea = Area(169*this->framex, 244*this->framey, 168, 243);
-	this->framex+=1;
-	if(this->framey == 8){
-		if(this->framex == 7){
-			this->actionPtr = &Chell::idleAction;
-		}
+	this->texturePtr = (SdlTexture *) 
+		this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame == 79){	
+		this->actionPtr = &Chell::idleAction;
+		this->frame = 0;
 	}
-	if(this->framex == 9){
-		this->framex = 0;
-		this->framey+=1;
-	}
+	
 }
 
 void Chell::run(int dir){
-	if(this->status == CHELL_RUNNING ||
-		this->status == CHELL_TURNING ||
-		this->status == CHELL_LANDING){
+	if(this->status == CHELL_TURNING ||
+		this->status == CHELL_LANDING ||
+		this->status == CHELL_IDLE){
 		this->direction = dir;
-		this->framex = 0;
-		this->framey = 0;
+		this->frame = 0;
 		this->runAction();	
 	}	
 }
@@ -148,25 +136,19 @@ void Chell::run(int dir){
 void Chell::runAction(){
 	this->status = CHELL_RUNNING;
 	this->actionPtr = &Chell::runAction;
-	this->texturePtr = &this->runTexture;
-	this->frameArea = Area(195*this->framex, 205*this->framey+1, 194, 204);
-	this->framex+=1;
-	if(this->framey == 1){
-		if(this->framex == 2){
-			this->framex = 0;
-			this->framey = 0;	
-		}
-	}
-	if(this->framex == 8){
-		this->framex = 0;
-		this->framey+=1;
+	this->texturePtr = (SdlTexture *) 
+		this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	std::cout<<this->frame<<std::endl;
+	if(this->frame == 12){
+		this->frame = 0;
 	}
 }
 
 void Chell::stop(int dir){
 	if(this->status == CHELL_RUNNING){
-		this->framex = 0;
-		this->framey = 0;
+		this->frame = 0;
 		this->stopAction();	
 	}	
 }
@@ -174,17 +156,12 @@ void Chell::stop(int dir){
 void Chell::stopAction(){
 	this->status = CHELL_STOPING;
 	this->actionPtr = &Chell::stopAction;
-	this->texturePtr = &this->stopTexture;
-	this->frameArea = Area(166*this->framex, 216*this->framey+1, 165, 215);
-	this->framex+=1;
-	if(this->framey == 1){
-		if(this->framex == 2){
-			this->actionPtr = &Chell::idleAction;
-		}
-	}
-	if(this->framex == 10){
-		this->framex = 0;
-		this->framey+=1;
+	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame == 12){
+		this->frame = 0;
+		this->actionPtr = &Chell::idleAction;
 	}
 }
 
@@ -192,7 +169,7 @@ void Chell::turn(int dir){
 	if(this->status == CHELL_RUNNING ||
 		this->status == CHELL_IDLE ||
 		this->status == CHELL_LANDING){
-		this->framex = 0;
+		this->frame = 0;
 		this->turnAction();	
 	}
 }
@@ -200,23 +177,25 @@ void Chell::turn(int dir){
 void Chell::turnAction(){
 	this->status = CHELL_TURNING;
 	this->actionPtr = &Chell::turnAction;
-	this->texturePtr = &this->turnTexture;	
-	this->frameArea = Area(193*this->framex+6, 1, 185, 200);
-	this->framex+=1;
-	if(this->framex == 8){
+	this->texturePtr = (SdlTexture *) 
+		this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame == 8){
 		if(this->direction == 1){
 			this->direction = 0;
 		}else{
 			this->direction = 1;
 		}
-		this->stop(this->direction);
-	}
+		this->frame = 0;
+		this->actionPtr = &Chell::idleAction;
+	}	
 }
 
 void Chell::jump(){
 	if(this->status == CHELL_IDLE ||
 		this->status == CHELL_RUNNING){
-		this->framex = 0;
+		this->frame = 0;
 		this->jumpAction();
 	}
 }
@@ -224,21 +203,24 @@ void Chell::jump(){
 void Chell::jumpAction(){
 	this->status = CHELL_JUMPING;
 	this->actionPtr = &Chell::jumpAction;
-	this->texturePtr = &this->jumpRiseTexture;
-	this->frameArea = Area(144*this->framex+1, 0, 143, 227);
-	this->framex+=1;
-	if(this->framex == 5){
-		this->texturePtr = &this->jumpApexTexture;
-		this->frameArea = Area(0, 0, 137, 207);
+	this->texturePtr = (SdlTexture *) 
+		this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame == 5 ){
+		this->status = CHELL_JUMPING_APEX;
+		this->texturePtr = (SdlTexture *) 
+			this->textureManager.getChellTexturePointer(this->status);
+		this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 		this->actionPtr = &Chell::idleAction;
-	}	
-	
+		this->frame = 0;
+	}		
 }
 
 void Chell::fall(int dir){
 	this->direction=dir;
 	if(this->status != CHELL_FALLING){
-		this->framex = 0;
+		this->frame = 0;
 		this->fallAction();
 	}
 }
@@ -246,17 +228,17 @@ void Chell::fall(int dir){
 void Chell::fallAction(){
 	this->status = CHELL_FALLING;
 	this->actionPtr = &Chell::fallAction;
-	this->texturePtr = &this->jumpFallTexture;
-	this->frameArea = Area(157*this->framex, 0, 156, 217);
-	this->framex+=1;
-	if(this->framex == 4){		
-		this->framex = 0;
+	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea =  this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame == 4){		
+		this->frame = 0;
 	}
 }
 
 void Chell::land(){
 	if(this->status == CHELL_FALLING){
-		this->framex = 0;
+		this->frame = 0;
 		this->landAction();
 	}
 }
@@ -264,25 +246,25 @@ void Chell::land(){
 void Chell::landAction(){
 	this->status = CHELL_LANDING;
 	this->actionPtr = &Chell::landAction;
-	this->texturePtr = &this->jumpLandTexture;
-	this->frameArea = Area(231*this->framex+80, 2, 150, 196);
-	this->framex+=1;
-	if(this->framex == 2){		
+	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame == 2){		
 		this->actionPtr = &Chell::idleAction;
 	}
 }
 
 void Chell::fire(int dir){
 	if(this->status == CHELL_IDLE ){
-		this->framex = 0;
+		this->frame = 0;
 		this->fireAction();	
 	}else if(this->status == CHELL_RUNNING){
-		this->framex = 0;
+		this->frame = 0;
 		//this->fireRunningAction();	
 		this->fireAction();	
 	}else if(this->status == CHELL_JUMPING || 
 			this->status == CHELL_FALLING){
-		this->framex = 0;
+		this->frame = 0;
 		//this->fireRunningAction();	
 		this->fireAction();	
 	}		
@@ -291,14 +273,14 @@ void Chell::fire(int dir){
 void Chell::fireAction(){
 	this->status = CHELL_FIRE;
 	this->actionPtr = &Chell::fireAction;
-	this->texturePtr = &this->fireTexture;
-	this->frameArea = Area(171*this->framex, 0, 170, 212);
-	this->framex+=1;
-	if(this->framex >= 5){
-		this->texturePtr = &this->fireToIdleTexture;		
-		this->frameArea = Area(144*(this->framex-5), 0, 143, 212);
+	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame >= 5){
+		this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+		this->frameArea = Area(144*(this->frame-5), 0, 143, 212);
 	}
-	if(this->framex == 8){
+	if(this->frame == 8){
 		this->actionPtr = &Chell::idleAction;
 	}
 }

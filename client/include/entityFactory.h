@@ -11,7 +11,7 @@ class EntityFactory{
 public:
 	EntityFactory();
 	~EntityFactory();
-	Entity* create(CreatorMessage cm,const SdlWindow& window, const TextureManager& tm);
+	Entity* create(CreatorMessage cm, const TextureManager& tm);
 };
 
 #endif

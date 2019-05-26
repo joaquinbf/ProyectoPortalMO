@@ -26,9 +26,9 @@ textureManager(window),serverManager("localhost", PORT){
 	for (CreatorMessage& c: mylist){
 		i = c.getIdObject();
 		if(i == 0){ //HARDCODED
-			this->myChell=(Chell *)ef.create(c,this->window,this->textureManager);
+			this->myChell=(Chell *)ef.create(c,this->textureManager);
 		} else {
-			this->entities[i] = ef.create(c,this->window,this->textureManager);
+			this->entities[i] = ef.create(c,this->textureManager);
 		}
 	}
 }
@@ -133,6 +133,7 @@ void Client::inputManager(){
 	            } // Fin KEY_UP
 	        	break;
 	        case SDL_QUIT:
+	        	this->serverManager.sendAction(Action(ACTION::QUIT,0));
 	            this->running = false;
 	            break;
 	    }

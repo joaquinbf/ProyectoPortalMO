@@ -3,50 +3,38 @@
 
 #include <iostream>
 
+#include "../include/textureManager.h"
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../../common/include/entity.h"
 #include "../../common/include/status.h"
 #include "../../common/include/update.h"
 
-#define CHELL_IDLE_TEXTURE "../resources/textures/chell/resting-idle.png"
-#define CHELL_JIG_TEXTURE "../resources/textures/chell/jig.png"
-#define CHELL_RUNNING_TEXTURE "../resources/textures/chell/running.png"
-#define CHELL_STOPING_TEXTURE "../resources/textures/chell/stoping.png"
-#define CHELL_TURN_TEXTURE "../resources/textures/chell/turn.png"
-#define CHELL_JUMP_RISE_TEXTURE "../resources/textures/chell/jump-rise.png"
-#define CHELL_JUMP_APEX_TEXTURE "../resources/textures/chell/jump-apex.png"
-#define CHELL_JUMP_FALL_TEXTURE "../resources/textures/chell/jump-fall.png"
-#define CHELL_JUMP_LAND_TEXTURE "../resources/textures/chell/jump-land.png"
-#define CHELL_FIRE_TEXTURE "../resources/textures/chell/fire.png"
-#define CHELL_FIRE_TO_IDLE_TEXTURE "../resources/textures/chell/fire-to-idle.png"
+#define IDLE_TEXTURE "../resources/textures/chell/resting-idle.png"
+#define JIG_TEXTURE "../resources/textures/chell/jig.png"
+#define RUNNING_TEXTURE "../resources/textures/chell/running.png"
+#define STOPING_TEXTURE "../resources/textures/chell/stoping.png"
+#define TURN_TEXTURE "../resources/textures/chell/turn.png"
+#define JUMP_RISE_TEXTURE "../resources/textures/chell/jump-rise.png"
+#define JUMP_APEX_TEXTURE "../resources/textures/chell/jump-apex.png"
+#define JUMP_FALL_TEXTURE "../resources/textures/chell/jump-fall.png"
+#define JUMP_LAND_TEXTURE "../resources/textures/chell/jump-land.png"
+#define FIRE_TEXTURE "../resources/textures/chell/fire.png"
+#define FIRE_TO_IDLE_TEXTURE "../resources/textures/chell/fire-to-idle.png"
 
 class Chell : public Entity{
 private:
 	SdlTexture * texturePtr;
 	void(Chell::* actionPtr)();
-	
-	//SE TIENEN QUE IR
-	SdlTexture idleTexture;
-	SdlTexture jigTexture;
-	SdlTexture runTexture;
-	SdlTexture stopTexture;
-	SdlTexture turnTexture;
-	SdlTexture jumpRiseTexture;
-	SdlTexture jumpApexTexture;
-	SdlTexture jumpFallTexture;
-	SdlTexture jumpLandTexture;
-	SdlTexture fireTexture;
-	SdlTexture fireToIdleTexture;
-
+	const TextureManager & textureManager;
 	Area frameArea;
-	int framex;
+	int frame;
 	int framey;
 
 	STATUS status;
 
 public:	
-	explicit Chell(const SdlWindow& window,int32_t posx,int32_t posy,
+	explicit Chell(const TextureManager& tm,int32_t posx,int32_t posy,
 		uint32_t width,uint32_t height,uint32_t dir);
 	~Chell();
 	int32_t getPosX();
