@@ -8,12 +8,13 @@ Command *CommandFactory::create(const Action &action) const {
             break;
         default:
             command = this->createDefault();
+            break;
     }
     return command;
 }
 
 Command *CommandFactory::createRunLeft(const Action &action) const {
-    return 0;
+    return new RunLeftCommand();
 }
 
 Command *CommandFactory::createDefault() const {

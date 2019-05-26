@@ -23,6 +23,7 @@ public:
     void runLeft();
     void runRight();
     void jump();
+    void newState(ChellState *new_state);
 };
 
 #endif

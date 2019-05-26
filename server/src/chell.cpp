@@ -39,3 +39,9 @@ void Chell::runRight() {
 void Chell::jump() {
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, -10), true);
 }
+
+void Chell::newState(ChellState *new_state) {
+    ChellState *old_state = this->state;
+    this->state = new_state;
+    delete old_state;
+}
