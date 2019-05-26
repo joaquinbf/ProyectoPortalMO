@@ -15,18 +15,18 @@
 #include "../include/client.h"
 #include "../include/background.h"
 
-#define CLI_PORT "4547"
+#include "../../common/include/port.h"
 
 Client::Client(int x, int y)
 : resx(x),resy(y),window(x,y),myChell(NULL),myChellId(0), scale(1),
-textureManager(window),serverManager("localhost",CLI_PORT){
+textureManager(window),serverManager("localhost", PORT){
 	std::list<CreatorMessage> mylist = this->serverManager.receiveStage();
 	EntityFactory ef;
 	int32_t i;
 	for (CreatorMessage& c: mylist){
 		i = c.getIdObject();
 		if(i == 0){ //HARDCODED
-			this->myChell=(Chell *)ef.create(c,this->window,this->textureManager);	
+			this->myChell=(Chell *)ef.create(c,this->window,this->textureManager);
 		} else {
 			this->entities[i] = ef.create(c,this->window,this->textureManager);
 		}
@@ -145,9 +145,9 @@ void Client::updateHandler(Update update){
 	if(id == this->myChellId){
 		this->myChell->update(update);
 	}else{
-		this->entities[id]->update(update);	
+		this->entities[id]->update(update);
 	}
-	
+
 }
 
 void Client::zoomIn(){
