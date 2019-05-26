@@ -4,7 +4,6 @@ RunningLeftState::RunningLeftState(Chell *chell):
     ChellState(chell) {
 }
 
-
-ChellState *RunningLeftState::runLeft() {
-    return 0;
+void RunningLeftState::runLeft() {
+    this->getChell()->setOldState(0);
 }

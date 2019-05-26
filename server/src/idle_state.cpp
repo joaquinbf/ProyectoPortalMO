@@ -5,6 +5,7 @@ IdleState::IdleState(Chell *chell):
     ChellState(chell) {
 }
 
-ChellState *IdleState::runLeft() {
-    return new RunningLeftState(this->getChell());
+void IdleState::runLeft() {
+    Chell *chell = this->getChell();
+    chell->updateCurrentState(new RunningLeftState(chell));
 }

@@ -10,7 +10,7 @@ public:
     ChellState(Chell *chell);
     Chell *getChell();
     virtual ~ChellState();
-    virtual ChellState *runLeft() = 0;
+    virtual void runLeft() = 0;
 };
 
 #endif

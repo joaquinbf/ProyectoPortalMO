@@ -24,24 +24,46 @@ Chell::Chell(b2World *b2world, float x, float y) {
 
     this->b2body->CreateFixture(&boxFixtureDef);
 
-    this->looking_right = true;
-    this->state = new IdleState(this);
+    this->current_state = new IdleState(this);
+    this->old_state = 0;
 }
 
 void Chell::runLeft() {
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-10, 0), true);
+    this->current_state->runLeft();
+    this->deleteOldStateIfChanged();
 }
 
 void Chell::runRight() {
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(10, 0), true);
 }
 
 void Chell::jump() {
+
+}
+
+void Chell::applyLinearImpulseToLeft() {
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-10, 0), true);
+}
+
+void Chell::applyLinearImpulseToRight() {
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(10, 0), true);
+}
+
+void Chell::applyLinearImpulseUp() {
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, -10), true);
 }
 
-void Chell::newState(ChellState *new_state) {
-    ChellState *old_state = this->state;
-    this->state = new_state;
-    delete old_state;
+void Chell::updateCurrentState(ChellState *new_current_state) {
+    this->old_state = this->current_state;
+    this->current_state = new_current_state;
+}
+
+void Chell::setOldState(ChellState *old_state) {
+    this->old_state = old_state;
+}
+
+void Chell::deleteOldStateIfChanged() {
+    if (this->old_state != 0) {
+        delete this->old_state;
+        this->old_state = 0;
+    }
 }

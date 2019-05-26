@@ -15,15 +15,20 @@ private:
     const float HALF_HEIGHT = 1;
     const float DENSITY = 1;
     const float ANGLE = 0;
-    ChellState *state;
-    bool looking_right;
+    ChellState *current_state;
+    ChellState *old_state;
 
 public:
     Chell(b2World *b2world, float x, float y);
     void runLeft();
     void runRight();
     void jump();
-    void newState(ChellState *new_state);
+    void applyLinearImpulseToLeft();
+    void applyLinearImpulseToRight();
+    void applyLinearImpulseUp();
+    void updateCurrentState(ChellState *new_current_state);
+    void setOldState(ChellState *old_state);
+    void deleteOldStateIfChanged();
 };
 
 #endif

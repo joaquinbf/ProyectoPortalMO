@@ -3,11 +3,12 @@
 
 #include "chell_state.h"
 #include "running_left_state.h"
+#include "chell.h"
 
 class IdleState: public ChellState {
 public:
     IdleState(Chell *chell);
-    virtual ChellState *runLeft() override;
+    virtual void runLeft() override;
 };
 
 #endif
