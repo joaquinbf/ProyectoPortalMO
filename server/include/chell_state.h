@@ -15,6 +15,7 @@ public:
     Chell *getChell();
     STATUS getStatus();
     virtual ~ChellState();
+    virtual void changeStateIfFalling();
     virtual void runLeft() = 0;
 };
 

@@ -91,3 +91,12 @@ void Chell::fillUpdate(Update &update) {
     std::cout << "chell STATUS: " << this->current_state->getStatus()
               << std::endl;
 }
+
+bool Chell::isFalling() const {
+    return this->b2body->GetLinearVelocity().y >= 0;
+}
+
+void Chell::changeStateIfFalling() {
+    this->current_state->changeStateIfFalling();
+    this->deleteOldStateIfChanged();
+}

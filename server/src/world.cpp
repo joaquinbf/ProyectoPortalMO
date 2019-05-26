@@ -71,6 +71,7 @@ void World::updateAllPlayers() {
 void World::updatePlayer(Player *player) {
     b2Body *body = this->b2world.GetBodyList();
     Chell *chell = (Chell *) body->GetUserData();
+    chell->changeStateIfFalling();
 
     if (body->IsActive()) {
         ProtectedQueue<Update> *queue = player->getUpdateSender()->getQueue();

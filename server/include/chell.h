@@ -32,6 +32,8 @@ public:
     void setOldState(ChellState *old_state);
     void deleteOldStateIfChanged();
     void fillUpdate(Update &update);
+    bool isFalling() const;
+    void changeStateIfFalling();
 };
 
 #endif
