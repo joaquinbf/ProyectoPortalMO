@@ -17,7 +17,7 @@ class Action{
 private:
 	ACTION action;
 	uint32_t param;
-    
+
 public:
     Action();
 	explicit Action(ACTION ac,uint32_t param);

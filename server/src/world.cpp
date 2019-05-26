@@ -10,7 +10,6 @@ World::~World() {
     this->freeBodies();
 }
 
-
 void World::run() {
     while (this->keep_running) {
         this->addInputsFromAllPlayers();
@@ -29,6 +28,7 @@ void World::stop() {
 
 void World::addPlayer(Player *player) {
     this->players.emplace_back(player);
+
 }
 
 void World::createWorldOne() {
