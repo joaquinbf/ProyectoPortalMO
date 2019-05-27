@@ -1,6 +1,6 @@
 #include "../include/server.h"
 
 int main() {
-	Server server;
+    Server server;
     return server.main();
 }
