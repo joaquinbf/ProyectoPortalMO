@@ -18,13 +18,18 @@ private:
     const float HALF_HEIGHT = 10.8;
     const float DENSITY = 1;
     const float ANGLE = 0;
-    ChellState *state;
+    ChellState *current_state;
+    ChellState *old_state;
     bool is_facing_right;
 
 public:
     /* Instancia a Chell en world en (x, y) */
     Chell(b2World *b2world, float x, float y);
+    ~Chell();
     void keyLeft();
+    void deleteOldStateIfUpdated();
+    void setCurrentState(ChellState *state);
+    void setOldState(ChellState *state);
 };
 
 #endif

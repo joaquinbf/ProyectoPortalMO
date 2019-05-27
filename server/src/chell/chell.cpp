@@ -21,9 +21,35 @@ Chell::Chell(b2World *b2world, float x, float y) {
     this->b2body->CreateFixture(&boxFixtureDef);
 
     this->is_facing_right = true;
-    this->state = new IdleState();
+    this->current_state = new IdleState();
+    this->old_state = 0;
+}
+
+Chell::~Chell() {
+    if (this->old_state != 0) {
+        delete this->old_state;
+    }
+
+    if (this->current_state != 0) {
+        delete this->current_state;
+    }
 }
 
 void Chell::keyLeft() {
-    this->state->keyLeft();
+    this->current_state->keyLeft();
+    this->deleteOldStateIfUpdated();
+}
+
+void Chell::deleteOldStateIfUpdated() {
+    if (this->old_state != 0) {
+        delete this->old_state;
+    }
+}
+
+void Chell::setCurrentState(ChellState *state) {
+    this->current_state = state;
+}
+
+void Chell::setOldState(ChellState *state) {
+    this->old_state = state;
 }
