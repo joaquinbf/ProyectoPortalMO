@@ -9,3 +9,12 @@ void RunningState::keyLeft() {
     this->getChell()->faceLeft();
     this->getChell()->applyLinearImpulseLeft();
 }
+
+void RunningState::keyRight() {
+    this->getChell()->faceLeft();
+    this->getChell()->applyLinearImpulseRight();
+}
+
+void RunningState::keyJump() {
+    this->getChell()->changeToJumpingState();
+}

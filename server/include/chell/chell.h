@@ -5,6 +5,7 @@
 
 #include "idle_state.h"
 #include "running_state.h"
+#include "jumping_state.h"
 
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -24,16 +25,24 @@ private:
     ChellState *state;
     IdleState idle_state;
     RunningState running_state;
+    JumpingState jumping_state;
 
 public:
     /* Instancia a Chell en world en (x, y) */
     Chell(b2World *b2world, float x, float y);
     virtual ~Chell();
-    virtual void keyLeft();
+    void keyLeft();
+    void keyRight();
+    void keyJump();
     void faceLeft();
     void faceRight();
     void faceOpposite();
     void applyLinearImpulseLeft();
+    void applyLinearImpulseRight();
+    void applyLinearImpulseUp();
+    void changeToIdleState();
+    void changeToRunningState();
+    void changeToJumpingState();
 };
 
 #endif

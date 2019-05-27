@@ -11,6 +11,8 @@ public:
     virtual ~ChellState();
     Chell *getChell();
     virtual void keyLeft() = 0;
+    virtual void keyRight() = 0;
+    virtual void keyJump() = 0;
 };
 
 #endif

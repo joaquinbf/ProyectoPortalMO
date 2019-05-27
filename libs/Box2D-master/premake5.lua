@@ -65,7 +65,8 @@ project 'Testbed'
 		'../../server/src/chell/chell.cpp',
 		'../../server/src/chell/chell_state.cpp',
 		'../../server/src/chell/idle_state.cpp',
-		'../../server/src/chell/running_state.cpp'
+		'../../server/src/chell/running_state.cpp',
+		'../../server/src/chell/jumping_state.cpp'
 	}
 
     filter { 'system:windows' }

@@ -29,6 +29,11 @@ public:
 		case GLFW_KEY_A:
             this->world.getChell()->keyLeft();
 			break;
+        case GLFW_KEY_D:
+            this->world.getChell()->keyRight();
+            break;
+        case GLFW_KEY_W:
+            this->world.getChell()->keyJump();
 		}
 	}
 };
