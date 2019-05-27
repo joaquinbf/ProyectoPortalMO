@@ -1,13 +1,8 @@
 #include "../../include/chell/chell.h"
 
-Chell::Chell():
-    b2body(0),
-    current_state(new IdleState(this)),
-    old_state(0),
-    is_facing_right(true) {
-}
-
-Chell::Chell(b2World *b2world, float x, float y) {
+Chell::Chell(b2World *b2world, float x, float y):
+    idle_state(this),
+    running_state(this) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
@@ -28,46 +23,13 @@ Chell::Chell(b2World *b2world, float x, float y) {
     this->b2body->CreateFixture(&boxFixtureDef);
 
     this->is_facing_right = true;
-    ChellState *current_state = new IdleState(this);
-    this->current_state = current_state;
-    this->old_state = 0;
 }
 
 Chell::~Chell() {
-    if (this->old_state != 0) {
-        delete this->old_state;
-    }
-
-    if (this->current_state != 0) {
-        delete this->current_state;
-    }
 }
 
 void Chell::keyLeft() {
-    this->current_state->keyLeft();
-    this->deleteOldStateIfUpdated();
 }
-
-void Chell::deleteOldStateIfUpdated() {
-    if (this->old_state != 0) {
-        delete this->old_state;
-        this->old_state = 0;
-    }
-}
-
-void Chell::setCurrentState(ChellState *state) {
-    this->current_state = state;
-}
-
-void Chell::setOldState(ChellState *state) {
-    this->old_state = state;
-}
-
-void Chell::updateState(ChellState *state) {
-    this->old_state = this->current_state;
-    this->current_state = state;
-}
-
 
 void Chell::faceLeft() {
     this->is_facing_right = false;
