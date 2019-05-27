@@ -3,6 +3,9 @@
 
 #include "../body.h"
 
+#include "chell_state.h"
+#include "idle_state.h"
+
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -15,10 +18,13 @@ private:
     const float HALF_HEIGHT = 10.8;
     const float DENSITY = 1;
     const float ANGLE = 0;
+    ChellState *state;
+    bool is_facing_right;
 
 public:
     /* Instancia a Chell en world en (x, y) */
     Chell(b2World *b2world, float x, float y);
+    void keyLeft();
 };
 
 #endif

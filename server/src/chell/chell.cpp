@@ -19,4 +19,11 @@ Chell::Chell(b2World *b2world, float x, float y) {
     boxFixtureDef.density = this->DENSITY;
 
     this->b2body->CreateFixture(&boxFixtureDef);
+
+    this->is_facing_right = true;
+    this->state = new IdleState();
+}
+
+void Chell::keyLeft() {
+    this->state->keyLeft();
 }
