@@ -38,6 +38,8 @@ public:
     void updateState(ChellState *state);
     void faceLeft();
     void faceRight();
+    void faceOpposite();
+    void applyLinearImpulseLeft();
 };
 
 #endif

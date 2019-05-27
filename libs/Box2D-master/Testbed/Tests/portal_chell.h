@@ -23,6 +23,14 @@ public:
     static Test *Create() {
         return new PortalChell;
     }
+
+    void Keyboard(int key) {
+		switch (key) {
+		case GLFW_KEY_A:
+            this->world.getChell()->keyLeft();
+			break;
+		}
+	}
 };
 
 #endif

@@ -16,7 +16,7 @@ private:
 
 public:
     ~World();
-    
+
     void setB2World(b2World *b2World);
 
     /* Setea la gravedad mediante el vector (x, y) */
@@ -27,6 +27,8 @@ public:
 
     /* Agrega un suelo entre las posiciones (x1, y1) a (x2, y2) */
     void addGround(float x1, float y1, float x2, float y2);
+
+    Chell *getChell();
 };
 
 #endif

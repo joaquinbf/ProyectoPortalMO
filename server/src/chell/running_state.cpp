@@ -7,4 +7,5 @@ RunningState::RunningState(Chell *chell):
 
 void RunningState::keyLeft() {
     this->getChell()->faceLeft();
+    this->getChell()->applyLinearImpulseLeft();
 }

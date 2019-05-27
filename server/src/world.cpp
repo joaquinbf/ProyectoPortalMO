@@ -28,3 +28,7 @@ void World::addGround(float x1, float y1, float x2, float y2) {
     shape.Set(b2Vec2(x1, y1), b2Vec2(x2, y2));
     ground->CreateFixture(&shape, 0.0f);
 }
+
+Chell *World::getChell() {
+    return this->chells.front();
+}

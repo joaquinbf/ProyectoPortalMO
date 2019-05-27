@@ -76,3 +76,14 @@ void Chell::faceLeft() {
 void Chell::faceRight(){
     this->is_facing_right = true;
 }
+
+void Chell::faceOpposite() {
+    this->is_facing_right = !this->is_facing_right;
+}
+
+void Chell::applyLinearImpulseLeft() {
+    float mass = this->b2body->GetMass();
+    float vel = 30;
+    float imp = mass * vel;
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, 0), true);
+}
