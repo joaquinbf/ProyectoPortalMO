@@ -42,7 +42,9 @@ void Chell::keyJump() {
     this->state->keyJump();
 }
 
-
+void Chell::stopKeyLeft() {
+    this->state->stopKeyLeft();
+}
 
 void Chell::faceLeft() {
     this->is_facing_right = false;
@@ -76,6 +78,16 @@ void Chell::applyLinearImpulseUp() {
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, imp), true);
 }
+
+void Chell::applyLinearImpulseStopLeft() {
+    // TODO: mejorar
+    b2Vec2 vel = this->b2body->GetLinearVelocity();
+    if (vel.x < 0) {
+        vel.x = 0;
+        this->b2body->SetLinearVelocity(vel);
+    }
+}
+
 
 void Chell::changeToIdleState() {
     this->state = &this->idle_state;

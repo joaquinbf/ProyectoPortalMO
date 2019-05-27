@@ -18,3 +18,6 @@ void JumpingState::keyRight() {
 void JumpingState::keyJump() {
     this->getChell()->applyLinearImpulseUp();
 }
+
+void JumpingState::stopKeyLeft() {
+}

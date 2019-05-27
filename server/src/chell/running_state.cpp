@@ -18,3 +18,7 @@ void RunningState::keyRight() {
 void RunningState::keyJump() {
     this->getChell()->changeToJumpingState();
 }
+
+void RunningState::stopKeyLeft() {
+    this->getChell()->applyLinearImpulseStopLeft();
+    }

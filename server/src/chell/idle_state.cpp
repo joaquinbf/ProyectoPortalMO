@@ -18,3 +18,6 @@ void IdleState::keyRight() {
 void IdleState::keyJump() {
     this->getChell()->changeToJumpingState();
 }
+
+void IdleState::stopKeyLeft() {
+}

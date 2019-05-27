@@ -34,12 +34,14 @@ public:
     void keyLeft();
     void keyRight();
     void keyJump();
+    void stopKeyLeft();
     void faceLeft();
     void faceRight();
     void faceOpposite();
     void applyLinearImpulseLeft();
     void applyLinearImpulseRight();
     void applyLinearImpulseUp();
+    void applyLinearImpulseStopLeft();
     void changeToIdleState();
     void changeToRunningState();
     void changeToJumpingState();

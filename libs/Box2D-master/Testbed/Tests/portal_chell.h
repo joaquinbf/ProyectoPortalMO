@@ -11,7 +11,7 @@ public:
     PortalChell() {
         // setters
         this->world.setB2World(this->m_world);
-        this->world.setGravity(0.0, -9.8);
+        this->world.setGravity(0.0, -20);
         this->world.addChell(0, 0);
         this->world.addGround(-100, -10, 100, -10);
     }
@@ -34,6 +34,19 @@ public:
             break;
         case GLFW_KEY_W:
             this->world.getChell()->keyJump();
+            break;
+		}
+	}
+
+    void KeyboardUp(int key) {
+		switch (key) {
+        case GLFW_KEY_A:
+            this->world.getChell()->stopKeyLeft();
+			break;
+        case GLFW_KEY_D:
+            break;
+        case GLFW_KEY_W:
+            break;
 		}
 	}
 };

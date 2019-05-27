@@ -9,6 +9,7 @@ public:
     virtual void keyLeft() override;
     virtual void keyRight() override;
     virtual void keyJump() override;
+    virtual void stopKeyLeft() override;
 };
 
 #endif

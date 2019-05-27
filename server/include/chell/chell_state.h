@@ -13,6 +13,7 @@ public:
     virtual void keyLeft() = 0;
     virtual void keyRight() = 0;
     virtual void keyJump() = 0;
+    virtual void stopKeyLeft() = 0;
 };
 
 #endif
