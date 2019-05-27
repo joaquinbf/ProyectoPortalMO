@@ -60,8 +60,9 @@ project 'Testbed'
 		'Testbed/glfw/vulkan.c',
 		'Testbed/glfw/window.c',
 		'Testbed/imgui/*',
-		'../../common/include/*.h',
-		'../../server/include/*.h'
+		'../../server/src/world.cpp',
+		'../../server/src/body.cpp',
+		'../../server/src/chell/chell.cpp',
 	}
 
     filter { 'system:windows' }
