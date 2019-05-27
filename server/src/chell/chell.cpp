@@ -1,5 +1,13 @@
 #include "../../include/chell/chell.h"
 
+Chell::Chell():
+    b2body(0),
+    current_state(new IdleState()),
+    old_state(0),
+    is_facing_right(true) {
+}
+
+
 Chell::Chell(b2World *b2world, float x, float y) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;

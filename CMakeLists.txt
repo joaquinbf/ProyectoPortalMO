@@ -18,9 +18,10 @@ file(GLOB_RECURSE SERVER_SRCS ./server/src/*.cpp)
 
 # Including CxxTest
 file(GLOB_RECURSE TEST_HEADERS ./test/*.h)
-file(GLOB_RECURSE ALL_SRCS ${COMMON_SRCS} ${CLIENT_SRCS} ${SERVER_SRCS})
+file(GLOB ALL_SRCS ${COMMON_SRCS} ${CLIENT_SRCS} ${SERVER_SRCS})
 # Se quitan los main de client y server porque runner.cpp es el main del test
-list(REMOVE_ITEM ALL_SRCS ./client/src/main.cpp ./server/src/main.cpp)
+list(REMOVE_ITEM ALL_SRCS server/src/main.cpp client/src/main.cpp)
+message(${ALL_SRCS})
 
 find_package(CxxTest)
 if(CXXTEST_FOUND)
@@ -42,6 +43,5 @@ INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS})
 # Executables
 add_executable(client ${COMMON_SRCS} ${CLIENT_SRCS})
 TARGET_LINK_LIBRARIES(client ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
-
 
 add_executable(server ${COMMON_SRCS} ${SERVER_SRCS} ${BOX2D_SRCS})

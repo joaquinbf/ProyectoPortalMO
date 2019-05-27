@@ -23,6 +23,8 @@ private:
     bool is_facing_right;
 
 public:
+    Chell();
+    
     /* Instancia a Chell en world en (x, y) */
     Chell(b2World *b2world, float x, float y);
     ~Chell();
