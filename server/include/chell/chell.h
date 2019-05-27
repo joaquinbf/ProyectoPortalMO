@@ -35,6 +35,8 @@ public:
     void deleteOldStateIfUpdated();
     void setCurrentState(ChellState *state);
     void setOldState(ChellState *state);
+    void faceLeft();
+    void faceRight();
 };
 
 #endif

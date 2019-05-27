@@ -6,5 +6,5 @@ IdleState::IdleState(Chell *chell):
 }
 
 void IdleState::keyLeft() {
-    this->getChell()->keyLeft();
+    this->getChell()->face
 }

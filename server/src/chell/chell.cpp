@@ -61,3 +61,11 @@ void Chell::setCurrentState(ChellState *state) {
 void Chell::setOldState(ChellState *state) {
     this->old_state = state;
 }
+
+void Chell::faceLeft() {
+    this->is_facing_right = false;
+}
+
+void Chell::faceRight(){
+    this->is_facing_right = true;
+}
