@@ -1,5 +1,10 @@
 #include "../../include/chell/chell_state.h"
 
+ChellState::ChellState(Chell *chell):
+    chell(chell) {
+}
+
+
 ChellState::~ChellState() {
 }
 

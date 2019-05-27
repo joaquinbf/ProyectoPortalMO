@@ -7,6 +7,7 @@ class ChellState {
 private:
     Chell *chell;
 public:
+    ChellState(Chell *chell);
     virtual ~ChellState();
     Chell *getChell();
     virtual void keyLeft() = 0;

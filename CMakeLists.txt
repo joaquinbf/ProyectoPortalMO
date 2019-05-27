@@ -21,7 +21,6 @@ file(GLOB_RECURSE TEST_HEADERS ./test/*.h)
 file(GLOB ALL_SRCS ${COMMON_SRCS} ${CLIENT_SRCS} ${SERVER_SRCS})
 # Se quitan los main de client y server porque runner.cpp es el main del test
 list(REMOVE_ITEM ALL_SRCS server/src/main.cpp client/src/main.cpp)
-message(${ALL_SRCS})
 
 find_package(CxxTest)
 if(CXXTEST_FOUND)

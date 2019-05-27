@@ -5,6 +5,7 @@
 
 class IdleState: public ChellState {
 public:
+    IdleState(Chell *chell);
     virtual void keyLeft() override;
 };
 

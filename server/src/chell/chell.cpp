@@ -2,7 +2,7 @@
 
 Chell::Chell():
     b2body(0),
-    current_state(new IdleState()),
+    current_state(new IdleState(this)),
     old_state(0),
     is_facing_right(true) {
 }
@@ -29,7 +29,7 @@ Chell::Chell(b2World *b2world, float x, float y) {
     this->b2body->CreateFixture(&boxFixtureDef);
 
     this->is_facing_right = true;
-    this->current_state = new IdleState();
+    this->current_state = new IdleState(this);
     this->old_state = 0;
 }
 
