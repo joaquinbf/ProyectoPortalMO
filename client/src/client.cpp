@@ -17,7 +17,7 @@
 #include "../../common/include/port.h"
 
 Client::Client(int x, int y)
-: resx(x),resy(y),window(x,y),myChell(NULL), scale(1),
+: resx(x),resy(y),window(x,y),myChell(nullptr), scale(1),
 textureManager(window),serverManager("localhost", PORT){
 	//myChellId = this->serverManager.GetChellId();
 	//FALTA RECIBIR CHELL ID
@@ -52,8 +52,10 @@ void Client::main(){
 			it->second->render(this->myChell->getPosX(),this->myChell->getPosY(),
 				this->resx,this->resy,this->scale);
 		}
-
-        this->myChell->renderCentered(this->resx,this->resy,this->scale);
+		if(myChell != nullptr){
+			this->myChell->renderCentered(this->resx,this->resy,this->scale);	
+		}
+        
         this->window.render();
 
         usleep(100000);
