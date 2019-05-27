@@ -3,13 +3,16 @@
 
 #include "../body.h"
 
-#include "chell_state.h"
-#include "idle_state.h"
 
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
+
+#include "idle_state.h"
+
+class ChellState;
+class IdleState;
 
 class Chell: public Body {
 private:
@@ -24,11 +27,11 @@ private:
 
 public:
     Chell();
-    
+
     /* Instancia a Chell en world en (x, y) */
     Chell(b2World *b2world, float x, float y);
-    ~Chell();
-    void keyLeft();
+    virtual ~Chell();
+    virtual void keyLeft();
     void deleteOldStateIfUpdated();
     void setCurrentState(ChellState *state);
     void setOldState(ChellState *state);

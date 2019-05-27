@@ -7,7 +7,6 @@ Chell::Chell():
     is_facing_right(true) {
 }
 
-
 Chell::Chell(b2World *b2world, float x, float y) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -29,7 +28,8 @@ Chell::Chell(b2World *b2world, float x, float y) {
     this->b2body->CreateFixture(&boxFixtureDef);
 
     this->is_facing_right = true;
-    this->current_state = new IdleState(this);
+    ChellState *current_state = new IdleState(this);
+    this->current_state = current_state;
     this->old_state = 0;
 }
 
