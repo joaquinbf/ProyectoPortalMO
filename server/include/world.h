@@ -12,8 +12,11 @@
 class World {
 private:
     b2World *b2world;
-    std::vector<Chell> chells;
+    std::vector<Chell *> chells;
+
 public:
+    ~World();
+    
     void setB2World(b2World *b2World);
 
     /* Setea la gravedad mediante el vector (x, y) */
