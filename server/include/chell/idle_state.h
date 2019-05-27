@@ -2,6 +2,7 @@
 #define __IDLE_STATE_H__
 
 #include "chell_state.h"
+#include "running_state.h"
 #include "../../include/chell/chell.h"
 
 class IdleState: public ChellState {

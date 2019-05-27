@@ -5,8 +5,8 @@
 
 class RunningState: public ChellState {
 public:
-    
-
+    RunningState(Chell *chell);
+    virtual void keyLeft() override;
 };
 
 #endif

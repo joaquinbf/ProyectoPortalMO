@@ -51,6 +51,7 @@ void Chell::keyLeft() {
 void Chell::deleteOldStateIfUpdated() {
     if (this->old_state != 0) {
         delete this->old_state;
+        this->old_state = 0;
     }
 }
 
@@ -61,6 +62,12 @@ void Chell::setCurrentState(ChellState *state) {
 void Chell::setOldState(ChellState *state) {
     this->old_state = state;
 }
+
+void Chell::updateState(ChellState *state) {
+    this->old_state = this->current_state;
+    this->current_state = state;
+}
+
 
 void Chell::faceLeft() {
     this->is_facing_right = false;
