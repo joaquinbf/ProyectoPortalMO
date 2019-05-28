@@ -25,23 +25,25 @@ public:
     }
 
     void Keyboard(int key) {
+        Chell *chell = this->world.getChell();
 		switch (key) {
 		case GLFW_KEY_A:
-            this->world.getChell()->keyLeft();
+            chell->left();
 			break;
         case GLFW_KEY_D:
-            this->world.getChell()->keyRight();
+            chell->right();
             break;
         case GLFW_KEY_W:
-            this->world.getChell()->keyJump();
+            chell->up();
             break;
 		}
 	}
 
     void KeyboardUp(int key) {
+        Chell *chell = this->world.getChell();
 		switch (key) {
         case GLFW_KEY_A:
-            this->world.getChell()->stopKeyLeft();
+            chell->stopLeft();
 			break;
         case GLFW_KEY_D:
             break;
