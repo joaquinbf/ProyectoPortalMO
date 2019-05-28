@@ -12,7 +12,6 @@ void Match::run() {
     // hardcoded
     this->world.setB2World(&this->b2world);
     this->world.setGravity(0.0, -20);
-    this->world.addGround(-100, -50, 100, -50);
 
     float start = -86.4;
     float step = 19.2;

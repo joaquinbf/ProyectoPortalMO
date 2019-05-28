@@ -7,6 +7,8 @@
 #include "running_state.h"
 #include "jumping_state.h"
 
+#include "../../../common/include/update.h"
+
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -47,6 +49,9 @@ public:
     void changeStateToIdle();
     void changeStateToRunning();
     void changeStateToJumping();
+    virtual Update getCreateUpdate() override;
+    virtual Update getUpdate() override;
+
 };
 
 #endif

@@ -3,10 +3,12 @@
 Block::Block(
     b2World *b2world, float x, float y,
     Shape *shape, Material *material) {
+    this->body_number++;
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);
     bodyDef.angle = this->ANGLE;
+    bodyDef.userData = (void *) this;
 
     this->b2body = b2world->CreateBody(&bodyDef);
 
@@ -31,4 +33,22 @@ Block::~Block() {
     if (this->material != 0) {
         delete this->material;
     }
+}
+
+Update Block::getCreateUpdate() {
+    Update update(
+        COMMAND::CREATE_COMMAND,
+        ENTITY::STONE_BLOCK,
+        this->body_number,
+        STATUS::NONE_STATUS,
+        (uint32_t)this->b2body->GetPosition().x,
+        (uint32_t)this->b2body->GetPosition().y,
+        0
+    );
+    return update;
+}
+
+Update Block::getUpdate() {
+    Update update;
+    return update;
 }

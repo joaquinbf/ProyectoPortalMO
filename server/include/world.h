@@ -23,6 +23,7 @@
 #include <vector>
 #include <map>
 
+
 class World {
 private:
     b2World *b2world;
@@ -62,6 +63,8 @@ public:
     void addPlayer(Socket socket);
 
     void addPlayer(Player *player);
+
+    std::vector<Body*> getBodyList();
 };
 
 

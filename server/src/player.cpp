@@ -21,3 +21,7 @@ void Player::setChell(Chell *chell) {
 void Player::sendChellIdToClient() {
     this->protocol.sendQuad(this->player_id);
 }
+
+void Player::sendUpdate(Update update) {
+    this->protocol.sendUpdate(update);
+}

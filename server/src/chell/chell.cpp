@@ -1,9 +1,11 @@
 #include "../../include/chell/chell.h"
 
+
 Chell::Chell(b2World *b2world, float x, float y):
     idle_state(this),
     running_state(this),
     jumping_state(this) {
+    this->body_number++;
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
@@ -111,4 +113,22 @@ void Chell::changeStateToRunning() {
 
 void Chell::changeStateToJumping() {
     this->state = &this->jumping_state;
+}
+
+Update Chell::getCreateUpdate() {
+    Update update(
+        COMMAND::CREATE_COMMAND,
+        ENTITY::CHELL,
+        this->body_number,
+        STATUS::CHELL_IDLE,
+        (uint32_t)this->b2body->GetPosition().x,
+        (uint32_t)this->b2body->GetPosition().y,
+        0
+    );
+    return update;
+}
+
+Update Chell::getUpdate() {
+    Update update;
+    return update;
 }

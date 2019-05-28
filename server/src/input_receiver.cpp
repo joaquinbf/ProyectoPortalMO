@@ -1,4 +1,5 @@
 #include "../include/input_receiver.h"
+#include <iostream>
 
 InputReceiver::InputReceiver(
     Player *player,
@@ -9,9 +10,9 @@ InputReceiver::InputReceiver(
 }
 
 void InputReceiver::run() {
+    std::cout << "input recv run " << std::endl;
 
     while (this->keep_running) {
-
     }
 }
 

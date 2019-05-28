@@ -23,6 +23,7 @@ public:
     void stop();
     void setChell(Chell *chell);
     void sendChellIdToClient();
+    void sendUpdate(Update update);
 };
 
 #endif

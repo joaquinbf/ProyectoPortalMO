@@ -1,4 +1,6 @@
 #include "../include/world.h"
+#include "../include/add_player_command.h"
+
 #include <iostream>
 
 World::~World() {
@@ -59,9 +61,22 @@ void World::addPlayer(Socket socket) {
     Player *player = new Player(std::move(socket), &this->commands);
     this->players.emplace_back(player);
     player->start();
+    this->commands.push(new AddPlayerCommand(player));
 }
 
 void World::addPlayer(Player *player) {
     Chell *chell = this->addChell(0, 0);
     player->setChell(chell);
+}
+
+std::vector<Body*> World::getBodyList() {
+    b2Body *b2body = this->b2world->GetBodyList();
+    std::vector<Body *> bodies;
+
+    while (b2body != 0) {
+        bodies.emplace_back((Body *) b2body->GetUserData());
+        b2body = b2body->GetNext();
+    }
+
+    return bodies;
 }

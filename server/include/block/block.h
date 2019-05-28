@@ -26,6 +26,8 @@ public:
      * de world con propiedades de shape y material.*/
     Block(b2World *b2world, float x, float y, Shape *shape, Material *material);
     ~Block();
+    virtual Update getCreateUpdate() override;
+    virtual Update getUpdate() override;
 };
 
 #endif
