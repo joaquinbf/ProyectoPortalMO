@@ -9,6 +9,7 @@ class Area;
 
 class SdlTexture {
 public:
+    SdlTexture();
     explicit SdlTexture(const SdlWindow& window);
     /**
      * Crea un SDL_Texture, lanza una excepción si el filename es inválido

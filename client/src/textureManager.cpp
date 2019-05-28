@@ -1,5 +1,7 @@
 #include "../include/textureManager.h"
 
+TextureManager::TextureManager(){}
+
 TextureManager::TextureManager(const SdlWindow& window):
 chellIdleTexture(CHELL_IDLE_TEXTURE,window), 
 chellJigTexture(CHELL_JIG_TEXTURE,window), 

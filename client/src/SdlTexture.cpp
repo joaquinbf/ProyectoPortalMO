@@ -5,6 +5,8 @@
 #include "../include/SdlWindow.h"
 #include "../include/SdlException.h"
 
+SdlTexture::SdlTexture(){}
+
 SdlTexture::SdlTexture(const SdlWindow& window)   
     : renderer(window.getRenderer()){}
 

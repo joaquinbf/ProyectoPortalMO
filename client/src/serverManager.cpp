@@ -20,3 +20,7 @@ void ServerManager::stop(){
 Update ServerManager::receiveUpdate() const{
 	return this->protocol.receiveUpdate();
 }
+
+uint32_t ServerManager::receiveChellId() const{
+	return this->protocol.receiveQuad();
+}
