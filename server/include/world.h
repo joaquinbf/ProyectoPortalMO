@@ -24,7 +24,7 @@
 #include <vector>
 #include <map>
 
-class World: public Thread {
+class World {
 private:
     b2World *b2world;
     std::vector<Chell *> chells;
@@ -39,10 +39,8 @@ private:
 
 public:
     ~World();
-
-    virtual void run() override;
-    void stop();
     void executeInputs();
+    void step();
 
     void setB2World(b2World *b2World);
 

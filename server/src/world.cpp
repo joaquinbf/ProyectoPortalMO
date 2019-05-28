@@ -8,28 +8,20 @@ World::~World() {
     }
 }
 
-void World::run() {
-    this->keep_running = true;
-    while (this->keep_running) {
-        this->executeInputs();
-        this->b2world->Step(
-            this->TIME_STEP,
-            this->VELOCITY_ITERATIONS,
-            this->POSITION_ITERATIONS);
-        usleep(100000);
-    }
-}
-
-void World::stop() {
-    this->keep_running = false;
-}
-
 void World::executeInputs() {
     Command *command;
     while (this->commands.try_pop(command)) {
         command->execute();
         delete command;
     }
+}
+
+void World::step() {
+    this->executeInputs();
+    this->b2world->Step(
+        this->TIME_STEP,
+        this->VELOCITY_ITERATIONS,
+        this->POSITION_ITERATIONS);
 }
 
 void World::setB2World(b2World *b2world) {
