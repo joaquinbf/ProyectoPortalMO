@@ -119,7 +119,7 @@ Update Chell::getCreateUpdate() {
     Update update(
         COMMAND::CREATE_COMMAND,
         ENTITY::CHELL,
-        this->body_number,
+        0,
         STATUS::CHELL_IDLE,
         (uint32_t)this->b2body->GetPosition().x,
         (uint32_t)this->b2body->GetPosition().y,
