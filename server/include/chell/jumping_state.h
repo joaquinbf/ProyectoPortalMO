@@ -10,6 +10,7 @@ public:
     virtual void right() override;
     virtual void up() override;
     virtual void stopLeft() override;
+    virtual void stopRight() override;
 };
 
 #endif

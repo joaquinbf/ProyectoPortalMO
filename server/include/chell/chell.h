@@ -35,6 +35,7 @@ public:
     void right();
     void up();
     void stopLeft();
+    void stopRight();
     void faceLeft();
     void faceRight();
     void faceOpposite();
@@ -42,6 +43,7 @@ public:
     void applyLinearImpulseRight();
     void applyLinearImpulseUp();
     void applyLinearImpulseStopLeft();
+    void applyLinearImpulseStopRight();
     void changeStateToIdle();
     void changeStateToRunning();
     void changeStateToJumping();

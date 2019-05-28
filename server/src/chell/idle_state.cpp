@@ -21,3 +21,6 @@ void IdleState::up() {
 
 void IdleState::stopLeft() {
 }
+
+void IdleState::stopRight() {
+}

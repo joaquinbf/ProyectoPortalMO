@@ -21,3 +21,6 @@ void JumpingState::up() {
 
 void JumpingState::stopLeft() {
 }
+
+void JumpingState::stopRight() {
+}

@@ -46,6 +46,10 @@ void Chell::stopLeft() {
     this->state->stopLeft();
 }
 
+void Chell::stopRight() {
+    this->state->stopRight();
+}
+
 void Chell::faceLeft() {
     this->is_facing_right = false;
 }
@@ -80,7 +84,7 @@ void Chell::applyLinearImpulseUp() {
 }
 
 void Chell::applyLinearImpulseStopLeft() {
-    // TODO: mejorar
+    // TODO: mejorar usando impulsos
     b2Vec2 vel = this->b2body->GetLinearVelocity();
     if (vel.x < 0) {
         vel.x = 0;
@@ -88,6 +92,14 @@ void Chell::applyLinearImpulseStopLeft() {
     }
 }
 
+void Chell::applyLinearImpulseStopRight() {
+    // TODO: mejorar usando impulsos
+    b2Vec2 vel = this->b2body->GetLinearVelocity();
+    if (vel.x > 0) {
+        vel.x = 0;
+        this->b2body->SetLinearVelocity(vel);
+    }
+}
 
 void Chell::changeStateToIdle() {
     this->state = &this->idle_state;

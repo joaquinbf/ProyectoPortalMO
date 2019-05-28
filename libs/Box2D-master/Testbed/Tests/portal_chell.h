@@ -46,6 +46,7 @@ public:
             chell->stopLeft();
 			break;
         case GLFW_KEY_D:
+            chell->stopRight();
             break;
         case GLFW_KEY_W:
             break;

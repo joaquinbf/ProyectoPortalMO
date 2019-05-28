@@ -14,6 +14,7 @@ public:
     virtual void right() = 0;
     virtual void up() = 0;
     virtual void stopLeft() = 0;
+    virtual void stopRight() = 0;
 };
 
 #endif

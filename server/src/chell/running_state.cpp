@@ -21,4 +21,8 @@ void RunningState::up() {
 
 void RunningState::stopLeft() {
     this->getChell()->applyLinearImpulseStopLeft();
-    }
+}
+
+void RunningState::stopRight() {
+    this->getChell()->applyLinearImpulseStopRight();
+}
