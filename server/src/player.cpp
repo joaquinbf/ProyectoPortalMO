@@ -1,6 +1,14 @@
 #include "../include/player.h"
 
 Player::Player(Socket socket, Chell *chell):
-    socket(std::move(socket)),
+    protocol(std::move(socket)),
     chell(chell) {
+}
+
+void Player::start() {
+    
+}
+
+void Player::stop() {
+
 }

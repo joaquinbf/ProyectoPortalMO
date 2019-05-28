@@ -13,8 +13,11 @@
 #include "block/square_shape.h"
 
 #include "../../common/include/socket.h"
+#include "../../common/include/protected_queue.h"
+#include "../../common/include/update.h"
 
 #include "player.h"
+#include "command.h"
 
 #include <vector>
 #include <map>
@@ -25,6 +28,8 @@ private:
     std::vector<Chell *> chells;
     std::vector<Block *> blocks;
     std::vector<Player *> players;
+    ProtectedQueue<Command> commands;
+    ProtectedQueue<Update> updates;
 
 public:
     ~World();
