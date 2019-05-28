@@ -15,6 +15,8 @@
 #include "../../common/include/socket.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/update.h"
+#include "../../common/include/thread.h"
+
 
 #include "player.h"
 #include "command.h"
@@ -22,7 +24,7 @@
 #include <vector>
 #include <map>
 
-class World {
+class World: public Thread {
 private:
     b2World *b2world;
     std::vector<Chell *> chells;
@@ -30,9 +32,17 @@ private:
     std::vector<Player *> players;
     ProtectedQueue<Command *> commands;
     ProtectedQueue<Update> updates;
+    bool keep_running;
+    const float TIME_STEP = 1/20.0;
+    const uint32_t VELOCITY_ITERATIONS = 8;
+    const uint32_t POSITION_ITERATIONS = 3;
 
 public:
     ~World();
+
+    virtual void run() override;
+    void stop();
+    void executeInputs();
 
     void setB2World(b2World *b2World);
 
