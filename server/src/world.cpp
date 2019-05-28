@@ -35,3 +35,9 @@ Chell *World::getChell() {
 void World::addSquareStoneBlock(float x, float y) {
     Block block(this->b2world, x, y, new SquareShape(), new StoneMaterial());
 }
+
+void World::addPlayer(Socket socket) {
+    Chell *chell = new Chell(this->b2world, 0, 0);
+    Player *player = new Player(std::move(socket), chell);
+    this->players.emplace_back(player);
+}
