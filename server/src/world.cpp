@@ -1,6 +1,7 @@
 #include "../include/world.h"
 
 World::~World() {
+    // TODO: eliminar y pasar a eliminar players.
     for (Chell *chell: this->chells) {
         delete chell;
     }
@@ -38,6 +39,6 @@ void World::addSquareStoneBlock(float x, float y) {
 
 void World::addPlayer(Socket socket) {
     Chell *chell = new Chell(this->b2world, 0, 0);
-    Player *player = new Player(std::move(socket), chell);
+    Player *player = new Player(std::move(socket), chell, &this->commands);
     this->players.emplace_back(player);
 }
