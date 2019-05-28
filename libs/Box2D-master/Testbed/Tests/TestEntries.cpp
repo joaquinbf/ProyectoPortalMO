@@ -72,6 +72,9 @@
 #include "VerticalStack.h"
 #include "Web.h"
 
+/* PORTAL */
+#include "portal_chell.h"
+
 TestEntry g_testEntries[] =
 {
 	{"Shape Cast", ShapeCast::Create },
@@ -127,5 +130,6 @@ TestEntry g_testEntries[] =
 	{"Sensor Test", SensorTest::Create},
 	{"Varying Friction", VaryingFriction::Create},
 	{"Add Pair Stress Test", AddPair::Create},
+	{"Portal CHELL", PortalChell::Create},
 	{NULL, NULL}
 };
