@@ -1,6 +1,4 @@
 #include "../include/update.h"
-#include "../include/status.h"
-#include "../include/entity.h"
 
 Update::Update() : command(COMMAND::NONE_COMMAND), idClass(ENTITY::NONE_ENTITY), idObject(0),
 	status(STATUS::NONE_STATUS), posX(0), posY(0), direction(0){}

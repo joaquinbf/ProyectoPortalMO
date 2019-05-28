@@ -5,7 +5,7 @@
 #include "../include/Area.h"
 #include "../include/textureManager.h"
 #include "../../common/include/entity.h"
-#include "../../common/include/status.h"
+#include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
 #define METAL_TEXTURE "../resources/textures/blocks/metal.png"

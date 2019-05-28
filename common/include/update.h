@@ -3,23 +3,7 @@
 
 #include <cstdint>
 
-#include "../include/status.h"
-
-enum ENTITY: uint8_t {
-	NONE_ENTITY,
-	CHELL,
-	STONE_BLOCK,
-	METAL_BLOCK,
-	METAL_TRIAG_BLOCK,
-	LAUNCH_BLOCK
-};
-
-enum COMMAND : uint8_t{
-	NONE_COMMAND,
-	CREATE_COMMAND,
-	UPDATE_COMMAND,
-	DESTROY_COMMAND
-};
+#include "../include/types.h"
 
 class Update{
 private:

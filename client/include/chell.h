@@ -7,7 +7,7 @@
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../../common/include/entity.h"
-#include "../../common/include/status.h"
+#include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
 #define IDLE_TEXTURE "../resources/textures/chell/resting-idle.png"
