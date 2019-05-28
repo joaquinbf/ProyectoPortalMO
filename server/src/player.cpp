@@ -6,7 +6,7 @@ Player::Player(
     ProtectedQueue<Command *> *commands):
     protocol(std::move(socket)),
     chell(chell),
-    input_receiver(&this->protocol, commands) {
+    input_receiver(this, commands) {
 }
 
 void Player::start() {
@@ -17,4 +17,8 @@ void Player::stop() {
     this->protocol.close();
     this->input_receiver.stop();
     this->input_receiver.join();
+}
+
+Protocol *Player::getProtocotol() {
+    return &this->protocol;
 }

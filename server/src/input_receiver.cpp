@@ -2,9 +2,9 @@
 
 
 InputReceiver::InputReceiver(
-    Protocol *protocol,
+    Player *player,
     ProtectedQueue<Command *> *commands):
-    protocol(protocol),
+    player(player),
     commands(commands) {
 }
 
