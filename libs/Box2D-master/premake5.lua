@@ -42,7 +42,12 @@ project 'Testbed'
 	kind 'ConsoleApp'
 	debugdir 'Testbed'
 	warnings 'Default'
-	includedirs { '.' }
+	includedirs {
+		'.',
+		'../../server/include',
+		'../../server/include/chell',
+		'../../server/include/block',
+	}
 
 	files
 	{
@@ -62,11 +67,12 @@ project 'Testbed'
 		'Testbed/imgui/*',
 		'../../server/src/world.cpp',
 		'../../server/src/body.cpp',
-		'../../server/src/chell/chell.cpp',
-		'../../server/src/chell/chell_state.cpp',
-		'../../server/src/chell/idle_state.cpp',
-		'../../server/src/chell/running_state.cpp',
-		'../../server/src/chell/jumping_state.cpp'
+		'../../server/src/chell/*',
+		'../../server/src/block/shape.cpp',
+		'../../server/src/block/square_shape.cpp',
+		'../../server/src/block/material.cpp',
+		'../../server/src/block/stone_material.cpp',
+		'../../server/src/block/block.cpp',
 	}
 
     filter { 'system:windows' }

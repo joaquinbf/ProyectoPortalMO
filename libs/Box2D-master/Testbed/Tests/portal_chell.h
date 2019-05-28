@@ -12,8 +12,15 @@ public:
         // setters
         this->world.setB2World(this->m_world);
         this->world.setGravity(0.0, -20);
+        this->world.addGround(-100, -50, 100, -50);
+
+        float start = -86.4;
+        float step = 19.2;
+        for (int i = 0; i < 7; i++) {
+            this->world.addSquareStoneBlock(start + step*i, -30);
+        }
+
         this->world.addChell(0, 0);
-        this->world.addGround(-100, -10, 100, -10);
     }
 
     void Step(Settings *settings) {

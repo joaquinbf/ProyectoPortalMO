@@ -6,7 +6,6 @@ World::~World() {
     }
 }
 
-
 void World::setB2World(b2World *b2world) {
     this->b2world = b2world;
 }
@@ -31,4 +30,8 @@ void World::addGround(float x1, float y1, float x2, float y2) {
 
 Chell *World::getChell() {
     return this->chells.front();
+}
+
+void World::addSquareStoneBlock(float x, float y) {
+    Block block(this->b2world, x, y, new SquareShape(), new StoneMaterial());
 }

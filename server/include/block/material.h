@@ -2,7 +2,6 @@
 #define __MATERIAL_H__
 
 class Material {
-
 };
 
 #endif
