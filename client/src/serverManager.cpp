@@ -9,14 +9,14 @@ ServerManager::ServerManager(const char* address,const char * port){
 
 ServerManager::~ServerManager(){}
 
+void ServerManager::sendAction(const Action ac) const{
+	this->protocol.sendAction(ac);
+}
+
 void ServerManager::stop(){
 	this->protocol.close();
 }
 
-void ServerManager::sendAction(const Action ac){
-	this->protocol.sendAction(ac);
-}
-
-Update ServerManager::receiveUpdate(){
+Update ServerManager::receiveUpdate() const{
 	return this->protocol.receiveUpdate();
 }

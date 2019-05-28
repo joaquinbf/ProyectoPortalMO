@@ -1,20 +1,4 @@
-#include <iostream>
-#include <SDL2/SDL.h>
-#include <unistd.h>
-#include <thread>
-#include <exception>
-#include <list>
-
-#include "../include/entityFactory.h"
-#include "../include/serverManager.h"
-#include "../include/SdlWindow.h"
-#include "../include/SdlTexture.h"
-#include "../include/chell.h"
-#include "../include/block.h"
 #include "../include/client.h"
-#include "../include/background.h"
-
-#include "../../common/include/port.h"
 
 Client::Client(int x, int y)
 : resx(x),resy(y),window(x,y),myChell(nullptr), scale(1),
@@ -38,10 +22,13 @@ Client::~Client(){
 void Client::main(){
     this->running = true;
     Update update;
-    std::thread inputManager([=]{this->inputManager();});
-    std::thread updateReceiver([=]{this->updateReceiver();});
+    InputManager inputManager(this->serverManager);
+    inputManager.start();
+    UpdateReceiver updateReceiver(this->serverManager,this->updates);
+    updateReceiver.start();
+    //std::thread updateReceiver([=]{this->updateReceiver();});
 
-    while (this->running){
+    while (inputManager.isRunning()){
 		/*PROCESO UPDATES*/
 		while(this->updates.try_pop(update)){
 			this->updateHandler(update);
@@ -57,81 +44,16 @@ void Client::main(){
 		}
         
         this->window.render();
-
         usleep(100000);
     }
     this->serverManager.stop();
+    updateReceiver.stop();
     inputManager.join();
-    updateReceiver.join();
+    updateReceiver.join();    
 }
 
 void Client::updateReceiver(){
-	try{
-		Update up;
-		while(this->running){
-			up = this->serverManager.receiveUpdate();
-			this->updates.push(up);
-		}
-	}catch(const ConnectionErrorException &e){
 
-	}
-}
-
-void Client::inputManager(){
-	SDL_Event event;
-    while(this->running){
-	    SDL_WaitEvent(&event);
-	    switch(event.type) {
-	        case SDL_KEYDOWN: {
-	                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-	                switch (keyEvent.keysym.sym) {
-	                    case SDLK_a:
-	                        this->serverManager.sendAction(Action(ACTION::RUN_LEFT,0));
-	                        break;
-	                    case SDLK_d:
-	                        this->serverManager.sendAction(Action(ACTION::RUN_RIGHT,0));
-	                        break;
-	                    case SDLK_w:
-	                    	this->serverManager.sendAction(Action(ACTION::JUMP,0));
-	                        break;
-	                    case SDLK_o:
-	                    	this->zoomIn();
-	                        break;
-	                    case SDLK_p:
-	                    	this->zoomOut();
-	                        break;
-
-	                    case SDLK_b:
-	                    	this->serverManager.sendAction(Action(ACTION::JIG,0));
-	                    	break;
-	                    case SDLK_SPACE:
-	                    	this->serverManager.sendAction(Action(ACTION::FIRE,0));
-	                    	break;
-	                    }
-	            } // Fin KEY_DOWN
-	            break;
-	        case SDL_KEYUP:{
-	        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-	                switch (keyEvent.keysym.sym) {
-	                    case SDLK_a:
-	                    	this->serverManager.sendAction(Action(ACTION::STOP_LEFT,0));
-	                        break;
-	                    case SDLK_d:
-	                    	this->serverManager.sendAction(Action(ACTION::STOP_RIGHT,0));
-	                        break;
-	                    case SDLK_w:
-	                        break;
-	                    case SDLK_s:
-	                        break;
-	                    }
-	            } // Fin KEY_UP
-	        	break;
-	        case SDL_QUIT:
-	        	this->serverManager.sendAction(Action(ACTION::QUIT,0));
-	            this->running = false;
-	            break;
-	    }
-    }
 }
 
 void Client::updateHandler(Update update){

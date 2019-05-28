@@ -16,8 +16,8 @@ public:
 	explicit ServerManager(const char* address,const char * port);
 	~ServerManager();
 	void stop();
-	void sendAction(const Action ac);
-	Update receiveUpdate();
+	void sendAction(const Action ac) const;
+	Update receiveUpdate() const;
 };
 
 #endif
