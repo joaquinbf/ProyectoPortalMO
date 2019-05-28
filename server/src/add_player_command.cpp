@@ -6,5 +6,5 @@ AddPlayerCommand::AddPlayerCommand(Player *player):
 
 
 void AddPlayerCommand::execute() {
-    
+
 }

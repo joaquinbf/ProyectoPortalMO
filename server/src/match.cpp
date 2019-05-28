@@ -19,6 +19,5 @@ void Match::stop() {
 }
 
 void Match::addPlayer(Socket socket) {
-    std::cout << "void Match::addPlayer(Socket socket)" << std::endl;
     this->world.addPlayer(std::move(socket));
 }
