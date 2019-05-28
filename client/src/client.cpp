@@ -52,7 +52,7 @@ void Client::main(){
 			it->second->render(this->myChell->getPosX(),this->myChell->getPosY(),
 				this->resx,this->resy,this->scale);
 		}
-		if(myChell != nullptr){
+		if(this->myChell != nullptr){
 			this->myChell->renderCentered(this->resx,this->resy,this->scale);	
 		}
         
@@ -80,7 +80,7 @@ void Client::updateReceiver(){
 void Client::inputManager(){
 	SDL_Event event;
     while(this->running){
-	    if(SDL_PollEvent(&event) != 0){
+	    SDL_WaitEvent(&event);
 	    switch(event.type) {
 	        case SDL_KEYDOWN: {
 	                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
@@ -100,6 +100,7 @@ void Client::inputManager(){
 	                    case SDLK_p:
 	                    	this->zoomOut();
 	                        break;
+
 	                    case SDLK_b:
 	                    	this->serverManager.sendAction(Action(ACTION::JIG,0));
 	                    	break;
@@ -129,7 +130,6 @@ void Client::inputManager(){
 	        	this->serverManager.sendAction(Action(ACTION::QUIT,0));
 	            this->running = false;
 	            break;
-	    }
 	    }
     }
 }

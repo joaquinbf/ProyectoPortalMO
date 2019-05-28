@@ -114,23 +114,6 @@ std::string Protocol::receiveLine() const{
 	}
 	return line;
 }
-/*
-void Protocol::sendCreator(const CreatorMessage creator) const{
-	this->sendByte(creator.getIdClass());
-	this->sendQuad(creator.getIdObject());
-	this->sendQuad(creator.getPosX());
-	this->sendQuad(creator.getPosY());
-	this->sendQuad(creator.getDir());
-}
-
-CreatorMessage Protocol::receiveCreator() const{
-	ENTITY idc = (ENTITY) this->receiveByte();
-	uint32_t ido = this->receiveQuad();
-	int32_t posx = this->receiveQuad();
-	int32_t posy = this->receiveQuad();
-	uint32_t dir = this->receiveQuad();
-	return CreatorMessage(idc,ido,posx,posy,dir);
-}*/
 
 void Protocol::sendAction(const Action action) const{
 	this->sendByte(action.getAction());

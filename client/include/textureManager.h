@@ -3,7 +3,7 @@
 
 #include "../include/SdlTexture.h"
 #include "../../common/include/entity.h"
-#include "../../common/include/status.h"
+#include "../../common/include/types.h"
 #include "../include/Area.h"
 
 
