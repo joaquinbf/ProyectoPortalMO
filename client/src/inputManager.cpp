@@ -1,6 +1,8 @@
 #include "../include/inputManager.h"
+#include "../include/client.h"
 
-InputManager::InputManager(const ServerManager& sm) : serverManager(sm),running(true){
+InputManager::InputManager(const ServerManager& sm,Client& c) : serverManager(sm),
+client(c),running(true){
 }
 
 InputManager::~InputManager(){}
@@ -32,12 +34,11 @@ void InputManager::run(){
 	                    	this->serverManager.sendAction(Action(ACTION::JUMP,0));
 	                        break;
 	                    case SDLK_o:
-	                    	//this->zoomIn();
+	                    	this->client.zoomIn();
 	                        break;
 	                    case SDLK_p:
-	                    	//this->zoomOut();
+	                    	this->client.zoomOut();
 	                        break;
-
 	                    case SDLK_b:
 	                    	this->serverManager.sendAction(Action(ACTION::JIG,0));
 	                    	break;

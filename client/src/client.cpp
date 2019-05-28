@@ -2,7 +2,9 @@
 
 Client::Client(int x, int y)
 : resx(x),resy(y),window(x,y),myChell(nullptr), scale(1),
-textureManager(window),serverManager("localhost", PORT){
+textureManager(window),serverManager("localhost", PORT), inputManager(this->serverManager,*this),
+updateReceiver(this->serverManager,this->updates)
+{
 	//myChellId = this->serverManager.GetChellId();
 	//FALTA RECIBIR CHELL ID
 	myChellId = 0;
@@ -22,13 +24,11 @@ Client::~Client(){
 void Client::main(){
     this->running = true;
     Update update;
-    InputManager inputManager(this->serverManager);
-    inputManager.start();
-    UpdateReceiver updateReceiver(this->serverManager,this->updates);
-    updateReceiver.start();
-    //std::thread updateReceiver([=]{this->updateReceiver();});
 
-    while (inputManager.isRunning()){
+    this->inputManager.start();
+    this->updateReceiver.start();
+
+    while (this->inputManager.isRunning()){
 		/*PROCESO UPDATES*/
 		while(this->updates.try_pop(update)){
 			this->updateHandler(update);
@@ -41,19 +41,15 @@ void Client::main(){
 		}
 		if(this->myChell != nullptr){
 			this->myChell->renderCentered(this->resx,this->resy,this->scale);	
-		}
-        
+		}     
         this->window.render();
+
         usleep(100000);
     }
     this->serverManager.stop();
-    updateReceiver.stop();
-    inputManager.join();
-    updateReceiver.join();    
-}
-
-void Client::updateReceiver(){
-
+    this->updateReceiver.stop();
+    this->inputManager.join();
+    this->updateReceiver.join();    
 }
 
 void Client::updateHandler(Update update){

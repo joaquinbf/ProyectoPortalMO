@@ -7,12 +7,15 @@
 #include "../../common/include/action.h"
 #include "../../common/include/thread.h"
 
+class Client;
+
 class InputManager : public Thread{
 private:
 	const ServerManager& serverManager;
+	Client& client;
 	bool running;
 public:
-	explicit InputManager(const ServerManager& sm);
+	explicit InputManager(const ServerManager& sm,Client& c);
 	~InputManager();
 	virtual void run() override;
     void stop();

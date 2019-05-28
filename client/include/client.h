@@ -40,15 +40,17 @@ private:
 	ServerManager serverManager;
 	std::map<uint32_t,Entity *> entities;
 	ProtectedQueue<Update> updates;
+	InputManager inputManager;
+	UpdateReceiver updateReceiver;
 public:
 	explicit Client(int,int);
 	~Client();
 	void main();
-private:
-	void updateReceiver();
-	void updateHandler(Update update);
 	void zoomIn();
 	void zoomOut();
+private:
+	void updateHandler(Update update);
+	
 };
 
 #endif
