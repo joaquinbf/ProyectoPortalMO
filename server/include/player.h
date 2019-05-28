@@ -20,6 +20,7 @@ public:
     void start();
     void stop();
     Protocol *getProtocotol();
+    Chell *getChell();
 };
 
 #endif

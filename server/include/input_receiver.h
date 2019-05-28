@@ -8,17 +8,18 @@
 
 #include "command.h"
 #include "left_command.h"
-
-class Player;
+#include "default_command.h"
+#include "chell/chell.h"
 
 class InputReceiver: public Thread {
 private:
-    Player *player;
+    Chell *chell;
+    Protocol *protocol;
     ProtectedQueue<Command *> *commands;
     bool keep_running;
 
 public:
-    InputReceiver(Player *player, ProtectedQueue<Command *> *commands);
+    InputReceiver(Chell *chell, Protocol *protocol, ProtectedQueue<Command *> *commands);
     virtual void run() override;
     void stop();
 };

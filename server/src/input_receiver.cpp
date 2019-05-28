@@ -2,16 +2,30 @@
 
 
 InputReceiver::InputReceiver(
-    Player *player,
+    Chell *chell,
+    Protocol *protocol,
     ProtectedQueue<Command *> *commands):
-    player(player),
+    chell(chell),
+    protocol(protocol),
     commands(commands) {
 }
 
 void InputReceiver::run() {
     this->keep_running = true;
     while (this->keep_running) {
+        Command *command;
+        Action action = this->protocol->receiveAction();
 
+        switch (action.getAction()) {
+            case ACTION::RUN_LEFT:
+                command = new LeftCommand(this->chell);
+                break;
+            default:
+                command = new DefaultCommand();
+                break;
+        }
+
+        this->commands->push(command);
     }
 }
 
