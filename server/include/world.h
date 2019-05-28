@@ -12,13 +12,19 @@
 #include "block/shape.h"
 #include "block/square_shape.h"
 
+#include "../../common/include/socket.h"
+
+#include "player.h"
+
 #include <vector>
+#include <map>
 
 class World {
 private:
     b2World *b2world;
     std::vector<Chell *> chells;
     std::vector<Block *> blocks;
+    std::vector<Player *> players;
 
 public:
     ~World();
@@ -39,6 +45,9 @@ public:
 
     /* Agrega un bloque cuadrado de piedra en (x, y) */
     void addSquareStoneBlock(float x, float y);
+
+    /* Agrega un jugador */
+    void addPlayer(Socket socket);
 };
 
 #endif
