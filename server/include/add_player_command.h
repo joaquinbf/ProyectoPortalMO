@@ -2,9 +2,9 @@
 #define __ADD_PLAYER_COMMAND_H__
 
 #include "command.h"
-#include "player.h"
 
 class Player;
+class World;
 
 class AddPlayerCommand: public Command {
 private:
@@ -12,7 +12,7 @@ private:
 
 public:
     AddPlayerCommand(Player *player);
-    virtual void execute() override;
+    virtual void execute(World *world) override;
 };
 
 #endif

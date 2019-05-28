@@ -13,3 +13,11 @@ void Player::start() {
 void Player::stop() {
     this->input_receiver.stop();
 }
+
+void Player::setChell(Chell *chell) {
+    this->chell = chell;
+}
+
+void Player::sendChellIdToClient() {
+    this->protocol.sendQuad(this->player_id);
+}

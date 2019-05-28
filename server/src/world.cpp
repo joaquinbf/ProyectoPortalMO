@@ -11,7 +11,7 @@ World::~World() {
 void World::executeInputs() {
     Command *command;
     while (this->commands.try_pop(command)) {
-        command->execute();
+        command->execute(this);
         delete command;
     }
 }
@@ -32,9 +32,10 @@ void World::setGravity(float x, float y) {
     this->b2world->SetGravity(b2Vec2(x, y));
 }
 
-void World::addChell(float x, float y) {
+Chell *World::addChell(float x, float y) {
     Chell *chell = new Chell(this->b2world, x, y);
     this->chells.emplace_back(chell);
+    return chell;
 }
 
 void World::addGround(float x1, float y1, float x2, float y2) {
@@ -58,4 +59,9 @@ void World::addPlayer(Socket socket) {
     Player *player = new Player(std::move(socket), &this->commands);
     this->players.emplace_back(player);
     player->start();
+}
+
+void World::addPlayer(Player *player) {
+    Chell *chell = this->addChell(0, 0);
+    player->setChell(chell);
 }

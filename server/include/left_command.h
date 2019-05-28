@@ -10,7 +10,7 @@ private:
 
 public:
     LeftCommand(Chell *chell);
-    virtual void execute() override;
+    virtual void execute(World *world) override;
 };
 
 #endif

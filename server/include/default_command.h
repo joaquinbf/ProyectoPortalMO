@@ -6,7 +6,7 @@
 class DefaultCommand: public Command {
 public:
     DefaultCommand();
-    virtual void execute() override;
+    virtual void execute(World *world) override;
 };
 
 #endif

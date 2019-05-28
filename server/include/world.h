@@ -47,7 +47,7 @@ public:
     void setGravity(float x, float y);
 
     /* Agrega Chell en las posiciones (x, y) de world. */
-    void addChell(float x, float y);
+    Chell *addChell(float x, float y);
 
     /* Agrega un suelo entre las posiciones (x1, y1) a (x2, y2) */
     void addGround(float x1, float y1, float x2, float y2);
@@ -60,6 +60,9 @@ public:
 
     /* Agrega un jugador */
     void addPlayer(Socket socket);
+
+    void addPlayer(Player *player);
 };
+
 
 #endif

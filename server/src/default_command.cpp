@@ -5,5 +5,5 @@ DefaultCommand::DefaultCommand() {
     std::cout << "command: DEFAULT" << std::endl;
 }
 
-void DefaultCommand::execute() {
+void DefaultCommand::execute(World *world) {
 }
