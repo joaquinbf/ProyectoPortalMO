@@ -121,8 +121,8 @@ Update Chell::getCreateUpdate() {
         ENTITY::CHELL,
         0,
         STATUS::CHELL_IDLE,
-        (uint32_t)this->b2body->GetPosition().x,
-        (uint32_t)this->b2body->GetPosition().y,
+        (int32_t)this->b2body->GetPosition().x,
+        (int32_t)this->b2body->GetPosition().y,
         0
     );
     return update;

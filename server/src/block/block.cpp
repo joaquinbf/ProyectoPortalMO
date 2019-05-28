@@ -41,10 +41,11 @@ Update Block::getCreateUpdate() {
         ENTITY::STONE_BLOCK,
         this->body_number,
         STATUS::NONE_STATUS,
-        (uint32_t)this->b2body->GetPosition().x,
-        (uint32_t)this->b2body->GetPosition().y,
+        (int32_t)this->b2body->GetPosition().x,
+        (int32_t)this->b2body->GetPosition().y,
         0
     );
+
     return update;
 }
 

@@ -13,11 +13,11 @@ void Match::run() {
     this->world.setB2World(&this->b2world);
     this->world.setGravity(0.0, -20);
 
-    float start = -86.4;
-    float step = 19.2;
-    for (int i = 0; i < 7; i++) {
-        this->world.addSquareStoneBlock(start + step*i, -30);
-    }
+    this->world.addSquareStoneBlock(0, -250);
+    this->world.addSquareStoneBlock(200, -250);
+    this->world.addSquareStoneBlock(-200, -250);
+
+
 
     while (this->keep_running) {
         this->world.step();

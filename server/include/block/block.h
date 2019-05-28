@@ -14,8 +14,8 @@
 class Block: public Body {
 private:
     b2Body *b2body;
-    const float HALF_WIDTH = 9.6;
-    const float HALF_HEIGHT = 9.6;
+    const float HALF_WIDTH = 100;
+    const float HALF_HEIGHT = 100;
     const float DENSITY = 1;
     const float ANGLE = 0;
     Shape *shape;

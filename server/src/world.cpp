@@ -54,7 +54,8 @@ Chell *World::getChell() {
 }
 
 void World::addSquareStoneBlock(float x, float y) {
-    Block block(this->b2world, x, y, new SquareShape(), new StoneMaterial());
+    Block *block = new Block(this->b2world, x, y, new SquareShape(), new StoneMaterial());
+    this->blocks.emplace_back(block);
 }
 
 void World::addPlayer(Socket socket) {
