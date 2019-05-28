@@ -6,10 +6,10 @@
 class RunningState: public ChellState {
 public:
     RunningState(Chell *chell);
-    virtual void keyLeft() override;
-    virtual void keyRight() override;
-    virtual void keyJump() override;
-    virtual void stopKeyLeft() override;
+    virtual void left() override;
+    virtual void right() override;
+    virtual void up() override;
+    virtual void stopLeft() override;
 };
 
 #endif

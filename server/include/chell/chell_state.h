@@ -10,10 +10,10 @@ public:
     ChellState(Chell *chell);
     virtual ~ChellState();
     Chell *getChell();
-    virtual void keyLeft() = 0;
-    virtual void keyRight() = 0;
-    virtual void keyJump() = 0;
-    virtual void stopKeyLeft() = 0;
+    virtual void left() = 0;
+    virtual void right() = 0;
+    virtual void up() = 0;
+    virtual void stopLeft() = 0;
 };
 
 #endif

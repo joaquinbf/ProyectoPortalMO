@@ -24,26 +24,26 @@ Chell::Chell(b2World *b2world, float x, float y):
     this->b2body->CreateFixture(&boxFixtureDef);
 
     this->is_facing_right = true;
-    this->changeToIdleState();
+    this->changeStateToIdle();
 }
 
 Chell::~Chell() {
 }
 
-void Chell::keyLeft() {
-    this->state->keyLeft();
+void Chell::left() {
+    this->state->left();
 }
 
-void Chell::keyRight() {
-    this->state->keyRight();
+void Chell::right() {
+    this->state->right();
 }
 
-void Chell::keyJump() {
-    this->state->keyJump();
+void Chell::up() {
+    this->state->up();
 }
 
-void Chell::stopKeyLeft() {
-    this->state->stopKeyLeft();
+void Chell::stopLeft() {
+    this->state->stopLeft();
 }
 
 void Chell::faceLeft() {
@@ -89,14 +89,14 @@ void Chell::applyLinearImpulseStopLeft() {
 }
 
 
-void Chell::changeToIdleState() {
+void Chell::changeStateToIdle() {
     this->state = &this->idle_state;
 }
 
-void Chell::changeToRunningState() {
+void Chell::changeStateToRunning() {
     this->state = &this->running_state;
 }
 
-void Chell::changeToJumpingState() {
+void Chell::changeStateToJumping() {
     this->state = &this->jumping_state;
 }

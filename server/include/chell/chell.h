@@ -31,10 +31,10 @@ public:
     /* Instancia a Chell en world en (x, y) */
     Chell(b2World *b2world, float x, float y);
     virtual ~Chell();
-    void keyLeft();
-    void keyRight();
-    void keyJump();
-    void stopKeyLeft();
+    void left();
+    void right();
+    void up();
+    void stopLeft();
     void faceLeft();
     void faceRight();
     void faceOpposite();
@@ -42,9 +42,9 @@ public:
     void applyLinearImpulseRight();
     void applyLinearImpulseUp();
     void applyLinearImpulseStopLeft();
-    void changeToIdleState();
-    void changeToRunningState();
-    void changeToJumpingState();
+    void changeStateToIdle();
+    void changeStateToRunning();
+    void changeStateToJumping();
 };
 
 #endif

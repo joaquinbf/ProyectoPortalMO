@@ -5,19 +5,19 @@ JumpingState::JumpingState(Chell *chell):
     ChellState(chell) {
 }
 
-void JumpingState::keyLeft() {
+void JumpingState::left() {
     this->getChell()->faceLeft();
     this->getChell()->applyLinearImpulseLeft();
 }
 
-void JumpingState::keyRight() {
+void JumpingState::right() {
     this->getChell()->faceRight();
     this->getChell()->applyLinearImpulseRight();
 }
 
-void JumpingState::keyJump() {
+void JumpingState::up() {
     this->getChell()->applyLinearImpulseUp();
 }
 
-void JumpingState::stopKeyLeft() {
+void JumpingState::stopLeft() {
 }

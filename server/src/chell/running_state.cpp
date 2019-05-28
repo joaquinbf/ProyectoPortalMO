@@ -5,20 +5,20 @@ RunningState::RunningState(Chell *chell):
     ChellState(chell) {
 }
 
-void RunningState::keyLeft() {
+void RunningState::left() {
     this->getChell()->faceLeft();
     this->getChell()->applyLinearImpulseLeft();
 }
 
-void RunningState::keyRight() {
+void RunningState::right() {
     this->getChell()->faceLeft();
     this->getChell()->applyLinearImpulseRight();
 }
 
-void RunningState::keyJump() {
-    this->getChell()->changeToJumpingState();
+void RunningState::up() {
+    this->getChell()->changeStateToJumping();
 }
 
-void RunningState::stopKeyLeft() {
+void RunningState::stopLeft() {
     this->getChell()->applyLinearImpulseStopLeft();
     }

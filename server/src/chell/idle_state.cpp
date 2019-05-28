@@ -5,19 +5,19 @@ IdleState::IdleState(Chell *chell):
     ChellState(chell) {
 }
 
-void IdleState::keyLeft() {
+void IdleState::left() {
     this->getChell()->faceLeft();
-    this->getChell()->changeToRunningState();
+    this->getChell()->changeStateToRunning();
 }
 
-void IdleState::keyRight() {
+void IdleState::right() {
     this->getChell()->faceRight();
-    this->getChell()->changeToRunningState();
+    this->getChell()->changeStateToRunning();
 }
 
-void IdleState::keyJump() {
-    this->getChell()->changeToJumpingState();
+void IdleState::up() {
+    this->getChell()->changeStateToJumping();
 }
 
-void IdleState::stopKeyLeft() {
+void IdleState::stopLeft() {
 }
