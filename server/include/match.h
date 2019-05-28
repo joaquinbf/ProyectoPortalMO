@@ -4,6 +4,8 @@
 #include "world.h"
 
 #include "../../common/include/thread.h"
+#include "../../common/include/socket.h"
+
 
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
@@ -19,6 +21,7 @@ public:
     Match();
     virtual void run() override;
     void stop();
+    void addPlayer(Socket socket);
 };
 
 #endif

@@ -17,8 +17,6 @@
 #include "../../common/include/update.h"
 #include "../../common/include/thread.h"
 
-
-#include "player.h"
 #include "command.h"
 
 #include <vector>
@@ -29,7 +27,6 @@ private:
     b2World *b2world;
     std::vector<Chell *> chells;
     std::vector<Block *> blocks;
-    std::vector<Player *> players;
     ProtectedQueue<Command *> commands;
     ProtectedQueue<Update> updates;
     bool keep_running;

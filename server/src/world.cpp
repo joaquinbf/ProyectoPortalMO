@@ -55,9 +55,5 @@ void World::addSquareStoneBlock(float x, float y) {
 }
 
 void World::addPlayer(Socket socket) {
-    std::cout << socket.get() << std::endl;
-    Chell *chell = new Chell(this->b2world, 0, 0);
-    Player *player = new Player(std::move(socket), chell, &this->commands);
-    player->start();
-    this->players.emplace_back(player);
+
 }

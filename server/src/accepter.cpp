@@ -9,15 +9,18 @@ Accepter::Accepter() {
 
 void Accepter::run() {
     std::cout << "Accepter::run()" << std::endl;
+    this->match.start();
 
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
-            this->world.addPlayer(std::move(peer));
+            this->match.addPlayer(std::move(peer));
         }
     } catch (const ConnectionErrorException &e) {
     }
 
+    this->match.stop();
+    this->match.join();
 }
 
 void Accepter::stop() {

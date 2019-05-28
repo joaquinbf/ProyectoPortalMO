@@ -5,15 +5,13 @@
 #include "../../common/include/socket.h"
 #include "../../common/include/port.h"
 
-#include "../include/world.h"
-
-
+#include "../include/match.h"
 
 class Accepter: public Thread {
 private:
     Socket socket;
     bool keep_running;
-    World world;
+    Match match;
 
 public:
     Accepter();
