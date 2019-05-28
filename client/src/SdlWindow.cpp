@@ -12,15 +12,16 @@ SdlWindow::SdlWindow(int width, int height) :
     if (errCode) {
         throw SdlException("Error en la inicialización", SDL_GetError());
     }
-}
-
-void SdlWindow::openWindow(){
-    int errCode = SDL_CreateWindowAndRenderer(
+    errCode = SDL_CreateWindowAndRenderer(
         this->width, this->height, SDL_RENDERER_ACCELERATED,
         &this->window, &this->renderer);
     if (errCode) {
         throw SdlException("Error al crear ventana", SDL_GetError());
     }   
+}
+
+void SdlWindow::openWindow(){
+
 }
 
 
