@@ -1,7 +1,7 @@
 #include "../include/client.h"
 
 Client::Client(int x, int y)
-: resx(x),resy(y),window(x,y),myChell(nullptr), scale(1),
+: resx(x),resy(y),window(x,y),myChell(nullptr), scale(1), textureManager(window),
 serverManager("localhost", PORT), inputManager(this->serverManager,*this),
 updateReceiver(this->serverManager,this->updates)
 {
@@ -24,7 +24,6 @@ void Client::main(){
     Update update;
     
     this->window.openWindow();
-    this->textureManager = TextureManager(window);
 
     this->inputManager.start();
     this->updateReceiver.start();
@@ -60,7 +59,7 @@ void Client::updateHandler(Update update){
 		case COMMAND::CREATE_COMMAND:			
 			id = update.getIdObject();
 			if(id == this->myChellId){ 
-				this->myChell=(Chell *)ef.create(update,this->textureManager);
+				this->myChell = (Chell *)ef.create(update,this->textureManager);
 			} else {
 				this->entities[id] = ef.create(update,this->textureManager);
 			}
