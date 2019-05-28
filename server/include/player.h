@@ -5,9 +5,8 @@
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
 #include "../../common/include/protected_queue.h"
-#include "input_receiver.h"
 #include "command.h"
-
+#include "input_receiver.h"
 
 class Player {
 private:

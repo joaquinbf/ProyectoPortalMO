@@ -3,7 +3,7 @@
 Player::Player(Socket socket, ProtectedQueue<Command*> *commands):
     protocol(std::move(socket)),
     player_id(0),
-    input_receiver(&this->protocol, commands) {
+    input_receiver(this, commands) {
 }
 
 void Player::start() {

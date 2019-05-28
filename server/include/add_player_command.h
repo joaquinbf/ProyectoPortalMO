@@ -4,6 +4,8 @@
 #include "command.h"
 #include "player.h"
 
+class Player;
+
 class AddPlayerCommand: public Command {
 private:
     Player *player;

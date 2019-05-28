@@ -1,14 +1,15 @@
 #include "../include/input_receiver.h"
 
 InputReceiver::InputReceiver(
-    Protocol *protocol,
+    Player *player,
     ProtectedQueue<Command *> *commands):
-    protocol(protocol),
+    player(player),
     commands(commands),
     keep_running(true) {
 }
 
 void InputReceiver::run() {
+
     while (this->keep_running) {
 
     }
