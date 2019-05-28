@@ -1,4 +1,5 @@
 #include "../include/accepter.h"
+#include <iostream>
 
 Accepter::Accepter() {
     this->socket.bindAndListen(PORT);
@@ -6,6 +7,7 @@ Accepter::Accepter() {
 }
 
 void Accepter::run() {
+    std::cout << "Accepter::run()" << std::endl;
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
