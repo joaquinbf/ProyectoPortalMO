@@ -28,7 +28,7 @@ private:
     std::vector<Chell *> chells;
     std::vector<Block *> blocks;
     std::vector<Player *> players;
-    ProtectedQueue<Command> commands;
+    ProtectedQueue<Command *> commands;
     ProtectedQueue<Update> updates;
 
 public:

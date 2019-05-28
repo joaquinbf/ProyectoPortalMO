@@ -13,10 +13,10 @@ class InputReceiver: public Thread {
 private:
     Protocol *protocol;
     bool keep_running;
-    ProtectedQueue<Command> *commands;
+    ProtectedQueue<Command *> *commands;
 
 public:
-    InputReceiver(Protocol *protocol, ProtectedQueue<Command> *commands);
+    InputReceiver(Protocol *protocol, ProtectedQueue<Command *> *commands);
     virtual void run() override;
     void stop();
 };

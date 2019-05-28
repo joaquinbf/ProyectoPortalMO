@@ -3,7 +3,7 @@
 
 InputReceiver::InputReceiver(
     Protocol *protocol,
-    ProtectedQueue<Command> *commands):
+    ProtectedQueue<Command *> *commands):
     protocol(protocol),
     commands(commands) {
 }
@@ -11,6 +11,7 @@ InputReceiver::InputReceiver(
 void InputReceiver::run() {
     this->keep_running = true;
     while (this->keep_running) {
+
     }
 }
 

@@ -15,7 +15,7 @@ public:
     Player(
         Socket socket,
         Chell *chell,
-        ProtectedQueue<Command> *commands);
+        ProtectedQueue<Command *> *commands);
 
     void start();
     void stop();
