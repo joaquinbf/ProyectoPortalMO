@@ -17,6 +17,7 @@ Player::~Player() {
 
 void Player::run() {
     this->chell = this->match->createChell();
+    std::cout << "chell: " << this->chell << std::endl;
 }
 
 void Player::stop() {
