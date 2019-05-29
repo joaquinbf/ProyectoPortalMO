@@ -1,5 +1,6 @@
 #include "../include/player.h"
 #include "../include/match.h"
+#include "../include/input_receiver.h"
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
@@ -8,7 +9,8 @@
 Player::Player(Socket socket, Match *match):
     keep_running(true),
     protocol(std::move(socket)),
-    match(match) {
+    match(match),
+    input_receiver(&this->protocol, this->match->getCommandQueue()) {
 }
 
 Player::~Player() {
@@ -20,7 +22,7 @@ void Player::run() {
     std::cout << "chell: " << this->chell
               << " id: " << this->chell->getBodyId()
               << std::endl;
-    
+
 }
 
 void Player::stop() {

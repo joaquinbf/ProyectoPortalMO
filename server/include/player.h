@@ -2,6 +2,7 @@
 #define __PLAYER_H__
 
 #include "match.h"
+#include "input_receiver.h"
 #include "./chell/chell.h"
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
@@ -12,6 +13,7 @@ private:
     bool keep_running;
     Protocol protocol;
     Match *match;
+    InputReceiver input_receiver;
     Chell *chell;
 
 public:
