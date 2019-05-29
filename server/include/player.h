@@ -4,15 +4,17 @@
 #include "match.h"
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
+#include "../../common/include/protocol.h"
 
 class Player: public Thread {
 private:
     bool keep_running;
-    Socket socket;
+    Protocol protocol;
     Match *match;
 
 public:
-    Player(Socket &&socket, Match *match);
+    Player(Socket socket, Match *match);
+    ~Player();
     virtual void run() override;
     void stop();
 };

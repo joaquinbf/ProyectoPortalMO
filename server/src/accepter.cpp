@@ -16,8 +16,8 @@ void Accepter::run() {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
             Player *player = new Player(std::move(peer), &match);
-            player->start();
             players.push_back(player);
+            player->start();
         }
     } catch (const ConnectionErrorException &e) {
     }
@@ -31,5 +31,5 @@ void Accepter::run() {
 
 void Accepter::stop() {
     this->keep_running = false;
-    this->socket.shutdown('f');
+    this->socket.close();
 }
