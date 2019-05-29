@@ -5,6 +5,11 @@
 #include "../../common/include/protocol.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
+#include "../../common/include/exceptions.h"
+
+// TODO: eliminar
+#include <iostream>
+
 
 InputReceiver::InputReceiver(
     Protocol *protocol,
@@ -15,7 +20,11 @@ InputReceiver::InputReceiver(
 }
 
 void InputReceiver::run() {
-    while (this->keep_running) {
+    try {
+        std::cout << __func__ << std::endl;
+        while (this->keep_running) {
+        }
+    } catch (const ConnectionErrorException &e) {
     }
 }
 

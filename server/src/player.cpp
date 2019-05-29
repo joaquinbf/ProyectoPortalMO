@@ -22,9 +22,11 @@ void Player::run() {
     std::cout << "chell: " << this->chell
               << " id: " << this->chell->getBodyId()
               << std::endl;
-
+    this->input_receiver.start();
 }
 
 void Player::stop() {
     this->keep_running = false;
+    this->input_receiver.stop();
+    this->input_receiver.join();
 }
