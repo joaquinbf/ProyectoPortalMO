@@ -18,8 +18,8 @@ private:
     std::map<uint32_t, Chell *> chells;
     std::vector<Body *> bodies;
     std::mutex m;
-    ProtectedQueue<Command *> commands_queue;
-    ProtectedQueue<Update> updates_queue;
+    ProtectedQueue<Command *> command_queue;
+    ProtectedQueue<Update> update_queue;
 
 public:
     /* Instancia un world sobre b2world de Box2D */
@@ -34,10 +34,10 @@ public:
     Chell *createChell();
 
     /* Devuelve un puntero a la cola de commands */
-    ProtectedQueue<Command *> *getCommandsQueue();
+    ProtectedQueue<Command *> *getCommandQueue();
 
     /* Devuelve un puntero a la cola de updates */
-    ProtectedQueue<Update> *getUpdatesQueue();
+    ProtectedQueue<Update> *getUpdateQueue();
 };
 
 #endif

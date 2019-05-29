@@ -30,10 +30,10 @@ Chell *World::createChell() {
     return chell;
 }
 
-ProtectedQueue<Command *> *World::getCommandsQueue() {
-    return &this->commands_queue;
+ProtectedQueue<Command *> *World::getCommandQueue() {
+    return &this->command_queue;
 }
 
-ProtectedQueue<Update> *World::getUpdatesQueue() {
-    return &this->updates_queue;
+ProtectedQueue<Update> *World::getUpdateQueue() {
+    return &this->update_queue;
 }
