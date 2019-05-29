@@ -1,3 +1,13 @@
+#include "../include/server.h"
+#include <exception>
+#include <iostream>
+
 int main() {
-    return 0;
+    try {
+        Server server;
+        return server.main();
+    } catch (const std::exception &e) {
+        std::cout << "ERROR: " << e.what() << std::endl;
+        return 1;
+    }
 }
