@@ -41,7 +41,6 @@ get_filename_component(FULL_PATH_MAIN_CLIENT ${CMAKE_CURRENT_SOURCE_DIR}/client/
 message(${FULL_PATH_MAIN_CLIENT})
 message(${FULL_PATH_MAIN_SERVER})
 list(REMOVE_ITEM ALL_SRCS ${FULL_PATH_MAIN_SERVER} ${FULL_PATH_MAIN_CLIENT})
-message(${ALL_SRCS})
 
 find_package(CxxTest)
 if(CXXTEST_FOUND)
