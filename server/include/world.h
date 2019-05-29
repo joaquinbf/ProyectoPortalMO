@@ -17,8 +17,15 @@ private:
     std::mutex m;
 
 public:
+    /* Instancia un world sobre b2world de Box2D */
     World(b2World *b2world);
+
+    /* Libera los recursos utilizados */
     ~World();
+
+    /* Crea una chell en world y devuelve su puntero.
+     * Es world quien se encargara de liberar su recursos.
+     * Pre: No puede ser creada durante un step de world.  */
     Chell *createChell();
 };
 
