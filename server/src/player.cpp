@@ -2,6 +2,7 @@
 #include "../include/match.h"
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
+#include <iostream>
 
 Player::Player(Socket &&socket, Match *match):
     keep_running(true),
@@ -10,8 +11,7 @@ Player::Player(Socket &&socket, Match *match):
 }
 
 void Player::run() {
-    while (this->keep_running) {
-    }
+    std::cout << "Player::run()" << std::endl;
 }
 
 void Player::stop() {
