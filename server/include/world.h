@@ -3,6 +3,9 @@
 
 #include "body.h"
 #include "chell/chell.h"
+#include "command/command.h"
+#include "../../common/include/protected_queue.h"
+#include "../../common/include/update.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include <map>
 #include <vector>
@@ -15,6 +18,8 @@ private:
     std::map<uint32_t, Chell *> chells;
     std::vector<Body *> bodies;
     std::mutex m;
+    ProtectedQueue<Command *> commands_queue;
+    ProtectedQueue<Update> updates_queue;
 
 public:
     /* Instancia un world sobre b2world de Box2D */
@@ -27,6 +32,12 @@ public:
      * Es world quien se encargara de liberar su recursos.
      * Pre: No puede ser creada durante un step de world.  */
     Chell *createChell();
+
+    /* Devuelve un puntero a la cola de commands */
+    ProtectedQueue<Command *> *getCommandsQueue();
+
+    /* Devuelve un puntero a la cola de updates */
+    ProtectedQueue<Update> *getUpdatesQueue();
 };
 
 #endif

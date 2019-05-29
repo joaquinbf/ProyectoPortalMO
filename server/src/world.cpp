@@ -1,5 +1,7 @@
 #include "../include/world.h"
+#include "../include/body.h"
 #include "../include/chell/chell.h"
+#include "../../common/include/protected_queue.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 
 
@@ -26,4 +28,12 @@ Chell *World::createChell() {
     this->bodies.push_back(chell);
     this->body_count++;
     return chell;
+}
+
+ProtectedQueue<Command *> *World::getCommandsQueue() {
+    return &this->commands_queue;
+}
+
+ProtectedQueue<Update> *World::getUpdatesQueue() {
+    return &this->updates_queue;
 }

@@ -20,6 +20,7 @@ void Player::run() {
     std::cout << "chell: " << this->chell
               << " id: " << this->chell->getBodyId()
               << std::endl;
+    
 }
 
 void Player::stop() {
