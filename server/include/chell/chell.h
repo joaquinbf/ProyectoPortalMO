@@ -1,7 +1,9 @@
 #ifndef __CHELL_H__
 #define __CHELL_H__
 
-class Chell {
+#include "../body.h"
+
+class Chell: public Body {
 
 };
 

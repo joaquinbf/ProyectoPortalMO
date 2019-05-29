@@ -2,6 +2,7 @@
 #define __MATCH_H__
 
 #include "world.h"
+#include "./chell/chell.h"
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -21,6 +22,7 @@ public:
     Match();
     virtual void run() override;
     void stop();
+    Chell *createChell();
 };
 
 #endif
