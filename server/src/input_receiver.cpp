@@ -20,9 +20,14 @@ InputReceiver::InputReceiver(
 }
 
 void InputReceiver::run() {
+    CommandFactory cf;
     try {
         std::cout << __func__ << std::endl;
         while (this->keep_running) {
+            Action action = this->protocol->receiveAction();
+            Command *command = cf.createCommand(action);
+            this->command_queue->push(command);
+            delete command;
         }
     } catch (const ConnectionErrorException &e) {
     }
@@ -30,4 +35,5 @@ void InputReceiver::run() {
 
 void InputReceiver::stop() {
     this->keep_running = false;
+    this->protocol->close();
 }
