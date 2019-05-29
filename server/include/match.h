@@ -3,8 +3,11 @@
 
 #include "world.h"
 #include "../../common/include/thread.h"
+#include "../../common/include/socket.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
+#include <cstdint>
+#include <vector>
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
