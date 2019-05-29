@@ -1,9 +1,19 @@
 #include "../include/match.h"
+#include "../../common/include/thread.h"
+#include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
+#include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
+
+Match::Match():
+    keep_running(true),
+    b2world(GRAVITY),
+    world(&this->b2world) {
+}
+
 
 void Match::run() {
     this->keep_running = true;
     while (this->keep_running) {
-        
+
     }
 }
 
