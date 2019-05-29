@@ -38,8 +38,6 @@ file(GLOB_RECURSE ALL_SRCS "common/src/*" "client/src/*" "server/src/*")
 # Se quitan los main de client y server porque runner.cpp es el main del test
 get_filename_component(FULL_PATH_MAIN_SERVER ${CMAKE_CURRENT_SOURCE_DIR}/server/src/main.cpp ABSOLUTE)
 get_filename_component(FULL_PATH_MAIN_CLIENT ${CMAKE_CURRENT_SOURCE_DIR}/client/src/main.cpp ABSOLUTE)
-message(${FULL_PATH_MAIN_CLIENT})
-message(${FULL_PATH_MAIN_SERVER})
 list(REMOVE_ITEM ALL_SRCS ${FULL_PATH_MAIN_SERVER} ${FULL_PATH_MAIN_CLIENT})
 
 find_package(CxxTest)
