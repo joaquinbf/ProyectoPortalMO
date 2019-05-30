@@ -37,3 +37,15 @@ ProtectedQueue<Command *> *World::getCommandQueue() {
 ProtectedQueue<Update> *World::getUpdateQueue() {
     return &this->update_queue;
 }
+
+void World::step() {
+    this->executeCommands();
+}
+
+void World::executeCommands() {
+    Command *command;
+    while (this->command_queue.try_pop(command)) {
+        command->execute();
+        delete command;
+    }
+}

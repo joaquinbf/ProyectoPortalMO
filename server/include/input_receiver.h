@@ -14,11 +14,16 @@ private:
     bool keep_running;
     Protocol *protocol;
     ProtectedQueue<Command *> *command_queue;
+    bool is_finished;
 
 public:
     InputReceiver(Protocol *protocol, ProtectedQueue<Command *> *command_queue);
     virtual void run() override;
     void stop();
+    bool isFinished();
+
+private:
+    void handleAction(const Action &action);
 };
 
 #endif

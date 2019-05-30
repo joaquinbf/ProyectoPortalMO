@@ -1,5 +1,8 @@
 #include "../../include/command/default_command.h"
 
-void DefaultCommand::execute() {
+// TODO: borrar
+#include <iostream>
 
+void DefaultCommand::execute() {
+    std::cout << "void DefaultCommand::execute()" << std::endl;
 }

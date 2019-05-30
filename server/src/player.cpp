@@ -30,3 +30,7 @@ void Player::stop() {
     this->input_receiver.stop();
     this->input_receiver.join();
 }
+
+bool Player::isFinished() {
+    return this->input_receiver.isFinished();
+}

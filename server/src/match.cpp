@@ -15,7 +15,7 @@ Match::Match():
 void Match::run() {
     this->keep_running = true;
     while (this->keep_running) {
-
+        this->world.step();
     }
 }
 

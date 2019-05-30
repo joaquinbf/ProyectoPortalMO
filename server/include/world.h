@@ -38,6 +38,13 @@ public:
 
     /* Devuelve un puntero a la cola de updates */
     ProtectedQueue<Update> *getUpdateQueue();
+
+    /* Actualiza el mundo */
+    void step();
+
+private:
+    /* Ejecuta los commands recibidos */
+    void executeCommands();
 };
 
 #endif

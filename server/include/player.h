@@ -21,6 +21,7 @@ public:
     ~Player();
     virtual void run() override;
     void stop();
+    bool isFinished();
 };
 
 #endif
