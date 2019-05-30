@@ -8,37 +8,46 @@ Accepter::Accepter() {
 }
 
 void Accepter::run() {
-    int MAX_PLAYERS = 1;
     Match match;
+    match.buildLevelOne();
+
     std::vector<Player *> players;
-
-    this->keep_running = true;
     try {
-        for (int i = 0; i < MAX_PLAYERS; i++) {
-            std::cout << "antes de socket.accept()" << std::endl;
+        for (int i = 0; i < 2; i++) {
             Socket peer = this->socket.accept();
-            std::cout << "despues de socket.accept()" << std::endl;
-
+            std::cout << "despues de accept" << std::endl;
             Player *player = new Player(std::move(peer), &match);
+            std::cout << "despues de new player" << std::endl;
             players.push_back(player);
             player->start();
         }
-        std::cout << "antes de match.start() en accepter.cpp" << std::endl;
+
         match.start();
-        // TODO: Mejorar
-        while (!players.at(0)->isFinished()) {
+        std::cout << "despues match start" << std::endl;
+        while (this->keep_running) {
+            std::cout << "WHILE: accepter" << std::endl;
         }
         match.stop();
+        std::cout << "despues match stop" << std::endl;
         match.join();
+        std::cout << "despues match join" << std::endl;
 
+        for (Player *player: players) {
+            try {
+                player->stop();
+            } catch (const ConnectionErrorException &e) {
+            }
+            std::cout << "despues player.stop()" << std::endl;
+            player->join();
+            std::cout << "despues player.join()" << std::endl;
+            delete player;
+            std::cout << "despues delete" << std::endl;
+        }
     } catch (const ConnectionErrorException &e) {
     }
 
-    for (Player *player: players) {
-        player->stop();
-        player->join();
-        delete player;
-    }
+
+    std::cout << "FIN RUN accepter" << std::endl;
 }
 
 void Accepter::stop() {

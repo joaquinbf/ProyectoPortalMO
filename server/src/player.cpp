@@ -16,15 +16,19 @@ Player::Player(Socket socket, Match *match):
 }
 
 Player::~Player() {
-    this->protocol.close();
 }
 
 void Player::run() {
-    std::cout << "void Player::run() " << std::endl;
-    this->chell = this->match->createChell();
-    std::cout << "chell: " << this->chell
-              << " id: " << this->chell->getBodyId()
-              << std::endl;
+    // std::cout << "void Player::run() " << std::endl;
+    // this->chell = this->match->createChell();
+    // std::cout << "chell: " << this->chell
+    //           << " id: " << this->chell->getBodyId()
+    //           << std::endl;
+    // this->match->sendUpdatesTo(this->update_sender.getUpdateQueue());
+    // this->input_receiver.start();
+    // this->update_sender.start();
+    std::cout << "ayy lmao" << std::endl;
+    this->chell = this->match->getAviableChell();
     this->match->sendUpdatesTo(this->update_sender.getUpdateQueue());
     this->input_receiver.start();
     this->update_sender.start();
@@ -32,10 +36,25 @@ void Player::run() {
 
 void Player::stop() {
     this->keep_running = false;
-    this->input_receiver.stop();
+    try {
+        this->protocol.close();
+    } catch (const ConnectionErrorException &e) {
+    }
+
+    try {
+        this->input_receiver.stop();
+    } catch (const ConnectionErrorException &e) {
+    }
+    std::cout << "despues de input_receiver.stop()" << std::endl;
     this->input_receiver.join();
-    this->update_sender.stop();
+    std::cout << "despues de input_receiver.join()" << std::endl;
+    try {
+        this->update_sender.stop();
+    } catch (const ConnectionErrorException &e) {
+    }
+    std::cout << "despues de update_sender.stop()" << std::endl;
     this->update_sender.join();
+    std::cout << "despues de update_sender.join()" << std::endl;
 }
 
 bool Player::isFinished() {

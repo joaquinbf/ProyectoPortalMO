@@ -7,7 +7,7 @@
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
 
 // TODO: Borrar
-#include <iostream> 
+#include <iostream>
 
 Match::Match():
     keep_running(true),
@@ -24,13 +24,13 @@ void Match::run() {
     while (this->keep_running) {
         this->world.oneStep();
     }
-
-    this->broadcaster.stop();
-    this->broadcaster.join();
 }
 
 void Match::stop() {
     this->keep_running = false;
+    this->broadcaster.stop();
+    this->broadcaster.join();
+    std::cout << "despues del broadcaster.join()" << std::endl;
 }
 
 Chell *Match::createChell() {
@@ -38,9 +38,26 @@ Chell *Match::createChell() {
 }
 
 ProtectedQueue<Command *> *Match::getCommandQueue() {
+    std::cout << "ProtectedQueue<Command *> *Match::getCommandQueue()"
+              << std::endl;
     return this->world.getCommandQueue();
 }
 
 void Match::sendUpdatesTo(ProtectedQueue<Update> *update_queue) {
     this->broadcaster.addPlayerUpdateQueue(update_queue);
+}
+
+void Match::buildLevelOne() {
+    for (int i = 0; i < 2; i++) {
+        this->chells.push_back(this->world.createChell());
+    }
+}
+
+Chell *Match::getAviableChell() {
+    if (this->chells.empty()) {
+        return 0;
+    }
+    Chell *chell = this->chells.back();
+    this->chells.pop_back();
+    return chell;
 }

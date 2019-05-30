@@ -30,6 +30,9 @@ public:
 	Action receiveAction() const;
 	void sendUpdate(const Update update) const;
 	Update receiveUpdate() const;
+	void shutdownRD();
+	void shutdownWR();
+	void shutdownRDWR();
 };
 
 #endif

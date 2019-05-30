@@ -28,18 +28,14 @@ void contactServer() {
 	socket.connect("localhost", PORT);
 	Protocol protocol(std::move(socket));
 
-	std::vector<Action> actions;
-	actions.emplace_back(ACTION::JUMP, 0);
-	actions.emplace_back(ACTION::JUMP, 0);
-	actions.emplace_back(ACTION::JUMP, 0);
-	actions.emplace_back(ACTION::QUIT, 0);
-
-	for (const Action &action: actions) {
-		protocol.sendAction(action);
-	}
+	// for (int i = 0; i < 5; i++) {
+	// 	Action action(ACTION::JUMP, 0);
+	// 	protocol.sendAction(action);
+	// }
 
 	for (int i = 0; i < 10; i++) {
 		Update update = protocol.receiveUpdate();
 		std::cout << update.getCommand() << std::endl;
 	}
+	protocol.shutdownWR();
 }

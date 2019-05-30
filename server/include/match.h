@@ -21,6 +21,7 @@ private:
     b2World b2world;
     World world;
     Broadcaster broadcaster;
+    std::vector<Chell *> chells;
 
 public:
     /* Instancia una partida */
@@ -41,6 +42,13 @@ public:
 
     /* Envia updates a la cola indicada */
     void sendUpdatesTo(ProtectedQueue<Update> *update_queue);
+
+    /* Construye un mundo para hasta 3 jugadores */
+    void buildLevelOne();
+
+    /* Devuelve una chell disponible.
+     * En caso de no haber, devuelve NULL. */
+    Chell *getAviableChell();
 };
 
 #endif

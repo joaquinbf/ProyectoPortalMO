@@ -147,3 +147,15 @@ Update Protocol::receiveUpdate() const{
 	uint32_t dir = this->receiveQuad();
 	return Update(cm,en,id,st,posx,posy,dir);
 }
+
+void Protocol::shutdownRD() {
+	this->socket.shutdown('r');
+}
+
+void Protocol::shutdownWR() {
+	this->socket.shutdown('s');
+}
+
+void Protocol::shutdownRDWR() {
+	this->socket.shutdown('f');
+}

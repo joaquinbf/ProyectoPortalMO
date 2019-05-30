@@ -18,9 +18,11 @@ void Broadcaster::run() {
         Update update = this->update_queue->wait_and_pop();
         this->handleUpdate(update);
     }
+    std::cout << "SALE DEL WHILE: void Broadcaster::run()" << std::endl;
 }
 
 void Broadcaster::stop() {
+    this->keep_running = false;
     std::cout << "void Broadcaster::stop()" << std::endl;
     const uint32_t NONE_ID_OBJECT = 0;
     const int32_t NONE_POSX = 0;
@@ -41,6 +43,7 @@ void Broadcaster::stop() {
 void Broadcaster::handleUpdate(const Update &update) {
     switch (update.getCommand()) {
         case COMMAND::STOP_BROADCASTER_COMMAND:
+            std::cout << "case COMMAND::STOP_BROADCASTER_COMMAND:" << std::endl;
             this->keep_running = false;
             break;
         default:

@@ -19,7 +19,14 @@ void UpdateSender::run() {
     try {
         while (this->keep_running) {
             Update update = this->update_queue.wait_and_pop();
-            this->protocol->sendUpdate(update);
+            switch (update.getCommand()) {
+                case STOP_UPDATE_SENDER_COMMAND:
+                    this->keep_running = false;
+                    break;
+                default:
+                    this->protocol->sendUpdate(update);
+                    break;
+            }
         }
     } catch (const ConnectionErrorException &e) {
     }
@@ -28,6 +35,15 @@ void UpdateSender::run() {
 
 void UpdateSender::stop() {
     this->keep_running = false;
+    Update update(
+        COMMAND::STOP_UPDATE_SENDER_COMMAND,
+        ENTITY::NONE_ENTITY,
+        0,
+        STATUS::NONE_STATUS,
+        0,
+        0,
+        0);
+    this->update_queue.push(update);
 }
 
 ProtectedQueue<Update> *UpdateSender::getUpdateQueue() {

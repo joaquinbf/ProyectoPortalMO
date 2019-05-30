@@ -25,10 +25,13 @@ void InputReceiver::run() {
     try {
         std::cout << __func__ << std::endl;
         while (this->keep_running) {
+            std::cout << "WHILE: void InputReceiver::run()" << std::endl;
             Action action = this->protocol->receiveAction();
             this->handleAction(action);
         }
+        std::cout << "SALE DEL WHILE: void InputReceiver::run()" << std::endl;
     } catch (const ConnectionErrorException &e) {
+
     }
     this->is_finished = true;
 }
