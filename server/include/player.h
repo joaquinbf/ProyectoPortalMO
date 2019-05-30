@@ -3,6 +3,7 @@
 
 #include "match.h"
 #include "input_receiver.h"
+#include "update_sender.h"
 #include "./chell/chell.h"
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
@@ -15,6 +16,7 @@ private:
     Match *match;
     InputReceiver input_receiver;
     Chell *chell;
+    UpdateSender update_sender;
 
 public:
     Player(Socket socket, Match *match);

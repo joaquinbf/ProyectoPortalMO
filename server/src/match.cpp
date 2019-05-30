@@ -37,6 +37,6 @@ ProtectedQueue<Command *> *Match::getCommandQueue() {
     return this->world.getCommandQueue();
 }
 
-ProtectedQueue<Update> *Match::getUpdateQueue() {
-    return this->world.getUpdateQueue();
+void Match::sendUpdatesTo(ProtectedQueue<Update> *update_queue) {
+    this->broadcaster.addPlayerUpdateQueue(update_queue);
 }

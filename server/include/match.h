@@ -39,8 +39,8 @@ public:
     /* Devuelve un puntero a la cola de commands */
     ProtectedQueue<Command *> *getCommandQueue();
 
-    /* Devuelve un puntero a la cola de updates */
-    ProtectedQueue<Update> *getUpdateQueue();
+    /* Envia updates a la cola indicada */
+    void sendUpdatesTo(ProtectedQueue<Update> *update_queue);
 };
 
 #endif
