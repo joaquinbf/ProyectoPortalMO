@@ -6,9 +6,71 @@
 #include "../../common/include/action.h"
 #include "../../common/include/protocol.h"
 #include "../../common/include/update.h"
+#include "../../common/include/thread.h"
 #include <vector>
+#include <chrono>
+#include <thread>
 
 void contactServer();
+
+class Input: public Thread {
+private:
+	bool keep_running;
+	Protocol *protocol;
+
+public:
+	Input(Protocol *protocol):
+		keep_running(true),
+		protocol(protocol) {}
+
+	virtual void run() override {
+		try {
+			while (this->keep_running) {
+				Action action(ACTION::JUMP, 0);
+				this->protocol->sendAction(action);
+				std::cout << "ACTION SEND: "
+						 << action.getAction() << std::endl;
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+			}
+		} catch (const ConnectionErrorException &e) {
+		}
+		std::cout << "FUERA DEL WHILE INPUT: "  << std::endl;
+	}
+
+	void stop() {
+		this->keep_running = false;
+		this->protocol->shutdownWR();
+	}
+};
+
+class Updater: public Thread {
+private:
+	bool keep_running;
+	Protocol *protocol;
+
+public:
+	Updater(Protocol *protocol):
+		keep_running(true),
+		protocol(protocol) {}
+
+	virtual void run() override {
+		try {
+			while (this->keep_running) {
+				Update update = this->protocol->receiveUpdate();
+				std::cout << "UPDATE : " << update.getCommand() << std::endl;
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+			}
+		} catch (const ConnectionErrorException &e) {
+		}
+		std::cout << "FUERA DEL WHILE UPDATE : " <<  std::endl;
+
+	}
+
+	void stop() {
+		this->keep_running = false;
+		this->protocol->shutdownRD();
+	}
+};
 
 int main() {
 	// try{
@@ -28,14 +90,20 @@ void contactServer() {
 	socket.connect("localhost", PORT);
 	Protocol protocol(std::move(socket));
 
-	// for (int i = 0; i < 5; i++) {
-	// 	Action action(ACTION::JUMP, 0);
-	// 	protocol.sendAction(action);
-	// }
+	Input input(&protocol);
+	input.start();
+	Updater updater(&protocol);
+	updater.start();
 
-	for (int i = 0; i < 10; i++) {
-		Update update = protocol.receiveUpdate();
-		std::cout << update.getCommand() << std::endl;
+	const char QUIT = 'q';
+	while (std::cin.get() != QUIT) {
 	}
-	protocol.shutdownWR();
+
+	protocol.close();
+	input.stop();
+	input.join();
+	updater.stop();
+	updater.join();
+
+	std::cout << "fin client" << std::endl;
 }
