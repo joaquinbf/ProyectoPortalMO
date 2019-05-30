@@ -22,7 +22,6 @@ InputReceiver::InputReceiver(
 
 void InputReceiver::run() {
     this->is_finished = false;
-    CommandFactory cf;
     try {
         std::cout << __func__ << std::endl;
         while (this->keep_running) {
@@ -49,6 +48,7 @@ void InputReceiver::handleAction(const Action &action) {
             this->keep_running = false;
             break;
         default: {
+            CommandFactory cf;
             std::cout << "Creacion de command en input recv"
                       << std::endl;
             Command *command = cf.createCommand(action);
