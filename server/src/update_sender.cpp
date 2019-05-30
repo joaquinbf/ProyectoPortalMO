@@ -5,15 +5,21 @@
 #include "../../common/include/protocol.h"
 #include "../../common/include/exceptions.h"
 
+// TODO: borrar
+#include <iostream>
+
 UpdateSender::UpdateSender(Protocol *protocol):
     protocol(protocol),
     keep_running(true) {
 }
 
 void UpdateSender::run() {
+    std::cout << "void UpdateSender::run()" << std::endl;
     this->keep_running = true;
     try {
         while (this->keep_running) {
+            Update update = this->update_queue.wait_and_pop();
+            this->protocol->sendUpdate(update);
         }
     } catch (const ConnectionErrorException &e) {
     }

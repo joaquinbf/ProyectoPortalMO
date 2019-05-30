@@ -20,6 +20,7 @@ Player::~Player() {
 }
 
 void Player::run() {
+    std::cout << "void Player::run() " << std::endl;
     this->chell = this->match->createChell();
     std::cout << "chell: " << this->chell
               << " id: " << this->chell->getBodyId()

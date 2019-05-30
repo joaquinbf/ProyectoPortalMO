@@ -4,18 +4,24 @@
 #include "../../common/include/types.h"
 #include "../../common/include/thread.h"
 
+//TODO: Borrar
+#include <iostream>
+
 Broadcaster::Broadcaster(ProtectedQueue<Update> *update_queue):
+    keep_running(true),
     update_queue(update_queue) {
 }
 
 void Broadcaster::run() {
     while (this->keep_running) {
+        std::cout << "void Broadcaster::run()" << std::endl;
         Update update = this->update_queue->wait_and_pop();
         this->handleUpdate(update);
     }
 }
 
 void Broadcaster::stop() {
+    std::cout << "void Broadcaster::stop()" << std::endl;
     const uint32_t NONE_ID_OBJECT = 0;
     const int32_t NONE_POSX = 0;
     const int32_t NONE_POSY = 0;

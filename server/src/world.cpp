@@ -3,6 +3,8 @@
 #include "../include/chell/chell.h"
 #include "../../common/include/protected_queue.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
+// TODO: Borrar
+#include <iostream>
 
 
 World::World(b2World *b2world):
@@ -17,7 +19,8 @@ World::~World() {
 }
 
 Chell *World::createChell() {
-    std::lock_guard<std::mutex> lg(this->m);
+    std::cout << "Chell *World::createChell() " << std::endl;
+    // std::lock_guard<std::mutex> lg(this->m);
     float x = 0;
     float y = 0;
     Chell *chell = new Chell(this->body_count,
@@ -39,6 +42,7 @@ ProtectedQueue<Update> *World::getUpdateQueue() {
 }
 
 void World::oneStep() {
+    std::cout << "void World::oneStep()" << std::endl;
     this->executeCommands();
     this->step();
     this->enqueueUpdatesForActiveBodies();
@@ -59,6 +63,7 @@ void World::step() {
 }
 
 void World::enqueueUpdatesForActiveBodies() {
+    std::cout << "void World::enqueueUpdatesForActiveBodies() " << std::endl;
     b2Body *b2body = this->b2world->GetBodyList();
     for (; b2body != 0; b2body = b2body->GetNext()) {
         if (b2body->IsActive()) {
@@ -69,5 +74,6 @@ void World::enqueueUpdatesForActiveBodies() {
 }
 
 void World::enqueueUpdateForBody(Body *body) {
-
+    Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
+    this->update_queue.push(update);
 }

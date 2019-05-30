@@ -6,6 +6,9 @@
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
 
+// TODO: Borrar
+#include <iostream> 
+
 Match::Match():
     keep_running(true),
     b2world(GRAVITY),
@@ -14,6 +17,7 @@ Match::Match():
 }
 
 void Match::run() {
+    std::cout << "void Match::run()" << std::endl;
     this->keep_running = true;
     this->broadcaster.start();
 
