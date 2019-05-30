@@ -33,7 +33,6 @@ void contactServer() {
 	actions.emplace_back(ACTION::JUMP, 0);
 	actions.emplace_back(ACTION::QUIT, 0);
 
-
 	for (const Action &action: actions) {
 		protocol.sendAction(action);
 	}
