@@ -5,6 +5,7 @@
 #include "../../common/include/port.h"
 #include "../../common/include/action.h"
 #include "../../common/include/protocol.h"
+#include "../../common/include/update.h"
 #include <vector>
 
 void contactServer();
@@ -35,5 +36,10 @@ void contactServer() {
 
 	for (const Action &action: actions) {
 		protocol.sendAction(action);
+	}
+
+	for (int i = 0; i < 10; i++) {
+		Update update = protocol.receiveUpdate();
+		std::cout << update.getCommand() << std::endl;
 	}
 }

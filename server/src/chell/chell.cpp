@@ -1,5 +1,7 @@
 #include "../../include/chell/chell.h"
 #include "../../include/body.h"
+#include "../../../common/include/update.h"
+#include "../../../common/include/types.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -26,4 +28,18 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
     boxFixtureDef.density = this->DENSITY;
 
     this->b2body->CreateFixture(&boxFixtureDef);
+
+    this->is_facing_right = true;
+}
+
+Update Chell::createUpdate(COMMAND command) {
+    Update update(
+        command,
+        ENTITY::CHELL,
+        this->getBodyId(),
+        STATUS::NONE_STATUS,
+        (int32_t) this->b2body->GetPosition().x,
+        (int32_t) this->b2body->GetPosition().y,
+        this->is_facing_right ? 0 : 1);
+    return update;
 }

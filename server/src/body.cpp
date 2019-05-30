@@ -1,4 +1,6 @@
 #include "../include/body.h"
+#include "../../common/include/types.h"
+#include "../../common/include/update.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 
 Body::Body(uint32_t body_id):

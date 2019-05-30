@@ -18,7 +18,7 @@ void Match::run() {
     this->broadcaster.start();
 
     while (this->keep_running) {
-        this->world.step();
+        this->world.oneStep();
     }
 
     this->broadcaster.stop();

@@ -10,6 +10,7 @@
 #include <map>
 #include <vector>
 #include <mutex>
+#include <cstdint>
 
 class World {
 private:
@@ -20,6 +21,9 @@ private:
     std::mutex m;
     ProtectedQueue<Command *> command_queue;
     ProtectedQueue<Update> update_queue;
+    const float TIME_STEP = 1/20.0;
+    const uint32_t VELOCITY_ITERATIONS = 8;
+    const uint32_t POSITION_ITERATIONS = 3;
 
 public:
     /* Instancia un world sobre b2world de Box2D */
@@ -39,12 +43,21 @@ public:
     /* Devuelve un puntero a la cola de updates */
     ProtectedQueue<Update> *getUpdateQueue();
 
-    /* Actualiza el mundo */
-    void step();
+    /* Actualiza el mundo en una jugada. */
+    void oneStep();
 
 private:
     /* Ejecuta los commands recibidos */
     void executeCommands();
+
+    /* Actualiza el mundo fisico */
+    void step();
+
+    /* Encola las updates */
+    void enqueueUpdatesForActiveBodies();
+
+    /* Encola una update para body */
+    void enqueueUpdateForBody(Body *body);
 };
 
 #endif

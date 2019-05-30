@@ -11,7 +11,8 @@ Player::Player(Socket socket, Match *match):
     keep_running(true),
     protocol(std::move(socket)),
     match(match),
-    input_receiver(&this->protocol, this->match->getCommandQueue()) {
+    input_receiver(&this->protocol, this->match->getCommandQueue()),
+    update_sender(&this->protocol) {
 }
 
 Player::~Player() {
@@ -23,14 +24,17 @@ void Player::run() {
     std::cout << "chell: " << this->chell
               << " id: " << this->chell->getBodyId()
               << std::endl;
-    this->input_receiver.start();
     this->match->sendUpdatesTo(this->update_sender.getUpdateQueue());
+    this->input_receiver.start();
+    this->update_sender.start();
 }
 
 void Player::stop() {
     this->keep_running = false;
     this->input_receiver.stop();
     this->input_receiver.join();
+    this->update_sender.stop();
+    this->update_sender.join();
 }
 
 bool Player::isFinished() {

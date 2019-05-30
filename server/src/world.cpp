@@ -38,8 +38,10 @@ ProtectedQueue<Update> *World::getUpdateQueue() {
     return &this->update_queue;
 }
 
-void World::step() {
+void World::oneStep() {
     this->executeCommands();
+    this->step();
+    this->enqueueUpdatesForActiveBodies();
 }
 
 void World::executeCommands() {
@@ -48,4 +50,24 @@ void World::executeCommands() {
         command->execute();
         delete command;
     }
+}
+
+void World::step() {
+    this->b2world->Step(this->TIME_STEP,
+                        this->VELOCITY_ITERATIONS,
+                        this->POSITION_ITERATIONS);
+}
+
+void World::enqueueUpdatesForActiveBodies() {
+    b2Body *b2body = this->b2world->GetBodyList();
+    for (; b2body != 0; b2body = b2body->GetNext()) {
+        if (b2body->IsActive()) {
+            Body *body = (Body *) b2body->GetUserData();
+            this->enqueueUpdateForBody(body);
+        }
+    }
+}
+
+void World::enqueueUpdateForBody(Body *body) {
+
 }
