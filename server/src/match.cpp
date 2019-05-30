@@ -9,14 +9,20 @@
 Match::Match():
     keep_running(true),
     b2world(GRAVITY),
-    world(&this->b2world) {
+    world(&this->b2world),
+    broadcaster(this->world.getUpdateQueue()) {
 }
 
 void Match::run() {
     this->keep_running = true;
+    this->broadcaster.start();
+
     while (this->keep_running) {
         this->world.step();
     }
+
+    this->broadcaster.stop();
+    this->broadcaster.join();
 }
 
 void Match::stop() {

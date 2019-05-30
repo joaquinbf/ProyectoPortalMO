@@ -3,6 +3,7 @@
 
 #include "world.h"
 #include "command/command.h"
+#include "broadcaster.h"
 #include "./chell/chell.h"
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
@@ -19,6 +20,7 @@ private:
     bool keep_running;
     b2World b2world;
     World world;
+    Broadcaster broadcaster;
 
 public:
     /* Instancia una partida */
