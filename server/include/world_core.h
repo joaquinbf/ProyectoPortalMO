@@ -21,7 +21,7 @@ public:
 
     /* Libera los recursos utilizados. */
     ~WorldCore();
-
+    
 private:
     /* Libera los bodies creados */
     void deleteBodies();
