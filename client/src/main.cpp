@@ -28,7 +28,9 @@ void toyClient() {
 	socket.connect("localhost", PORT);
 	Protocol protocol(std::move(socket));
 
+	// En inputter debe estar la logica de enviar el input del teclado.
 	Inputter inputter(&protocol);
+	// En output deberia estar la logica del render.
 	Outputter outputter(&protocol);
 
 	inputter.start();
@@ -38,14 +40,6 @@ void toyClient() {
 	while (std::cin.get() != QUIT) {
 	}
 
-
-	// Con esto se podria lanzar ConnectionErrorException en 3 threads!
-	// 1. Este thread: porque es el duenio del socket y podria
-	//                 estar bloqueado el socket en un send() o recv()
-	// 2. InputSender: porque podria estar bloqueado en send().
-	// 3. OutputReceiver: porque podria estar bloqueado en recv().
-
-	// Setteo keep_running = false en los threads y
 	inputter.stop();
 	outputter.stop();
 
