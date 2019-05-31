@@ -67,7 +67,8 @@ project 'Testbed'
 		'Testbed/imgui/*',
 		'../../server/src/world.cpp',
 		'../../server/src/bodies/*',
-		'../../server/src/bodies/chell/*'
+		'../../server/src/bodies/chell/*',
+		'../../server/src/bodies/block/*'
 	}
 
     filter { 'system:windows' }

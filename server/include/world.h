@@ -41,10 +41,10 @@ public:
     Chell *createChell(float x, float y);
 
     /* Crea un bloque cuadrado de metal en (x, y) */
-    void createSquareMetalBlock(float x, float y);
+    Block *createSquareMetalBlock(float x, float y);
 
     /* Crea un bloque cuadrado de piedra en (x, y) */
-    void createSquareStoneBlock(float x, float y);
+    Block *createSquareStoneBlock(float x, float y);
 
 private:
     /* Libera los bodies creados */

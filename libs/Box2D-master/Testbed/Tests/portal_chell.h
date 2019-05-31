@@ -2,7 +2,8 @@
 #define __PORTAL_CHELL_H__
 
 #include "../../../../server/include/world.h"
-#include "../../../../server/include/bodies/chell.h"
+#include "../../../../server/include/bodies/chell/chell.h"
+#include "../../../../server/include/bodies/block/block.h"
 
 
 class PortalChell: public Test {
@@ -14,6 +15,13 @@ public:
     PortalChell():
         world(this->m_world) {
         this->chell = this->world.createChell(0, 0);
+        this->world.createSquareMetalBlock(-6, -2);
+        this->world.createSquareMetalBlock(-4, -2);
+        this->world.createSquareMetalBlock(-2, -2);
+        this->world.createSquareStoneBlock(0, -2);
+        this->world.createSquareMetalBlock(2, -2);
+        this->world.createSquareMetalBlock(4, -2);
+        this->world.createSquareMetalBlock(6, -2);
     }
 
     void Step(Settings *settings) {

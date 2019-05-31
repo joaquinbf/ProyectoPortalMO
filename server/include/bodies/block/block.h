@@ -14,9 +14,9 @@ class Block: public Body {
 private:
     Shape *shape;
     Material *material;
-    const float HALF_WIDTH = 52;
-    const float HALF_HEIGHT = 108;
-    const float DENSITY = 0.001;
+    const float HALF_WIDTH = 1.00;
+    const float HALF_HEIGHT = 1.00;
+    const float DENSITY = 1;
     const float ANGLE = 0;
 
 public:
