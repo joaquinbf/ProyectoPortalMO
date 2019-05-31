@@ -17,7 +17,7 @@ private:
 public:
     explicit Player(Socket socket);
     ~Player();
-    void start();
+    void start();   
     void stop();
     void sendChellIdToClient(uint32_t id) const;
     void setInputPtr(ProtectedQueue<Action>* ptr);

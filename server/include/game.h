@@ -10,6 +10,7 @@
 #include "../../common/include/socket.h"
 #include "../include/player.h"
 #include "../include/stage.h"
+#include "../include/broadcaster.h"
 
 class Game{
 private:
@@ -17,6 +18,7 @@ private:
 	std::vector<Player*> players;
 	ProtectedQueue<Action> inputs;
 	ProtectedQueue<Update> updates;
+	Broadcaster broadcaster;
 	uint32_t capacity;
 public:
 	explicit Game(const std::string& mapName); 

@@ -1,8 +1,10 @@
 #include "../include/game.h"
 
-Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates){
+Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates),
+	broadcaster(&this->updates){
 	this->capacity = stage.getCapacity();
 	this->stage.start();
+	this->broadcaster.start();
 }
 
 Game::~Game(){	
@@ -11,6 +13,8 @@ Game::~Game(){
 	}
 	this->stage.stop();
 	this->stage.join();
+	this->broadcaster.stop();
+	this->broadcaster.join();
 }
 
 void Game::addPlayer(Socket socket){
@@ -20,7 +24,8 @@ void Game::addPlayer(Socket socket){
 	player->setInputPtr(&this->inputs);
 	for(Update u: ul){
 		player->pushBackUpdate(u);
-	}	
+	}
+	this->broadcaster.addPlayer(player->getUpdatesPtr());	
 	player->start();	
 	this->players.push_back(player);
 }
