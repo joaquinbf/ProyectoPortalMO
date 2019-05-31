@@ -25,8 +25,29 @@ World::~World() {
 
 Chell *World::createChell(float x, float y) {
     Chell *chell = new Chell(this->body_count, this->b2world, x, y);
+    this->body_count++;
     this->bodies.push_back(chell);
     return chell;
+}
+
+void World::createSquareMetalBlock(float x, float y) {
+    Shape *shape = new SquareShape();
+    Material *material = new MetalMaterial();
+    Block *block = new Block(this->body_count, this->b2world,
+                             x, y,
+                             shape, material);
+    this->bodies.push_back(block);
+    this->body_count++;
+}
+
+void World::createSquareStoneBlock(float x, float y) {
+    Shape *shape = new SquareShape();
+    Material *material = new StoneMaterial();
+    Block *block = new Block(this->body_count, this->b2world,
+                             x, y,
+                             shape, material);
+    this->bodies.push_back(block);
+    this->body_count++;
 }
 
 void World::deleteBodies() {

@@ -14,15 +14,20 @@ Block::Block(
 
     this->b2body = b2world->CreateBody(&bodyDef);
 
-    b2PolygonShape boxShape;
-    boxShape.SetAsBox(this->HALF_WIDTH, this->HALF_HEIGHT);
+    b2PolygonShape b2polygonshape = this->shape->giveShape(this->HALF_WIDTH,
+                                                           this->HALF_HEIGHT);
 
     b2FixtureDef boxFixtureDef;
-    boxFixtureDef.shape = &boxShape;
+    boxFixtureDef.shape = &b2polygonshape;
     boxFixtureDef.density = this->DENSITY;
 
     this->b2body->CreateFixture(&boxFixtureDef);
 
     this->shape = shape;
     this->material = material;
+}
+
+Block::~Block() {
+    delete shape;
+    delete material;
 }
