@@ -3,15 +3,19 @@
 Player::Player(Socket socket):
     protocol(std::move(socket)),
     player_id(0),
-    inputsPtr(nullptr) {
+    inputsPtr(nullptr),
+    inputReceiver(protocol),
+    updateSender(protocol) {
 }
 
 void Player::start() {
-    //this->input_receiver.start();
+    this->inputReceiver.start();
+    this->updateSender.start();
 }
 
 void Player::stop() {
-    //this->input_receiver.stop();
+    this->inputReceiver.stop();
+    this->updateSender.stop();
 }
 
 void Player::sendChellIdToClient() const{
@@ -19,5 +23,5 @@ void Player::sendChellIdToClient() const{
 }
 
 void Player::setInputPtr(ProtectedQueue<Action>* ptr){
-	this->inputsPtr = ptr;
+	this->inputReceiver.setInputPtr(ptr);
 }

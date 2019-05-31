@@ -20,11 +20,6 @@ SdlWindow::SdlWindow(int width, int height) :
     }   
 }
 
-void SdlWindow::openWindow(){
-
-}
-
-
 SdlWindow::~SdlWindow() {
     if (this->renderer) {
         SDL_DestroyRenderer(this->renderer);

@@ -5,7 +5,8 @@ Client::Client(int x, int y)
 serverManager("localhost", PORT), inputManager(this->serverManager,*this),
 updateReceiver(this->serverManager,this->updates)
 {
-	this->myChellId = serverManager.receiveChellId();	
+	//this->myChellId = serverManager.receiveChellId();	
+	this->myChellId = 0;
 }
 
 Client::~Client(){
@@ -23,8 +24,6 @@ void Client::main(){
     this->running = true;
     Update update;
     
-    this->window.openWindow();
-
     this->inputManager.start();
     this->updateReceiver.start();
 

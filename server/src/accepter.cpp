@@ -14,12 +14,10 @@ void Accepter::run() {
             //WAIT FOR PEER RESPONSE
             //PROCESAR COMANDO PARA CREAR PARTIDA O UNIR PEER A PARTIDA
             //ESTO HAY QUE HACERLO EN OTRO HILO PARA NO BLOQUEAR EL ACCEPTER
-            Player player(std::move(peer));
-            this->games[0]->addPlayer(std::move(player));
+            this->games[0]->addPlayer(std::move(peer));
         }
     } catch (const ConnectionErrorException &e) {
     }
-
     //this->match.stop();
     //this->match.join();
 }

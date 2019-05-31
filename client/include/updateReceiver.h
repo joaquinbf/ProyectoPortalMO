@@ -7,6 +7,7 @@
 #include "../../common/include/protected_queue.h"
 
 class UpdateReceiver : public Thread{
+private:	
 	const ServerManager& serverManager;
 	ProtectedQueue<Update>& updates;
 	bool running;
