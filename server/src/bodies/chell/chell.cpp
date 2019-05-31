@@ -1,6 +1,9 @@
 #include "../../../include/bodies/chell/chell.h"
 
 #include "../../../include/bodies/body.h"
+#include "../../../include/bodies/chell/chell_state.h"
+#include "../../../include/bodies/chell/idle_state.h"
+#include "../../../include/bodies/chell/running_state.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -10,6 +13,7 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id),
     is_facing_right(true),
     idle_state(this),
+    running_state(this),
     state(&this->idle_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
