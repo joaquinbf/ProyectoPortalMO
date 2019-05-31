@@ -18,7 +18,6 @@ class ChellState;
 
 class Chell: public Body {
 private:
-    b2Body *b2body;
     const float HALF_WIDTH = 100;
     const float HALF_HEIGHT = 150;
     const float DENSITY = 1;
