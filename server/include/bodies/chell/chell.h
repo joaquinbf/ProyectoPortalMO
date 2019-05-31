@@ -1,0 +1,26 @@
+#ifndef __CHELL_H__
+#define __CHELL_H__
+
+#include "../body.h"
+#include "chell_state.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
+#include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
+
+class Chell: public Body {
+private:
+    ChellState *state;
+    bool is_facing_right;
+    const float HALF_WIDTH = 52;
+    const float HALF_HEIGHT = 108;
+    const float DENSITY = 0.001;
+    const float ANGLE = 0;
+
+public:
+    /* Instancia a chell de id 'body_id' sobre b2world en la
+     * posicion (x, y) mirando a la derecha. */
+    Chell(uint32_t body_id, b2World *b2world, float x, float y);
+};
+
+#endif
