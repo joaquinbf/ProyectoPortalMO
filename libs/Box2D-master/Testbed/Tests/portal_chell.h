@@ -2,15 +2,18 @@
 #define __PORTAL_CHELL_H__
 
 #include "../../../../server/include/world.h"
+#include "../../../../server/include/bodies/chell.h"
+
 
 class PortalChell: public Test {
 private:
     World world;
+    Chell *chell;
 
 public:
     PortalChell():
         world(this->m_world) {
-        this->world.createChell(0, 0);
+        this->chell = this->world.createChell(0, 0);
     }
 
     void Step(Settings *settings) {
