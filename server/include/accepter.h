@@ -2,6 +2,7 @@
 #define __ACCEPTER_H__
 
 #include <vector>
+#include <string>
 
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"

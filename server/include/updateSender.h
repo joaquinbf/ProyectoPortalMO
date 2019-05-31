@@ -10,13 +10,12 @@ class UpdateSender : public Thread{
 private: 
 	bool running;
 	Protocol& protocol;
-	ProtectedQueue<Update> updates;
+	ProtectedQueue<Update>* updates;
 public:
-	explicit UpdateSender(Protocol& p);
+	explicit UpdateSender(Protocol& p,ProtectedQueue<Update>* updates);
 	~UpdateSender();
     virtual void run() override;
-    void stop();	
-    ProtectedQueue<Update>* getQueuePtr();
+    void stop();
 };
 
 #endif

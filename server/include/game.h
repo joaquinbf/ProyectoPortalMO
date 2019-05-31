@@ -2,23 +2,24 @@
 #define _GAME_H_
 
 #include <vector>
+#include <string>
 
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
 #include "../../common/include/update.h"
 #include "../../common/include/socket.h"
 #include "../include/player.h"
+#include "../include/stage.h"
 
 class Game{
 private:
-	//Stage stage;
+	Stage stage;
 	std::vector<Player*> players;
 	ProtectedQueue<Action> inputs;
 	ProtectedQueue<Update> updates;
 	uint32_t capacity;
 public:
-	Game(); //tendria que haber un constructor que reciba el nombre del mapa
-	//y ya lo cargue, pero ahora voy a dejar un mapa harcodeado en el constructor
+	explicit Game(const std::string& mapName); 
 	~Game();
 	void addPlayer(Socket socket);
 };

@@ -3,7 +3,7 @@
 Player::Player(Socket socket):
     protocol(std::move(socket)),
     inputReceiver(protocol),
-    updateSender(protocol) {
+    updateSender(protocol,&this->updates) {
 }
 
 Player::~Player(){
@@ -25,4 +25,12 @@ void Player::sendChellIdToClient(uint32_t id) const{
 
 void Player::setInputPtr(ProtectedQueue<Action>* ptr){
 	this->inputReceiver.setInputPtr(ptr);
+}
+
+ProtectedQueue<Update>* Player::getUpdatesPtr(){
+    return &this->updates;
+}
+
+void Player::pushBackUpdate(Update update){
+    this->updates.push(update);
 }

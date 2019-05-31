@@ -12,12 +12,12 @@ Accepter::~Accepter(){
 }
 
 void Accepter::run() {
-    this->games.push_back(new Game());
+    this->games.push_back(new Game("MAPA.yaml"));
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
-            //SEND PEER LIST OF GAMES
-            //WAIT FOR PEER RESPONSE
+            //ENVIAR AL PEER LISTA DE GAMES ABIERTOS
+            //ESPERAR PEER RESPONSE
             //PROCESAR COMANDO PARA CREAR PARTIDA O UNIR PEER A PARTIDA
             //ESTO HAY QUE HACERLO EN OTRO HILO PARA NO BLOQUEAR EL ACCEPTER
             this->games[0]->addPlayer(std::move(peer));

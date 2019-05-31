@@ -1,7 +1,7 @@
 #include "../include/game.h"
 
-Game::Game() : capacity(4){
-	//aca tengo que cargar el mundo desde el archivo
+Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates){
+	this->capacity = stage.getCapacity();
 }
 
 Game::~Game(){	
@@ -11,10 +11,13 @@ Game::~Game(){
 }
 
 void Game::addPlayer(Socket socket){
-	//PRIMERO TENGO QUE ENVIARLE EL MUNDO AL JUGADOR EN FORMA DE UPDATES
 	Player* player= new Player(std::move(socket));
-	player->sendChellIdToClient(0);
+	std::list<Update> ul = this->stage.getNewPlayerUpdates();
+	player->sendChellIdToClient(this->players.size());
 	player->setInputPtr(&this->inputs);
+	for(Update u: ul){
+		player->pushBackUpdate(u);
+	}	
 	player->start();	
 	this->players.push_back(player);
 }
