@@ -9,8 +9,7 @@
 
 class Player {
 private:
-    Protocol protocol;
-    uint32_t player_id;    
+    Protocol protocol;  
     InputReceiver inputReceiver;
     UpdateSender updateSender;
 public:
@@ -18,7 +17,7 @@ public:
     ~Player();
     void start();
     void stop();
-    void sendChellIdToClient() const;
+    void sendChellIdToClient(uint32_t id) const;
     void setInputPtr(ProtectedQueue<Action>* ptr);
 };
 

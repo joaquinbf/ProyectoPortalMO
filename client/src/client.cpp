@@ -5,8 +5,7 @@ Client::Client(int x, int y)
 serverManager("localhost", PORT), inputManager(this->serverManager,*this),
 updateReceiver(this->serverManager,this->updates)
 {
-	//this->myChellId = serverManager.receiveChellId();	
-	this->myChellId = 0;
+	this->myChellId = serverManager.receiveChellId();	
 }
 
 Client::~Client(){
