@@ -7,10 +7,10 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 
 Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id) {
-    this->is_facing_right = true;
-
-
+    Body(body_id),
+    is_facing_right(true),
+    idle_state(this),
+    state(&this->idle_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);

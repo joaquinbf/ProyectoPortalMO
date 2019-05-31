@@ -1,16 +1,10 @@
-#ifndef __PORTAL_CHELL_H__
-#define __PORTAL_CHELL_H__
+#ifndef __PORTAL_LEAK_H__
+#define __PORTAL_LEAK_H__
 
-#include "../../../../server/include/world.h"
-
-class PortalChell: public Test {
-private:
-    World world;
-
+// Template de test 
+class Portal: public Test {
 public:
-    PortalChell():
-        world(this->m_world) {
-        this->world.createChell(0, 0);
+    Portal() {
     }
 
     void Step(Settings *settings) {
@@ -18,7 +12,7 @@ public:
     }
 
     static Test *Create() {
-        return new PortalChell();
+        return new Portal();
     }
 
     void Keyboard(int key) {
