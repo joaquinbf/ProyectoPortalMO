@@ -1,17 +1,20 @@
 #ifndef __ACCEPTER_H__
 #define __ACCEPTER_H__
 
+#include <vector>
+
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
 #include "../../common/include/port.h"
 
-#include "../include/match.h"
+#include "../include/game.h"
+#include "../include/player.h"
 
 class Accepter: public Thread {
 private:
     Socket socket;
     bool keep_running;
-    Match match;
+    std::vector<Game*> games;
 
 public:
     Accepter();

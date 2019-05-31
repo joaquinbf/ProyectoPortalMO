@@ -1,27 +1,23 @@
 #include "../include/player.h"
 
-Player::Player(Socket socket, ProtectedQueue<Command*> *commands):
+Player::Player(Socket socket):
     protocol(std::move(socket)),
     player_id(0),
-    input_receiver(this, commands) {
+    inputsPtr(nullptr) {
 }
 
 void Player::start() {
-    this->input_receiver.start();
+    //this->input_receiver.start();
 }
 
 void Player::stop() {
-    this->input_receiver.stop();
+    //this->input_receiver.stop();
 }
 
-void Player::setChell(Chell *chell) {
-    this->chell = chell;
-}
-
-void Player::sendChellIdToClient() {
+void Player::sendChellIdToClient() const{
     this->protocol.sendQuad(this->player_id);
 }
 
-void Player::sendUpdate(Update update) {
-    this->protocol.sendUpdate(update);
+void Player::setInputPtr(ProtectedQueue<Action>* ptr){
+	this->inputsPtr = ptr;
 }
