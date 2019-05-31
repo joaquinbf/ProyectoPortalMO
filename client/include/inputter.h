@@ -15,11 +15,13 @@ private:
     InputSender input_sender;
 
 public:
+    // Instancia un inputter.
     Inputter(Protocol *protocol);
 
     // Imprime y envia 10 actions a server.
     virtual void run() override;
 
+    // Detiene el thread.
     void stop();
 };
 

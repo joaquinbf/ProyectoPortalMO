@@ -20,9 +20,17 @@ private:
     ProtectedQueue<Update> update_queue;
 
 public:
+    /* Instancia un OutputReceiver que estable comunicacion mediante protocol */
     OutputReceiver(Protocol *protocol);
+
+    /* Corre el thread */
     virtual void run() override;
+
+    /* Detiene el thread */
     void stop();
+
+    /* Espera hasta que la cola tenga una update y la devuelve.
+     * Devuelve COMMANAD::STOP_THREAD_COMMAND si el thread fue parado. */
     Update waitAndPop();
 };
 

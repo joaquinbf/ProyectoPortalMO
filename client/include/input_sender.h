@@ -17,9 +17,17 @@ private:
     ProtectedQueue<Action> action_queue;
 
 public:
+    /* Instancia un input sender estableciendo la comunicacion mediante el
+     * protocolo */
     InputSender(Protocol *protocol);
+
+    /* Corre input sender */
     virtual void run() override;
+
+    /* Detiene el envio */
     void stop();
+
+    /* Pushea una accion para ser enviada */
     void push(const Action &action);
 };
 

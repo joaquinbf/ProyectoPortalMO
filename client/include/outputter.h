@@ -15,11 +15,14 @@ private:
     OutputReceiver output_receiver;
 
 public:
+    // Instancia un outputter estableciendo la comunicacion mediante el
+    // protocolo.
     Outputter(Protocol *protocol);
 
     // Recibe e imprime 10 updates de server.
     virtual void run() override;
 
+    // Detiene el thread.
     void stop();
 };
 
