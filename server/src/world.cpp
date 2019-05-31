@@ -1,0 +1,42 @@
+#include "../include/world.h"
+
+#include "../include/bodies/body.h"
+#include "../include/bodies/chell/chell.h"
+#include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
+#include <cstdint>
+#include <vector>
+
+World::World():
+    b2world(new b2World(GRAVITY)),
+    body_count(0),
+    b2world_is_internal(true) {
+}
+
+World::World(b2World *b2world):
+    b2world(b2world),
+    body_count(0),
+    b2world_is_internal(false) {
+}
+
+World::~World() {
+    this->deleteBodies();
+    this->deleteB2WorldIfInternal();
+}
+
+Chell *World::createChell(float x, float y) {
+    Chell *chell = new Chell(this->body_count, this->b2world, x, y);
+    this->bodies.push_back(chell);
+    return chell;
+}
+
+void World::deleteBodies() {
+    for (Body *body: this->bodies) {
+        delete body;
+    }
+}
+
+void World::deleteB2WorldIfInternal() {
+    if (this->b2world_is_internal) {
+        delete this->b2world;
+    }
+}

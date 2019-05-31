@@ -66,13 +66,8 @@ project 'Testbed'
 		'Testbed/glfw/window.c',
 		'Testbed/imgui/*',
 		'../../server/src/world.cpp',
-		'../../server/src/body.cpp',
-		'../../server/src/chell/*',
-		'../../server/src/block/shape.cpp',
-		'../../server/src/block/square_shape.cpp',
-		'../../server/src/block/material.cpp',
-		'../../server/src/block/stone_material.cpp',
-		'../../server/src/block/block.cpp',
+		'../../server/src/bodies/*',
+		'../../server/src/bodies/chell/*'
 	}
 
     filter { 'system:windows' }
