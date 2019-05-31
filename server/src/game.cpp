@@ -6,7 +6,7 @@ Game::Game() : capacity(4){
 
 Game::~Game(){	
 	for(size_t i = 0;i < this->players.size() ;++i){
-		this->players[i]->stop();	
+		delete this->players[i];	
 	}
 }
 

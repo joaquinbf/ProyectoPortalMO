@@ -4,19 +4,18 @@
 #include <cstdint>
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
-#include "../../common/include/protected_queue.h"
 #include "../include/inputReceiver.h"
 #include "../include/updateSender.h"
 
 class Player {
 private:
     Protocol protocol;
-    uint32_t player_id;
-    ProtectedQueue<Action>* inputsPtr;    
+    uint32_t player_id;    
     InputReceiver inputReceiver;
     UpdateSender updateSender;
 public:
-    Player(Socket socket);
+    explicit Player(Socket socket);
+    ~Player();
     void start();
     void stop();
     void sendChellIdToClient() const;

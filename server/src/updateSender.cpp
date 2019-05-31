@@ -7,8 +7,10 @@ UpdateSender::~UpdateSender(){}
 void UpdateSender::run(){
 	Update update;
 	while(this->running){
-		this->updates.try_pop(update);
-		this->protocol.sendUpdate(update);		
+		if(this->updates.try_pop(update)){
+			this->protocol.sendUpdate(update);	
+		}
+		usleep(100000);
 	}
 }
 

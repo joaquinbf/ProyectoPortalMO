@@ -18,6 +18,7 @@ private:
 
 public:
     Accepter();
+    ~Accepter();
     virtual void run() override;
     void stop();
 };

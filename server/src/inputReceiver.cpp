@@ -10,8 +10,7 @@ InputReceiver::~InputReceiver(){}
 void InputReceiver::run(){
 	try{
 		while(this->running){
-			Action action= this->protocol.receiveAction(); //bloqueante
-			std::cout<<"INPOUT\n";
+			Action action= this->protocol.receiveAction(); //bloqueante			
 			this->inputPtr->push(std::move(action));
 		}
 	}catch(const ConnectionErrorException &e){

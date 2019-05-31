@@ -5,6 +5,12 @@ Accepter::Accepter() {
     this->keep_running = true;
 }
 
+Accepter::~Accepter(){
+    for(Game* game :  this->games){
+        delete game;
+    }
+}
+
 void Accepter::run() {
     this->games.push_back(new Game());
     try {
@@ -18,8 +24,6 @@ void Accepter::run() {
         }
     } catch (const ConnectionErrorException &e) {
     }
-    //this->match.stop();
-    //this->match.join();
 }
 
 void Accepter::stop() {
