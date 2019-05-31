@@ -11,7 +11,8 @@ enum ACTION: uint8_t {
     STOP_LEFT,
     STOP_RIGHT,
     FIRE,
-    JIG
+    JIG,
+    STOP_THREAD
 };
 
 class Action{
