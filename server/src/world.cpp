@@ -20,7 +20,7 @@ World::~World() {
 
 Chell *World::createChell() {
     std::cout << "Chell *World::createChell() " << std::endl;
-    // std::lock_guard<std::mutex> lg(this->m);
+    std::lock_guard<std::mutex> lg(this->m);
     float x = 0;
     float y = 0;
     Chell *chell = new Chell(this->body_count,

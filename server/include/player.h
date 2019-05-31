@@ -10,20 +10,8 @@
 #include "../../common/include/protocol.h"
 
 class Player: public Thread {
-private:
-    bool keep_running;
-    Protocol protocol;
-    Match *match;
-    InputReceiver input_receiver;
-    Chell *chell;
-    UpdateSender update_sender;
-
 public:
-    Player(Socket socket, Match *match);
-    ~Player();
     virtual void run() override;
-    void stop();
-    bool isFinished();
 };
 
 #endif
