@@ -29,3 +29,15 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
 
     this->b2body->CreateFixture(&boxFixtureDef);
 }
+
+void Chell::faceRight() {
+    this->is_facing_right = true;
+}
+
+void Chell::faceLeft() {
+    this->is_facing_right = false;
+}
+
+void Chell::faceOppositeDirection() {
+    this->is_facing_right = !this->is_facing_right;
+}

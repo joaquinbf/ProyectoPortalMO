@@ -15,13 +15,9 @@ public:
     PortalChell():
         world(this->m_world) {
         this->chell = this->world.createChell(0, 0);
-        this->world.createSquareMetalBlock(-6, -2);
-        this->world.createSquareMetalBlock(-4, -2);
-        this->world.createSquareMetalBlock(-2, -2);
-        this->world.createSquareStoneBlock(0, -2);
-        this->world.createSquareMetalBlock(2, -2);
-        this->world.createSquareMetalBlock(4, -2);
-        this->world.createSquareMetalBlock(6, -2);
+        for (int i = -6; i < 7; i = i+2) {
+            this->world.createSquareMetalBlock(i, -2);
+        }
     }
 
     void Step(Settings *settings) {
