@@ -3,6 +3,7 @@
 
 InputManager::InputManager(const ServerManager& sm,Client& c) : serverManager(sm),
 client(c),running(true){
+	this->chellId = this->client.getChellId();
 }
 
 InputManager::~InputManager(){}
@@ -25,13 +26,13 @@ void InputManager::run(){
 	                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 	                switch (keyEvent.keysym.sym) {
 	                    case SDLK_a:
-	                        this->serverManager.sendAction(Action(ACTION::RUN_LEFT,0));
+	                        this->serverManager.sendAction(Action(this->chellId,ACTION::RUN_LEFT,0));
 	                        break;
 	                    case SDLK_d:
-	                        this->serverManager.sendAction(Action(ACTION::RUN_RIGHT,0));
+	                        this->serverManager.sendAction(Action(this->chellId,ACTION::RUN_RIGHT,0));
 	                        break;
 	                    case SDLK_w:
-	                    	this->serverManager.sendAction(Action(ACTION::JUMP,0));
+	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JUMP,0));
 	                        break;
 	                    case SDLK_o:
 	                    	this->client.zoomIn();
@@ -40,10 +41,10 @@ void InputManager::run(){
 	                    	this->client.zoomOut();
 	                        break;
 	                    case SDLK_b:
-	                    	this->serverManager.sendAction(Action(ACTION::JIG,0));
+	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0));
 	                    	break;
 	                    case SDLK_SPACE:
-	                    	this->serverManager.sendAction(Action(ACTION::FIRE,0));
+	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE,0));
 	                    	break;
 	                    }
 	            } // Fin KEY_DOWN
@@ -52,10 +53,10 @@ void InputManager::run(){
 	        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 	                switch (keyEvent.keysym.sym) {
 	                    case SDLK_a:
-	                    	this->serverManager.sendAction(Action(ACTION::STOP_LEFT,0));
+	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::STOP_LEFT,0));
 	                        break;
 	                    case SDLK_d:
-	                    	this->serverManager.sendAction(Action(ACTION::STOP_RIGHT,0));
+	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::STOP_RIGHT,0));
 	                        break;
 	                    case SDLK_w:
 	                        break;
@@ -65,7 +66,7 @@ void InputManager::run(){
 	            } // Fin KEY_UP
 	        	break;
 	        case SDL_QUIT:
-	        	this->serverManager.sendAction(Action(ACTION::QUIT,0));
+	        	this->serverManager.sendAction(Action(this->chellId,ACTION::QUIT,0));
 	            this->running = false;
 	            break;
 	    }

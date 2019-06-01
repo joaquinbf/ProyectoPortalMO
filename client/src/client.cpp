@@ -89,3 +89,7 @@ void Client::zoomOut(){
 		this->scale-=0.05;
 	}
 }
+
+uint32_t Client::getChellId() const{
+	return this->myChellId;
+}

@@ -48,6 +48,7 @@ public:
 	void main();
 	void zoomIn();
 	void zoomOut();
+	uint32_t getChellId() const;
 private:
 	void updateHandler(Update update);
 	
