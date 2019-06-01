@@ -11,6 +11,7 @@
 #include <cstdint>
 #include <vector>
 #include <list>
+#include <iostream>
 
 World::World():
     b2world(new b2World(GRAVITY)),
@@ -109,6 +110,7 @@ std::list<Update> World::getUpdatesWithCommand(COMMAND command) const {
     for (Body *body: this->bodies) {
         Update update = body->createUpdate(command);
         lista.emplace_back(update);
+        std::cout << "STATUS : " << update.getStatus() << std::endl;
     }
 
     return lista;

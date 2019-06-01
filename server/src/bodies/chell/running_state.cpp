@@ -26,6 +26,7 @@ void RunningState::pressRight() {
 void RunningState::releaseRight() {
     std::cout << "void RunningState::releaseRight()" << std::endl;
     this->chell->stopRightMovement();
+    this->chell->changeStateToIdle();
 }
 
 void RunningState::updateStateOnTimer() {
