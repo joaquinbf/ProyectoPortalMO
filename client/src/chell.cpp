@@ -26,9 +26,15 @@ void Chell::renderCentered(int resx,int resy, float scale){
 	(this->*actionPtr)();
 }
 
-void Chell::render(int resx,int resy,int width,int height,float scale){
-
-	return;
+void Chell::render(int cx,int cy,int resx,int resy,float scale){
+	int a = (this->posx-cx)*scale - (this->width/2)*scale + resx/2 ;
+	int b = -(this->posy-cy)*scale - (this->height/2)*scale + (2*resy)/3;	
+	if( this-> direction == 1){
+		this->texturePtr->render(this->frameArea, Area(a,b,this->width*scale,this->height*scale));
+	} else if(this-> direction == 0){
+		this->texturePtr->renderFlipedHorizontal(this->frameArea, Area(a,b,this->width*scale,this->height*scale));
+	}
+	(this->*actionPtr)();
 }
 
 int32_t Chell::getPosX(){

@@ -4,7 +4,7 @@ Stage::Stage(const std::string& mapName,
 	ProtectedQueue<Action>* inputs,ProtectedQueue<Update>* updates) :
 running(true),inputs(inputs),updates(updates)
 {
-
+	this->world.createWorldOne();
 }
 
 Stage::~Stage(){}
