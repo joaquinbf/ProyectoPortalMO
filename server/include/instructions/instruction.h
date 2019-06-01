@@ -3,6 +3,7 @@
 
 class Instruction {
 public:
+    virtual ~Instruction();
     virtual void execute() = 0;
 };
 

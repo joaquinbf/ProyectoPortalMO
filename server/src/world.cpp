@@ -31,6 +31,7 @@ Chell *World::createChell(float x, float y) {
     Chell *chell = new Chell(this->body_count, this->b2world, x, y);
     this->body_count++;
     this->bodies.push_back(chell);
+    this->chells[chell->getBodyId()] = chell;
     return chell;
 }
 
@@ -80,6 +81,9 @@ void World::createWorldOne() {
     }
 }
 
+void World::applyAction(const Action &action) {
+
+}
 
 
 void World::deleteBodies() {

@@ -14,7 +14,7 @@ void Stage::run(){
 	std::list<Update> list;
 	while(this->running){
 		while(this->inputs->try_pop(action)){
-			//this->world.applyAction(action);
+			this->world.applyAction(action);
 		}
 		this->world.step();
 		list = world.getUpdates();

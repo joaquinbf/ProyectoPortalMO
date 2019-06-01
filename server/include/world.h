@@ -18,6 +18,7 @@
 #include <cstdint>
 #include <vector>
 #include <list>
+#include <map>
 #include <mutex>
 
 #define GRAVITY b2Vec2(0.0, -9.8)
@@ -28,6 +29,7 @@ private:
     uint32_t body_count;
     bool b2world_is_internal;
     std::vector<Body *> bodies;
+    std::map<uint32_t, Chell *> chells;
     std::mutex mutex;
     const float TIME_STEP = 1/20.0;
     const uint32_t VELOCITY_ITERATIONS = 8;
@@ -64,6 +66,9 @@ public:
 
     /* Crea el world 01: Un mundo de 6 bloques de metal.  */
     void createWorldOne();
+
+    /* Aplica una accion sobre world. */
+    void applyAction(const Action &action);
 
 private:
     /* Libera los bodies creados */
