@@ -4,19 +4,18 @@
 #include <SDL2/SDL.h>
 
 #include "../include/serverManager.h"
+#include "../include/gameView.h"
 #include "../../common/include/action.h"
 #include "../../common/include/thread.h"
-
-class Client;
 
 class InputManager : public Thread{
 private:
 	const ServerManager& serverManager;
 	uint32_t chellId;
-	Client& client;
+	GameView& gameView;
 	bool running;
 public:
-	explicit InputManager(const ServerManager& sm,Client& c);
+	explicit InputManager(const ServerManager& sm,GameView& g);
 	~InputManager();
 	virtual void run() override;
     void stop();

@@ -1,9 +1,9 @@
 #include "../include/inputManager.h"
-#include "../include/client.h"
 
-InputManager::InputManager(const ServerManager& sm,Client& c) : serverManager(sm),
-client(c),running(true){
-	this->chellId = this->client.getChellId();
+
+InputManager::InputManager(const ServerManager& sm,GameView& v) : serverManager(sm),
+gameView(v),running(true){
+	this->chellId = this->gameView.getChellId();
 }
 
 InputManager::~InputManager(){}
@@ -35,10 +35,10 @@ void InputManager::run(){
 	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JUMP,0));
 	                        break;
 	                    case SDLK_o:
-	                    	this->client.zoomIn();
+	                    	this->gameView.zoomIn();
 	                        break;
 	                    case SDLK_p:
-	                    	this->client.zoomOut();
+	                    	this->gameView.zoomOut();
 	                        break;
 	                    case SDLK_b:
 	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0));
