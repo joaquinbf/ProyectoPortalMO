@@ -16,7 +16,7 @@ public:
         world(this->m_world) {
         this->chell = this->world.createChell(0, 0);
         for (int i = 0; i < 7; i++) {
-            this->world.createSquareMetalBlock(200 * i, -300);
+            this->world.createSquareMetalBlock(2.00 * i, -3.00);
         }
     }
 

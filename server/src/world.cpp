@@ -72,7 +72,7 @@ void World::step() {
 
 void World::createWorldOne() {
     for (int i = 0; i < 7; i++) {
-        this->createSquareMetalBlock(200 * i, -300);
+        this->createSquareMetalBlock(2.00 * i, -3.00);
     }
 }
 
