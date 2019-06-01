@@ -42,7 +42,7 @@ public:
     ~Block();
 
     /* Devuelve una update del bloque */
-    virtual Update createUpdate() const;
+    virtual Update createUpdate(COMMAND command) const;
 };
 
 #endif

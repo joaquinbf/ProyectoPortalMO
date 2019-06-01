@@ -60,7 +60,7 @@ std::list<Update> World::getNewPlayerUpdates() {
     std::list<Update> lista;
 
     for (Body *body: this->bodies) {
-        Update update = body->createUpdate();
+        Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
         lista.emplace_back(update);
     }
 

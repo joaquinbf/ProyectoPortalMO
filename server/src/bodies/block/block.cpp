@@ -40,11 +40,11 @@ Block::~Block() {
     delete material;
 }
 
-Update Block::createUpdate() const {
+Update Block::createUpdate(COMMAND command) const {
     ENTITY entity = this->shape->createEntityWithMaterial(this->material);
 
     Update update(
-        COMMAND::CREATE_COMMAND,
+        command,
         entity,
         this->BODY_ID,
         STATUS::NONE_STATUS,

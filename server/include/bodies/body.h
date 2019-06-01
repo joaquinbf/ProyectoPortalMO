@@ -14,7 +14,7 @@ protected:
 public:
     Body(uint32_t body_id);
     virtual ~Body();
-    virtual Update createUpdate() const = 0;
+    virtual Update createUpdate(COMMAND command) const = 0;
 };
 
 #endif

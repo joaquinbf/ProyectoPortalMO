@@ -35,7 +35,7 @@ public:
     /* Hace mirar en la direccion opuesta */
     void faceOppositeDirection();
 
-    virtual Update createUpdate() const override;
+    virtual Update createUpdate(COMMAND command) const override;
 };
 
 #endif

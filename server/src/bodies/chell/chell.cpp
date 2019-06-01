@@ -46,6 +46,6 @@ void Chell::faceOppositeDirection() {
     this->is_facing_right = !this->is_facing_right;
 }
 
-Update Chell::createUpdate() const {
+Update Chell::createUpdate(COMMAND command) const {
     return Update();
 }
