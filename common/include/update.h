@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-#define ZOOM_FACTOR 100
+#define ZOOM_FACTOR 1
 
 #include "../include/types.h"
 

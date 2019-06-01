@@ -75,11 +75,11 @@ void World::step() {
 
 void World::createWorldOne() {
     for (int i = 0; i < 4; i++) {
-        this->createChell(2.00 * i, 0);
+        this->createChell(200 * i, 0);
     }
 
     for (int i = 0; i < 7; i++) {
-        this->createSquareMetalBlock(2.00 * i, -3.00);
+        this->createSquareMetalBlock(200 * i, -300);
     }
 }
 
