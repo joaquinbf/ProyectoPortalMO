@@ -1,11 +1,11 @@
 #include "../../../include/bodies/chell/keypad.h"
 
 Keypad::Keypad() {
-    keys[KEY::LEFT] = Key();
-    keys[KEY::RIGHT] = Key();
-    keys[KEY::UP] = Key();
-    keys[KEY::DOWN] = Key();
-    keys[KEY::FIRE] = Key();
+    keys[KEY::LEFT_KEY] = Key();
+    keys[KEY::RIGHT_KEY] = Key();
+    keys[KEY::UP_KEY] = Key();
+    keys[KEY::DOWN_KEY] = Key();
+    keys[KEY::FIRE_KEY] = Key();
 }
 
 void Keypad::press(KEY k) {

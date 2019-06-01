@@ -5,11 +5,11 @@
 #include <map>
 
 enum KEY {
-    LEFT ,
-    RIGHT,
-    UP,
-    DOWN,
-    FIRE,
+    LEFT_KEY = 0,
+    RIGHT_KEY,
+    UP_KEY,
+    DOWN_KEY,
+    FIRE_KEY
 };
 
 class Keypad {

@@ -57,3 +57,15 @@ Update Chell::createUpdate(COMMAND command) const {
         this->is_facing_right? 1 : 0);
     return update;
 }
+
+Keypad *Chell::getKeypad() {
+    return &this->keypad;
+}
+
+void Chell::pressLeft() {
+    this->keypad.press(KEY::LEFT_KEY);
+}
+
+void Chell::releaseLeft() {
+    this->keypad.release(KEY::LEFT_KEY);
+}
