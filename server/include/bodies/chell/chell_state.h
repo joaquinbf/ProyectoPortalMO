@@ -11,9 +11,17 @@ protected:
     Timer timer;
 
 public:
+    /* Instancia un estado para chell */
     ChellState(Chell *chell);
+
+    /* Realiza una accion basada en la tecla izquierda */
     virtual void pressLeft() = 0;
+
+    /* Realiza una accion basada en la tecla derecha */
     virtual void releaseLeft() = 0;
+
+    /* Cambia de estado basado en el tiempo que lleva en el mismo */
+    virtual void updateStateOnTimer() = 0;
 };
 
 #endif

@@ -49,6 +49,12 @@ public:
 
     /* Cambia el estado a idle */
     void changeStateToIdle();
+
+    /* Aplica un impulso a la izquierda */
+    void applyLinearImpulseToLeft();
+
+    /* Aplica un impulso a la derecha */
+    void applyLinearImpulseToRight();
 };
 
 #endif

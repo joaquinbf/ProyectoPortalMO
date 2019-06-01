@@ -16,3 +16,6 @@ void IdleState::releaseLeft() {
     this->chell->faceRight();
     this->chell->changeStateToRunning();
 }
+
+void IdleState::updateStateOnTimer() {
+}

@@ -10,6 +10,7 @@ public:
     RunningState(Chell *chell);
     virtual void pressLeft() override;
     virtual void releaseLeft() override;
+    virtual void updateStateOnTimer() override;
 };
 
 #endif

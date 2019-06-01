@@ -63,6 +63,7 @@ void Chell::pressLeft() {
 }
 
 void Chell::releaseLeft() {
+    this->state->releaseLeft();
 }
 
 void Chell::changeStateToRunning() {
@@ -71,4 +72,18 @@ void Chell::changeStateToRunning() {
 
 void Chell::changeStateToIdle() {
     this->state= &this->idle_state;
+}
+
+void Chell::applyLinearImpulseToLeft() {
+    float mass = this->b2body->GetMass();
+    float vel = 30;
+    float imp = mass * vel;
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, 0), true);
+}
+
+void Chell::applyLinearImpulseToRight() {
+    float mass = this->b2body->GetMass();
+    float vel = 30;
+    float imp = mass * vel;
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
 }
