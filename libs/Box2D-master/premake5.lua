@@ -68,7 +68,8 @@ project 'Testbed'
 		'../../server/src/world.cpp',
 		'../../server/src/bodies/*',
 		'../../server/src/bodies/chell/*',
-		'../../server/src/bodies/block/*'
+		'../../server/src/bodies/block/*',
+		'../../common/src/*'
 	}
 
     filter { 'system:windows' }

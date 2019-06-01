@@ -20,7 +20,7 @@
 #include <list>
 #include <mutex>
 
-#define GRAVITY b2Vec2(0.0, -9.8)
+#define GRAVITY b2Vec2(0.0, -980)
 
 class World {
 private:

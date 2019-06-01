@@ -15,8 +15,8 @@ public:
     PortalChell():
         world(this->m_world) {
         this->chell = this->world.createChell(0, 0);
-        for (int i = -6; i < 7; i = i+2) {
-            this->world.createSquareMetalBlock(i, -2);
+        for (int i = 0; i < 7; i++) {
+            this->world.createSquareMetalBlock(200 * i, -300);
         }
     }
 

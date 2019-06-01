@@ -71,8 +71,8 @@ void World::step() {
 }
 
 void World::createWorldOne() {
-    for (int i = -6; i < 7; i = i+2) {
-        this->createSquareMetalBlock(i, -2);
+    for (int i = 0; i < 7; i++) {
+        this->createSquareMetalBlock(200 * i, -300);
     }
 }
 
