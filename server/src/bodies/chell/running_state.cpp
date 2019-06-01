@@ -8,11 +8,11 @@ RunningState::RunningState(Chell *chell):
 }
 
 void RunningState::pressLeft() {
-    this->applyLinearImpulseToLeft();
+    this->chell->applyLinearImpulseToLeft();
 }
 
 void RunningState::releaseLeft() {
-    this->stopLeftMovement();
+    this->chell->stopLeftMovement();
 }
 
 void RunningState::updateStateOnTimer() {

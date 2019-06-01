@@ -55,6 +55,12 @@ public:
 
     /* Aplica un impulso a la derecha */
     void applyLinearImpulseToRight();
+
+    /* Para el movimiento hacia la izqueirda */
+    void stopLeftMovement();
+
+    /* Para el movimiento hacia la derecha */
+    void stopRightMovement();
 };
 
 #endif

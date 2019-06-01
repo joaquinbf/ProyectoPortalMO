@@ -87,3 +87,19 @@ void Chell::applyLinearImpulseToRight() {
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
 }
+
+void Chell::stopLeftMovement() {
+    b2Vec2 vel = this->b2body->GetLinearVelocity();
+    if (vel.x < 0) {
+        vel.x = 0;
+        this->b2body->SetLinearVelocity(vel);
+    }
+}
+
+void Chell::stopRightMovement() {
+    b2Vec2 vel = this->b2body->GetLinearVelocity();
+    if (vel.x > 0) {
+        vel.x = 0;
+        this->b2body->SetLinearVelocity(vel);
+    }
+}
