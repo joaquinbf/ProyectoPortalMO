@@ -57,15 +57,13 @@ Block *World::createSquareStoneBlock(float x, float y) {
 }
 
 std::list<Update> World::getNewPlayerUpdates() const {
-    std::list<Update> lista;
-
-    for (Body *body: this->bodies) {
-        Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
-        lista.emplace_back(update);
-    }
-
-    return lista;
+    return this->getUpdatesWithCommand(COMMAND::CREATE_COMMAND);
 }
+
+std::list<Update> World::getUpdates() const {
+    return this->getUpdatesWithCommand(COMMAND::UPDATE_COMMAND);
+}
+
 
 
 void World::deleteBodies() {
@@ -78,4 +76,15 @@ void World::deleteB2WorldIfInternal() {
     if (this->b2world_is_internal) {
         delete this->b2world;
     }
+}
+
+std::list<Update> World::getUpdatesWithCommand(COMMAND command) const {
+    std::list<Update> lista;
+
+    for (Body *body: this->bodies) {
+        Update update = body->createUpdate(command);
+        lista.emplace_back(update);
+    }
+
+    return lista;
 }

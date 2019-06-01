@@ -56,12 +56,17 @@ public:
      * jugadores. */
     std::list<Update> getNewPlayerUpdates() const;
 
+    /* Devuelve una lista con updates del mundo. */
+    std::list<Update> getUpdates() const;
+
 private:
     /* Libera los bodies creados */
     void deleteBodies();
 
     /* Libera a b2world si fue creado internamente */
     void deleteB2WorldIfInternal();
+
+    std::list<Update> getUpdatesWithCommand(COMMAND command) const;
 };
 
 #endif

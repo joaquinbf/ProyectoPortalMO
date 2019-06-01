@@ -14,10 +14,10 @@ void Stage::run(){
 	std::list<Update> list;
 	while(this->running){
 		while(this->inputs->try_pop(action)){
-			//this->world.aplyAction(action);
+			//this->world.applyAction(action);
 		}
 		//this->world.step();
-		//list = world.getUpdates();
+		list = world.getUpdates();
 		for(Update update : list){
 			this->updates->push(update);
 		}
