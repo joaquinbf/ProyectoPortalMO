@@ -7,12 +7,11 @@ UpdateSender::~UpdateSender(){}
 
 void UpdateSender::run(){
 	Update update;
-	while(this->running){
+	while(this->running && this->protocol.isConnected()){
 		if(this->updates->try_pop(update)){
 			this->protocol.sendUpdate(update);				
 		}
 		usleep(1000);
-		
 	}
 }
 

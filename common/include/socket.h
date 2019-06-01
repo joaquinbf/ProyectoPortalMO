@@ -35,7 +35,7 @@ public:
 	explicit Socket(int fd);
 	~Socket();
 
-	int get();
+	int get() const;
 	Socket &operator=(const Socket &other) = delete;
 	Socket &operator=(Socket &other) = delete;
   	Socket(const Socket &other) = delete;

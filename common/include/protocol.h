@@ -17,6 +17,7 @@ public:
 	explicit Protocol(Protocol&&);
 	~Protocol();
 	void close();
+	bool isConnected();
 	Protocol& operator=(Protocol&& other);
 	void sendByte(const uint8_t byte) const;
 	void sendDoble(const uint16_t byte) const;

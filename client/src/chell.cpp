@@ -56,8 +56,7 @@ void Chell::update(const Update& update){
 			this->stop(update.getDirection());
 			break;
 		case CHELL_FALLING:
-			this->fire(update.getDirection());
-			//this->fall(update.getDirection());						
+			this->fall(update.getDirection());						
 			break;
 		case CHELL_LANDING:
 			break;

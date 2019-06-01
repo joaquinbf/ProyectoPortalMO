@@ -33,7 +33,7 @@ Socket::~Socket() {
 }
 
 
-int Socket::get(){
+int Socket::get() const{
 	return this->fileDescriptor;
 }
 

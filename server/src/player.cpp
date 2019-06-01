@@ -7,7 +7,11 @@ Player::Player(Socket socket):
 }
 
 Player::~Player(){
-    this->protocol.close();
+    try{
+        this->protocol.close();
+    } catch (const ConnectionErrorException &e){
+
+    }
     this->inputReceiver.stop();
     this->updateSender.stop();
     this->inputReceiver.join();

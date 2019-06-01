@@ -9,12 +9,16 @@ Protocol::Protocol(Socket&& socket) : socket(std::move(socket)){}
 
 Protocol::~Protocol(){}
 
+Protocol::Protocol(Protocol&& other){
+	this->socket=std::move(other.socket);
+}
+
 void Protocol::close(){
 	this->socket.close();
 }
 
-Protocol::Protocol(Protocol&& other){
-	this->socket=std::move(other.socket);
+bool Protocol::isConnected(){
+	return (this->socket.get() != -1);
 }
 
 
@@ -61,6 +65,11 @@ void Protocol::sendLine(const std::string& line) const{
 
 uint8_t Protocol::receiveByte() const{
 	uint8_t aux = 0;
+	if(this->socket.get() == -1){
+		std::cout<<"HOLA\n";
+		throw ConnectionErrorException("Error en Protocol::receiveByte: %s\n",
+                                     strerror(errno));
+	}
 	int s = this->socket.receive(&aux,1);
 	while(s != 1){
 		if(s < 0){

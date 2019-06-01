@@ -8,8 +8,8 @@ Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->upd
 }
 
 Game::~Game(){	
-	for(size_t i = 0;i < this->players.size() ;++i){
-		delete this->players[i];	
+	for(Player* player : this->players){
+		delete player;
 	}
 	this->stage.stop();
 	this->stage.join();
