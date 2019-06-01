@@ -31,8 +31,10 @@ public:
     void Keyboard(int key) {
         switch (key) {
         case GLFW_KEY_A:
+            this->chell->pressLeft();
             break;
         case GLFW_KEY_D:
+            this->chell->pressRight();
             break;
         case GLFW_KEY_W:
             break;
@@ -42,8 +44,10 @@ public:
     void KeyboardUp(int key) {
         switch (key) {
         case GLFW_KEY_A:
+            this->chell->releaseLeft();
             break;
         case GLFW_KEY_D:
+            this->chell->releaseRight();
             break;
         case GLFW_KEY_W:
             break;

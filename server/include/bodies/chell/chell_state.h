@@ -20,6 +20,12 @@ public:
     /* Realiza una accion basada en la tecla derecha */
     virtual void releaseLeft() = 0;
 
+    /* Realiza una accion basada en la tecla derecha */
+    virtual void pressRight() = 0;
+
+    /* Realiza una accion tras soltar la tecla derecha */
+    virtual void releaseRight() = 0;
+
     /* Cambia de estado basado en el tiempo que lleva en el mismo */
     virtual void updateStateOnTimer() = 0;
 };

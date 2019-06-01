@@ -13,8 +13,14 @@ void IdleState::pressLeft() {
 }
 
 void IdleState::releaseLeft() {
+}
+
+void IdleState::pressRight() {
     this->chell->faceRight();
     this->chell->changeStateToRunning();
+}
+
+void IdleState::releaseRight() {
 }
 
 void IdleState::updateStateOnTimer() {

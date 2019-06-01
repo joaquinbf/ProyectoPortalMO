@@ -3,6 +3,8 @@
 #include "../../../include/bodies/chell/chell.h"
 #include "../../../include/bodies/chell/chell_state.h"
 
+#include <iostream>
+
 RunningState::RunningState(Chell *chell):
     ChellState(chell) {
 }
@@ -12,7 +14,18 @@ void RunningState::pressLeft() {
 }
 
 void RunningState::releaseLeft() {
+    std::cout << "void RunningState::releaseLeft()" << std::endl;
     this->chell->stopLeftMovement();
+    this->chell->changeStateToIdle();
+}
+
+void RunningState::pressRight() {
+    this->chell->applyLinearImpulseToRight();
+}
+
+void RunningState::releaseRight() {
+    std::cout << "void RunningState::releaseRight()" << std::endl;
+    this->chell->stopRightMovement();
 }
 
 void RunningState::updateStateOnTimer() {

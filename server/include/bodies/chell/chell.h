@@ -44,6 +44,12 @@ public:
     /* Suelta la tecla izquierda de chell. */
     void releaseLeft();
 
+    /* Presiona la tecla derecha */
+    void pressRight();
+
+    /* Suelta la tecla derecha */
+    void releaseRight();
+
     /* Cambia el estado a running */
     void changeStateToRunning();
 
