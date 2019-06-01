@@ -64,7 +64,7 @@ public:
     /* Actualiza el mundo en un step. */
     void step();
 
-    /* Crea el world 01: Un mundo de 6 bloques de metal.  */
+    /* Crea el world 01: Un mundo de 6 bloques de metal y 4 chells.  */
     void createWorldOne();
 
     /* Aplica una accion sobre world. */

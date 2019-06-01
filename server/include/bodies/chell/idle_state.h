@@ -8,6 +8,8 @@ class Chell;
 class IdleState: public ChellState {
 public:
     IdleState(Chell *chell);
+    virtual void pressLeft() override;
+    virtual void releaseLeft() override;
 };
 
 #endif

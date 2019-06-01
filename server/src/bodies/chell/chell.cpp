@@ -58,14 +58,17 @@ Update Chell::createUpdate(COMMAND command) const {
     return update;
 }
 
-Keypad *Chell::getKeypad() {
-    return &this->keypad;
-}
-
 void Chell::pressLeft() {
-    this->keypad.press(KEY::LEFT_KEY);
+    this->state->pressLeft();
 }
 
 void Chell::releaseLeft() {
-    this->keypad.release(KEY::LEFT_KEY);
+}
+
+void Chell::changeStateToRunning() {
+    this->state = &this->running_state;
+}
+
+void Chell::changeStateToIdle() {
+    this->state= &this->idle_state;
 }

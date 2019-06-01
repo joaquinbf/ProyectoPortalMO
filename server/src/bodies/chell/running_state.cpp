@@ -6,3 +6,11 @@
 RunningState::RunningState(Chell *chell):
     ChellState(chell) {
 }
+
+void RunningState::pressLeft() {
+
+}
+
+void RunningState::releaseLeft() {
+
+}

@@ -9,6 +9,8 @@ protected:
 
 public:
     ChellState(Chell *chell);
+    virtual void pressLeft() = 0;
+    virtual void releaseLeft() = 0;
 };
 
 #endif

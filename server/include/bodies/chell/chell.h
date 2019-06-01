@@ -5,8 +5,6 @@
 #include "chell_state.h"
 #include "idle_state.h"
 #include "running_state.h"
-#include "key.h"
-#include "keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -22,7 +20,6 @@ private:
     const float HALF_HEIGHT = 1.50;
     const float DENSITY = 1;
     const float ANGLE = 0;
-    Keypad keypad;
 
 public:
     /* Instancia a chell de id 'body_id' sobre b2world en la
@@ -41,16 +38,17 @@ public:
     /* Devuelve un update de Command de chell */
     virtual Update createUpdate(COMMAND command) const override;
 
-    /* Devuelve el keypad de chell */
-    Keypad *getKeypad();
-
     /* Presiona la tecla izquierda de chell*/
     void pressLeft();
 
     /* Suelta la tecla izquierda de chell. */
     void releaseLeft();
 
+    /* Cambia el estado a running */
+    void changeStateToRunning();
 
+    /* Cambia el estado a idle */
+    void changeStateToIdle();
 };
 
 #endif
