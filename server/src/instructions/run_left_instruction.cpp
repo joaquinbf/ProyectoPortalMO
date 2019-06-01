@@ -9,5 +9,5 @@ RunLeftInstruction::RunLeftInstruction(Chell *chell):
 }
 
 void RunLeftInstruction::execute() {
-    // implementar
+    this->chell->pressLeft();
 }
