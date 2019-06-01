@@ -70,6 +70,13 @@ void World::step() {
                         this->POSITION_ITERATIONS);
 }
 
+void World::createWorldOne() {
+    for (int i = -6; i < 7; i = i+2) {
+        this->world.createSquareMetalBlock(i, -2);
+    }
+}
+
+
 
 void World::deleteBodies() {
     for (Body *body: this->bodies) {
