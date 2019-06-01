@@ -12,6 +12,7 @@ class Client;
 class InputManager : public Thread{
 private:
 	const ServerManager& serverManager;
+	uint32_t chellId;
 	Client& client;
 	bool running;
 public:
