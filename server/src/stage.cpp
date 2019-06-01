@@ -33,8 +33,6 @@ uint32_t Stage::getCapacity() const{
 	return 4; //HARDCODED
 }
 
-std::list<Update> Stage::getNewPlayerUpdates() const{
-	std::list<Update> list;
-	return list;
-	//return this->world.getNewPlayerUpdates();
+std::list<Update> Stage::getNewPlayerUpdates() const {
+	return this->world.getNewPlayerUpdates();
 }

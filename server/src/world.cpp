@@ -56,7 +56,7 @@ Block *World::createSquareStoneBlock(float x, float y) {
     return block;
 }
 
-std::list<Update> World::getNewPlayerUpdates() {
+std::list<Update> World::getNewPlayerUpdates() const {
     std::list<Update> lista;
 
     for (Body *body: this->bodies) {

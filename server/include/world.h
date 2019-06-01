@@ -54,7 +54,7 @@ public:
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */
-    std::list<Update> getNewPlayerUpdates();
+    std::list<Update> getNewPlayerUpdates() const;
 
 private:
     /* Libera los bodies creados */
