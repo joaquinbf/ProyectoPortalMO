@@ -69,6 +69,7 @@ project 'Testbed'
 		'../../server/src/bodies/*',
 		'../../server/src/bodies/chell/*',
 		'../../server/src/bodies/block/*',
+		'../../server/src/instructions/*',
 		'../../common/src/*'
 	}
 

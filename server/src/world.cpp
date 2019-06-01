@@ -2,6 +2,8 @@
 
 #include "../include/bodies/body.h"
 #include "../include/bodies/chell/chell.h"
+#include "../include/instructions/instruction.h"
+#include "../include/instructions/instruction_factory.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
@@ -82,7 +84,10 @@ void World::createWorldOne() {
 }
 
 void World::applyAction(const Action &action) {
-
+    InstructionFactory insf;
+    Instruction *instruction = insf.createInstruction(action, this->chells);
+    instruction->execute();
+    delete instruction;
 }
 
 
