@@ -2,6 +2,8 @@
 #define __BODY_H__
 
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
+#include "../../../common/include/types.h"
+#include "../../../common/include/update.h"
 #include <cstdint>
 
 class Body {
@@ -11,6 +13,8 @@ protected:
 
 public:
     Body(uint32_t body_id);
+    virtual ~Body();
+    virtual Update createUpdate() const = 0;
 };
 
 #endif

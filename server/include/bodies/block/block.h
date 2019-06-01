@@ -8,7 +8,18 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
+#include "../../../../common/include/update.h"
+#include "../../../../common/include/types.h"
+
 #include <cstdint>
+
+class Shape;
+class SquareShape;
+class DiagonalShape;
+
+class Material;
+class MetalMaterial;
+class StoneMaterial;
 
 class Block: public Body {
 private:
@@ -29,6 +40,9 @@ public:
 
     /* Libera los recursos utilizados */
     ~Block();
+
+    /* Devuelve una update del bloque */
+    virtual Update createUpdate() const;
 };
 
 #endif

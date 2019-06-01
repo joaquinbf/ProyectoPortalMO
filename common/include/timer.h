@@ -8,7 +8,10 @@ private:
     std::chrono::time_point<std::chrono::high_resolution_clock> begin;
 
 public:
+    /* Inicia el cronometro */
     void start();
+
+    /* Devuelve el tiempo pasado desde el inicio en milisegundos. */
     double elapsedTimeInMiliSeconds();
 };
 

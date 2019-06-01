@@ -3,8 +3,12 @@
 #include "../include/bodies/body.h"
 #include "../include/bodies/chell/chell.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
+#include "../../common/include/protected_queue.h"
+#include "../../common/include/action.h"
+#include "../../common/include/update.h"
 #include <cstdint>
 #include <vector>
+#include <list>
 
 World::World():
     b2world(new b2World(GRAVITY)),
@@ -51,6 +55,18 @@ Block *World::createSquareStoneBlock(float x, float y) {
     this->body_count++;
     return block;
 }
+
+std::list<Update> World::getNewPlayerUpdates() {
+    std::list<Update> lista;
+
+    for (Body *body: this->bodies) {
+        Update update = body->createUpdate();
+        lista.emplace_back(update);
+    }
+
+    return lista;
+}
+
 
 void World::deleteBodies() {
     for (Body *body: this->bodies) {

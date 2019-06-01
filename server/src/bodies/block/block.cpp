@@ -1,4 +1,12 @@
 #include "../../../include/bodies/block/block.h"
+#include "../../../include/bodies/block/shape.h"
+#include "../../../include/bodies/block/square_shape.h"
+#include "../../../include/bodies/block/diagonal_shape.h"
+#include "../../../include/bodies/block/material.h"
+#include "../../../include/bodies/block/metal_material.h"
+#include "../../../include/bodies/block/stone_material.h"
+
+
 
 Block::Block(
     uint32_t body_id, b2World *b2world,
@@ -30,4 +38,19 @@ Block::Block(
 Block::~Block() {
     delete shape;
     delete material;
+}
+
+Update Block::createUpdate() const {
+    ENTITY entity = this->shape->createEntityWithMaterial(this->material);
+
+    Update update(
+        COMMAND::CREATE_COMMAND,
+        entity,
+        this->BODY_ID,
+        STATUS::NONE_STATUS,
+        this->b2body->GetPosition().x,
+        this->b2body->GetPosition().y,
+        0
+    );
+    return update;
 }
