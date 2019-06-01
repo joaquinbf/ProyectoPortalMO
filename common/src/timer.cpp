@@ -6,6 +6,6 @@ void Timer::start() {
 
 double Timer::elapsedTimeInMiliSeconds() {
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double, std::milli> miliseconds = end - begin;
+    std::chrono::duration<double, std::milli> miliseconds = end - this->begin;
     return miliseconds.count();
 }
