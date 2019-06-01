@@ -15,6 +15,7 @@ public:
     Body(uint32_t body_id);
     virtual ~Body();
     virtual Update createUpdate(COMMAND command) const = 0;
+    uint32_t getBodyId() const;
 };
 
 #endif

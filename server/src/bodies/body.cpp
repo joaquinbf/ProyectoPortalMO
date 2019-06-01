@@ -6,3 +6,7 @@ Body::Body(uint32_t body_id):
 
 Body::~Body() {
 }
+
+uint32_t Body::getBodyId() const {
+    return this->BODY_ID;
+}
