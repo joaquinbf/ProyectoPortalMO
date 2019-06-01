@@ -6,7 +6,7 @@
 #include <iostream>
 
 RunningState::RunningState(Chell *chell):
-    ChellState(chell) {
+    ChellState(chell, STATUS::CHELL_RUNNING) {
 }
 
 void RunningState::pressLeft() {

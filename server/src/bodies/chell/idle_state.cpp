@@ -4,7 +4,7 @@
 #include "../../../include/bodies/chell/chell_state.h"
 
 IdleState::IdleState(Chell *chell):
-    ChellState(chell) {
+    ChellState(chell, STATUS::CHELL_IDLE) {
 }
 
 void IdleState::pressLeft() {

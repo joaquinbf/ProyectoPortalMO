@@ -51,7 +51,7 @@ Update Chell::createUpdate(COMMAND command) const {
         command,
         ENTITY::CHELL,
         this->BODY_ID,
-        STATUS::CHELL_IDLE,
+        this->state->getStatus(),
         this->b2body->GetPosition().x,
         this->b2body->GetPosition().y,
         this->is_facing_right? 1 : 0);
