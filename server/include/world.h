@@ -59,6 +59,9 @@ public:
     /* Devuelve una lista con updates del mundo. */
     std::list<Update> getUpdates() const;
 
+    /* Actualiza el mundo en un step. */
+    void step();
+
 private:
     /* Libera los bodies creados */
     void deleteBodies();
@@ -66,6 +69,7 @@ private:
     /* Libera a b2world si fue creado internamente */
     void deleteB2WorldIfInternal();
 
+    /* Devuelve updates con COMMAND asignado. */
     std::list<Update> getUpdatesWithCommand(COMMAND command) const;
 };
 

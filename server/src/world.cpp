@@ -64,6 +64,11 @@ std::list<Update> World::getUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::UPDATE_COMMAND);
 }
 
+void World::step() {
+    this->b2world->Step(this->TIME_STEP,
+                        this->VELOCITY_ITERATIONS,
+                        this->POSITION_ITERATIONS);
+}
 
 
 void World::deleteBodies() {
