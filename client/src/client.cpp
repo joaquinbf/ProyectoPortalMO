@@ -12,6 +12,15 @@ updateReceiver(this->serverManager,this->updates)
 Client::~Client(){}
 
 void Client::main(){
+	this->login();
+	this->game();
+}
+
+void Client::login(){
+	//aca haria algo
+}
+
+void Client::game(){
     uint32_t chellId = serverManager.receiveChellId();
     this->gameView.setChellId(chellId);
     
@@ -20,7 +29,7 @@ void Client::main(){
     
     this->inputManager.start();
     this->updateReceiver.start();
-
+    this->gameView.show();
     //GAME LOOP
     while (this->inputManager.isRunning()){
 		while(this->updates.try_pop(update)){

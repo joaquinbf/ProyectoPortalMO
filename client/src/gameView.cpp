@@ -76,3 +76,15 @@ uint32_t GameView::getChellId() const{
 void GameView::setChellId(uint32_t id){
 	this->myChellId = id;
 }
+
+void GameView::show(){
+	this->window.show();
+}
+
+void GameView::fullscreen(){
+	this->window.fullscreen();
+}
+
+void GameView::windowed(){
+	this->window.windowed();
+}

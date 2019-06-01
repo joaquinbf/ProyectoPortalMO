@@ -29,7 +29,8 @@ public:
 	explicit Client(int,int);
 	~Client();
 	void main();
-	uint32_t getChellId() const;
+	void login();
+	void game();
 };
 
 #endif

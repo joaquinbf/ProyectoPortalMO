@@ -42,7 +42,9 @@ public:
 	void zoomOut();
 	uint32_t getChellId() const;
 	void setChellId(uint32_t id);
-
+	void show();
+	void fullscreen();
+    void windowed();
 };
 
 #endif

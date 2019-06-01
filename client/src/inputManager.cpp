@@ -40,6 +40,12 @@ void InputManager::run(){
 	                    case SDLK_p:
 	                    	this->gameView.zoomOut();
 	                        break;
+                       case SDLK_n:
+	                    	this->gameView.fullscreen();
+	                        break;
+	                    case SDLK_m:
+	                    	this->gameView.windowed();
+	                        break;
 	                    case SDLK_b:
 	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0));
 	                    	break;

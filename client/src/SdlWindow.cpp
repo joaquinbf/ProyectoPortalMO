@@ -13,11 +13,13 @@ SdlWindow::SdlWindow(int width, int height) :
         throw SdlException("Error en la inicialización", SDL_GetError());
     }
     errCode = SDL_CreateWindowAndRenderer(
-        this->width, this->height, SDL_RENDERER_ACCELERATED,
+        this->width, this->height, SDL_RENDERER_ACCELERATED | SDL_WINDOW_BORDERLESS |
+         SDL_WINDOW_ALWAYS_ON_TOP,
         &this->window, &this->renderer);
     if (errCode) {
         throw SdlException("Error al crear ventana", SDL_GetError());
     }   
+    SDL_HideWindow(this->window);
 }
 
 SdlWindow::~SdlWindow() {
@@ -30,6 +32,10 @@ SdlWindow::~SdlWindow() {
         SDL_DestroyWindow(this->window);
         this->window = nullptr;
     }
+}
+
+void SdlWindow::show(){
+    SDL_ShowWindow(this->window);
 }
 
 void SdlWindow::fill(int r, int g, int b, int alpha) {
@@ -49,4 +55,12 @@ void SdlWindow::render() {
 
 SDL_Renderer* SdlWindow::getRenderer() const {
     return this->renderer;
+}
+
+void SdlWindow::fullscreen(){
+    SDL_SetWindowFullscreen(this->window,SDL_WINDOW_FULLSCREEN_DESKTOP);
+}
+
+void SdlWindow::windowed(){
+    SDL_SetWindowFullscreen(this->window,0);
 }

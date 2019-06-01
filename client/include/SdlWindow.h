@@ -13,9 +13,12 @@ public:
      */
     SdlWindow(int width, int height);
     ~SdlWindow();
+    void show();
     void fill();
     void fill(int r, int g, int b, int alpha);
     void render();
+    void fullscreen();
+    void windowed();
     SDL_Renderer* getRenderer() const;
 private:
     int width;
