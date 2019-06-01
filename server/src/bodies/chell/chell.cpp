@@ -47,5 +47,13 @@ void Chell::faceOppositeDirection() {
 }
 
 Update Chell::createUpdate(COMMAND command) const {
-    return Update();
+    Update update(
+        command,
+        ENTITY::CHELL,
+        this->BODY_ID,
+        STATUS::CHELL_IDLE,
+        this->b2body->GetPosition().x,
+        this->b2body->GetPosition().y,
+        this->is_facing_right? 1 : 0);
+    return update;
 }
