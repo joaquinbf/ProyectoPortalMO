@@ -4,7 +4,7 @@
 #include "../../../../server/include/world.h"
 #include "../../../../server/include/bodies/chell/chell.h"
 #include "../../../../server/include/bodies/block/block.h"
-
+#include <iostream>
 
 class PortalChell: public Test {
 private:
@@ -31,9 +31,11 @@ public:
     void Keyboard(int key) {
         switch (key) {
         case GLFW_KEY_A:
+            std::cout << "pressed left" << std::endl;
             this->chell->pressLeft();
             break;
         case GLFW_KEY_D:
+            std::cout << "pressed right" << std::endl;
             this->chell->pressRight();
             break;
         case GLFW_KEY_W:
@@ -44,9 +46,11 @@ public:
     void KeyboardUp(int key) {
         switch (key) {
         case GLFW_KEY_A:
+            std::cout << "released left" << std::endl;
             this->chell->releaseLeft();
             break;
         case GLFW_KEY_D:
+            std::cout << "released right" << std::endl;
             this->chell->releaseRight();
             break;
         case GLFW_KEY_W:

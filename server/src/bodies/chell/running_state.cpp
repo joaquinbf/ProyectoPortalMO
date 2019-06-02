@@ -14,8 +14,6 @@ void RunningState::pressLeft() {
 }
 
 void RunningState::releaseLeft() {
-    std::cout << "void RunningState::releaseLeft()" << std::endl;
-    this->chell->stopLeftMovement();
     this->chell->changeStateToIdle();
 }
 
@@ -24,8 +22,6 @@ void RunningState::pressRight() {
 }
 
 void RunningState::releaseRight() {
-    std::cout << "void RunningState::releaseRight()" << std::endl;
-    this->chell->stopRightMovement();
     this->chell->changeStateToIdle();
 }
 
