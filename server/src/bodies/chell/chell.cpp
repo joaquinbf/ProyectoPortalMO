@@ -4,6 +4,9 @@
 #include "../../../include/bodies/chell/chell_state.h"
 #include "../../../include/bodies/chell/idle_state.h"
 #include "../../../include/bodies/chell/running_state.h"
+#include "../../../include/bodies/chell/jumping_state.h"
+#include "../../../../common/include/key.h"
+#include "../../../../common/include/keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -14,6 +17,7 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
     is_facing_right(true),
     idle_state(this),
     running_state(this),
+    jumping_state(this),
     state(&this->idle_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -59,18 +63,22 @@ Update Chell::createUpdate(COMMAND command) const {
 }
 
 void Chell::pressLeft() {
+    this->keypad.press(KEY::LEFT_KEY);
     this->state->pressLeft();
 }
 
 void Chell::releaseLeft() {
+    this->keypad.release(KEY::LEFT_KEY);
     this->state->releaseLeft();
 }
 
 void Chell::pressRight() {
+    this->keypad.press(KEY::RIGHT_KEY);
     this->state->pressRight();
 }
 
 void Chell::releaseRight() {
+    this->keypad.release(KEY::RIGHT_KEY);
     this->state->releaseRight();
 }
 
@@ -84,14 +92,14 @@ void Chell::changeStateToIdle() {
 
 void Chell::applyLinearImpulseToLeft() {
     float mass = this->b2body->GetMass();
-    float vel = 30000000;
+    float vel = 30000000000;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
     float mass = this->b2body->GetMass();
-    float vel = 30000000;
+    float vel = 30000000000;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
 }
@@ -110,4 +118,8 @@ void Chell::stopRightMovement() {
         vel.x = 0;
         this->b2body->SetLinearVelocity(vel);
     }
+}
+
+Keypad *Chell::getKeypad() {
+    return &this->keypad;
 }

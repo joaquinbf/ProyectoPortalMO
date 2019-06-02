@@ -1,4 +1,5 @@
-#include "../../../include/bodies/chell/keypad.h"
+#include "../../common/include/keypad.h"
+#include "../../common/include/key.h"
 
 Keypad::Keypad() {
     keys[KEY::LEFT_KEY] = Key();
@@ -18,4 +19,8 @@ void Keypad::release(KEY k) {
 
 double Keypad::elapsedTimeBeingPressed(KEY k) {
     return this->keys[k].elapsedTimeBeingPressed();
+}
+
+bool Keypad::isBeingPressed(KEY k) {
+    return this->keys[k].isBeingPressed();
 }

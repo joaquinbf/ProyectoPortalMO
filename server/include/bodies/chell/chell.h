@@ -5,6 +5,9 @@
 #include "chell_state.h"
 #include "idle_state.h"
 #include "running_state.h"
+#include "jumping_state.h"
+#include "../../../../common/include/key.h"
+#include "../../../../common/include/keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -15,7 +18,9 @@ private:
     bool is_facing_right;
     IdleState idle_state;
     RunningState running_state;
+    JumpingState jumping_state;
     ChellState *state;
+    Keypad keypad;
     const float HALF_WIDTH = 100;
     const float HALF_HEIGHT = 150;
     const float DENSITY = 1;
@@ -67,6 +72,9 @@ public:
 
     /* Para el movimiento hacia la derecha */
     void stopRightMovement();
+
+    /* Devuelve un puntero al keypad de chell */
+    Keypad *getKeypad();
 };
 
 #endif

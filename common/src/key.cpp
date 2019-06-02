@@ -1,4 +1,4 @@
-#include "../../../include/bodies/chell/key.h"
+#include "../../common/include/key.h"
 
 Key::Key():
     pressed(false) {
@@ -18,4 +18,8 @@ void Key::release() {
 
 double Key::elapsedTimeBeingPressed() {
     return this->timer.elapsedTimeInMiliSeconds();
+}
+
+bool Key::isBeingPressed() {
+    return this->elapsedTimeBeingPressed() > 0;
 }

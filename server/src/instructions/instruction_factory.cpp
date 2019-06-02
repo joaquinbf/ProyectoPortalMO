@@ -9,6 +9,7 @@
 #include "../../include/bodies/chell/chell.h"
 #include <map>
 #include <cstdint>
+#include <iostream>
 
 Instruction *InstructionFactory::createInstruction(
     const Action &action,
@@ -18,15 +19,19 @@ Instruction *InstructionFactory::createInstruction(
 
     switch (action.getAction()) {
         case ACTION::RUN_LEFT:
+            std::cout << "inst fact: ACTION::RUN_LEFT" << std::endl;
             instruction = new RunLeftInstruction(chell);
             break;
         case ACTION::STOP_LEFT:
+            std::cout << "inst fact: ACTION::STOP_LEFT" << std::endl;
             instruction = new StopLeftInstruction(chell);
             break;
         case ACTION::RUN_RIGHT:
+            std::cout << "inst fact: ACTION::RUN_RIGHT" << std::endl;
             instruction = new RunRightInstruction(chell);
             break;
         case ACTION::STOP_RIGHT:
+            std::cout << "inst fact: ACTION::STOP_LEFT" << std::endl;
             instruction = new StopRightInstruction(chell);
             break;
         default:

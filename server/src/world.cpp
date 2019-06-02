@@ -91,7 +91,6 @@ void World::applyAction(const Action &action) {
     delete instruction;
 }
 
-
 void World::deleteBodies() {
     for (Body *body: this->bodies) {
         delete body;
