@@ -41,3 +41,6 @@ Update Rock::createUpdate(COMMAND command) const {
         0);
     return update;
 }
+
+void Rock::handleBeginContactWith(Body *other_body) {
+}

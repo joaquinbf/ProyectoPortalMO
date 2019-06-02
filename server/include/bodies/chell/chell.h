@@ -58,17 +58,27 @@ public:
     /* Suelta la tecla derecha */
     void releaseRight();
 
+    void pressUp();
+
+    void releaseUp();
+
     /* Cambia el estado a running */
     void changeStateToRunning();
 
     /* Cambia el estado a idle */
     void changeStateToIdle();
 
+    /* Cambia el estado a jumping */
+    void changeStateToJumping();
+
     /* Aplica un impulso a la izquierda */
     void applyLinearImpulseToLeft();
 
     /* Aplica un impulso a la derecha */
     void applyLinearImpulseToRight();
+
+    /* Aplica un impulso hacia arriba */
+    void applyLinearImpulseToUp();
 
     /* Para el movimiento hacia la izqueirda */
     void stopLeftMovement();
@@ -81,6 +91,12 @@ public:
 
     /* Aplica una accion sobre chell dependiendo de su estado */
     virtual void applyStateAction();
+
+    /* Maneja el contacto con otro cuerpo */
+    virtual void handleBeginContactWith(Body *other_body) override;
+
+    /* Deja que el inicio de contacto sea manejado por otra chell */
+    virtual void letBeginContactBeHandledBy(Chell *chell) override;
 };
 
 #endif

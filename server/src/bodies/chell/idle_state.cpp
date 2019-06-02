@@ -22,3 +22,8 @@ void IdleState::pressRight() {
 
 void IdleState::releaseRight() {
 }
+
+void IdleState::pressUp() {
+    this->chell->applyLinearImpulseToUp();
+    this->chell->changeStateToJumping();
+}

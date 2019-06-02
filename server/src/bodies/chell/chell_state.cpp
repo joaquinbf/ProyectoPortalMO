@@ -11,5 +11,33 @@ STATUS ChellState::getStatus() const {
     return this->status;
 }
 
+void ChellState::pressLeft() {
+
+}
+
+void ChellState::releaseLeft() {
+
+}
+
+void ChellState::pressRight() {
+
+}
+
+void ChellState::releaseRight() {
+
+}
+
+void ChellState::pressUp() {
+
+}
+
+void ChellState::releaseUp() {
+
+}
+
 void ChellState::applyStateAction() {
+}
+
+void ChellState::startTimer() {
+    this->timer.start();
 }

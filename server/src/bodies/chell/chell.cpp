@@ -87,6 +87,17 @@ void Chell::releaseRight() {
     this->state->releaseRight();
 }
 
+void Chell::pressUp() {
+    this->keypad.press(KEY::UP_KEY);
+    this->state->pressUp();
+}
+
+void Chell::releaseUp() {
+    this->keypad.release(KEY::UP_KEY);
+    this->state->releaseUp();
+}
+
+
 void Chell::changeStateToRunning() {
     this->state = &this->running_state;
 }
@@ -94,6 +105,11 @@ void Chell::changeStateToRunning() {
 void Chell::changeStateToIdle() {
     this->state = &this->idle_state;
 }
+
+void Chell::changeStateToJumping() {
+    this->state =&this->jumping_state;
+}
+
 
 void Chell::applyLinearImpulseToLeft() {
     float mass = this->b2body->GetMass();
@@ -108,6 +124,14 @@ void Chell::applyLinearImpulseToRight() {
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
 }
+
+void Chell::applyLinearImpulseToUp() {
+    float mass = this->b2body->GetMass();
+    float vel = 3000000000000000;
+    float imp = mass * vel;
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, imp), true);
+}
+
 
 void Chell::stopLeftMovement() {
     b2Vec2 vel = this->b2body->GetLinearVelocity();
@@ -131,4 +155,12 @@ Keypad *Chell::getKeypad() {
 
 void Chell::applyStateAction() {
     this->state->applyStateAction();
+}
+
+void Chell::handleBeginContactWith(Body *other_body) {
+    other_body->letBeginContactBeHandledBy(this);
+}
+
+void Chell::letBeginContactBeHandledBy(Chell *chell) {
+
 }

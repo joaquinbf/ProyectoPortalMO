@@ -6,7 +6,7 @@
 #include <iostream>
 
 JumpingState::JumpingState(Chell *chell):
-    ChellState(chell, STATUS::CHELL_RUNNING) {
+    ChellState(chell, STATUS::CHELL_JUMPING) {
 }
 
 void JumpingState::pressLeft() {
@@ -14,7 +14,6 @@ void JumpingState::pressLeft() {
 }
 
 void JumpingState::releaseLeft() {
-    std::cout << "void JumpingState::releaseLeft()" << std::endl;
     this->chell->stopLeftMovement();
     this->chell->changeStateToIdle();
 }

@@ -40,6 +40,8 @@ public:
             this->chell->pressRight();
             break;
         case GLFW_KEY_W:
+            std::cout << "pressed up" << std::endl;
+            this->chell->pressUp();
             break;
         }
     }
@@ -55,6 +57,8 @@ public:
             this->chell->releaseRight();
             break;
         case GLFW_KEY_W:
+            std::cout << "released up" << std::endl;
+            this->chell->releaseUp();
             break;
         }
     }

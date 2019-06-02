@@ -5,8 +5,7 @@
 void ContactListener::BeginContact(b2Contact *contact) {
     Body *body = (Body *)contact->GetFixtureA()->GetBody()->GetUserData();
     Body *other_body = (Body *)contact->GetFixtureB()->GetBody()->GetUserData();
-    body++;
-    other_body++;
+    body->handleBeginContactWith(other_body);
 }
 
 void ContactListener::EndContact(b2Contact *contact) {

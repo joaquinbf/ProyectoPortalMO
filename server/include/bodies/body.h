@@ -6,6 +6,8 @@
 #include "../../../common/include/update.h"
 #include <cstdint>
 
+class Chell;
+
 class Body {
 protected:
     const uint32_t BODY_ID;
@@ -26,6 +28,12 @@ public:
 
     /* Aplica una accion sobre el cuerpo dependiendo de su estado */
     virtual void applyStateAction();
+
+    /* Maneja el inicio de contacto con otro cuerpo */
+    virtual void handleBeginContactWith(Body *other_body) = 0;
+
+    /* Deja que el inicio de contacto sea manejado por chell */
+    virtual void letBeginContactBeHandledBy(Chell *chell) = 0;
 };
 
 #endif

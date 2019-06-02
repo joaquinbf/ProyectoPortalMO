@@ -20,19 +20,28 @@ public:
     STATUS getStatus() const;
 
     /* Realiza una accion basada en la tecla izquierda */
-    virtual void pressLeft() = 0;
+    virtual void pressLeft();
 
     /* Realiza una accion basada en la tecla derecha */
-    virtual void releaseLeft() = 0;
+    virtual void releaseLeft();
 
     /* Realiza una accion basada en la tecla derecha */
-    virtual void pressRight() = 0;
+    virtual void pressRight();
 
     /* Realiza una accion tras soltar la tecla derecha */
-    virtual void releaseRight() = 0;
+    virtual void releaseRight();
+
+    /* Realiza una accion tras presional la tecla de arriba */
+    virtual void pressUp();
+
+    /* Realiza una accion tras solatar la tecla de arriba */
+    virtual void releaseUp();
 
     /* Aplica una accion sobre chell */
     virtual void applyStateAction();
+
+    /* Inicia el contador del cronometro */
+    void startTimer();
 };
 
 #endif

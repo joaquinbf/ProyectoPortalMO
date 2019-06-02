@@ -5,6 +5,8 @@
 #include "../../../include/bodies/block/material.h"
 #include "../../../include/bodies/block/metal_material.h"
 #include "../../../include/bodies/block/stone_material.h"
+#include "../../../include/bodies/chell/chell.h"
+
 
 
 
@@ -54,4 +56,12 @@ Update Block::createUpdate(COMMAND command) const {
         0
     );
     return update;
+}
+
+void Block::handleBeginContactWith(Body *other_body) {
+
+}
+
+void Block::letBeginContactBeHandledBy(Chell *chell) {
+    chell->changeStateToIdle();
 }

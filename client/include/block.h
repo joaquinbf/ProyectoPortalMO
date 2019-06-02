@@ -19,12 +19,12 @@ private:
 	Area frameArea;
 	ENTITY entity;
 public:
-	explicit Block(const TextureManager& tm,const ENTITY e,int32_t x, int32_t y, 
+	explicit Block(const TextureManager& tm,const ENTITY e,int32_t x, int32_t y,
 		uint32_t width, uint32_t height);
 	~Block();
 	void setDirection(uint32_t dir);
 	void render(int resx,int resy,int width,int height,float scale) override;
-	void update(const Update& update) override;	
+	void update(const Update& update) override;
 };
 
 #endif

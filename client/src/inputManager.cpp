@@ -43,7 +43,7 @@ void InputManager::run(){
 	                    case SDLK_w:
 							this->sendPressAction(
 								keypad.getKey(KEY::UP_KEY),
-								ACTION::RUN_RIGHT);
+								ACTION::JUMP);
 	                        break;
 	                    case SDLK_o:
 	                    	this->gameView.zoomIn();

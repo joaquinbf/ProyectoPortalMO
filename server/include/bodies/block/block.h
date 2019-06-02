@@ -21,6 +21,8 @@ class Material;
 class MetalMaterial;
 class StoneMaterial;
 
+class Chell;
+
 class Block: public Body {
 private:
     Shape *shape;
@@ -43,6 +45,10 @@ public:
 
     /* Devuelve una update del bloque */
     virtual Update createUpdate(COMMAND command) const;
+
+    virtual void handleBeginContactWith(Body *other_body) override;
+
+    virtual void letBeginContactBeHandledBy(Chell *chell) override;
 };
 
 #endif
