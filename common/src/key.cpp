@@ -21,5 +21,5 @@ double Key::elapsedTimeBeingPressed() {
 }
 
 bool Key::isBeingPressed() {
-    return this->elapsedTimeBeingPressed() > 0;
+    return this->pressed;
 }

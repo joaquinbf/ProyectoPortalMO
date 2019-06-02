@@ -24,3 +24,7 @@ double Keypad::elapsedTimeBeingPressed(KEY k) {
 bool Keypad::isBeingPressed(KEY k) {
     return this->keys[k].isBeingPressed();
 }
+
+Key *Keypad::getKey(KEY k) {
+    return &this->keys[k];
+}

@@ -22,6 +22,7 @@ public:
     void release(KEY k);
     double elapsedTimeBeingPressed(KEY k);
     bool isBeingPressed(KEY k);
+    Key *getKey(KEY k);
 };
 
 #endif

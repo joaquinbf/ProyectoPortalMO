@@ -1,5 +1,8 @@
 #include "../include/inputManager.h"
 
+#include "../../common/include/key.h"
+#include "../../common/include/keypad.h"
+
 
 InputManager::InputManager(const ServerManager& sm,GameView& v) : serverManager(sm),
 gameView(v),running(true){
@@ -18,6 +21,8 @@ bool InputManager::isRunning() const{
 }
 
 void InputManager::run(){
+	Keypad keypad;
+
 	SDL_Event event;
     while(this->running){
 	    SDL_WaitEvent(&event);
@@ -26,13 +31,19 @@ void InputManager::run(){
 	                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 	                switch (keyEvent.keysym.sym) {
 	                    case SDLK_a:
-	                        this->serverManager.sendAction(Action(this->chellId,ACTION::RUN_LEFT,0));
+							this->sendPressAction(
+								keypad.getKey(KEY::LEFT_KEY),
+								ACTION::RUN_LEFT);
 	                        break;
 	                    case SDLK_d:
-	                        this->serverManager.sendAction(Action(this->chellId,ACTION::RUN_RIGHT,0));
+							this->sendPressAction(
+								keypad.getKey(KEY::RIGHT_KEY),
+								ACTION::RUN_RIGHT);
 	                        break;
 	                    case SDLK_w:
-	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JUMP,0));
+							this->sendPressAction(
+								keypad.getKey(KEY::UP_KEY),
+								ACTION::RUN_RIGHT);
 	                        break;
 	                    case SDLK_o:
 	                    	this->gameView.zoomIn();
@@ -59,10 +70,14 @@ void InputManager::run(){
 	        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
 	                switch (keyEvent.keysym.sym) {
 	                    case SDLK_a:
-	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::STOP_LEFT,0));
+	                    	this->sendReleaseAction(
+								keypad.getKey(KEY::LEFT_KEY),
+								ACTION::RUN_LEFT);
 	                        break;
 	                    case SDLK_d:
-	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::STOP_RIGHT,0));
+							this->sendReleaseAction(
+								keypad.getKey(KEY::RIGHT_KEY),
+								ACTION::RUN_RIGHT);
 	                        break;
 	                    case SDLK_w:
 	                        break;
@@ -77,4 +92,16 @@ void InputManager::run(){
 	            break;
 	    }
     }
+}
+
+void InputManager::sendPressAction(Key *key, ACTION action) {
+	if (!key->isBeingPressed()) {
+		key->press();
+		this->serverManager.sendAction(Action(this->chellId, action,0));
+	}
+}
+
+void InputManager::sendReleaseAction(Key *key, ACTION action) {
+	key->release();
+	this->serverManager.sendAction(Action(this->chellId, action,0));
 }
