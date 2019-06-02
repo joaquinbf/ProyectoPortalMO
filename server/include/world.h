@@ -70,6 +70,9 @@ public:
     /* Aplica una accion sobre world. */
     void applyAction(const Action &action);
 
+    /* Aplica las acciones de estado sobre los bodies */
+    void applyStateActions();
+
 private:
     /* Libera los bodies creados */
     void deleteBodies();

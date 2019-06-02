@@ -10,21 +10,27 @@ RunningState::RunningState(Chell *chell):
 }
 
 void RunningState::pressLeft() {
-    this->chell->applyLinearImpulseToLeft();
+    this->chell->faceLeft();
 }
 
 void RunningState::releaseLeft() {
+    this->chell->stopLeftMovement();
     this->chell->changeStateToIdle();
 }
 
 void RunningState::pressRight() {
-    this->chell->applyLinearImpulseToRight();
+    this->chell->faceRight();
 }
 
 void RunningState::releaseRight() {
+    this->chell->stopRightMovement();
     this->chell->changeStateToIdle();
 }
 
-void RunningState::updateStateOnTimer() {
-
+void RunningState::applyStateAction() {
+    if (this->chell->isFacingRight()) {
+        this->chell->applyLinearImpulseToRight();
+    } else {
+        this->chell->applyLinearImpulseToLeft();
+    }
 }

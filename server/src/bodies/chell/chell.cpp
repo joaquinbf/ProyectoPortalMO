@@ -38,6 +38,11 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
     this->b2body->CreateFixture(&boxFixtureDef);
 }
 
+bool Chell::isFacingRight() {
+    return this->is_facing_right;
+}
+
+
 void Chell::faceRight() {
     this->is_facing_right = true;
 }
@@ -122,4 +127,8 @@ void Chell::stopRightMovement() {
 
 Keypad *Chell::getKeypad() {
     return &this->keypad;
+}
+
+void Chell::applyStateAction() {
+    this->state->applyStateAction();
 }

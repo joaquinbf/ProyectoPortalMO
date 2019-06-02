@@ -16,6 +16,7 @@ void Stage::run(){
 		while(this->inputs->try_pop(action)){
 			this->world.applyAction(action);
 		}
+		this->world.applyStateActions();
 		this->world.step();
 		list = world.getUpdates();
 		for(Update update : list){

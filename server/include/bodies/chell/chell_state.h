@@ -31,8 +31,8 @@ public:
     /* Realiza una accion tras soltar la tecla derecha */
     virtual void releaseRight() = 0;
 
-    /* Cambia de estado basado en el tiempo que lleva en el mismo */
-    virtual void updateStateOnTimer() = 0;
+    /* Aplica una accion sobre chell */
+    virtual void applyStateAction();
 };
 
 #endif

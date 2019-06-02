@@ -13,7 +13,6 @@ void IdleState::pressLeft() {
 }
 
 void IdleState::releaseLeft() {
-    this->chell->stopLeftMovement();
 }
 
 void IdleState::pressRight() {
@@ -22,8 +21,4 @@ void IdleState::pressRight() {
 }
 
 void IdleState::releaseRight() {
-    this->chell->stopRightMovement();
-}
-
-void IdleState::updateStateOnTimer() {
 }

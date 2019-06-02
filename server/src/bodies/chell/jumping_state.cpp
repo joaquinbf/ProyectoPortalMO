@@ -28,7 +28,3 @@ void JumpingState::releaseRight() {
     this->chell->stopRightMovement();
     this->chell->changeStateToIdle();
 }
-
-void JumpingState::updateStateOnTimer() {
-
-}

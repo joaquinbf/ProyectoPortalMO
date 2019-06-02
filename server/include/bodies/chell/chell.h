@@ -31,6 +31,9 @@ public:
      * posicion (x, y) mirando a la derecha en estado idle. */
     Chell(uint32_t body_id, b2World *b2world, float x, float y);
 
+    /* Indica si chell esta mirando hacia la derecha */
+    bool isFacingRight();
+
     /* Hace mirar a la derecha */
     void faceRight();
 
@@ -75,6 +78,9 @@ public:
 
     /* Devuelve un puntero al keypad de chell */
     Keypad *getKeypad();
+
+    /* Aplica una accion sobre chell dependiendo de su estado */
+    virtual void applyStateAction();
 };
 
 #endif

@@ -22,6 +22,7 @@ public:
 
     void Step(Settings *settings) {
         Test::Step(settings);
+        this->world.applyStateActions();
     }
 
     static Test *Create() {

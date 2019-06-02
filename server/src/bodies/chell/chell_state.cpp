@@ -10,3 +10,6 @@ ChellState::ChellState(Chell *chell, STATUS status):
 STATUS ChellState::getStatus() const {
     return this->status;
 }
+
+void ChellState::applyStateAction() {
+}
