@@ -27,6 +27,10 @@ void RunningState::releaseRight() {
     this->chell->changeStateToIdle();
 }
 
+void RunningState::pressUp() {
+    this->chell->changeStateToJumping();
+}
+
 void RunningState::applyStateAction() {
     if (this->chell->isFacingRight()) {
         this->chell->applyLinearImpulseToRight();

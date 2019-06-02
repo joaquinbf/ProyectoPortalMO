@@ -108,6 +108,7 @@ void Chell::changeStateToIdle() {
 
 void Chell::changeStateToJumping() {
     this->state =&this->jumping_state;
+    this->applyLinearImpulseToUp();
 }
 
 
