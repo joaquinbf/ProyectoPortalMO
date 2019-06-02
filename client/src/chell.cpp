@@ -82,11 +82,6 @@ void Chell::update(const Update& update){
 }
 
 void Chell::idle(){
-	if(this->status == CHELL_RUNNING || 
-		this->status == CHELL_FALLING ||
-		this->status == CHELL_JIGING ){
-		return;
-	}
 	if(this->status != CHELL_IDLE){
 		this->frame = 0;
 		this->framey = 0;
@@ -108,7 +103,7 @@ void Chell::idleAction(){
 }
 
 void Chell::jig(){	
-	if(this->status == CHELL_IDLE){
+	if(this->status != CHELL_JIGING){
 		this->frame = 0;
 		this->jigAction();	
 	}	
@@ -129,13 +124,11 @@ void Chell::jigAction(){
 }
 
 void Chell::run(int dir){
-	if(this->status == CHELL_TURNING ||
-		this->status == CHELL_LANDING ||
-		this->status == CHELL_IDLE){
+	if(this->status != CHELL_RUNNING){
 		this->direction = dir;
 		this->frame = 0;
 		this->runAction();	
-	}	
+	}
 }
 
 void Chell::runAction(){
@@ -152,7 +145,7 @@ void Chell::runAction(){
 }
 
 void Chell::stop(int dir){
-	if(this->status == CHELL_RUNNING){
+	if(this->status != CHELL_STOPING){
 		this->frame = 0;
 		this->stopAction();	
 	}	
@@ -171,9 +164,7 @@ void Chell::stopAction(){
 }
 
 void Chell::turn(int dir){
-	if(this->status == CHELL_RUNNING ||
-		this->status == CHELL_IDLE ||
-		this->status == CHELL_LANDING){
+	if(this->status != CHELL_TURNING){
 		this->frame = 0;
 		this->turnAction();	
 	}
@@ -198,8 +189,7 @@ void Chell::turnAction(){
 }
 
 void Chell::jump(){
-	if(this->status == CHELL_IDLE ||
-		this->status == CHELL_RUNNING){
+	if(this->status != CHELL_JUMPING){
 		this->frame = 0;
 		this->jumpAction();
 	}
@@ -242,7 +232,7 @@ void Chell::fallAction(){
 }
 
 void Chell::land(){
-	if(this->status == CHELL_FALLING){
+	if(this->status != CHELL_LANDING){
 		this->frame = 0;
 		this->landAction();
 	}
@@ -260,7 +250,7 @@ void Chell::landAction(){
 }
 
 void Chell::fire(int dir){
-	if(this->status == CHELL_IDLE ){
+	if(this->status != CHELL_FIRE){
 		this->frame = 0;
 		this->fireAction();	
 	}else if(this->status == CHELL_RUNNING){
