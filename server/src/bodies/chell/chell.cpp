@@ -97,14 +97,14 @@ void Chell::changeStateToIdle() {
 
 void Chell::applyLinearImpulseToLeft() {
     float mass = this->b2body->GetMass();
-    float vel = 30000000000;
+    float vel = 3000000000000000;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
     float mass = this->b2body->GetMass();
-    float vel = 30000000000;
+    float vel = 3000000000000000;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
 }

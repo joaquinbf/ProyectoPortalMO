@@ -68,6 +68,24 @@ std::list<Update> World::getUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::UPDATE_COMMAND);
 }
 
+std::list<Update> World::getUpdatesForAwakeBodies() const {
+    std::list<Update> updates;
+
+    b2Body *b2body = this->b2world->GetBodyList();
+    while (b2body != 0) {
+        if (b2body->IsAwake()) {
+            Body *body = (Body *) b2body->GetUserData();
+            Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
+            std::cout << "STATUS : " << update.getStatus() << std::endl;
+            updates.push_back(update);
+        }
+        b2body = b2body->GetNext();
+    }
+
+    return updates;
+}
+
+
 void World::step() {
     this->b2world->Step(this->TIME_STEP,
                         this->VELOCITY_ITERATIONS,

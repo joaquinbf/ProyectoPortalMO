@@ -19,6 +19,7 @@ Block::Block(
     bodyDef.position.Set(x, y);
     bodyDef.angle = this->ANGLE;
     bodyDef.userData = (void *) this;
+    bodyDef.awake = false;
 
     this->b2body = b2world->CreateBody(&bodyDef);
 

@@ -72,12 +72,12 @@ void InputManager::run(){
 	                    case SDLK_a:
 	                    	this->sendReleaseAction(
 								keypad.getKey(KEY::LEFT_KEY),
-								ACTION::RUN_LEFT);
+								ACTION::STOP_LEFT);
 	                        break;
 	                    case SDLK_d:
 							this->sendReleaseAction(
 								keypad.getKey(KEY::RIGHT_KEY),
-								ACTION::RUN_RIGHT);
+								ACTION::STOP_RIGHT);
 	                        break;
 	                    case SDLK_w:
 	                        break;

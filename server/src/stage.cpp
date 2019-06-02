@@ -18,7 +18,7 @@ void Stage::run(){
 		}
 		this->world.applyStateActions();
 		this->world.step();
-		list = world.getUpdates();
+		list = world.getUpdatesForAwakeBodies();
 		for(Update update : list){
 			this->updates->push(update);
 		}

@@ -61,6 +61,9 @@ public:
     /* Devuelve una lista con updates del mundo. */
     std::list<Update> getUpdates() const;
 
+    /* Devuelve una lista de updates pero solo con los cuerpos despiertos */
+    std::list<Update> getUpdatesForAwakeBodies() const;
+
     /* Actualiza el mundo en un step. */
     void step();
 
@@ -72,6 +75,8 @@ public:
 
     /* Aplica las acciones de estado sobre los bodies */
     void applyStateActions();
+
+
 
 private:
     /* Libera los bodies creados */
