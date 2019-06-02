@@ -48,10 +48,27 @@ void SdlWindow::fill() {
     this->fill(0x33,0x33,0x33,0xFF);
 }
 
+void SdlWindow::setBrightness(float brightness){
+    SDL_SetWindowBrightness(this->window, brightness);
+}
+
 void SdlWindow::render() {
     SDL_RenderPresent(this->renderer);
 }
 
+int SdlWindow::getResX() const{
+    int resx;
+    int resy;
+    SDL_GetWindowSize(this->window, &resx,&resy);
+    return resx;
+}
+
+int SdlWindow::getResY() const{
+    int resx;
+    int resy;
+    SDL_GetWindowSize(this->window, &resx,&resy);
+    return resy;
+}
 
 SDL_Renderer* SdlWindow::getRenderer() const {
     return this->renderer;

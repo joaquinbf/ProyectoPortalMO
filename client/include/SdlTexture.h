@@ -22,6 +22,7 @@ public:
     /**
      * Renderiza la textura cargada
      **/
+    void setAlpha(uint8_t alpha ) const;
     int render(const Area& src, const Area& dest) const;
     int renderFlipedVertical(const Area& src, const Area& dest) const;
     int renderFlipedHorizontal(const Area& src, const Area& dest) const;

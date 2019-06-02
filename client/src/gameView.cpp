@@ -22,9 +22,12 @@ void GameView::render(){
 		it->second->render(this->myChell->getPosX(),this->myChell->getPosY(),
 			this->resx,this->resy,this->scale);
 	}
+	this->window.setBrightness(0.5);
 	if(this->myChell != nullptr){
 		this->myChell->renderCentered(this->resx,this->resy,this->scale);	
-	}     
+	}
+	//this->textureManager.getBlackTexture()->setAlpha(255*(1-this->scale));     
+	//this->textureManager.getBlackTexture()->render(Area(0,0,600,600),Area(0,0,this->resx,this->resy));
     this->window.render();
 }
 
@@ -78,13 +81,17 @@ void GameView::setChellId(uint32_t id){
 }
 
 void GameView::show(){
-	this->window.show();
+	this->window.show();	
 }
 
 void GameView::fullscreen(){
 	this->window.fullscreen();
+	this->resx=this->window.getResX();
+	this->resy=this->window.getResY();
 }
 
 void GameView::windowed(){
 	this->window.windowed();
+	this->resx=this->window.getResX();
+	this->resy=this->window.getResY();
 }

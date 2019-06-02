@@ -8,17 +8,17 @@ class SDL_Texture;
 
 class SdlWindow {
 public:
-    /**
-     * Ctor standalone
-     */
     SdlWindow(int width, int height);
     ~SdlWindow();
     void show();
     void fill();
     void fill(int r, int g, int b, int alpha);
+    void setBrightness(float brightness);
     void render();
     void fullscreen();
     void windowed();
+    int getResX() const;
+    int getResY() const;
     SDL_Renderer* getRenderer() const;
 private:
     int width;

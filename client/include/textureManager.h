@@ -6,6 +6,7 @@
 #include "../../common/include/types.h"
 #include "../include/Area.h"
 
+#define BLACK_TEXTURE "../resources/textures/miscellaneous/black.jpg"
 
 #define CHELL_IDLE_TEXTURE "../resources/textures/chell/resting-idle.png"
 #define CHELL_JIG_TEXTURE "../resources/textures/chell/jig.png"
@@ -25,6 +26,7 @@
 #define LAUNCH_BLOCK_TEXTURE "../resources/textures/blocks/launch.png"
 
 class TextureManager{
+	SdlTexture blackTexture;
 	SdlTexture chellIdleTexture;
 	SdlTexture chellJigTexture;
 	SdlTexture chellRunTexture;
@@ -44,6 +46,7 @@ public:
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
 	~TextureManager();
+	const SdlTexture * getBlackTexture() const;
 	const SdlTexture * getBlockTexturePointer(const ENTITY e) const;
 	const SdlTexture * getChellTexturePointer(const STATUS st) const;
 	Area getChellFrameArea(const STATUS st, int frame) const;

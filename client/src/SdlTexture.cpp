@@ -19,6 +19,11 @@ SdlTexture::~SdlTexture() {
     SDL_DestroyTexture(this->texture);
 }
 
+void SdlTexture::setAlpha( uint8_t alpha )  const{ //Modulate texture alpha 
+    SDL_SetTextureBlendMode( this->texture, SDL_BLENDMODE_BLEND );
+    SDL_SetTextureAlphaMod( this->texture, alpha ); 
+}
+
 SDL_Texture* SdlTexture::loadTexture(const std::string &filename) {
     SDL_Texture* texture = IMG_LoadTexture(this->renderer,
                                            filename.c_str());

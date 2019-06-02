@@ -3,6 +3,7 @@
 TextureManager::TextureManager(){}
 
 TextureManager::TextureManager(const SdlWindow& window):
+blackTexture(BLACK_TEXTURE,window),
 chellIdleTexture(CHELL_IDLE_TEXTURE,window), 
 chellJigTexture(CHELL_JIG_TEXTURE,window), 
 chellRunTexture(CHELL_RUNNING_TEXTURE,window), 
@@ -13,7 +14,7 @@ chellJumpApexTexture(CHELL_JUMP_APEX_TEXTURE,window),
 chellJumpFallTexture(CHELL_JUMP_FALL_TEXTURE,window),
 chellJumpLandTexture(CHELL_JUMP_LAND_TEXTURE,window), 
 chellFireTexture(CHELL_FIRE_TEXTURE,window),
-chellFireToIdleTexture(CHELL_FIRE_TO_IDLE_TEXTURE,window), //esta todavia no la uso
+chellFireToIdleTexture(CHELL_FIRE_TO_IDLE_TEXTURE,window), 
 metalBlockTexture(METAL_BLOCK_TEXTURE,window),
 metalTriagBlockTexture(METAL_TRIAG_BLOCK_TEXTURE,window),
 stoneBlockTexture(STONE_BLOCK_TEXTURE,window),
@@ -22,6 +23,10 @@ launchBlockTexture(LAUNCH_BLOCK_TEXTURE,window)
 
 TextureManager::~TextureManager(){}
 	
+const SdlTexture * TextureManager::getBlackTexture() const{
+	return &(this->blackTexture);
+}
+
 const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
 	switch(e){
 		case STONE_BLOCK:
