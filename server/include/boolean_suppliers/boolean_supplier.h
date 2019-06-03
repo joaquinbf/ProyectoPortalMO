@@ -4,7 +4,7 @@
 class BooleanSupplier {
 public:
     virtual ~BooleanSupplier();
-    virtual bool getAsBoolean() const = 0;
+    virtual bool getAsBoolean() = 0;
 };
 
 #endif
