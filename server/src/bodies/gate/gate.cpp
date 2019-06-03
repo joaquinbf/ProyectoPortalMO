@@ -9,8 +9,6 @@
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/button/button.h"
 
-
-
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id, ENTITY::GATE) {
     b2BodyDef bodyDef;
