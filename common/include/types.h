@@ -11,7 +11,8 @@ enum ENTITY: uint8_t {
 	METAL_TRIAG_BLOCK,
 	LAUNCH_BLOCK,
 	ROCK,
-	BUTTON
+	BUTTON,
+	GATE
 };
 
 enum COMMAND : uint8_t{

@@ -10,6 +10,7 @@
 class Chell;
 class Block;
 class Button;
+class Gate;
 
 class Body {
 protected:
@@ -45,6 +46,7 @@ public:
 
     virtual void letBeginContactBeHandledBy(Button *button) = 0;
 
+    virtual void letBeginContactBeHandledBy(Gate *gate) = 0;
 };
 
 #endif

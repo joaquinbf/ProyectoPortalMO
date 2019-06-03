@@ -36,6 +36,8 @@ public:
     virtual void letBeginContactBeHandledBy(Block *block) override;
 
     virtual void letBeginContactBeHandledBy(Button *button) override;
+
+    virtual void letBeginContactBeHandledBy(Gate *gate) override;
 };
 
 #endif

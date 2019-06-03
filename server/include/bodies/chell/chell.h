@@ -15,6 +15,7 @@
 
 class Button;
 class Block;
+class Gate;
 
 class Chell: public Body {
 private:
@@ -104,6 +105,8 @@ public:
     virtual void letBeginContactBeHandledBy(Block *block) override;
 
     virtual void letBeginContactBeHandledBy(Button *button) override;
+
+    virtual void letBeginContactBeHandledBy(Gate *gate) override;
 };
 
 #endif

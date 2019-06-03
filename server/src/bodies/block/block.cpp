@@ -7,7 +7,7 @@
 #include "../../../include/bodies/block/stone_material.h"
 #include "../../../include/bodies/chell/chell.h"
 #include "../../../include/bodies/button/button.h"
-
+#include "../../../include/bodies/gate/gate.h"
 
 Block::Block(
     uint32_t body_id, b2World *b2world,
@@ -50,8 +50,7 @@ Update Block::createUpdate(COMMAND command) const {
         STATUS::NONE_STATUS,
         this->b2body->GetPosition().x,
         this->b2body->GetPosition().y,
-        0
-    );
+        0);
     return update;
 }
 
@@ -67,4 +66,7 @@ void Block::letBeginContactBeHandledBy(Block *block) {
 }
 
 void Block::letBeginContactBeHandledBy(Button *button) {
+}
+
+void Block::letBeginContactBeHandledBy(Gate *gate) {
 }
