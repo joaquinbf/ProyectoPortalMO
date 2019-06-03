@@ -1,4 +1,7 @@
 #include "../../../include/bodies/button/button.h"
+#include "../../../include/bodies/chell/chell.h"
+#include "../../../include/bodies/block/block.h"
+#include <iostream>
 
 Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id) {
@@ -13,7 +16,7 @@ Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
     vertices[0].Set(120, 30);
     vertices[1].Set(170, 0);
     vertices[2].Set(0, 0);
-    vertices[3].Set(50, 30);
+    vertices[3].Set(60, 30);
 
     b2PolygonShape b2polygonshape;
     b2polygonshape.Set(vertices, 4);
@@ -40,8 +43,26 @@ Update Button::createUpdate(COMMAND command) const {
 }
 
 
+void Button::press() {
+    this->is_pressed = true;
+}
+
+void Button::release() {
+    this->is_pressed = false;
+}
+
+
 void Button::handleBeginContactWith(Body *other_body) {
+    other_body->letBeginContactBeHandledBy(this);
 }
 
 void Button::letBeginContactBeHandledBy(Chell *chell) {
+    this->press();
+    std::cout << "Is the button pressed ? " << this->isPressed() << std::endl;
+}
+
+void Button::letBeginContactBeHandledBy(Block *block) {
+}
+
+void Button::letBeginContactBeHandledBy(Button *button) {
 }

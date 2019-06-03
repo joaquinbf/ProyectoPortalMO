@@ -8,6 +8,8 @@
 #include <cstdint>
 
 class Chell;
+class Block;
+class Button;
 
 class Body {
 protected:
@@ -38,6 +40,11 @@ public:
 
     /* Deja que el inicio de contacto sea manejado por chell */
     virtual void letBeginContactBeHandledBy(Chell *chell) = 0;
+
+    virtual void letBeginContactBeHandledBy(Block *block) = 0;
+
+    virtual void letBeginContactBeHandledBy(Button *button) = 0;
+
 };
 
 #endif

@@ -6,6 +6,8 @@
 #include "../../../include/bodies/block/metal_material.h"
 #include "../../../include/bodies/block/stone_material.h"
 #include "../../../include/bodies/chell/chell.h"
+#include "../../../include/bodies/button/button.h"
+
 
 Block::Block(
     uint32_t body_id, b2World *b2world,
@@ -54,9 +56,15 @@ Update Block::createUpdate(COMMAND command) const {
 }
 
 void Block::handleBeginContactWith(Body *other_body) {
-
+    other_body->letBeginContactBeHandledBy(this);
 }
 
 void Block::letBeginContactBeHandledBy(Chell *chell) {
     chell->changeStateToIdle();
+}
+
+void Block::letBeginContactBeHandledBy(Block *block) {
+}
+
+void Block::letBeginContactBeHandledBy(Button *button) {
 }

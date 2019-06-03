@@ -13,6 +13,9 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 
+class Button;
+class Block;
+
 class Chell: public Body {
 private:
     bool is_facing_right;
@@ -97,6 +100,10 @@ public:
 
     /* Deja que el inicio de contacto sea manejado por otra chell */
     virtual void letBeginContactBeHandledBy(Chell *chell) override;
+
+    virtual void letBeginContactBeHandledBy(Block *block) override;
+
+    virtual void letBeginContactBeHandledBy(Button *button) override;
 };
 
 #endif

@@ -9,8 +9,6 @@
 #include "../../../../common/include/update.h"
 #include "../../../../common/include/types.h"
 
-class Chell;
-
 class Button: public Body {
 public:
     const ENTITY entity = ENTITY::BUTTON;
@@ -23,11 +21,21 @@ public:
     /* Indica si el boton esta presionado */
     bool isPressed();
 
+    /* Presiona el boton */
+    void press();
+
+    /* Suelta el boton */
+    void release();
+
     virtual Update createUpdate(COMMAND command) const override;
 
     virtual void handleBeginContactWith(Body *other_body) override;
 
     virtual void letBeginContactBeHandledBy(Chell *chell) override;
+
+    virtual void letBeginContactBeHandledBy(Block *block) override;
+
+    virtual void letBeginContactBeHandledBy(Button *button) override;
 };
 
 #endif
