@@ -6,6 +6,12 @@ BooleanBlock *BooleanFactory::createAndBlock() {
     return binary;
 }
 
+BooleanBlock *BooleanFactory::createOrBlock() {
+    BinaryBlock *binary = new BinaryBlock(&this->or_operator);
+    this->blocks.push_back(binary);
+    return binary;
+}
+
 BooleanFactory::~BooleanFactory() {
     for (BooleanBlock *block: this->blocks) {
         delete block;

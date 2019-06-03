@@ -7,7 +7,9 @@
 #include "or_operator.h"
 #include "binary_block.h"
 
-
+/* BooleanFactory instancia bloques booleanos y se encarga de su
+ * liberacion de memoria, es decir, no debe ser hecha por el
+ * usuario */
 class BooleanFactory {
 private:
     std::vector<BooleanBlock *> blocks;
@@ -15,7 +17,13 @@ private:
     OrOperator or_operator;
 
 public:
+    /* Instancia un bloque que evalua a sus miembro con AND */
     BooleanBlock *createAndBlock();
+
+    /* Instancia un bloque que evalua a sus miembros con OR */
+    BooleanBlock *createOrBlock();
+
+    /* Libera los recursos utilizados */
     ~BooleanFactory();
 };
 
