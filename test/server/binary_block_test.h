@@ -5,6 +5,7 @@
 #include "../../server/include/boolean_suppliers/binary_block.h"
 #include "../../server/include/boolean_suppliers/and_operator.h"
 #include "../../server/include/boolean_suppliers/or_operator.h"
+#include "../../server/include/boolean_suppliers/not_block.h"
 #include <cxxtest/TestSuite.h>
 
 class BinaryBlockTest: public CxxTest::TestSuite {
@@ -15,9 +16,9 @@ public:
         SimpleBoolean sb3(true);
         AndOperator and_operator;
         BinaryBlock bb(&and_operator);
-        bb.pushBack(&sb1);
-        bb.pushBack(&sb2);
-        bb.pushBack(&sb3);
+        bb.add(&sb1);
+        bb.add(&sb2);
+        bb.add(&sb3);
 
         bool r = bb.getAsBoolean();
 
@@ -30,9 +31,28 @@ public:
         SimpleBoolean sb3(false);
         OrOperator or_operator;
         BinaryBlock bb(&or_operator);
-        bb.pushBack(&sb1);
-        bb.pushBack(&sb2);
-        bb.pushBack(&sb3);
+        bb.add(&sb1);
+        bb.add(&sb2);
+        bb.add(&sb3);
+
+        bool r = bb.getAsBoolean();
+
+        TS_ASSERT_EQUALS(false, r);
+    }
+
+    void testBinaryBlockAplicaANDSobreNotTrueFalseYDevuelveFalse() {
+        SimpleBoolean sb1(true);
+        SimpleBoolean sb2(false);
+
+        // Meto a sb1 sobre un not-block para negarlo.
+        NotBlock notblock;
+        notblock.add(&sb1);
+
+        // Agrego sb2 y not-block al bloque AND
+        AndOperator and_operator;
+        BinaryBlock bb(&and_operator);
+        bb.add(&sb1);
+        bb.add(&notblock);
 
         bool r = bb.getAsBoolean();
 

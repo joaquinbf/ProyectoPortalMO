@@ -1,7 +1,10 @@
 #include "../../include/boolean_suppliers/not_block.h"
 
-NotBlock::NotBlock(BooleanSupplier *boolean):
-    boolean(boolean) {
+NotBlock::NotBlock() {
+}
+
+void NotBlock::add(BooleanSupplier *boolean) {
+    this->boolean = boolean;
 }
 
 bool NotBlock::getAsBoolean() const {

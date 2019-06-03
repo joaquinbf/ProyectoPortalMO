@@ -18,6 +18,6 @@ bool BinaryBlock::getAsBoolean() const {
     return acum;
 }
 
-void BinaryBlock::pushBack(BooleanSupplier *boolean) {
+void BinaryBlock::add(BooleanSupplier *boolean) {
     this->booleans.push_back(boolean);
 }

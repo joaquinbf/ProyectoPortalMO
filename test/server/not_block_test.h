@@ -9,7 +9,9 @@ class NotBlockTest: public CxxTest::TestSuite {
 public:
     void testNotBlockNiegaElValorQueTieneEnSuInterior() {
         SimpleBoolean sb(true);
-        NotBlock nb(&sb);
+        NotBlock nb;
+        nb.add(&sb);
+
         TS_ASSERT_EQUALS(nb.getAsBoolean(), !sb.getAsBoolean());
     }
 };
