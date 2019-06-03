@@ -1,7 +1,7 @@
 #ifndef __PROTECTED_QUEUE_TEST_H__
 #define __PROTECTED_QUEUE_TEST_H__
 
-#include "../common/include/protected_queue.h"
+#include "../../common/include/protected_queue.h"
 #include <thread>
 #include <chrono>
 #include <cxxtest/TestSuite.h>
