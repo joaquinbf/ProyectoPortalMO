@@ -3,9 +3,10 @@
 
 #include "boolean_supplier.h"
 
-class SimpleBoolean: public BooleanSupplier {
+class SimpleBoolean: BooleanSupplier {
 private:
     bool value;
+
 public:
     SimpleBoolean(bool value);
     virtual bool getAsBoolean();
