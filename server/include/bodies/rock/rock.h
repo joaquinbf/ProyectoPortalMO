@@ -27,6 +27,16 @@ public:
     virtual Update createUpdate(COMMAND command) const;
 
     virtual void handleBeginContactWith(Body *other_body) override;
+
+    virtual void letBeginContactBeHandledBy(Chell *chell) override;
+
+    virtual void letBeginContactBeHandledBy(Block *block) override;
+
+    virtual void letBeginContactBeHandledBy(Button *button) override;
+
+    virtual void letBeginContactBeHandledBy(Gate *gate) override;
+
+    virtual void letBeginContactBeHandledBy(Rock *rock) override;
 };
 
 #endif

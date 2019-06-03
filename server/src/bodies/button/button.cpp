@@ -2,6 +2,7 @@
 #include "../../../include/bodies/chell/chell.h"
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/gate/gate.h"
+#include "../../../include/bodies/rock/rock.h"
 #include <iostream>
 
 Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
@@ -69,4 +70,8 @@ void Button::letBeginContactBeHandledBy(Button *button) {
 }
 
 void Button::letBeginContactBeHandledBy(Gate *gate) {
+}
+
+void Button::letBeginContactBeHandledBy(Rock *rock) {
+    this->press();
 }

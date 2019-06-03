@@ -8,6 +8,8 @@
 #include "../../../include/bodies/chell/chell.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/gate/gate.h"
+#include "../../../include/bodies/rock/rock.h"
+
 
 Block::Block(
     uint32_t body_id, b2World *b2world,
@@ -69,4 +71,7 @@ void Block::letBeginContactBeHandledBy(Button *button) {
 }
 
 void Block::letBeginContactBeHandledBy(Gate *gate) {
+}
+
+void Block::letBeginContactBeHandledBy(Rock *rock) {
 }

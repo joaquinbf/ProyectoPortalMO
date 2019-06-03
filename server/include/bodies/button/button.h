@@ -38,6 +38,8 @@ public:
     virtual void letBeginContactBeHandledBy(Button *button) override;
 
     virtual void letBeginContactBeHandledBy(Gate *gate) override;
+
+    virtual void letBeginContactBeHandledBy(Rock *rock) override;
 };
 
 #endif

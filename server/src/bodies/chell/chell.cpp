@@ -14,6 +14,8 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include <iostream>
 #include "../../../include/bodies/gate/gate.h"
+#include "../../../include/bodies/button/button.h"
+#include "../../../include/bodies/rock/rock.h"
 
 
 Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
@@ -178,4 +180,7 @@ void Chell::letBeginContactBeHandledBy(Button *button) {
 }
 
 void Chell::letBeginContactBeHandledBy(Gate *gate) {
+}
+
+void Chell::letBeginContactBeHandledBy(Rock *rock) {
 }

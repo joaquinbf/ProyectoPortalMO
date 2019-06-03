@@ -24,6 +24,7 @@ class StoneMaterial;
 class Chell;
 class Button;
 class Gate;
+class Rock;
 
 class Block: public Body {
 private:
@@ -57,6 +58,8 @@ public:
     virtual void letBeginContactBeHandledBy(Button *button) override;
 
     virtual void letBeginContactBeHandledBy(Gate *gate) override;
+
+    virtual void letBeginContactBeHandledBy(Rock *rock) override;
 };
 
 #endif
