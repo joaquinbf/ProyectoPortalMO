@@ -5,7 +5,7 @@
 
 class OrOperator: public BooleanOperator {
 public:
-    virtual bool evaluate(bool b1, bool b2);
+    virtual bool evaluate(bool b1, bool b2) override;
 };
 
 #endif
