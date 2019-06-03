@@ -28,6 +28,8 @@
 #define BUTTON_ON_TEXTURE "../resources/textures/button/on.png"
 #define BUTTON_OFF_TEXTURE "../resources/textures/button/off.png"
 
+#define ROCK_TEXTURE "../resources/textures/miscellaneous/rocks.png"
+
 class TextureManager{
 	SdlTexture blackTexture;
 	SdlTexture chellIdleTexture;
@@ -47,6 +49,7 @@ class TextureManager{
 	SdlTexture launchBlockTexture;
 	SdlTexture buttonOnTexture;
 	SdlTexture buttonOffTexture;
+	SdlTexture rockTexture;
 public:	
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
@@ -55,6 +58,7 @@ public:
 	const SdlTexture * getButtonTexturePointer(const STATUS st) const;
 	const SdlTexture * getBlockTexturePointer(const ENTITY e) const;
 	const SdlTexture * getChellTexturePointer(const STATUS st) const;
+	const SdlTexture * getRockTexturePtr() const;
 	Area getChellFrameArea(const STATUS st, int frame) const;
 };
 

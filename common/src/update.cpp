@@ -3,14 +3,8 @@
 Update::Update() : command(COMMAND::NONE_COMMAND), idClass(ENTITY::NONE_ENTITY), idObject(0),
 	status(STATUS::NONE_STATUS), posX(0), posY(0), direction(0){}
 
-Update::Update(
-	COMMAND command,
-	ENTITY entity,
-	uint32_t id,
-	STATUS status,
-	int32_t posx,
-	int32_t posy,
-	uint32_t dir):
+Update::Update( COMMAND command, ENTITY entity,	uint32_t id, STATUS status,	int32_t posx,
+	int32_t posy, uint32_t dir):
 	command(command),
 	idClass(entity),
 	idObject(id),

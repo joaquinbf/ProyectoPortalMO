@@ -20,13 +20,18 @@ metalTriagBlockTexture(METAL_TRIAG_BLOCK_TEXTURE,window),
 stoneBlockTexture(STONE_BLOCK_TEXTURE,window),
 launchBlockTexture(LAUNCH_BLOCK_TEXTURE,window),
 buttonOnTexture(BUTTON_ON_TEXTURE,window),
-buttonOffTexture(BUTTON_OFF_TEXTURE,window)
+buttonOffTexture(BUTTON_OFF_TEXTURE,window),
+rockTexture(ROCK_TEXTURE,window)
 	{}
 
 TextureManager::~TextureManager(){}
 	
 const SdlTexture * TextureManager::getBlackTexture() const{
 	return &(this->blackTexture);
+}
+
+const SdlTexture * TextureManager::getRockTexturePtr() const{
+	return &(this->rockTexture);
 }
 
 const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{

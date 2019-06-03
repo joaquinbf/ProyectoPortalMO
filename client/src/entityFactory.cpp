@@ -26,7 +26,7 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
 			ptr->setDirection(update.getDirection());
 			return (Entity *) ptr;
 		case ENTITY::ROCK:
-			return nullptr;
+			return new Rock(tm,update.getPosX(),update.getPosY(),100,100);
 			break;
 		case ENTITY::BUTTON:
 			return new Button(tm,update.getStatus(),update.getPosX(),update.getPosY(),200,50);	

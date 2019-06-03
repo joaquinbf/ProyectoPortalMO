@@ -7,6 +7,7 @@
 #include "../include/chell.h"
 #include "../include/block.h"
 #include "../include/button.h"
+#include "../include/rock.h"
 
 class EntityFactory{
 public:
