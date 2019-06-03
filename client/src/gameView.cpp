@@ -23,7 +23,7 @@ void GameView::render(){
 		it->second->render(this->myChell->getPosX(),this->myChell->getPosY(),
 			this->resx,this->resy,this->scale);
 	}
-	this->window.setBrightness(0.5);
+	//this->window.setBrightness(0.5);
 	if(this->myChell != nullptr){
 		this->myChell->renderCentered(this->resx,this->resy,this->scale);	
 	}

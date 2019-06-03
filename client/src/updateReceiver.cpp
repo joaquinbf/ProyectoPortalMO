@@ -6,11 +6,6 @@ UpdateReceiver::UpdateReceiver(const ServerManager& sm,ProtectedQueue<Update>& q
 UpdateReceiver::~UpdateReceiver(){}
 
 void UpdateReceiver::run(){
-	for(int i = 0;i<10;++i){
-		Update update(CREATE_COMMAND,ROCK,20+i,NONE_STATUS,100*i,200,2);
-		this->updates.push(update);
-	}
-	
 	try{
 		Update up;
 		while(this->running){
