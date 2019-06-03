@@ -38,11 +38,12 @@ list(REMOVE_ITEM CLIENT_SRCS ${FULL_PATH_MAIN_CLIENT})
 list(REMOVE_ITEM SERVER_SRCS ${FULL_PATH_MAIN_SERVER})
 
 # Libraries
+add_library(libbox2d SHARED ${BOX2D_SRCS})
 add_library(libcommon SHARED ${COMMON_SRCS})
-add_library(libserver SHARED ${SERVER_SRCS} ${BOX2D_SRCS})
+add_library(libserver SHARED ${SERVER_SRCS})
 add_library(libclient SHARED ${CLIENT_SRCS})
-TARGET_LINK_LIBRARIES(libserver libcommon)
-TARGET_LINK_LIBRARIES(libclient libcommon)
+TARGET_LINK_LIBRARIES(libserver libcommon libbox2d)
+TARGET_LINK_LIBRARIES(libclient libcommon ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
 
 
 
@@ -51,7 +52,7 @@ if(CXXTEST_FOUND)
     include_directories(${CXXTEST_INCLUDE_DIR})
     enable_testing()
     CXXTEST_ADD_TEST(unittest-client runner-client.cpp ${TEST_CLIENT_HEADERS})
-    TARGET_LINK_LIBRARIES(unittest-client libclient ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
+    TARGET_LINK_LIBRARIES(unittest-client libclient)
 
     CXXTEST_ADD_TEST(unittest-server runner-server.cpp ${TEST_SERVER_HEADERS} )
     TARGET_LINK_LIBRARIES(unittest-server libserver)
@@ -62,7 +63,7 @@ endif()
 
 # Executables
 add_executable(client "client/src/main.cpp")
-TARGET_LINK_LIBRARIES(client libclient ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
+TARGET_LINK_LIBRARIES(client libclient)
 
 add_executable(server "server/src/main.cpp")
 TARGET_LINK_LIBRARIES(server libserver)
