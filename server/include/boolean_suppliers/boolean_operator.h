@@ -6,7 +6,7 @@
 class BooleanOperator {
 public:
     virtual ~BooleanOperator();
-    virtual bool evaluate(BooleanSupplier *b1, BooleanSupplier *b2) = 0;
+    virtual bool evaluate(bool b1, bool b2) = 0;
 };
 
 #endif
