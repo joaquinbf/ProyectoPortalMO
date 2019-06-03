@@ -4,6 +4,7 @@
 #include "../../../../server/include/world.h"
 #include "../../../../server/include/bodies/chell/chell.h"
 #include "../../../../server/include/bodies/block/block.h"
+#include "../../../../server/include/bodies/button/button.h"
 #include <iostream>
 
 class PortalChell: public Test {
@@ -18,6 +19,7 @@ public:
         for (int i = 0; i < 7; i++) {
             this->world.createSquareMetalBlock(200 * i, -300);
         }
+        this->world.createButton(300, -200);
     }
 
     void Step(Settings *settings) {

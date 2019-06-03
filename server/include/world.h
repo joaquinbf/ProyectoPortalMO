@@ -3,6 +3,7 @@
 
 #include "bodies/body.h"
 #include "bodies/chell/chell.h"
+#include "../include/bodies/button/button.h"
 #include "bodies/block/block.h"
 #include "bodies/block/shape.h"
 #include "bodies/block/square_shape.h"
@@ -54,6 +55,9 @@ public:
     /* Crea un bloque cuadrado de piedra en (x, y) */
     Block *createSquareStoneBlock(float x, float y);
 
+    /* Crea un boton. TODO: Asignar a compuertas */
+    Button *createButton(float x, float y);
+
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */
     std::list<Update> getNewPlayerUpdates() const;
@@ -75,8 +79,6 @@ public:
 
     /* Aplica las acciones de estado sobre los bodies */
     void applyStateActions();
-
-
 
 private:
     /* Libera los bodies creados */

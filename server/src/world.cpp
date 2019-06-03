@@ -2,6 +2,7 @@
 
 #include "../include/bodies/body.h"
 #include "../include/bodies/chell/chell.h"
+#include "../include/bodies/button/button.h"
 #include "../include/instructions/instruction.h"
 #include "../include/instructions/instruction_factory.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -59,6 +60,14 @@ Block *World::createSquareStoneBlock(float x, float y) {
     this->body_count++;
     return block;
 }
+
+Button *World::createButton(float x, float y) {
+    Button *button = new Button(this->body_count, this->b2world, x, y);
+    this->bodies.push_back(button);
+    this->body_count++;
+    return button;
+}
+
 
 std::list<Update> World::getNewPlayerUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::CREATE_COMMAND);

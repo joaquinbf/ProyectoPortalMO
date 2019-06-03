@@ -7,14 +7,11 @@
 #include "../../../include/bodies/block/stone_material.h"
 #include "../../../include/bodies/chell/chell.h"
 
-
-
-
 Block::Block(
     uint32_t body_id, b2World *b2world,
     float x, float y,
     Shape *shape, Material *material):
-    Body(body_id),
+    Body(body_id, shape->createEntityWithMaterial(material)),
     shape(shape), material(material) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
@@ -44,11 +41,9 @@ Block::~Block() {
 }
 
 Update Block::createUpdate(COMMAND command) const {
-    ENTITY entity = this->shape->createEntityWithMaterial(this->material);
-
     Update update(
         command,
-        entity,
+        this->entity,
         this->BODY_ID,
         STATUS::NONE_STATUS,
         this->b2body->GetPosition().x,

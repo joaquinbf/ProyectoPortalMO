@@ -2,6 +2,7 @@
 #define __BODY_H__
 
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
+#include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../common/include/types.h"
 #include "../../../common/include/update.h"
 #include <cstdint>
@@ -12,10 +13,13 @@ class Body {
 protected:
     const uint32_t BODY_ID;
     b2Body *b2body;
+    const ENTITY entity;
 
 public:
     /* Instancia un cuerpo con identificador 'body_id' */
     Body(uint32_t body_id);
+
+    Body(uint32_t body_id, ENTITY entity);
 
     /* Libera los recursos utilizados */
     virtual ~Body();
