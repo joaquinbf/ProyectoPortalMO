@@ -28,7 +28,7 @@ Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
     this->b2body->CreateFixture(&fixtureDef);
 }
 
-bool Button::isPressed() {
+bool Button::isPressed() const {
     return this->is_pressed;
 }
 
@@ -74,4 +74,8 @@ void Button::letBeginContactBeHandledBy(Gate *gate) {
 
 void Button::letBeginContactBeHandledBy(Rock *rock) {
     this->press();
+}
+
+bool Button::getAsBoolean() const {
+    return this->isPressed();
 }

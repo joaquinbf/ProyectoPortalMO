@@ -8,8 +8,10 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../common/include/update.h"
 #include "../../../../common/include/types.h"
+#include "../../../../server/include/boolean_suppliers/boolean_supplier.h"
 
-class Button: public Body {
+
+class Button: public Body, public BooleanSupplier {
 public:
     const ENTITY entity = ENTITY::BUTTON;
     bool is_pressed;
@@ -19,7 +21,7 @@ public:
     Button(uint32_t body_id, b2World *b2world, float x, float y);
 
     /* Indica si el boton esta presionado */
-    bool isPressed();
+    bool isPressed() const;
 
     /* Presiona el boton */
     void press();
@@ -40,6 +42,8 @@ public:
     virtual void letBeginContactBeHandledBy(Gate *gate) override;
 
     virtual void letBeginContactBeHandledBy(Rock *rock) override;
+
+    virtual bool getAsBoolean() const;
 };
 
 #endif

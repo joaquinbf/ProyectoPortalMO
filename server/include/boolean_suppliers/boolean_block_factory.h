@@ -7,6 +7,9 @@
 #include "or_operator.h"
 #include <vector>
 
+/* Clase encargada de la creacion de bloques booleanos.
+ * Es la misma clase la que se encarga de la liberacion de memoria
+ * de los bloques pedidos */
 class BooleanBlockFactory {
 private:
     std::vector<BooleanBlock *> blocks;
