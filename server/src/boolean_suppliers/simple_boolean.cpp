@@ -4,6 +4,6 @@ SimpleBoolean::SimpleBoolean(bool value):
     value(value) {
 }
 
-bool SimpleBoolean::getAsBoolean() {
+bool SimpleBoolean::getAsBoolean() const {
     return this->value;
 }

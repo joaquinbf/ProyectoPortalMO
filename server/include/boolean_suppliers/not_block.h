@@ -9,7 +9,7 @@ private:
 
 public:
     NotBlock(BooleanSupplier *boolean);
-    virtual bool getAsBoolean();
+    virtual bool getAsBoolean() const;
 };
 
 #endif

@@ -9,7 +9,7 @@ private:
 
 public:
     SimpleBoolean(bool value);
-    virtual bool getAsBoolean();
+    virtual bool getAsBoolean() const;
 };
 
 #endif

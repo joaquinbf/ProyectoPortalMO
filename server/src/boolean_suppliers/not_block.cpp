@@ -4,6 +4,6 @@ NotBlock::NotBlock(BooleanSupplier *boolean):
     boolean(boolean) {
 }
 
-bool NotBlock::getAsBoolean() {
+bool NotBlock::getAsBoolean() const {
     return !this->boolean->getAsBoolean();
 }
