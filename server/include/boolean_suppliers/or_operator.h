@@ -2,9 +2,9 @@
 #define __OR_OPERATOR_H__
 
 #include "boolean_supplier.h"
-#include "operator.h"
+#include "boolean_operator.h"
 
-class OrOperator: public Operator {
+class OrOperator: public BooleanOperator {
 public:
     virtual bool evaluate(BooleanSupplier *b1, BooleanSupplier *b2);
 };

@@ -3,9 +3,9 @@
 
 #include "boolean_supplier.h"
 
-class Operator {
+class BooleanOperator {
 public:
-    virtual ~Operator();
+    virtual ~BooleanOperator();
     virtual bool evaluate(BooleanSupplier *b1, BooleanSupplier *b2) = 0;
 };
 
