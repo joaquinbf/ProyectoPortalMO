@@ -21,13 +21,43 @@ stoneBlockTexture(STONE_BLOCK_TEXTURE,window),
 launchBlockTexture(LAUNCH_BLOCK_TEXTURE,window),
 buttonOnTexture(BUTTON_ON_TEXTURE,window),
 buttonOffTexture(BUTTON_OFF_TEXTURE,window),
-rockTexture(ROCK_TEXTURE,window)
+rockTexture(ROCK_TEXTURE,window),
+gateClosedTexture(GATE_CLOSED_TEXTURE,window),
+gateOpenedTexture(GATE_OPENED_TEXTURE,window),
+gateOpeningTexture(GATE_OPENING_TEXTURE,window)
 	{}
 
 TextureManager::~TextureManager(){}
 	
 const SdlTexture * TextureManager::getBlackTexture() const{
 	return &(this->blackTexture);
+}
+
+const SdlTexture * TextureManager::getGateTexturePtr(STATUS st) const{
+	switch(st){
+		case STATUS::GATE_OPENED:
+			return &(this->gateOpenedTexture);
+			break;
+		case STATUS::GATE_OPENING:
+			return &(this->gateOpeningTexture);
+			break;
+		case STATUS::GATE_CLOSING:
+			return &(this->gateOpeningTexture);
+			break;
+		case STATUS::GATE_CLOSED:
+			return &(this->gateClosedTexture);
+			break;
+		default:
+			return nullptr;
+			break;
+	}
+	return nullptr;
+}
+
+Area TextureManager::getGateFrameArea(uint32_t frame) const{
+	int a = frame % 10;
+	int b = frame / 10;
+	return Area(194*a,385*b+1,192,384);
 }
 
 const SdlTexture * TextureManager::getRockTexturePtr() const{

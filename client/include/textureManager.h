@@ -30,6 +30,10 @@
 
 #define ROCK_TEXTURE "../resources/textures/miscellaneous/rocks.png"
 
+#define GATE_CLOSED_TEXTURE "../resources/textures/gate/4-closed.png"
+#define GATE_OPENED_TEXTURE	"../resources/textures/gate/4-opened.png"
+#define GATE_OPENING_TEXTURE "../resources/textures/gate/4-opening.png"
+
 class TextureManager{
 	SdlTexture blackTexture;
 	SdlTexture chellIdleTexture;
@@ -50,6 +54,9 @@ class TextureManager{
 	SdlTexture buttonOnTexture;
 	SdlTexture buttonOffTexture;
 	SdlTexture rockTexture;
+	SdlTexture gateClosedTexture;
+	SdlTexture gateOpenedTexture;
+	SdlTexture gateOpeningTexture;
 public:	
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
@@ -59,7 +66,9 @@ public:
 	const SdlTexture * getBlockTexturePointer(const ENTITY e) const;
 	const SdlTexture * getChellTexturePointer(const STATUS st) const;
 	const SdlTexture * getRockTexturePtr() const;
+	const SdlTexture * getGateTexturePtr(STATUS st) const;
 	Area getChellFrameArea(const STATUS st, int frame) const;
+	Area getGateFrameArea(uint32_t frame) const;
 };
 
 #endif

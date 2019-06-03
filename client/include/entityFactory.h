@@ -8,6 +8,7 @@
 #include "../include/block.h"
 #include "../include/button.h"
 #include "../include/rock.h"
+#include "../include/gate.h"
 
 class EntityFactory{
 public:
