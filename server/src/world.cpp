@@ -3,8 +3,10 @@
 #include "../include/bodies/body.h"
 #include "../include/bodies/chell/chell.h"
 #include "../include/bodies/button/button.h"
+#include "../include/bodies/gate/gate.h"
 #include "../include/instructions/instruction.h"
 #include "../include/instructions/instruction_factory.h"
+#include "../include/boolean_suppliers/boolean_block_factory.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
@@ -66,6 +68,28 @@ Button *World::createButton(float x, float y) {
     this->bodies.push_back(button);
     this->body_count++;
     return button;
+}
+
+void World::createGateWithButton(
+    float x1, float y1,
+    float x2, float y2,
+    bool open_gate_when_button_is_pressed) {
+    Gate *gate = new Gate(this->body_count, this->b2world, x1, y1);
+    this->body_count++;
+    this->bodies.push_back(gate);
+
+    Button *button = new Button(this->body_count, this->b2world, x2, y2);
+    this->body_count++;
+    this->bodies.push_back(button);
+
+    button->notifyStatusChangeTo(gate);
+    // 1. checkear si la compeurta debe ser abierta cuando el
+    //    boton esta presionado o no.
+    // 2. Crear un boolean block.
+    // 3. Agregar el boton al boolean block (si la compuerta se
+    //    abria cuando esta apagado entonces agregar un
+    //    not-block.)
+    // 4. Agregar el block a la compuerta.
 }
 
 

@@ -2,6 +2,8 @@
 #define __BOOLEAN_BLOCK_FACTORY_TEST_H__
 
 #include "../../server/include/boolean_suppliers/boolean_block_factory.h"
+#include "../../server/include/world.h"
+#include "../../server/include/bodies/button/button.h"
 #include <cxxtest/TestSuite.h>
 
 class BooleanBlockFactoryTest: public CxxTest::TestSuite {

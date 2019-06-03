@@ -19,7 +19,7 @@ public:
 		uint32_t width, uint32_t height);
 	~Button();
 	void render(int cx,int cy,int resx,int resy,float scale) override;
-	void update(const Update& update) override;	
+	void update(const Update& update) override;
 };
 
 #endif

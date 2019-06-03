@@ -11,10 +11,13 @@
 #include "../../../../server/include/boolean_suppliers/boolean_supplier.h"
 
 
+class Gate;
+
 class Button: public Body, public BooleanSupplier {
 public:
     const ENTITY entity = ENTITY::BUTTON;
     bool is_pressed;
+    Gate *gate;
 
 public:
     /* Ubica un boton de id 'body_id' en b2world en la posicion (x, y) */
@@ -43,6 +46,9 @@ public:
 
     virtual void letBeginContactBeHandledBy(Rock *rock) override;
 
+    void notifyStatusChangeTo(Gate *gate);
+
+    /* Indica si el boton esta presionado */
     virtual bool getAsBoolean() const;
 };
 

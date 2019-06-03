@@ -60,7 +60,7 @@ void Button::handleBeginContactWith(Body *other_body) {
 
 void Button::letBeginContactBeHandledBy(Chell *chell) {
     this->press();
-    std::cout << "Is the button pressed ? " << this->isPressed() << std::endl;
+    this->gate->tryOpen();
 }
 
 void Button::letBeginContactBeHandledBy(Block *block) {
@@ -74,6 +74,11 @@ void Button::letBeginContactBeHandledBy(Gate *gate) {
 
 void Button::letBeginContactBeHandledBy(Rock *rock) {
     this->press();
+    this->gate->tryOpen();
+}
+
+void Button::notifyStatusChangeTo(Gate *gate) {
+    this->gate = gate;
 }
 
 bool Button::getAsBoolean() const {

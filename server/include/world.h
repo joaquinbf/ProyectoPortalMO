@@ -11,6 +11,7 @@
 #include "bodies/block/material.h"
 #include "bodies/block/metal_material.h"
 #include "bodies/block/stone_material.h"
+#include "boolean_suppliers/boolean_block_factory.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
 #include "../../common/include/update.h"
@@ -35,6 +36,7 @@ private:
     const float TIME_STEP = 1/20.0;
     const uint32_t VELOCITY_ITERATIONS = 8;
     const uint32_t POSITION_ITERATIONS = 3;
+    BooleanBlockFactory bbf;
 
 public:
     /* Instancia un world */
@@ -57,6 +59,14 @@ public:
 
     /* Crea un boton. TODO: Asignar a compuertas */
     Button *createButton(float x, float y);
+
+    /* Crea un gate en (x1, y1) y un boton en (x2, y2) con
+     * condicion de abrir la compuerta cuando el boton este en
+     * estado pressed = true o false */
+    void createGateWithButton(
+        float x1, float y1,
+        float x2, float y2,
+        bool open_gate_when_button_is_pressed);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */

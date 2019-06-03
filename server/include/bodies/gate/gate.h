@@ -10,6 +10,12 @@
 #include "../../../../common/include/types.h"
 #include <cstdint>
 
+
+class Chell;
+class Block;
+class Button;
+class Rock;
+
 class Gate: public Body {
 private:
     const float HALF_WIDTH = 100;
@@ -30,6 +36,12 @@ public:
     virtual void letBeginContactBeHandledBy(Button *button) override;
 
     virtual void letBeginContactBeHandledBy(Gate *gate) override;
+
+    virtual void letBeginContactBeHandledBy(Rock *rock) override;
+
+    /* Intenta abrir la compuerta si las condiciones estan
+     * satisfechas */
+    void tryOpen();
 };
 
 #endif

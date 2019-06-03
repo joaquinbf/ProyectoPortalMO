@@ -8,6 +8,8 @@
 #include "../../../include/bodies/chell/chell.h"
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/button/button.h"
+#include "../../../include/bodies/rock/rock.h"
+
 
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id, ENTITY::GATE) {
@@ -52,4 +54,11 @@ void Gate::letBeginContactBeHandledBy(Button *button) {
 }
 
 void Gate::letBeginContactBeHandledBy(Gate *gate) {
+}
+
+void Gate::letBeginContactBeHandledBy(Rock *gate) {
+}
+
+void Gate::tryOpen() {
+    // TODO: Completar.
 }
