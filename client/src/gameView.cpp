@@ -1,5 +1,7 @@
 #include "../include/gameView.h"
 
+#include <iostream>
+
 GameView::GameView(uint32_t x, uint32_t y) : 
 resx(x),resy(y),window(x,y), textureManager(window),myChell(nullptr),
 myChellId(0), scale(1), paused(false)
@@ -70,7 +72,7 @@ void GameView::zoomIn(){
 }
 
 void GameView::zoomOut(){
-	if(this->scale > 0.5){
+	if(this->scale > 0.2){
 		this->scale-=0.05;
 	}
 }
@@ -110,4 +112,13 @@ void GameView::pause(){
 	} else {
 		this->paused = true;
 	}
+}
+
+void GameView::pixelToCoord(int32_t x,int32_t y) const{
+	int32_t cordx = this->myChell->getPosX();
+	int32_t cordy = this->myChell->getPosY();
+	int32_t a=x-(this->resx/2);
+    int32_t b=y-(2*this->resy/3);
+    a = a/this->scale + cordx;
+    b = -b/this->scale + cordy;
 }

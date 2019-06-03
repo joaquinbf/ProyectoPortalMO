@@ -49,6 +49,7 @@ public:
     void windowed();
     bool isPaused() const;
     void pause();
+    void pixelToCoord(int32_t x,int32_t y) const;
 };
 
 #endif

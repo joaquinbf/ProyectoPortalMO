@@ -1,8 +1,6 @@
 #include "../include/inputManager.h"
 
-#include "../../common/include/key.h"
-#include "../../common/include/keypad.h"
-
+#include <iostream>
 
 InputManager::InputManager(const ServerManager& sm,GameView& v) : serverManager(sm),
 gameView(v),running(true){
@@ -54,9 +52,10 @@ void InputManager::pauseMode(const SDL_Event& event){
 
 void InputManager::gameMode(const SDL_Event& event){
     Keypad keypad;
+    SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
+    SDL_MouseButtonEvent& mouseEvent = (SDL_MouseButtonEvent&) event;
     switch(event.type) {
-        case SDL_KEYDOWN: {
-                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
+        case SDL_KEYDOWN: {                
                 switch (keyEvent.keysym.sym) {
                     case SDLK_a:
 						this->sendPressAction(
@@ -79,26 +78,19 @@ void InputManager::gameMode(const SDL_Event& event){
                     case SDLK_ESCAPE:
                         this->gameView.pause();
                         break;
-                    case SDLK_o:
-                        this->gameView.zoomIn();
-                        break;
-                    case SDLK_i:
-                        this->gameView.zoomOut();
-                        break;
+
+                    //ESTO ESTA DE PRUEBA
                    case SDLK_n:
                         this->gameView.fullscreen();
                         break;
                     case SDLK_m:
                         this->gameView.windowed();
                         break;
-                    case SDLK_SPACE:
-                    	this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,0));
-                    	break;
-                    }
+
             } // Fin KEY_DOWN
             break;
+        }
         case SDL_KEYUP:{
-        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
                 switch (keyEvent.keysym.sym) {
                     case SDLK_a:
                     	this->sendReleaseAction(
@@ -115,7 +107,34 @@ void InputManager::gameMode(const SDL_Event& event){
                     case SDLK_s:
                         break;
                 }
+            break;
         } // Fin KEY_UP
+        case SDL_MOUSEWHEEL:{
+            if(event.wheel.y > 0){// scroll up
+                this->gameView.zoomIn();                        
+            }
+            else if(event.wheel.y < 0){// scroll down            
+                this->gameView.zoomOut();
+            }
+            break;
+        }// fin MOUSEWHEEL
+        case SDL_MOUSEBUTTONDOWN:{
+            int x, y;
+            SDL_GetMouseState( &x, &y );
+            switch(mouseEvent.button){
+                case SDL_BUTTON_LEFT:                                                             
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,0));
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE2,0));
+                    break;
+                case SDL_BUTTON_MIDDLE:
+                    this->gameView.pixelToCoord(x,y);
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::PIN,0));
+                    break;
+            }
+            break;
+        }// fin MOUSEBUTTONDOWN
     }    
 }
  
