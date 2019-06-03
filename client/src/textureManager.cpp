@@ -18,7 +18,9 @@ chellFireToIdleTexture(CHELL_FIRE_TO_IDLE_TEXTURE,window),
 metalBlockTexture(METAL_BLOCK_TEXTURE,window),
 metalTriagBlockTexture(METAL_TRIAG_BLOCK_TEXTURE,window),
 stoneBlockTexture(STONE_BLOCK_TEXTURE,window),
-launchBlockTexture(LAUNCH_BLOCK_TEXTURE,window)
+launchBlockTexture(LAUNCH_BLOCK_TEXTURE,window),
+buttonOnTexture(BUTTON_ON_TEXTURE,window),
+buttonOffTexture(BUTTON_OFF_TEXTURE,window)
 	{}
 
 TextureManager::~TextureManager(){}
@@ -45,6 +47,21 @@ const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
 			return nullptr;
 			break;
 	}
+	return nullptr;
+}
+
+const SdlTexture * TextureManager::getButtonTexturePointer(const STATUS st) const{
+	switch(st){
+		case STATUS::BUTTON_ON:
+			return &(this->buttonOnTexture);
+			break;
+		case STATUS::BUTTON_OFF:
+			return &(this->buttonOffTexture);
+			break;
+		default:
+			return nullptr;
+			break;
+	}	
 	return nullptr;
 }
 

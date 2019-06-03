@@ -6,6 +6,7 @@
 #include "../../common/include/update.h"
 #include "../include/chell.h"
 #include "../include/block.h"
+#include "../include/button.h"
 
 class EntityFactory{
 public:

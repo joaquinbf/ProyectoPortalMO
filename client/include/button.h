@@ -1,5 +1,5 @@
-#ifndef _BLOCK_H_
-#define _BLOCK_H_
+#ifndef _BUTTON_H_
+#define _BUTTON_H_
 
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
@@ -8,18 +8,18 @@
 #include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
-class Block : public Entity{
+class Button : public Entity{
 private:
 	SdlTexture* texturePtr;
 	Area frameArea;
-	ENTITY entity;
+	STATUS status;
+	const TextureManager& textureManager;
 public:
-	explicit Block(const TextureManager& tm,const ENTITY e,int32_t x, int32_t y,
+	explicit Button(const TextureManager& tm,const STATUS st,int32_t x, int32_t y,
 		uint32_t width, uint32_t height);
-	~Block();
-	void setDirection(uint32_t dir);
+	~Button();
 	void render(int cx,int cy,int resx,int resy,float scale) override;
-	void update(const Update& update) override;
+	void update(const Update& update) override;	
 };
 
 #endif

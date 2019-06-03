@@ -25,6 +25,9 @@
 #define STONE_BLOCK_TEXTURE "../resources/textures/blocks/stone.png"
 #define LAUNCH_BLOCK_TEXTURE "../resources/textures/blocks/launch.png"
 
+#define BUTTON_ON_TEXTURE "../resources/textures/button/on.png"
+#define BUTTON_OFF_TEXTURE "../resources/textures/button/off.png"
+
 class TextureManager{
 	SdlTexture blackTexture;
 	SdlTexture chellIdleTexture;
@@ -42,11 +45,14 @@ class TextureManager{
 	SdlTexture metalTriagBlockTexture;
 	SdlTexture stoneBlockTexture;
 	SdlTexture launchBlockTexture;
+	SdlTexture buttonOnTexture;
+	SdlTexture buttonOffTexture;
 public:	
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
 	~TextureManager();
 	const SdlTexture * getBlackTexture() const;
+	const SdlTexture * getButtonTexturePointer(const STATUS st) const;
 	const SdlTexture * getBlockTexturePointer(const ENTITY e) const;
 	const SdlTexture * getChellTexturePointer(const STATUS st) const;
 	Area getChellFrameArea(const STATUS st, int frame) const;

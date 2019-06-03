@@ -138,7 +138,6 @@ void Chell::runAction(){
 		this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
-	std::cout<<this->frame<<std::endl;
 	if(this->frame == 12){
 		this->frame = 0;
 	}
