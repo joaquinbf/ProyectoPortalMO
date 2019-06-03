@@ -3,7 +3,7 @@
 
 #include "boolean_supplier.h"
 
-class SimpleBoolean: BooleanSupplier {
+class SimpleBoolean: public BooleanSupplier {
 private:
     bool value;
 
