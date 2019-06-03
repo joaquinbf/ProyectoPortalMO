@@ -22,7 +22,6 @@ void Block::render(int cx,int cy,int resx,int resy,float scale){
 	int a = (this->posx-cx)*scale - (this->width/2)*scale + resx/2 ;
 	int b = -(this->posy-cy)*scale - (this->height/2)*scale + (2*resy)/3;
 	Area renderArea(a,b,this->width*scale,this->height*scale);
-	//this->texturePtr->render(this->frameArea, Area(a,b,this->width*scale,this->height*scale));
 	switch(this->direction){
 		case 0:
 			this->texturePtr->render(this->frameArea, renderArea);

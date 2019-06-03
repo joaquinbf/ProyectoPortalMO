@@ -43,6 +43,7 @@ public:
 	uint32_t getChellId() const;
 	void setChellId(uint32_t id);
 	void show();
+	void updateResolution();
 	void fullscreen();
     void windowed();
 };

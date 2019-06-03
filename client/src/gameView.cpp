@@ -17,6 +17,7 @@ GameView::~GameView(){
 }
 
 void GameView::render(){
+	this->updateResolution();
 	this->window.fill(); // Repinto el fondo gris
 	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
 		it->second->render(this->myChell->getPosX(),this->myChell->getPosY(),
@@ -84,14 +85,15 @@ void GameView::show(){
 	this->window.show();	
 }
 
-void GameView::fullscreen(){
-	this->window.fullscreen();
+void GameView::updateResolution(){
 	this->resx=this->window.getResX();
 	this->resy=this->window.getResY();
 }
 
+void GameView::fullscreen(){
+	this->window.fullscreen();
+}
+
 void GameView::windowed(){
 	this->window.windowed();
-	this->resx=this->window.getResX();
-	this->resy=this->window.getResY();
 }

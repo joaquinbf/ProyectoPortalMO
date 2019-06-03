@@ -66,7 +66,6 @@ void Protocol::sendLine(const std::string& line) const{
 uint8_t Protocol::receiveByte() const{
 	uint8_t aux = 0;
 	if(this->socket.get() == -1){
-		std::cout<<"HOLA\n";
 		throw ConnectionErrorException("Error en Protocol::receiveByte: %s\n",
                                      strerror(errno));
 	}
