@@ -10,8 +10,10 @@ enum ACTION: uint8_t {
     RUN_RIGHT,
     STOP_LEFT,
     STOP_RIGHT,
-    FIRE,
-    JIG
+    JIG,
+    FIRE1,
+    FIRE2,
+    PIN    
 };
 
 class Action{

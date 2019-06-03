@@ -2,7 +2,7 @@
 
 GameView::GameView(uint32_t x, uint32_t y) : 
 resx(x),resy(y),window(x,y), textureManager(window),myChell(nullptr),
-myChellId(0), scale(1)
+myChellId(0), scale(1), paused(false)
 {}
 
 GameView::~GameView(){
@@ -26,8 +26,11 @@ void GameView::render(){
 	if(this->myChell != nullptr){
 		this->myChell->renderCentered(this->resx,this->resy,this->scale);	
 	}
-	//this->textureManager.getBlackTexture()->setAlpha(255*(1-this->scale));     
-	//this->textureManager.getBlackTexture()->render(Area(0,0,600,600),Area(0,0,this->resx,this->resy));
+	if(this->paused){
+		this->textureManager.getBlackTexture()->setAlpha(160);     
+		this->textureManager.getBlackTexture()->render(Area(0,0,600,600),
+			Area(0,0,this->resx,this->resy));
+	}
     this->window.render();
 }
 
@@ -95,4 +98,16 @@ void GameView::fullscreen(){
 
 void GameView::windowed(){
 	this->window.windowed();
+}
+
+bool GameView::isPaused() const{
+	return this->paused;
+}
+
+void GameView::pause(){
+	if(this->paused){
+		this->paused = false;
+	} else {
+		this->paused = true;
+	}
 }

@@ -33,6 +33,7 @@ private:
 	Chell* myChell;
 	uint32_t myChellId;
 	float scale;
+	bool paused;
 public:
 	explicit GameView(uint32_t x, uint32_t y);
 	~GameView();
@@ -46,6 +47,8 @@ public:
 	void updateResolution();
 	void fullscreen();
     void windowed();
+    bool isPaused() const;
+    void pause();
 };
 
 #endif

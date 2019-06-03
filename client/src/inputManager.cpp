@@ -21,78 +21,104 @@ bool InputManager::isRunning() const{
 }
 
 void InputManager::run(){
-	Keypad keypad;
-
 	SDL_Event event;
     while(this->running){
-	    SDL_WaitEvent(&event);
-	    switch(event.type) {
-	        case SDL_KEYDOWN: {
-	                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-	                switch (keyEvent.keysym.sym) {
-	                    case SDLK_a:
-							this->sendPressAction(
-								keypad.getKey(KEY::LEFT_KEY),
-								ACTION::RUN_LEFT);
-	                        break;
-	                    case SDLK_d:
-							this->sendPressAction(
-								keypad.getKey(KEY::RIGHT_KEY),
-								ACTION::RUN_RIGHT);
-	                        break;
-	                    case SDLK_w:
-							this->sendPressAction(
-								keypad.getKey(KEY::UP_KEY),
-								ACTION::JUMP);
-	                        break;
-	                    case SDLK_o:
-	                    	this->gameView.zoomIn();
-	                        break;
-	                    case SDLK_p:
-	                    	this->gameView.zoomOut();
-	                        break;
-                       case SDLK_n:
-	                    	this->gameView.fullscreen();
-	                        break;
-	                    case SDLK_m:
-	                    	this->gameView.windowed();
-	                        break;
-	                    case SDLK_b:
-	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0));
-	                    	break;
-	                    case SDLK_SPACE:
-	                    	this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE,0));
-	                    	break;
-	                    }
-	            } // Fin KEY_DOWN
-	            break;
-	        case SDL_KEYUP:{
-	        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
-	                switch (keyEvent.keysym.sym) {
-	                    case SDLK_a:
-	                    	this->sendReleaseAction(
-								keypad.getKey(KEY::LEFT_KEY),
-								ACTION::STOP_LEFT);
-	                        break;
-	                    case SDLK_d:
-							this->sendReleaseAction(
-								keypad.getKey(KEY::RIGHT_KEY),
-								ACTION::STOP_RIGHT);
-	                        break;
-	                    case SDLK_w:
-	                        break;
-	                    case SDLK_s:
-	                        break;
-	                    }
-	            } // Fin KEY_UP
-	        	break;
-	        case SDL_QUIT:
-	        	this->serverManager.sendAction(Action(this->chellId,ACTION::QUIT,0));
-	            this->running = false;
-	            break;
+    	SDL_WaitEvent(&event);
+    	if(this->gameView.isPaused()){
+    		this->pauseMode(event);
+    	} else {
+    		this->gameMode(event);
+    	}
+	    if(event.type == SDL_QUIT){
+	    	this->serverManager.sendAction(Action(this->chellId,ACTION::QUIT,0));
+            this->running = false;
 	    }
+    }    	
+}	    
+
+void InputManager::pauseMode(const SDL_Event& event){
+ 	Keypad keypad;
+ 	switch(event.type) {
+		case SDL_KEYDOWN: {
+			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
+        	switch (keyEvent.keysym.sym) {
+				case SDLK_ESCAPE:
+    				this->gameView.pause();
+        			break;
+        		default:
+        			break;
+        	}
+        }
     }
 }
+
+void InputManager::gameMode(const SDL_Event& event){
+    Keypad keypad;
+    switch(event.type) {
+        case SDL_KEYDOWN: {
+                SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
+                switch (keyEvent.keysym.sym) {
+                    case SDLK_a:
+						this->sendPressAction(
+							keypad.getKey(KEY::LEFT_KEY),
+							ACTION::RUN_LEFT);
+                        break;
+                    case SDLK_d:
+						this->sendPressAction(
+							keypad.getKey(KEY::RIGHT_KEY),
+							ACTION::RUN_RIGHT);
+                        break;
+                    case SDLK_w:
+						this->sendPressAction(
+							keypad.getKey(KEY::UP_KEY),
+							ACTION::JUMP);
+                        break;
+                    case SDLK_b:
+                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0));
+                    	break;
+                    case SDLK_ESCAPE:
+                        this->gameView.pause();
+                        break;
+                    case SDLK_o:
+                        this->gameView.zoomIn();
+                        break;
+                    case SDLK_i:
+                        this->gameView.zoomOut();
+                        break;
+                   case SDLK_n:
+                        this->gameView.fullscreen();
+                        break;
+                    case SDLK_m:
+                        this->gameView.windowed();
+                        break;
+                    case SDLK_SPACE:
+                    	this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,0));
+                    	break;
+                    }
+            } // Fin KEY_DOWN
+            break;
+        case SDL_KEYUP:{
+        	SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
+                switch (keyEvent.keysym.sym) {
+                    case SDLK_a:
+                    	this->sendReleaseAction(
+							keypad.getKey(KEY::LEFT_KEY),
+							ACTION::STOP_LEFT);
+                        break;
+                    case SDLK_d:
+						this->sendReleaseAction(
+							keypad.getKey(KEY::RIGHT_KEY),
+							ACTION::STOP_RIGHT);
+                        break;
+                    case SDLK_w:
+                        break;
+                    case SDLK_s:
+                        break;
+                }
+        } // Fin KEY_UP
+    }    
+}
+ 
 
 void InputManager::sendPressAction(Key *key, ACTION action) {
 	if (!key->isBeingPressed()) {

@@ -24,6 +24,8 @@ public:
     bool isRunning() const;
 
 private:
+	void pauseMode(const SDL_Event& ev);
+	void gameMode(const SDL_Event& ev);
 	/* Envia una accion al servidor indicando que una tecla fue presionada. */
 	void sendPressAction(Key *key, ACTION action);
 
