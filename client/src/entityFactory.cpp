@@ -32,7 +32,7 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
 			return new Button(tm,update.getStatus(),update.getPosX(),update.getPosY(),200,50);	
 			break;
 		case ENTITY::GATE:
-			return nullptr;
+			return new Gate(tm,update.getPosX(),update.getPosY(),200,400);
 			break;
 		default:
 			return nullptr;
