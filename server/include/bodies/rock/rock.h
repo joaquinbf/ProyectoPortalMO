@@ -10,8 +10,8 @@
 
 class Rock: public Body {
 private:
-    const float HALF_WIDTH = 10;
-    const float HALF_HEIGHT = 15;
+    const float HALF_WIDTH = 1.0;
+    const float HALF_HEIGHT = 1.5;
     const float DENSITY = 1;
     const float ANGLE = 0;
 

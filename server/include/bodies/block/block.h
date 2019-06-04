@@ -30,8 +30,8 @@ class Block: public Body {
 private:
     Shape *shape;
     Material *material;
-    const float HALF_WIDTH = 100;
-    const float HALF_HEIGHT = 100;
+    const float HALF_WIDTH = 1.00;
+    const float HALF_HEIGHT = 1.00;
     const float DENSITY = 1;
     const float ANGLE = 0;
 

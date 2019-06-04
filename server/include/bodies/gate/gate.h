@@ -19,8 +19,8 @@ class BooleanBlock;
 
 class Gate: public Body {
 private:
-    const float HALF_WIDTH = 100;
-    const float HALF_HEIGHT = 200;
+    const float HALF_WIDTH = 1.00;
+    const float HALF_HEIGHT = 2.00;
     BooleanBlock *boolean_block;
 
 public:

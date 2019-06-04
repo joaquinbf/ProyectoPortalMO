@@ -10,7 +10,6 @@
 #include "../../../../common/include/types.h"
 #include "../../../../server/include/boolean_suppliers/boolean_supplier.h"
 
-
 class Gate;
 
 class Button: public Body, public BooleanSupplier {

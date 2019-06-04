@@ -25,8 +25,8 @@ private:
     JumpingState jumping_state;
     ChellState *state;
     Keypad keypad;
-    const float HALF_WIDTH = 100;
-    const float HALF_HEIGHT = 150;
+    const float HALF_WIDTH = 1.00;
+    const float HALF_HEIGHT = 1.50;
     const float DENSITY = 1;
     const float ANGLE = 0;
 
