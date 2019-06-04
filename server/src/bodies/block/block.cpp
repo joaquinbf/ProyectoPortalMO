@@ -50,8 +50,8 @@ Update Block::createUpdate(COMMAND command) const {
         this->entity,
         this->BODY_ID,
         STATUS::NONE_STATUS,
-        this->b2body->GetPosition().x,
-        this->b2body->GetPosition().y,
+        this->b2body->GetPosition().x * ZOOM_FACTOR,
+        this->b2body->GetPosition().y * ZOOM_FACTOR,
         0);
     return update;
 }

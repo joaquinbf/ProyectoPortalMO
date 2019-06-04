@@ -9,8 +9,8 @@ Update::Update( COMMAND command, ENTITY entity,	uint32_t id, STATUS status,	int3
 	idClass(entity),
 	idObject(id),
 	status(status),
-	posX(posx * ZOOM_FACTOR),
-	posY(posy * ZOOM_FACTOR),
+	posX(posx),
+	posY(posy),
 	direction(dir) {}
 
 Update::~Update(){}

@@ -129,11 +129,11 @@ void World::step() {
 
 void World::createWorldOne() {
     for (int i = 0; i < 4; i++) {
-        this->createChell(200 * i, 0);
+        this->createChell(-6 + 2*i, 1.5);
     }
 
     for (int i = 0; i < 7; i++) {
-        this->createSquareMetalBlock(200 * i, -300);
+        this->createSquareMetalBlock(-6 + 2*i, -1);
     }
 }
 
@@ -171,7 +171,8 @@ std::list<Update> World::getUpdatesWithCommand(COMMAND command) const {
     for (Body *body: this->bodies) {
         Update update = body->createUpdate(command);
         lista.emplace_back(update);
-        std::cout << "STATUS : " << update.getStatus() << std::endl;
+        std::cout << "UPDATE: (" << update.getPosX()
+                  << " ," << update.getPosY() << ")" << std::endl;
     }
 
     return lista;
