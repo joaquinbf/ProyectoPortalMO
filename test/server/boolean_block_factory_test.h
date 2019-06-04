@@ -18,6 +18,16 @@ public:
 
         // Al eliminarse la fabrica se debe elimnar los blockes pedidos.
     }
+
+    void testSePideUnNotBlockConTrueEnSuInteriorYDevuelveFalse() {
+        BooleanBlockFactory bbf;
+        BooleanBlock *block = bbf.createNotBlock();
+        SimpleBoolean sb(true);
+
+        block->add(&sb);
+
+        TS_ASSERT_EQUALS(false, block->getAsBoolean());
+    }
 };
 
 #endif

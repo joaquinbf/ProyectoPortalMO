@@ -18,3 +18,9 @@ BooleanBlock *BooleanBlockFactory::createOrBlock() {
     this->blocks.push_back(block);
     return block;
 }
+
+BooleanBlock *BooleanBlockFactory::createNotBlock() {
+    BooleanBlock *block = new UnaryBlock(&this->not_operator);
+    this->blocks.push_back(block);
+    return block;
+}
