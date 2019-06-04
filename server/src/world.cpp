@@ -111,7 +111,6 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
         if (b2body->IsAwake()) {
             Body *body = (Body *) b2body->GetUserData();
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
-            std::cout << "STATUS : " << update.getStatus() << std::endl;
             updates.push_back(update);
         }
         b2body = b2body->GetNext();

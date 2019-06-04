@@ -16,6 +16,7 @@ Instruction *InstructionFactory::createInstruction(
     const Action &action,
     std::map<uint32_t, Chell *> &chells) const {
     Instruction *instruction;
+    std::cout << "CHELL ID: " << action.getId() << std::endl;
     Chell *chell = chells[action.getId()];
 
     switch (action.getAction()) {
