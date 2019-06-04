@@ -13,7 +13,7 @@ enum ACTION: uint8_t {
     JIG,
     FIRE1,
     FIRE2,
-    PIN    
+    PING    
 };
 
 class Action{

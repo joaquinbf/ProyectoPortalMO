@@ -16,7 +16,8 @@ enum ENTITY: uint8_t {
 	GATE,
 	ACID,
 	BULLET,
-	LASER
+	LASER,
+	PIN
 };
 
 enum COMMAND : uint8_t{

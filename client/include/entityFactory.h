@@ -12,6 +12,7 @@
 #include "../include/acid.h"
 #include "../include/bullet.h"
 #include "../include/laser.h"
+#include "../include/pin.h"
 
 class EntityFactory{
 public:

@@ -128,7 +128,7 @@ void InputManager::gameMode(const SDL_Event& event){
                     break;
                 case SDL_BUTTON_MIDDLE:
                     this->gameView.pixelToCoord(x,y);
-                    this->serverManager.sendAction(Action(this->chellId,ACTION::PIN,0));
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::PING,0));
                     break;
             }
             break;

@@ -38,6 +38,7 @@
 #define BULLET_TEXTURE "../resources/textures/miscellaneous/bullet.png"
 #define LASER_TEXTURE "../resources/textures/miscellaneous/laser.png"
 #define CROSSHAIR_TEXTURE "../resources/textures/miscellaneous/crosshair.png"
+#define PIN_TEXTURE "../resources/textures/miscellaneous/pin.png"
 
 class TextureManager{
 	SdlTexture blackTexture;
@@ -67,6 +68,7 @@ class TextureManager{
 	SdlTexture bulletTexture;
 	SdlTexture laserTexture;
 	SdlTexture crosshairTexture;
+	SdlTexture pinTexture;
 public:	
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
@@ -81,6 +83,7 @@ public:
 	const SdlTexture * getLaserTexturePointer() const;
 	const SdlTexture * getGateTexturePointer(STATUS st) const;
 	const SdlTexture * getCrosshairTexturePointer() const;
+	const SdlTexture * getPinTexturePointer() const;	
 	Area getChellFrameArea(const STATUS st, int frame) const;
 	Area getGateFrameArea(uint32_t frame) const;
 };

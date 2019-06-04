@@ -29,7 +29,8 @@ gateOpeningTexture(GATE_OPENING_TEXTURE,window),
 acidTexture(ACID_TEXTURE,window),
 bulletTexture(BULLET_TEXTURE,window),
 laserTexture(LASER_TEXTURE,window),
-crosshairTexture(CROSSHAIR_TEXTURE,window)
+crosshairTexture(CROSSHAIR_TEXTURE,window),
+pinTexture(PIN_TEXTURE,window)
 	{}
 
 TextureManager::~TextureManager(){}
@@ -57,6 +58,10 @@ const SdlTexture * TextureManager::getGateTexturePointer(STATUS st) const{
 			break;
 	}
 	return nullptr;
+}
+
+const SdlTexture * TextureManager::getPinTexturePointer() const{
+	return &(this->pinTexture);
 }
 
 const SdlTexture * TextureManager::getLaserTexturePointer() const{
