@@ -14,7 +14,7 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
 			return new Block(tm,STONE_BLOCK,update.getPosX(),update.getPosY(),200,200);
 			break;
 		case ENTITY::METAL_BLOCK:
-			return new Block(tm,METAL_BLOCK,update.getPosX(),update.getPosY(),200,200);
+			return new Block(tm,RECEIVER_BLOCK,update.getPosX(),update.getPosY(),200,200);
 			break;	
 		case ENTITY::METAL_TRIAG_BLOCK:
 			ptr = new Block(tm,METAL_TRIAG_BLOCK,update.getPosX(),update.getPosY(),200,200);
@@ -25,6 +25,10 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
 			ptr = new Block(tm,LAUNCH_BLOCK,update.getPosX(),update.getPosY(),200,200);
 			ptr->setDirection(update.getDirection());
 			return (Entity *) ptr;
+			break;
+		case ENTITY::RECEIVER_BLOCK:
+			return new Block(tm,RECEIVER_BLOCK,update.getPosX(),update.getPosY(),200,200);
+			break;
 		case ENTITY::ROCK:
 			return new Rock(tm,update.getPosX(),update.getPosY(),100,100);
 			break;

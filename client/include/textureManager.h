@@ -24,6 +24,7 @@
 #define METAL_TRIAG_BLOCK_TEXTURE "../resources/textures/blocks/metal-triag.png"
 #define STONE_BLOCK_TEXTURE "../resources/textures/blocks/stone.png"
 #define LAUNCH_BLOCK_TEXTURE "../resources/textures/blocks/launch.png"
+#define RECEIVER_BLOCK_TEXTURE "../resources/textures/blocks/receiver.png"
 
 #define BUTTON_ON_TEXTURE "../resources/textures/button/on.png"
 #define BUTTON_OFF_TEXTURE "../resources/textures/button/off.png"
@@ -54,6 +55,7 @@ class TextureManager{
 	SdlTexture metalTriagBlockTexture;
 	SdlTexture stoneBlockTexture;
 	SdlTexture launchBlockTexture;
+	SdlTexture receiverBlockTexture;
 	SdlTexture buttonOnTexture;
 	SdlTexture buttonOffTexture;
 	SdlTexture rockTexture;

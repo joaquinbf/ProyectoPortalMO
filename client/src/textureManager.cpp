@@ -19,6 +19,7 @@ metalBlockTexture(METAL_BLOCK_TEXTURE,window),
 metalTriagBlockTexture(METAL_TRIAG_BLOCK_TEXTURE,window),
 stoneBlockTexture(STONE_BLOCK_TEXTURE,window),
 launchBlockTexture(LAUNCH_BLOCK_TEXTURE,window),
+receiverBlockTexture(RECEIVER_BLOCK_TEXTURE,window),
 buttonOnTexture(BUTTON_ON_TEXTURE,window),
 buttonOffTexture(BUTTON_OFF_TEXTURE,window),
 rockTexture(ROCK_TEXTURE,window),
@@ -72,6 +73,7 @@ const SdlTexture * TextureManager::getRockTexturePointer() const{
 }
 
 const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
+	SdlTexture a;
 	switch(e){
 		case STONE_BLOCK:
 			return &(this->stoneBlockTexture);
@@ -84,6 +86,9 @@ const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
 			break;
 		case LAUNCH_BLOCK:
 			return &(this->launchBlockTexture);
+			break;
+		case RECEIVER_BLOCK:
+			return &(this->receiverBlockTexture);
 			break;
 		default:
 			return nullptr;
