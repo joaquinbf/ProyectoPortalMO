@@ -105,6 +105,11 @@ void Chell::releaseUp() {
 
 
 void Chell::changeStateToRunning() {
+    if (this->isFacingRight()) {
+        this->applyLinearImpulseToRight();
+    } else {
+        this->applyLinearImpulseToLeft();
+    }
     this->state = &this->running_state;
 }
 
@@ -120,21 +125,21 @@ void Chell::changeStateToJumping() {
 
 void Chell::applyLinearImpulseToLeft() {
     float mass = this->b2body->GetMass();
-    float vel = 1;
+    float vel = 3;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
     float mass = this->b2body->GetMass();
-    float vel = 1;
+    float vel = 3;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
 }
 
 void Chell::applyLinearImpulseToUp() {
     float mass = this->b2body->GetMass();
-    float vel = 5;
+    float vel = 1;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, imp), true);
 }
