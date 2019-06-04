@@ -5,7 +5,8 @@
 #include "../../server/include/boolean_suppliers/binary_block.h"
 #include "../../server/include/boolean_suppliers/and_operator.h"
 #include "../../server/include/boolean_suppliers/or_operator.h"
-#include "../../server/include/boolean_suppliers/not_block.h"
+#include "../../server/include/boolean_suppliers/unary_block.h"
+#include "../../server/include/boolean_suppliers/not_operator.h"
 #include <cxxtest/TestSuite.h>
 
 class BinaryBlockTest: public CxxTest::TestSuite {
@@ -45,14 +46,15 @@ public:
         SimpleBoolean sb2(false);
 
         // Meto a sb1 sobre un not-block para negarlo.
-        NotBlock notblock;
-        notblock.add(&sb1);
+        NotOperator not_op;
+        UnaryBlock unary_block(&not_op);
+        unary_block.add(&sb1);
 
         // Agrego sb2 y not-block al bloque AND
         AndOperator and_operator;
         BinaryBlock bb(&and_operator);
-        bb.add(&sb1);
-        bb.add(&notblock);
+        bb.add(&sb2);
+        bb.add(&unary_block);
 
         bool r = bb.getAsBoolean();
 
