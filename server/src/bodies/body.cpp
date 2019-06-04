@@ -19,3 +19,7 @@ uint32_t Body::getBodyId() const {
 
 void Body::applyStateAction() {
 }
+
+bool Body::isAwake() const {
+    return this->b2body->IsAwake();
+}

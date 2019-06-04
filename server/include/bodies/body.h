@@ -51,6 +51,8 @@ public:
 
     virtual void letBeginContactBeHandledBy(Rock *rock) = 0;
 
+    /* Indica si el cuerpo esta despierto */
+    bool isAwake() const;
 };
 
 #endif

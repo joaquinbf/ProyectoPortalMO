@@ -146,7 +146,9 @@ void World::applyAction(const Action &action) {
 
 void World::applyStateActions() {
     for (Body *body: this->bodies) {
-        body->applyStateAction();
+        if (body->isAwake()) {
+            body->applyStateAction();
+        }
     }
 }
 
