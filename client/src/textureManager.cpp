@@ -24,7 +24,9 @@ buttonOffTexture(BUTTON_OFF_TEXTURE,window),
 rockTexture(ROCK_TEXTURE,window),
 gateClosedTexture(GATE_CLOSED_TEXTURE,window),
 gateOpenedTexture(GATE_OPENED_TEXTURE,window),
-gateOpeningTexture(GATE_OPENING_TEXTURE,window)
+gateOpeningTexture(GATE_OPENING_TEXTURE,window),
+acidTexture(ACID_TEXTURE,window),
+bulletTexture(BULLET_TEXTURE,window)
 	{}
 
 TextureManager::~TextureManager(){}
@@ -98,6 +100,14 @@ const SdlTexture * TextureManager::getButtonTexturePointer(const STATUS st) cons
 			break;
 	}	
 	return nullptr;
+}
+
+const SdlTexture * TextureManager::getAcidTexturePointer() const{
+	return &(this->acidTexture);
+}
+
+const SdlTexture * TextureManager::getBulletTexturePointer() const{
+	return &(this->bulletTexture);
 }
 
 const SdlTexture * TextureManager::getChellTexturePointer(const STATUS st) const{

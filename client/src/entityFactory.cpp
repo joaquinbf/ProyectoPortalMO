@@ -34,6 +34,12 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
 		case ENTITY::GATE:
 			return new Gate(tm,update.getPosX(),update.getPosY(),200,400);
 			break;
+		case ENTITY::ACID:
+			return new Acid(tm,update.getPosX(),update.getPosY(),200,60);
+			break;
+		case ENTITY::BULLET:
+			return new Bullet(tm,update.getPosX(),update.getPosY(),100,60,update.getDirection()); 
+			break;
 		default:
 			return nullptr;
 			break;

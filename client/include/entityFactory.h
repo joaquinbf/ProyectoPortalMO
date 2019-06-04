@@ -9,6 +9,8 @@
 #include "../include/button.h"
 #include "../include/rock.h"
 #include "../include/gate.h"
+#include "../include/acid.h"
+#include "../include/bullet.h"
 
 class EntityFactory{
 public:

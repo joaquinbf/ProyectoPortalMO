@@ -34,6 +34,10 @@
 #define GATE_OPENED_TEXTURE	"../resources/textures/gate/4-opened.png"
 #define GATE_OPENING_TEXTURE "../resources/textures/gate/4-opening.png"
 
+#define ACID_TEXTURE "../resources/textures/miscellaneous/acid.png"
+
+#define BULLET_TEXTURE "../resources/textures/miscellaneous/bullet.png"
+
 class TextureManager{
 	SdlTexture blackTexture;
 	SdlTexture chellIdleTexture;
@@ -57,11 +61,15 @@ class TextureManager{
 	SdlTexture gateClosedTexture;
 	SdlTexture gateOpenedTexture;
 	SdlTexture gateOpeningTexture;
+	SdlTexture acidTexture;
+	SdlTexture bulletTexture;
 public:	
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
 	~TextureManager();
 	const SdlTexture * getBlackTexture() const;
+	const SdlTexture * getAcidTexturePointer() const;
+	const SdlTexture * getBulletTexturePointer() const;
 	const SdlTexture * getButtonTexturePointer(const STATUS st) const;
 	const SdlTexture * getBlockTexturePointer(const ENTITY e) const;
 	const SdlTexture * getChellTexturePointer(const STATUS st) const;

@@ -12,7 +12,10 @@ enum ENTITY: uint8_t {
 	LAUNCH_BLOCK,
 	ROCK,
 	BUTTON,
-	GATE
+	GATE,
+	ACID,
+	BULLET,
+	LASER
 };
 
 enum COMMAND : uint8_t{

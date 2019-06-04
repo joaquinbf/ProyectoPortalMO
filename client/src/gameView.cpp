@@ -107,11 +107,7 @@ bool GameView::isPaused() const{
 }
 
 void GameView::pause(){
-	if(this->paused){
-		this->paused = false;
-	} else {
-		this->paused = true;
-	}
+	this->paused = !this->paused;
 }
 
 void GameView::pixelToCoord(int32_t x,int32_t y) const{
