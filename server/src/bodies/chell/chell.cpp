@@ -125,21 +125,21 @@ void Chell::changeStateToJumping() {
 
 void Chell::applyLinearImpulseToLeft() {
     float mass = this->b2body->GetMass();
-    float vel = 3;
+    float vel = LEFTSPEED;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
     float mass = this->b2body->GetMass();
-    float vel = 3;
+    float vel = RIGHTSPEED;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
 }
 
 void Chell::applyLinearImpulseToUp() {
     float mass = this->b2body->GetMass();
-    float vel = 1;
+    float vel = JUMPSPEED;
     float imp = mass * vel;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, imp), true);
 }
