@@ -112,6 +112,21 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
             Body *body = (Body *) b2body->GetUserData();
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             updates.push_back(update);
+
+            switch (update.getStatus()) {
+            case STATUS::NONE_STATUS:
+                std::cout << "STATUS: NONE_STATUS" << std::endl;
+                break;
+            case STATUS::CHELL_IDLE:
+                std::cout << "STATUS: CHELL_IDLE" << std::endl;
+                break;
+            case STATUS::CHELL_RUNNING:
+                std::cout << "STATUS: CHELL_RUNNING" << std::endl;
+                break;
+            default:
+                std::cout << "STATUS: OTRO STATUS" << std::endl;
+                break;
+            }
         }
         b2body = b2body->GetNext();
     }
@@ -134,6 +149,8 @@ void World::createWorldOne() {
     for (int i = 0; i < 7; i++) {
         this->createSquareMetalBlock(-6 + 2*i, -1);
     }
+
+    this->createGateWithButton(6, 2, 1, 0, true);
 }
 
 void World::applyAction(const Action &action) {

@@ -20,13 +20,13 @@ public:
         //     this->world.createSquareMetalBlock(-6 + 2*i, -1);
         // }
         // this->world.createGateWithButton(6, 2, 3, 0, true);
-        for (int i = 0; i < 4; i++) {
-            this->world.createChell(-6 + 2*i, 1.5);
-        }
+        this->chell = this->world.createChell(-6, 1.5);
 
         for (int i = 0; i < 7; i++) {
             this->world.createSquareMetalBlock(-6 + 2*i, -1);
         }
+
+        this->world.createGateWithButton(6, 2, 1, -1, true);
     }
 
     void Step(Settings *settings) {

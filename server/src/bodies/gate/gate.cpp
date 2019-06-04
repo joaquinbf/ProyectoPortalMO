@@ -33,7 +33,7 @@ Update Gate::createUpdate(COMMAND command) const {
         command,
         this->entity,
         this->BODY_ID,
-        STATUS::NONE_STATUS,
+        STATUS::GATE_CLOSED,
         this->b2body->GetPosition().x,
         this->b2body->GetPosition().y,
         0);
