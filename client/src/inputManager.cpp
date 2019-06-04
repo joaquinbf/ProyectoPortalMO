@@ -1,8 +1,8 @@
 #include "../include/inputManager.h"
 
 InputManager::InputManager(const ServerManager& sm,GameView& v) : serverManager(sm),
-gameView(v),running(true){
-	this->chellId = this->gameView.getChellId();
+chellId(0),gameView(v),running(true){
+	
 }
 
 InputManager::~InputManager(){}
@@ -17,7 +17,8 @@ bool InputManager::isRunning() const{
 }
 
 void InputManager::run(){
-	SDL_Event event;
+	this->chellId = this->gameView.getChellId();
+    SDL_Event event;
     while(this->running){
     	SDL_WaitEvent(&event);
     	if(this->gameView.isPaused()){

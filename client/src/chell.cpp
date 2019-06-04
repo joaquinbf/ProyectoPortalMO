@@ -190,7 +190,7 @@ void Chell::turnAction(){
 }
 
 void Chell::jump(){
-	if(this->status != CHELL_JUMPING){
+	if(this->status != CHELL_JUMPING || this->status != CHELL_JUMPING_APEX){
 		this->frame = 0;
 		this->jumpAction();
 	}
@@ -207,9 +207,8 @@ void Chell::jumpAction(){
 		this->status = CHELL_JUMPING_APEX;
 		this->texturePtr = (SdlTexture *) 
 			this->textureManager.getChellTexturePointer(this->status);
-		this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
-		this->actionPtr = &Chell::idleAction;
-		this->frame = 0;
+		this->frameArea = this->textureManager.getChellFrameArea(this->status,0);
+		this->frame = 4;
 	}		
 }
 

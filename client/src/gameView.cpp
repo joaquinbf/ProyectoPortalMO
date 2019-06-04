@@ -128,4 +128,5 @@ void GameView::pixelToCoord(int32_t x,int32_t y) const{
     int32_t b=y-(2*this->resy/3);
     a = a/this->scale + cordx;
     b = -b/this->scale + cordy;
+    std::cout<<a<<" "<<b<<"\n";
 }

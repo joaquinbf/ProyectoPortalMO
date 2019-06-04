@@ -13,7 +13,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 
-#define JUMPSPEED 3
+#define JUMPSPEED 5
 #define LEFTSPEED 3
 #define RIGHTSPEED 3
 
