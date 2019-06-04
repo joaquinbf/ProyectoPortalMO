@@ -78,7 +78,7 @@ void Chell::update(const Update& update){
 			this->jig();
 			break;
 		default:	
-			this->idle();
+			//this->idle();
 			break;
 	}
 }
@@ -203,6 +203,7 @@ void Chell::jumpAction(){
 		this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
+	std::cout<<this->frame<<"\n";
 	if(this->frame == 5 ){
 		this->status = CHELL_JUMPING_APEX;
 		this->texturePtr = (SdlTexture *) 

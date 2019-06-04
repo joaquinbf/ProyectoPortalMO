@@ -83,7 +83,6 @@ const SdlTexture * TextureManager::getRockTexturePointer() const{
 }
 
 const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
-	SdlTexture a;
 	switch(e){
 		case STONE_BLOCK:
 			return &(this->stoneBlockTexture);

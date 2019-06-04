@@ -16,7 +16,7 @@ void Accepter::run() {
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
-            //ENVIAR AL PEER LISTA DE GAMES ABIERTOS
+            //ENVIAR AL PEER LISTA DE GAMES ABIERTO
             //ESPERAR PEER RESPONSE
             //PROCESAR COMANDO PARA CREAR PARTIDA O UNIR PEER A PARTIDA
             //ESTO HAY QUE HACERLO EN OTRO HILO PARA NO BLOQUEAR EL ACCEPTER
