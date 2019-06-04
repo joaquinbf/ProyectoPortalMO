@@ -10,11 +10,14 @@ textureManager(tm), frameArea(0,0,192,384), frame(0), status(STATUS::GATE_CLOSED
 
 Gate::~Gate(){}
 
+void Gate::step(){
+	(this->*actionPtr)();
+}
+
 void Gate::render(int cx,int cy,int resx,int resy,float scale){
 	int a = (this->posx-cx)*scale - (this->width/2)*scale + resx/2 ;
 	int b = -(this->posy-cy)*scale - (this->height/2)*scale + (2*resy)/3;	
 	this->texturePtr->render(this->frameArea, Area(a,b,this->width*scale,this->height*scale));
-	(this->*actionPtr)();
 }
 
 void Gate::update(const Update& update){

@@ -14,6 +14,10 @@ status(CHELL_IDLE){
 
 Chell::~Chell(){}
 
+void Chell::step(){
+	(this->*actionPtr)();
+}
+
 void Chell::renderCentered(int resx,int resy, float scale){
 	int a=(resx/2)-((this->width*scale)/2);
     int b=(2*resy/3)-(this->height*scale)/2;
@@ -23,7 +27,6 @@ void Chell::renderCentered(int resx,int resy, float scale){
 	} else if(this-> direction == 0){
 		this->texturePtr->renderFlipedHorizontal(this->frameArea, renderArea);
 	}
-	(this->*actionPtr)();
 }
 
 void Chell::render(int cx,int cy,int resx,int resy,float scale){
@@ -34,7 +37,6 @@ void Chell::render(int cx,int cy,int resx,int resy,float scale){
 	} else if(this-> direction == 0){
 		this->texturePtr->renderFlipedHorizontal(this->frameArea, Area(a,b,this->width*scale,this->height*scale));
 	}
-	(this->*actionPtr)();
 }
 
 int32_t Chell::getPosX(){

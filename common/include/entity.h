@@ -14,6 +14,7 @@ public:
 	Entity(int32_t x,int32_t y,uint32_t w,uint32_t h,uint32_t d)
 		: posx(x),posy(y),width(w),height(h),direction(d){}
 	virtual ~Entity(){}
+	virtual void step(){}
 	virtual void render(int32_t chellPosX,int32_t chellPosY,int width,int height,
 		float scale){}
 	virtual void update(const Update&){}

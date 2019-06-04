@@ -20,6 +20,15 @@ GameView::~GameView(){
 	}
 }
 
+void GameView::step(){
+	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
+		it->second->step();
+	}
+	if(this->myChell != nullptr){
+		this->myChell->step();
+	}
+}
+
 void GameView::render(){
 	this->updateResolution();
 	this->window.fill(); // Repinto el fondo gris
@@ -37,10 +46,6 @@ void GameView::render(){
 	}
 	this->crosshair.render();
     this->window.render();
-}
-
-SDL_Renderer* GameView::getRenderer() const{
-	return this->window.getRenderer();
 }
 
 void GameView::updateHandler(Update update){

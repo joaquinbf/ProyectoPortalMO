@@ -40,6 +40,7 @@ public:
 	int32_t getPosX();
 	int32_t getPosY();
 	void renderCentered(int resx, int resy, float scale);	
+	void step() override;
 	void render(int resx,int resy,int width,int height,float scale) override;
 	void update(const Update& update) override;	
 	void idle();

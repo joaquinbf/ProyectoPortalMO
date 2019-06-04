@@ -39,6 +39,7 @@ private:
 public:
 	explicit GameView(uint32_t x, uint32_t y);
 	~GameView();
+	void step();
 	void render();
 	void updateHandler(Update update);
 	void zoomIn();

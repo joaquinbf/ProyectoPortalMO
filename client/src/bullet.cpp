@@ -10,6 +10,18 @@ frameArea(0,0,103,59), frame(0)
 
 Bullet::~Bullet(){}
 
+void Bullet::step(){
+	++this->frame;
+	if(this->frame == 3){
+		this->frame = 0;
+		this->frameArea = Area(0,0,103,59);
+	}else if(this->frame == 2){
+		this->frameArea = Area(216,0,109,59);	
+	} else {
+		this->frameArea = Area(104,0,111,59);	
+	}
+}
+
 void Bullet::render(int cx,int cy,int resx,int resy,float scale){
 	int a = (this->posx-cx)*scale - (this->width/2)*scale + resx/2 ;
 	int b = -(this->posy-cy)*scale - (this->height/2)*scale + (2*resy)/3;
@@ -33,18 +45,7 @@ void Bullet::render(int cx,int cy,int resx,int resy,float scale){
 		default:
 			this->texturePtr->render(this->frameArea, renderArea);
 			break;
-	}
-	++this->frame;
-	if(this->frame == 3){
-		this->frame = 0;
-		this->frameArea = Area(0,0,103,59);
-	}else if(this->frame == 2){
-		this->frameArea = Area(216,0,109,59);	
-	} else {
-		this->frameArea = Area(104,0,111,59);	
-	}
-
-	
+	}	
 }
 
 void Bullet::update(const Update& update){

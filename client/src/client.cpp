@@ -35,8 +35,11 @@ void Client::game(){
 		while(this->updates.try_pop(update)){
 			this->gameView.updateHandler(update);
 		}
-		this->gameView.render();
-        usleep(100000);
+        for(int i = 0; i <10; ++i){
+            this->gameView.render();
+            usleep(10000);
+        }
+        this->gameView.step();
     }
     this->serverManager.stop();
     this->updateReceiver.stop();
