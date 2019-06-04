@@ -40,6 +40,9 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
 		case ENTITY::BULLET:
 			return new Bullet(tm,update.getPosX(),update.getPosY(),100,60,update.getDirection()); 
 			break;
+		case ENTITY::LASER:
+			return new Laser(tm,update.getPosX(),update.getPosY(),200,10,update.getDirection()); 
+			break;
 		default:
 			return nullptr;
 			break;

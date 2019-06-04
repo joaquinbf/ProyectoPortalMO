@@ -11,6 +11,7 @@
 #include "../include/gate.h"
 #include "../include/acid.h"
 #include "../include/bullet.h"
+#include "../include/laser.h"
 
 class EntityFactory{
 public:

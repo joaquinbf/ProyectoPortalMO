@@ -28,15 +28,14 @@
 #define BUTTON_ON_TEXTURE "../resources/textures/button/on.png"
 #define BUTTON_OFF_TEXTURE "../resources/textures/button/off.png"
 
-#define ROCK_TEXTURE "../resources/textures/miscellaneous/rocks.png"
-
 #define GATE_CLOSED_TEXTURE "../resources/textures/gate/4-closed.png"
 #define GATE_OPENED_TEXTURE	"../resources/textures/gate/4-opened.png"
 #define GATE_OPENING_TEXTURE "../resources/textures/gate/4-opening.png"
 
+#define ROCK_TEXTURE "../resources/textures/miscellaneous/rocks.png"
 #define ACID_TEXTURE "../resources/textures/miscellaneous/acid.png"
-
 #define BULLET_TEXTURE "../resources/textures/miscellaneous/bullet.png"
+#define LASER_TEXTURE "../resources/textures/miscellaneous/laser.png"
 
 class TextureManager{
 	SdlTexture blackTexture;
@@ -63,6 +62,7 @@ class TextureManager{
 	SdlTexture gateOpeningTexture;
 	SdlTexture acidTexture;
 	SdlTexture bulletTexture;
+	SdlTexture laserTexture;
 public:	
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
@@ -73,8 +73,9 @@ public:
 	const SdlTexture * getButtonTexturePointer(const STATUS st) const;
 	const SdlTexture * getBlockTexturePointer(const ENTITY e) const;
 	const SdlTexture * getChellTexturePointer(const STATUS st) const;
-	const SdlTexture * getRockTexturePtr() const;
-	const SdlTexture * getGateTexturePtr(STATUS st) const;
+	const SdlTexture * getRockTexturePointer() const;
+	const SdlTexture * getLaserTexturePointer() const;
+	const SdlTexture * getGateTexturePointer(STATUS st) const;
 	Area getChellFrameArea(const STATUS st, int frame) const;
 	Area getGateFrameArea(uint32_t frame) const;
 };

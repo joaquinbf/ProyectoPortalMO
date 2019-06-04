@@ -26,7 +26,8 @@ gateClosedTexture(GATE_CLOSED_TEXTURE,window),
 gateOpenedTexture(GATE_OPENED_TEXTURE,window),
 gateOpeningTexture(GATE_OPENING_TEXTURE,window),
 acidTexture(ACID_TEXTURE,window),
-bulletTexture(BULLET_TEXTURE,window)
+bulletTexture(BULLET_TEXTURE,window),
+laserTexture(LASER_TEXTURE,window)
 	{}
 
 TextureManager::~TextureManager(){}
@@ -35,7 +36,7 @@ const SdlTexture * TextureManager::getBlackTexture() const{
 	return &(this->blackTexture);
 }
 
-const SdlTexture * TextureManager::getGateTexturePtr(STATUS st) const{
+const SdlTexture * TextureManager::getGateTexturePointer(STATUS st) const{
 	switch(st){
 		case STATUS::GATE_OPENED:
 			return &(this->gateOpenedTexture);
@@ -56,13 +57,17 @@ const SdlTexture * TextureManager::getGateTexturePtr(STATUS st) const{
 	return nullptr;
 }
 
+const SdlTexture * TextureManager::getLaserTexturePointer() const{
+	return &(this->laserTexture);
+}
+
 Area TextureManager::getGateFrameArea(uint32_t frame) const{
 	int a = frame % 10;
 	int b = frame / 10;
 	return Area(194*a,385*b+1,192,384);
 }
 
-const SdlTexture * TextureManager::getRockTexturePtr() const{
+const SdlTexture * TextureManager::getRockTexturePointer() const{
 	return &(this->rockTexture);
 }
 
