@@ -65,13 +65,15 @@ project 'Testbed'
 		'Testbed/glfw/vulkan.c',
 		'Testbed/glfw/window.c',
 		'Testbed/imgui/*',
+		'../../common/src/*',
 		'../../server/src/world.cpp',
+		'../../server/src/boolean_suppliers/*',
+		'../../server/src/instructions/*',
 		'../../server/src/bodies/*',
 		'../../server/src/bodies/chell/*',
 		'../../server/src/bodies/block/*',
 		'../../server/src/bodies/button/*',
-		'../../server/src/instructions/*',
-		'../../common/src/*'
+		'../../server/src/bodies/gate/*',
 	}
 
     filter { 'system:windows' }

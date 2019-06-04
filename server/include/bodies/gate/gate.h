@@ -8,18 +8,20 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../common/include/update.h"
 #include "../../../../common/include/types.h"
+#include "../../boolean_suppliers/boolean_block.h"
 #include <cstdint>
-
 
 class Chell;
 class Block;
 class Button;
 class Rock;
+class BooleanBlock;
 
 class Gate: public Body {
 private:
     const float HALF_WIDTH = 100;
-    const float HALF_HEIGHT = 100;
+    const float HALF_HEIGHT = 200;
+    BooleanBlock *boolean_block;
 
 public:
     /* Instancia una compuerta de id 'body_id' en b2world en (x, y) */
@@ -39,9 +41,10 @@ public:
 
     virtual void letBeginContactBeHandledBy(Rock *rock) override;
 
-    /* Intenta abrir la compuerta si las condiciones estan
-     * satisfechas */
-    void tryOpen();
+    /* Notifica a la compuerta que alguno de sus botonoes cambio de estado. */
+    void notifyStateChange();
+
+    void setBooleanBlock(BooleanBlock *boolean_block);
 };
 
 #endif

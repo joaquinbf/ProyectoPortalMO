@@ -24,3 +24,9 @@ BooleanBlock *BooleanBlockFactory::createNotBlock() {
     this->blocks.push_back(block);
     return block;
 }
+
+BooleanBlock *BooleanBlockFactory::createSameBlock() {
+    BooleanBlock *block = new UnaryBlock(&this->same_operator);
+    this->blocks.push_back(block);
+    return block;
+}

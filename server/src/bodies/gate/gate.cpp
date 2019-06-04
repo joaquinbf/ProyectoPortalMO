@@ -59,6 +59,14 @@ void Gate::letBeginContactBeHandledBy(Gate *gate) {
 void Gate::letBeginContactBeHandledBy(Rock *gate) {
 }
 
-void Gate::tryOpen() {
-    // TODO: Completar.
+void Gate::notifyStateChange() {
+    if (this->boolean_block->getAsBoolean()) {
+        // cambiar de estado a abierta
+    } else {
+        // cambia de estado a cerrada
+    }
+}
+
+void Gate::setBooleanBlock(BooleanBlock *boolean_block) {
+    this->boolean_block = boolean_block;
 }

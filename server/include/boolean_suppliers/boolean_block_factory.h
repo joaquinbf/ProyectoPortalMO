@@ -30,6 +30,7 @@ public:
     BooleanBlock *createAndBlock();
     BooleanBlock *createOrBlock();
     BooleanBlock *createNotBlock();
+    BooleanBlock *createSameBlock();
 };
 
 #endif

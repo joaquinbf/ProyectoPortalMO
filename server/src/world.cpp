@@ -83,13 +83,15 @@ void World::createGateWithButton(
     this->bodies.push_back(button);
 
     button->notifyStatusChangeTo(gate);
-    // 1. checkear si la compeurta debe ser abierta cuando el
-    //    boton esta presionado o no.
-    // 2. Crear un boolean block.
-    // 3. Agregar el boton al boolean block (si la compuerta se
-    //    abria cuando esta apagado entonces agregar un
-    //    not-block.)
-    // 4. Agregar el block a la compuerta.
+
+    BooleanBlock *block;
+    if (open_gate_when_button_is_pressed) {
+        block = this->bbf.createSameBlock();
+    } else {
+        block = this->bbf.createNotBlock();
+    }
+
+    gate->setBooleanBlock(block);
 }
 
 

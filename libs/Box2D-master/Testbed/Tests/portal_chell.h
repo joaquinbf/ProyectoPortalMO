@@ -19,7 +19,7 @@ public:
         for (int i = 0; i < 7; i++) {
             this->world.createSquareMetalBlock(200 * i, -300);
         }
-        this->world.createButton(300, -200);
+        this->world.createGateWithButton(100, 300, 300, 300, true);
     }
 
     void Step(Settings *settings) {

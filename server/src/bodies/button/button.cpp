@@ -60,7 +60,7 @@ void Button::handleBeginContactWith(Body *other_body) {
 
 void Button::letBeginContactBeHandledBy(Chell *chell) {
     this->press();
-    this->gate->tryOpen();
+    this->gate->notifyStateChange();
 }
 
 void Button::letBeginContactBeHandledBy(Block *block) {
@@ -74,7 +74,7 @@ void Button::letBeginContactBeHandledBy(Gate *gate) {
 
 void Button::letBeginContactBeHandledBy(Rock *rock) {
     this->press();
-    this->gate->tryOpen();
+    this->gate->notifyStateChange();
 }
 
 void Button::notifyStatusChangeTo(Gate *gate) {
