@@ -68,6 +68,10 @@ const SdlTexture * TextureManager::getLaserTexturePointer() const{
 	return &(this->laserTexture);
 }
 
+const SdlTexture * TextureManager::getPinTexturePointer() const{
+	return &(this->pinTexture);
+}
+
 const SdlTexture * TextureManager::getCrosshairTexturePointer() const{
 	return &(this->crosshairTexture);
 }

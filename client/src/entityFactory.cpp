@@ -48,7 +48,7 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
 			return new Laser(tm,update.getPosX(),update.getPosY(),200,10,update.getDirection()); 
 			break;
 		case ENTITY::PIN:
-			return new Pin(tm,update.getPosX(),update.getPosY(),100,100); 
+			return new Pin(tm,update.getPosX(),update.getPosY(),50,50); 
 			break;
 		default:
 			return nullptr;
