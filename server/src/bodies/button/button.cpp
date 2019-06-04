@@ -6,7 +6,7 @@
 #include <iostream>
 
 Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id) {
+    Body(body_id, ENTITY::BUTTON) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);
@@ -26,6 +26,7 @@ Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &b2polygonshape;
     this->b2body->CreateFixture(&fixtureDef);
+    this->is_pressed = false;
 }
 
 bool Button::isPressed() const {
@@ -38,8 +39,8 @@ Update Button::createUpdate(COMMAND command) const {
         this->entity,
         this->getBodyId(),
         this->is_pressed ? STATUS::BUTTON_ON: STATUS::BUTTON_OFF,
-        this->b2body->GetPosition().x,
-        this->b2body->GetPosition().y,
+        this->b2body->GetPosition().x * ZOOM_FACTOR,
+        this->b2body->GetPosition().y * ZOOM_FACTOR,
         0);
     return update;
 }

@@ -9,7 +9,7 @@
 
 
 Rock::Rock(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id) {
+    Body(body_id, ENTITY::ROCK) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);

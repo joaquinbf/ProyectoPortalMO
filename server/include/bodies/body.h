@@ -20,9 +20,6 @@ protected:
     const ENTITY entity;
 
 public:
-    /* Instancia un cuerpo con identificador 'body_id' */
-    Body(uint32_t body_id);
-
     Body(uint32_t body_id, ENTITY entity);
 
     /* Libera los recursos utilizados */
