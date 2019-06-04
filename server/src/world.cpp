@@ -113,20 +113,23 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             updates.push_back(update);
 
-            switch (update.getStatus()) {
-            case STATUS::NONE_STATUS:
-                std::cout << "STATUS: NONE_STATUS" << std::endl;
-                break;
-            case STATUS::CHELL_IDLE:
-                std::cout << "STATUS: CHELL_IDLE" << std::endl;
-                break;
-            case STATUS::CHELL_RUNNING:
-                std::cout << "STATUS: CHELL_RUNNING" << std::endl;
-                break;
-            default:
-                std::cout << "STATUS: OTRO STATUS" << std::endl;
-                break;
+            if (update.getIdClass() == ENTITY::CHELL) {
+                switch (update.getStatus()) {
+                case STATUS::NONE_STATUS:
+                    std::cout << "STATUS: NONE_STATUS" << std::endl;
+                    break;
+                case STATUS::CHELL_IDLE:
+                    std::cout << "STATUS: CHELL_IDLE" << std::endl;
+                    break;
+                case STATUS::CHELL_RUNNING:
+                    std::cout << "STATUS: CHELL_RUNNING" << std::endl;
+                    break;
+                default:
+                    std::cout << "STATUS: OTRO STATUS" << std::endl;
+                    break;
+                }
             }
+
         }
         b2body = b2body->GetNext();
     }

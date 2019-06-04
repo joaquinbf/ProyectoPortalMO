@@ -48,7 +48,6 @@ bool Chell::isFacingRight() {
     return this->is_facing_right;
 }
 
-
 void Chell::faceRight() {
     this->is_facing_right = true;
 }
@@ -118,7 +117,7 @@ void Chell::changeStateToIdle() {
 }
 
 void Chell::changeStateToJumping() {
-    this->state =&this->jumping_state;
+    this->state = &this->jumping_state;
     this->applyLinearImpulseToUp();
 }
 
@@ -177,6 +176,7 @@ void Chell::letBeginContactBeHandledBy(Chell *chell) {
 }
 
 void Chell::letBeginContactBeHandledBy(Block *block) {
+    this->changeStateToIdle();
 }
 
 void Chell::letBeginContactBeHandledBy(Button *button) {
