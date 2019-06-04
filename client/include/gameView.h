@@ -17,6 +17,7 @@
 #include "../include/block.h"
 #include "../include/textureManager.h"
 #include "../include/background.h"
+#include "../include/crosshair.h"
 
 #include "../../common/include/port.h"
 #include "../../common/include/entity.h"
@@ -34,6 +35,7 @@ private:
 	uint32_t myChellId;
 	float scale;
 	bool paused;
+	Crosshair crosshair;
 public:
 	explicit GameView(uint32_t x, uint32_t y);
 	~GameView();

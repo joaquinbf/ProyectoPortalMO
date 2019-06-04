@@ -13,7 +13,6 @@ public:
     void show();
     void fill();
     void fill(int r, int g, int b, int alpha);
-    void setBrightness(float brightness);
     void render();
     void fullscreen();
     void windowed();

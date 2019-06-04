@@ -14,7 +14,7 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
 			return new Block(tm,STONE_BLOCK,update.getPosX(),update.getPosY(),200,200);
 			break;
 		case ENTITY::METAL_BLOCK:
-			return new Block(tm,RECEIVER_BLOCK,update.getPosX(),update.getPosY(),200,200);
+			return new Block(tm,METAL_BLOCK,update.getPosX(),update.getPosY(),200,200);
 			break;	
 		case ENTITY::METAL_TRIAG_BLOCK:
 			ptr = new Block(tm,METAL_TRIAG_BLOCK,update.getPosX(),update.getPosY(),200,200);

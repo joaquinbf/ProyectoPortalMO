@@ -1,7 +1,5 @@
 #include "../include/inputManager.h"
 
-#include <iostream>
-
 InputManager::InputManager(const ServerManager& sm,GameView& v) : serverManager(sm),
 gameView(v),running(true){
 	this->chellId = this->gameView.getChellId();

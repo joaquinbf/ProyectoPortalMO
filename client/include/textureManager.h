@@ -37,6 +37,7 @@
 #define ACID_TEXTURE "../resources/textures/miscellaneous/acid.png"
 #define BULLET_TEXTURE "../resources/textures/miscellaneous/bullet.png"
 #define LASER_TEXTURE "../resources/textures/miscellaneous/laser.png"
+#define CROSSHAIR_TEXTURE "../resources/textures/miscellaneous/crosshair.png"
 
 class TextureManager{
 	SdlTexture blackTexture;
@@ -65,6 +66,7 @@ class TextureManager{
 	SdlTexture acidTexture;
 	SdlTexture bulletTexture;
 	SdlTexture laserTexture;
+	SdlTexture crosshairTexture;
 public:	
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
@@ -78,6 +80,7 @@ public:
 	const SdlTexture * getRockTexturePointer() const;
 	const SdlTexture * getLaserTexturePointer() const;
 	const SdlTexture * getGateTexturePointer(STATUS st) const;
+	const SdlTexture * getCrosshairTexturePointer() const;
 	Area getChellFrameArea(const STATUS st, int frame) const;
 	Area getGateFrameArea(uint32_t frame) const;
 };

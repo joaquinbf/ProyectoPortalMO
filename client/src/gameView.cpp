@@ -4,8 +4,10 @@
 
 GameView::GameView(uint32_t x, uint32_t y) : 
 resx(x),resy(y),window(x,y), textureManager(window),myChell(nullptr),
-myChellId(0), scale(1), paused(false)
-{}
+myChellId(0), scale(1), paused(false), crosshair(textureManager)
+{
+	SDL_ShowCursor(SDL_DISABLE);
+}
 
 GameView::~GameView(){
 	if(this->myChell != nullptr){
@@ -33,9 +35,13 @@ void GameView::render(){
 		this->textureManager.getBlackTexture()->render(Area(0,0,600,600),
 			Area(0,0,this->resx,this->resy));
 	}
+	this->crosshair.render();
     this->window.render();
 }
 
+SDL_Renderer* GameView::getRenderer() const{
+	return this->window.getRenderer();
+}
 
 void GameView::updateHandler(Update update){
 	EntityFactory ef;

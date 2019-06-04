@@ -48,10 +48,6 @@ void SdlWindow::fill() {
     this->fill(0x33,0x33,0x33,0xFF);
 }
 
-void SdlWindow::setBrightness(float brightness){
-    SDL_SetWindowBrightness(this->window, brightness);
-}
-
 void SdlWindow::render() {
     SDL_RenderPresent(this->renderer);
 }

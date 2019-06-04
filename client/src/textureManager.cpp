@@ -28,7 +28,8 @@ gateOpenedTexture(GATE_OPENED_TEXTURE,window),
 gateOpeningTexture(GATE_OPENING_TEXTURE,window),
 acidTexture(ACID_TEXTURE,window),
 bulletTexture(BULLET_TEXTURE,window),
-laserTexture(LASER_TEXTURE,window)
+laserTexture(LASER_TEXTURE,window),
+crosshairTexture(CROSSHAIR_TEXTURE,window)
 	{}
 
 TextureManager::~TextureManager(){}
@@ -60,6 +61,10 @@ const SdlTexture * TextureManager::getGateTexturePointer(STATUS st) const{
 
 const SdlTexture * TextureManager::getLaserTexturePointer() const{
 	return &(this->laserTexture);
+}
+
+const SdlTexture * TextureManager::getCrosshairTexturePointer() const{
+	return &(this->crosshairTexture);
 }
 
 Area TextureManager::getGateFrameArea(uint32_t frame) const{
