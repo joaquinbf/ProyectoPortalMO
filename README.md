@@ -6,6 +6,12 @@
 | Bravo Victor   | 98882  |
 | Rack Lucas     | 99425  |
 
+## Instalacion de SDL2 mixer en ubuntu
+```
+sudo apt install libsdl2-mixer-2.0-0
+sudo apt install libsdl2-mixer-dev
+```
+
 ## Instalacion de CMAKE
 
 ```
