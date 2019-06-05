@@ -1,14 +1,8 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_video.h>
-#include <SDL2/SDL_render.h>
-#include <iostream>
-
-#include "../include/SdlException.h"
 #include "../include/SdlWindow.h"
 
 SdlWindow::SdlWindow(int width, int height) :
         width(width), height(height) {
-    int errCode = SDL_Init(SDL_INIT_VIDEO);
+    int errCode = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     if (errCode) {
         throw SdlException("Error en la inicialización", SDL_GetError());
     }

@@ -145,7 +145,7 @@ void World::step() {
 }
 
 void World::createWorldOne() {
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 4; i++) {
         this->createChell(-6 + 2*i, 1.5);
     }
 

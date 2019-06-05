@@ -1,6 +1,15 @@
 #ifndef __SDL_WINDOW_H__
 #define __SDL_WINDOW_H__
+
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_video.h>
+#include <SDL2/SDL_render.h>
+//#include <SDL2/SDL_mixer.h> 
+#include <SDL_mixer.h>
+
+#include "../include/SdlException.h"
 #include "Area.h"
+
 
 class SDL_Window;
 class SDL_Renderer;

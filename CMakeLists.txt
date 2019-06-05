@@ -3,6 +3,7 @@ project(portal)
 
 # std c++11
 set (CMAKE_CXX_STANDARD 11)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 # Flags
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O0 -Werror -pedantic")
@@ -21,10 +22,12 @@ include_directories(./libs/Box2D-master)
 file(GLOB_RECURSE BOX2D_SRCS ./libs/Box2D-master/Box2D/*.cpp)
 
 # Including SDL2
-INCLUDE(FindPkgConfig)
-PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
-PKG_SEARCH_MODULE(SDL2IMAGE REQUIRED SDL2_image>=2.0.0)
-INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS})
+#INCLUDE(FindPkgConfig)
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS})
+
 
 # Including CxxTest
 file(GLOB_RECURSE TEST_CLIENT_HEADERS ./test/client/*.h)
@@ -43,8 +46,7 @@ add_library(libcommon SHARED ${COMMON_SRCS})
 add_library(libserver SHARED ${SERVER_SRCS})
 add_library(libclient SHARED ${CLIENT_SRCS})
 TARGET_LINK_LIBRARIES(libserver libcommon libbox2d)
-TARGET_LINK_LIBRARIES(libclient libcommon ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
-
+target_link_libraries(libclient libcommon ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES})
 
 
 find_package(CxxTest)

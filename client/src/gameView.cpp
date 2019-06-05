@@ -1,6 +1,8 @@
 #include "../include/gameView.h"
 
 #include <iostream>
+//#include <SDL2/SDL_mixer.h> 
+#include <SDL_mixer.h>
 
 GameView::GameView(uint32_t x, uint32_t y) : 
 resx(x),resy(y),window(x,y), textureManager(window),myChell(nullptr),
