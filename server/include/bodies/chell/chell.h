@@ -2,10 +2,6 @@
 #define __CHELL_H__
 
 #include "../body.h"
-#include "chell_state.h"
-#include "idle_state.h"
-#include "running_state.h"
-#include "jumping_state.h"
 #include "../../../../common/include/key.h"
 #include "../../../../common/include/keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -21,12 +17,11 @@ class Button;
 class Block;
 class Gate;
 
+class ChellState;
+
 class Chell: public Body {
 private:
     bool is_facing_right;
-    IdleState idle_state;
-    RunningState running_state;
-    JumpingState jumping_state;
     ChellState *state;
     Keypad keypad;
     const float HALF_WIDTH = 1.00;
