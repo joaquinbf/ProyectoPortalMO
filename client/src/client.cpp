@@ -24,16 +24,14 @@ void Client::game(){
     Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
     uint32_t chellId = serverManager.receiveChellId();
     this->gameView.setChellId(chellId);
-    Mix_Music *music = NULL;
-    music = Mix_LoadMUS("../resources/sounds/portal-soundtrack-self-esteem-fund.mp3" ); 
-    Mix_PlayMusic( music, -1 );
-
+    
     this->running = true;
     Update update;
     
     this->inputManager.start();
     this->updateReceiver.start();
     this->gameView.show();
+    this->soundManager.playMusic();
     //GAME LOOP
     while (this->inputManager.isRunning()){
 		while(this->updates.try_pop(update)){
@@ -48,6 +46,5 @@ void Client::game(){
     this->serverManager.stop();
     this->updateReceiver.stop();
     this->inputManager.join();
-    this->updateReceiver.join();
-     Mix_FreeMusic( music );    
+    this->updateReceiver.join();   
 }

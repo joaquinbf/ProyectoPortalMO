@@ -11,6 +11,7 @@
 #include "../include/inputManager.h"
 #include "../include/updateReceiver.h"
 #include "../include/gameView.h"
+#include "../include/soundManager.h"
 
 #include "../../common/include/port.h"
 #include "../../common/include/update.h"
@@ -25,6 +26,7 @@ private:
 	GameView gameView;
 	InputManager inputManager;
 	UpdateReceiver updateReceiver;
+	SoundManager soundManager;
 public:
 	explicit Client(int,int);
 	~Client();
