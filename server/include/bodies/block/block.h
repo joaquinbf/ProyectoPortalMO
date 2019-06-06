@@ -46,7 +46,8 @@ public:
     /* Libera los recursos utilizados */
     ~Block();
 
-    virtual void fillIdClass(Update &update, const UpdateFactory *update_factory) const;
+    /* Devuelve una update del bloque */
+    virtual Update createUpdate(COMMAND command) const;
 
     virtual void handleBeginContactWith(Body *other_body) override;
 

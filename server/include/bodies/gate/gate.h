@@ -27,9 +27,7 @@ public:
     /* Instancia una compuerta de id 'body_id' en b2world en (x, y) */
     Gate(uint32_t body_id, b2World *b2world, float x, float y);
 
-    virtual void fillIdClass(
-        Update &update,
-        const UpdateFactory *update_factory) const;
+    virtual Update createUpdate(COMMAND command) const;
 
     virtual void handleBeginContactWith(Body *other_body) override;
 

@@ -12,7 +12,6 @@
 #include "bodies/block/metal_material.h"
 #include "bodies/block/stone_material.h"
 #include "boolean_suppliers/boolean_block_factory.h"
-#include "update_factories/update_factory.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
 #include "../../common/include/update.h"
@@ -39,7 +38,6 @@ private:
     const uint32_t VELOCITY_ITERATIONS = 8;
     const uint32_t POSITION_ITERATIONS = 3;
     BooleanBlockFactory bbf;
-    UpdateFactory update_factory;
 
 public:
     /* Instancia un world */

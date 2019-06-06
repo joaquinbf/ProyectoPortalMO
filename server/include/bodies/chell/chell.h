@@ -19,8 +19,6 @@ class Gate;
 
 class ChellState;
 
-class UpdateFactory;
-
 class Chell: public Body {
 private:
     bool is_facing_right;
@@ -37,7 +35,7 @@ public:
     Chell(uint32_t body_id, b2World *b2world, float x, float y);
 
     /* Indica si chell esta mirando hacia la derecha */
-    bool isFacingRight() const;
+    bool isFacingRight();
 
     /* Hace mirar a la derecha */
     void faceRight();
@@ -48,8 +46,8 @@ public:
     /* Hace mirar en la direccion opuesta */
     void faceOppositeDirection();
 
-    /* Rellena con los detalles de estado de chell */
-    virtual void fillIdClass(Update &update, const UpdateFactory *update_factory) const;
+    /* Devuelve un update de Command de chell */
+    virtual Update createUpdate(COMMAND command) const override;
 
     /* Presiona la tecla izquierda de chell*/
     void pressLeft();

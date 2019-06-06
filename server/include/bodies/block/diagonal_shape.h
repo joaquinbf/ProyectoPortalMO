@@ -4,17 +4,12 @@
 #include "shape.h"
 
 class Material;
-class UpdateFactory;
 
 class DiagonalShape: public Shape {
 public:
     virtual b2PolygonShape giveShape(
         float half_with, float half_height) override;
-
-    virtual void fillIdClassWithMaterial(
-        Update &update,
-        const UpdateFactory *update_factory,
-        const Material *material) const;
+    virtual ENTITY createEntityWithMaterial(Material *material) override;
 
 };
 
