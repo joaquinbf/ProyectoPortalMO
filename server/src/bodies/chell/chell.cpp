@@ -1,5 +1,6 @@
 #include "../../../include/bodies/chell/chell.h"
 
+#include "../../../include/update_factory.h"
 #include "../../../include/bodies/body.h"
 #include "../../../include/bodies/chell/chell_state.h"
 #include "../../../include/bodies/chell/idle_state.h"
@@ -69,6 +70,11 @@ Update Chell::createUpdate(COMMAND command) const {
         this->is_facing_right? 1 : 0);
     return update;
 }
+
+void Chell::fillDetails(Update &update, const UpdateFactory *update_factory) const {
+    update_factory->fillIdClass(update, this);
+}
+
 
 void Chell::pressLeft() {
 

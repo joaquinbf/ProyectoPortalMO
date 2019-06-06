@@ -19,6 +19,8 @@ class Gate;
 
 class ChellState;
 
+class UpdateFactory;
+
 class Chell: public Body {
 private:
     bool is_facing_right;
@@ -48,6 +50,9 @@ public:
 
     /* Devuelve un update de Command de chell */
     virtual Update createUpdate(COMMAND command) const override;
+
+    /* Rellena con los detalles de estado de chell */
+    virtual void fillDetails(Update &update, const UpdateFactory *update_factory) const;
 
     /* Presiona la tecla izquierda de chell*/
     void pressLeft();

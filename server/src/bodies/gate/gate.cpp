@@ -40,6 +40,10 @@ Update Gate::createUpdate(COMMAND command) const {
     return update;
 }
 
+void Gate::fillDetails(Update &update, const UpdateFactory *update_factory) const {
+
+}
+
 void Gate::handleBeginContactWith(Body *other_body) {
     other_body->letBeginContactBeHandledBy(this);
 }

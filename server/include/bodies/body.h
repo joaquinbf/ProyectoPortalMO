@@ -13,6 +13,8 @@ class Button;
 class Gate;
 class Rock;
 
+class UpdateFactory;
+
 class Body {
 protected:
     const uint32_t BODY_ID;
@@ -50,6 +52,14 @@ public:
 
     /* Indica si el cuerpo esta despierto */
     bool isAwake() const;
+
+    /* Rellena campos id. */
+    void fillBodyId(Update &update) const;
+
+    /* Rellena los campos de posicion aplicando un factor de zoom. */
+    void fillPosition(Update &update, float zoom_factor) const;
+
+    virtual void fillDetails(Update &update, const UpdateFactory *update_factory) const = 0;
 };
 
 #endif

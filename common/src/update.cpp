@@ -43,6 +43,13 @@ uint32_t Update::getDirection() const{
 	return this->direction;
 }
 
+void Update::setCommand(COMMAND command) {
+	this->command = command;
+}
+void Update::setIdClass(ENTITY idClass) {
+	this->idClass = idClass;
+}
+
 void Update::setIdObject(uint32_t idObject) {
 	this->idObject = idObject;
 }

@@ -45,6 +45,10 @@ Update Button::createUpdate(COMMAND command) const {
     return update;
 }
 
+void Button::fillDetails(Update &update, const UpdateFactory *update_factory) const {
+    
+}
+
 
 void Button::press() {
     this->is_pressed = true;

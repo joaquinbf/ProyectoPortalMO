@@ -56,6 +56,10 @@ Update Block::createUpdate(COMMAND command) const {
     return update;
 }
 
+void Block::fillDetails(Update &update, const UpdateFactory *update_factory) const {
+    
+}
+
 void Block::handleBeginContactWith(Body *other_body) {
     other_body->letBeginContactBeHandledBy(this);
 }

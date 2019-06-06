@@ -44,6 +44,10 @@ Update Rock::createUpdate(COMMAND command) const {
     return update;
 }
 
+void Rock::fillDetails(Update &update, const UpdateFactory *update_factory) const {
+    
+}
+
 void Rock::handleBeginContactWith(Body *other_body) {
     other_body->letBeginContactBeHandledBy(this);
 }

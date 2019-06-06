@@ -49,6 +49,8 @@ public:
     /* Devuelve una update del bloque */
     virtual Update createUpdate(COMMAND command) const;
 
+    virtual void fillDetails(Update &update, const UpdateFactory *update_factory) const;
+
     virtual void handleBeginContactWith(Body *other_body) override;
 
     virtual void letBeginContactBeHandledBy(Chell *chell) override;

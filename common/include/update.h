@@ -28,6 +28,8 @@ public:
 	int32_t getPosX() const;
 	int32_t getPosY() const;
 	uint32_t getDirection() const;
+	void setCommand(COMMAND command);
+	void setIdClass(ENTITY idClass);
 	void setIdObject(uint32_t idObject);
 	void setStatus(STATUS status);
 	void setPosX(int32_t posX);
