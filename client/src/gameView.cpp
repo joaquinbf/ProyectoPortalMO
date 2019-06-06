@@ -151,14 +151,3 @@ int32_t GameView::pixelToCoordY(int32_t y) const{
     b = -b/this->scale + cordy;
     return b;
 }
-
-int32_t GameView::getAngle(int32_t x, int32_t y) const{
-	int32_t a = x - (this->resx/2);
-	int32_t b = y - (2*this->resy/3);
-	double aux = a/sqrt(a*a+b*b);
-	aux = acos(aux) * 180 / PI;
-	if(b>0){
-		aux=360-aux;
-	}
-	return aux;
-}

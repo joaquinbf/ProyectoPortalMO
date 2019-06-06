@@ -11,6 +11,7 @@ enum ACTION: uint8_t {
     RUN_RIGHT,
     STOP_LEFT,
     STOP_RIGHT,
+    GRAB,
     JIG,
     FIRE1,
     FIRE2,
