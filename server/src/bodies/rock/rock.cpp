@@ -9,7 +9,7 @@
 
 
 Rock::Rock(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id, ENTITY::ROCK) {
+    Body(body_id) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
@@ -45,7 +45,7 @@ Update Rock::createUpdate(COMMAND command) const {
 }
 
 void Rock::fillDetails(Update &update, const UpdateFactory *update_factory) const {
-    
+
 }
 
 void Rock::handleBeginContactWith(Body *other_body) {

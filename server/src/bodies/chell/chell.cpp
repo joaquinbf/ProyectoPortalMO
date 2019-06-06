@@ -20,7 +20,7 @@
 
 
 Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id, ENTITY::CHELL),
+    Body(body_id),
     is_facing_right(true) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -43,7 +43,7 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
     this->state = 0;
 }
 
-bool Chell::isFacingRight() {
+bool Chell::isFacingRight() const {
     return this->is_facing_right;
 }
 
@@ -59,19 +59,9 @@ void Chell::faceOppositeDirection() {
     this->is_facing_right = !this->is_facing_right;
 }
 
-Update Chell::createUpdate(COMMAND command) const {
-    Update update(
-        command,
-        ENTITY::CHELL,
-        this->BODY_ID,
-        STATUS::NONE_STATUS,
-        this->b2body->GetPosition().x * ZOOM_FACTOR,
-        this->b2body->GetPosition().y * ZOOM_FACTOR,
-        this->is_facing_right? 1 : 0);
-    return update;
-}
-
-void Chell::fillDetails(Update &update, const UpdateFactory *update_factory) const {
+void Chell::fillIdClass(
+    Update &update,
+    const UpdateFactory *update_factory) const {
     update_factory->fillIdClass(update, this);
 }
 

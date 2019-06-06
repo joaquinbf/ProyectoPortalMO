@@ -31,9 +31,9 @@ public:
     /* Suelta el boton */
     void release();
 
-    virtual Update createUpdate(COMMAND command) const override;
-
-    virtual void fillDetails(Update &update, const UpdateFactory *update_factory) const;
+    virtual void fillIdClass(
+        Update &update,
+        const UpdateFactory *update_factory) const;
 
     virtual void handleBeginContactWith(Body *other_body) override;
 

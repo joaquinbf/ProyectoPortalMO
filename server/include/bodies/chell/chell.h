@@ -37,7 +37,7 @@ public:
     Chell(uint32_t body_id, b2World *b2world, float x, float y);
 
     /* Indica si chell esta mirando hacia la derecha */
-    bool isFacingRight();
+    bool isFacingRight() const;
 
     /* Hace mirar a la derecha */
     void faceRight();
@@ -48,11 +48,8 @@ public:
     /* Hace mirar en la direccion opuesta */
     void faceOppositeDirection();
 
-    /* Devuelve un update de Command de chell */
-    virtual Update createUpdate(COMMAND command) const override;
-
     /* Rellena con los detalles de estado de chell */
-    virtual void fillDetails(Update &update, const UpdateFactory *update_factory) const;
+    virtual void fillIdClass(Update &update, const UpdateFactory *update_factory) const;
 
     /* Presiona la tecla izquierda de chell*/
     void pressLeft();

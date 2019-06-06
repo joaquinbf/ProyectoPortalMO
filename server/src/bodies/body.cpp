@@ -1,8 +1,9 @@
 #include "../../include/bodies/body.h"
+#include "../../include/update_factory.h"
 
-Body::Body(uint32_t body_id, ENTITY entity):
-    BODY_ID(body_id),
-    entity(entity) {
+
+Body::Body(uint32_t body_id):
+    BODY_ID(body_id) {
 }
 
 Body::~Body() {
@@ -24,7 +25,15 @@ void Body::fillBodyId(Update &update) const {
     update.setIdObject(this->BODY_ID);
 }
 
-void Body::fillPosition(Update &update, float zoom_factor) const {
-    update.setPosX(this->b2body->GetPosition().x * zoom_factor);
-    update.setPosY(this->b2body->GetPosition().y * zoom_factor);
+void Body::fillPosition(Update &update, const UpdateFactory *update_factory) const {
+    update_factory->fillPosition(
+        update,
+        this->b2body->GetPosition().x,
+        this->b2body->GetPosition().y);
+}
+
+void Body::fillDirection(
+    Update &update,
+    const UpdateFactory *update_factory) const {
+    update_factory->fillDirection(update, this);
 }

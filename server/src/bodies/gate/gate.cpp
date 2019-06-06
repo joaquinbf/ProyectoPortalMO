@@ -12,7 +12,7 @@
 
 
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id, ENTITY::GATE) {
+    Body(body_id){
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);
@@ -28,19 +28,9 @@ Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     this->b2body->CreateFixture(&fixtureDef);
 }
 
-Update Gate::createUpdate(COMMAND command) const {
-    Update update(
-        command,
-        this->entity,
-        this->BODY_ID,
-        STATUS::GATE_CLOSED,
-        this->b2body->GetPosition().x * ZOOM_FACTOR,
-        this->b2body->GetPosition().y * ZOOM_FACTOR,
-        0);
-    return update;
-}
-
-void Gate::fillDetails(Update &update, const UpdateFactory *update_factory) const {
+void Gate::fillIdClass(
+    Update &update,
+    const UpdateFactory *update_factory) const {
 
 }
 
