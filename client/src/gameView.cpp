@@ -79,7 +79,14 @@ void GameView::updateHandler(Update update){
 			}
 			break;
 		case COMMAND::DESTROY_COMMAND:
-			//FALTA IMPLEMENTAR
+			id = update.getIdObject();
+			if(id == this->myChellId){
+				delete this->myChell;
+				this->myChell = nullptr;				
+			} else if( this->entities[id] != nullptr){
+				delete this->entities[id];
+				this->entities.erase(id);
+			}
 			break;
 		default:
 			break;
@@ -131,12 +138,16 @@ void GameView::pause(){
 	this->paused = !this->paused;
 }
 
-void GameView::pixelToCoord(int32_t x,int32_t y) const{
+int32_t GameView::pixelToCoordX(int32_t x) const{
 	int32_t cordx = this->myChell->getPosX();
-	int32_t cordy = this->myChell->getPosY();
 	int32_t a=x-(this->resx/2);
-    int32_t b=y-(2*this->resy/3);
     a = a/this->scale + cordx;
+    return a;
+}
+
+int32_t GameView::pixelToCoordY(int32_t y) const{
+	int32_t cordy = this->myChell->getPosY();
+    int32_t b=y-(2*this->resy/3);
     b = -b/this->scale + cordy;
-    std::cout<<a<<" "<<b<<"\n";
+    return b;
 }

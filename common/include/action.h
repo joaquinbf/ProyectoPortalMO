@@ -21,15 +21,16 @@ class Action{
 private:
     uint32_t id;
 	ACTION action;
-	uint32_t param;
-
+	int32_t param1;
+    int32_t param2;
 public:
     Action();
-	explicit Action(uint32_t id,ACTION ac,uint32_t param);
+	explicit Action(uint32_t id,ACTION ac,int32_t param1,int32_t param2);
 	~Action();
     uint32_t getId() const;
 	ACTION getAction() const;
-	uint32_t getParam() const;
+	int32_t getParam1() const;
+    int32_t getParam2() const;
 };
 
 #endif

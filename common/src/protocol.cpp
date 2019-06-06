@@ -126,14 +126,16 @@ std::string Protocol::receiveLine() const{
 void Protocol::sendAction(const Action action) const{
 	this->sendQuad(action.getId());
 	this->sendByte(action.getAction());
-	this->sendQuad(action.getParam());
+	this->sendQuad(action.getParam1());
+	this->sendQuad(action.getParam2());
 }
 
 Action Protocol::receiveAction() const{
 	uint32_t id = this->receiveQuad();
 	ACTION ac =(ACTION) this->receiveByte();
-	uint32_t param = this->receiveQuad();
-	return Action(id,ac,param);
+	int32_t param1 = this->receiveQuad();
+	int32_t param2 = this->receiveQuad();
+	return Action(id,ac,param1,param2);
 }
 
 

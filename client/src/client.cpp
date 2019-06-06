@@ -39,7 +39,7 @@ void Client::game(){
 		}
         for(int i = 0; i <10; ++i){
             this->gameView.render();
-            usleep(4500.0);
+            usleep(4500);
         }
         this->gameView.step();
     }

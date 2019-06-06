@@ -27,7 +27,7 @@ void InputManager::run(){
     		this->gameMode(event);
     	}
 	    if(event.type == SDL_QUIT){
-	    	this->serverManager.sendAction(Action(this->chellId,ACTION::QUIT,0));
+	    	this->serverManager.sendAction(Action(this->chellId,ACTION::QUIT,0,0));
             this->running = false;
 	    }
     }
@@ -70,13 +70,12 @@ void InputManager::gameMode(const SDL_Event& event){
 							ACTION::JUMP);
                         break;
                     case SDLK_b:
-                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0));
+                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0,0));
                     	break;
                     case SDLK_ESCAPE:
                         this->gameView.pause();
                         break;
-
-                    //ESTO ESTA DE PRUEBA
+                
                    case SDLK_n:
                         this->gameView.fullscreen();
                         break;
@@ -123,14 +122,15 @@ void InputManager::gameMode(const SDL_Event& event){
             SDL_GetMouseState( &x, &y );
             switch(mouseEvent.button){
                 case SDL_BUTTON_LEFT:
-                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,0));
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,0,0));
                     break;
                 case SDL_BUTTON_RIGHT:
-                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE2,0));
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE2,0,0));
                     break;
                 case SDL_BUTTON_MIDDLE:
-                    this->gameView.pixelToCoord(x,y);
-                    this->serverManager.sendAction(Action(this->chellId,ACTION::PING,0));
+                    x = this->gameView.pixelToCoordX(x);
+                    y = this->gameView.pixelToCoordY(y);
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::PING,x,y));
                     break;
             }
             break;
@@ -143,7 +143,7 @@ void InputManager::sendPressAction(Key *key, ACTION action) {
 	if (!key->isBeingPressed()) {
 		key->press();
 		std::cout << "Action PRESS send:" << action << std::endl;
-		this->serverManager.sendAction(Action(this->chellId, action,0));
+		this->serverManager.sendAction(Action(this->chellId, action,0,0));
 	}
 }
 
@@ -151,7 +151,7 @@ void InputManager::sendReleaseAction(Key *key, ACTION action) {
 	if (key->isBeingPressed()) {
 		key->release();
 		std::cout << "Action RELEASE send:" << action << std::endl;
-		this->serverManager.sendAction(Action(this->chellId, action,0));
+		this->serverManager.sendAction(Action(this->chellId, action,0,0));
 	}
 
 }
