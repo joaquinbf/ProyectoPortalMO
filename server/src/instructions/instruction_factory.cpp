@@ -33,7 +33,7 @@ Instruction *InstructionFactory::createInstruction(
             instruction = new RunRightInstruction(chell);
             break;
         case ACTION::STOP_RIGHT:
-            std::cout << "inst fact: ACTION::STOP_LEFT" << std::endl;
+            std::cout << "inst fact: ACTION::STOP_RIGHT" << std::endl;
             instruction = new StopRightInstruction(chell);
             break;
         case ACTION::JUMP:

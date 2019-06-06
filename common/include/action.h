@@ -6,6 +6,7 @@
 enum ACTION: uint8_t {
     QUIT,
     JUMP,
+    STOP_JUMP,
     RUN_LEFT,
     RUN_RIGHT,
     STOP_LEFT,
@@ -13,7 +14,7 @@ enum ACTION: uint8_t {
     JIG,
     FIRE1,
     FIRE2,
-    PING    
+    PING
 };
 
 class Action{

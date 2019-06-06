@@ -5,14 +5,18 @@
 
 void ContactListener::BeginContact(b2Contact *contact) {
     std::cout << "BEGIN CONTACT" << std::endl;
-    Body *body = (Body *)contact->GetFixtureA()->GetBody()->GetUserData();
-    Body *other_body = (Body *)contact->GetFixtureB()->GetBody()->GetUserData();
-    body->handleBeginContactWith(other_body);
+    void *ptr = contact->GetFixtureA()->GetBody()->GetUserData();
+    void *other_ptr = contact->GetFixtureB()->GetBody()->GetUserData();
+
+    Body *body = static_cast<Body *>(ptr);
+    Body *other_body = static_cast<Body *>(other_ptr);
+
+    if (body != 0 and other_body != 0) {
+        std::cout << "IF BEGIN CONTACT" << std::endl;
+        other_body->handleBeginContactWith(body);
+    }
 }
 
 void ContactListener::EndContact(b2Contact *contact) {
-    Body *body = (Body *)contact->GetFixtureA()->GetBody()->GetUserData();
-    Body *other_body = (Body *)contact->GetFixtureB()->GetBody()->GetUserData();
-    body++;
-    other_body++;
+
 }

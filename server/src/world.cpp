@@ -20,12 +20,14 @@ World::World():
     b2world(new b2World(GRAVITY)),
     body_count(0),
     b2world_is_internal(true) {
+    this->b2world->SetContactListener(&this->contact_listener);
 }
 
 World::World(b2World *b2world):
     b2world(b2world),
     body_count(0),
     b2world_is_internal(false) {
+    this->b2world->SetContactListener(&this->contact_listener);
 }
 
 World::~World() {
@@ -114,18 +116,26 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
             updates.push_back(update);
 
             if (update.getIdClass() == ENTITY::CHELL) {
+                std::cout << "POS : ("
+                          << update.getPosX() << ", "
+                          << update.getPosY() << ")" << std::endl;
+                          
                 switch (update.getStatus()) {
                 case STATUS::NONE_STATUS:
-                    std::cout << "STATUS: NONE_STATUS" << std::endl;
+                    std::cout << "UPDATE STATUS: NONE_STATUS" << std::endl;
                     break;
                 case STATUS::CHELL_IDLE:
-                    std::cout << "STATUS: CHELL_IDLE" << std::endl;
+                    std::cout << "UPDATE STATUS: CHELL_IDLE" << std::endl;
                     break;
                 case STATUS::CHELL_RUNNING:
-                    std::cout << "STATUS: CHELL_RUNNING" << std::endl;
+                    std::cout << "UPDATE STATUS: CHELL_RUNNING" << std::endl;
+                    break;
+                case STATUS::CHELL_JUMPING:
+                    std::cout << "UPDATE STATUS: CHELL_JUMPING" << std::endl;
                     break;
                 default:
-                    std::cout << "STATUS: OTRO STATUS" << std::endl;
+                    std::cout << "UPDATE STATUS: OTRO STATUS : "
+                              << update.getStatus() << std::endl;
                     break;
                 }
             }
@@ -145,15 +155,15 @@ void World::step() {
 }
 
 void World::createWorldOne() {
-    for (int i = 0; i < MAX_CHELLS; i++) {
+    for (int i = 0; i < 1; i++) {
         this->createChell(-6 + 2*i, 1.5);
     }
 
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 1; i++) {
         this->createSquareMetalBlock(-6 + 2*i, -1);
     }
-
-    this->createGateWithButton(6, 2, 1,0.18, true);
+    //
+    // this->createGateWithButton(6, 2, 1,0.18, true);
 }
 
 void World::applyAction(const Action &action) {

@@ -2,7 +2,7 @@
 
 InputManager::InputManager(const ServerManager& sm,GameView& v) : serverManager(sm),
 chellId(0),gameView(v),running(true){
-	
+
 }
 
 InputManager::~InputManager(){}
@@ -30,11 +30,10 @@ void InputManager::run(){
 	    	this->serverManager.sendAction(Action(this->chellId,ACTION::QUIT,0));
             this->running = false;
 	    }
-    }    	
-}	    
+    }
+}
 
 void InputManager::pauseMode(const SDL_Event& event){
- 	Keypad keypad;
  	switch(event.type) {
 		case SDL_KEYDOWN: {
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
@@ -50,25 +49,24 @@ void InputManager::pauseMode(const SDL_Event& event){
 }
 
 void InputManager::gameMode(const SDL_Event& event){
-    Keypad keypad;
     SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
     SDL_MouseButtonEvent& mouseEvent = (SDL_MouseButtonEvent&) event;
     switch(event.type) {
-        case SDL_KEYDOWN: {                
+        case SDL_KEYDOWN: {
                 switch (keyEvent.keysym.sym) {
                     case SDLK_a:
 						this->sendPressAction(
-							keypad.getKey(KEY::LEFT_KEY),
+							this->keypad.getKey(KEY::LEFT_KEY),
 							ACTION::RUN_LEFT);
                         break;
                     case SDLK_d:
 						this->sendPressAction(
-							keypad.getKey(KEY::RIGHT_KEY),
+							this->keypad.getKey(KEY::RIGHT_KEY),
 							ACTION::RUN_RIGHT);
                         break;
                     case SDLK_w:
 						this->sendPressAction(
-							keypad.getKey(KEY::UP_KEY),
+							this->keypad.getKey(KEY::UP_KEY),
 							ACTION::JUMP);
                         break;
                     case SDLK_b:
@@ -89,19 +87,22 @@ void InputManager::gameMode(const SDL_Event& event){
             } // Fin KEY_DOWN
             break;
         }
-        case SDL_KEYUP:{
+        case SDL_KEYUP: {
                 switch (keyEvent.keysym.sym) {
                     case SDLK_a:
                     	this->sendReleaseAction(
-							keypad.getKey(KEY::LEFT_KEY),
+							this->keypad.getKey(KEY::LEFT_KEY),
 							ACTION::STOP_LEFT);
                         break;
                     case SDLK_d:
 						this->sendReleaseAction(
-							keypad.getKey(KEY::RIGHT_KEY),
+							this->keypad.getKey(KEY::RIGHT_KEY),
 							ACTION::STOP_RIGHT);
                         break;
                     case SDLK_w:
+						this->sendReleaseAction(
+							this->keypad.getKey(KEY::UP_KEY),
+							ACTION::STOP_JUMP);
                         break;
                     case SDLK_s:
                         break;
@@ -110,9 +111,9 @@ void InputManager::gameMode(const SDL_Event& event){
         } // Fin KEY_UP
         case SDL_MOUSEWHEEL:{
             if(event.wheel.y > 0){// scroll up
-                this->gameView.zoomIn();                        
+                this->gameView.zoomIn();
             }
-            else if(event.wheel.y < 0){// scroll down            
+            else if(event.wheel.y < 0){// scroll down
                 this->gameView.zoomOut();
             }
             break;
@@ -121,7 +122,7 @@ void InputManager::gameMode(const SDL_Event& event){
             int x, y;
             SDL_GetMouseState( &x, &y );
             switch(mouseEvent.button){
-                case SDL_BUTTON_LEFT:                                                             
+                case SDL_BUTTON_LEFT:
                     this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,0));
                     break;
                 case SDL_BUTTON_RIGHT:
@@ -134,18 +135,23 @@ void InputManager::gameMode(const SDL_Event& event){
             }
             break;
         }// fin MOUSEBUTTONDOWN
-    }    
+    }
 }
- 
+
 
 void InputManager::sendPressAction(Key *key, ACTION action) {
 	if (!key->isBeingPressed()) {
 		key->press();
+		std::cout << "Action PRESS send:" << action << std::endl;
 		this->serverManager.sendAction(Action(this->chellId, action,0));
 	}
 }
 
 void InputManager::sendReleaseAction(Key *key, ACTION action) {
-	key->release();
-	this->serverManager.sendAction(Action(this->chellId, action,0));
+	if (key->isBeingPressed()) {
+		key->release();
+		std::cout << "Action RELEASE send:" << action << std::endl;
+		this->serverManager.sendAction(Action(this->chellId, action,0));
+	}
+
 }

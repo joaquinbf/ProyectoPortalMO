@@ -1,3 +1,4 @@
+
 #include "../../../include/bodies/chell/chell.h"
 
 #include "../../../include/bodies/body.h"
@@ -40,8 +41,10 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
     b2FixtureDef boxFixtureDef;
     boxFixtureDef.shape = &boxShape;
     boxFixtureDef.density = this->DENSITY;
+    boxFixtureDef.userData = (void *) this;
 
-    this->b2body->CreateFixture(&boxFixtureDef);
+    b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
+    b2fixture->SetUserData((void *)this);
 }
 
 bool Chell::isFacingRight() {
@@ -177,6 +180,8 @@ void Chell::letBeginContactBeHandledBy(Chell *chell) {
 }
 
 void Chell::letBeginContactBeHandledBy(Block *block) {
+    std::cout << "void Chell::letBeginContactBeHandledBy(Block *block)"
+              << std::endl;
     this->changeStateToIdle();
 }
 

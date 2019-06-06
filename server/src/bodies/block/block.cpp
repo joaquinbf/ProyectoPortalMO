@@ -32,8 +32,10 @@ Block::Block(
     b2FixtureDef boxFixtureDef;
     boxFixtureDef.shape = &b2polygonshape;
     boxFixtureDef.density = this->DENSITY;
+    boxFixtureDef.userData = (void *) this;
 
-    this->b2body->CreateFixture(&boxFixtureDef);
+    b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
+    b2fixture->SetUserData((void *)this);
 
     this->shape = shape;
     this->material = material;

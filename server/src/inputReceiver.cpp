@@ -10,8 +10,10 @@ InputReceiver::~InputReceiver(){}
 void InputReceiver::run(){
 	try{
 		while(this->running){
-			Action action= this->protocol.receiveAction(); //bloqueante						
-			if(action.getAction() == ACTION::QUIT){				
+			Action action= this->protocol.receiveAction();
+			std::cout << "input recv : " << action.getAction() << std::endl;
+			 //bloqueante
+			if(action.getAction() == ACTION::QUIT){
 				std::cout<<"cerro\n";
 				this->protocol.close();
 				this->running = false;

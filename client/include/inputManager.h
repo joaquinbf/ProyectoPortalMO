@@ -16,6 +16,8 @@ private:
 	uint32_t chellId;
 	GameView& gameView;
 	bool running;
+	Keypad keypad;
+	
 public:
 	explicit InputManager(const ServerManager& sm,GameView& g);
 	~InputManager();
