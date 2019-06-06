@@ -23,7 +23,9 @@ GameView::~GameView(){
 
 void GameView::step(){
 	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-		it->second->step();
+		if(it->second != nullptr){
+			it->second->step();
+		}
 	}
 	if(this->myChell != nullptr){
 		this->myChell->step();
@@ -33,9 +35,16 @@ void GameView::step(){
 void GameView::render(){
 	this->updateResolution();
 	this->window.fill(); // Repinto el fondo gris
+	int32_t posx = 0;
+	int32_t posy = 0;
 	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-		it->second->render(this->myChell->getPosX(),this->myChell->getPosY(),
-			this->resx,this->resy,this->scale);
+		if(this->myChell != nullptr){
+			posx = this->myChell->getPosX();
+			posy = this->myChell->getPosY();
+		}
+		if(it->second != nullptr){
+			it->second->render(posx,posy,this->resx,this->resy,this->scale);	
+		}		
 	}
 	if(this->myChell != nullptr){
 		this->myChell->renderCentered(this->resx,this->resy,this->scale);	
@@ -65,7 +74,7 @@ void GameView::updateHandler(Update update){
 			id = update.getIdObject();
 			if(id == this->myChellId){
 				this->myChell->update(update);
-			}else{
+			} else if( this->entities[id] != nullptr){
 				this->entities[id]->update(update);
 			}
 			break;

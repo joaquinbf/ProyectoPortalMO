@@ -50,7 +50,10 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm, co
 		case ENTITY::PIN:
 			return new Pin(tm,update.getPosX(),update.getPosY(),50,50); 
 			break;
-		default:
+		case ENTITY::NONE_ENTITY:
+			return nullptr;
+			break;
+		default:			
 			return nullptr;
 			break;
 	}
