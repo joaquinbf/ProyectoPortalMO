@@ -1,8 +1,8 @@
 #ifndef __UPDATE_FACTORY_H__
 #define __UPDATE_FACTORY_H__
 
-#include "../../common/include/types.h"
-#include "../../common/include/update.h"
+#include "../../../common/include/types.h"
+#include "../../../common/include/update.h"
 
 
 class Body;

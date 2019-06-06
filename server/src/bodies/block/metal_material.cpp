@@ -3,7 +3,7 @@
 #include "../../../include/bodies/block/diagonal_shape.h"
 #include "../../../include/bodies/block/square_shape.h"
 #include "../../../../common/include/types.h"
-#include "../../../include/update_factory.h"
+#include "../../../include/update_factories/update_factory.h"
 
 void MetalMaterial::fillIdClassWithShape(
     Update &update,

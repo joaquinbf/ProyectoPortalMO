@@ -1,5 +1,5 @@
 #include "../../include/bodies/body.h"
-#include "../../include/update_factory.h"
+#include "../../include/update_factories/update_factory.h"
 
 
 Body::Body(uint32_t body_id):

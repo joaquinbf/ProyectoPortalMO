@@ -1,6 +1,6 @@
-#include "../include/update_factory.h"
-#include "../include/bodies/body.h"
-#include "../include/bodies/chell/chell.h"
+#include "../../include/update_factories/update_factory.h"
+#include "../../include/bodies/body.h"
+#include "../../include/bodies/chell/chell.h"
 
 
 Update UpdateFactory::createUpdate(COMMAND command, Body *body) const {

@@ -9,6 +9,8 @@
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/rock/rock.h"
+#include "../../../include/update_factories/update_factory.h"
+
 
 
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):

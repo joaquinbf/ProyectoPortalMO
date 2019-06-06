@@ -9,7 +9,7 @@
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/gate/gate.h"
 #include "../../../include/bodies/rock/rock.h"
-#include "../../../include/update_factory.h"
+#include "../../../include/update_factories/update_factory.h"
 
 
 Block::Block(

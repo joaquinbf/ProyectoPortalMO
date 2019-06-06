@@ -1,6 +1,6 @@
 #include "../../../include/bodies/block/square_shape.h"
 #include "../../../include/bodies/block/material.h"
-#include "../../../include/update_factory.h"
+#include "../../../include/update_factories/update_factory.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../common/include/types.h"
 
