@@ -5,11 +5,19 @@
 
 class DiagonalShape;
 class SquareShape;
+class UpdateFactory;
 
 class MetalMaterial: public Material {
 public:
-    virtual ENTITY createEntityWithShape(DiagonalShape *diagonal_shape) override;
-    virtual ENTITY createEntityWithShape(SquareShape *square_shape) override;
+    virtual void fillIdClassWithShape(
+        Update &update,
+        const UpdateFactory *update_factory,
+        const DiagonalShape *shape) const ;
+
+    virtual void fillIdClassWithShape(
+        Update &update,
+        const UpdateFactory *update_factory,
+        const SquareShape *shape) const;
 };
 
 #endif

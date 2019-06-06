@@ -3,15 +3,25 @@
 
 #include "../../../../common/include/update.h"
 #include "../../../../common/include/types.h"
+#include "../../../../common/include/types.h"
 
 class DiagonalShape;
 class SquareShape;
+class UpdateFactory;
 
 class Material {
 public:
     virtual ~Material();
-    virtual ENTITY createEntityWithShape(DiagonalShape *diagonal_shape) = 0;
-    virtual ENTITY createEntityWithShape(SquareShape *square_shape) = 0;
+
+    virtual void fillIdClassWithShape(
+        Update &update,
+        const UpdateFactory *update_factory,
+        const DiagonalShape *shape) const = 0;
+
+    virtual void fillIdClassWithShape(
+        Update &update,
+        const UpdateFactory *update_factory,
+        const SquareShape *shape) const = 0;
 };
 
 #endif

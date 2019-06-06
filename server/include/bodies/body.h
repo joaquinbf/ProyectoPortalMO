@@ -13,20 +13,18 @@ class Button;
 class Gate;
 class Rock;
 
+class UpdateFactory;
+
 class Body {
 protected:
     const uint32_t BODY_ID;
     b2Body *b2body;
-    const ENTITY entity;
 
 public:
-    Body(uint32_t body_id, ENTITY entity);
+    Body(uint32_t body_id);
 
     /* Libera los recursos utilizados */
     virtual ~Body();
-
-    /* Crea una update con el comando indicado */
-    virtual Update createUpdate(COMMAND command) const = 0;
 
     /* Devuelve un identificador del cuerpo */
     uint32_t getBodyId() const;
@@ -50,6 +48,22 @@ public:
 
     /* Indica si el cuerpo esta despierto */
     bool isAwake() const;
+
+    /* Rellena campos id. */
+    void fillBodyId(Update &update) const;
+
+    /* Rellena los campos de posicion aplicando un factor de zoom. */
+    void fillPosition(
+        Update &update,
+        const UpdateFactory *update_factory) const;
+
+    virtual void fillIdClass(
+        Update &update,
+        const UpdateFactory *update_factory) const = 0;
+
+    virtual void fillDirection(
+        Update &update,
+        const UpdateFactory *update_factory) const;
 };
 
 #endif

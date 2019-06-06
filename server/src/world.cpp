@@ -1,5 +1,6 @@
 #include "../include/world.h"
 
+#include "../include/update_factories/update_factory.h"
 #include "../include/bodies/body.h"
 #include "../include/bodies/chell/chell.h"
 #include "../include/bodies/button/button.h"
@@ -104,13 +105,12 @@ std::list<Update> World::getUpdates() const {
 }
 
 std::list<Update> World::getUpdatesForAwakeBodies() const {
+    UpdateFactory uf;
     std::list<Update> updates;
 
-    b2Body *b2body = this->b2world->GetBodyList();
-    while (b2body != 0) {
-        if (b2body->IsAwake()) {
-            Body *body = (Body *) b2body->GetUserData();
-            Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
+    for (Body *body: this->bodies) {
+        if (body->isAwake()) {
+            Update update = uf.createUpdate(COMMAND::UPDATE_COMMAND, body);
             updates.push_back(update);
 
             if (update.getIdClass() == ENTITY::CHELL) {
@@ -131,7 +131,6 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
             }
 
         }
-        b2body = b2body->GetNext();
     }
 
     return updates;
@@ -185,10 +184,11 @@ void World::deleteB2WorldIfInternal() {
 }
 
 std::list<Update> World::getUpdatesWithCommand(COMMAND command) const {
+    UpdateFactory uf;
     std::list<Update> lista;
 
     for (Body *body: this->bodies) {
-        Update update = body->createUpdate(command);
+        Update update = uf.createUpdate(command, body);
         lista.emplace_back(update);
         std::cout << "UPDATE: (" << update.getPosX()
                   << " ," << update.getPosY() << ")" << std::endl;
