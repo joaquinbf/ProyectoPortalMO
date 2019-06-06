@@ -22,7 +22,7 @@ void Stage::run(){
 		for(Update update : list){
 			this->updates->push(update);
 		}
-		usleep(100000);
+		usleep(33333);
 	}
 }
 

@@ -108,10 +108,8 @@ std::list<Update> World::getUpdates() const {
 std::list<Update> World::getUpdatesForAwakeBodies() const {
     std::list<Update> updates;
 
-    b2Body *b2body = this->b2world->GetBodyList();
-    while (b2body != 0) {
-        if (b2body->IsAwake()) {
-            Body *body = (Body *) b2body->GetUserData();
+    for (Body *body: this->bodies) {
+        if (body->isAwake()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             updates.push_back(update);
 
@@ -119,7 +117,7 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
                 std::cout << "POS : ("
                           << update.getPosX() << ", "
                           << update.getPosY() << ")" << std::endl;
-                          
+
                 switch (update.getStatus()) {
                 case STATUS::NONE_STATUS:
                     std::cout << "UPDATE STATUS: NONE_STATUS" << std::endl;
@@ -139,11 +137,8 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
                     break;
                 }
             }
-
         }
-        b2body = b2body->GetNext();
     }
-
     return updates;
 }
 
@@ -159,11 +154,11 @@ void World::createWorldOne() {
         this->createChell(-6 + 2*i, 1.5);
     }
 
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 7; i++) {
         this->createSquareMetalBlock(-6 + 2*i, -1);
     }
-    //
-    // this->createGateWithButton(6, 2, 1,0.18, true);
+
+    this->createGateWithButton(6, 2, 1,0.18, true);
 }
 
 void World::applyAction(const Action &action) {

@@ -35,7 +35,7 @@ private:
     std::vector<Body *> bodies;
     std::map<uint32_t, Chell *> chells;
     std::mutex mutex;
-    const float TIME_STEP = 1/10.0;
+    const float TIME_STEP = 1/30.0;
     const uint32_t VELOCITY_ITERATIONS = 8;
     const uint32_t POSITION_ITERATIONS = 3;
     BooleanBlockFactory bbf;
