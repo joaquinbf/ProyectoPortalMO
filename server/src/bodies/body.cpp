@@ -1,9 +1,8 @@
 #include "../../include/bodies/body.h"
-#include "../../include/update_factories/update_factory.h"
 
-
-Body::Body(uint32_t body_id):
-    BODY_ID(body_id) {
+Body::Body(uint32_t body_id, ENTITY entity):
+    BODY_ID(body_id),
+    entity(entity) {
 }
 
 Body::~Body() {
@@ -14,7 +13,6 @@ uint32_t Body::getBodyId() const {
 }
 
 void Body::applyStateAction() {
-
 }
 
 bool Body::isAwake() const {

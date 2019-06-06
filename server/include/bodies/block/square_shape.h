@@ -5,12 +5,13 @@
 #include "../../../../common/include/types.h"
 
 class Material;
-class BlockUpdateFactory;
 
 class SquareShape: public Shape {
 public:
     virtual b2PolygonShape giveShape(
         float half_with, float half_height) override;
+    virtual ENTITY createEntityWithMaterial(Material *material) override;
+
 };
 
 #endif

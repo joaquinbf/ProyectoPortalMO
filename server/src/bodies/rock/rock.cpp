@@ -5,12 +5,11 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../include/bodies/button/button.h"
-#include "../../../include/update_factories/rock_update_factory.h"
 #include <cstdint>
 
 
 Rock::Rock(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id) {
+    Body(body_id, ENTITY::ROCK) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
@@ -31,6 +30,18 @@ Rock::Rock(uint32_t body_id, b2World *b2world, float x, float y):
 }
 
 Rock::~Rock() {
+}
+
+Update Rock::createUpdate(COMMAND command) const {
+    Update update(
+        command,
+        ENTITY::ROCK,
+        this->getBodyId(),
+        STATUS::NONE_STATUS,
+        this->b2body->GetPosition().x,
+        this->b2body->GetPosition().y,
+        0);
+    return update;
 }
 
 void Rock::handleBeginContactWith(Body *other_body) {

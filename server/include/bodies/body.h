@@ -13,18 +13,20 @@ class Button;
 class Gate;
 class Rock;
 
-class UpdateFactory;
-
 class Body {
 protected:
     const uint32_t BODY_ID;
     b2Body *b2body;
+    const ENTITY entity;
 
 public:
-    Body(uint32_t body_id);
+    Body(uint32_t body_id, ENTITY entity);
 
     /* Libera los recursos utilizados */
     virtual ~Body();
+
+    /* Crea una update con el comando indicado */
+    virtual Update createUpdate(COMMAND command) const = 0;
 
     /* Devuelve un identificador del cuerpo */
     uint32_t getBodyId() const;

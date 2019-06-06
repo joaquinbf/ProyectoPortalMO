@@ -1,6 +1,5 @@
 #include "../../../include/bodies/chell/chell.h"
 
-#include "../../../include/update_factories/chell_update_factory.h"
 #include "../../../include/bodies/body.h"
 #include "../../../include/bodies/chell/chell_state.h"
 #include "../../../include/bodies/chell/idle_state.h"
@@ -20,8 +19,12 @@
 
 
 Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id),
-    is_facing_right(true) {
+    Body(body_id, ENTITY::CHELL),
+    is_facing_right(true),
+    idle_state(this),
+    running_state(this),
+    jumping_state(this),
+    state(&this->idle_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
@@ -39,11 +42,9 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
     boxFixtureDef.density = this->DENSITY;
 
     this->b2body->CreateFixture(&boxFixtureDef);
-
-    this->state = 0;
 }
 
-bool Chell::isFacingRight() const {
+bool Chell::isFacingRight() {
     return this->is_facing_right;
 }
 
@@ -59,49 +60,73 @@ void Chell::faceOppositeDirection() {
     this->is_facing_right = !this->is_facing_right;
 }
 
-void Chell::pressLeft() {
+Update Chell::createUpdate(COMMAND command) const {
+    Update update(
+        command,
+        ENTITY::CHELL,
+        this->BODY_ID,
+        this->state->getStatus(),
+        this->b2body->GetPosition().x * ZOOM_FACTOR,
+        this->b2body->GetPosition().y * ZOOM_FACTOR,
+        this->is_facing_right? 1 : 0);
+    return update;
+}
 
+void Chell::pressLeft() {
+    this->keypad.press(KEY::LEFT_KEY);
+    this->state->pressLeft();
 }
 
 void Chell::releaseLeft() {
-
+    this->keypad.release(KEY::LEFT_KEY);
+    this->state->releaseLeft();
 }
 
 void Chell::pressRight() {
-
+    this->keypad.press(KEY::RIGHT_KEY);
+    this->state->pressRight();
 }
 
 void Chell::releaseRight() {
-
+    this->keypad.release(KEY::RIGHT_KEY);
+    this->state->releaseRight();
 }
 
 void Chell::pressUp() {
-
+    this->keypad.press(KEY::UP_KEY);
+    this->state->pressUp();
 }
 
 void Chell::releaseUp() {
-
+    this->keypad.release(KEY::UP_KEY);
+    this->state->releaseUp();
 }
 
 
 void Chell::changeStateToRunning() {
-
+    if (this->isFacingRight()) {
+        this->applyLinearImpulseToRight();
+    } else {
+        this->applyLinearImpulseToLeft();
+    }
+    this->state = &this->running_state;
 }
 
 void Chell::changeStateToIdle() {
+    this->state = &this->idle_state;
 }
 
 void Chell::changeStateToJumping() {
-
+    this->state = &this->jumping_state;
+    this->applyLinearImpulseToUp();
 }
 
 
 void Chell::applyLinearImpulseToLeft() {
     float mass = this->b2body->GetMass();
-    b2Vec2 v = this->b2body->GetLinearVelocity();
     float vel = LEFTSPEED;
     float imp = mass * vel;
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, v.y), true);
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
@@ -114,10 +139,9 @@ void Chell::applyLinearImpulseToRight() {
 
 void Chell::applyLinearImpulseToUp() {
     float mass = this->b2body->GetMass();
-    b2Vec2 v = this->b2body->GetLinearVelocity();
     float vel = JUMPSPEED;
     float imp = mass * vel;
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(v.x, imp), true);
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, imp), true);
 }
 
 
@@ -142,6 +166,7 @@ Keypad *Chell::getKeypad() {
 }
 
 void Chell::applyStateAction() {
+    this->state->applyStateAction();
 }
 
 void Chell::handleBeginContactWith(Body *other_body) {

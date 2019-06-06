@@ -9,10 +9,10 @@
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/rock/rock.h"
-#include "../../../include/update_factories/gate_update_factory.h"
+
 
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id){
+    Body(body_id, ENTITY::GATE) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);
@@ -26,6 +26,18 @@ Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &b2polygonshape;
     this->b2body->CreateFixture(&fixtureDef);
+}
+
+Update Gate::createUpdate(COMMAND command) const {
+    Update update(
+        command,
+        this->entity,
+        this->BODY_ID,
+        STATUS::GATE_CLOSED,
+        this->b2body->GetPosition().x * ZOOM_FACTOR,
+        this->b2body->GetPosition().y * ZOOM_FACTOR,
+        0);
+    return update;
 }
 
 void Gate::handleBeginContactWith(Body *other_body) {

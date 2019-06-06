@@ -3,8 +3,13 @@
 
 #include "material.h"
 
+class DiagonalShape;
+class SquareShape;
+
 class StoneMaterial: public Material {
 public:
+    virtual ENTITY createEntityWithShape(DiagonalShape *diagonal_shape) override;
+    virtual ENTITY createEntityWithShape(SquareShape *square_shape) override;
 };
 
 #endif

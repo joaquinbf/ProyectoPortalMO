@@ -31,6 +31,8 @@ public:
     /* Suelta el boton */
     void release();
 
+    virtual Update createUpdate(COMMAND command) const override;
+
     virtual void handleBeginContactWith(Body *other_body) override;
 
     virtual void letBeginContactBeHandledBy(Chell *chell) override;

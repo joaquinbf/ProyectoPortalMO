@@ -2,6 +2,10 @@
 #define __CHELL_H__
 
 #include "../body.h"
+#include "chell_state.h"
+#include "idle_state.h"
+#include "running_state.h"
+#include "jumping_state.h"
 #include "../../../../common/include/key.h"
 #include "../../../../common/include/keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -17,11 +21,12 @@ class Button;
 class Block;
 class Gate;
 
-class ChellState;
-
 class Chell: public Body {
 private:
     bool is_facing_right;
+    IdleState idle_state;
+    RunningState running_state;
+    JumpingState jumping_state;
     ChellState *state;
     Keypad keypad;
     const float HALF_WIDTH = 1.00;
@@ -35,7 +40,7 @@ public:
     Chell(uint32_t body_id, b2World *b2world, float x, float y);
 
     /* Indica si chell esta mirando hacia la derecha */
-    bool isFacingRight() const;
+    bool isFacingRight();
 
     /* Hace mirar a la derecha */
     void faceRight();
@@ -45,6 +50,9 @@ public:
 
     /* Hace mirar en la direccion opuesta */
     void faceOppositeDirection();
+
+    /* Devuelve un update de Command de chell */
+    virtual Update createUpdate(COMMAND command) const override;
 
     /* Presiona la tecla izquierda de chell*/
     void pressLeft();
