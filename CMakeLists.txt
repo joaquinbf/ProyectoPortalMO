@@ -34,11 +34,11 @@ file(GLOB_RECURSE TEST_CLIENT_HEADERS ./test/client/*.h)
 file(GLOB_RECURSE TEST_SERVER_HEADERS ./test/server/*.h)
 file(GLOB_RECURSE TEST_COMMON_HEADERS ./test/common/*.h)
 
-# Se quitan los main de client y server porque runner.cpp es el main del test
-get_filename_component(FULL_PATH_MAIN_SERVER ${CMAKE_CURRENT_SOURCE_DIR}/server/src/main.cpp ABSOLUTE)
-get_filename_component(FULL_PATH_MAIN_CLIENT ${CMAKE_CURRENT_SOURCE_DIR}/client/src/main.cpp ABSOLUTE)
-list(REMOVE_ITEM CLIENT_SRCS ${FULL_PATH_MAIN_CLIENT})
-list(REMOVE_ITEM SERVER_SRCS ${FULL_PATH_MAIN_SERVER})
+# Se quitan los main de client y server porque runner.cpp es el main del test,
+#  sino da error porque  se encuentra dos veces main().
+list(FILTER CLIENT_SRCS EXCLUDE REGEX "main.cpp")
+list(FILTER SERVER_SRCS EXCLUDE REGEX "main.cpp")
+
 
 # Libraries
 add_library(libbox2d SHARED ${BOX2D_SRCS})
