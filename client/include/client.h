@@ -23,12 +23,12 @@ private:
 	bool running;
 	ServerManager serverManager;
 	ProtectedQueue<Update> updates;
+	SoundManager soundManager;
 	GameView gameView;
 	InputManager inputManager;
 	UpdateReceiver updateReceiver;
-	SoundManager soundManager;
 public:
-	explicit Client(int,int);
+	Client();
 	~Client();
 	void main();
 	void login();

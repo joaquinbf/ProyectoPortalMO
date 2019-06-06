@@ -1,10 +1,11 @@
 #include "../include/chell.h"
 
-Chell::Chell(const TextureManager& tm,int32_t posx,int32_t posy,
-		uint32_t width,uint32_t height,uint32_t dir)
+Chell::Chell(const TextureManager& tm, const SoundManager& sm,
+		int32_t posx,int32_t posy, uint32_t width,uint32_t height,uint32_t dir)
 : Entity(posx,posy,width,height,dir),
 textureManager(tm),
-frameArea(0, 0, 104, 215),
+frameArea(0, 0, 104, 215), 
+soundManager(sm),
 status(CHELL_IDLE){
 	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
 	this->actionPtr = &Chell::idleAction;
@@ -190,7 +191,8 @@ void Chell::turnAction(){
 }
 
 void Chell::jump(){
-	if(this->status != CHELL_JUMPING || this->status != CHELL_JUMPING_APEX){
+	if(this->status != CHELL_JUMPING && this->status != CHELL_JUMPING_APEX){
+		this->soundManager.playJumpSound();
 		this->frame = 0;
 		this->jumpAction();
 	}
@@ -203,7 +205,6 @@ void Chell::jumpAction(){
 		this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
-	std::cout<<this->frame<<"\n";
 	if(this->frame == 5 ){
 		this->status = CHELL_JUMPING_APEX;
 		this->texturePtr = (SdlTexture *) 
@@ -252,6 +253,7 @@ void Chell::landAction(){
 
 void Chell::fire(int dir){
 	if(this->status != CHELL_FIRE){
+		this->soundManager.playFireSound();
 		this->frame = 0;
 		this->fireAction();	
 	}else if(this->status == CHELL_RUNNING){

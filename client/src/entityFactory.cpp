@@ -4,11 +4,11 @@ EntityFactory::EntityFactory(){}
 
 EntityFactory::~EntityFactory(){}
 
-Entity* EntityFactory::create(const Update& update, const TextureManager& tm){
+Entity* EntityFactory::create(const Update& update, const TextureManager& tm, const SoundManager& sm){
 	Block* ptr;
 	switch(update.getIdClass()){
 		case ENTITY::CHELL:
-			return new Chell(tm,update.getPosX(),update.getPosY(),200,300,update.getDirection());
+			return new Chell(tm,sm,update.getPosX(),update.getPosY(),200,300,update.getDirection());
 			break;
 		case ENTITY::STONE_BLOCK:
 			return new Block(tm,STONE_BLOCK,update.getPosX(),update.getPosY(),200,200);

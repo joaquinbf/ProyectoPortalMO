@@ -13,6 +13,7 @@
 #include "../include/SdlTexture.h"
 #include "../include/entityFactory.h"
 #include "../include/serverManager.h"
+#include "../include/soundManager.h"
 #include "../include/chell.h"
 #include "../include/block.h"
 #include "../include/textureManager.h"
@@ -30,6 +31,7 @@ private:
 	int resy;	
 	SdlWindow window;
 	TextureManager textureManager;
+	const SoundManager& soundManager;
 	std::map<uint32_t,Entity *> entities;
 	Chell* myChell;
 	uint32_t myChellId;
@@ -37,7 +39,7 @@ private:
 	bool paused;
 	Crosshair crosshair;
 public:
-	explicit GameView(uint32_t x, uint32_t y);
+	explicit GameView(uint32_t x, uint32_t y,const SoundManager& sm);
 	~GameView();
 	void step();
 	void render();

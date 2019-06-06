@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "../include/textureManager.h"
+#include "../include/soundManager.h"
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../../common/include/entity.h"
@@ -30,12 +31,12 @@ private:
 	Area frameArea;
 	int frame;
 	int framey;
-
+	const SoundManager& soundManager;
 	STATUS status;
 
 public:	
-	explicit Chell(const TextureManager& tm,int32_t posx,int32_t posy,
-		uint32_t width,uint32_t height,uint32_t dir);
+	explicit Chell(const TextureManager& tm, const SoundManager& sm,
+		int32_t posx,int32_t posy, uint32_t width,uint32_t height,uint32_t dir);
 	~Chell();
 	int32_t getPosX();
 	int32_t getPosY();

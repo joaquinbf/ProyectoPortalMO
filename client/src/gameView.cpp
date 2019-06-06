@@ -1,11 +1,10 @@
 #include "../include/gameView.h"
 
 #include <iostream>
-//#include <SDL2/SDL_mixer.h> 
 #include <SDL_mixer.h>
 
-GameView::GameView(uint32_t x, uint32_t y) : 
-resx(x),resy(y),window(x,y), textureManager(window),myChell(nullptr),
+GameView::GameView(uint32_t x, uint32_t y, const SoundManager& sm) : 
+resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), crosshair(textureManager)
 {
 	SDL_ShowCursor(SDL_DISABLE);
@@ -57,9 +56,9 @@ void GameView::updateHandler(Update update){
 		case COMMAND::CREATE_COMMAND:			
 			id = update.getIdObject();
 			if(id == this->myChellId){ 
-				this->myChell = (Chell *)ef.create(update,this->textureManager);
+				this->myChell = (Chell *)ef.create(update,this->textureManager,this->soundManager);
 			} else {
-				this->entities[id] = ef.create(update,this->textureManager);
+				this->entities[id] = ef.create(update,this->textureManager,this->soundManager);
 			}
 			break;
 		case COMMAND::UPDATE_COMMAND:

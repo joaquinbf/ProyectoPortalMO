@@ -1,9 +1,12 @@
 #ifndef _ENTITY_FACTORY_H_
 #define _ENTITY_FACTORY_H_
 
-#include "../include/SdlWindow.h"
 #include "../../common/include/entity.h"
 #include "../../common/include/update.h"
+
+#include "../include/textureManager.h"
+#include "../include/soundManager.h"
+#include "../include/SdlWindow.h"
 #include "../include/chell.h"
 #include "../include/block.h"
 #include "../include/button.h"
@@ -18,7 +21,7 @@ class EntityFactory{
 public:
 	EntityFactory();
 	~EntityFactory();
-	Entity* create(const Update& up, const TextureManager& tm);
+	Entity* create(const Update& up, const TextureManager& tm, const SoundManager& sm);
 };
 
 #endif

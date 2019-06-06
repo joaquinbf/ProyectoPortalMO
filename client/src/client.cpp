@@ -1,8 +1,8 @@
 #include "../include/client.h"
 
-Client::Client(int x, int y)
+Client::Client()
 : serverManager("localhost", PORT), 
-gameView(x,y),
+gameView(800,600,this->soundManager),
 inputManager(this->serverManager,this->gameView),
 updateReceiver(this->serverManager,this->updates)
 {

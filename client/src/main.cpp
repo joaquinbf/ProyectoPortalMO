@@ -2,7 +2,7 @@
 
 int main() {    
 	try{
-		Client client(800,600);
+		Client client;
 	    client.main();
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;
