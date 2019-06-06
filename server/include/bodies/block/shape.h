@@ -6,17 +6,13 @@
 #include "../../../../common/include/update.h"
 
 
-class UpdateFactory;
+class BlockUpdateFactory;
 class Material;
 
 class Shape {
 public:
     virtual b2PolygonShape giveShape(float half_with, float half_height) = 0;
 
-    virtual void fillIdClassWithMaterial(
-        Update &update,
-        const UpdateFactory *update_factory,
-        const Material *material) const = 0;
     virtual ~Shape();
 };
 

@@ -48,22 +48,6 @@ public:
 
     /* Indica si el cuerpo esta despierto */
     bool isAwake() const;
-
-    /* Rellena campos id. */
-    void fillBodyId(Update &update) const;
-
-    /* Rellena los campos de posicion aplicando un factor de zoom. */
-    void fillPosition(
-        Update &update,
-        const UpdateFactory *update_factory) const;
-
-    virtual void fillIdClass(
-        Update &update,
-        const UpdateFactory *update_factory) const = 0;
-
-    virtual void fillDirection(
-        Update &update,
-        const UpdateFactory *update_factory) const;
 };
 
 #endif

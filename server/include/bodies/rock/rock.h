@@ -23,11 +23,6 @@ public:
     /* Libera los recursos utilizados */
     ~Rock();
 
-    /* Devuelve una update de la roca */
-    virtual Update createUpdate(COMMAND command) const;
-
-    virtual void fillDetails(Update &update, const UpdateFactory *update_factory) const;
-
     virtual void handleBeginContactWith(Body *other_body) override;
 
     virtual void letBeginContactBeHandledBy(Chell *chell) override;

@@ -1,6 +1,6 @@
 #include "../../../include/bodies/chell/chell.h"
 
-#include "../../../include/update_factories/update_factory.h"
+#include "../../../include/update_factories/chell_update_factory.h"
 #include "../../../include/bodies/body.h"
 #include "../../../include/bodies/chell/chell_state.h"
 #include "../../../include/bodies/chell/idle_state.h"
@@ -58,13 +58,6 @@ void Chell::faceLeft() {
 void Chell::faceOppositeDirection() {
     this->is_facing_right = !this->is_facing_right;
 }
-
-void Chell::fillIdClass(
-    Update &update,
-    const UpdateFactory *update_factory) const {
-    update_factory->fillIdClass(update, this);
-}
-
 
 void Chell::pressLeft() {
 

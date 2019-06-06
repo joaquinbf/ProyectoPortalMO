@@ -105,12 +105,11 @@ std::list<Update> World::getUpdates() const {
 }
 
 std::list<Update> World::getUpdatesForAwakeBodies() const {
-    UpdateFactory uf;
     std::list<Update> updates;
 
     for (Body *body: this->bodies) {
         if (body->isAwake()) {
-            Update update = uf.createUpdate(COMMAND::UPDATE_COMMAND, body);
+            Update update;
             updates.push_back(update);
 
             if (update.getIdClass() == ENTITY::CHELL) {
@@ -184,11 +183,11 @@ void World::deleteB2WorldIfInternal() {
 }
 
 std::list<Update> World::getUpdatesWithCommand(COMMAND command) const {
-    UpdateFactory uf;
     std::list<Update> lista;
 
     for (Body *body: this->bodies) {
-        Update update = uf.createUpdate(command, body);
+        Update update;
+        body++;
         lista.emplace_back(update);
         std::cout << "UPDATE: (" << update.getPosX()
                   << " ," << update.getPosY() << ")" << std::endl;

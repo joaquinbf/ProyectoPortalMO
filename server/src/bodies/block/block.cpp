@@ -45,15 +45,6 @@ Block::~Block() {
     delete material;
 }
 
-void Block::fillIdClass(
-    Update &update,
-    const UpdateFactory *update_factory) const {
-    this->shape->fillIdClassWithMaterial(
-        update,
-        update_factory,
-        this->material);
-}
-
 void Block::handleBeginContactWith(Body *other_body) {
     other_body->letBeginContactBeHandledBy(this);
 }

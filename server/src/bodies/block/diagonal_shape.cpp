@@ -11,10 +11,3 @@ b2PolygonShape DiagonalShape::giveShape(float half_with, float half_height) {
     boxShape.SetAsBox(half_with, half_height);
     return boxShape;
 }
-
-void DiagonalShape::fillIdClassWithMaterial(
-    Update &update,
-    const UpdateFactory *update_factory,
-    const Material *material) const {
-    material->fillIdClassWithShape(update, update_factory, this);
-}

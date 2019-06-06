@@ -1,17 +1,31 @@
 #include "../include/update.h"
 
-Update::Update() : command(COMMAND::NONE_COMMAND), idClass(ENTITY::NONE_ENTITY), idObject(0),
-	status(STATUS::NONE_STATUS), posX(0), posY(0), direction(0){}
+Update::Update():
+	command(COMMAND::NONE_COMMAND),
+	idClass(ENTITY::NONE_ENTITY),
+	idObject(0),
+	status(STATUS::NONE_STATUS),
+	posX(0),
+	posY(0),
+	direction(0){
+}
 
-Update::Update( COMMAND command, ENTITY entity,	uint32_t id, STATUS status,	int32_t posx,
-	int32_t posy, uint32_t dir):
+Update::Update(
+	COMMAND command,
+	ENTITY entity,
+	uint32_t id,
+	STATUS status,
+	int32_t posx,
+	int32_t posy,
+	uint32_t dir):
 	command(command),
 	idClass(entity),
 	idObject(id),
 	status(status),
 	posX(posx),
 	posY(posy),
-	direction(dir) {}
+	direction(dir) {
+}
 
 Update::~Update(){}
 
@@ -46,12 +60,13 @@ uint32_t Update::getDirection() const{
 void Update::setCommand(COMMAND command) {
 	this->command = command;
 }
-void Update::setIdClass(ENTITY idClass) {
-	this->idClass = idClass;
+
+void Update::setEntity(ENTITY entity) {
+	this->idClass = entity;
 }
 
-void Update::setIdObject(uint32_t idObject) {
-	this->idObject = idObject;
+void Update::setBodyId(uint32_t body_id) {
+	this->idObject = body_id;
 }
 
 void Update::setStatus(STATUS status) {

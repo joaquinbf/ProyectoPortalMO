@@ -19,8 +19,6 @@ class Gate;
 
 class ChellState;
 
-class UpdateFactory;
-
 class Chell: public Body {
 private:
     bool is_facing_right;
@@ -47,9 +45,6 @@ public:
 
     /* Hace mirar en la direccion opuesta */
     void faceOppositeDirection();
-
-    /* Rellena con los detalles de estado de chell */
-    virtual void fillIdClass(Update &update, const UpdateFactory *update_factory) const;
 
     /* Presiona la tecla izquierda de chell*/
     void pressLeft();

@@ -33,12 +33,6 @@ bool Button::isPressed() const {
     return this->is_pressed;
 }
 
-void Button::fillIdClass(
-    Update &update,
-    const UpdateFactory *update_factory) const {
-}
-
-
 void Button::press() {
     this->is_pressed = true;
 }

@@ -5,17 +5,12 @@
 #include "../../../../common/include/types.h"
 
 class Material;
-class UpdateFactory;
+class BlockUpdateFactory;
 
 class SquareShape: public Shape {
 public:
     virtual b2PolygonShape giveShape(
         float half_with, float half_height) override;
-
-    virtual void fillIdClassWithMaterial(
-        Update &update,
-        const UpdateFactory *update_factory,
-        const Material *material) const;
 };
 
 #endif

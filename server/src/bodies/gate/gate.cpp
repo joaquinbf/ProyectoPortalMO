@@ -9,9 +9,7 @@
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/rock/rock.h"
-#include "../../../include/update_factories/update_factory.h"
-
-
+#include "../../../include/update_factories/gate_update_factory.h"
 
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id){
@@ -28,12 +26,6 @@ Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &b2polygonshape;
     this->b2body->CreateFixture(&fixtureDef);
-}
-
-void Gate::fillIdClass(
-    Update &update,
-    const UpdateFactory *update_factory) const {
-
 }
 
 void Gate::handleBeginContactWith(Body *other_body) {

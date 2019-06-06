@@ -18,9 +18,18 @@ private:
 	uint32_t direction;
 public:
 	Update();
-	explicit Update(COMMAND command,ENTITY entity, uint32_t id, STATUS status, int32_t posx,
-	int32_t posy, uint32_t dir);
+
+	explicit Update(
+		COMMAND command,
+		ENTITY entity,
+		uint32_t body_id,
+		STATUS status,
+		int32_t posx,
+		int32_t posy,
+		uint32_t dir);
+
 	~Update();
+
 	COMMAND getCommand() const;
 	ENTITY getIdClass() const;
 	uint32_t getIdObject() const;
@@ -28,9 +37,10 @@ public:
 	int32_t getPosX() const;
 	int32_t getPosY() const;
 	uint32_t getDirection() const;
+
 	void setCommand(COMMAND command);
-	void setIdClass(ENTITY idClass);
-	void setIdObject(uint32_t idObject);
+	void setEntity(ENTITY entity);
+	void setBodyId(uint32_t body_id);
 	void setStatus(STATUS status);
 	void setPosX(int32_t posX);
 	void setPosY(int32_t posY);

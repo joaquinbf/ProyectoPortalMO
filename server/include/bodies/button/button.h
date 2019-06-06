@@ -31,10 +31,6 @@ public:
     /* Suelta el boton */
     void release();
 
-    virtual void fillIdClass(
-        Update &update,
-        const UpdateFactory *update_factory) const;
-
     virtual void handleBeginContactWith(Body *other_body) override;
 
     virtual void letBeginContactBeHandledBy(Chell *chell) override;
