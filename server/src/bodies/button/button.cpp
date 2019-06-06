@@ -36,7 +36,6 @@ bool Button::isPressed() const {
 void Button::fillIdClass(
     Update &update,
     const UpdateFactory *update_factory) const {
-
 }
 
 
