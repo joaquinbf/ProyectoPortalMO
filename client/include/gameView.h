@@ -5,6 +5,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <unistd.h>
+#include <math.h>
 #include <exception>
 #include <map>
 #include <list>
@@ -24,6 +25,8 @@
 #include "../../common/include/entity.h"
 #include "../../common/include/update.h"
 #include "../../common/include/types.h"
+
+#define PI 3.14159265
 
 class GameView{
 private:
@@ -56,6 +59,7 @@ public:
     void pause();
     int32_t pixelToCoordX(int32_t x) const;
     int32_t pixelToCoordY(int32_t y) const;
+    int32_t getAngle(int32_t x, int32_t y) const;
 };
 
 #endif

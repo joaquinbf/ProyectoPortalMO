@@ -119,13 +119,16 @@ void InputManager::gameMode(const SDL_Event& event){
         }// fin MOUSEWHEEL
         case SDL_MOUSEBUTTONDOWN:{
             int x, y;
+            int32_t angle;
             SDL_GetMouseState( &x, &y );
             switch(mouseEvent.button){
                 case SDL_BUTTON_LEFT:
-                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,0,0));
+                    angle = this->gameView.getAngle(x,y);
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,angle,0));
                     break;
                 case SDL_BUTTON_RIGHT:
-                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE2,0,0));
+                    angle = this->gameView.getAngle(x,y);
+                    this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE2,angle,0));
                     break;
                 case SDL_BUTTON_MIDDLE:
                     x = this->gameView.pixelToCoordX(x);
