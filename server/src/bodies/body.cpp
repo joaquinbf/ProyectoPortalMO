@@ -12,6 +12,14 @@ uint32_t Body::getBodyId() const {
     return this->BODY_ID;
 }
 
+void Body::awake() {
+    this->b2body->SetAwake(true);
+}
+
+void Body::putToSleep() {
+    this->b2body->SetAwake(false);
+}
+
 void Body::applyStateAction() {
 }
 

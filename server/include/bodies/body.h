@@ -31,6 +31,12 @@ public:
     /* Devuelve un identificador del cuerpo */
     uint32_t getBodyId() const;
 
+    /* Despierta al cuerpo */
+    void awake();
+
+    /* Duerme al cuerpo */
+    void putToSleep();
+
     /* Aplica una accion sobre el cuerpo dependiendo de su estado */
     virtual void applyStateAction();
 

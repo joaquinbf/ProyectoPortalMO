@@ -43,21 +43,12 @@ Update Gate::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Gate::notifyStateChange() {
-    if (this->boolean_block->getAsBoolean()) {
-        // cambiar de estado a abierta
-    } else {
-        // cambia de estado a cerrada
-    }
-}
-
 void Gate::setBooleanBlock(BooleanBlock *boolean_block) {
     this->boolean_block = boolean_block;
 }
 
 void Gate::handleBeginContactWith(Body *other_body) {
     other_body->handleBeginContactWith(this);
-
 }
 
 void Gate::handleEndContactWith(Body *other_body) {
@@ -73,5 +64,6 @@ bool Gate::conditionIsMeet() {
 }
 
 void Gate::changeStateToOpening() {
+    this->awake();
     this->state = &this->opening_gate_state;
 }

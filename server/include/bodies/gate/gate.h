@@ -35,9 +35,6 @@ public:
 
     virtual Update createUpdate(COMMAND command) const;
 
-    /* Notifica a la compuerta que alguno de sus botonoes cambio de estado. */
-    void notifyStateChange();
-
     /* Asigna un bloque booleano a la compuerta */
     void setBooleanBlock(BooleanBlock *boolean_block);
 

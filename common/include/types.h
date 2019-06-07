@@ -31,25 +31,25 @@ enum COMMAND : uint8_t{
 };
 
 enum STATUS: uint8_t {
-	NONE_STATUS,
-	CHELL_IDLE,
-	CHELL_RUNNING,
-	CHELL_TURNING,
-	CHELL_STOPING,
-	CHELL_JUMPING,
-	CHELL_JUMPING_APEX,
-	CHELL_FALLING,
-	CHELL_LANDING,
-	CHELL_FIRE,
-	CHELL_FIRE_TO_IDLE,
-	CHELL_JIGING,
-	CHELL_DIE,
-	BUTTON_ON,
-	BUTTON_OFF,
-	GATE_OPENED,
-	GATE_CLOSED,
-	GATE_OPENING,
-	GATE_CLOSING
+	NONE_STATUS 			= 0x00,
+	CHELL_IDLE              = 0x01,
+	CHELL_RUNNING           = 0x02,
+	CHELL_TURNING           = 0x03,
+	CHELL_STOPING           = 0x04,
+	CHELL_JUMPING           = 0x05,
+	CHELL_JUMPING_APEX      = 0x06,
+	CHELL_FALLING           = 0x07,
+	CHELL_LANDING           = 0x08,
+	CHELL_FIRE              = 0x09,
+	CHELL_FIRE_TO_IDLE		= 0x0A,
+	CHELL_JIGING            = 0x0B,
+	CHELL_DIE               = 0x0C,
+	BUTTON_ON               = 0x0D,
+	BUTTON_OFF              = 0x0E,
+	GATE_OPENED             = 0x0F,
+	GATE_CLOSED				= 0x10,
+	GATE_OPENING			= 0x11,
+	GATE_CLOSING            = 0x12
 };
 
 #endif

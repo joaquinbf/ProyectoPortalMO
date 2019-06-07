@@ -8,6 +8,5 @@ OpeningGateState::OpeningGateState(Gate *gate):
 
 void OpeningGateState::tryChangeState() {
     if (this->gate->conditionIsMeet()) {
-        this->gate->changeStateToOpening();
     }
 }

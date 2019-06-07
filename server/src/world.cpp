@@ -93,6 +93,7 @@ void World::createGateWithButton(
         block = this->boolean_block_factory.createNotBlock();
     }
 
+    block->add(button);
     gate->setBooleanBlock(block);
 }
 
@@ -118,6 +119,8 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
         if (body->isAwake()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             updates.push_back(update);
+
+            std::cout << "STATUS: " << update.getStatus() << std::endl;
 
             if (update.getIdClass() == ENTITY::CHELL) {
                 std::cout << "POS : ("
