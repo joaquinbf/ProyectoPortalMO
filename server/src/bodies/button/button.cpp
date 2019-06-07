@@ -71,6 +71,14 @@ void Button::handleBeginContactWith(Body *other_body) {
     other_body->handleBeginContactWith(this);
 }
 
+void Button::handleBeginContactWith(Chell *chell) {
+    this->press();
+}
+
 void Button::handleEndContactWith(Body *other_body) {
     other_body->handleEndContactWith(this);
+}
+
+void Button::handleEndContactWith(Chell *chell) {
+    this->release();
 }

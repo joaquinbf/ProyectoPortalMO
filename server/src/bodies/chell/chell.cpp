@@ -173,13 +173,21 @@ void Chell::applyStateAction() {
 }
 
 void Chell::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactBeHandledBy(this);
+    other_body->handleBeginContactWith(this);
 }
 
-void Chell::handleBeginContactBeHandledBy(Block *block) {
+void Chell::handleBeginContactWith(Block *block) {
     this->changeStateToIdle();
 }
 
+void Chell::handleBeginContactWith(Button *button) {
+    button->press();
+}
+
 void Chell::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactBeHandledBy(this);
+    other_body->handleEndContactWith(this);
+}
+
+void Chell::handleEndContactWith(Button *button) {
+    button->release();
 }

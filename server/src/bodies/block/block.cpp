@@ -62,10 +62,9 @@ void Block::handleBeginContactWith(Body *other_body) {
     other_body->handleBeginContactWith(this);
 }
 
-void Block::handleBeginContactBeHandledBy(Chell *chell) {
+void Block::handleBeginContactWith(Chell *chell) {
     chell->changeStateToIdle();
 }
-
 
 void Block::handleEndContactWith(Body *other_body) {
     other_body->handleEndContactWith(this);

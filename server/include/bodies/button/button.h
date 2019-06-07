@@ -46,8 +46,12 @@ public:
     /* Maneja el inicio de contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body);
 
+    virtual void handleBeginContactWith(Chell *chell) override;
+
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body);
+
+    virtual void handleEndContactWith(Chell *chell) override;
 };
 
 #endif

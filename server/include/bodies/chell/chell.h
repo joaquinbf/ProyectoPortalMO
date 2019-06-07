@@ -103,10 +103,14 @@ public:
     /* Maneja el contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body);
 
-    virtual void handleBeginContactBeHandledBy(Block *block) override;
+    virtual void handleBeginContactWith(Block *block) override;
+
+    virtual void handleBeginContactWith(Button *button) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body);
+
+    virtual void handleEndContactWith(Button *button) override;
 };
 
 #endif

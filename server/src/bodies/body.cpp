@@ -15,34 +15,34 @@ uint32_t Body::getBodyId() const {
 void Body::applyStateAction() {
 }
 
-void Body::handleBeginContactBeHandledBy(Chell *chell) {
+void Body::handleBeginContactWith(Chell *chell) {
 }
 
-void Body::handleBeginContactBeHandledBy(Block *block) {
+void Body::handleBeginContactWith(Block *block) {
 }
 
-void Body::handleBeginContactBeHandledBy(Button *button) {
+void Body::handleBeginContactWith(Button *button) {
 }
 
-void Body::handleBeginContactBeHandledBy(Gate *gate) {
+void Body::handleBeginContactWith(Gate *gate) {
 }
 
-void Body::handleBeginContactBeHandledBy(Rock *rock) {
+void Body::handleBeginContactWith(Rock *rock) {
 }
 
-void Body::handleEndContactBeHandledBy(Chell *chell) {
+void Body::handleEndContactWith(Chell *chell) {
 }
 
-void Body::handleEndContactBeHandledBy(Block *block) {
+void Body::handleEndContactWith(Block *block) {
 }
 
-void Body::handleEndContactBeHandledBy(Button *button) {
+void Body::handleEndContactWith(Button *button) {
 }
 
-void Body::handleEndContactBeHandledBy(Gate *gate) {
+void Body::handleEndContactWith(Gate *gate) {
 }
 
-void Body::handleEndContactBeHandledBy(Rock *rock) {
+void Body::handleEndContactWith(Rock *rock) {
 }
 
 bool Body::isAwake() const {
