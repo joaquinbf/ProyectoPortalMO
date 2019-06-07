@@ -12,12 +12,20 @@ uint32_t Body::getBodyId() const {
     return this->BODY_ID;
 }
 
+bool Body::isAwake() const {
+    return this->b2body->IsAwake();
+}
+
 void Body::awake() {
     this->b2body->SetAwake(true);
 }
 
 void Body::putToSleep() {
     this->b2body->SetAwake(false);
+}
+
+float Body::getMass() const {
+    return this->b2body->GetMass();
 }
 
 void Body::applyStateAction() {
@@ -51,8 +59,4 @@ void Body::handleEndContactWith(Gate *gate) {
 }
 
 void Body::handleEndContactWith(Rock *rock) {
-}
-
-bool Body::isAwake() const {
-    return this->b2body->IsAwake();
 }

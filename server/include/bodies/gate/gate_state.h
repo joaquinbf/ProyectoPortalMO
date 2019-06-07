@@ -14,6 +14,7 @@ public:
     GateState(Gate *gate, STATUS status);
     virtual ~GateState();
     STATUS getStatus() const;
+    virtual void applyStateAction();
     virtual void tryChangeState() = 0;
 };
 

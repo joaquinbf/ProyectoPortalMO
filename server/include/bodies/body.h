@@ -31,11 +31,17 @@ public:
     /* Devuelve un identificador del cuerpo */
     uint32_t getBodyId() const;
 
+    /* Indica si el cuerpo esta despierto */
+    bool isAwake() const;
+
     /* Despierta al cuerpo */
     void awake();
 
     /* Duerme al cuerpo */
     void putToSleep();
+
+    /* Devuelve la masa del cuerpo */
+    float getMass() const;
 
     /* Aplica una accion sobre el cuerpo dependiendo de su estado */
     virtual void applyStateAction();
@@ -67,8 +73,7 @@ public:
 
     virtual void handleEndContactWith(Rock *rock);
 
-    /* Indica si el cuerpo esta despierto */
-    bool isAwake() const;
+
 };
 
 #endif

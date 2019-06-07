@@ -22,8 +22,10 @@ class BooleanBlock;
 
 class Gate: public Body {
 private:
-    const float HALF_WIDTH = 1.00;
-    const float HALF_HEIGHT = 2.00;
+    const float MAX_WIDTH = 2.00;
+    const float MAX_HEIGHT = 4.00;
+    float half_width;
+    float half_heigh;
     ClosedGateState closed_gate_state;
     OpeningGateState opening_gate_state;
     GateState *state;
@@ -44,6 +46,9 @@ public:
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body);
 
+    /* Aplica una accion dependiendo de su estado */
+    virtual void applyStateAction() override;
+
     /* Intenta cambiar su estado si las condiciones de boolean block
      * fueron satisfechas */
     void tryChangeState();
@@ -53,6 +58,9 @@ public:
 
     /* Cambia su estado a abriendo */
     void changeStateToOpening();
+
+    /* Achica la compuerta */
+    void shrink();
 };
 
 #endif

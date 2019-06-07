@@ -12,3 +12,6 @@ GateState::~GateState() {
 STATUS GateState::getStatus() const {
     return this->status;
 }
+
+void GateState::applyStateAction() {
+}

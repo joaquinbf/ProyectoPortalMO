@@ -9,6 +9,7 @@ class OpeningGateState: public GateState {
 public:
     OpeningGateState(Gate *gate);
     virtual void tryChangeState();
+    virtual void applyStateAction() override;
 };
 
 #endif

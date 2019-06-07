@@ -10,3 +10,9 @@ void OpeningGateState::tryChangeState() {
     if (this->gate->conditionIsMeet()) {
     }
 }
+
+void OpeningGateState::applyStateAction() {
+    if (this->gate->getMass() != 0) {
+        this->gate->shrink();
+    }
+}
