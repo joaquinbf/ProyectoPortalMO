@@ -12,6 +12,7 @@
 #include "../include/updateReceiver.h"
 #include "../include/gameView.h"
 #include "../include/soundManager.h"
+#include "../include/videoRecorder.h"
 
 #include "../../common/include/port.h"
 #include "../../common/include/update.h"

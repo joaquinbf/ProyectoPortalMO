@@ -151,3 +151,7 @@ int32_t GameView::pixelToCoordY(int32_t y) const{
     b = -b/this->scale + cordy;
     return b;
 }
+
+SDL_Renderer* GameView::getRenderer() const{
+	return this->window.getRenderer();
+}

@@ -20,8 +20,7 @@ void Client::login(){
 	//aca haria algo
 }
 
-void Client::game(){
-    Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
+void Client::game(){   
     uint32_t chellId = serverManager.receiveChellId();
     this->gameView.setChellId(chellId);
 
@@ -32,17 +31,20 @@ void Client::game(){
     this->updateReceiver.start();
     this->gameView.show();
     this->soundManager.playMusic();
+    VideoRecorder vr(800,600);
     //GAME LOOP
     while (this->inputManager.isRunning()){
 		while(this->updates.try_pop(update)){
 			this->gameView.updateHandler(update);
 		}
         for(int i = 0; i <10; ++i){
-            this->gameView.render();
-            usleep(4500);
+            this->gameView.render();            
+            usleep(5000);
         }
+        vr.recordFrame(this->gameView.getRenderer());
         this->gameView.step();
     }
+    vr.close();
     this->serverManager.stop();
     this->updateReceiver.stop();
     this->inputManager.join();

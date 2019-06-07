@@ -56,6 +56,7 @@ public:
     void pause();
     int32_t pixelToCoordX(int32_t x) const;
     int32_t pixelToCoordY(int32_t y) const;
+    SDL_Renderer* getRenderer() const;
 };
 
 #endif
