@@ -63,9 +63,11 @@ public:
     /* Crea un boton. TODO: Asignar a compuertas */
     Button *createButton(float x, float y);
 
-    /* Crea un gate en (x1, y1) y un boton en (x2, y2) con
-     * condicion de abrir la compuerta cuando el boton este en
-     * estado pressed = true o false */
+    /* Crea el centro de gate en (x1, y1) y un boton con su
+     * centro en (x2, y2).
+     * Para que la compuerta se abra si el boton esta presionado entonces
+     * open_gate_when_button_is_pressed debe ser true y false en caso
+     * contrario. */
     void createGateWithButton(
         float x1, float y1,
         float x2, float y2,

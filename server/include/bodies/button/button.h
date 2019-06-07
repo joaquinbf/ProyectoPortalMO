@@ -12,12 +12,22 @@
 
 class Gate;
 
+// Trapecio isoceles
+#define b 1.00
+#define B 2.00
+#define h 0.50
+
+// Centro de masa
+#define Cx (B/2)
+#define Cy (((B + 2*b)/(B + b))*(h/3))
+
 #define P1 0.00, 0.00
 #define P2 0.50, 0.25
 #define P3 1.50, 0.25
 #define P4 2.00, 0.00
-#define XADJ 1.00
-#define YADJ -0.22
+
+#define XADJ -Cx
+#define YADJ -Cy
 
 class Button: public Body, public BooleanSupplier {
 public:

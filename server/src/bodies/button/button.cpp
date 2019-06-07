@@ -9,7 +9,7 @@ Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id, ENTITY::BUTTON) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
-    bodyDef.position.Set(x + XADJ, y + YADJ);
+    bodyDef.position.Set(x -Cx, y - Cy);
     bodyDef.userData = (void *) this;
     bodyDef.awake = false;
     this->b2body = b2world->CreateBody(&bodyDef);
@@ -44,8 +44,8 @@ Update Button::createUpdate(COMMAND command) const {
         this->entity,
         this->getBodyId(),
         this->is_pressed ? STATUS::BUTTON_ON: STATUS::BUTTON_OFF,
-        this->b2body->GetPosition().x * ZOOM_FACTOR + 100,
-        this->b2body->GetPosition().y * ZOOM_FACTOR + 22,
+        (this->b2body->GetPosition().x + Cx) * ZOOM_FACTOR,
+        (this->b2body->GetPosition().y + Cy) * ZOOM_FACTOR,
         0);
     return update;
 }
