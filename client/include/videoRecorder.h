@@ -3,6 +3,9 @@
 
 #include <SDL2/SDL.h>
 #include <exception>
+#include <sstream>
+#include <iomanip>
+#include <ctime>
 #include <vector>
 #include <string>
 extern "C" {

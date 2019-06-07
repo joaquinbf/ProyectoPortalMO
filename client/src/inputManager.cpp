@@ -43,7 +43,7 @@ void InputManager::pauseMode(const SDL_Event& event){
                 case SDLK_o:
                     if(this->videoRecorder.isRecording()){
                         this->videoRecorder.stopRecording();
-                    } else{
+                    } else {
                         this->videoRecorder.startRecording(this->gameView.getResX(),
                             this->gameView.getResY());    
                     }                    
@@ -86,13 +86,13 @@ void InputManager::gameMode(const SDL_Event& event){
                         this->gameView.pause();
                         break;
                     case SDLK_o:
-                    if(this->videoRecorder.isRecording()){
-                        this->videoRecorder.stopRecording();
-                    } else{
-                        this->videoRecorder.startRecording(this->gameView.getResX(),
-                            this->gameView.getResY());    
-                    }                    
-                    break;
+                        if(this->videoRecorder.isRecording()){
+                            this->videoRecorder.stopRecording();
+                        } else{
+                            this->videoRecorder.startRecording(this->gameView.getResX(),
+                                this->gameView.getResY());    
+                        }                    
+                        break;
 
                     case SDLK_n:
                         this->gameView.fullscreen();
