@@ -2,6 +2,8 @@
 
 VideoRecorder::VideoRecorder():
 recording(false), bufferWidth(0), bufferHeight(0){
+	av_register_all();
+	av_log_set_level(AV_LOG_QUIET);
 }
 
 VideoRecorder::~VideoRecorder(){}

@@ -20,7 +20,6 @@ static void encode(AVCodecContext *enc_ctx, AVFrame *frame, AVPacket *pkt,
 
 OutputFormat::OutputFormat(FormatContext& context,const std::string& filename,uint32_t x, uint32_t y)
 : resx(x), resy(y), context(context) {
-    av_register_all();
     this->frame = av_frame_alloc();
     if (!frame) {
         throw std::runtime_error("No se pudo reservar memoria para frame");
