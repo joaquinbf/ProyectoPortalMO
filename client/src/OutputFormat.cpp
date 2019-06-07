@@ -18,8 +18,8 @@ static void encode(AVCodecContext *enc_ctx, AVFrame *frame, AVPacket *pkt,
     }
 }
 
-OutputFormat::OutputFormat(FormatContext& context,const std::string& filename) :
- context(context) {
+OutputFormat::OutputFormat(FormatContext& context,const std::string& filename,uint32_t x, uint32_t y)
+: resx(x), resy(y), context(context) {
     av_register_all();
     this->frame = av_frame_alloc();
     if (!frame) {
@@ -65,7 +65,7 @@ void OutputFormat::initFrame() {
 void OutputFormat::writeFrame(const char* data, SwsContext* ctx ) {
     const u_int8_t* tmp = (const u_int8_t*) data;
     // El ancho del video x3 por la cantidad de bytes
-    int width = 800 * 3;
+    int width = this->resx * 3;
     sws_scale(ctx, &tmp, &width, 0, frame->height, frame->data, frame->linesize);
     //drawFrame(frame, data);
     frame->pts = currentPts;
@@ -77,8 +77,8 @@ void OutputFormat::writeFrame(const char* data, SwsContext* ctx ) {
 void OutputFormat::codecContextInit(AVCodec* codec){
     this->codecContext = avcodec_alloc_context3(codec);
     // La resolución debe ser múltiplo de 2
-    this->codecContext->width = 800;
-    this->codecContext->height = 600;
+    this->codecContext->width = this->resx;
+    this->codecContext->height = this->resy;
     this->codecContext->time_base = {1,20};
     this->codecContext->framerate = {20,1};
     this->codecContext->pix_fmt = AV_PIX_FMT_YUV420P;

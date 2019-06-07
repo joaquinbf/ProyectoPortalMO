@@ -16,17 +16,20 @@ extern "C" {
 #include "../include/OutputFormat.h"
 
 class VideoRecorder{
-	int bufferWidth;
-    int bufferHeight;
+	bool recording;
+	uint32_t bufferWidth;
+    uint32_t bufferHeight;
     std::vector<char> dataBuffer;
 	FormatContext context;
-    OutputFormat videoOutput;
+    OutputFormat* videoOutput;
     SwsContext * ctx;
 public:
-	explicit VideoRecorder(int32_t width, int32_t height);
+	VideoRecorder();
 	~VideoRecorder();
+	void startRecording(uint32_t width, uint32_t height);
 	void recordFrame(SDL_Renderer* renderer);
-	void close();
+	void stopRecording();
+	void checkResolution(uint32_t width, uint32_t height);
 	std::string generateName();
 };
 

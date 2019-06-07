@@ -155,3 +155,11 @@ int32_t GameView::pixelToCoordY(int32_t y) const{
 SDL_Renderer* GameView::getRenderer() const{
 	return this->window.getRenderer();
 }
+
+uint32_t GameView::getResX() const{
+	return this->resx;
+}
+
+uint32_t GameView::getResY() const{
+	return this->resy;
+}

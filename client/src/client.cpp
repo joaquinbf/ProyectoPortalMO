@@ -31,7 +31,8 @@ void Client::game(){
     this->updateReceiver.start();
     this->gameView.show();
     this->soundManager.playMusic();
-    VideoRecorder vr(800,600);
+    VideoRecorder vr;
+    vr.startRecording(this->gameView.getResX(),this->gameView.getResY());
     //GAME LOOP
     while (this->inputManager.isRunning()){
 		while(this->updates.try_pop(update)){
@@ -41,10 +42,11 @@ void Client::game(){
             this->gameView.render();            
             usleep(5000);
         }
+        vr.checkResolution(this->gameView.getResX(),this->gameView.getResY());
         vr.recordFrame(this->gameView.getRenderer());
         this->gameView.step();
     }
-    vr.close();
+    vr.stopRecording();
     this->serverManager.stop();
     this->updateReceiver.stop();
     this->inputManager.join();

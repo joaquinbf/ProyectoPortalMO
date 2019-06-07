@@ -24,6 +24,8 @@ class SwsContext;
 
 class OutputFormat {
 private: 
+    uint32_t resx;
+    uint32_t resy;
     FormatContext& context;
     AVOutputFormat* avOutputFormat;
     AVStream* video_avstream;
@@ -33,7 +35,7 @@ private:
     AVFrame* frame;
     AVPacket* pkt;
 public:
-    OutputFormat(FormatContext& context, const std::string& filename);
+    explicit OutputFormat(FormatContext& context,const std::string& filename,uint32_t x, uint32_t y);
     ~OutputFormat();
     // Escribe un frame a disco. Utiliza `swsContext` para convertir
     // de RGB24 a YUV420p
