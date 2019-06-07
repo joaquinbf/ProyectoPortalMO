@@ -83,10 +83,10 @@ void Gate::shrink() {
     b2Fixture *b2fixture = this->b2body->GetFixtureList();
     b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
 
-    if (this->height - 0.10 > 0.01) {
+    if (this->height - 0.10 > MIN_HEIGHT) {
         this->height -= 0.10;
     } else {
-        this->height = 0.01;
+        this->height = MIN_HEIGHT;
     }
 
     b2Vec2 vertices[4];
@@ -96,4 +96,8 @@ void Gate::shrink() {
     vertices[3].Set(0.00, -this->height);
 
     b2polygonshape->Set(vertices, 4);
+}
+
+bool Gate::isTotallyShrinked() const {
+    return this->height == MIN_HEIGHT;
 }

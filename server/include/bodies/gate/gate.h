@@ -24,6 +24,7 @@ class Gate: public Body {
 private:
     const float MAX_WIDTH = 2.00;
     const float MAX_HEIGHT = 4.00;
+    const float MIN_HEIGHT = 0.01;
     float width;
     float height;
     ClosedGateState closed_gate_state;
@@ -61,6 +62,9 @@ public:
 
     /* Achica la compuerta */
     void shrink();
+
+    /* Indica si la compuerta esta completamente achicada */
+    bool isTotallyShrinked() const;
 };
 
 #endif

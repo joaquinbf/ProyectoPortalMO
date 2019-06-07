@@ -14,6 +14,9 @@ void OpeningGateState::tryChangeState() {
 }
 
 void OpeningGateState::applyStateAction() {
-    std::cout << "void OpeningGateState::applyStateAction()" << std::endl;
-    this->gate->shrink();
+    if (this->gate->isTotallyShrinked()) {
+
+    } else {
+        this->gate->shrink();
+    }
 }
