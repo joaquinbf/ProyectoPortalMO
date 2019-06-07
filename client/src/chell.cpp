@@ -7,7 +7,7 @@ textureManager(tm),
 frameArea(0, 0, 104, 215), 
 soundManager(sm),
 status(CHELL_IDLE){
-	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr =  this->textureManager.getChellTexturePointer(this->status);
 	this->actionPtr = &Chell::idleAction;
 	this->frame = 0;	
 	this->framey = 0;
@@ -78,6 +78,9 @@ void Chell::update(const Update& update){
 		case CHELL_JIGING:
 			this->jig();
 			break;
+		case CHELL_DIE:
+			this->die();
+			break;
 		default:	
 			//this->idle();
 			break;
@@ -96,8 +99,7 @@ void Chell::idle(){
 void Chell::idleAction(){
 	this->status = CHELL_IDLE;
 	this->actionPtr = &Chell::idleAction;
-	this->texturePtr = (SdlTexture *) 
-		this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr = this->textureManager.getChellTexturePointer(this->status);
 	frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame == 7){
@@ -115,8 +117,7 @@ void Chell::jig(){
 void Chell::jigAction(){
 	this->status = CHELL_JIGING;
 	this->actionPtr = &Chell::jigAction;
-	this->texturePtr = (SdlTexture *) 
-		this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr = this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame == 79){	
@@ -137,8 +138,7 @@ void Chell::run(int dir){
 void Chell::runAction(){
 	this->status = CHELL_RUNNING;
 	this->actionPtr = &Chell::runAction;
-	this->texturePtr = (SdlTexture *) 
-		this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr = this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame == 12){
@@ -156,7 +156,7 @@ void Chell::stop(int dir){
 void Chell::stopAction(){
 	this->status = CHELL_STOPING;
 	this->actionPtr = &Chell::stopAction;
-	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr = this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame == 12){
@@ -175,8 +175,7 @@ void Chell::turn(int dir){
 void Chell::turnAction(){
 	this->status = CHELL_TURNING;
 	this->actionPtr = &Chell::turnAction;
-	this->texturePtr = (SdlTexture *) 
-		this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr = this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame == 8){
@@ -201,14 +200,12 @@ void Chell::jump(){
 void Chell::jumpAction(){
 	this->status = CHELL_JUMPING;
 	this->actionPtr = &Chell::jumpAction;
-	this->texturePtr = (SdlTexture *) 
-		this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr = this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame == 5 ){
 		this->status = CHELL_JUMPING_APEX;
-		this->texturePtr = (SdlTexture *) 
-			this->textureManager.getChellTexturePointer(this->status);
+		this->texturePtr = this->textureManager.getChellTexturePointer(this->status);
 		this->frameArea = this->textureManager.getChellFrameArea(this->status,0);
 		this->frame = 4;
 	}		
@@ -225,7 +222,7 @@ void Chell::fall(int dir){
 void Chell::fallAction(){
 	this->status = CHELL_FALLING;
 	this->actionPtr = &Chell::fallAction;
-	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr = this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea =  this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame == 4){		
@@ -243,7 +240,7 @@ void Chell::land(){
 void Chell::landAction(){
 	this->status = CHELL_LANDING;
 	this->actionPtr = &Chell::landAction;
-	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr =  this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame == 2){		
@@ -252,11 +249,11 @@ void Chell::landAction(){
 }
 
 void Chell::fire(int dir){
-	if(this->status != CHELL_FIRE){
+	if(this->status != CHELL_FIRE && this->status != CHELL_FIRE_TO_IDLE){
 		this->soundManager.playFireSound();
 		this->frame = 0;
 		this->fireAction();	
-	}else if(this->status == CHELL_RUNNING){
+	}/*else if(this->status == CHELL_RUNNING){
 		this->frame = 0;
 		//this->fireRunningAction();	
 		this->fireAction();	
@@ -265,21 +262,42 @@ void Chell::fire(int dir){
 		this->frame = 0;
 		//this->fireRunningAction();	
 		this->fireAction();	
-	}		
+	}	*/	
 }
 
 void Chell::fireAction(){
 	this->status = CHELL_FIRE;
 	this->actionPtr = &Chell::fireAction;
-	this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+	this->texturePtr =  this->textureManager.getChellTexturePointer(this->status);
 	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
 	this->frame+=1;
 	if(this->frame >= 5){
 		this->status = CHELL_FIRE_TO_IDLE;
-		this->texturePtr = (SdlTexture *) this->textureManager.getChellTexturePointer(this->status);
+		this->texturePtr =  this->textureManager.getChellTexturePointer(this->status);
 		this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame-5);
 	}
 	if(this->frame == 8){
+		this->frame = 0;
+		this->actionPtr = &Chell::idleAction;
+	}
+}
+
+void Chell::die(){
+	if(this->status != CHELL_DIE){
+		this->soundManager.playDeathSound();
+		this->frame = 0;
+		this->dieAction();	
+	}
+}
+
+void Chell::dieAction(){
+	this->status = CHELL_DIE;
+	this->actionPtr = &Chell::dieAction;
+	this->texturePtr =  this->textureManager.getChellTexturePointer(this->status);
+	this->frameArea = this->textureManager.getChellFrameArea(this->status,this->frame);
+	this->frame+=1;
+	if(this->frame == 42){
+		this->frame = 0;
 		this->actionPtr = &Chell::idleAction;
 	}
 }

@@ -5,7 +5,7 @@ Laser::Laser(const TextureManager& tm,int32_t x, int32_t y,
 Entity(x,y,width,height,direction),
 frameArea(0,109,228,10)
 {
-	this->texturePtr = (SdlTexture *) tm.getLaserTexturePointer();
+	this->texturePtr = tm.getLaserTexturePointer();
 }
 
 Laser::~Laser(){}

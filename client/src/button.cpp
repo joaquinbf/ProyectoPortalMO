@@ -5,7 +5,7 @@ Button::Button(const TextureManager& tm,const STATUS st,int32_t x, int32_t y,
 Entity(x,y,width,height,0),
 frameArea(0,0,173,68),status(st), textureManager(tm)
 {
-	this->texturePtr = (SdlTexture *) this->textureManager.getButtonTexturePointer(this->status);
+	this->texturePtr = this->textureManager.getButtonTexturePointer(this->status);
 }
 
 Button::~Button(){}

@@ -17,7 +17,10 @@ enum ENTITY: uint8_t {
 	ACID,
 	BULLET,
 	LASER,
-	PIN
+	PIN,
+	CAKE,
+	PORTAL1,
+	PORTAL2
 };
 
 enum COMMAND : uint8_t{
@@ -40,6 +43,7 @@ enum STATUS: uint8_t {
 	CHELL_FIRE,
 	CHELL_FIRE_TO_IDLE,
 	CHELL_JIGING,
+	CHELL_DIE,
 	BUTTON_ON,
 	BUTTON_OFF,
 	GATE_OPENED,

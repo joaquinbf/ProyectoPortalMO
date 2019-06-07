@@ -62,6 +62,8 @@ public:
 	void landAction();
 	void fire(int dir);
 	void fireAction();
+	void die();
+	void dieAction();
 };
 
 #endif

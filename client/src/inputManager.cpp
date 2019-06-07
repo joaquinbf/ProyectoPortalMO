@@ -69,6 +69,9 @@ void InputManager::gameMode(const SDL_Event& event){
 							this->keypad.getKey(KEY::UP_KEY),
 							ACTION::JUMP);
                         break;
+                    case SDLK_e:
+                        this->serverManager.sendAction(Action(this->chellId,ACTION::GRAB,0,0));
+                        break;
                     case SDLK_b:
                     	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0,0));
                     	break;
@@ -82,7 +85,6 @@ void InputManager::gameMode(const SDL_Event& event){
                     case SDLK_m:
                         this->gameView.windowed();
                         break;
-
             } // Fin KEY_DOWN
             break;
         }
@@ -124,15 +126,12 @@ void InputManager::gameMode(const SDL_Event& event){
             y = this->gameView.pixelToCoordY(y);
             switch(mouseEvent.button){
                 case SDL_BUTTON_LEFT:
-                    angle = this->gameView.getAngle(x,y);
                     this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE1,x,y));
                     break;
                 case SDL_BUTTON_RIGHT:
-                    angle = this->gameView.getAngle(x,y);
                     this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE2,x,y));
                     break;
-                case SDL_BUTTON_MIDDLE:
-                    
+                case SDL_BUTTON_MIDDLE:                   
                     this->serverManager.sendAction(Action(this->chellId,ACTION::PING,x,y));
                     break;
             }

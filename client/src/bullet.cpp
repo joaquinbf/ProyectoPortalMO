@@ -5,7 +5,7 @@ Bullet::Bullet(const TextureManager& tm,int32_t x, int32_t y,
 Entity(x,y,width,height,direction),
 frameArea(0,0,103,59), frame(0)
 {
-	this->texturePtr = (SdlTexture *) tm.getBulletTexturePointer();
+	this->texturePtr = tm.getBulletTexturePointer();
 }
 
 Bullet::~Bullet(){}

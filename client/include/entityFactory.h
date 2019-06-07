@@ -16,6 +16,8 @@
 #include "../include/bullet.h"
 #include "../include/laser.h"
 #include "../include/pin.h"
+#include "../include/cake.h"
+#include "../include/portal.h"
 
 class EntityFactory{
 public:

@@ -8,7 +8,7 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm, co
 	Block* ptr;
 	switch(update.getIdClass()){
 		case ENTITY::CHELL:
-			return new Chell(tm,sm,update.getPosX(),update.getPosY(),200,300,update.getDirection());
+			return new Chell(tm,sm,update.getPosX(),update.getPosY(),100,200,update.getDirection());
 			break;
 		case ENTITY::STONE_BLOCK:
 			return new Block(tm,STONE_BLOCK,update.getPosX(),update.getPosY(),200,200);
@@ -49,6 +49,17 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm, co
 			break;
 		case ENTITY::PIN:
 			return new Pin(tm,update.getPosX(),update.getPosY(),50,50); 
+			break;
+		case ENTITY::CAKE:
+			return new Cake(tm,update.getPosX(),update.getPosY(),100,100); 
+			break;
+		case ENTITY::PORTAL1:
+			return new Portal(tm,update.getPosX(),update.getPosY(),220,30,update.getDirection(),
+				ENTITY::PORTAL1);
+			break;
+		case ENTITY::PORTAL2:
+			return new Portal(tm,update.getPosX(),update.getPosY(),220,30,update.getDirection(),
+				ENTITY::PORTAL2);
 			break;
 		case ENTITY::NONE_ENTITY:
 			return nullptr;

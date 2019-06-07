@@ -15,6 +15,7 @@ chellJumpFallTexture(CHELL_JUMP_FALL_TEXTURE,window),
 chellJumpLandTexture(CHELL_JUMP_LAND_TEXTURE,window), 
 chellFireTexture(CHELL_FIRE_TEXTURE,window),
 chellFireToIdleTexture(CHELL_FIRE_TO_IDLE_TEXTURE,window), 
+chellDieTexture(CHELL_DIE_TEXTURE,window),
 metalBlockTexture(METAL_BLOCK_TEXTURE,window),
 metalTriagBlockTexture(METAL_TRIAG_BLOCK_TEXTURE,window),
 stoneBlockTexture(STONE_BLOCK_TEXTURE,window),
@@ -30,28 +31,25 @@ acidTexture(ACID_TEXTURE,window),
 bulletTexture(BULLET_TEXTURE,window),
 laserTexture(LASER_TEXTURE,window),
 crosshairTexture(CROSSHAIR_TEXTURE,window),
-pinTexture(PIN_TEXTURE,window)
+pinTexture(PIN_TEXTURE,window),
+cakeTexture(CAKE_TEXTURE,window),
+portal1Texture(PORTAL1_TEXTURE,window),
+portal2Texture(PORTAL2_TEXTURE,window)
 	{}
 
 TextureManager::~TextureManager(){}
 	
-const SdlTexture * TextureManager::getBlackTexture() const{
-	return &(this->blackTexture);
+SdlTexture * TextureManager::getBlackTexturePointer() const{
+	return (SdlTexture*) &(this->blackTexture);
 }
 
-const SdlTexture * TextureManager::getGateTexturePointer(STATUS st) const{
-	switch(st){
-		case STATUS::GATE_OPENED:
-			return &(this->gateOpenedTexture);
+SdlTexture * TextureManager::getPortalTexturePointer(ENTITY en) const{
+	switch(en){
+		case ENTITY::PORTAL1:
+			return (SdlTexture*) &(this->portal1Texture);
 			break;
-		case STATUS::GATE_OPENING:
-			return &(this->gateOpeningTexture);
-			break;
-		case STATUS::GATE_CLOSING:
-			return &(this->gateOpeningTexture);
-			break;
-		case STATUS::GATE_CLOSED:
-			return &(this->gateClosedTexture);
+		case ENTITY::PORTAL2:
+			return (SdlTexture*) &(this->portal2Texture);
 			break;
 		default:
 			return nullptr;
@@ -60,16 +58,41 @@ const SdlTexture * TextureManager::getGateTexturePointer(STATUS st) const{
 	return nullptr;
 }
 
-const SdlTexture * TextureManager::getPinTexturePointer() const{
-	return &(this->pinTexture);
+SdlTexture * TextureManager::getCakeTexturePointer() const{
+	return (SdlTexture*) &(this->cakeTexture);
 }
 
-const SdlTexture * TextureManager::getLaserTexturePointer() const{
-	return &(this->laserTexture);
+SdlTexture * TextureManager::getGateTexturePointer(STATUS st) const{
+	switch(st){
+		case STATUS::GATE_OPENED:
+			return (SdlTexture*) &(this->gateOpenedTexture);
+			break;
+		case STATUS::GATE_OPENING:
+			return (SdlTexture*) &(this->gateOpeningTexture);
+			break;
+		case STATUS::GATE_CLOSING:
+			return (SdlTexture*) &(this->gateOpeningTexture);
+			break;
+		case STATUS::GATE_CLOSED:
+			return (SdlTexture*) &(this->gateClosedTexture);
+			break;
+		default:
+			return nullptr;
+			break;
+	}
+	return nullptr;
 }
 
-const SdlTexture * TextureManager::getCrosshairTexturePointer() const{
-	return &(this->crosshairTexture);
+SdlTexture * TextureManager::getPinTexturePointer() const{
+	return (SdlTexture*) &(this->pinTexture);
+}
+
+SdlTexture * TextureManager::getLaserTexturePointer() const{
+	return (SdlTexture*) &(this->laserTexture);
+}
+
+SdlTexture * TextureManager::getCrosshairTexturePointer() const{
+	return (SdlTexture*) &(this->crosshairTexture);
 }
 
 Area TextureManager::getGateFrameArea(uint32_t frame) const{
@@ -78,26 +101,26 @@ Area TextureManager::getGateFrameArea(uint32_t frame) const{
 	return Area(194*a,385*b+1,192,384);
 }
 
-const SdlTexture * TextureManager::getRockTexturePointer() const{
-	return &(this->rockTexture);
+SdlTexture * TextureManager::getRockTexturePointer() const{
+	return (SdlTexture*) &(this->rockTexture);
 }
 
-const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
+SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
 	switch(e){
 		case STONE_BLOCK:
-			return &(this->stoneBlockTexture);
+			return (SdlTexture*) &(this->stoneBlockTexture);
 			break;
 		case METAL_BLOCK:
-			return &(this->metalBlockTexture);
+			return (SdlTexture*) &(this->metalBlockTexture);
 			break;
 		case METAL_TRIAG_BLOCK:
-			return &(this->metalTriagBlockTexture);
+			return (SdlTexture*) &(this->metalTriagBlockTexture);
 			break;
 		case LAUNCH_BLOCK:
-			return &(this->launchBlockTexture);
+			return (SdlTexture*) &(this->launchBlockTexture);
 			break;
 		case RECEIVER_BLOCK:
-			return &(this->receiverBlockTexture);
+			return (SdlTexture*) &(this->receiverBlockTexture);
 			break;
 		default:
 			return nullptr;
@@ -106,13 +129,13 @@ const SdlTexture * TextureManager::getBlockTexturePointer(const ENTITY e) const{
 	return nullptr;
 }
 
-const SdlTexture * TextureManager::getButtonTexturePointer(const STATUS st) const{
+SdlTexture * TextureManager::getButtonTexturePointer(const STATUS st) const{
 	switch(st){
 		case STATUS::BUTTON_ON:
-			return &(this->buttonOnTexture);
+			return (SdlTexture*) &(this->buttonOnTexture);
 			break;
 		case STATUS::BUTTON_OFF:
-			return &(this->buttonOffTexture);
+			return (SdlTexture*) &(this->buttonOffTexture);
 			break;
 		default:
 			return nullptr;
@@ -121,48 +144,51 @@ const SdlTexture * TextureManager::getButtonTexturePointer(const STATUS st) cons
 	return nullptr;
 }
 
-const SdlTexture * TextureManager::getAcidTexturePointer() const{
-	return &(this->acidTexture);
+SdlTexture * TextureManager::getAcidTexturePointer() const{
+	return (SdlTexture*) &(this->acidTexture);
 }
 
-const SdlTexture * TextureManager::getBulletTexturePointer() const{
-	return &(this->bulletTexture);
+SdlTexture * TextureManager::getBulletTexturePointer() const{
+	return (SdlTexture*) &(this->bulletTexture);
 }
 
-const SdlTexture * TextureManager::getChellTexturePointer(const STATUS st) const{
+SdlTexture * TextureManager::getChellTexturePointer(const STATUS st) const{
 	switch(st){
 		case STATUS::CHELL_IDLE:
-			return &(this->chellIdleTexture);
+			return (SdlTexture*) &(this->chellIdleTexture);
 			break;
 		case STATUS::CHELL_RUNNING:
-			return &(this->chellRunTexture);
+			return (SdlTexture*) &(this->chellRunTexture);
 			break;
 		case STATUS::CHELL_TURNING:
-			return &(this->chellTurnTexture);
+			return (SdlTexture*) &(this->chellTurnTexture);
 			break;
 		case STATUS::CHELL_STOPING:
-			return &(this->chellStopTexture);
+			return (SdlTexture*) &(this->chellStopTexture);
 			break;
 		case STATUS::CHELL_JUMPING:
-			return &(this->chellJumpRiseTexture);
+			return (SdlTexture*) &(this->chellJumpRiseTexture);
 			break;
 		case STATUS::CHELL_JUMPING_APEX:
-			return &(this->chellJumpApexTexture);
+			return (SdlTexture*) &(this->chellJumpApexTexture);
 			break;
 		case STATUS::CHELL_FALLING:
-			return &(this->chellJumpFallTexture);
+			return (SdlTexture*) &(this->chellJumpFallTexture);
 			break;
 		case STATUS::CHELL_LANDING:
-			return &(this->chellJumpLandTexture);
+			return (SdlTexture*) &(this->chellJumpLandTexture);
 			break;
 		case STATUS::CHELL_FIRE:	
-			return &(this->chellFireTexture);
+			return (SdlTexture*) &(this->chellFireTexture);
 			break;
 		case STATUS::CHELL_JIGING:
-			return &(this->chellJigTexture);
+			return (SdlTexture*) &(this->chellJigTexture);
 			break;
 		case STATUS::CHELL_FIRE_TO_IDLE:
-			return &(this->chellFireToIdleTexture);
+			return (SdlTexture*) &(this->chellFireToIdleTexture);
+			break;
+		case STATUS::CHELL_DIE:
+			return (SdlTexture*) &(this->chellDieTexture);
 			break;
 		default:
 			return nullptr;
@@ -213,8 +239,11 @@ Area TextureManager::getChellFrameArea(const STATUS st, int frame) const{
 			break;
 		case STATUS::CHELL_FIRE_TO_IDLE:
 			return Area(144*frame, 0, 143, 212);
-		default:
-			
+		case STATUS::CHELL_DIE:
+			a = frame % 9;
+			b = frame / 9;
+			return Area(176*a, 262*b, 175, 261); 
+		default:			
 			break;
 	}
 	return Area(0,0,0,0);	

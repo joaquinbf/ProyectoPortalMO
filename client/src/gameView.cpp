@@ -50,8 +50,8 @@ void GameView::render(){
 		this->myChell->renderCentered(this->resx,this->resy,this->scale);	
 	}
 	if(this->paused){
-		this->textureManager.getBlackTexture()->setAlpha(160);     
-		this->textureManager.getBlackTexture()->render(Area(0,0,600,600),
+		this->textureManager.getBlackTexturePointer()->setAlpha(160);     
+		this->textureManager.getBlackTexturePointer()->render(Area(0,0,600,600),
 			Area(0,0,this->resx,this->resy));
 	}
 	this->crosshair.render();

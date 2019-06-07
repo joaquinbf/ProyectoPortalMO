@@ -5,7 +5,7 @@ Acid::Acid(const TextureManager& tm,int32_t x, int32_t y,
 Entity(x,y,width,height,0),
 frameArea(0,0,300,61), frame(0)
 {
-	this->texturePtr = (SdlTexture *) tm.getAcidTexturePointer();
+	this->texturePtr = tm.getAcidTexturePointer();
 }
 
 Acid::~Acid(){}

@@ -19,6 +19,7 @@
 #define CHELL_JUMP_LAND_TEXTURE "../resources/textures/chell/jump-land.png"
 #define CHELL_FIRE_TEXTURE "../resources/textures/chell/fire.png"
 #define CHELL_FIRE_TO_IDLE_TEXTURE "../resources/textures/chell/fire-to-idle.png"
+#define CHELL_DIE_TEXTURE "../resources/textures/chell/die.png"
 
 #define METAL_BLOCK_TEXTURE "../resources/textures/blocks/metal.png"
 #define METAL_TRIAG_BLOCK_TEXTURE "../resources/textures/blocks/metal-triag.png"
@@ -39,6 +40,9 @@
 #define LASER_TEXTURE "../resources/textures/miscellaneous/laser.png"
 #define CROSSHAIR_TEXTURE "../resources/textures/miscellaneous/crosshair.png"
 #define PIN_TEXTURE "../resources/textures/miscellaneous/pin.png"
+#define CAKE_TEXTURE "../resources/textures/miscellaneous/cake.png"
+#define PORTAL1_TEXTURE "../resources/textures/miscellaneous/portal1.png"
+#define PORTAL2_TEXTURE "../resources/textures/miscellaneous/portal2.png"
 
 class TextureManager{
 	SdlTexture blackTexture;
@@ -53,6 +57,7 @@ class TextureManager{
 	SdlTexture chellJumpLandTexture;
 	SdlTexture chellFireTexture;
 	SdlTexture chellFireToIdleTexture;
+	SdlTexture chellDieTexture;
 	SdlTexture metalBlockTexture;
 	SdlTexture metalTriagBlockTexture;
 	SdlTexture stoneBlockTexture;
@@ -69,21 +74,26 @@ class TextureManager{
 	SdlTexture laserTexture;
 	SdlTexture crosshairTexture;
 	SdlTexture pinTexture;
+	SdlTexture cakeTexture;
+	SdlTexture portal1Texture;
+	SdlTexture portal2Texture;
 public:	
 	TextureManager();
 	explicit TextureManager(const SdlWindow& window);
 	~TextureManager();
-	const SdlTexture * getBlackTexture() const;
-	const SdlTexture * getAcidTexturePointer() const;
-	const SdlTexture * getBulletTexturePointer() const;
-	const SdlTexture * getButtonTexturePointer(const STATUS st) const;
-	const SdlTexture * getBlockTexturePointer(const ENTITY e) const;
-	const SdlTexture * getChellTexturePointer(const STATUS st) const;
-	const SdlTexture * getRockTexturePointer() const;
-	const SdlTexture * getLaserTexturePointer() const;
-	const SdlTexture * getGateTexturePointer(STATUS st) const;
-	const SdlTexture * getCrosshairTexturePointer() const;
-	const SdlTexture * getPinTexturePointer() const;	
+	SdlTexture * getBlackTexturePointer() const;
+	SdlTexture * getAcidTexturePointer() const;
+	SdlTexture * getBulletTexturePointer() const;
+	SdlTexture * getButtonTexturePointer(const STATUS st) const;
+	SdlTexture * getBlockTexturePointer(const ENTITY e) const;
+	SdlTexture * getChellTexturePointer(const STATUS st) const;
+	SdlTexture * getRockTexturePointer() const;
+	SdlTexture * getLaserTexturePointer() const;
+	SdlTexture * getGateTexturePointer(STATUS st) const;
+	SdlTexture * getCrosshairTexturePointer() const;
+	SdlTexture * getPinTexturePointer() const;
+	SdlTexture * getCakeTexturePointer() const;
+	SdlTexture * getPortalTexturePointer(ENTITY en) const;
 	Area getChellFrameArea(const STATUS st, int frame) const;
 	Area getGateFrameArea(uint32_t frame) const;
 };
