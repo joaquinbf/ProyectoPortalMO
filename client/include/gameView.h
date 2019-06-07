@@ -38,6 +38,7 @@ private:
 	float scale;
 	bool paused;
 	Crosshair crosshair;
+	Background background;
 public:
 	explicit GameView(uint32_t x, uint32_t y,const SoundManager& sm);
 	~GameView();

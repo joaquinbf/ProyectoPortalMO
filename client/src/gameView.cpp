@@ -5,7 +5,7 @@
 
 GameView::GameView(uint32_t x, uint32_t y, const SoundManager& sm) : 
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
-myChellId(0), scale(1), paused(false), crosshair(textureManager)
+myChellId(0), scale(1), paused(false), crosshair(textureManager),background(window)
 {
 	SDL_ShowCursor(SDL_DISABLE);
 }
@@ -37,11 +37,12 @@ void GameView::render(){
 	this->window.fill(); // Repinto el fondo gris
 	int32_t posx = 0;
 	int32_t posy = 0;
+	if(this->myChell != nullptr){
+		posx = this->myChell->getPosX();
+		posy = this->myChell->getPosY();
+	}
+	this->background.render(posx,posy,this->resx,this->resy,this->scale);
 	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-		if(this->myChell != nullptr){
-			posx = this->myChell->getPosX();
-			posy = this->myChell->getPosY();
-		}
 		if(it->second != nullptr){
 			it->second->render(posx,posy,this->resx,this->resy,this->scale);	
 		}		
@@ -100,7 +101,7 @@ void GameView::zoomIn(){
 }
 
 void GameView::zoomOut(){
-	if(this->scale > 0.2){
+	if(this->scale > 0.25){
 		this->scale-=0.05;
 	}
 }

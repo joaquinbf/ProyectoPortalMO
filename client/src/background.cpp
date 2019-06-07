@@ -5,42 +5,31 @@
 
 Background::Background(const SdlWindow& window) : 
 backgroundTexture(BACKGROUND_TEXTURE,window){
+	this->resx = 1800;
+	this->resy = 1100;
 	this->widthRendered=400;
-	this->heightRendered=200;
+	this->heightRendered=300;
 }
 
 Background::~Background(){}
 
-int Background::render(int x, int y, int resx, int resy){	
-	if(100+x < 0){
-		while(400+100+x<0){
-			x+=400;
-		}
-		float a = (float) (100+x)/(-400);
-		float b = (float) (400+100+x)/400;
-		a*=resx;
-		b*=resx;
-		this->backgroundTexture.render(Area(400+100+x,290+y,-100-x,200),
-		 Area(0,0,(int)a,resy));
-		this->backgroundTexture.render(Area(0,290+y,400+100+x,200), 
-			Area((int)a,0,(int)b+1,resy));
-		return 0;
-	}else if(100+x>600-400 ){
-		while(100+x>resx){
-			x-=600;
-		}
-		float a = (float) (400+100-x)/400;
-		float b = 1-a;
-		a*=resx;
-		b*=resx;
-		this->backgroundTexture.render(Area(600-(400-x+100),290+y,400-x+100,200),
-		 Area(0,0,(int)a,resy));
-		this->backgroundTexture.render(Area(0,290+y,x-100,200), 
-			Area((int)a,0,(int)b,resy));
-		return 0;
-	}else{
-		Area frameArea(100+x,290+y,400,200);
-		Area renderArea(0,0,resx,resy);
-		return this->backgroundTexture.render(frameArea, renderArea);	
+void Background::render(int x, int y, int rx, int ry,float scale){	
+	Area renderArea(0,0,rx,ry);
+	int32_t a = (this->resx/2) + x/10 - this->widthRendered/(2*scale);
+	int32_t b= (this->resy/2) + y/10 - this->widthRendered/(2*scale);
+	if(a < 0){
+		a = 0;
 	}
+	if(a >  this->resx - this->widthRendered/scale ){
+		a = this->resx - this->widthRendered/scale;
+	}
+    if(b < 0){
+		b = 0;
+	}
+	if(b >  this->resy - this->heightRendered/scale ){
+		b = this->resy - this->heightRendered/scale;
+	}	
+    
+    Area frameArea(a,b,	this->widthRendered/scale,this->heightRendered/scale);
+	this->backgroundTexture.render(frameArea,renderArea);
 }
