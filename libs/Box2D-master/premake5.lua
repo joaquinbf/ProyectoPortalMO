@@ -67,6 +67,7 @@ project 'Testbed'
 		'Testbed/imgui/*',
 		'../../common/src/*',
 		'../../server/src/world.cpp',
+		'../../server/src/contact_listener.cpp',
 		'../../server/src/boolean_suppliers/*',
 		'../../server/src/instructions/*',
 		'../../server/src/bodies/*',

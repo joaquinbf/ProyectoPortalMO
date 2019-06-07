@@ -15,18 +15,15 @@ private:
 public:
     PortalChell():
         world(this->m_world) {
-        // this->chell = this->world.createChell(0, 1.5);
-        // for (int i = 0; i < 7; i++) {
-        //     this->world.createSquareMetalBlock(-6 + 2*i, -1);
-        // }
-        // this->world.createGateWithButton(6, 2, 3, 0, true);
-        this->chell = this->world.createChell(-6, 1.5);
-
-        for (int i = 0; i < 7; i++) {
-            this->world.createSquareMetalBlock(-6 + 2*i, -1);
+        for (int i = 0; i < 1; i++) {
+            this->chell = this->world.createChell(-6.00 + 2.00*i, 1.00);
         }
 
-        this->world.createGateWithButton(6, 2, 1, -1, true);
+        for (int i = 0; i < 7; i++) {
+            this->world.createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
+        }
+
+        this->world.createGateWithButton(6.0, 2.00, 1.00, 0.00, true);
     }
 
     void Step(Settings *settings) {

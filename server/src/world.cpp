@@ -151,14 +151,14 @@ void World::step() {
 
 void World::createWorldOne() {
     for (int i = 0; i < 1; i++) {
-        this->createChell(-6 + 2*i, 1.5);
+        this->createChell(-6.00 + 2.00*i, 1.00);
     }
 
     for (int i = 0; i < 7; i++) {
-        this->createSquareMetalBlock(-6 + 2*i, -1);
+        this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 
-    this->createGateWithButton(6, 2, 1, 0.22, true);
+    this->createGateWithButton(6.00, 2.00, 1.00, 0.00, true);
 }
 
 void World::applyAction(const Action &action) {

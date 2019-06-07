@@ -44,8 +44,8 @@ Update Button::createUpdate(COMMAND command) const {
         this->entity,
         this->getBodyId(),
         this->is_pressed ? STATUS::BUTTON_ON: STATUS::BUTTON_OFF,
-        this->b2body->GetPosition().x * ZOOM_FACTOR,
-        this->b2body->GetPosition().y * ZOOM_FACTOR,
+        this->b2body->GetPosition().x * ZOOM_FACTOR + 100,
+        this->b2body->GetPosition().y * ZOOM_FACTOR + 22,
         0);
     return update;
 }
