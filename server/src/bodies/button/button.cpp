@@ -35,8 +35,10 @@ bool Button::isPressed() const {
 
 Update Button::createUpdate(COMMAND command) const {
     std::cout << "UPDATE BUTTON" << std::endl;
-    std::cout << this->b2body->GetPosition().x  << ", "
-              << this->b2body->GetPosition().y  << std::endl;
+    std::cout << "POS BUTTON SERVER : ("
+              << this->b2body->GetPosition().x  << ", "
+              << this->b2body->GetPosition().y  << " ) "
+              << std::endl;
     Update update(
         command,
         this->entity,

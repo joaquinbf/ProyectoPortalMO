@@ -158,7 +158,7 @@ void World::createWorldOne() {
         this->createSquareMetalBlock(-6 + 2*i, -1);
     }
 
-    this->createGateWithButton(6, 2, 1, 0.25, true);
+    this->createGateWithButton(6, 2, 1, 0.22, true);
 }
 
 void World::applyAction(const Action &action) {

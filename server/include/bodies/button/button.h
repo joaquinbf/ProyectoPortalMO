@@ -13,8 +13,8 @@
 class Gate;
 
 #define P1 0.00, 0.00
-#define P2 0.50, 0.50
-#define P3 1.50, 0.50
+#define P2 0.25, 0.50
+#define P3 1.50, 0.25
 #define P4 2.00, 0.00
 
 class Button: public Body, public BooleanSupplier {
