@@ -24,8 +24,8 @@ class Gate: public Body {
 private:
     const float MAX_WIDTH = 2.00;
     const float MAX_HEIGHT = 4.00;
-    float half_width;
-    float half_heigh;
+    float width;
+    float height;
     ClosedGateState closed_gate_state;
     OpeningGateState opening_gate_state;
     GateState *state;

@@ -77,6 +77,7 @@
 
 TestEntry g_testEntries[] =
 {
+	{"Portal Chell", PortalChell::Create},
 	{"Shape Cast", ShapeCast::Create },
 	{"Time of Impact", TimeOfImpact::Create},
 	{"Character Collision", CharacterCollision::Create},
@@ -130,6 +131,5 @@ TestEntry g_testEntries[] =
 	{"Sensor Test", SensorTest::Create},
 	{"Varying Friction", VaryingFriction::Create},
 	{"Add Pair Stress Test", AddPair::Create},
-	{"Portal Chell", PortalChell::Create},
 	{NULL, NULL}
 };

@@ -12,14 +12,14 @@
 
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id, ENTITY::GATE),
-    half_width(this->MAX_WIDTH),
-    half_heigh(this->MAX_HEIGHT),
+    width(this->MAX_WIDTH),
+    height(this->MAX_HEIGHT),
     closed_gate_state(this),
     opening_gate_state(this),
     state(&this->closed_gate_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
-    bodyDef.position.Set(x - (MAX_WIDTH/2), y - (MAX_HEIGHT/2));
+    bodyDef.position.Set(x - (MAX_WIDTH/2), y + (MAX_HEIGHT/2));
     bodyDef.userData = (void *) this;
     bodyDef.awake = false;
     this->b2body = b2world->CreateBody(&bodyDef);
@@ -27,9 +27,9 @@ Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     b2PolygonShape b2polygonshape;
     b2Vec2 vertices[4];
     vertices[0].Set(0.00, 0.00);
-    vertices[1].Set(0.00, MAX_HEIGHT);
-    vertices[2].Set(MAX_WIDTH, MAX_HEIGHT);
-    vertices[3].Set(MAX_WIDTH, 0.00);
+    vertices[1].Set(MAX_WIDTH, 0.00);
+    vertices[2].Set(MAX_WIDTH, -MAX_HEIGHT);
+    vertices[3].Set(0.00, -MAX_HEIGHT);
     b2polygonshape.Set(vertices, 4);
 
     b2FixtureDef fixtureDef;
@@ -80,8 +80,20 @@ void Gate::changeStateToOpening() {
 }
 
 void Gate::shrink() {
-    // b2Fixture *b2fixture = this->b2body->GetFixtureList();
-    // b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
-    // b2polygonshape->SetAsBox(this->MAX_HALF_WIDTH, this->half_heigh);
-    // this->half_heigh -= 0.10;
+    b2Fixture *b2fixture = this->b2body->GetFixtureList();
+    b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
+
+    if (this->height - 0.10 > 0.01) {
+        this->height -= 0.10;
+    } else {
+        this->height = 0.01;
+    }
+
+    b2Vec2 vertices[4];
+    vertices[0].Set(0.00, 0.00);
+    vertices[1].Set(MAX_WIDTH, 0.00);
+    vertices[2].Set(MAX_WIDTH, -this->height);
+    vertices[3].Set(0.00, -this->height);
+
+    b2polygonshape->Set(vertices, 4);
 }
