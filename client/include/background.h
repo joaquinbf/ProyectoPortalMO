@@ -5,18 +5,18 @@
 #include "../include/SdlTexture.h"
 
 #define BACKGROUND_TEXTURE "../resources/textures/backgrounds/1.jpg"
-#define SIZE_X 600
-#define SIZE_Y 400
 
 class Background{
 private: 
 	SdlTexture backgroundTexture;
-	int widthRendered;
-	int heightRendered;
+	uint32_t resx;
+	uint32_t resy;
+	uint32_t widthRendered;
+	uint32_t heightRendered;
 public:
 	explicit Background(const SdlWindow& window);
 	~Background();
-	int render(int x, int y,int resx, int resy);
+	void render(int x, int y,int resx, int resy,float scale);
 };
 
 #endif
