@@ -23,7 +23,7 @@ public:
             this->world.createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
         }
 
-        this->world.createGateWithButton(6.0, 2.00, 1.00, 0.00, true);
+        this->world.createGateWithButton(6.0, 2.00, 1.00, 0.22, true);
     }
 
     void Step(Settings *settings) {

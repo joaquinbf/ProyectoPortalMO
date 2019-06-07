@@ -182,6 +182,7 @@ void Chell::handleBeginContactWith(Block *block) {
 
 void Chell::handleBeginContactWith(Button *button) {
     button->press();
+    this->changeStateToIdle();
 }
 
 void Chell::handleEndContactWith(Body *other_body) {

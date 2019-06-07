@@ -16,6 +16,8 @@ class Gate;
 #define P2 0.50, 0.25
 #define P3 1.50, 0.25
 #define P4 2.00, 0.00
+#define XADJ 1.00
+#define YADJ -0.22
 
 class Button: public Body, public BooleanSupplier {
 public:

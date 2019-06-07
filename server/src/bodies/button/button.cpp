@@ -9,7 +9,7 @@ Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id, ENTITY::BUTTON) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
-    bodyDef.position.Set(x, y);
+    bodyDef.position.Set(x + XADJ, y + YADJ);
     bodyDef.userData = (void *) this;
     bodyDef.awake = false;
     this->b2body = b2world->CreateBody(&bodyDef);
@@ -73,6 +73,7 @@ void Button::handleBeginContactWith(Body *other_body) {
 
 void Button::handleBeginContactWith(Chell *chell) {
     this->press();
+    chell->changeStateToIdle();
 }
 
 void Button::handleEndContactWith(Body *other_body) {
