@@ -21,12 +21,12 @@ void VideoRecorder::startRecording(uint32_t width, uint32_t height){
 
 void VideoRecorder::stopRecording(){
 	if(this->recording){
-		this->bufferWidth = 0;
-		this->bufferHeight = 0;
+		this->recording = false;
 		this->videoOutput->close();
     	sws_freeContext(ctx);	
-    	delete this->videoOutput;
-    	this->recording = false;
+       	delete this->videoOutput; 	
+       	this->bufferWidth = 0;
+		this->bufferHeight = 0;
 	}
 }
 
@@ -52,7 +52,11 @@ void VideoRecorder::checkResolution(uint32_t width, uint32_t height){
 }
 
 std::string VideoRecorder::generateName(){
-	return std::string("HARCODED.mpeg");
+	auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::stringstream ss;
+    ss <<  std::put_time(&tm, "../movies/%d-%m-%Y-%H-%M-%S.mpeg");
+    return ss.str();
 }
 
 bool VideoRecorder::isRecording() const{
