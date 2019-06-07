@@ -120,9 +120,7 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             updates.push_back(update);
 
-            std::cout << "STATUS: " << update.getStatus() << std::endl;
-
-            if (update.getIdClass() == ENTITY::CHELL) {
+            if (update.getIdClass() == ENTITY::CHELL && false) {
                 std::cout << "POS : ("
                           << update.getPosX() << ", "
                           << update.getPosY() << ")" << std::endl;
@@ -145,6 +143,10 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
                               << update.getStatus() << std::endl;
                     break;
                 }
+            } else if (update.getStatus() == STATUS::GATE_CLOSED) {
+                std::cout << "STATUS::GATE_CLOSED" << std::endl;
+            } else if (update.getStatus() == STATUS::GATE_OPENING) {
+                std::cout << "STATUS::GATE_OPENING" << std::endl;
             }
         }
     }

@@ -34,11 +34,6 @@ bool Button::isPressed() const {
 }
 
 Update Button::createUpdate(COMMAND command) const {
-    std::cout << "UPDATE BUTTON" << std::endl;
-    std::cout << "POS BUTTON SERVER : ("
-              << this->b2body->GetPosition().x  << ", "
-              << this->b2body->GetPosition().y  << " ) "
-              << std::endl;
     Update update(
         command,
         this->entity,
@@ -52,11 +47,17 @@ Update Button::createUpdate(COMMAND command) const {
 
 
 void Button::press() {
-    this->is_pressed = true;
+    if (!this->isPressed()) {
+        this->is_pressed = true;
+        this->notifyStatusChangeToGate();
+    }
 }
 
 void Button::release() {
-    this->is_pressed = false;
+    if (this->isPressed()) {
+        this->is_pressed = false;
+        this->notifyStatusChangeToGate();
+    }
 }
 
 void Button::setGate(Gate *gate) {
@@ -81,7 +82,6 @@ void Button::handleBeginContactWith(Body *other_body) {
 void Button::handleBeginContactWith(Chell *chell) {
     this->press();
     chell->changeStateToIdle();
-    this->notifyStatusChangeToGate();
 }
 
 void Button::handleEndContactWith(Body *other_body) {

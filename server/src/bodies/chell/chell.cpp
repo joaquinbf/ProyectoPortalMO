@@ -191,5 +191,4 @@ void Chell::handleEndContactWith(Body *other_body) {
 
 void Chell::handleEndContactWith(Button *button) {
     button->release();
-    button->notifyStatusChangeToGate();
 }
