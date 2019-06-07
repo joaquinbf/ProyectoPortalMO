@@ -6,6 +6,14 @@
 | Bravo Victor   | 98882  |
 | Rack Lucas     | 99425  |
 
+
+## Instalacion de ffmpeg y bibliotecas adicionales en ubuntu
+```
+sudo apt install ffmpeg
+sudo apt install libavformat-dev
+sudo apt install libavformat-dev
+```
+
 ## Instalacion de SDL2 mixer en ubuntu
 ```
 sudo apt install libsdl2-mixer-2.0-0
@@ -17,8 +25,6 @@ sudo apt install libsdl2-mixer-dev
 ```
 sudo apt-get -y install cmake
 ```
-
-
 
 ## Instalacion de YAML
 
