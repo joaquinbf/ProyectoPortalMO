@@ -15,10 +15,10 @@ Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
     this->b2body = b2world->CreateBody(&bodyDef);
 
     b2Vec2 vertices[4];
-    vertices[0].Set(1.20, 0.30);
-    vertices[1].Set(1.70, 0.0);
-    vertices[2].Set(0.0, 0.0);
-    vertices[3].Set(0.60, 0.30);
+    vertices[0].Set(P1);
+    vertices[1].Set(P2);
+    vertices[2].Set(P3);
+    vertices[3].Set(P4);
 
     b2PolygonShape b2polygonshape;
     b2polygonshape.Set(vertices, 4);
@@ -34,6 +34,9 @@ bool Button::isPressed() const {
 }
 
 Update Button::createUpdate(COMMAND command) const {
+    std::cout << "UPDATE BUTTON" << std::endl;
+    std::cout << this->b2body->GetPosition().x  << ", "
+              << this->b2body->GetPosition().y  << std::endl;
     Update update(
         command,
         this->entity,
@@ -54,34 +57,18 @@ void Button::release() {
     this->is_pressed = false;
 }
 
-
-void Button::handleBeginContactWith(Body *other_body) {
-    other_body->letBeginContactBeHandledBy(this);
-}
-
-void Button::letBeginContactBeHandledBy(Chell *chell) {
-    this->press();
-    this->gate->notifyStateChange();
-}
-
-void Button::letBeginContactBeHandledBy(Block *block) {
-}
-
-void Button::letBeginContactBeHandledBy(Button *button) {
-}
-
-void Button::letBeginContactBeHandledBy(Gate *gate) {
-}
-
-void Button::letBeginContactBeHandledBy(Rock *rock) {
-    this->press();
-    this->gate->notifyStateChange();
-}
-
 void Button::notifyStatusChangeTo(Gate *gate) {
     this->gate = gate;
 }
 
 bool Button::getAsBoolean() const {
     return this->isPressed();
+}
+
+void Button::handleBeginContactWith(Body *other_body) {
+    other_body->handleBeginContactWith(this);
+}
+
+void Button::handleEndContactWith(Body *other_body) {
+    other_body->handleEndContactWith(this);
 }

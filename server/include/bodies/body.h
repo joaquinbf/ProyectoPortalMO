@@ -38,15 +38,28 @@ public:
     virtual void handleBeginContactWith(Body *other_body) = 0;
 
     /* Deja que el inicio de contacto sea manejado por chell */
-    virtual void letBeginContactBeHandledBy(Chell *chell) = 0;
+    virtual void handleBeginContactBeHandledBy(Chell *chell);
 
-    virtual void letBeginContactBeHandledBy(Block *block) = 0;
+    virtual void handleBeginContactBeHandledBy(Block *block);
 
-    virtual void letBeginContactBeHandledBy(Button *button) = 0;
+    virtual void handleBeginContactBeHandledBy(Button *button);
 
-    virtual void letBeginContactBeHandledBy(Gate *gate) = 0;
+    virtual void handleBeginContactBeHandledBy(Gate *gate);
 
-    virtual void letBeginContactBeHandledBy(Rock *rock) = 0;
+    virtual void handleBeginContactBeHandledBy(Rock *rock);
+
+    /* Maneja el fin de contacto con otro cuerpo */
+    virtual void handleEndContactWith(Body *other_body) = 0;
+
+    virtual void handleEndContactBeHandledBy(Chell *chell);
+
+    virtual void handleEndContactBeHandledBy(Block *block);
+
+    virtual void handleEndContactBeHandledBy(Button *button);
+
+    virtual void handleEndContactBeHandledBy(Gate *gate);
+
+    virtual void handleEndContactBeHandledBy(Rock *rock);
 
     /* Indica si el cuerpo esta despierto */
     bool isAwake() const;

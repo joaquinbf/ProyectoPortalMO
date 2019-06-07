@@ -12,6 +12,11 @@
 
 class Gate;
 
+#define P1 0.00, 0.00
+#define P2 0.50, 0.50
+#define P3 1.50, 0.50
+#define P4 2.00, 0.00
+
 class Button: public Body, public BooleanSupplier {
 public:
     const ENTITY entity = ENTITY::BUTTON;
@@ -33,22 +38,16 @@ public:
 
     virtual Update createUpdate(COMMAND command) const override;
 
-    virtual void handleBeginContactWith(Body *other_body) override;
-
-    virtual void letBeginContactBeHandledBy(Chell *chell) override;
-
-    virtual void letBeginContactBeHandledBy(Block *block) override;
-
-    virtual void letBeginContactBeHandledBy(Button *button) override;
-
-    virtual void letBeginContactBeHandledBy(Gate *gate) override;
-
-    virtual void letBeginContactBeHandledBy(Rock *rock) override;
-
     void notifyStatusChangeTo(Gate *gate);
 
     /* Indica si el boton esta presionado */
     virtual bool getAsBoolean() const;
+
+    /* Maneja el inicio de contacto con otro cuerpo */
+    virtual void handleBeginContactWith(Body *other_body);
+
+    /* Maneja el fin de contacto con otro cuerpo */
+    virtual void handleEndContactWith(Body *other_body);
 };
 
 #endif

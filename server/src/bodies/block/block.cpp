@@ -59,21 +59,14 @@ Update Block::createUpdate(COMMAND command) const {
 }
 
 void Block::handleBeginContactWith(Body *other_body) {
-    other_body->letBeginContactBeHandledBy(this);
+    other_body->handleBeginContactWith(this);
 }
 
-void Block::letBeginContactBeHandledBy(Chell *chell) {
+void Block::handleBeginContactBeHandledBy(Chell *chell) {
     chell->changeStateToIdle();
 }
 
-void Block::letBeginContactBeHandledBy(Block *block) {
-}
 
-void Block::letBeginContactBeHandledBy(Button *button) {
-}
-
-void Block::letBeginContactBeHandledBy(Gate *gate) {
-}
-
-void Block::letBeginContactBeHandledBy(Rock *rock) {
+void Block::handleEndContactWith(Body *other_body) {
+    other_body->handleEndContactWith(this);
 }

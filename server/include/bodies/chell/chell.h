@@ -29,8 +29,8 @@ private:
     JumpingState jumping_state;
     ChellState *state;
     Keypad keypad;
-    const float HALF_WIDTH = 1.00;
-    const float HALF_HEIGHT = 1.50;
+    const float HALF_WIDTH = 0.50;
+    const float HALF_HEIGHT = 1.00;
     const float DENSITY = 1;
     const float ANGLE = 0;
 
@@ -101,18 +101,12 @@ public:
     virtual void applyStateAction();
 
     /* Maneja el contacto con otro cuerpo */
-    virtual void handleBeginContactWith(Body *other_body) override;
+    virtual void handleBeginContactWith(Body *other_body);
 
-    /* Deja que el inicio de contacto sea manejado por otra chell */
-    virtual void letBeginContactBeHandledBy(Chell *chell) override;
+    virtual void handleBeginContactBeHandledBy(Block *block) override;
 
-    virtual void letBeginContactBeHandledBy(Block *block) override;
-
-    virtual void letBeginContactBeHandledBy(Button *button) override;
-
-    virtual void letBeginContactBeHandledBy(Gate *gate) override;
-
-    virtual void letBeginContactBeHandledBy(Rock *rock) override;
+    /* Maneja el fin de contacto con otro cuerpo */
+    virtual void handleEndContactWith(Body *other_body);
 };
 
 #endif

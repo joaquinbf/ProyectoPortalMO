@@ -40,25 +40,6 @@ Update Gate::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Gate::handleBeginContactWith(Body *other_body) {
-    other_body->letBeginContactBeHandledBy(this);
-}
-
-void Gate::letBeginContactBeHandledBy(Chell *chell) {
-}
-
-void Gate::letBeginContactBeHandledBy(Block *block) {
-}
-
-void Gate::letBeginContactBeHandledBy(Button *button) {
-}
-
-void Gate::letBeginContactBeHandledBy(Gate *gate) {
-}
-
-void Gate::letBeginContactBeHandledBy(Rock *gate) {
-}
-
 void Gate::notifyStateChange() {
     if (this->boolean_block->getAsBoolean()) {
         // cambiar de estado a abierta
@@ -69,4 +50,13 @@ void Gate::notifyStateChange() {
 
 void Gate::setBooleanBlock(BooleanBlock *boolean_block) {
     this->boolean_block = boolean_block;
+}
+
+void Gate::handleBeginContactWith(Body *other_body) {
+    other_body->handleBeginContactWith(this);
+
+}
+
+void Gate::handleEndContactWith(Body *other_body) {
+    other_body->handleEndContactWith(this);
 }
