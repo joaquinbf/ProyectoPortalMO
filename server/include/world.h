@@ -38,7 +38,7 @@ private:
     const float TIME_STEP = 1/30.0;
     const uint32_t VELOCITY_ITERATIONS = 8;
     const uint32_t POSITION_ITERATIONS = 3;
-    BooleanBlockFactory bbf;
+    BooleanBlockFactory boolean_block_factory;
     ContactListener contact_listener;
 
 public:
@@ -98,6 +98,9 @@ public:
 
     /* Aplica las acciones de estado sobre los bodies */
     void applyStateActions();
+
+    /* Devuelve su boolean block factory */
+    BooleanBlockFactory *getBooleanBlockFactory();
 
 private:
     /* Libera los bodies creados */

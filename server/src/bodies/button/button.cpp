@@ -59,9 +59,16 @@ void Button::release() {
     this->is_pressed = false;
 }
 
-void Button::notifyStatusChangeTo(Gate *gate) {
+void Button::setGate(Gate *gate) {
     this->gate = gate;
 }
+
+void Button::notifyStatusChangeToGate() {
+    if (this->gate != 0) {
+        gate->tryChangeState();
+    }
+}
+
 
 bool Button::getAsBoolean() const {
     return this->isPressed();
@@ -74,6 +81,7 @@ void Button::handleBeginContactWith(Body *other_body) {
 void Button::handleBeginContactWith(Chell *chell) {
     this->press();
     chell->changeStateToIdle();
+    this->notifyStatusChangeToGate();
 }
 
 void Button::handleEndContactWith(Body *other_body) {

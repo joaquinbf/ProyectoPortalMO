@@ -50,7 +50,9 @@ public:
 
     virtual Update createUpdate(COMMAND command) const override;
 
-    void notifyStatusChangeTo(Gate *gate);
+    void setGate(Gate *gate);
+
+    void notifyStatusChangeToGate();
 
     /* Indica si el boton esta presionado */
     virtual bool getAsBoolean() const;

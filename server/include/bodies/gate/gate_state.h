@@ -6,15 +6,15 @@
 class Gate;
 
 class GateState {
-private:
+protected:
     Gate *gate;
     const STATUS status;
 
 public:
     GateState(Gate *gate, STATUS status);
     virtual ~GateState();
-    virtual void notifyStateChange() = 0;
     STATUS getStatus() const;
+    virtual void tryChangeState() = 0;
 };
 
 #endif

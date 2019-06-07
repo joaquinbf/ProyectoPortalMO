@@ -84,13 +84,13 @@ void World::createGateWithButton(
     this->body_count++;
     this->bodies.push_back(button);
 
-    button->notifyStatusChangeTo(gate);
+    button->setGate(gate);
 
     BooleanBlock *block;
     if (open_gate_when_button_is_pressed) {
-        block = this->bbf.createSameBlock();
+        block = this->boolean_block_factory.createSameBlock();
     } else {
-        block = this->bbf.createNotBlock();
+        block = this->boolean_block_factory.createNotBlock();
     }
 
     gate->setBooleanBlock(block);
@@ -182,6 +182,9 @@ void World::applyStateActions() {
     }
 }
 
+BooleanBlockFactory *World::getBooleanBlockFactory() {
+    return &this->boolean_block_factory;
+}
 
 void World::deleteBodies() {
     for (Body *body: this->bodies) {

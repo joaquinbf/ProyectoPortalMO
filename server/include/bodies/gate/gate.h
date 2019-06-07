@@ -2,6 +2,9 @@
 #define __GATE_H__
 
 #include "../body.h"
+#include "gate_state.h"
+#include "closed_gate_state.h"
+#include "opening_gate_state.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -21,6 +24,9 @@ class Gate: public Body {
 private:
     const float HALF_WIDTH = 1.00;
     const float HALF_HEIGHT = 2.00;
+    ClosedGateState closed_gate_state;
+    OpeningGateState opening_gate_state;
+    GateState *state;
     BooleanBlock *boolean_block;
 
 public:
@@ -40,6 +46,16 @@ public:
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body);
+
+    /* Intenta cambiar su estado si las condiciones de boolean block
+     * fueron satisfechas */
+    void tryChangeState();
+
+    /* Indica si se satisface la condicion de sus elementos */
+    bool conditionIsMeet();
+
+    /* Cambia su estado a abriendo */
+    void changeStateToOpening();
 };
 
 #endif

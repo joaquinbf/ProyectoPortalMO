@@ -12,7 +12,10 @@
 
 
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id, ENTITY::GATE) {
+    Body(body_id, ENTITY::GATE),
+    closed_gate_state(this),
+    opening_gate_state(this),
+    state(&this->closed_gate_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);
@@ -33,7 +36,7 @@ Update Gate::createUpdate(COMMAND command) const {
         command,
         this->entity,
         this->BODY_ID,
-        STATUS::GATE_CLOSED,
+        this->state->getStatus(),
         this->b2body->GetPosition().x * ZOOM_FACTOR,
         this->b2body->GetPosition().y * ZOOM_FACTOR,
         0);
@@ -59,4 +62,16 @@ void Gate::handleBeginContactWith(Body *other_body) {
 
 void Gate::handleEndContactWith(Body *other_body) {
     other_body->handleEndContactWith(this);
+}
+
+void Gate::tryChangeState() {
+    this->state->tryChangeState();
+}
+
+bool Gate::conditionIsMeet() {
+    return this->boolean_block->getAsBoolean();
+}
+
+void Gate::changeStateToOpening() {
+    this->state = &this->opening_gate_state;
 }
