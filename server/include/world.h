@@ -63,6 +63,10 @@ public:
     /* Crea un boton. TODO: Asignar a compuertas */
     Button *createButton(float x, float y);
 
+    /* Crea una compuerta sin estar asociada a ningun boton ni receptores
+     *en (x, y) */
+    Gate *createGate(float x, float y);
+
     /* Crea el centro de gate en (x1, y1) y un boton con su
      * centro en (x2, y2).
      * Para que la compuerta se abra si el boton esta presionado entonces

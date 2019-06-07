@@ -96,6 +96,12 @@ void World::createGateWithButton(
     gate->setBooleanBlock(block);
 }
 
+Gate *World::createGate(float x, float y) {
+    Gate *gate = new Gate(this->body_count, this->b2world, x, y);
+    this->body_count++;
+    this->bodies.push_back(gate);
+    return gate;
+}
 
 std::list<Update> World::getNewPlayerUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::CREATE_COMMAND);
