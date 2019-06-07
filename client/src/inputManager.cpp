@@ -1,8 +1,7 @@
 #include "../include/inputManager.h"
 
-InputManager::InputManager(const ServerManager& sm,GameView& v) : serverManager(sm),
-chellId(0),gameView(v),running(true){
-
+InputManager::InputManager(const ServerManager& sm,GameView& v,VideoRecorder& vr) 
+: running(true),serverManager(sm),chellId(0),gameView(v),videoRecorder(vr){
 }
 
 InputManager::~InputManager(){}
@@ -41,6 +40,14 @@ void InputManager::pauseMode(const SDL_Event& event){
 				case SDLK_ESCAPE:
     				this->gameView.pause();
         			break;
+                case SDLK_o:
+                    if(this->videoRecorder.isRecording()){
+                        this->videoRecorder.stopRecording();
+                    } else{
+                        this->videoRecorder.startRecording(this->gameView.getResX(),
+                            this->gameView.getResY());    
+                    }                    
+                    break;
         		default:
         			break;
         	}
@@ -78,8 +85,16 @@ void InputManager::gameMode(const SDL_Event& event){
                     case SDLK_ESCAPE:
                         this->gameView.pause();
                         break;
-                
-                   case SDLK_n:
+                    case SDLK_o:
+                    if(this->videoRecorder.isRecording()){
+                        this->videoRecorder.stopRecording();
+                    } else{
+                        this->videoRecorder.startRecording(this->gameView.getResX(),
+                            this->gameView.getResY());    
+                    }                    
+                    break;
+
+                    case SDLK_n:
                         this->gameView.fullscreen();
                         break;
                     case SDLK_m:

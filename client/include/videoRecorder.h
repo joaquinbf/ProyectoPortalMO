@@ -31,6 +31,7 @@ public:
 	void stopRecording();
 	void checkResolution(uint32_t width, uint32_t height);
 	std::string generateName();
+	bool isRecording() const;
 };
 
 #endif

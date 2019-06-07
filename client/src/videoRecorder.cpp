@@ -1,5 +1,4 @@
 #include "../include/videoRecorder.h"
-#include <iostream>
 
 VideoRecorder::VideoRecorder():
 recording(false), bufferWidth(0), bufferHeight(0){
@@ -36,7 +35,7 @@ void VideoRecorder::recordFrame(SDL_Renderer* renderer){
     	int res = SDL_RenderReadPixels(renderer, NULL, 
     	SDL_PIXELFORMAT_RGB24, this->dataBuffer.data(), this->bufferWidth*3);
     	if (res) {
-	        throw std::runtime_error("No se pudo guardar frame"+
+	        throw std::runtime_error("No se pudo guardar frame\n"+
 	        	std::string(SDL_GetError()));
     	}
     	this->videoOutput->writeFrame(this->dataBuffer.data(), this->ctx);	
@@ -46,7 +45,6 @@ void VideoRecorder::recordFrame(SDL_Renderer* renderer){
 void VideoRecorder::checkResolution(uint32_t width, uint32_t height){
 	if(this->recording){
 		if(this->bufferWidth != width || this->bufferHeight != height){
-			std::cout<<"SE CAMBIO RES!!\n";
 			this->stopRecording();
 			this->startRecording(width,height);
 		}
@@ -55,4 +53,8 @@ void VideoRecorder::checkResolution(uint32_t width, uint32_t height){
 
 std::string VideoRecorder::generateName(){
 	return std::string("HARCODED.mpeg");
+}
+
+bool VideoRecorder::isRecording() const{
+	return this->recording;
 }

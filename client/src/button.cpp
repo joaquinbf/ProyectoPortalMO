@@ -3,8 +3,7 @@
 Button::Button(const TextureManager& tm,const STATUS st,int32_t x, int32_t y,
 		uint32_t width, uint32_t height) : 
 Entity(x,y,width,height,0),
-frameArea(0,0,173,68),status(st), textureManager(tm)
-{
+frameArea(0,0,173,68),status(st), textureManager(tm){	
 	this->texturePtr = this->textureManager.getButtonTexturePointer(this->status);
 }
 

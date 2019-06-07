@@ -142,6 +142,7 @@ int32_t GameView::pixelToCoordX(int32_t x) const{
 	int32_t cordx = this->myChell->getPosX();
 	int32_t a=x-(this->resx/2);
     a = a/this->scale + cordx;
+    std::cout<<a<<" ";
     return a;
 }
 
@@ -149,6 +150,7 @@ int32_t GameView::pixelToCoordY(int32_t y) const{
 	int32_t cordy = this->myChell->getPosY();
     int32_t b=y-(2*this->resy/3);
     b = -b/this->scale + cordy;
+    std::cout<<b<<"\n";
     return b;
 }
 
