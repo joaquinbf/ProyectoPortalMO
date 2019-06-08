@@ -255,16 +255,16 @@ void World::step() {
 }
 
 void World::createWorldOne() {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 1; i++) {
         this->createChell(-6.00 + 2.00*i, 1.00);
     }
 
-    for (int i = -10; i < 10; i++) {
+    for (int i = 0; i < 3; i++) {
         this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 
-    this->createGateWithButton(6.00, 2.00, 1.00, Cy, true);
-    this->createAcid(0, 5);
+    // Cy = 0.22 aprox
+    this->createGateWithButton(-2, 2, -4, Cy, true);
 }
 
 void World::applyAction(const Action &action) {

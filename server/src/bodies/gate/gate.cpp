@@ -48,7 +48,7 @@ Update Gate::createUpdate(COMMAND command) const {
         this->entity,
         this->BODY_ID,
         this->state->getStatus(),
-        (this->b2body->GetPosition().x )* ZOOM_FACTOR,
+        (this->b2body->GetPosition().x + (MAX_WIDTH/2))* ZOOM_FACTOR,
         (this->b2body->GetPosition().y - (MAX_HEIGHT/2))* ZOOM_FACTOR,
         0);
     return update;
@@ -102,7 +102,7 @@ void Gate::shrink() {
     b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
 
     if (this->height - SIZE_RATE > MIN_HEIGHT) {
-        this->height -= SIZE_RATE;
+        this->height -= SIZE_RATE*3;
     } else {
         this->height = MIN_HEIGHT;
     }

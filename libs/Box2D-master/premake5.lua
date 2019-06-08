@@ -75,7 +75,10 @@ project 'Testbed'
 		'../../server/src/bodies/block/*',
 		'../../server/src/bodies/button/*',
 		'../../server/src/bodies/gate/*',
-		'../../server/src/bodies/acid/*'
+		'../../server/src/bodies/acid/*',
+		'../../server/src/bodies/bullet/*',
+		'../../server/src/bodies/launcher/*',
+		'../../server/src/pin.cpp'
 	}
 
     filter { 'system:windows' }
