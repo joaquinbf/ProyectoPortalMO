@@ -2,6 +2,8 @@
 #define _PIN_H_
 
 #include "../.././common/include/update.h"
+#define PIN_TIME 60
+
 
 class Pin{
 	uint32_t id;

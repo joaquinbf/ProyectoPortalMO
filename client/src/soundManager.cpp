@@ -20,6 +20,10 @@ SoundManager::SoundManager(){
 	if(this->fireSound == nullptr) { 
 		throw SdlException("Error abriendo archivo", Mix_GetError());	
 	}
+	this->pinSound = Mix_LoadWAV( PIN_SOUND_ROUTE ); 
+	if(this->pinSound == nullptr) { 
+		throw SdlException("Error abriendo archivo", Mix_GetError());	
+	}
 }
 
 SoundManager::~SoundManager(){
@@ -27,6 +31,7 @@ SoundManager::~SoundManager(){
 	Mix_FreeChunk(this->jumpSound);	
 	Mix_FreeChunk(this->fireSound);
 	Mix_FreeChunk(this->deathSound);
+	Mix_FreeChunk(this->pinSound);
 	Mix_Quit();	
 }
 
@@ -57,14 +62,17 @@ bool SoundManager::isMusicPaused() const{
 }
 
 void SoundManager::playJumpSound() const{
-	Mix_PlayChannel(-1, this->jumpSound, 0 );
+	Mix_PlayChannel(2, this->jumpSound, 0 );
 }
 
 void SoundManager::playFireSound() const{
-	Mix_PlayChannel(-1, this->fireSound, 0 );
+	Mix_PlayChannel(2, this->fireSound, 0 );
 }
 
 void SoundManager::playDeathSound() const{
-	Mix_PlayChannel(-1, this->deathSound, 0 );
+	Mix_PlayChannel(2, this->deathSound, 0 );
 }
 
+void SoundManager::playPinSound() const{
+	Mix_PlayChannel(2, this->pinSound, 0 );
+}
