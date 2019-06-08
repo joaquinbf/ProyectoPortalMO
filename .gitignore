@@ -33,4 +33,5 @@
 
 # build directories
 build/
+movies/
 libs/Box2D-master/build/

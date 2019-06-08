@@ -146,15 +146,30 @@ std::list<Update> World::getUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::UPDATE_COMMAND);
 }
 
-std::list<Update> World::getPinUpdateList()const{
+void World::createNewPin(uint32_t id, int32_t x, int32_t y){
+    Pin* ptr = new Pin(this->body_count,x,y);
+    this->body_count++;
+    if(this->pins.find(id) != this->pins.end()){
+        //std::cout<<"CHUCHA\n";
+        //ya hay un pin (chucha)
+    } else {
+        this->pins[id] = ptr;
+    }
+}
+
+std::list<Update> World::getPinUpdateList(){
     std::list<Update> list;
     Update update;
-    for( auto it = this->pins.begin(); it != this->pins.end(); ++it ){
-        if(it->second != nullptr){
-            /*if(it->second->hasUpdate()){
-                update = it->second->getUpdate();
-
-            } */
+    for( auto it : this->pins){
+        if(it.second != nullptr){
+            if(it.second->hasUpdate()){
+                update = it.second->getUpdate();
+                if(update.getCommand()!=COMMAND::DESTROY_COMMAND){
+                    delete it.second;
+                    this->pins.erase(it.first);
+                }
+                list.push_back(update);
+            } 
         }
     }
     return list;
@@ -230,7 +245,7 @@ void World::createWorldOne() {
 
 void World::applyAction(const Action &action) {
     InstructionFactory insf;
-    Instruction *instruction = insf.createInstruction(action, this->chells);
+    Instruction *instruction = insf.createInstruction(action,this->chells,this);
     instruction->execute();
     delete instruction;
 }

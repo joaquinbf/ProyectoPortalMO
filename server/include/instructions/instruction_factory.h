@@ -7,11 +7,14 @@
 #include <cstdint>
 #include <map>
 
+class World;
+
 class InstructionFactory {
 public:
     Instruction *createInstruction(
         const Action &action,
-        std::map<uint32_t, Chell *> &chells) const;
+        std::map<uint32_t, Chell *> &chells,
+        World* world) const;
 };
 
 #endif

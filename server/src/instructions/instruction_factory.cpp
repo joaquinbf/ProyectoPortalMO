@@ -1,5 +1,6 @@
 #include "../../include/instructions/instruction_factory.h"
 
+#include "../../include/world.h"
 #include "../.././common/include/action.h"
 #include "../../include/instructions/default_instruction.h"
 #include "../../include/instructions/run_left_instruction.h"
@@ -15,7 +16,8 @@
 
 Instruction *InstructionFactory::createInstruction(
     const Action &action,
-    std::map<uint32_t, Chell *> &chells) const {
+    std::map<uint32_t, Chell *> &chells,
+    World* world) const {
     Instruction *instruction;
     std::cout << "CHELL ID: " << action.getId() << std::endl;
     Chell *chell = chells[action.getId()];
@@ -43,7 +45,7 @@ Instruction *InstructionFactory::createInstruction(
             break;
         case ACTION::PING:
             std::cout << "inst fact: ACTION::PING" << std::endl;
-            instruction = new PinInstruction();
+            instruction = new PinInstruction(world,action.getId(),action.getParam1(),action.getParam2());
             break;
         default:
             instruction = new DefaultInstruction();

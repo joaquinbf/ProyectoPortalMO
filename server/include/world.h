@@ -106,7 +106,9 @@ public:
 
     /* Devuelve una lista de updates pero solo con los cuerpos despiertos */
     std::list<Update> getUpdatesForAwakeBodies() const;
-    std::list<Update> getPinUpdateList()const;
+    std::list<Update> getPinUpdateList();
+    void createNewPin(uint32_t id, int32_t x, int32_t y);
+
     /* Actualiza el mundo en un step. */
     void step();
 

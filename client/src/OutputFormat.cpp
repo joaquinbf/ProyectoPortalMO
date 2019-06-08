@@ -60,7 +60,7 @@ void OutputFormat::initFrame() {
 
 void OutputFormat::writeFrame(const char* data, SwsContext* ctx ) {
     const u_int8_t* tmp = (const u_int8_t*) data;
-    int width = this->resx * 3;
+    const int width = this->resx * 3;
     sws_scale(ctx, &tmp, &width, 0, this->frame->height, this->frame->data, this->frame->linesize);
     this->frame->pts = this->currentPts;
     this->currentPts++;

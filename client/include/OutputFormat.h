@@ -37,8 +37,6 @@ private:
 public:
     explicit OutputFormat(FormatContext& context,const std::string& filename,uint32_t x, uint32_t y);
     ~OutputFormat();
-    // Escribe un frame a disco. Utiliza `swsContext` para convertir
-    // de RGB24 a YUV420p
     void writeFrame(const char* data, SwsContext* swsContext);
     void close();
 private:
