@@ -15,6 +15,7 @@ class Block;
 class Button;
 class Gate;
 class Rock;
+class Launcher;
 
 class Body {
 protected:
@@ -28,6 +29,7 @@ public:
 
     /* Libera los recursos utilizados */
     virtual ~Body();
+
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const = 0;
 
@@ -66,6 +68,8 @@ public:
 
     virtual void handleBeginContactWith(Gate *gate);
 
+    virtual void handleBeginContactWith(Launcher *launcher);
+
     virtual void handleBeginContactWith(Rock *rock);
 
     virtual void handleEndContactWith(Acid *acid);
@@ -77,6 +81,8 @@ public:
     virtual void handleEndContactWith(Button *button);
 
     virtual void handleEndContactWith(Gate *gate);
+
+    virtual void handleEndContactWith(Launcher *launcher);
 
     virtual void handleEndContactWith(Rock *rock);
 };

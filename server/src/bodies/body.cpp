@@ -4,6 +4,7 @@
 #include "../../include/bodies/block/block.h"
 #include "../../include/bodies/gate/gate.h"
 #include "../../include/bodies/button/button.h"
+#include "../../include/bodies/launcher/launcher.h"
 #include "../../include/bodies/rock/rock.h"
 #include "../../include/world.h"
 #include <cstdint>
@@ -55,6 +56,9 @@ void Body::handleBeginContactWith(Button *button) {
 void Body::handleBeginContactWith(Gate *gate) {
 }
 
+void Body::handleBeginContactWith(Launcher *launcher) {
+}
+
 void Body::handleBeginContactWith(Rock *rock) {
 }
 
@@ -71,6 +75,9 @@ void Body::handleEndContactWith(Button *button) {
 }
 
 void Body::handleEndContactWith(Gate *gate) {
+}
+
+void Body::handleEndContactWith(Launcher *launcher) {
 }
 
 void Body::handleEndContactWith(Rock *rock) {
