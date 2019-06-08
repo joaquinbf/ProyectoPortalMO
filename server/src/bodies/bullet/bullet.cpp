@@ -6,6 +6,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../common/include/types.h"
 #include "../../../../common/include/update.h"
+#include "../../../include/bodies/block/block.h"
 #include <cstdint>
 
 Bullet::Bullet(
@@ -31,6 +32,12 @@ Bullet::Bullet(
     this->b2body->CreateFixture(&b2fixturedef);
 }
 
+Bullet::~Bullet() {
+    if (this->b2body != 0) {
+        this->world->getB2World()->DestroyBody(this->b2body);
+    }
+}
+
 Update Bullet::createUpdate(COMMAND command) const {
     Update update(
         command,
@@ -45,6 +52,10 @@ Update Bullet::createUpdate(COMMAND command) const {
 
 void Bullet::handleBeginContactWith(Body *other_body) {
     other_body->handleBeginContactWith(this);
+}
+
+void Bullet::handleBeginContactWith(Block *block) {
+    this->world->addBodyForDeletion(this);
 }
 
 void Bullet::handleEndContactWith(Body *other_body) {

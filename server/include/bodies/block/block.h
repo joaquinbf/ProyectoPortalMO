@@ -27,6 +27,7 @@ class Chell;
 class Button;
 class Gate;
 class Rock;
+class Bullet;
 
 class Block: public Body {
 private:
@@ -55,6 +56,9 @@ public:
 
     /* Maneja el inicio de contacto con body */
     virtual void handleBeginContactWith(Body *other_body);
+
+    /* Destruye a la bala */
+    virtual void handleBeginContactWith(Bullet *bullet) override;
 
     virtual void handleBeginContactWith(Chell *chell) override;
     /* Maneja el fin de contacto con otro cuerpo */

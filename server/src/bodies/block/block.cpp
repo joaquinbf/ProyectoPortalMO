@@ -9,6 +9,7 @@
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/gate/gate.h"
 #include "../../../include/bodies/rock/rock.h"
+#include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/world.h"
 
 Block::Block(
@@ -62,6 +63,10 @@ Update Block::createUpdate(COMMAND command) const {
 
 void Block::handleBeginContactWith(Body *other_body) {
     other_body->handleBeginContactWith(this);
+}
+
+void Block::handleBeginContactWith(Bullet *bullet) {
+    this->world->addBodyForDeletion(bullet);
 }
 
 void Block::handleBeginContactWith(Chell *chell) {

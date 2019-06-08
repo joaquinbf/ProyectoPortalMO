@@ -10,9 +10,10 @@
 class World;
 
 class Acid;
-class Chell;
 class Block;
+class Bullet;
 class Button;
+class Chell;
 class Gate;
 class Rock;
 class Launcher;
@@ -59,12 +60,14 @@ public:
 
     virtual void handleBeginContactWith(Acid *acid);
 
-    /* Deja que el inicio de contacto sea manejado por chell */
-    virtual void handleBeginContactWith(Chell *chell);
-
     virtual void handleBeginContactWith(Block *block);
 
+    virtual void handleBeginContactWith(Bullet *bullet);
+
     virtual void handleBeginContactWith(Button *button);
+
+    /* Deja que el inicio de contacto sea manejado por chell */
+    virtual void handleBeginContactWith(Chell *chell);
 
     virtual void handleBeginContactWith(Gate *gate);
 
@@ -72,13 +75,16 @@ public:
 
     virtual void handleBeginContactWith(Rock *rock);
 
+    /* Maneja el fin de contacto con acid */
     virtual void handleEndContactWith(Acid *acid);
-
-    virtual void handleEndContactWith(Chell *chell);
 
     virtual void handleEndContactWith(Block *block);
 
+    virtual void handleEndContactWith(Bullet *bullet);
+
     virtual void handleEndContactWith(Button *button);
+
+    virtual void handleEndContactWith(Chell *chell);
 
     virtual void handleEndContactWith(Gate *gate);
 

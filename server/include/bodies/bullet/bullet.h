@@ -7,6 +7,8 @@
 #include "../../../../common/include/update.h"
 #include <cstdint>
 
+class Block;
+
 class Bullet: public Body {
 private:
     DIRECTION direction;
@@ -19,11 +21,16 @@ public:
     Bullet(uint32_t body_id, World *world,
            float x, float y, DIRECTION direction);
 
+    ~Bullet();
+
    /* Crea una update con el comando indicado */
    virtual Update createUpdate(COMMAND command) const;
 
    /* Maneja el inicio de contacto con otro cuerpo */
    virtual void handleBeginContactWith(Body *other_body);
+
+   /* Muere al chocar con un bloque */
+   virtual void handleBeginContactWith(Block *block) override;
 
    /* Maneja el fin de contacto con otro cuerpo */
    virtual void handleEndContactWith(Body *other_body);
