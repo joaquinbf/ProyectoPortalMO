@@ -110,7 +110,10 @@ Gate *World::createGate(float x, float y) {
 }
 
 Acid *World::createAcid(float x, float y) {
-    return 0;
+    Acid *acid = new Acid(this->body_count, this, x, y);
+    this->body_count++;
+    this->bodies.push_back(acid);
+    return acid;
 }
 
 
@@ -198,6 +201,7 @@ void World::createWorldOne() {
     }
 
     this->createGateWithButton(6.00, 2.00, 1.00, Cy, true);
+    this->createAcid(3, 3);
 }
 
 void World::applyAction(const Action &action) {

@@ -25,6 +25,7 @@ public:
         }
 
         this->world.createGateWithButton(6.0, 2.00, 1.00, Cy, true);
+        this->world.createAcid(-7, 1);
     }
 
     void Step(Settings *settings) {

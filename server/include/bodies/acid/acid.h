@@ -11,6 +11,10 @@
 class World;
 
 class Acid: public Body {
+private:
+    const float WIDTH = 2.00;
+    const float HEIGHT = 0.60;
+
 public:
     /* Instancia una mancha de acido en b2world con id 'body_id' en la
      * posicion (x, y) */
