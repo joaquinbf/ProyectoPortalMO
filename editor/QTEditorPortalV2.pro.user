@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.5.2, 2019-06-08T04:52:57. -->
+<!-- Written by QtCreator 4.5.2, 2019-06-08T11:27:41. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -59,14 +59,14 @@
  <data>
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{4a9b76c5-f142-4e4f-818f-346296274dab}</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Descktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Descktop</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{6be70235-f7b4-4419-b473-037b58cfa5b9}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/joacko/Documentos/build-QTEditorPortalV2-Desktop-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/joacko/TPFinalPortal/build-QTEditorPortalV2-Descktop-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -126,7 +126,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/joacko/Documentos/build-QTEditorPortalV2-Desktop-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/joacko/TPFinalPortal/build-QTEditorPortalV2-Descktop-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -186,7 +186,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/joacko/Documentos/build-QTEditorPortalV2-Desktop-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/joacko/TPFinalPortal/build-QTEditorPortalV2-Descktop-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -304,13 +304,13 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">QTEditorPortalV2</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/joacko/Documentos/QTEditorPortalV2/QTEditorPortalV2.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/joacko/TPFinalPortal/editor/QTEditorPortalV2.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">QTEditorPortalV2.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/home/joacko/Documentos/build-QTEditorPortalV2-Desktop-Debug</value>
+    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/home/joacko/TPFinalPortal/build-QTEditorPortalV2-Descktop-Debug</value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>

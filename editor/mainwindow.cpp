@@ -10,7 +10,7 @@
 #include <QMouseEvent>
 #include <string>
 #include <QSize>
-//#include <yaml-cpp/yaml.h>
+#include <yaml-cpp/yaml.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -106,7 +106,7 @@ void MainWindow::on_actionGuardar_Escenario_triggered()
 {
     QString path = QFileDialog::getSaveFileName(this, "Guardar");
 
-    //YAML::Node nodo = YAML::LoadFile(path.toStdString());
+    YAML::Node nodo = YAML::LoadFile(path.toStdString());
     //this->escenario.guardar(nodo);
 
 }

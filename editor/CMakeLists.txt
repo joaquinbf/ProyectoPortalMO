@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 project(portal_editor LANGUAGES CXX)
 # find Qt5 and required components
 find_package(Qt5 COMPONENTS REQUIRED Core Gui Widgets)
+find_package(yaml-cpp REQUIRED)
 # need this to include the auto generated ui_mainwindow.h
 # file from the qt5_wrap_ui call below.
 set(CMAKE_AUTOMOC ON)
@@ -24,7 +25,8 @@ target_link_libraries(portal_editor
 	PUBLIC
 	Qt5::Core
 	Qt5::Gui 
-	Qt5::Widgets)
+	Qt5::Widgets
+	yaml-cpp)
 
 # auto copy dlls if on windows
 if(WIN32)
