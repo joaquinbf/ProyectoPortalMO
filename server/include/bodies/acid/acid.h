@@ -19,7 +19,7 @@ private:
 public:
     /* Instancia una mancha de acido en b2world con id 'body_id' en la
      * posicion (x, y) */
-    Acid(uint32_t body_id, World *world,  float x, float y);
+    Acid(World *world,  float x, float y);
 
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const;

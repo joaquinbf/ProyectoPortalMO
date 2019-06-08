@@ -20,7 +20,7 @@ private:
 public:
     /* Instancia una roca de id 'body_id' sobre b2orld en la
      * posicion (x, y) */
-    Rock(uint32_t body_id, World *world, float x, float y);
+    Rock(World *world, float x, float y);
 
     /* Libera los recursos utilizados */
     ~Rock();

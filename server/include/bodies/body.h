@@ -26,10 +26,16 @@ protected:
     b2Body *b2body;
 
 public:
-    Body(uint32_t body_id, World *world, ENTITY entity);
+    Body(World *world, ENTITY entity);
 
     /* Libera los recursos utilizados */
     virtual ~Body();
+
+    /* Devuelve la posicion x */
+    float getPosX() const;
+
+    /* Devuelve la posicion y */
+    float getPosY() const;
 
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const = 0;

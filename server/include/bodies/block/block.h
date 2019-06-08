@@ -43,8 +43,7 @@ public:
     /* Instancia un block de id 'body_id' sobre world en la posicion (x, y)
      * de shape y material asignado.
      * Al liberarse el block tambien se libera shape y material. */
-    Block(uint32_t body_id,
-          World *world,
+    Block(World *world,
           float x, float y,
           Shape *shape, Material *material);
 

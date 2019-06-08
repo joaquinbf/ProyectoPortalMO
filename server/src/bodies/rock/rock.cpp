@@ -9,8 +9,8 @@
 #include <cstdint>
 
 
-Rock::Rock(uint32_t body_id, World *world, float x, float y):
-    Body(body_id, world, ENTITY::ROCK) {
+Rock::Rock(World *world, float x, float y):
+    Body(world, ENTITY::ROCK) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);

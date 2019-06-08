@@ -13,11 +13,10 @@
 #include "../../../include/world.h"
 
 Block::Block(
-    uint32_t body_id,
     World *world,
     float x, float y,
     Shape *shape, Material *material):
-    Body(body_id, world, shape->createEntityWithMaterial(material)),
+    Body(world, shape->createEntityWithMaterial(material)),
     shape(shape), material(material) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;

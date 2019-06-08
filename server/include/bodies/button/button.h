@@ -38,8 +38,8 @@ public:
     const float RESTITUTION = 0.0;
 
 public:
-    /* Ubica un boton de id 'body_id' en world en la posicion (x, y) */
-    Button(uint32_t body_id, World *world, float x, float y);
+    /* Ubica un boton en world en la posicion (x, y) */
+    Button(World *world, float x, float y);
 
     /* Indica si el boton esta presionado */
     bool isPressed() const;

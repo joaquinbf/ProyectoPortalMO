@@ -10,9 +10,9 @@
 #include <cstdint>
 
 Bullet::Bullet(
-    uint32_t body_id, World *world,
+    World *world,
     float x, float y, DIRECTION direction):
-    Body(body_id, world, ENTITY::BULLET),
+    Body(world, ENTITY::BULLET),
     direction(direction) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_dynamicBody;

@@ -13,8 +13,8 @@
 #include "../../../include/bodies/rock/rock.h"
 #include <iostream>
 
-Gate::Gate(uint32_t body_id, World *world, float x, float y):
-    Body(body_id, world, ENTITY::GATE),
+Gate::Gate( World *world, float x, float y):
+    Body(world, ENTITY::GATE),
     width(this->MAX_WIDTH),
     height(this->MAX_HEIGHT),
     closed_gate_state(this),

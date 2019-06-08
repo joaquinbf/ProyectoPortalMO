@@ -6,8 +6,8 @@
 #include "../../../include/world.h"
 #include <iostream>
 
-Button::Button(uint32_t body_id, World *world, float x, float y):
-    Body(body_id, world, ENTITY::BUTTON) {
+Button::Button(World *world, float x, float y):
+    Body(world, ENTITY::BUTTON) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x -Cx, y - Cy);

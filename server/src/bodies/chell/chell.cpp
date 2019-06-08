@@ -20,8 +20,8 @@
 
 
 
-Chell::Chell(uint32_t body_id, World *world, float x, float y):
-    Body(body_id, world, ENTITY::CHELL),
+Chell::Chell(World *world, float x, float y):
+    Body(world, ENTITY::CHELL),
     is_facing_right(true),
     idle_state(this),
     running_state(this),

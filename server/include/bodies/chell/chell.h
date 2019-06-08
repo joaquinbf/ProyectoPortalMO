@@ -43,7 +43,7 @@ private:
 public:
     /* Instancia a chell de id 'body_id' sobre world en la
      * posicion (x, y) mirando a la derecha en estado idle. */
-    Chell(uint32_t body_id, World *world, float x, float y);
+    Chell(World *world, float x, float y);
 
     /* Indica si chell esta mirando hacia la derecha */
     bool isFacingRight();

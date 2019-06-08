@@ -10,10 +10,10 @@
 #include <cstdint>
 
 Launcher::Launcher(
-    uint32_t body_id, World *world,
+    World *world,
     float x, float y,
     DIRECTION direction):
-    Body(body_id, world, ENTITY::LAUNCH_BLOCK),
+    Body(world, ENTITY::LAUNCH_BLOCK),
     direction(direction),
     counter(0) {
     b2BodyDef b2bodydef;
@@ -55,7 +55,7 @@ void Launcher::handleEndContactWith(Body *other_body) {
 }
 
 void Launcher::applyStateAction() {
-    if (this->counter > 200) {
+    if (this->counter % 200 == 0) {
         this->counter = 0;
         this->fireABullet();
     } else {
@@ -64,5 +64,23 @@ void Launcher::applyStateAction() {
 }
 
 Bullet *Launcher::fireABullet() {
-    return 0;
+    float x = this->getPosX();
+    float y = this->getPosY();
+
+    Bullet *bullet;
+    switch (this->direction) {
+        case DIRECTION::RIGHT_DIRECTION:
+            bullet = this->world->createBullet(x, y, DIRECTION::RIGHT_DIRECTION);
+            break;
+        case DIRECTION::LEFT_DIRECTION:
+            bullet = this->world->createBullet(x, y, DIRECTION::LEFT_DIRECTION);
+            break;
+        case DIRECTION::UP_DIRECTION:
+            bullet = this->world->createBullet(x, y, DIRECTION::UP_DIRECTION);
+            break;
+        case DIRECTION::DOWN_DIRECTION:
+            bullet = this->world->createBullet(x, y, DIRECTION::DOWN_DIRECTION);
+            break;
+    }
+    return bullet;
 }

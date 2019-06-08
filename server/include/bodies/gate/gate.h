@@ -41,7 +41,7 @@ private:
 
 public:
     /* Instancia una compuerta de id 'body_id' en b2world en (x, y) */
-    Gate(uint32_t body_id, World *world, float x, float y);
+    Gate(World *world, float x, float y);
 
     virtual Update createUpdate(COMMAND command) const;
 

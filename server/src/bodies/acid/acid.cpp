@@ -8,8 +8,8 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2EdgeShape.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 
-Acid::Acid(uint32_t body_id, World *world,  float x, float y):
-    Body(body_id, world, ENTITY::ACID) {
+Acid::Acid(World *world,  float x, float y):
+    Body(world, ENTITY::ACID) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_staticBody;
     b2bodydef.position.Set(x, y);

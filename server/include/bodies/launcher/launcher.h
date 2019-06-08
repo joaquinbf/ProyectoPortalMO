@@ -20,7 +20,7 @@ public:
     /* Instancia un launcher de id 'body_id' sobre world en la
      * posicion (x, y) apuntado hacia la direccion dada. */
     Launcher(
-        uint32_t body_id, World *world,
+        World *world,
         float x, float y,
         DIRECTION direction);
 

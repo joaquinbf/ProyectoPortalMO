@@ -61,7 +61,7 @@ b2World *World::getB2World() {
 }
 
 Chell *World::createChell(float x, float y) {
-    Chell *chell = new Chell(this->getBodyCount(), this, x, y);
+    Chell *chell = new Chell(this, x, y);
     this->bodies.insert(chell);
     this->chells[chell->getBodyId()] = chell;
     this->body_count++;
@@ -71,7 +71,7 @@ Chell *World::createChell(float x, float y) {
 Block *World::createSquareMetalBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new MetalMaterial();
-    Block *block = new Block(this->getBodyCount(), this,
+    Block *block = new Block(this,
                              x, y,
                              shape, material);
     this->bodies.insert(block);
@@ -82,7 +82,7 @@ Block *World::createSquareMetalBlock(float x, float y) {
 Block *World::createSquareStoneBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new StoneMaterial();
-    Block *block = new Block(this->getBodyCount(), this,
+    Block *block = new Block(this,
                              x, y,
                              shape, material);
     this->bodies.insert(block);
@@ -91,7 +91,7 @@ Block *World::createSquareStoneBlock(float x, float y) {
 }
 
 Button *World::createButton(float x, float y) {
-    Button *button = new Button(this->getBodyCount(), this, x, y);
+    Button *button = new Button(this, x, y);
     this->bodies.insert(button);
     return button;
     this->body_count++;
@@ -101,11 +101,11 @@ void World::createGateWithButton(
     float x1, float y1,
     float x2, float y2,
     bool open_gate_when_button_is_pressed) {
-    Gate *gate = new Gate(this->getBodyCount(), this, x1, y1);
+    Gate *gate = new Gate(this, x1, y1);
     this->bodies.insert(gate);
     this->body_count++;
 
-    Button *button = new Button(this->getBodyCount(), this, x2, y2);
+    Button *button = new Button(this, x2, y2);
     this->body_count++;
     this->bodies.insert(button);
 
@@ -123,14 +123,14 @@ void World::createGateWithButton(
 }
 
 Gate *World::createGate(float x, float y) {
-    Gate *gate = new Gate(this->getBodyCount(), this, x, y);
+    Gate *gate = new Gate(this, x, y);
     this->bodies.insert(gate);
     this->body_count++;
     return gate;
 }
 
 Acid *World::createAcid(float x, float y) {
-    Acid *acid = new Acid(this->getBodyCount(), this, x, y);
+    Acid *acid = new Acid(this, x, y);
     this->bodies.insert(acid);
     this->body_count++;
     return acid;
@@ -138,7 +138,7 @@ Acid *World::createAcid(float x, float y) {
 
 Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
     Launcher *launcher = new Launcher(
-        this->getBodyCount(), this,
+        this,
         x, y,
         direction);
     this->bodies.insert(launcher);
@@ -147,7 +147,7 @@ Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
 }
 
 Bullet *World::createBullet(float x, float y, DIRECTION direction) {
-    Bullet *bullet = new Bullet(this->body_count, this, x, y, direction);
+    Bullet *bullet = new Bullet(this, x, y, direction);
     this->bodies.insert(bullet);
     this->body_count++;
     return bullet;

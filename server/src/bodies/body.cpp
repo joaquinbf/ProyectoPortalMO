@@ -10,13 +10,21 @@
 #include "../../include/world.h"
 #include <cstdint>
 
-Body::Body(uint32_t body_id, World *world, ENTITY entity):
-    BODY_ID(body_id),
+Body::Body(World *world, ENTITY entity):
+    BODY_ID(world->getBodyCount()),
     world(world),
     entity(entity) {
 }
 
 Body::~Body() {
+}
+
+float Body::getPosX() const {
+    return this->b2body->GetPosition().x;
+}
+
+float Body::getPosY() const {
+    return this->b2body->GetPosition().y;
 }
 
 uint32_t Body::getBodyId() const {
