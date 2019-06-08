@@ -40,6 +40,8 @@ private slots:
 
     void on_actionGuardar_Escenario_triggered();
 
+    void on_actionAbrir_Escenario_triggered();
+
 private:
     Ui::MainWindow *ui;
     EscenarioGrafico escenario;

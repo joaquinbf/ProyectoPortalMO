@@ -10,7 +10,9 @@
 #include <QMouseEvent>
 #include <string>
 #include <QSize>
+#include <QString>
 #include <yaml-cpp/yaml.h>
+#include <fstream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -94,19 +96,31 @@ void MainWindow::on_actionFondo_triggered()
 {
     QString path = QFileDialog::getOpenFileName(this, "Abrir");
 
-    this->escenario.setFondoEscenario(path.toStdString());
-
+    this->escenario.setFondoEscenario(path.toStdString(), this->ui->graphicsView->size());
+    /*
     QPixmap nuevoFondo(path);
     nuevoFondo = nuevoFondo.scaled(this->ui->graphicsView->size());
     QBrush fondo(nuevoFondo);
     this->escenario.setBackgroundBrush(fondo);
+    */
 }
 
 void MainWindow::on_actionGuardar_Escenario_triggered()
 {
     QString path = QFileDialog::getSaveFileName(this, "Guardar");
+    YAML::Node nodo;
+    //YAML::Node nodo = YAML::LoadFile(path.toStdString());
+    this->escenario.guardar(nodo);
+    std::ofstream salida((path.toStdString()).c_str());
+    salida << nodo;
+    salida.close();
 
-    YAML::Node nodo = YAML::LoadFile(path.toStdString());
-    //this->escenario.guardar(nodo);
+}
 
+void MainWindow::on_actionAbrir_Escenario_triggered()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Abrir");
+    YAML::Node nodo = YAML::LoadFile((path.toStdString()).c_str());
+    //
+    this->escenario.abrir(nodo);
 }

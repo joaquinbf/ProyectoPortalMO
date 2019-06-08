@@ -5,7 +5,8 @@
 #include <QSpinBox>
 #include <string>
 #include <QVector>
-//#include "yaml-cpp/yaml.h"
+#include <QSize>
+#include "yaml-cpp/yaml.h"
 #include "editor_item_grafico.h"
 #include "editor_celda_grafica.h"
 
@@ -18,6 +19,7 @@ private:
     std::string fondoEscenario;
 
     QVector<CeldaGrafica> celdas;
+    QSize tamanio;
 
     unsigned idClassACrear;
 
@@ -31,7 +33,7 @@ public:
     void keyPressEvent(QKeyEvent *event);
 
     void setSpinBox(QSpinBox *spinBoxX_, QSpinBox *spinBoxY_);
-    void setFondoEscenario(std::string direccion);
+    void setFondoEscenario(std::string direccion, QSize tamanio);
     void setIdClassACrear(unsigned idClass);
 
     void agregarACeldas(ItemGrafico *item, QGraphicsSceneMouseEvent *event);
@@ -44,7 +46,9 @@ public:
 
     CeldaGrafica &getCelda(QPointF posicion);
 
-    void guardar(/*YAML::Node &nodo*/);
+    void guardar(YAML::Node &nodo);
+    void abrir(YAML::Node &nodo);
+
 
 };
 

@@ -8,6 +8,7 @@
 
 #include <QGraphicsScene>
 #include <QPixmap>
+#include <QBrush>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QMessageBox>
@@ -95,9 +96,15 @@ void EscenarioGrafico::setSpinBox(QSpinBox *spinBoxX_, QSpinBox *spinBoxY_)
     this->spinBoxY = spinBoxY_;
 }
 
-void EscenarioGrafico::setFondoEscenario(std::string direccion)
+void EscenarioGrafico::setFondoEscenario(std::string direccion,  QSize tamanio)
 {
     this->fondoEscenario = direccion;
+    this->tamanio = tamanio;
+    QPixmap nuevoFondo(direccion.c_str());
+    nuevoFondo = nuevoFondo.scaled(tamanio);
+    QBrush fondo(nuevoFondo);
+    this->setBackgroundBrush(fondo);
+    
 }
 
 void EscenarioGrafico::setIdClassACrear(unsigned idClass)
@@ -127,9 +134,21 @@ CeldaGrafica &EscenarioGrafico::getCelda(QPointF posicion)
     return this->celdas[k];
 }
 
-void EscenarioGrafico::guardar(/*YAML::Node &nodo*/)
-{
-//    nodo["pathFondoEscenario"] = this->fondoEscenario;
+void EscenarioGrafico::guardar(YAML::Node &nodo)
+{   
+    nodo["escenario"]["pathFondoEscenario"] = this->fondoEscenario;
+    nodo["escenario"]["tamanioAncho"] = this->tamanio.width();
+    nodo["escenario"]["tamanioAlto"] = this->tamanio.height();
+}
+
+void EscenarioGrafico::abrir(YAML::Node &nodo) {
+    this->fondoEscenario = nodo["escenario"]["pathFondoEscenario"].as<std::string>();
+    this->tamanio.setWidth(nodo["escenario"]["tamanioAncho"].as<int>());
+    this->tamanio.setHeight(nodo["escenario"]["tamanioAlto"].as<int>());
+    QPixmap nuevoFondo(this->fondoEscenario.c_str());
+    nuevoFondo = nuevoFondo.scaled(this->tamanio);
+    QBrush fondo(nuevoFondo);
+    this->setBackgroundBrush(fondo);
 }
 
 void EscenarioGrafico::agregarACeldas(ItemGrafico *item, QGraphicsSceneMouseEvent *event)
