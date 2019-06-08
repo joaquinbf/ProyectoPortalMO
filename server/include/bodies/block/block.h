@@ -36,6 +36,7 @@ private:
     const float HALF_HEIGHT = 1.00;
     const float DENSITY = 1;
     const float ANGLE = 0;
+    const float FRICTION = 1;
 
 public:
     /* Instancia un block de id 'body_id' sobre world en la posicion (x, y)

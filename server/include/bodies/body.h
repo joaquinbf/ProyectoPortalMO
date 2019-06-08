@@ -9,6 +9,7 @@
 
 class World;
 
+class Acid;
 class Chell;
 class Block;
 class Button;
@@ -54,6 +55,8 @@ public:
     /* Aplica una accion sobre el cuerpo dependiendo de su estado */
     virtual void applyStateAction();
 
+    virtual void handleBeginContactWith(Acid *acid);
+
     /* Deja que el inicio de contacto sea manejado por chell */
     virtual void handleBeginContactWith(Chell *chell);
 
@@ -64,6 +67,8 @@ public:
     virtual void handleBeginContactWith(Gate *gate);
 
     virtual void handleBeginContactWith(Rock *rock);
+
+    virtual void handleEndContactWith(Acid *acid);
 
     virtual void handleEndContactWith(Chell *chell);
 

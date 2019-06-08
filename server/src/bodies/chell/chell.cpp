@@ -43,6 +43,7 @@ Chell::Chell(uint32_t body_id, World *world, float x, float y):
     boxFixtureDef.shape = &boxShape;
     boxFixtureDef.density = this->DENSITY;
     boxFixtureDef.userData = (void *) this;
+    boxFixtureDef.friction = this->FRICTION;
 
     b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
     b2fixture->SetUserData((void *)this);

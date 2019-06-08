@@ -1,4 +1,5 @@
 #include "../../include/bodies/body.h"
+#include "../../include/bodies/acid/acid.h"
 #include "../../include/bodies/chell/chell.h"
 #include "../../include/bodies/block/block.h"
 #include "../../include/bodies/gate/gate.h"
@@ -39,6 +40,9 @@ float Body::getMass() const {
 void Body::applyStateAction() {
 }
 
+void Body::handleBeginContactWith(Acid *acid) {
+}
+
 void Body::handleBeginContactWith(Chell *chell) {
 }
 
@@ -52,6 +56,9 @@ void Body::handleBeginContactWith(Gate *gate) {
 }
 
 void Body::handleBeginContactWith(Rock *rock) {
+}
+
+void Body::handleEndContactWith(Acid *acid) {
 }
 
 void Body::handleEndContactWith(Chell *chell) {

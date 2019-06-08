@@ -48,8 +48,8 @@ Update Gate::createUpdate(COMMAND command) const {
         this->entity,
         this->BODY_ID,
         this->state->getStatus(),
-        this->b2body->GetPosition().x * ZOOM_FACTOR,
-        this->b2body->GetPosition().y * ZOOM_FACTOR,
+        (this->b2body->GetPosition().x )* ZOOM_FACTOR,
+        (this->b2body->GetPosition().y - (MAX_HEIGHT/2))* ZOOM_FACTOR,
         0);
     return update;
 }

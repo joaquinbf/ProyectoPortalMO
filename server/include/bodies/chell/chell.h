@@ -34,6 +34,7 @@ private:
     const float HALF_HEIGHT = 1.00;
     const float DENSITY = 1;
     const float ANGLE = 0;
+    const float FRICTION = 1;
 
 public:
     /* Instancia a chell de id 'body_id' sobre b2world en la
