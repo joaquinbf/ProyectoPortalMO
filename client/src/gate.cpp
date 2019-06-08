@@ -55,24 +55,26 @@ void Gate::closed(){
 	this->frameArea =  Area(0,0,192,384);
 }
 void Gate::open(){
+	if(this->frame == 18){
+		this->actionPtr = &Gate::opened;
+		return;
+	}
 	this->status = STATUS::GATE_OPENING;
 	this->actionPtr = &Gate::open;
 	this->texturePtr = (SdlTexture *) this->textureManager.getGateTexturePointer(this->status);	
 	this->frameArea =  this->textureManager.getGateFrameArea(this->frame);
-	++this->frame;
-	if(this->frame == 19){
-		this->actionPtr = &Gate::opened;
-	}
+	++this->frame;	
 }
 
 void Gate::close(){
+	if(this->frame == 0){
+		this->actionPtr = &Gate::closed;
+		return;
+	}
 	this->status = STATUS::GATE_CLOSING;
 	this->actionPtr = &Gate::open;
 	this->texturePtr = (SdlTexture *) this->textureManager.getGateTexturePointer(this->status);
 	
 	this->frameArea =  this->textureManager.getGateFrameArea(this->frame);
 	--this->frame;
-	if(this->frame == 0){
-		this->actionPtr = &Gate::closed;
-	}
 }
