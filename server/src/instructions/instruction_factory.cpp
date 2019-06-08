@@ -7,6 +7,7 @@
 #include "../../include/instructions/run_right_instruction.h"
 #include "../../include/instructions/stop_right_instruction.h"
 #include "../../include/instructions/jump_instruction.h"
+#include "../../include/instructions/pinInstruction.h"
 #include "../../include/bodies/chell/chell.h"
 #include <map>
 #include <cstdint>
@@ -39,6 +40,10 @@ Instruction *InstructionFactory::createInstruction(
         case ACTION::JUMP:
             std::cout << "inst fact: ACTION::JUMP" << std::endl;
             instruction = new JumpInstruction(chell);
+            break;
+        case ACTION::PING:
+            std::cout << "inst fact: ACTION::PING" << std::endl;
+            instruction = new PinInstruction(chell);
             break;
         default:
             instruction = new DefaultInstruction();
