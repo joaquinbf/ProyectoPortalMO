@@ -7,6 +7,8 @@
 #include "../../../common/include/update.h"
 #include <cstdint>
 
+class World;
+
 class Chell;
 class Block;
 class Button;
@@ -16,17 +18,23 @@ class Rock;
 class Body {
 protected:
     const uint32_t BODY_ID;
-    b2Body *b2body;
+    World *world;
     const ENTITY entity;
+    b2Body *b2body;
 
 public:
-    Body(uint32_t body_id, ENTITY entity);
+    Body(uint32_t body_id, World *world, ENTITY entity);
 
     /* Libera los recursos utilizados */
     virtual ~Body();
-
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const = 0;
+
+    /* Maneja el inicio de contacto con otro cuerpo */
+    virtual void handleBeginContactWith(Body *other_body) = 0;
+
+    /* Maneja el fin de contacto con otro cuerpo */
+    virtual void handleEndContactWith(Body *other_body) = 0;
 
     /* Devuelve un identificador del cuerpo */
     uint32_t getBodyId() const;
@@ -46,9 +54,6 @@ public:
     /* Aplica una accion sobre el cuerpo dependiendo de su estado */
     virtual void applyStateAction();
 
-    /* Maneja el inicio de contacto con otro cuerpo */
-    virtual void handleBeginContactWith(Body *other_body) = 0;
-
     /* Deja que el inicio de contacto sea manejado por chell */
     virtual void handleBeginContactWith(Chell *chell);
 
@@ -60,9 +65,6 @@ public:
 
     virtual void handleBeginContactWith(Rock *rock);
 
-    /* Maneja el fin de contacto con otro cuerpo */
-    virtual void handleEndContactWith(Body *other_body) = 0;
-
     virtual void handleEndContactWith(Chell *chell);
 
     virtual void handleEndContactWith(Block *block);
@@ -72,8 +74,6 @@ public:
     virtual void handleEndContactWith(Gate *gate);
 
     virtual void handleEndContactWith(Rock *rock);
-
-
 };
 
 #endif

@@ -17,6 +17,7 @@
 #define LEFTSPEED 3
 #define RIGHTSPEED 3
 
+class World;
 class Button;
 class Block;
 class Gate;
@@ -37,7 +38,7 @@ private:
 public:
     /* Instancia a chell de id 'body_id' sobre b2world en la
      * posicion (x, y) mirando a la derecha en estado idle. */
-    Chell(uint32_t body_id, b2World *b2world, float x, float y);
+    Chell(uint32_t body_id, World *world, float x, float y);
 
     /* Indica si chell esta mirando hacia la derecha */
     bool isFacingRight();

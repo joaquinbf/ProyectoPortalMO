@@ -13,6 +13,7 @@
 #include "bodies/block/metal_material.h"
 #include "bodies/block/stone_material.h"
 #include "boolean_suppliers/boolean_block_factory.h"
+#include "bodies/acid/acid.h"
 #include "contact_listener.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
@@ -52,6 +53,11 @@ public:
 
     /* Libera los recursos utilizados. */
     ~World();
+    
+    /* Devuelve b2world */
+    b2World *getB2World();
+
+
 
     /* Crea y devuelve un puntero a una Chell creada en la posicion (x, y) */
     Chell *createChell(float x, float y);
@@ -78,6 +84,9 @@ public:
         float x1, float y1,
         float x2, float y2,
         bool open_gate_when_button_is_pressed);
+
+    /* Crea una mancha de acido en (x, y) */
+    Acid *createAcid(float x, float y);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */

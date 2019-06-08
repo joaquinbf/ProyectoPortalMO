@@ -18,6 +18,7 @@
 
 #define SIZE_RATE 0.05
 
+class World;
 class Chell;
 class Block;
 class Button;
@@ -40,7 +41,7 @@ private:
 
 public:
     /* Instancia una compuerta de id 'body_id' en b2world en (x, y) */
-    Gate(uint32_t body_id, b2World *b2world, float x, float y);
+    Gate(uint32_t body_id, World *world, float x, float y);
 
     virtual Update createUpdate(COMMAND command) const;
 

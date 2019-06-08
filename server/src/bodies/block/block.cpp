@@ -9,13 +9,14 @@
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/gate/gate.h"
 #include "../../../include/bodies/rock/rock.h"
-
+#include "../../../include/world.h"
 
 Block::Block(
-    uint32_t body_id, b2World *b2world,
+    uint32_t body_id,
+    World *world,
     float x, float y,
     Shape *shape, Material *material):
-    Body(body_id, shape->createEntityWithMaterial(material)),
+    Body(body_id, world, shape->createEntityWithMaterial(material)),
     shape(shape), material(material) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
@@ -24,7 +25,7 @@ Block::Block(
     bodyDef.userData = (void *) this;
     bodyDef.awake = false;
 
-    this->b2body = b2world->CreateBody(&bodyDef);
+    this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
     b2PolygonShape b2polygonshape = this->shape->giveShape(this->HALF_WIDTH,
                                                            this->HALF_HEIGHT);

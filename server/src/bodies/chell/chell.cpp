@@ -1,5 +1,6 @@
 #include "../../../include/bodies/chell/chell.h"
 
+#include "../../../include/world.h"
 #include "../../../include/bodies/body.h"
 #include "../../../include/bodies/chell/chell_state.h"
 #include "../../../include/bodies/chell/idle_state.h"
@@ -12,14 +13,15 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
-#include <iostream>
 #include "../../../include/bodies/gate/gate.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/rock/rock.h"
+#include <iostream>
 
 
-Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id, ENTITY::CHELL),
+
+Chell::Chell(uint32_t body_id, World *world, float x, float y):
+    Body(body_id, world, ENTITY::CHELL),
     is_facing_right(true),
     idle_state(this),
     running_state(this),
@@ -32,7 +34,7 @@ Chell::Chell(uint32_t body_id, b2World *b2world, float x, float y):
     bodyDef.userData = (void *) this;
     bodyDef.fixedRotation = true;
 
-    this->b2body = b2world->CreateBody(&bodyDef);
+    this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
     b2PolygonShape boxShape;
     boxShape.SetAsBox(this->HALF_WIDTH, this->HALF_HEIGHT);

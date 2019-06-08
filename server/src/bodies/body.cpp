@@ -1,7 +1,15 @@
 #include "../../include/bodies/body.h"
+#include "../../include/bodies/chell/chell.h"
+#include "../../include/bodies/block/block.h"
+#include "../../include/bodies/gate/gate.h"
+#include "../../include/bodies/button/button.h"
+#include "../../include/bodies/rock/rock.h"
+#include "../../include/world.h"
+#include <cstdint>
 
-Body::Body(uint32_t body_id, ENTITY entity):
+Body::Body(uint32_t body_id, World *world, ENTITY entity):
     BODY_ID(body_id),
+    world(world),
     entity(entity) {
 }
 

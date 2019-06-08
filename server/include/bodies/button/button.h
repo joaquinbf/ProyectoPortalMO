@@ -10,6 +10,7 @@
 #include "../../../../common/include/types.h"
 #include "../../../../server/include/boolean_suppliers/boolean_supplier.h"
 
+class World;
 class Gate;
 
 // Trapecio isoceles
@@ -31,13 +32,12 @@ class Gate;
 
 class Button: public Body, public BooleanSupplier {
 public:
-    const ENTITY entity = ENTITY::BUTTON;
     bool is_pressed;
     Gate *gate;
 
 public:
-    /* Ubica un boton de id 'body_id' en b2world en la posicion (x, y) */
-    Button(uint32_t body_id, b2World *b2world, float x, float y);
+    /* Ubica un boton de id 'body_id' en world en la posicion (x, y) */
+    Button(uint32_t body_id, World *world, float x, float y);
 
     /* Indica si el boton esta presionado */
     bool isPressed() const;

@@ -4,6 +4,7 @@
 #include "../include/bodies/chell/chell.h"
 #include "../include/bodies/button/button.h"
 #include "../include/bodies/gate/gate.h"
+#include "../include/bodies/acid/acid.h"
 #include "../include/instructions/instruction.h"
 #include "../include/instructions/instruction_factory.h"
 #include "../include/boolean_suppliers/boolean_block_factory.h"
@@ -35,8 +36,12 @@ World::~World() {
     this->deleteB2WorldIfInternal();
 }
 
+b2World *World::getB2World() {
+    return this->b2world;
+}
+
 Chell *World::createChell(float x, float y) {
-    Chell *chell = new Chell(this->body_count, this->b2world, x, y);
+    Chell *chell = new Chell(this->body_count, this, x, y);
     this->body_count++;
     this->bodies.push_back(chell);
     this->chells[chell->getBodyId()] = chell;
@@ -46,7 +51,7 @@ Chell *World::createChell(float x, float y) {
 Block *World::createSquareMetalBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new MetalMaterial();
-    Block *block = new Block(this->body_count, this->b2world,
+    Block *block = new Block(this->body_count, this,
                              x, y,
                              shape, material);
     this->bodies.push_back(block);
@@ -57,7 +62,7 @@ Block *World::createSquareMetalBlock(float x, float y) {
 Block *World::createSquareStoneBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new StoneMaterial();
-    Block *block = new Block(this->body_count, this->b2world,
+    Block *block = new Block(this->body_count, this,
                              x, y,
                              shape, material);
     this->bodies.push_back(block);
@@ -66,7 +71,7 @@ Block *World::createSquareStoneBlock(float x, float y) {
 }
 
 Button *World::createButton(float x, float y) {
-    Button *button = new Button(this->body_count, this->b2world, x, y);
+    Button *button = new Button(this->body_count, this, x, y);
     this->bodies.push_back(button);
     this->body_count++;
     return button;
@@ -76,11 +81,11 @@ void World::createGateWithButton(
     float x1, float y1,
     float x2, float y2,
     bool open_gate_when_button_is_pressed) {
-    Gate *gate = new Gate(this->body_count, this->b2world, x1, y1);
+    Gate *gate = new Gate(this->body_count, this, x1, y1);
     this->body_count++;
     this->bodies.push_back(gate);
 
-    Button *button = new Button(this->body_count, this->b2world, x2, y2);
+    Button *button = new Button(this->body_count, this, x2, y2);
     this->body_count++;
     this->bodies.push_back(button);
 
@@ -98,11 +103,16 @@ void World::createGateWithButton(
 }
 
 Gate *World::createGate(float x, float y) {
-    Gate *gate = new Gate(this->body_count, this->b2world, x, y);
+    Gate *gate = new Gate(this->body_count, this, x, y);
     this->body_count++;
     this->bodies.push_back(gate);
     return gate;
 }
+
+Acid *World::createAcid(float x, float y) {
+    return 0;
+}
+
 
 std::list<Update> World::getNewPlayerUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::CREATE_COMMAND);
@@ -118,10 +128,10 @@ std::list<Update> World::getPinUpdateList()const{
     for( auto it = this->pins.begin(); it != this->pins.end(); ++it ){
         if(it->second != nullptr){
             /*if(it->second->hasUpdate()){
-                update = it->second->getUpdate();    
+                update = it->second->getUpdate();
 
-            } */           
-        }       
+            } */
+        }
     }
     return list;
 }

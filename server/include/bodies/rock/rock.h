@@ -8,6 +8,8 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include <cstdint>
 
+class World;
+
 class Rock: public Body {
 private:
     const float HALF_WIDTH = 1.0;
@@ -18,7 +20,7 @@ private:
 public:
     /* Instancia una roca de id 'body_id' sobre b2orld en la
      * posicion (x, y) */
-    Rock(uint32_t body_id, b2World *b2world, float x, float y);
+    Rock(uint32_t body_id, World *world, float x, float y);
 
     /* Libera los recursos utilizados */
     ~Rock();

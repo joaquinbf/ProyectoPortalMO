@@ -1,4 +1,6 @@
 #include "../../../include/bodies/gate/gate.h"
+
+#include "../../../include/world.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -11,8 +13,8 @@
 #include "../../../include/bodies/rock/rock.h"
 #include <iostream>
 
-Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id, ENTITY::GATE),
+Gate::Gate(uint32_t body_id, World *world, float x, float y):
+    Body(body_id, world, ENTITY::GATE),
     width(this->MAX_WIDTH),
     height(this->MAX_HEIGHT),
     closed_gate_state(this),
@@ -25,7 +27,7 @@ Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     bodyDef.position.Set(x - (MAX_WIDTH/2), y + (MAX_HEIGHT/2));
     bodyDef.userData = (void *) this;
     bodyDef.awake = false;
-    this->b2body = b2world->CreateBody(&bodyDef);
+    this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
     b2PolygonShape b2polygonshape;
     b2Vec2 vertices[4];

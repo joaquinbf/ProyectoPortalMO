@@ -13,6 +13,8 @@
 
 #include <cstdint>
 
+class World;
+
 class Shape;
 class SquareShape;
 class DiagonalShape;
@@ -36,10 +38,11 @@ private:
     const float ANGLE = 0;
 
 public:
-    /* Instancia un block de id 'body_id' sobre b2world en la posicion (x, y)
+    /* Instancia un block de id 'body_id' sobre world en la posicion (x, y)
      * de shape y material asignado.
      * Al liberarse el block tambien se libera shape y material. */
-    Block(uint32_t body_id, b2World *b2world,
+    Block(uint32_t body_id,
+          World *world,
           float x, float y,
           Shape *shape, Material *material);
 

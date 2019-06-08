@@ -3,16 +3,17 @@
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/gate/gate.h"
 #include "../../../include/bodies/rock/rock.h"
+#include "../../../include/world.h"
 #include <iostream>
 
-Button::Button(uint32_t body_id, b2World *b2world, float x, float y):
-    Body(body_id, ENTITY::BUTTON) {
+Button::Button(uint32_t body_id, World *world, float x, float y):
+    Body(body_id, world, ENTITY::BUTTON) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x -Cx, y - Cy);
     bodyDef.userData = (void *) this;
     bodyDef.awake = false;
-    this->b2body = b2world->CreateBody(&bodyDef);
+    this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
     b2Vec2 vertices[4];
     vertices[0].Set(P1);
@@ -65,7 +66,6 @@ void Button::setGate(Gate *gate) {
 }
 
 void Button::notifyStatusChangeToGate() {
-    std::cout << "void Button::notifyStatusChangeToGate() {" << std::endl;
     if (this->gate != 0) {
         gate->tryChangeState();
     }
