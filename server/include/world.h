@@ -4,6 +4,7 @@
 #include "bodies/body.h"
 #include "bodies/chell/chell.h"
 #include "../include/bodies/button/button.h"
+#include "pin.h"
 #include "bodies/block/block.h"
 #include "bodies/block/shape.h"
 #include "bodies/block/square_shape.h"
@@ -34,8 +35,9 @@ private:
     bool b2world_is_internal;
     std::vector<Body *> bodies;
     std::map<uint32_t, Chell *> chells;
+    std::map<uint32_t, Pin *> pins;
     std::mutex mutex;
-    const float TIME_STEP = 1/30.0;
+    const float TIME_STEP = 1/20.0;
     const uint32_t VELOCITY_ITERATIONS = 8;
     const uint32_t POSITION_ITERATIONS = 3;
     BooleanBlockFactory boolean_block_factory;
@@ -86,7 +88,7 @@ public:
 
     /* Devuelve una lista de updates pero solo con los cuerpos despiertos */
     std::list<Update> getUpdatesForAwakeBodies() const;
-
+    std::list<Update> getPinUpdateList()const;
     /* Actualiza el mundo en un step. */
     void step();
 

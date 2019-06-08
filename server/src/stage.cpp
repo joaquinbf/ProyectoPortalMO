@@ -22,6 +22,10 @@ void Stage::run(){
 		for(Update update : list){
 			this->updates->push(update);
 		}
+		list = world.getPinUpdateList();
+		for(Update update : list){
+			this->updates->push(update);
+		}
 		usleep(50000);
 	}
 }

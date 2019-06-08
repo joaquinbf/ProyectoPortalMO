@@ -8,7 +8,7 @@ class Chell;
 class PinInstruction : public Instruction {
 
 public:
-	explicit PinInstruction(Chell *chell);
+	explicit PinInstruction();
     ~PinInstruction();
     virtual void execute() override;	
 };

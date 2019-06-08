@@ -112,6 +112,20 @@ std::list<Update> World::getUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::UPDATE_COMMAND);
 }
 
+std::list<Update> World::getPinUpdateList()const{
+    std::list<Update> list;
+    Update update;
+    for( auto it = this->pins.begin(); it != this->pins.end(); ++it ){
+        if(it->second != nullptr){
+            /*if(it->second->hasUpdate()){
+                update = it->second->getUpdate();    
+
+            } */           
+        }       
+    }
+    return list;
+}
+
 std::list<Update> World::getUpdatesForAwakeBodies() const {
     std::list<Update> updates;
 
@@ -165,11 +179,11 @@ void World::step() {
 }
 
 void World::createWorldOne() {
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 4; i++) {
         this->createChell(-6.00 + 2.00*i, 1.00);
     }
 
-    for (int i = 0; i < 7; i++) {
+    for (int i = -10; i < 10; i++) {
         this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 

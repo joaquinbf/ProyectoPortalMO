@@ -43,7 +43,7 @@ Instruction *InstructionFactory::createInstruction(
             break;
         case ACTION::PING:
             std::cout << "inst fact: ACTION::PING" << std::endl;
-            instruction = new PinInstruction(chell);
+            instruction = new PinInstruction();
             break;
         default:
             instruction = new DefaultInstruction();

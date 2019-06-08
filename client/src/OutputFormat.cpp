@@ -25,16 +25,14 @@ OutputFormat::OutputFormat(FormatContext& context,const std::string& filename,ui
         throw std::runtime_error("No se pudo reservar memoria para frame");
     }
     this->pkt = av_packet_alloc();
-    // Intenta deducir formato según extensión
+    
     this->avOutputFormat = av_guess_format(NULL, filename.c_str(), NULL);
     if (!this->avOutputFormat) {
-        // Intenta usar el formato standard
         this->avOutputFormat = av_guess_format("mpeg", NULL, NULL);
     }
     if (!this->avOutputFormat) {
         throw std::runtime_error("No se encontró formato de salida");
     }
-    // h.264 es bastante popular, pero hay mejores
     this->avOutputFormat->video_codec = AV_CODEC_ID_H264;
     AVCodec *codec = avcodec_find_encoder(this->avOutputFormat->video_codec);
     if (!codec) {
@@ -47,7 +45,6 @@ OutputFormat::OutputFormat(FormatContext& context,const std::string& filename,ui
 
 void OutputFormat::close() {
     encode(this->codecContext, NULL, this->pkt, this->outputFile);
-    /* add sequence end code to have a real MPEG file */
     uint8_t endcode[] = { 0, 0, 1, 0xb7 };
     fwrite(endcode, 1, sizeof(endcode), this->outputFile);
 }
@@ -63,12 +60,10 @@ void OutputFormat::initFrame() {
 
 void OutputFormat::writeFrame(const char* data, SwsContext* ctx ) {
     const u_int8_t* tmp = (const u_int8_t*) data;
-    // El ancho del video x3 por la cantidad de bytes
     int width = this->resx * 3;
-    sws_scale(ctx, &tmp, &width, 0, frame->height, frame->data, frame->linesize);
-    frame->pts = currentPts;
-    currentPts++;
-    /* encode the image */
+    sws_scale(ctx, &tmp, &width, 0, this->frame->height, this->frame->data, this->frame->linesize);
+    this->frame->pts = this->currentPts;
+    this->currentPts++;
     encode(this->codecContext, frame, pkt, this->outputFile);
 }
 
