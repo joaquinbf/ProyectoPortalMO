@@ -30,11 +30,15 @@ bool CeldaGrafica::abandonado()
     return (this->ocupada() && (this->getPosicionRelativaEscenario() != this->item->scenePos()));
 }
 
-void CeldaGrafica::guardar()
+void CeldaGrafica::guardar(YAML::Node &nodo)
 {
     if(this->ocupado) {
-        this->item->guardar();
+        this->item->guardar(nodo);
     }
+}
+
+void CeldaGrafica::abrir(YAML::Node &nodo) {
+    this->item->abrir(nodo);
 }
 
 void CeldaGrafica::recapturar()

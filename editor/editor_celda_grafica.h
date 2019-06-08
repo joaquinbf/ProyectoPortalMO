@@ -2,6 +2,7 @@
 #define EDITOR_CELDA_GRAFICA_H
 
 #include "editor_item_grafico.h"
+#include <yaml-cpp/yaml.h>
 
 class CeldaGrafica
 {
@@ -16,7 +17,9 @@ public:
     bool ocupada();
     bool libre();
     bool abandonado();
-    void guardar();
+    void guardar(YAML::Node &nodo);
+    void abrir(YAML::Node &nodo);
+
     void recapturar();
     void ocupar(ItemGrafico *item);
     ItemGrafico *liberar();

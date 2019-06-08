@@ -12,7 +12,12 @@ BloqueDeRoca::~BloqueDeRoca()
 
 }
 
-void BloqueDeRoca::guardar()
+void BloqueDeRoca::guardar(YAML::Node &nodo)
 {
+    int idCelda = this->getIdCelda();
+    nodo["celdas"][idCelda]["idClass"] = this->idClass;
+}
 
+void BloqueDeRoca::abrir(YAML::Node &nodo) {
+    
 }
