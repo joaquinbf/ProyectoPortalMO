@@ -45,9 +45,8 @@ World::~World() {
 }
 
 uint32_t World::getBodyCount() const {
-    return this->bodies.size();
+    return this->body_count;
 }
-
 
 b2World *World::getB2World() {
     return this->b2world;
@@ -238,9 +237,7 @@ void World::applyAction(const Action &action) {
 
 void World::applyStateActions() {
     for (Body *body: this->bodies) {
-        if (body->isAwake()) {
-            body->applyStateAction();
-        }
+        body->applyStateAction();
     }
 }
 
