@@ -29,7 +29,14 @@ Launcher::Launcher(uint32_t body_id, World *world, float x, float y):
 }
 
 Update Launcher::createUpdate(COMMAND command) const {
-    Update update;
+    Update update(
+        command,
+        this->entity,
+        this->BODY_ID,
+        STATUS::NONE_STATUS,
+        this->b2body->GetPosition().x * ZOOM_FACTOR,
+        this->b2body->GetPosition().y * ZOOM_FACTOR,
+        0);
     return update;
 }
 
