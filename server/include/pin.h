@@ -12,6 +12,7 @@ public:
 	explicit Pin(uint32_t id,int32_t x,int32_t y);
 	~Pin();
 	bool hasUpdate();
+	uint32_t getId() const;
 	Update getUpdate();
 };
 
