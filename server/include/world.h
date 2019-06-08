@@ -47,7 +47,7 @@ private:
     const uint32_t POSITION_ITERATIONS = 3;
     BooleanBlockFactory boolean_block_factory;
     ContactListener contact_listener;
-    std::set<Body *> dead_bodies;
+    std::set<Body *> bodies_for_deletion;
 
 public:
     /* Instancia un world */
@@ -135,9 +135,15 @@ public:
     /* Devuelve su boolean block factory */
     BooleanBlockFactory *getBooleanBlockFactory();
 
+    /* Agrega un body para ser eliminado */
+    void addBodyForDeletion(Body *body);
+
+    /* Elimina los body para ser eliminado */
+    void deleteBodiesForDeletion();
+
 private:
     /* Libera los bodies creados */
-    void deleteBodies();
+    void deleteAllBodies();
 
     /* Libera a b2world si fue creado internamente */
     void deleteB2WorldIfInternal();

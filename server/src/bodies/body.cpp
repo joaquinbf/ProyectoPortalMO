@@ -16,6 +16,9 @@ Body::Body(uint32_t body_id, World *world, ENTITY entity):
 }
 
 Body::~Body() {
+    if (this->b2body != 0) {
+        this->world->getB2World()->DestroyBody(this->b2body);
+    }
 }
 
 uint32_t Body::getBodyId() const {

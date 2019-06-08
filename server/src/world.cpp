@@ -41,7 +41,7 @@ World::World(b2World *b2world):
 }
 
 World::~World() {
-    this->deleteBodies();
+    this->deleteAllBodies();
     this->deleteB2WorldIfInternal();
     for(auto it : this->pins){
         delete it.second;
@@ -284,7 +284,20 @@ BooleanBlockFactory *World::getBooleanBlockFactory() {
     return &this->boolean_block_factory;
 }
 
-void World::deleteBodies() {
+void World::addBodyForDeletion(Body *body) {
+    this->bodies_for_deletion.insert(body);
+}
+
+void World::deleteBodiesForDeletion() {
+    for (Body *body: this->bodies_for_deletion) {
+        this->bodies.erase(body);
+        delete body;
+    }
+
+    this->bodies_for_deletion.clear();
+}
+
+void World::deleteAllBodies() {
     for (Body *body: this->bodies) {
         delete body;
     }
