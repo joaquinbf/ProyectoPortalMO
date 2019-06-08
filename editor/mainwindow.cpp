@@ -10,7 +10,9 @@
 #include <QMouseEvent>
 #include <string>
 #include <QSize>
-//#include <yaml-cpp/yaml.h>
+#include <QString>
+#include <yaml-cpp/yaml.h>
+#include <fstream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -94,19 +96,106 @@ void MainWindow::on_actionFondo_triggered()
 {
     QString path = QFileDialog::getOpenFileName(this, "Abrir");
 
-    this->escenario.setFondoEscenario(path.toStdString());
-
+    this->escenario.setFondoEscenario(path.toStdString(), this->ui->graphicsView->size());
+    /*
     QPixmap nuevoFondo(path);
     nuevoFondo = nuevoFondo.scaled(this->ui->graphicsView->size());
     QBrush fondo(nuevoFondo);
     this->escenario.setBackgroundBrush(fondo);
+    */
 }
 
 void MainWindow::on_actionGuardar_Escenario_triggered()
 {
     QString path = QFileDialog::getSaveFileName(this, "Guardar");
-
+    YAML::Node nodo;
     //YAML::Node nodo = YAML::LoadFile(path.toStdString());
-    //this->escenario.guardar(nodo);
+    this->escenario.guardar(nodo);
+    std::ofstream salida((path.toStdString()).c_str());
+    salida << nodo;
+    salida.close();
+
+}
+
+void MainWindow::on_actionAbrir_Escenario_triggered()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Abrir");
+    YAML::Node nodo = YAML::LoadFile((path.toStdString()).c_str());
+    //
+    this->escenario.abrir(nodo);
+}
+
+void MainWindow::on_actionPastel_triggered()
+{
+
+}
+
+void MainWindow::on_actionBloqueOriginal_triggered()
+{
+
+}
+
+void MainWindow::on_actionBloqueRotado_90_triggered()
+{
+
+}
+
+void MainWindow::on_actionBloqueRotado_180_triggered()
+{
+
+}
+
+void MainWindow::on_actionBloqueRotado_270_triggered()
+{
+
+}
+
+void MainWindow::on_actionEmisorOriginal_triggered()
+{
+
+}
+
+void MainWindow::on_actionEmisor_Rotado_90_triggered()
+{
+
+}
+
+void MainWindow::on_actionEmisor_Rotado_180_triggered()
+{
+
+}
+
+void MainWindow::on_actionEmisor_Rotado_270_triggered()
+{
+
+}
+
+void MainWindow::on_actionReceptor_Original_triggered()
+{
+
+}
+
+void MainWindow::on_actionCompuerta_Regular_triggered()
+{
+
+}
+
+void MainWindow::on_actionCompuerta_AND_triggered()
+{
+
+}
+
+void MainWindow::on_actionCompuerta_OR_triggered()
+{
+
+}
+
+void MainWindow::on_actionBarrera_Horizontal_triggered()
+{
+
+}
+
+void MainWindow::on_actionBarrera_Vertical_triggered()
+{
 
 }

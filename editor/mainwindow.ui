@@ -158,9 +158,6 @@
       <string>Receptor de Energia </string>
      </property>
      <addaction name="actionReceptor_Original"/>
-     <addaction name="actionReceptor_Rotado_90"/>
-     <addaction name="actionReceptor_Rotado_180"/>
-     <addaction name="actionReceptor_Rotado_270"/>
     </widget>
     <widget class="QMenu" name="menuCompuerta">
      <property name="title">
@@ -223,9 +220,6 @@
    <addaction name="actionEmisor_Rotado_270"/>
    <addaction name="separator"/>
    <addaction name="actionReceptor_Original"/>
-   <addaction name="actionReceptor_Rotado_90"/>
-   <addaction name="actionReceptor_Rotado_180"/>
-   <addaction name="actionReceptor_Rotado_270"/>
    <addaction name="separator"/>
    <addaction name="actionCompuerta_Regular"/>
    <addaction name="actionCompuerta_AND"/>
@@ -238,6 +232,7 @@
    <addaction name="actionBoton"/>
    <addaction name="separator"/>
    <addaction name="actionRoca"/>
+   <addaction name="actionAcido"/>
   </widget>
   <action name="actionNuevo_Escenario">
    <property name="icon">

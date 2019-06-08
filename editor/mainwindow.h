@@ -40,6 +40,38 @@ private slots:
 
     void on_actionGuardar_Escenario_triggered();
 
+    void on_actionAbrir_Escenario_triggered();
+
+    void on_actionPastel_triggered();
+
+    void on_actionBloqueOriginal_triggered();
+
+    void on_actionBloqueRotado_90_triggered();
+
+    void on_actionBloqueRotado_180_triggered();
+
+    void on_actionBloqueRotado_270_triggered();
+
+    void on_actionEmisorOriginal_triggered();
+
+    void on_actionEmisor_Rotado_90_triggered();
+
+    void on_actionEmisor_Rotado_180_triggered();
+
+    void on_actionEmisor_Rotado_270_triggered();
+
+    void on_actionReceptor_Original_triggered();
+
+    void on_actionCompuerta_Regular_triggered();
+
+    void on_actionCompuerta_AND_triggered();
+
+    void on_actionCompuerta_OR_triggered();
+
+    void on_actionBarrera_Horizontal_triggered();
+
+    void on_actionBarrera_Vertical_triggered();
+
 private:
     Ui::MainWindow *ui;
     EscenarioGrafico escenario;

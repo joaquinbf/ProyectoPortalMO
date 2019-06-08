@@ -5,7 +5,8 @@
 #include <QSpinBox>
 #include <string>
 #include <QVector>
-//#include "yaml-cpp/yaml.h"
+#include <QSize>
+#include "yaml-cpp/yaml.h"
 #include "editor_item_grafico.h"
 #include "editor_celda_grafica.h"
 
@@ -18,6 +19,7 @@ private:
     std::string fondoEscenario;
 
     QVector<CeldaGrafica> celdas;
+    QSize tamanio;
 
     unsigned idClassACrear;
 
@@ -28,23 +30,25 @@ public:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     //void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-    void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
 
     void setSpinBox(QSpinBox *spinBoxX_, QSpinBox *spinBoxY_);
-    void setFondoEscenario(std::string direccion);
+    void setFondoEscenario(std::string direccion, QSize tamanio);
     void setIdClassACrear(unsigned idClass);
 
-    void agregarACeldas(ItemGrafico *item, QGraphicsSceneMouseEvent *event);
-    void moverItem(QGraphicsSceneMouseEvent *event);
-    void crearItem(QGraphicsSceneMouseEvent *event);
-    void crearPersonaje(QGraphicsSceneMouseEvent *event);
-    void crearBloqueDeRoca(QGraphicsSceneMouseEvent *event);
+    void agregarACeldas(ItemGrafico *item, QPointF posicion);
+    void moverItem(QPointF posicion);
+    void crearItem(QPointF posicion);
+    void crearPersonaje(QPointF posicion);
+    void crearBloqueDeRoca(QPointF posicion);
 
 
 
     CeldaGrafica &getCelda(QPointF posicion);
 
-    void guardar(/*YAML::Node &nodo*/);
+    void guardar(YAML::Node &nodo);
+    void abrir(YAML::Node &nodo);
+
 
 };
 
