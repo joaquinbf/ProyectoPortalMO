@@ -1,6 +1,2 @@
-Abrir una terminal en la carpeta y ejecutar los siguientes comandos
-- mkdir build
-- cd build/
-- cmake ..
-- make
-- ./portal_editor
+Para ejecutar el editor, abrir una terminal y ejecutar el archivo cmake.sh. Esto se puede hacer con:
+ - bash cmake.sh

@@ -8,6 +8,7 @@
 
 #include <QGraphicsScene>
 #include <QPixmap>
+#include <QBrush>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QMessageBox>
@@ -32,9 +33,10 @@ EscenarioGrafico::~EscenarioGrafico()
 void EscenarioGrafico::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if(event->buttons() & Qt::LeftButton) {
-        this->moverItem(event);
+        QGraphicsScene::mouseMoveEvent(event);
+        this->moverItem(event->scenePos());
     } else {
-        this->crearItem(event);
+        this->crearItem(event->scenePos());
     }
     this->spinBoxX->setValue(event->scenePos().x());
     this->spinBoxY->setValue(event->scenePos().y());
@@ -43,7 +45,7 @@ void EscenarioGrafico::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void EscenarioGrafico::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    this->crearItem(event);
+    this->crearItem(event->scenePos());
     QGraphicsScene::mousePressEvent(event);
     this->spinBoxX->setValue(event->scenePos().x());
     this->spinBoxY->setValue(event->scenePos().y());
@@ -63,24 +65,23 @@ void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void EscenarioGrafico::crearItem(QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::crearItem(const QPointF posicion)
 {
     if(this->idClassACrear == IDCLASS_NULL) {
         return;
     } else if(this->idClassACrear == IDCLASS_CHELL) {
-        this->crearPersonaje(event);
+        this->crearPersonaje(posicion);
     } else if(this->idClassACrear == IDCLASS_BLOQUEROCA) {
-        this->crearBloqueDeRoca(event);
+        this->crearBloqueDeRoca(posicion);
     }
 }
 
-void EscenarioGrafico::moverItem(QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::moverItem(const QPointF posicion)
 {
-    QGraphicsScene::mouseMoveEvent(event);
     for(int i = 0; i < this->celdas.size(); ++i) {
         if(this->celdas[i].abandonado()) {
-            if((this->getCelda(event->scenePos())).libre()) {
-                (this->getCelda(event->scenePos())).ocupar(this->celdas[i].liberar());
+            if((this->getCelda(posicion)).libre()) {
+                (this->getCelda(posicion)).ocupar(this->celdas[i].liberar());
             } else {
                 this->celdas[i].recapturar();
             }
@@ -95,9 +96,15 @@ void EscenarioGrafico::setSpinBox(QSpinBox *spinBoxX_, QSpinBox *spinBoxY_)
     this->spinBoxY = spinBoxY_;
 }
 
-void EscenarioGrafico::setFondoEscenario(std::string direccion)
+void EscenarioGrafico::setFondoEscenario(std::string direccion,  QSize tamanio)
 {
     this->fondoEscenario = direccion;
+    this->tamanio = tamanio;
+    QPixmap nuevoFondo(direccion.c_str());
+    nuevoFondo = nuevoFondo.scaled(tamanio);
+    QBrush fondo(nuevoFondo);
+    this->setBackgroundBrush(fondo);
+    
 }
 
 void EscenarioGrafico::setIdClassACrear(unsigned idClass)
@@ -105,17 +112,17 @@ void EscenarioGrafico::setIdClassACrear(unsigned idClass)
     this->idClassACrear = idClass;
 }
 
-void EscenarioGrafico::crearPersonaje(QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::crearPersonaje(QPointF posicion)
 {
     PersonajeChell *personaje = new PersonajeChell(IDCOLOR_CHELL_A, "CHELL");
-    this->agregarACeldas(personaje, event);
+    this->agregarACeldas(personaje, posicion);
 
 }
 
-void EscenarioGrafico::crearBloqueDeRoca(QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::crearBloqueDeRoca(QPointF posicion)
 {
     BloqueDeRoca *bloque = new BloqueDeRoca();
-    this->agregarACeldas(bloque, event);
+    this->agregarACeldas(bloque, posicion);
 }
 
 CeldaGrafica &EscenarioGrafico::getCelda(QPointF posicion)
@@ -127,19 +134,31 @@ CeldaGrafica &EscenarioGrafico::getCelda(QPointF posicion)
     return this->celdas[k];
 }
 
-void EscenarioGrafico::guardar(/*YAML::Node &nodo*/)
-{
-//    nodo["pathFondoEscenario"] = this->fondoEscenario;
+void EscenarioGrafico::guardar(YAML::Node &nodo)
+{   
+    nodo["escenario"]["pathFondoEscenario"] = this->fondoEscenario;
+    nodo["escenario"]["tamanioAncho"] = this->tamanio.width();
+    nodo["escenario"]["tamanioAlto"] = this->tamanio.height();
 }
 
-void EscenarioGrafico::agregarACeldas(ItemGrafico *item, QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::abrir(YAML::Node &nodo) {
+    this->fondoEscenario = nodo["escenario"]["pathFondoEscenario"].as<std::string>();
+    this->tamanio.setWidth(nodo["escenario"]["tamanioAncho"].as<int>());
+    this->tamanio.setHeight(nodo["escenario"]["tamanioAlto"].as<int>());
+    QPixmap nuevoFondo(this->fondoEscenario.c_str());
+    nuevoFondo = nuevoFondo.scaled(this->tamanio);
+    QBrush fondo(nuevoFondo);
+    this->setBackgroundBrush(fondo);
+}
+
+void EscenarioGrafico::agregarACeldas(ItemGrafico *item, QPointF posicion)
 {
-    if(!(this->getCelda(event->scenePos()).ocupada())) {
+    if(!(this->getCelda(posicion).ocupada())) {
        this->addItem(item);
-       item->setPos((this->getCelda(event->scenePos())).getPosicionRelativaEscenario());
+       item->setPos((this->getCelda(posicion)).getPosicionRelativaEscenario());
        item->setFlag(QGraphicsItem::ItemIsMovable);
        item->setFlag(QGraphicsItem::ItemIsSelectable);
-       (this->getCelda(event->scenePos())).ocupar(item);
+       (this->getCelda(posicion)).ocupar(item);
     } else {
        delete item;
     }
