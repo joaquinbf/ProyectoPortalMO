@@ -7,6 +7,10 @@ id(id),x(x),y(y),cont(30){
 
 Pin::~Pin(){}
 
+uint32_t Pin::getId() const{
+	return this->id;
+}
+
 bool Pin::hasUpdate(){
 	if(this->cont == 30 || this->cont == 0){
 		return true;

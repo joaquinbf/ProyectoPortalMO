@@ -29,7 +29,7 @@
 #include <mutex>
 
 #define GRAVITY b2Vec2(0.0, -9.8)
-#define MAX_CHELLS 4
+
 
 class World {
 private:
@@ -39,6 +39,7 @@ private:
     std::vector<Body *> bodies;
     std::map<uint32_t, Chell *> chells;
     std::map<uint32_t, Pin *> pins;
+    std::map<uint32_t, uint32_t> changedPins;
     std::mutex mutex;
     const float TIME_STEP = 1/20.0;
     const uint32_t VELOCITY_ITERATIONS = 8;

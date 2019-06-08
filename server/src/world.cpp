@@ -43,6 +43,9 @@ World::World(b2World *b2world):
 World::~World() {
     this->deleteBodies();
     this->deleteB2WorldIfInternal();
+    for(auto it : this->pins){
+        delete it.second;
+    }
 }
 
 uint32_t World::getBodyCount() const {
@@ -163,8 +166,9 @@ void World::createNewPin(uint32_t id, int32_t x, int32_t y){
     Pin* ptr = new Pin(this->body_count,x,y);
     this->body_count++;
     if(this->pins.find(id) != this->pins.end()){
-        //std::cout<<"CHUCHA\n";
-        //ya hay un pin (chucha)
+        this->changedPins[id] = this->pins[id]->getId();
+        delete this->pins[id];
+        this->pins[id] = ptr;        
     } else {
         this->pins[id] = ptr;
     }
@@ -173,11 +177,18 @@ void World::createNewPin(uint32_t id, int32_t x, int32_t y){
 std::list<Update> World::getPinUpdateList(){
     std::list<Update> list;
     Update update;
+    for(auto it : this->changedPins){
+        if(it.second){
+            list.push_back(Update(COMMAND::DESTROY_COMMAND,ENTITY::PIN,it.second,
+                STATUS::NONE_STATUS,0,0,0));
+            it.second = 0;
+        }
+    }
     for( auto it : this->pins){
         if(it.second != nullptr){
             if(it.second->hasUpdate()){
                 update = it.second->getUpdate();
-                if(update.getCommand()!=COMMAND::DESTROY_COMMAND){
+                if(update.getCommand()==COMMAND::DESTROY_COMMAND){
                     delete it.second;
                     this->pins.erase(it.first);
                 }
