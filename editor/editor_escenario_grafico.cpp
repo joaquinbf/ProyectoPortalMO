@@ -139,6 +139,13 @@ void EscenarioGrafico::guardar(YAML::Node &nodo)
     nodo["escenario"]["pathFondoEscenario"] = this->fondoEscenario;
     nodo["escenario"]["tamanioAncho"] = this->tamanio.width();
     nodo["escenario"]["tamanioAlto"] = this->tamanio.height();
+    //TODO otras configuraciones.
+    for (int i = 0; i < this->celdas.size(); i++)
+    {
+        nodo["celdas"][i]["ocupado"] = this->celdas[i].ocupada();
+        this->celdas[i].guardar(nodo);
+    }
+    
 }
 
 void EscenarioGrafico::abrir(YAML::Node &nodo) {
@@ -149,6 +156,18 @@ void EscenarioGrafico::abrir(YAML::Node &nodo) {
     nuevoFondo = nuevoFondo.scaled(this->tamanio);
     QBrush fondo(nuevoFondo);
     this->setBackgroundBrush(fondo);
+    //TODO otras configuraciones
+    for (int i = 0; i < this->celdas.size(); i++)
+    {
+        if (nodo["celdas"][i]["ocupado"].as<bool>())
+        {
+            this->idClassACrear = nodo["celdas"][i]["idClass"].as<int>();
+            this->crearItem(this->celdas[i].getPosicionRelativaEscenario());
+            this->celdas[i].abrir(nodo);
+        }
+        
+    }
+
 }
 
 void EscenarioGrafico::agregarACeldas(ItemGrafico *item, QPointF posicion)

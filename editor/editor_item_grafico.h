@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QString>
 #include <string>
+#include <QPointF>
 #include <yaml-cpp/yaml.h>
 
 class ItemGrafico : public QGraphicsPixmapItem
@@ -17,7 +18,10 @@ public:
     ItemGrafico(QString direccionSprite, unsigned idClass);
     virtual ~ItemGrafico();
 
-    virtual void guardar(/*YAML::Node &nodo*/);
+    int getIdCelda();
+    virtual void guardar(YAML::Node &nodo) = 0;
+    virtual void abrir(YAML::Node &nodo) = 0;
+
 };
 
 #endif // EDITOR_ITEM_GRAFICO_H
