@@ -7,6 +7,7 @@
 #include <cstdint>
 
 class World;
+class Bullet;
 
 class Launcher: public Body {
 private:
@@ -34,6 +35,9 @@ public:
 
     /* Aplica una accion dependiendo de su estado */
     virtual void applyStateAction() override;
+
+    /* Dispara una bala en la direccion del launcher */
+    Bullet *fireABullet();
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "../../../include/bodies/launcher/launcher.h"
+#include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/world.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
@@ -56,8 +57,12 @@ void Launcher::handleEndContactWith(Body *other_body) {
 void Launcher::applyStateAction() {
     if (this->counter > 200) {
         this->counter = 0;
-
+        this->fireABullet();
     } else {
         this->counter += 1;
     }
+}
+
+Bullet *Launcher::fireABullet() {
+    return 0;
 }
