@@ -62,7 +62,7 @@ b2World *World::getB2World() {
 
 Chell *World::createChell(float x, float y) {
     Chell *chell = new Chell(this->getBodyCount(), this, x, y);
-    this->bodies.push_back(chell);
+    this->bodies.insert(chell);
     this->chells[chell->getBodyId()] = chell;
     this->body_count++;
     return chell;
@@ -74,7 +74,7 @@ Block *World::createSquareMetalBlock(float x, float y) {
     Block *block = new Block(this->getBodyCount(), this,
                              x, y,
                              shape, material);
-    this->bodies.push_back(block);
+    this->bodies.insert(block);
     this->body_count++;
     return block;
 }
@@ -85,14 +85,14 @@ Block *World::createSquareStoneBlock(float x, float y) {
     Block *block = new Block(this->getBodyCount(), this,
                              x, y,
                              shape, material);
-    this->bodies.push_back(block);
+    this->bodies.insert(block);
     this->body_count++;
     return block;
 }
 
 Button *World::createButton(float x, float y) {
     Button *button = new Button(this->getBodyCount(), this, x, y);
-    this->bodies.push_back(button);
+    this->bodies.insert(button);
     return button;
     this->body_count++;
 }
@@ -102,12 +102,12 @@ void World::createGateWithButton(
     float x2, float y2,
     bool open_gate_when_button_is_pressed) {
     Gate *gate = new Gate(this->getBodyCount(), this, x1, y1);
-    this->bodies.push_back(gate);
+    this->bodies.insert(gate);
     this->body_count++;
 
     Button *button = new Button(this->getBodyCount(), this, x2, y2);
     this->body_count++;
-    this->bodies.push_back(button);
+    this->bodies.insert(button);
 
     button->setGate(gate);
 
@@ -124,14 +124,14 @@ void World::createGateWithButton(
 
 Gate *World::createGate(float x, float y) {
     Gate *gate = new Gate(this->getBodyCount(), this, x, y);
-    this->bodies.push_back(gate);
+    this->bodies.insert(gate);
     this->body_count++;
     return gate;
 }
 
 Acid *World::createAcid(float x, float y) {
     Acid *acid = new Acid(this->getBodyCount(), this, x, y);
-    this->bodies.push_back(acid);
+    this->bodies.insert(acid);
     this->body_count++;
     return acid;
 }
@@ -141,14 +141,14 @@ Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
         this->getBodyCount(), this,
         x, y,
         direction);
-    this->bodies.push_back(launcher);
+    this->bodies.insert(launcher);
     this->body_count++;
     return launcher;
 }
 
 Bullet *World::createBullet(float x, float y, DIRECTION direction) {
     Bullet *bullet = new Bullet(this->body_count, this, x, y, direction);
-    this->bodies.push_back(bullet);
+    this->bodies.insert(bullet);
     this->body_count++;
     return bullet;
 }
@@ -168,7 +168,7 @@ void World::createNewPin(uint32_t id, int32_t x, int32_t y){
     if(this->pins.find(id) != this->pins.end()){
         this->changedPins[id] = this->pins[id]->getId();
         delete this->pins[id];
-        this->pins[id] = ptr;        
+        this->pins[id] = ptr;
     } else {
         this->pins[id] = ptr;
     }

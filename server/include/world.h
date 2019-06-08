@@ -27,6 +27,7 @@
 #include <list>
 #include <map>
 #include <mutex>
+#include <set>
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
@@ -36,7 +37,7 @@ private:
     b2World *b2world;
     uint32_t body_count;
     bool b2world_is_internal;
-    std::vector<Body *> bodies;
+    std::set<Body *> bodies;
     std::map<uint32_t, Chell *> chells;
     std::map<uint32_t, Pin *> pins;
     std::map<uint32_t, uint32_t> changedPins;
@@ -46,6 +47,7 @@ private:
     const uint32_t POSITION_ITERATIONS = 3;
     BooleanBlockFactory boolean_block_factory;
     ContactListener contact_listener;
+    std::set<Body *> dead_bodies;
 
 public:
     /* Instancia un world */
