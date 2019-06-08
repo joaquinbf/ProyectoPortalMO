@@ -28,7 +28,7 @@
 #include <mutex>
 
 #define GRAVITY b2Vec2(0.0, -9.8)
-#define MAX_CHELLS 4
+
 
 class World {
 private:

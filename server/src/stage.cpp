@@ -14,19 +14,31 @@ void Stage::run(){
 	std::list<Update> list;
 	while(this->running){
 		while(this->inputs->try_pop(action)){
-			this->world.applyAction(action);
+			if(this->running){
+				this->world.applyAction(action);
+			}			
 		}
-		this->world.applyStateActions();
-		this->world.step();
-		list = world.getUpdatesForAwakeBodies();
+		if(this->running){
+			this->world.applyStateActions();
+		}
+		if(this->running){
+			this->world.step();
+		}
+		if(this->running){
+			list = world.getUpdatesForAwakeBodies();
+		}
 		for(Update update : list){
-			this->updates->push(update);
+			if(this->running){
+				this->updates->push(update);
+			}
 		}
 		list = world.getPinUpdateList();
 		for(Update update : list){
 			this->updates->push(update);
 		}
-		usleep(50000);
+		if(this->running){
+			usleep(50000);
+		}
 	}
 }
 
