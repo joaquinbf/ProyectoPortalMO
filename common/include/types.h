@@ -52,4 +52,11 @@ enum STATUS: uint8_t {
 	GATE_CLOSING            = 0x12
 };
 
+enum DIRECTION: uint8_t {
+	RIGHT_DIRECTION = 0x00,
+	DOWN_DIRECTION  = 0x01,
+	LEFT_DIRECTION  = 0x02,
+	UP_DIRECTION    = 0x03
+};
+
 #endif

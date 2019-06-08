@@ -10,13 +10,18 @@ class World;
 
 class Launcher: public Body {
 private:
+    DIRECTION direction;
+    uint32_t counter;
     const float WIDTH = 1.00;
     const float HEIGHT = 1.00;
 
 public:
     /* Instancia un launcher de id 'body_id' sobre world en la
-     * posicion (x, y) */
-    Launcher(uint32_t body_id, World *world, float x, float y);
+     * posicion (x, y) apuntado hacia la direccion dada. */
+    Launcher(
+        uint32_t body_id, World *world,
+        float x, float y,
+        DIRECTION direction);
 
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const;
@@ -26,6 +31,9 @@ public:
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body);
+
+    /* Aplica una accion dependiendo de su estado */
+    virtual void applyStateAction() override;
 };
 
 #endif

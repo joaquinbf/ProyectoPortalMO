@@ -57,6 +57,7 @@ Chell *World::createChell(float x, float y) {
     Chell *chell = new Chell(this->getBodyCount(), this, x, y);
     this->bodies.push_back(chell);
     this->chells[chell->getBodyId()] = chell;
+    this->body_count++;
     return chell;
 }
 
@@ -67,7 +68,7 @@ Block *World::createSquareMetalBlock(float x, float y) {
                              x, y,
                              shape, material);
     this->bodies.push_back(block);
-
+    this->body_count++;
     return block;
 }
 
@@ -78,6 +79,7 @@ Block *World::createSquareStoneBlock(float x, float y) {
                              x, y,
                              shape, material);
     this->bodies.push_back(block);
+    this->body_count++;
     return block;
 }
 
@@ -85,6 +87,7 @@ Button *World::createButton(float x, float y) {
     Button *button = new Button(this->getBodyCount(), this, x, y);
     this->bodies.push_back(button);
     return button;
+    this->body_count++;
 }
 
 void World::createGateWithButton(
@@ -93,9 +96,10 @@ void World::createGateWithButton(
     bool open_gate_when_button_is_pressed) {
     Gate *gate = new Gate(this->getBodyCount(), this, x1, y1);
     this->bodies.push_back(gate);
+    this->body_count++;
 
     Button *button = new Button(this->getBodyCount(), this, x2, y2);
-
+    this->body_count++;
     this->bodies.push_back(button);
 
     button->setGate(gate);
@@ -114,22 +118,26 @@ void World::createGateWithButton(
 Gate *World::createGate(float x, float y) {
     Gate *gate = new Gate(this->getBodyCount(), this, x, y);
     this->bodies.push_back(gate);
+    this->body_count++;
     return gate;
 }
 
 Acid *World::createAcid(float x, float y) {
     Acid *acid = new Acid(this->getBodyCount(), this, x, y);
     this->bodies.push_back(acid);
+    this->body_count++;
     return acid;
 }
 
-Launcher *World::createLauncher(float x, float y) {
-    Launcher *launcher = new Launcher(this->getBodyCount(), this, x, y);
+Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
+    Launcher *launcher = new Launcher(
+        this->getBodyCount(), this,
+        x, y,
+        direction);
     this->bodies.push_back(launcher);
+    this->body_count++;
     return launcher;
 }
-
-
 
 std::list<Update> World::getNewPlayerUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::CREATE_COMMAND);

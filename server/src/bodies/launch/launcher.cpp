@@ -8,8 +8,13 @@
 #include "../../../../common/include/update.h"
 #include <cstdint>
 
-Launcher::Launcher(uint32_t body_id, World *world, float x, float y):
-    Body(body_id, world, ENTITY::LAUNCH_BLOCK){
+Launcher::Launcher(
+    uint32_t body_id, World *world,
+    float x, float y,
+    DIRECTION direction):
+    Body(body_id, world, ENTITY::LAUNCH_BLOCK),
+    direction(direction),
+    counter(0) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_dynamicBody;
     b2bodydef.position.Set(x, y);
@@ -46,4 +51,13 @@ void Launcher::handleBeginContactWith(Body *other_body) {
 
 void Launcher::handleEndContactWith(Body *other_body) {
     other_body->handleEndContactWith(this);
+}
+
+void Launcher::applyStateAction() {
+    if (this->counter > 200) {
+        this->counter = 0;
+
+    } else {
+        this->counter += 1;
+    }
 }

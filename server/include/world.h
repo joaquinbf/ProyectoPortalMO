@@ -94,8 +94,8 @@ public:
     /* Crea una mancha de acido en (x, y) */
     Acid *createAcid(float x, float y);
 
-    /* Crea un lanzador en (x, y) */
-    Launcher *createLauncher(float x, float y);
+    /* Crea un lanzador en (x, y) apuntando en la direccion ada.*/
+    Launcher *createLauncher(float x, float y, DIRECTION direction);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */
