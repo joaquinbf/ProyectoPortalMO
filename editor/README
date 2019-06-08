@@ -1,0 +1,6 @@
+Abrir una terminal en la carpeta y ejecutar los siguientes comandos
+- mkdir build
+- cd build/
+- cmake ..
+- make
+- ./portal_editor
