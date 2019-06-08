@@ -65,11 +65,11 @@ void Button::setGate(Gate *gate) {
 }
 
 void Button::notifyStatusChangeToGate() {
+    std::cout << "void Button::notifyStatusChangeToGate() {" << std::endl;
     if (this->gate != 0) {
         gate->tryChangeState();
     }
 }
-
 
 bool Button::getAsBoolean() const {
     return this->isPressed();

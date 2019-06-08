@@ -22,7 +22,7 @@ Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x - (MAX_WIDTH/2), y + (MAX_HEIGHT/2));
     bodyDef.userData = (void *) this;
-    bodyDef.awake = false;
+    bodyDef.awake = true;
     this->b2body = b2world->CreateBody(&bodyDef);
 
     b2PolygonShape b2polygonshape;
