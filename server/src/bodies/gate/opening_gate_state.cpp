@@ -15,7 +15,7 @@ void OpeningGateState::tryChangeState() {
 
 void OpeningGateState::applyStateAction() {
     if (this->gate->isTotallyShrinked()) {
-
+        this->gate->changeStateToOpen();
     } else {
         this->gate->shrink();
     }

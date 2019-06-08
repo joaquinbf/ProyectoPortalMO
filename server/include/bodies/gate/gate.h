@@ -5,6 +5,7 @@
 #include "gate_state.h"
 #include "closed_gate_state.h"
 #include "opening_gate_state.h"
+#include "open_gate_state.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -29,6 +30,7 @@ private:
     float height;
     ClosedGateState closed_gate_state;
     OpeningGateState opening_gate_state;
+    OpenGateState open_gate_state;
     GateState *state;
     BooleanBlock *boolean_block;
 
@@ -59,6 +61,9 @@ public:
 
     /* Cambia su estado a abriendo */
     void changeStateToOpening();
+
+    /* Cambia su estado a abierto */
+    void changeStateToOpen();
 
     /* Achica la compuerta */
     void shrink();

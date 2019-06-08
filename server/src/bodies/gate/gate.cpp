@@ -16,6 +16,7 @@ Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     height(this->MAX_HEIGHT),
     closed_gate_state(this),
     opening_gate_state(this),
+    open_gate_state(this),
     state(&this->closed_gate_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
@@ -78,6 +79,12 @@ void Gate::changeStateToOpening() {
     this->awake();
     this->state = &this->opening_gate_state;
 }
+
+void Gate::changeStateToOpen() {
+    this->putToSleep();
+    this->state = &this->open_gate_state;
+}
+
 
 void Gate::shrink() {
     b2Fixture *b2fixture = this->b2body->GetFixtureList();
