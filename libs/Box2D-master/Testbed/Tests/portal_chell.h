@@ -5,6 +5,7 @@
 #include "../../../../server/include/bodies/chell/chell.h"
 #include "../../../../server/include/bodies/block/block.h"
 #include "../../../../server/include/bodies/button/button.h"
+#include "../../../../common/include/update.h"
 #include <iostream>
 
 class PortalChell: public Test {

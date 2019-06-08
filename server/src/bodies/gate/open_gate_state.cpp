@@ -7,7 +7,8 @@ OpenGateState::OpenGateState(Gate *gate):
 }
 
 void OpenGateState::tryChangeState() {
-    if (this->gate->conditionIsMeet()) {
+    if (!this->gate->conditionIsMeet()) {
+        this->gate->changeStateToClosing();
     }
 }
 

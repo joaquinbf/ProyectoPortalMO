@@ -6,6 +6,7 @@
 #include "closed_gate_state.h"
 #include "opening_gate_state.h"
 #include "open_gate_state.h"
+#include "closing_gate_state.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -14,6 +15,8 @@
 #include "../../../../common/include/types.h"
 #include "../../boolean_suppliers/boolean_block.h"
 #include <cstdint>
+
+#define SIZE_RATE 0.05
 
 class Chell;
 class Block;
@@ -31,6 +34,7 @@ private:
     ClosedGateState closed_gate_state;
     OpeningGateState opening_gate_state;
     OpenGateState open_gate_state;
+    ClosingGateState closing_gate_state;
     GateState *state;
     BooleanBlock *boolean_block;
 
@@ -65,11 +69,23 @@ public:
     /* Cambia su estado a abierto */
     void changeStateToOpen();
 
+    /* Cambia el estado a cerrando */
+    void changeStateToClosing();
+
+    /* Cambia el estado a cerrado */
+    void changeStateToClosed();
+
     /* Achica la compuerta */
     void shrink();
 
-    /* Indica si la compuerta esta completamente achicada */
-    bool isTotallyShrinked() const;
+    /* Agranda la compuerta. */
+    void grow();
+
+    /* Indica si la compuerta esta en su minima altura */
+    bool isOnMinSize() const;
+
+    /* Indica si esta en su maxima altura. */
+    bool isOnMaxSize() const;
 };
 
 #endif

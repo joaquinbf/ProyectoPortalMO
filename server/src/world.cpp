@@ -147,6 +147,10 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
                 std::cout << "STATUS::GATE_CLOSED" << std::endl;
             } else if (update.getStatus() == STATUS::GATE_OPENING) {
                 std::cout << "STATUS::GATE_OPENING" << std::endl;
+            } else if (update.getStatus() == STATUS::GATE_OPENED) {
+                std::cout << "STATUS::GATE_OPENED" << std::endl;
+            } else if (update.getStatus() == STATUS::GATE_CLOSING) {
+                std::cout << "STATUS::GATE_CLOSING" << std::endl;
             }
         }
     }

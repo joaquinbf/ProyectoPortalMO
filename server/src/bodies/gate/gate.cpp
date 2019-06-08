@@ -9,6 +9,7 @@
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/rock/rock.h"
+#include <iostream>
 
 Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     Body(body_id, ENTITY::GATE),
@@ -17,6 +18,7 @@ Gate::Gate(uint32_t body_id, b2World *b2world, float x, float y):
     closed_gate_state(this),
     opening_gate_state(this),
     open_gate_state(this),
+    closing_gate_state(this),
     state(&this->closed_gate_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
@@ -76,22 +78,29 @@ bool Gate::conditionIsMeet() {
 }
 
 void Gate::changeStateToOpening() {
-    this->awake();
     this->state = &this->opening_gate_state;
 }
 
 void Gate::changeStateToOpen() {
-    this->putToSleep();
     this->state = &this->open_gate_state;
 }
+
+void Gate::changeStateToClosing() {
+    this->state = &this->closing_gate_state;
+}
+
+void Gate::changeStateToClosed() {
+    this->state = &this->closed_gate_state;
+}
+
 
 
 void Gate::shrink() {
     b2Fixture *b2fixture = this->b2body->GetFixtureList();
     b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
 
-    if (this->height - 0.10 > MIN_HEIGHT) {
-        this->height -= 0.10;
+    if (this->height - SIZE_RATE > MIN_HEIGHT) {
+        this->height -= SIZE_RATE;
     } else {
         this->height = MIN_HEIGHT;
     }
@@ -103,8 +112,33 @@ void Gate::shrink() {
     vertices[3].Set(0.00, -this->height);
 
     b2polygonshape->Set(vertices, 4);
+    std::cout << "SHRINKING height: " << height << std::endl;
 }
 
-bool Gate::isTotallyShrinked() const {
+void Gate::grow() {
+    b2Fixture *b2fixture = this->b2body->GetFixtureList();
+    b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
+
+    if (this->height + SIZE_RATE < MAX_HEIGHT) {
+        this->height += SIZE_RATE;
+    } else {
+        this->height = MAX_HEIGHT;
+    }
+
+    std::cout << "GROW height: " << height << std::endl;
+    b2Vec2 vertices[4];
+    vertices[0].Set(0.00, 0.00);
+    vertices[1].Set(MAX_WIDTH, 0.00);
+    vertices[2].Set(MAX_WIDTH, -this->height);
+    vertices[3].Set(0.00, -this->height);
+
+    b2polygonshape->Set(vertices, 4);
+}
+
+bool Gate::isOnMinSize() const {
     return this->height == MIN_HEIGHT;
+}
+
+bool Gate::isOnMaxSize() const {
+    return this->height == MAX_HEIGHT;
 }

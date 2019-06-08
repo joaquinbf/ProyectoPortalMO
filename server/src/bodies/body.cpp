@@ -16,7 +16,7 @@ bool Body::isAwake() const {
     return this->b2body->IsAwake();
 }
 
-void Body::awake() {
+void Body::wakeUp() {
     this->b2body->SetAwake(true);
 }
 

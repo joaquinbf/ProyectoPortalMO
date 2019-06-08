@@ -35,7 +35,7 @@ public:
     bool isAwake() const;
 
     /* Despierta al cuerpo */
-    void awake();
+    void wakeUp();
 
     /* Duerme al cuerpo */
     void putToSleep();

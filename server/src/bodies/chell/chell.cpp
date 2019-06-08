@@ -133,10 +133,9 @@ void Chell::applyLinearImpulseToLeft() {
 
 void Chell::applyLinearImpulseToRight() {
     float mass = this->b2body->GetMass();
-    b2Vec2 v = this->b2body->GetLinearVelocity();
     float vel = RIGHTSPEED;
     float imp = mass * vel;
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, v.y), true);
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
 }
 
 void Chell::applyLinearImpulseToUp() {

@@ -23,7 +23,6 @@ void JumpingState::pressRight() {
 }
 
 void JumpingState::releaseRight() {
-    std::cout << "void JumpingState::releaseRight()" << std::endl;
     this->chell->stopRightMovement();
     this->chell->changeStateToIdle();
 }
