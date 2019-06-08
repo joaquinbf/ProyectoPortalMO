@@ -65,7 +65,7 @@ void Block::handleBeginContactWith(Body *other_body) {
 }
 
 void Block::handleBeginContactWith(Chell *chell) {
-    chell->changeStateToIdle();
+    chell->land();
 }
 
 void Block::handleEndContactWith(Body *other_body) {

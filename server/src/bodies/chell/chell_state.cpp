@@ -35,6 +35,10 @@ void ChellState::releaseUp() {
 
 }
 
+void ChellState::land(){
+}
+
+
 void ChellState::applyStateAction() {
 }
 

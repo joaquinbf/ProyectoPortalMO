@@ -14,8 +14,8 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 
 #define JUMPSPEED 5
-#define LEFTSPEED 3
-#define RIGHTSPEED 3
+#define LEFTSPEED 2
+#define RIGHTSPEED 2
 
 class World;
 class Button;
@@ -34,7 +34,8 @@ private:
     const float HALF_HEIGHT = 1.00;
     const float DENSITY = 1;
     const float ANGLE = 0;
-    const float FRICTION = 1;
+    const float FRICTION = 0.5;
+    const float RESTITUTION = 0.0;
 
 public:
     /* Instancia a chell de id 'body_id' sobre b2world en la
@@ -80,6 +81,9 @@ public:
 
     /* Cambia el estado a jumping */
     void changeStateToJumping();
+
+    /* Aterriza a chell */
+    void land();
 
     /* Aplica un impulso a la izquierda */
     void applyLinearImpulseToLeft();

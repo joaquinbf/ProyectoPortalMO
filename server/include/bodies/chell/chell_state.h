@@ -37,6 +37,9 @@ public:
     /* Realiza una accion tras solatar la tecla de arriba */
     virtual void releaseUp();
 
+    /* Aterriza a chell */
+    virtual void land();
+
     /* Aplica una accion sobre chell */
     virtual void applyStateAction();
 

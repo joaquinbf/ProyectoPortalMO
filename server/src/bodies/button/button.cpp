@@ -25,6 +25,7 @@ Button::Button(uint32_t body_id, World *world, float x, float y):
     b2polygonshape.Set(vertices, 4);
 
     b2FixtureDef fixtureDef;
+    fixtureDef.friction = this->FRICTION;
     fixtureDef.shape = &b2polygonshape;
     this->b2body->CreateFixture(&fixtureDef);
     this->is_pressed = false;
@@ -81,7 +82,7 @@ void Button::handleBeginContactWith(Body *other_body) {
 
 void Button::handleBeginContactWith(Chell *chell) {
     this->press();
-    chell->changeStateToIdle();
+    chell->land();
 }
 
 void Button::handleEndContactWith(Body *other_body) {

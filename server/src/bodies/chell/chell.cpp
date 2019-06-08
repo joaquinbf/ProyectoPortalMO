@@ -44,6 +44,7 @@ Chell::Chell(uint32_t body_id, World *world, float x, float y):
     boxFixtureDef.density = this->DENSITY;
     boxFixtureDef.userData = (void *) this;
     boxFixtureDef.friction = this->FRICTION;
+    boxFixtureDef.restitution = this->RESTITUTION;
 
     b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
     b2fixture->SetUserData((void *)this);
@@ -126,42 +127,47 @@ void Chell::changeStateToJumping() {
     this->applyLinearImpulseToUp();
 }
 
+void Chell::land() {
+    this->state->land();
+}
 
 void Chell::applyLinearImpulseToLeft() {
     float mass = this->b2body->GetMass();
-    float vel = LEFTSPEED;
-    float imp = mass * vel;
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-imp, 0), true);
+    float impx = mass * LEFTSPEED;
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-impx, 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
     float mass = this->b2body->GetMass();
-    float vel = RIGHTSPEED;
-    float imp = mass * vel;
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(imp, 0), true);
+    float impx = mass * RIGHTSPEED;
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(impx, 0), true);
 }
 
 void Chell::applyLinearImpulseToUp() {
     float mass = this->b2body->GetMass();
-    float vel = JUMPSPEED;
-    float imp = mass * vel;
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, imp), true);
+    b2Vec2 v = this->b2body->GetLinearVelocity();
+    float impx = mass * v.x;
+    float impy = mass * JUMPSPEED;
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(impx, impy), true);
 }
 
-
 void Chell::stopLeftMovement() {
-    b2Vec2 vel = this->b2body->GetLinearVelocity();
-    if (vel.x < 0) {
-        vel.x = 0;
-        this->b2body->SetLinearVelocity(vel);
+    b2Vec2 v = this->b2body->GetLinearVelocity();
+    if (v.x < 0) {
+        float mass = this->b2body->GetMass();
+        float impx = mass * v.x;
+        float impy = mass * v.y;
+        this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-impx, impy), true);
     }
 }
 
 void Chell::stopRightMovement() {
-    b2Vec2 vel = this->b2body->GetLinearVelocity();
-    if (vel.x > 0) {
-        vel.x = 0;
-        this->b2body->SetLinearVelocity(vel);
+    b2Vec2 v = this->b2body->GetLinearVelocity();
+    if (v.x > 0) {
+        float mass = this->b2body->GetMass();
+        float impx = mass * v.x;
+        float impy = mass * v.y;
+        this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-impx, impy), true);
     }
 }
 
@@ -178,12 +184,12 @@ void Chell::handleBeginContactWith(Body *other_body) {
 }
 
 void Chell::handleBeginContactWith(Block *block) {
-    this->changeStateToIdle();
+    this->land();
 }
 
 void Chell::handleBeginContactWith(Button *button) {
     button->press();
-    this->changeStateToIdle();
+    this->land();
 }
 
 void Chell::handleEndContactWith(Body *other_body) {
