@@ -20,6 +20,7 @@ extern "C" {
 
 class VideoRecorder{
 	bool recording;
+	bool inframe;
 	uint32_t bufferWidth;
     uint32_t bufferHeight;
     std::vector<char> dataBuffer;

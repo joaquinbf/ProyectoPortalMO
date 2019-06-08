@@ -1,4 +1,4 @@
-#include "../include/inputManager.h"
+ #include "../include/inputManager.h"
 
 InputManager::InputManager(const ServerManager& sm,GameView& v,VideoRecorder& vr) 
 : running(true),serverManager(sm),chellId(0),gameView(v),videoRecorder(vr){

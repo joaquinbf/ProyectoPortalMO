@@ -66,7 +66,6 @@ void OutputFormat::writeFrame(const char* data, SwsContext* ctx ) {
     // El ancho del video x3 por la cantidad de bytes
     int width = this->resx * 3;
     sws_scale(ctx, &tmp, &width, 0, frame->height, frame->data, frame->linesize);
-    //drawFrame(frame, data);
     frame->pts = currentPts;
     currentPts++;
     /* encode the image */

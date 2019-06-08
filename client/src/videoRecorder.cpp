@@ -1,7 +1,7 @@
 #include "../include/videoRecorder.h"
 
 VideoRecorder::VideoRecorder():
-recording(false), bufferWidth(0), bufferHeight(0){
+recording(false), inframe(false),bufferWidth(0), bufferHeight(0){
 	av_register_all();
 	av_log_set_level(AV_LOG_QUIET);
 }
@@ -24,6 +24,7 @@ void VideoRecorder::startRecording(uint32_t width, uint32_t height){
 void VideoRecorder::stopRecording(){
 	if(this->recording){
 		this->recording = false;
+		while(this->inframe){}
 		this->videoOutput->close();
     	sws_freeContext(ctx);	
        	delete this->videoOutput; 	
@@ -34,6 +35,7 @@ void VideoRecorder::stopRecording(){
 
 void VideoRecorder::recordFrame(SDL_Renderer* renderer){
     if(this->recording){
+    	this->inframe = true;
     	int res = SDL_RenderReadPixels(renderer, NULL, 
     	SDL_PIXELFORMAT_RGB24, this->dataBuffer.data(), this->bufferWidth*3);
     	if (res) {
@@ -41,6 +43,7 @@ void VideoRecorder::recordFrame(SDL_Renderer* renderer){
 	        	std::string(SDL_GetError()));
     	}
     	this->videoOutput->writeFrame(this->dataBuffer.data(), this->ctx);	
+    	this->inframe = false;
     }
 }
 
