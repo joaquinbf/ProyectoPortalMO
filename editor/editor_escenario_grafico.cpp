@@ -33,9 +33,10 @@ EscenarioGrafico::~EscenarioGrafico()
 void EscenarioGrafico::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if(event->buttons() & Qt::LeftButton) {
-        this->moverItem(event);
+        QGraphicsScene::mouseMoveEvent(event);
+        this->moverItem(event->scenePos());
     } else {
-        this->crearItem(event);
+        this->crearItem(event->scenePos());
     }
     this->spinBoxX->setValue(event->scenePos().x());
     this->spinBoxY->setValue(event->scenePos().y());
@@ -44,7 +45,7 @@ void EscenarioGrafico::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void EscenarioGrafico::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    this->crearItem(event);
+    this->crearItem(event->scenePos());
     QGraphicsScene::mousePressEvent(event);
     this->spinBoxX->setValue(event->scenePos().x());
     this->spinBoxY->setValue(event->scenePos().y());
@@ -64,24 +65,23 @@ void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void EscenarioGrafico::crearItem(QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::crearItem(const QPointF posicion)
 {
     if(this->idClassACrear == IDCLASS_NULL) {
         return;
     } else if(this->idClassACrear == IDCLASS_CHELL) {
-        this->crearPersonaje(event);
+        this->crearPersonaje(posicion);
     } else if(this->idClassACrear == IDCLASS_BLOQUEROCA) {
-        this->crearBloqueDeRoca(event);
+        this->crearBloqueDeRoca(posicion);
     }
 }
 
-void EscenarioGrafico::moverItem(QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::moverItem(const QPointF posicion)
 {
-    QGraphicsScene::mouseMoveEvent(event);
     for(int i = 0; i < this->celdas.size(); ++i) {
         if(this->celdas[i].abandonado()) {
-            if((this->getCelda(event->scenePos())).libre()) {
-                (this->getCelda(event->scenePos())).ocupar(this->celdas[i].liberar());
+            if((this->getCelda(posicion)).libre()) {
+                (this->getCelda(posicion)).ocupar(this->celdas[i].liberar());
             } else {
                 this->celdas[i].recapturar();
             }
@@ -112,17 +112,17 @@ void EscenarioGrafico::setIdClassACrear(unsigned idClass)
     this->idClassACrear = idClass;
 }
 
-void EscenarioGrafico::crearPersonaje(QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::crearPersonaje(QPointF posicion)
 {
     PersonajeChell *personaje = new PersonajeChell(IDCOLOR_CHELL_A, "CHELL");
-    this->agregarACeldas(personaje, event);
+    this->agregarACeldas(personaje, posicion);
 
 }
 
-void EscenarioGrafico::crearBloqueDeRoca(QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::crearBloqueDeRoca(QPointF posicion)
 {
     BloqueDeRoca *bloque = new BloqueDeRoca();
-    this->agregarACeldas(bloque, event);
+    this->agregarACeldas(bloque, posicion);
 }
 
 CeldaGrafica &EscenarioGrafico::getCelda(QPointF posicion)
@@ -151,14 +151,14 @@ void EscenarioGrafico::abrir(YAML::Node &nodo) {
     this->setBackgroundBrush(fondo);
 }
 
-void EscenarioGrafico::agregarACeldas(ItemGrafico *item, QGraphicsSceneMouseEvent *event)
+void EscenarioGrafico::agregarACeldas(ItemGrafico *item, QPointF posicion)
 {
-    if(!(this->getCelda(event->scenePos()).ocupada())) {
+    if(!(this->getCelda(posicion).ocupada())) {
        this->addItem(item);
-       item->setPos((this->getCelda(event->scenePos())).getPosicionRelativaEscenario());
+       item->setPos((this->getCelda(posicion)).getPosicionRelativaEscenario());
        item->setFlag(QGraphicsItem::ItemIsMovable);
        item->setFlag(QGraphicsItem::ItemIsSelectable);
-       (this->getCelda(event->scenePos())).ocupar(item);
+       (this->getCelda(posicion)).ocupar(item);
     } else {
        delete item;
     }

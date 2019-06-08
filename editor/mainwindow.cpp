@@ -124,3 +124,78 @@ void MainWindow::on_actionAbrir_Escenario_triggered()
     //
     this->escenario.abrir(nodo);
 }
+
+void MainWindow::on_actionPastel_triggered()
+{
+
+}
+
+void MainWindow::on_actionBloqueOriginal_triggered()
+{
+
+}
+
+void MainWindow::on_actionBloqueRotado_90_triggered()
+{
+
+}
+
+void MainWindow::on_actionBloqueRotado_180_triggered()
+{
+
+}
+
+void MainWindow::on_actionBloqueRotado_270_triggered()
+{
+
+}
+
+void MainWindow::on_actionEmisorOriginal_triggered()
+{
+
+}
+
+void MainWindow::on_actionEmisor_Rotado_90_triggered()
+{
+
+}
+
+void MainWindow::on_actionEmisor_Rotado_180_triggered()
+{
+
+}
+
+void MainWindow::on_actionEmisor_Rotado_270_triggered()
+{
+
+}
+
+void MainWindow::on_actionReceptor_Original_triggered()
+{
+
+}
+
+void MainWindow::on_actionCompuerta_Regular_triggered()
+{
+
+}
+
+void MainWindow::on_actionCompuerta_AND_triggered()
+{
+
+}
+
+void MainWindow::on_actionCompuerta_OR_triggered()
+{
+
+}
+
+void MainWindow::on_actionBarrera_Horizontal_triggered()
+{
+
+}
+
+void MainWindow::on_actionBarrera_Vertical_triggered()
+{
+
+}
