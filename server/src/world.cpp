@@ -5,6 +5,7 @@
 #include "../include/bodies/button/button.h"
 #include "../include/bodies/gate/gate.h"
 #include "../include/bodies/acid/acid.h"
+#include "../include/bodies/bullet/bullet.h"
 #include "../include/bodies/launcher/launcher.h"
 #include "../include/instructions/instruction.h"
 #include "../include/instructions/instruction_factory.h"
@@ -46,6 +47,10 @@ World::~World() {
 
 uint32_t World::getBodyCount() const {
     return this->body_count;
+}
+
+uint32_t World::getBodySize() const {
+    return this->bodies.size();
 }
 
 b2World *World::getB2World() {
@@ -138,6 +143,14 @@ Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
     return launcher;
 }
 
+Bullet *World::createBullet(float x, float y, DIRECTION direction) {
+    Bullet *bullet = new Bullet(this->body_count, this, x, y, direction);
+    this->bodies.push_back(bullet);
+    this->body_count++;
+    return bullet;
+}
+
+
 std::list<Update> World::getNewPlayerUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::CREATE_COMMAND);
 }
@@ -169,7 +182,7 @@ std::list<Update> World::getPinUpdateList(){
                     this->pins.erase(it.first);
                 }
                 list.push_back(update);
-            } 
+            }
         }
     }
     return list;

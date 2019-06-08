@@ -3,6 +3,7 @@
 
 #include "bodies/body.h"
 #include "bodies/chell/chell.h"
+#include "bodies/bullet/bullet.h"
 #include "../include/bodies/button/button.h"
 #include "pin.h"
 #include "bodies/block/block.h"
@@ -59,8 +60,12 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
-    /* Devuelve la cantidad de cuerpos presentes */
+    /* Devuelve la cantidad de cuerpos que han existido.*/
     uint32_t getBodyCount() const;
+
+    /* Devuelve la cantidad de cuerpos que existen en este momento.
+     * No cuenta los cuerpos que murieron. */
+    uint32_t getBodySize() const;
 
     /* Devuelve b2world */
     b2World *getB2World();
@@ -96,6 +101,9 @@ public:
 
     /* Crea un lanzador en (x, y) apuntando en la direccion ada.*/
     Launcher *createLauncher(float x, float y, DIRECTION direction);
+
+    /* Crea una bala en (x, y) desplazandose en direction 'direction' */
+    Bullet *createBullet(float x, float y, DIRECTION direction);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */
