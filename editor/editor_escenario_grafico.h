@@ -39,17 +39,11 @@ public:
     void agregarACeldas(ItemGrafico *item, QPointF posicion);
     void moverItem(QPointF posicion);
     void crearItem(QPointF posicion);
-    void crearPersonaje(QPointF posicion);
-    void crearBloqueDeRoca(QPointF posicion);
-
-
 
     CeldaGrafica &getCelda(QPointF posicion);
 
     void guardar(YAML::Node &nodo);
     void abrir(YAML::Node &nodo);
-
-
 };
 
 #endif // EDITOR_ESCENARIO_GRAFICO_H

@@ -12,7 +12,7 @@ private:
     QString nombre;
 
 public:
-    PersonajeChell(unsigned idColor, QString nombre);
+    PersonajeChell();
     virtual ~PersonajeChell();
 
     virtual void guardar(YAML::Node &nodo);
