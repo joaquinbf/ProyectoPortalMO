@@ -35,6 +35,7 @@ public:
     bool is_pressed;
     Gate *gate;
     const float FRICTION = 0.7;
+    const float RESTITUTION = 0.0;
 
 public:
     /* Ubica un boton de id 'body_id' en world en la posicion (x, y) */

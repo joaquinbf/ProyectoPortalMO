@@ -15,17 +15,20 @@ Button::Button(uint32_t body_id, World *world, float x, float y):
     bodyDef.awake = false;
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
-    b2Vec2 vertices[4];
+    b2Vec2 vertices[6];
     vertices[0].Set(P1);
-    vertices[1].Set(P2);
-    vertices[2].Set(P3);
-    vertices[3].Set(P4);
+    vertices[1].Set(0.15, 0.12);
+    vertices[2].Set(P2);
+    vertices[3].Set(P3);
+    vertices[4].Set(1.85, 0.12);
+    vertices[5].Set(P4);
 
     b2PolygonShape b2polygonshape;
-    b2polygonshape.Set(vertices, 4);
+    b2polygonshape.Set(vertices, 6);
 
     b2FixtureDef fixtureDef;
     fixtureDef.friction = this->FRICTION;
+    fixtureDef.restitution = this->RESTITUTION;
     fixtureDef.shape = &b2polygonshape;
     this->b2body->CreateFixture(&fixtureDef);
     this->is_pressed = false;

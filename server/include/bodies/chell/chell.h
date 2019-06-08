@@ -15,8 +15,8 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 
 #define JUMPSPEED 5
-#define LEFTSPEED 2
-#define RIGHTSPEED 2
+#define LEFTSPEED 1.2
+#define RIGHTSPEED 1.2
 
 class World;
 class Acid;
