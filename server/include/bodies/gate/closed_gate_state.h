@@ -8,6 +8,7 @@ class Gate;
 class ClosedGateState: public GateState {
 public:
     ClosedGateState(Gate *gate);
+    virtual STATUS getStatus() override;
     virtual void tryChangeState();
     virtual void applyStateAction() override;
 };

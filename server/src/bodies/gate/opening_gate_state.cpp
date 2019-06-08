@@ -10,14 +10,13 @@ OpeningGateState::OpeningGateState(Gate *gate):
 
 void OpeningGateState::tryChangeState() {
     if (!this->gate->conditionIsMeet()) {
-        // this->gate->wakeUp();
+        this->gate->wakeUp();
         this->gate->changeStateToClosing();
     }
 }
 
 void OpeningGateState::applyStateAction() {
     if (this->gate->isOnMinSize()) {
-        // this->gate->putToSleep();
         this->gate->changeStateToOpen();
     } else {
         this->gate->shrink();

@@ -9,7 +9,7 @@ GateState::GateState(Gate *gate, STATUS status):
 GateState::~GateState() {
 }
 
-STATUS GateState::getStatus() const {
+STATUS GateState::getStatus() {
     return this->status;
 }
 

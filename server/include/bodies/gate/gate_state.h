@@ -13,7 +13,7 @@ protected:
 public:
     GateState(Gate *gate, STATUS status);
     virtual ~GateState();
-    STATUS getStatus() const;
+    virtual STATUS getStatus();
     virtual void applyStateAction();
     virtual void tryChangeState() = 0;
 };

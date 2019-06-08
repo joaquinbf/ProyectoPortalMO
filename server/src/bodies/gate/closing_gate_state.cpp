@@ -8,13 +8,13 @@ ClosingGateState::ClosingGateState(Gate *gate):
 
 void ClosingGateState::tryChangeState() {
     if (this->gate->conditionIsMeet()) {
+        this->gate->wakeUp();
         this->gate->changeStateToOpening();
     }
 }
 
 void ClosingGateState::applyStateAction() {
     if (this->gate->isOnMaxSize()) {
-        // this->gate->putToSleep();
         this->gate->changeStateToClosed();
     } else {
         this->gate->grow();
