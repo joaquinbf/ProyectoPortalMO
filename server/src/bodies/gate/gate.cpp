@@ -101,8 +101,8 @@ void Gate::shrink() {
     b2Fixture *b2fixture = this->b2body->GetFixtureList();
     b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
 
-    if (this->height - SIZE_RATE > MIN_HEIGHT) {
-        this->height -= SIZE_RATE*3;
+    if (this->height - SIZE_RATE*8 > MIN_HEIGHT) {
+        this->height -= SIZE_RATE*8;
     } else {
         this->height = MIN_HEIGHT;
     }
