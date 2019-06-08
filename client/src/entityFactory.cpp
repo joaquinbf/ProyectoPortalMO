@@ -48,7 +48,7 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm, co
 			return new Laser(tm,update.getPosX(),update.getPosY(),200,10,update.getDirection()); 
 			break;
 		case ENTITY::PIN:
-			return new Pin(tm,update.getPosX(),update.getPosY(),50,50); 
+			return new Pin(tm,sm,update.getPosX(),update.getPosY(),50,50); 
 			break;
 		case ENTITY::CAKE:
 			return new Cake(tm,update.getPosX(),update.getPosY(),100,100); 

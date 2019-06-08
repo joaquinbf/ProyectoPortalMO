@@ -1,10 +1,11 @@
 #include "../include/pin.h"
 
-Pin::Pin(const TextureManager& tm,int32_t x, int32_t y,
+Pin::Pin(const TextureManager& tm,const SoundManager& sm,int32_t x, int32_t y,
 		uint32_t width, uint32_t height):
 Entity(x,y,width,height,direction),
 frameArea(0,0,251,337)
 {
+	sm.playPinSound();
 	this->texturePtr = (SdlTexture *) tm.getPinTexturePointer();
 }
 

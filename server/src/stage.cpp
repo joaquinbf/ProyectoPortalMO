@@ -27,7 +27,7 @@ void Stage::run(){
 		if(this->running){
 			list = world.getUpdatesForAwakeBodies();
 		}
-		for(Update update : list){
+		for(Update update : list){	
 			if(this->running){
 				this->updates->push(update);
 			}

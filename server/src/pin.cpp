@@ -1,7 +1,7 @@
 #include "../include/pin.h"
 
 Pin::Pin(uint32_t id,int32_t x,int32_t y):
-id(id),x(x),y(y),cont(30){
+id(id),x(x),y(y),cont(PIN_TIME){
 
 }
 
@@ -12,7 +12,7 @@ uint32_t Pin::getId() const{
 }
 
 bool Pin::hasUpdate(){
-	if(this->cont == 30 || this->cont == 0){
+	if(this->cont == PIN_TIME || this->cont == 0){
 		return true;
 	} else {
 		-- this->cont;
@@ -21,7 +21,7 @@ bool Pin::hasUpdate(){
 }
 
 Update Pin::getUpdate(){
-	if( this-> cont == 30){
+	if( this-> cont == PIN_TIME){
 		-- this->cont;
 		return Update(COMMAND::CREATE_COMMAND,ENTITY::PIN,this->id,
 			STATUS::NONE_STATUS,this->x,this->y,0);
