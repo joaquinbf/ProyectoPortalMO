@@ -4,6 +4,7 @@
 #include "editor_defines.h"
 #include "editor_bloque_de_roca.h"
 #include "editor_personaje_chell.h"
+#include "editor_bloque_de_metal.h"
 
 
 #include <QGraphicsScene>
@@ -67,13 +68,18 @@ void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
 
 void EscenarioGrafico::crearItem(const QPointF posicion)
 {
+    ItemGrafico * item;
     if(this->idClassACrear == IDCLASS_NULL) {
         return;
     } else if(this->idClassACrear == IDCLASS_CHELL) {
-        this->crearPersonaje(posicion);
-    } else if(this->idClassACrear == IDCLASS_BLOQUEROCA) {
-        this->crearBloqueDeRoca(posicion);
+        item = new PersonajeChell();
+    } else if(this->idClassACrear == IDCLASS_BLOQUE_ROCA) {
+        item = new BloqueDeRoca();
+    } else if (this->idClassACrear == IDCLASS_BLOQUE_METAL) {
+        item = new BloqueDeMetal();
     }
+
+    this->agregarACeldas(item, posicion);
 }
 
 void EscenarioGrafico::moverItem(const QPointF posicion)
@@ -112,19 +118,6 @@ void EscenarioGrafico::setIdClassACrear(unsigned idClass)
     this->idClassACrear = idClass;
 }
 
-void EscenarioGrafico::crearPersonaje(QPointF posicion)
-{
-    PersonajeChell *personaje = new PersonajeChell(IDCOLOR_CHELL_A, "CHELL");
-    this->agregarACeldas(personaje, posicion);
-
-}
-
-void EscenarioGrafico::crearBloqueDeRoca(QPointF posicion)
-{
-    BloqueDeRoca *bloque = new BloqueDeRoca();
-    this->agregarACeldas(bloque, posicion);
-}
-
 CeldaGrafica &EscenarioGrafico::getCelda(QPointF posicion)
 {
     int i = qFloor(posicion.x()/CELL_SIZE_W);
@@ -152,10 +145,14 @@ void EscenarioGrafico::abrir(YAML::Node &nodo) {
     this->fondoEscenario = nodo["escenario"]["pathFondoEscenario"].as<std::string>();
     this->tamanio.setWidth(nodo["escenario"]["tamanioAncho"].as<int>());
     this->tamanio.setHeight(nodo["escenario"]["tamanioAlto"].as<int>());
-    QPixmap nuevoFondo(this->fondoEscenario.c_str());
-    nuevoFondo = nuevoFondo.scaled(this->tamanio);
-    QBrush fondo(nuevoFondo);
-    this->setBackgroundBrush(fondo);
+    if (!this->fondoEscenario.empty())
+    {
+        QPixmap nuevoFondo(this->fondoEscenario.c_str());
+        nuevoFondo = nuevoFondo.scaled(this->tamanio);
+        QBrush fondo(nuevoFondo);
+        this->setBackgroundBrush(fondo);
+    }
+    
     //TODO otras configuraciones
     for (int i = 0; i < this->celdas.size(); i++)
     {

@@ -47,9 +47,42 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_actionFondo_triggered()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Abrir");
+    this->escenario.setFondoEscenario(path.toStdString(), this->ui->graphicsView->size());
+}
+
+void MainWindow::on_actionGuardar_Escenario_triggered()
+{
+    QString path = QFileDialog::getSaveFileName(this, "Guardar");
+    YAML::Node nodo;
+    this->escenario.guardar(nodo);
+    std::ofstream salida((path.toStdString()).c_str());
+    salida << nodo;
+    salida.close();
+}
+
+void MainWindow::on_actionAbrir_Escenario_triggered()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Abrir");
+    YAML::Node nodo = YAML::LoadFile((path.toStdString()).c_str());
+    this->escenario.abrir(nodo);
+}
+
+void MainWindow::on_actionPersonaje_triggered()
+{
+    this->escenario.setIdClassACrear(IDCLASS_CHELL);
+}
+
+void MainWindow::on_actionBloque_de_Roca_triggered()
+{
+    this->escenario.setIdClassACrear(IDCLASS_BLOQUE_ROCA);
+}
+
 void MainWindow::on_actionBloque_de_Metal_triggered()
 {
-
+    this->escenario.setIdClassACrear(IDCLASS_BLOQUE_METAL);
 }
 
 void MainWindow::on_actionAcido_triggered()
@@ -80,49 +113,6 @@ void MainWindow::on_actionEmisor_de_Energia_triggered()
 void MainWindow::on_actionReceptor_de_Energia_triggered()
 {
 
-}
-
-void MainWindow::on_actionPersonaje_triggered()
-{
-    this->escenario.setIdClassACrear(IDCLASS_CHELL);
-}
-
-void MainWindow::on_actionBloque_de_Roca_triggered()
-{
-    this->escenario.setIdClassACrear(IDCLASS_BLOQUEROCA);
-}
-
-void MainWindow::on_actionFondo_triggered()
-{
-    QString path = QFileDialog::getOpenFileName(this, "Abrir");
-
-    this->escenario.setFondoEscenario(path.toStdString(), this->ui->graphicsView->size());
-    /*
-    QPixmap nuevoFondo(path);
-    nuevoFondo = nuevoFondo.scaled(this->ui->graphicsView->size());
-    QBrush fondo(nuevoFondo);
-    this->escenario.setBackgroundBrush(fondo);
-    */
-}
-
-void MainWindow::on_actionGuardar_Escenario_triggered()
-{
-    QString path = QFileDialog::getSaveFileName(this, "Guardar");
-    YAML::Node nodo;
-    //YAML::Node nodo = YAML::LoadFile(path.toStdString());
-    this->escenario.guardar(nodo);
-    std::ofstream salida((path.toStdString()).c_str());
-    salida << nodo;
-    salida.close();
-
-}
-
-void MainWindow::on_actionAbrir_Escenario_triggered()
-{
-    QString path = QFileDialog::getOpenFileName(this, "Abrir");
-    YAML::Node nodo = YAML::LoadFile((path.toStdString()).c_str());
-    //
-    this->escenario.abrir(nodo);
 }
 
 void MainWindow::on_actionPastel_triggered()

@@ -11,10 +11,12 @@
 
 #define IDCLASS_NULL 0
 #define IDCLASS_CHELL 1
-#define IDCLASS_BLOQUEROCA 2
+#define IDCLASS_BLOQUE_ROCA 2
+#define IDCLASS_BLOQUE_METAL 3
 
 #define DIR_IMAGEN_CHELL_A "../resources/shell.png"
-#define DIR_IMAGEN_BLOQUEROCA "../resources/bloqueRoca.png"
+#define DIR_IMAGEN_BLOQUE_ROCA "../resources/bloqueRoca.png"
+#define DIR_IMAGEN_BLOQUE_METAL "../resources/bloqueMetal.png"
 
 #define IDCOLOR_CHELL_A 1
 
