@@ -12,6 +12,7 @@
 #include "bodies/block/material.h"
 #include "bodies/block/metal_material.h"
 #include "bodies/block/stone_material.h"
+#include "../include/bodies/launcher/launcher.h"
 #include "boolean_suppliers/boolean_block_factory.h"
 #include "bodies/acid/acid.h"
 #include "contact_listener.h"
@@ -48,16 +49,21 @@ public:
     /* Instancia un world */
     World();
 
+    /* Instancia un world con time_step como la cantidad de tiempo a simular
+     * en cada step */
+    World(float time_step);
+
     /* Instancia un world core sobre b2world. */
     World(b2World *b2world);
 
     /* Libera los recursos utilizados. */
     ~World();
-    
+
+    /* Devuelve la cantidad de cuerpos presentes */
+    uint32_t getBodyCount() const;
+
     /* Devuelve b2world */
     b2World *getB2World();
-
-
 
     /* Crea y devuelve un puntero a una Chell creada en la posicion (x, y) */
     Chell *createChell(float x, float y);
@@ -87,6 +93,9 @@ public:
 
     /* Crea una mancha de acido en (x, y) */
     Acid *createAcid(float x, float y);
+
+    /* Crea un lanzador en (x, y) */
+    Launcher *createLauncher(float x, float y);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */
