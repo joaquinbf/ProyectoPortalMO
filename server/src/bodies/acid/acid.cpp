@@ -1,5 +1,6 @@
 #include "../../../include/bodies/acid/acid.h"
 #include "../../../include/bodies/body.h"
+#include "../../../include/bodies/chell/chell.h"
 #include "../../../include/world.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
@@ -40,6 +41,10 @@ Update Acid::createUpdate(COMMAND command) const {
 
 void Acid::handleBeginContactWith(Body *other_body) {
     other_body->handleBeginContactWith(this);
+}
+
+void Acid::handleBeginContactWith(Chell *chell) {
+    chell->changeStateToDead();
 }
 
 void Acid::handleEndContactWith(Body *other_body) {

@@ -25,12 +25,14 @@ public:
         }
 
         this->world.createGateWithButton(6.0, 2.00, 1.00, Cy, true);
-        this->world.createAcid(-7, 1);
+        this->world.createAcid(-6, 1);
     }
 
     void Step(Settings *settings) {
         Test::Step(settings);
         this->world.applyStateActions();
+        Update update = chell->createUpdate(COMMAND::UPDATE_COMMAND);
+        std::cout << update.getStatus() << std::endl;
     }
 
     static Test *Create() {

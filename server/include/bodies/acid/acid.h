@@ -9,6 +9,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 
 class World;
+class Chell;
 
 class Acid: public Body {
 private:
@@ -25,6 +26,9 @@ public:
 
     /* Maneja el inicio de contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body);
+
+    /* Mata a chell. */
+    virtual void handleBeginContactWith(Chell *chell) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body);

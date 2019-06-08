@@ -3,6 +3,6 @@
 #include "../../../include/bodies/chell/chell_state.h"
 #include "../../../../common/include/types.h"
 
-DeadState::DeadState(Chell *chell, STATUS status):
+DeadState::DeadState(Chell *chell):
     ChellState(chell, STATUS::CHELL_DIE) {
 }

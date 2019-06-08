@@ -6,6 +6,7 @@
 #include "idle_state.h"
 #include "running_state.h"
 #include "jumping_state.h"
+#include "dead_state.h"
 #include "../../../../common/include/key.h"
 #include "../../../../common/include/keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -18,6 +19,7 @@
 #define RIGHTSPEED 2
 
 class World;
+class Acid;
 class Button;
 class Block;
 class Gate;
@@ -28,6 +30,7 @@ private:
     IdleState idle_state;
     RunningState running_state;
     JumpingState jumping_state;
+    DeadState dead_state;
     ChellState *state;
     Keypad keypad;
     const float HALF_WIDTH = 0.50;
@@ -82,6 +85,9 @@ public:
     /* Cambia el estado a jumping */
     void changeStateToJumping();
 
+    /* Cambia el estado de chell a muerta */
+    void changeStateToDead();
+
     /* Aterriza a chell */
     void land();
 
@@ -109,13 +115,19 @@ public:
     /* Maneja el contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body);
 
+    /* Muere por el contacto con el acido */
+    virtual void handleBeginContactWith(Acid *acid) override;
+
+    /* Aterriza sobre el bloque si esta saltando */
     virtual void handleBeginContactWith(Block *block) override;
 
+    /* Presionaa y aterriza sobre el boton si esta saltando */
     virtual void handleBeginContactWith(Button *button) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body);
 
+    /* Suelta el boton */
     virtual void handleEndContactWith(Button *button) override;
 };
 

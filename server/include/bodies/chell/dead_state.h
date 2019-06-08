@@ -8,7 +8,7 @@ class Chell;
 
 class DeadState: public ChellState {
 public:
-    DeadState(Chell *chell, STATUS status);
+    DeadState(Chell *chell);
 };
 
 #endif

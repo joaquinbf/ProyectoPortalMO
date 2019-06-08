@@ -165,6 +165,9 @@ std::list<Update> World::getUpdatesForAwakeBodies() const {
                 case STATUS::CHELL_JUMPING:
                     std::cout << "UPDATE STATUS: CHELL_JUMPING" << std::endl;
                     break;
+                case STATUS::CHELL_DIE:
+                    std::cout << "UPDATE STATUS: CHELL_DIE" << std::endl;
+                    break;
                 default:
                     std::cout << "UPDATE STATUS: OTRO STATUS : "
                               << update.getStatus() << std::endl;
@@ -201,7 +204,7 @@ void World::createWorldOne() {
     }
 
     this->createGateWithButton(6.00, 2.00, 1.00, Cy, true);
-    this->createAcid(3, 3);
+    this->createAcid(0, 5);
 }
 
 void World::applyAction(const Action &action) {

@@ -26,6 +26,7 @@ Chell::Chell(uint32_t body_id, World *world, float x, float y):
     idle_state(this),
     running_state(this),
     jumping_state(this),
+    dead_state(this),
     state(&this->idle_state) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -127,6 +128,10 @@ void Chell::changeStateToJumping() {
     this->applyLinearImpulseToUp();
 }
 
+void Chell::changeStateToDead() {
+    this->state = &this->dead_state;
+}
+
 void Chell::land() {
     this->state->land();
 }
@@ -181,6 +186,10 @@ void Chell::applyStateAction() {
 
 void Chell::handleBeginContactWith(Body *other_body) {
     other_body->handleBeginContactWith(this);
+}
+
+void Chell::handleBeginContactWith(Acid *acid) {
+    this->changeStateToDead();
 }
 
 void Chell::handleBeginContactWith(Block *block) {
