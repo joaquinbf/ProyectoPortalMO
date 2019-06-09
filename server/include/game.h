@@ -8,22 +8,25 @@
 #include "../../common/include/action.h"
 #include "../../common/include/update.h"
 #include "../../common/include/socket.h"
+#include "../../common/include/gameInfo.h"
 #include "../include/player.h"
 #include "../include/stage.h"
 #include "../include/broadcaster.h"
 
 class Game{
 private:
+	static uint32_t number;
 	Stage stage;
 	std::vector<Player*> players;
 	ProtectedQueue<Action> inputs;
 	ProtectedQueue<Update> updates;
 	Broadcaster broadcaster;
-	uint32_t capacity;
+	GameInfo gameInfo;
 public:
 	explicit Game(const std::string& mapName); 
 	~Game();
-	void addPlayer(Socket socket);
+	void addPlayer(Player* player);
+	const GameInfo& getGameInfo();
 };
 
 #endif

@@ -5,7 +5,6 @@ Bullet::Bullet(const TextureManager& tm,int32_t x, int32_t y,
 Entity(x,y,width,height,direction),
 frameArea(0,0,103,59), frame(0)
 {
-	std::cout<<"DIR: "<<this->direction<<"\n";
 	this->texturePtr = tm.getBulletTexturePointer();
 }
 

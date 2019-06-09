@@ -1,7 +1,7 @@
 #ifndef _PLAYER_LOGIN_H_
 #define _PLAYER_LOGIN_H_
 
-#include <vector>
+#include <list>
 #include <string>
 
 
@@ -13,10 +13,10 @@
 
 class PlayerLogin : public Thread{
 private: 
-	std::vector<Game*>& games;
+	std::list<Game*>* games;
 	Socket peer;
 public:
-	explicit PlayerLogin(std::vector<Game*>& games,Socket peer);
+	explicit PlayerLogin(std::list<Game*>* games,Socket peer);
 	
 	virtual void run() override;
 	

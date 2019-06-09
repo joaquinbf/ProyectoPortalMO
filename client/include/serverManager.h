@@ -8,6 +8,7 @@
 #include "../../common/include/protocol.h"
 #include "../../common/include/action.h"
 #include "../../common/include/update.h"
+#include "../../common/include/gameInfo.h"
 
 class ServerManager{
 private:
@@ -19,6 +20,8 @@ public:
 	void sendAction(const Action ac) const;
 	Update receiveUpdate() const;
 	uint32_t receiveChellId() const;
+	uint32_t receiveQuad() const;
+	GameInfo receiveGameInfo() const;
 };
 
 #endif

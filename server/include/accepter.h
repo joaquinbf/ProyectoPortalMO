@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <list>
 
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
@@ -16,7 +17,8 @@ class Accepter: public Thread {
 private:
     Socket socket;
     bool keep_running;
-    std::vector<Game*> games;
+    std::list<Game*> games;
+    std::vector<PlayerLogin *> logins;
 public:
     Accepter();
     ~Accepter();

@@ -18,6 +18,14 @@ void Client::main(){
 
 void Client::login(){
 	//aca haria algo
+    uint32_t a = serverManager.receiveQuad();
+    for(;a>0;a--){
+        GameInfo gi = serverManager.receiveGameInfo();
+        std::cout<<"id: "<<gi.getId()<<"\n";
+        std::cout<<"map: "<<gi.getMapName()<<"\n";
+        std::cout<<"playes: "<<gi.getPlayers()<<"\n";
+        std::cout<<"capacity: "<<gi.getCapacity()<<"\n";
+    }
 }
 
 void Client::game(){   

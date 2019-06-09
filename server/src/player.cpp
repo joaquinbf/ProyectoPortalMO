@@ -1,4 +1,5 @@
 #include "../include/player.h"
+#include "../include/game.h"
 
 Player::Player(Socket socket):
     protocol(std::move(socket)),
@@ -37,4 +38,11 @@ ProtectedQueue<Update>* Player::getUpdatesPtr(){
 
 void Player::pushBackUpdate(Update update){
     this->updates.push(update);
+}
+
+void Player::sendGamesList(std::list<Game*>* games){
+    this->protocol.sendQuad(games->size());
+    for(Game* game : *games){
+        this->protocol.sendGameInfo(game->getGameInfo());
+    }
 }
