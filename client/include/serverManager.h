@@ -19,6 +19,7 @@ public:
 	void sendAction(const Action ac) const;
 	Update receiveUpdate() const;
 	uint32_t receiveChellId() const;
+	uint32_t receiveQuad() const;
 };
 
 #endif

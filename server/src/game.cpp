@@ -1,10 +1,11 @@
 #include "../include/game.h"
 
 Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates),
-	broadcaster(&this->updates){
-	this->capacity = stage.getCapacity();
+	broadcaster(&this->updates),gameInfo(this->id,mapName,0,0){
+	this->gameInfo.setCapacity(stage.getCapacity());
 	this->stage.start();
 	this->broadcaster.start();
+	++this->id;
 }
 
 Game::~Game(){	
@@ -17,8 +18,7 @@ Game::~Game(){
 	this->broadcaster.join();
 }
 
-void Game::addPlayer(Socket socket){
-	Player* player= new Player(std::move(socket));
+void Game::addPlayer(Player* player){
 	std::list<Update> ul = this->stage.getNewPlayerUpdates();
 	player->sendChellIdToClient(this->players.size());
 	player->setInputPtr(&this->inputs);
@@ -28,4 +28,9 @@ void Game::addPlayer(Socket socket){
 	this->broadcaster.addPlayer(player->getUpdatesPtr());	
 	player->start();	
 	this->players.push_back(player);
+	this->gameInfo.addPlayer();
+}
+
+const GameInfo& Game::getGameInfo(){
+	return this->gameInfo;
 }

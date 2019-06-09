@@ -24,3 +24,7 @@ Update ServerManager::receiveUpdate() const{
 uint32_t ServerManager::receiveChellId() const{
 	return this->protocol.receiveQuad();
 }
+
+uint32_t ServerManager::receiveQuad() const{
+	return this->protocol.receiveQuad();	
+}

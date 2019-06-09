@@ -18,6 +18,7 @@ void Client::main(){
 
 void Client::login(){
 	//aca haria algo
+    std::cout<<serverManager.receiveQuad()<<"\n";
 }
 
 void Client::game(){   

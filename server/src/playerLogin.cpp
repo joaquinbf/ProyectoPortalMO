@@ -1,12 +1,13 @@
 #include "../include/playerLogin.h"
-#include <unistd.h>
 #include <iostream>
 
-PlayerLogin::PlayerLogin(std::vector<Game*>& games,Socket peer): 
+PlayerLogin::PlayerLogin(std::list<Game*>* games,Socket peer): 
 games(games),peer(std::move(peer)){}
 
 void PlayerLogin::run(){
-	std::cout<<"llego\n";
-	this->games[0]->addPlayer(std::move(peer));
-	usleep(100000000);
+	Player* player = new Player(std::move(this->peer));
+	player->sendGamesList(this->games);
+
+	auto it = this->games->begin();
+	(*it)->addPlayer(player);
 }

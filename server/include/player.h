@@ -2,11 +2,14 @@
 #define __PLAYER_H__
 
 #include <cstdint>
+#include <list>
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
 #include "../../common/include/protected_queue.h"
 #include "../include/inputReceiver.h"
 #include "../include/updateSender.h"
+
+class Game;
 
 class Player {
 private:
@@ -23,6 +26,7 @@ public:
     void setInputPtr(ProtectedQueue<Action>* ptr);
     ProtectedQueue<Update>* getUpdatesPtr();
     void pushBackUpdate(Update update);
+    void sendGamesList(std::list<Game*>* games);
 };
 
 #endif

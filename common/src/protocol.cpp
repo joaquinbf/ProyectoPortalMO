@@ -159,3 +159,10 @@ Update Protocol::receiveUpdate() const{
 	uint32_t dir = this->receiveQuad();
 	return Update(cm,en,id,st,posx,posy,dir);
 }
+
+void Protocol::sendGameInfo(const GameInfo& gi) const{
+	this->sendLine(gi.getMapName());
+	this->sendQuad(gi.getPlayers());
+	this->sendQuad(gi.getCapacity());
+}
+

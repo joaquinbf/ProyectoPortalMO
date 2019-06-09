@@ -7,6 +7,7 @@
 #include "socket.h"
 #include "update.h"
 #include "action.h"
+#include "gameInfo.h"
 
 class Protocol{
 private:
@@ -31,6 +32,7 @@ public:
 	Action receiveAction() const;
 	void sendUpdate(const Update update) const;
 	Update receiveUpdate() const;
+	void sendGameInfo(const GameInfo& gi) const;
 };
 
 #endif
