@@ -18,6 +18,10 @@ class Thread {
             thread.join();
         }
 
+        void detach(){
+            thread.detach();
+        }
+
         virtual void run() = 0;
         virtual ~Thread() {}
 
