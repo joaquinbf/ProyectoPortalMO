@@ -4,6 +4,9 @@
 #include <cxxtest/TestSuite.h>
 #include "../../server/include/bodies/gate/gate.h"
 #include "../../server/include/bodies/chell/chell.h"
+#include "../../server/include/bodies/receiver/receiver.h"
+#include "../../server/include/bodies/launcher/launcher.h"
+#include "../../server/include/bodies/bullet/bullet.h"
 #include "../../server/include/world.h"
 #include "../../server/include/boolean_suppliers/boolean_block_factory.h"
 #include "../../server/include/boolean_suppliers/boolean_block.h"
@@ -28,7 +31,7 @@ public:
         BooleanBlockFactory* bbf = world.getBooleanBlockFactory();
         BooleanBlock *boolean_block = bbf->createSameBlock();
         boolean_block->add(button);
-        gate->setBooleanBlock(boolean_block);
+        gate->setBooleanSupplier(boolean_block);
 
         // Dejo a chell sobre el boton para que sea presionado.
         Chell *chell = world.createChell(1, 1);
@@ -37,6 +40,10 @@ public:
         Update update = gate->createUpdate(COMMAND::UPDATE_COMMAND);
 
         TS_ASSERT_EQUALS(STATUS::GATE_OPENING, update.getStatus());
+    }
+
+    void testCuandoReceptorEsChocadoPorUnaBalaSeActivaEntoncesSeEmpiezaAAbrirLaCompuerta() {
+        World world;
     }
 };
 

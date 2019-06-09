@@ -54,8 +54,8 @@ Update Gate::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Gate::setBooleanBlock(BooleanBlock *boolean_block) {
-    this->boolean_block = boolean_block;
+void Gate::setBooleanSupplier(BooleanSupplier *boolean_supplier) {
+    this->boolean_supplier = boolean_supplier;
 }
 
 void Gate::handleBeginContactWith(Body *other_body) {
@@ -76,7 +76,7 @@ void Gate::tryChangeState() {
 }
 
 bool Gate::conditionIsMeet() {
-    return this->boolean_block->getAsBoolean();
+    return this->boolean_supplier->getAsBoolean();
 }
 
 void Gate::changeStateToOpening() {

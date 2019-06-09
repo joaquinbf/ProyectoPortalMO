@@ -110,7 +110,7 @@ void World::createGateWithButton(
     }
 
     block->add(button);
-    gate->setBooleanBlock(block);
+    gate->setBooleanSupplier(block);
 }
 
 Gate *World::createGate(float x, float y) {
