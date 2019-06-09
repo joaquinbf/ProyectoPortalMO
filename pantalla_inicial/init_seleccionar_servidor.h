@@ -15,6 +15,9 @@ public:
     explicit SeleccionarServidor(QWidget *parent = 0);
     ~SeleccionarServidor();
 
+private slots:
+    void on_buttonBox_accepted();
+
 private:
     Ui::SeleccionarServidor *ui;
 };

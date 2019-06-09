@@ -15,6 +15,9 @@ public:
     explicit SeleccionarEscenario(QWidget *parent = 0);
     ~SeleccionarEscenario();
 
+private slots:
+    void on_buttonBox_accepted();
+
 private:
     Ui::SeleccionarEscenario *ui;
 };
