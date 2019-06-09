@@ -42,22 +42,24 @@ public:
         TS_ASSERT_EQUALS(STATUS::GATE_OPENING, update.getStatus());
     }
 
-    void testCuandoReceptorEsChocadoPorUnaBalaSeActivaEntoncesSeEmpiezaAAbrirLaCompuerta() {
+    void testCuandoReceptorEsChocadoPorUnaBalaSeActivaEntoncesLaCompuertaSeAbre() {
         World world;
+        int d = 6;
         world.createLauncher(0, 0, DIRECTION::RIGHT_DIRECTION);
-        Receiver *receiver = world.createReceiver(6, 0);
+        Receiver *receiver = world.createReceiver(d, 0);
         Gate *gate = world.createGate(0, 10);
         gate->setBooleanSupplier(receiver);
+        receiver->setGate(gate);
 
         // deberia chocar la bala con el receptor.
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < (6/5)*20; i++) {
             world.step();
             world.applyStateActions();
             world.deleteBodiesForDeletion();
         }
 
         Update update = gate->createUpdate(COMMAND::UPDATE_COMMAND);
-        TS_ASSERT_EQUALS(STATUS::GATE_OPENING, update.getStatus());
+        TS_ASSERT_EQUALS(STATUS::GATE_OPENED, update.getStatus());
     }
 };
 

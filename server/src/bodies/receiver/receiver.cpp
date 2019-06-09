@@ -34,8 +34,8 @@ Update Receiver::createUpdate(COMMAND command) const {
         this->entity,
         this->getBodyId(),
         STATUS::NONE_STATUS,
-        this->getPosX(),
-        this->getPosY(),
+        this->getPosX() * ZOOM_FACTOR,
+        this->getPosY() * ZOOM_FACTOR,
         0);
     return update;
 }
@@ -47,7 +47,9 @@ bool Receiver::isOn() const {
 void Receiver::turnOn() {
     if (!this->is_on) {
         this->is_on = true;
-        this->gate->tryChangeState();
+        if (this->gate != 0) {
+            this->gate->tryChangeState();
+        }
     }
 }
 

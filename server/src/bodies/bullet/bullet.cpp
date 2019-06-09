@@ -43,6 +43,11 @@ Bullet::~Bullet() {
     }
 }
 
+float Bullet::getVelocity() const {
+    return VELOCITY;
+}
+
+
 Update Bullet::createUpdate(COMMAND command) const {
     Update update(
         command,

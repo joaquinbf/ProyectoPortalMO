@@ -208,14 +208,15 @@ void World::createWorldOne() {
         this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 
-    // Cy = 0.22 aprox
-    this->createGateWithButton(-2, 2, -4, Cy, true);
+    this->createLauncher(-15, 7, DIRECTION::RIGHT_DIRECTION);
+    Gate *gate = this->createGate(-2, 2);
+    Receiver *receiver = this->createReceiver(0, 7);
 
-    this->createLauncher(1, 1, DIRECTION::RIGHT_DIRECTION);
-    this->createLauncher(1, 10, DIRECTION::DOWN_DIRECTION);
-    this->createLauncher(10, 10, DIRECTION::LEFT_DIRECTION);
-    this->createLauncher(10, 1, DIRECTION::UP_DIRECTION);
-
+    // Le indico al receptor que de ser activado debe comunicarse con gate
+    receiver->setGate(gate);
+    // Le indico a gate donde observar si esta activado o no
+    // boolean supplier podrian ser varios elementos.
+    gate->setBooleanSupplier(receiver);
 }
 
 void World::applyAction(const Action &action) {

@@ -16,7 +16,7 @@ private:
     DIRECTION direction;
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
-    const float VELOCITY = 10;
+    const float VELOCITY = 1;
 
 public:
     /* Instancia una bala en world en la posicion (x, y) moviendose con
@@ -24,6 +24,9 @@ public:
     Bullet(World *world, float x, float y, DIRECTION direction);
 
     ~Bullet();
+
+    /* Devuelve la magnitud escalar de la velocidad */
+    float getVelocity() const;
 
    /* Crea una update con el comando indicado */
    virtual Update createUpdate(COMMAND command) const;
