@@ -56,6 +56,24 @@ TARGET_LINK_LIBRARIES(libserver libcommon libbox2d)
 target_link_libraries(libclient libcommon avformat avcodec avutil swscale ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES})
 target_link_libraries(libeditor libcommon Qt5::Core	Qt5::Gui Qt5::Widgets yaml-cpp)
 
+# Including CxxTest
+file(GLOB_RECURSE TEST_CLIENT_HEADERS ./test/client/*.h)
+file(GLOB_RECURSE TEST_SERVER_HEADERS ./test/server/*.h)
+file(GLOB_RECURSE TEST_COMMON_HEADERS ./test/common/*.h)
+
+find_package(CxxTest)
+if(CXXTEST_FOUND)
+    include_directories(${CXXTEST_INCLUDE_DIR})
+    enable_testing()
+    CXXTEST_ADD_TEST(unittest-client runner-client.cpp ${TEST_CLIENT_HEADERS})
+    TARGET_LINK_LIBRARIES(unittest-client libclient)
+
+    CXXTEST_ADD_TEST(unittest-server runner-server.cpp ${TEST_SERVER_HEADERS} )
+    TARGET_LINK_LIBRARIES(unittest-server libserver)
+
+    CXXTEST_ADD_TEST(unittest-common runner-common.cpp ${TEST_COMMON_HEADERS})
+    TARGET_LINK_LIBRARIES(unittest-common libcommon)
+endif()
 
 # Executables
 add_executable(client "client/src/main.cpp")
