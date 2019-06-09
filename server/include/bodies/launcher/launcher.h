@@ -30,13 +30,13 @@ public:
     virtual Update createUpdate(COMMAND command) const;
 
     /* Maneja el inicio de contacto con otro cuerpo */
-    virtual void handleBeginContactWith(Body *other_body);
+    virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
     /* Mata a bullet */
-    virtual void handleBeginContactWith(Bullet *bullet) override;
+    virtual void handleBeginContactWith(Bullet *bullet, b2Contact *contact) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
-    virtual void handleEndContactWith(Body *other_body);
+    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 
     /* Aplica una accion dependiendo de su estado */
     virtual void applyStateAction() override;

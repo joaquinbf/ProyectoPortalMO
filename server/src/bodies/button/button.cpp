@@ -79,19 +79,19 @@ bool Button::getAsBoolean() const {
     return this->isPressed();
 }
 
-void Button::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Button::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 }
 
-void Button::handleBeginContactWith(Chell *chell) {
+void Button::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     this->press();
     chell->land();
 }
 
-void Button::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Button::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }
 
-void Button::handleEndContactWith(Chell *chell) {
+void Button::handleEndContactWith(Chell *chell, b2Contact *contact) {
     this->release();
 }

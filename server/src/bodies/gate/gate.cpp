@@ -58,12 +58,12 @@ void Gate::setBooleanSupplier(BooleanSupplier *boolean_supplier) {
     this->boolean_supplier = boolean_supplier;
 }
 
-void Gate::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Gate::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 }
 
-void Gate::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Gate::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }
 
 void Gate::applyStateAction() {

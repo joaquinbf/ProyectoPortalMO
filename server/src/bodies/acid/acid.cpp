@@ -39,14 +39,14 @@ Update Acid::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Acid::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Acid::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 }
 
-void Acid::handleBeginContactWith(Chell *chell) {
+void Acid::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     chell->changeStateToDead();
 }
 
-void Acid::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Acid::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }

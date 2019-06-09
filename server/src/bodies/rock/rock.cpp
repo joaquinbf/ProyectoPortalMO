@@ -45,11 +45,11 @@ Update Rock::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Rock::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Rock::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 
 }
 
-void Rock::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Rock::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }

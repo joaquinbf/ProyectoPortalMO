@@ -46,16 +46,16 @@ Update Launcher::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Launcher::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Launcher::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 }
 
-void Launcher::handleBeginContactWith(Bullet *bullet) {
+void Launcher::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->world->addBodyForDeletion(bullet);
 }
 
-void Launcher::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Launcher::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }
 
 void Launcher::applyStateAction() {

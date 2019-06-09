@@ -32,19 +32,19 @@ public:
    virtual Update createUpdate(COMMAND command) const;
 
    /* Maneja el inicio de contacto con otro cuerpo */
-   virtual void handleBeginContactWith(Body *other_body);
+   virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
    /* Muere al chocar con un bloque */
-   virtual void handleBeginContactWith(Block *block) override;
+   virtual void handleBeginContactWith(Block *block, b2Contact *contact) override;
 
    /* Muere al chocar con un lanzador */
-   virtual void handleBeginContactWith(Launcher *launcher) override;
+   virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact) override;
 
    /* Muere y activa el receptor */
-   virtual void handleBeginContactWith(Receiver *receiver) override;
+   virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact) override;
 
    /* Maneja el fin de contacto con otro cuerpo */
-   virtual void handleEndContactWith(Body *other_body);
+   virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 
    /* Mantiene a la bala en su direccion */
    virtual void applyStateAction() override;

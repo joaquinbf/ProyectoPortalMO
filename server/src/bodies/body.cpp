@@ -52,56 +52,56 @@ float Body::getMass() const {
 void Body::applyStateAction() {
 }
 
-void Body::handleBeginContactWith(Acid *acid) {
+void Body::handleBeginContactWith(Acid *acid, b2Contact *contact) {
 }
 
-void Body::handleBeginContactWith(Block *block) {
+void Body::handleBeginContactWith(Block *block, b2Contact *contact) {
 }
 
-void Body::handleBeginContactWith(Bullet *bullet) {
+void Body::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
 }
 
-void Body::handleBeginContactWith(Button *button) {
+void Body::handleBeginContactWith(Button *button, b2Contact *contact) {
 }
 
-void Body::handleBeginContactWith(Chell *chell) {
+void Body::handleBeginContactWith(Chell *chell, b2Contact *contact) {
 }
 
-void Body::handleBeginContactWith(Gate *gate) {
+void Body::handleBeginContactWith(Gate *gate, b2Contact *contact) {
 }
 
-void Body::handleBeginContactWith(Launcher *launcher) {
+void Body::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
 }
 
-void Body::handleBeginContactWith(Receiver *receiver) {
+void Body::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
-void Body::handleBeginContactWith(Rock *rock) {
+void Body::handleBeginContactWith(Rock *rock, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Acid *acid) {
+void Body::handleEndContactWith(Acid *acid, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Block *block) {
+void Body::handleEndContactWith(Block *block, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Button *button) {
+void Body::handleEndContactWith(Button *button, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Bullet *bullet) {
+void Body::handleEndContactWith(Bullet *bullet, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Chell *chell) {
+void Body::handleEndContactWith(Chell *chell, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Gate *gate) {
+void Body::handleEndContactWith(Gate *gate, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Launcher *launcher) {
+void Body::handleEndContactWith(Launcher *launcher, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Receiver *receiver) {
+void Body::handleEndContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
-void Body::handleEndContactWith(Rock *rock) {
+void Body::handleEndContactWith(Rock *rock, b2Contact *contact) {
 }

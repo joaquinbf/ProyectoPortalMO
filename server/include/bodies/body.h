@@ -3,6 +3,7 @@
 
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
+#include "../../../libs/Box2D-master/Box2D/Dynamics/Contacts/b2Contact.h"
 #include "../../../common/include/types.h"
 #include "../../../common/include/update.h"
 #include <cstdint>
@@ -42,10 +43,10 @@ public:
     virtual Update createUpdate(COMMAND command) const = 0;
 
     /* Maneja el inicio de contacto con otro cuerpo */
-    virtual void handleBeginContactWith(Body *other_body) = 0;
+    virtual void handleBeginContactWith(Body *body, b2Contact *contact) = 0;
 
     /* Maneja el fin de contacto con otro cuerpo */
-    virtual void handleEndContactWith(Body *other_body) = 0;
+    virtual void handleEndContactWith(Body *body, b2Contact *contact) = 0;
 
     /* Devuelve un identificador del cuerpo */
     uint32_t getBodyId() const;
@@ -65,43 +66,43 @@ public:
     /* Aplica una accion sobre el cuerpo dependiendo de su estado */
     virtual void applyStateAction();
 
-    virtual void handleBeginContactWith(Acid *acid);
+    virtual void handleBeginContactWith(Acid *acid, b2Contact *contact);
 
-    virtual void handleBeginContactWith(Block *block);
+    virtual void handleBeginContactWith(Block *block, b2Contact *contact);
 
-    virtual void handleBeginContactWith(Bullet *bullet);
+    virtual void handleBeginContactWith(Bullet *bullet, b2Contact *contact);
 
-    virtual void handleBeginContactWith(Button *button);
+    virtual void handleBeginContactWith(Button *button, b2Contact *contact);
 
     /* Deja que el inicio de contacto sea manejado por chell */
-    virtual void handleBeginContactWith(Chell *chell);
+    virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);
 
-    virtual void handleBeginContactWith(Gate *gate);
+    virtual void handleBeginContactWith(Gate *gate, b2Contact *contact);
 
-    virtual void handleBeginContactWith(Launcher *launcher);
+    virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact);
 
-    virtual void handleBeginContactWith(Receiver *receiver);
+    virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact);
 
-    virtual void handleBeginContactWith(Rock *rock);
+    virtual void handleBeginContactWith(Rock *rock, b2Contact *contact);
 
     /* Maneja el fin de contacto con acid */
-    virtual void handleEndContactWith(Acid *acid);
+    virtual void handleEndContactWith(Acid *acid, b2Contact *contact);
 
-    virtual void handleEndContactWith(Block *block);
+    virtual void handleEndContactWith(Block *block, b2Contact *contact);
 
-    virtual void handleEndContactWith(Bullet *bullet);
+    virtual void handleEndContactWith(Bullet *bullet, b2Contact *contact);
 
-    virtual void handleEndContactWith(Button *button);
+    virtual void handleEndContactWith(Button *button, b2Contact *contact);
 
-    virtual void handleEndContactWith(Chell *chell);
+    virtual void handleEndContactWith(Chell *chell, b2Contact *contact);
 
-    virtual void handleEndContactWith(Gate *gate);
+    virtual void handleEndContactWith(Gate *gate, b2Contact *contact);
 
-    virtual void handleEndContactWith(Launcher *launcher);
+    virtual void handleEndContactWith(Launcher *launcher, b2Contact *contact);
 
-    virtual void handleEndContactWith(Receiver *receiver);
+    virtual void handleEndContactWith(Receiver *receiver, b2Contact *contact);
 
-    virtual void handleEndContactWith(Rock *rock);
+    virtual void handleEndContactWith(Rock *rock, b2Contact *contact);
 };
 
 #endif

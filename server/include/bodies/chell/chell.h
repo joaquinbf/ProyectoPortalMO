@@ -113,22 +113,22 @@ public:
     virtual void applyStateAction();
 
     /* Maneja el contacto con otro cuerpo */
-    virtual void handleBeginContactWith(Body *other_body);
+    virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
     /* Muere por el contacto con el acido */
-    virtual void handleBeginContactWith(Acid *acid) override;
+    virtual void handleBeginContactWith(Acid *acid, b2Contact *contact) override;
 
     /* Aterriza sobre el bloque si esta saltando */
-    virtual void handleBeginContactWith(Block *block) override;
+    virtual void handleBeginContactWith(Block *block, b2Contact *contact) override;
 
     /* Presionaa y aterriza sobre el boton si esta saltando */
-    virtual void handleBeginContactWith(Button *button) override;
+    virtual void handleBeginContactWith(Button *button, b2Contact *contact) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
-    virtual void handleEndContactWith(Body *other_body);
+    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 
     /* Suelta el boton */
-    virtual void handleEndContactWith(Button *button) override;
+    virtual void handleEndContactWith(Button *button, b2Contact *contact) override;
 };
 
 #endif

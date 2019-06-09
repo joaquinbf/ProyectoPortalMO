@@ -60,26 +60,26 @@ Update Bullet::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Bullet::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Bullet::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 }
 
-void Bullet::handleBeginContactWith(Block *block) {
+void Bullet::handleBeginContactWith(Block *block, b2Contact *contact) {
     this->world->addBodyForDeletion(this);
 }
 
-void Bullet::handleBeginContactWith(Launcher *launcher) {
+void Bullet::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
     this->world->addBodyForDeletion(this);
 }
 
-void Bullet::handleBeginContactWith(Receiver *receiver) {
+void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     receiver->turnOn();
     this->world->addBodyForDeletion(this);
 
 }
 
-void Bullet::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }
 
 void Bullet::setVelocity() {

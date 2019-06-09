@@ -61,15 +61,15 @@ bool Receiver::getAsBoolean() const {
     return this->isOn();
 }
 
-void Receiver::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Receiver::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 }
 
-void Receiver::handleBeginContactWith(Bullet *bullet) {
+void Receiver::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->turnOn();
     this->world->addBodyForDeletion(bullet);
 }
 
-void Receiver::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Receiver::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }

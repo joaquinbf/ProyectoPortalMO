@@ -54,14 +54,14 @@ public:
     virtual Update createUpdate(COMMAND command) const;
 
     /* Maneja el inicio de contacto con body */
-    virtual void handleBeginContactWith(Body *other_body);
+    virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
     /* Destruye a la bala */
-    virtual void handleBeginContactWith(Bullet *bullet) override;
+    virtual void handleBeginContactWith(Bullet *bullet, b2Contact *contact) override;
 
-    virtual void handleBeginContactWith(Chell *chell) override;
+    virtual void handleBeginContactWith(Chell *chell, b2Contact *contact) override;
     /* Maneja el fin de contacto con otro cuerpo */
-    virtual void handleEndContactWith(Body *other_body);
+    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 };
 
 #endif

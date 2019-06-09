@@ -49,10 +49,10 @@ public:
     void setBooleanSupplier(BooleanSupplier *boolean_supplier);
 
     /* Maneja el inicio de contacto con otro cuerpo */
-    virtual void handleBeginContactWith(Body *other_body);
+    virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
     /* Maneja el fin de contacto con otro cuerpo */
-    virtual void handleEndContactWith(Body *other_body);
+    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 
     /* Aplica una accion dependiendo de su estado */
     virtual void applyStateAction() override;

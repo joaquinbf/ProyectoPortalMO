@@ -60,18 +60,18 @@ Update Block::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Block::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Block::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 }
 
-void Block::handleBeginContactWith(Bullet *bullet) {
+void Block::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->world->addBodyForDeletion(bullet);
 }
 
-void Block::handleBeginContactWith(Chell *chell) {
+void Block::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     chell->land();
 }
 
-void Block::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Block::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }

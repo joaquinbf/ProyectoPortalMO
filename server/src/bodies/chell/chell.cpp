@@ -184,27 +184,27 @@ void Chell::applyStateAction() {
     this->state->applyStateAction();
 }
 
-void Chell::handleBeginContactWith(Body *other_body) {
-    other_body->handleBeginContactWith(this);
+void Chell::handleBeginContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleBeginContactWith(this, contact);
 }
 
-void Chell::handleBeginContactWith(Acid *acid) {
+void Chell::handleBeginContactWith(Acid *acid, b2Contact *contact) {
     this->changeStateToDead();
 }
 
-void Chell::handleBeginContactWith(Block *block) {
+void Chell::handleBeginContactWith(Block *block, b2Contact *contact) {
     this->land();
 }
 
-void Chell::handleBeginContactWith(Button *button) {
+void Chell::handleBeginContactWith(Button *button, b2Contact *contact) {
     button->press();
     this->land();
 }
 
-void Chell::handleEndContactWith(Body *other_body) {
-    other_body->handleEndContactWith(this);
+void Chell::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }
 
-void Chell::handleEndContactWith(Button *button) {
+void Chell::handleEndContactWith(Button *button, b2Contact *contact) {
     button->release();
 }

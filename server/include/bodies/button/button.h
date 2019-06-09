@@ -60,14 +60,14 @@ public:
     virtual bool getAsBoolean() const;
 
     /* Maneja el inicio de contacto con otro cuerpo */
-    virtual void handleBeginContactWith(Body *other_body);
+    virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
-    virtual void handleBeginContactWith(Chell *chell) override;
+    virtual void handleBeginContactWith(Chell *chell, b2Contact *contact) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
-    virtual void handleEndContactWith(Body *other_body);
+    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 
-    virtual void handleEndContactWith(Chell *chell) override;
+    virtual void handleEndContactWith(Chell *chell, b2Contact *contact) override;
 };
 
 #endif
