@@ -8,13 +8,14 @@
 #include <cstdint>
 
 class Block;
+class Launcher;
 
 class Bullet: public Body {
 private:
     DIRECTION direction;
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
-    const float VELOCITY = 100;
+    const float VELOCITY = 10;
 
 public:
     /* Instancia una bala en world en la posicion (x, y) moviendose con
@@ -32,8 +33,14 @@ public:
    /* Muere al chocar con un bloque */
    virtual void handleBeginContactWith(Block *block) override;
 
+   /* Muere al chocar con un lanzador */
+   virtual void handleBeginContactWith(Launcher *launcher) override;
+
    /* Maneja el fin de contacto con otro cuerpo */
    virtual void handleEndContactWith(Body *other_body);
+
+   /* Mantiene a la bala en su direccion */
+   virtual void applyStateAction() override;
 
 private:
 

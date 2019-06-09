@@ -12,7 +12,7 @@
 #include "../../common/include/update.h"
 #include "../include/world.h"
 
-class Stage : public Thread{
+class Stage : public Thread {
 private:
 	bool running;
 	World world;
@@ -25,7 +25,7 @@ public:
     virtual void run() override;
     void stop();
 	uint32_t getCapacity() const;
-	std::list<Update> getNewPlayerUpdates()const;	
+	std::list<Update> getNewPlayerUpdates()const;
 };
 
 #endif

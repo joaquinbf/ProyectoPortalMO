@@ -7,6 +7,7 @@
 #include "../../../../common/include/types.h"
 #include "../../../../common/include/update.h"
 #include "../../../include/bodies/block/block.h"
+#include "../../../include/bodies/launcher/launcher.h"
 #include <cstdint>
 
 Bullet::Bullet(
@@ -49,7 +50,7 @@ Update Bullet::createUpdate(COMMAND command) const {
         STATUS::NONE_STATUS,
         this->b2body->GetPosition().x * ZOOM_FACTOR,
         this->b2body->GetPosition().y * ZOOM_FACTOR,
-        0);
+        this->direction);
     return update;
 }
 
@@ -61,11 +62,17 @@ void Bullet::handleBeginContactWith(Block *block) {
     this->world->addBodyForDeletion(this);
 }
 
+void Bullet::handleBeginContactWith(Launcher *launcher) {
+    this->world->addBodyForDeletion(this);
+}
+
 void Bullet::handleEndContactWith(Body *other_body) {
     other_body->handleEndContactWith(this);
 }
 
 void Bullet::setVelocity() {
+    // contrarresto g
+    this->b2body->ApplyForceToCenter(b2Vec2(0, 9.8), true);
 
     switch (this->direction) {
         case DIRECTION::RIGHT_DIRECTION:
@@ -81,4 +88,8 @@ void Bullet::setVelocity() {
             this->b2body->SetLinearVelocity(b2Vec2(0, -VELOCITY));
             break;
     }
+}
+
+void Bullet::applyStateAction() {
+    this->setVelocity();
 }

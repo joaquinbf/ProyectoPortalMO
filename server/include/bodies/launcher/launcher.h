@@ -15,6 +15,8 @@ private:
     uint32_t counter;
     const float WIDTH = 1.00;
     const float HEIGHT = 1.00;
+    const float MIN_CREATE_DISTANCE = 3;
+    const float FRAMES_PER_LAUNCH = 50;
 
 public:
     /* Instancia un launcher de id 'body_id' sobre world en la
@@ -29,6 +31,9 @@ public:
 
     /* Maneja el inicio de contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body);
+
+    /* Mata a bullet */
+    virtual void handleBeginContactWith(Bullet *bullet) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body);

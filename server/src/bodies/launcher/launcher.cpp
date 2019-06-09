@@ -50,12 +50,16 @@ void Launcher::handleBeginContactWith(Body *other_body) {
     other_body->handleBeginContactWith(this);
 }
 
+void Launcher::handleBeginContactWith(Bullet *bullet) {
+    this->world->addBodyForDeletion(bullet);
+}
+
 void Launcher::handleEndContactWith(Body *other_body) {
     other_body->handleEndContactWith(this);
 }
 
 void Launcher::applyStateAction() {
-    if (this->counter >= 200) {
+    if (this->counter >= FRAMES_PER_LAUNCH) {
         this->counter = 0;
         this->fireABullet();
     } else {
@@ -70,15 +74,19 @@ Bullet *Launcher::fireABullet() {
     Bullet *bullet;
     switch (this->direction) {
         case DIRECTION::RIGHT_DIRECTION:
-            bullet = this->world->createBullet(x, y, DIRECTION::RIGHT_DIRECTION);
+            x += MIN_CREATE_DISTANCE;
+            bullet = this->world->createBullet(x, y , DIRECTION::RIGHT_DIRECTION);
             break;
         case DIRECTION::LEFT_DIRECTION:
+            x -= MIN_CREATE_DISTANCE;
             bullet = this->world->createBullet(x, y, DIRECTION::LEFT_DIRECTION);
             break;
         case DIRECTION::UP_DIRECTION:
+            y += MIN_CREATE_DISTANCE;
             bullet = this->world->createBullet(x, y, DIRECTION::UP_DIRECTION);
             break;
         case DIRECTION::DOWN_DIRECTION:
+            y -= MIN_CREATE_DISTANCE;
             bullet = this->world->createBullet(x, y, DIRECTION::DOWN_DIRECTION);
             break;
     }

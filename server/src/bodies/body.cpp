@@ -14,6 +14,7 @@ Body::Body(World *world, ENTITY entity):
     BODY_ID(world->getBodyCount()),
     world(world),
     entity(entity) {
+    world->insertNewBody(this);
 }
 
 Body::~Body() {

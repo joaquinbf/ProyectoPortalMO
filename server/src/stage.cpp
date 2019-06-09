@@ -1,4 +1,5 @@
 #include "../include/stage.h"
+#include <iostream>
 
 Stage::Stage(const std::string& mapName,
 	ProtectedQueue<Action>* inputs,ProtectedQueue<Update>* updates) :
@@ -16,18 +17,26 @@ void Stage::run(){
 		while(this->inputs->try_pop(action)){
 			if(this->running){
 				this->world.applyAction(action);
-			}			
+			}
 		}
+
 		if(this->running){
 			this->world.applyStateActions();
 		}
+
 		if(this->running){
 			this->world.step();
 		}
+
 		if(this->running){
-			list = world.getUpdatesForAwakeBodies();
+			list = world.getBodyUpdates();
 		}
-		for(Update update : list){	
+
+		if(this->running){
+			world.deleteBodiesForDeletion();
+		}
+
+		for(Update update : list){
 			if(this->running){
 				this->updates->push(update);
 			}
@@ -36,6 +45,7 @@ void Stage::run(){
 		for(Update update : list){
 			this->updates->push(update);
 		}
+
 		if(this->running){
 			usleep(50000);
 		}

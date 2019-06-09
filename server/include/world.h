@@ -64,6 +64,9 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Agrega un nuevo body a world */
+    void insertNewBody(Body *body);
+
     /* Devuelve la cantidad de cuerpos que han existido.*/
     uint32_t getBodyCount() const;
 
@@ -113,14 +116,9 @@ public:
      * jugadores. */
     std::list<Update> getNewPlayerUpdates() const;
 
-    /* Devuelve una lista con updates del mundo. */
-    std::list<Update> getUpdates();
-
-    /* Agrega updates de los ultimos bodies creados a updates */
-    void addNewBodiesToUpdates(std::list<Update> &updates);
-
     /* Devuelve una lista de updates pero solo con los cuerpos despiertos */
-    std::list<Update> getUpdatesForAwakeBodies();
+    std::list<Update> getBodyUpdates();
+
     std::list<Update> getPinUpdateList();
     void createNewPin(uint32_t id, int32_t x, int32_t y);
 
@@ -154,6 +152,10 @@ private:
 
     /* Devuelve updates con COMMAND asignado. */
     std::list<Update> getUpdatesWithCommand(COMMAND command) const;
+
+    void addNewBodiesToUpdates(std::list<Update> &updates);
+    void addAllBodiesToUpdates(std::list<Update> &updates);
+    void addDeletedBodiesToUpdates(std::list<Update> &updates);
 };
 
 #endif
