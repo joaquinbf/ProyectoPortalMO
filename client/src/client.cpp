@@ -23,9 +23,9 @@ static bool ends_with(std::string const & value, std::string const & ending)
 }
 
 void Client::login(){
-    uint32_t a = serverManager.receiveQuad();
+    uint32_t a = this->serverManager.receiveQuad();
     for(;a>0;a--){
-        GameInfo gi = serverManager.receiveGameInfo();
+        GameInfo gi = this->serverManager.receiveGameInfo();
         std::cout<<"id: "<<gi.getId()<<"\n";
         std::cout<<"map: "<<gi.getMapName()<<"\n";
         std::cout<<"playes: "<<gi.getPlayers()<<"\n";
@@ -44,6 +44,8 @@ void Client::login(){
         }
         closedir(dirp);
     }
+    this->serverManager.joinGame(0);
+    //this->serverManager.createGame("MAPA.yaml");
 }
 
 void Client::game(){   

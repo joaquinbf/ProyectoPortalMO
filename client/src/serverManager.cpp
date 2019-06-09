@@ -32,3 +32,13 @@ uint32_t ServerManager::receiveQuad() const{
 GameInfo ServerManager::receiveGameInfo() const{
 	return this->protocol.receiveGameInfo();	
 }
+
+void ServerManager::joinGame(uint32_t id) const{
+	this->protocol.sendByte(1);
+	this->protocol.sendQuad(id);
+}
+
+void ServerManager::createGame(const std::string& map) const{
+	this->protocol.sendByte(0);
+	this->protocol.sendLine(map);
+}

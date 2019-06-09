@@ -27,6 +27,7 @@ public:
 	~Game();
 	void addPlayer(Player* player);
 	const GameInfo& getGameInfo();
+	uint32_t getId() const;
 };
 
 #endif

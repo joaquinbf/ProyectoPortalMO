@@ -22,6 +22,8 @@ public:
 	uint32_t receiveChellId() const;
 	uint32_t receiveQuad() const;
 	GameInfo receiveGameInfo() const;
+	void joinGame(uint32_t id) const;
+	void createGame(const std::string& map) const;
 };
 
 #endif

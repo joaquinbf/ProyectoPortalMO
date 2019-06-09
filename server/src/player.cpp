@@ -46,3 +46,15 @@ void Player::sendGamesList(std::list<Game*>* games){
         this->protocol.sendGameInfo(game->getGameInfo());
     }
 }
+
+uint8_t Player::receiveByte() const{
+    return this->protocol.receiveByte();
+}
+
+uint32_t Player::receiveQuad() const{
+    return this->protocol.receiveQuad();   
+}
+
+std::string Player::receiveLine() const{
+    return this->protocol.receiveLine();
+}
