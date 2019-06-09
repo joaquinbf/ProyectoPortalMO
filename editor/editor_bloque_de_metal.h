@@ -29,6 +29,8 @@ BloqueDeMetal::~BloqueDeMetal()
 void BloqueDeMetal::guardar(YAML::Node &nodo) {
     int idCelda = this->getIdCelda();
     nodo["celdas"][idCelda]["idClass"] = this->idClass;
+    nodo["celdas"][idCelda]["x"] = this->scenePos().x();
+    nodo["celdas"][idCelda]["y"] = this->scenePos().y();
 }
 
 void BloqueDeMetal::abrir(YAML::Node &nodo) {

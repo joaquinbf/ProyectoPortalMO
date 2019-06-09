@@ -132,6 +132,7 @@ void EscenarioGrafico::guardar(YAML::Node &nodo)
     nodo["escenario"]["pathFondoEscenario"] = this->fondoEscenario;
     nodo["escenario"]["tamanioAncho"] = this->tamanio.width();
     nodo["escenario"]["tamanioAlto"] = this->tamanio.height();
+    nodo["escenario"]["cantidadCeldas"] = this->celdas.size();
     //TODO otras configuraciones.
     for (int i = 0; i < this->celdas.size(); i++)
     {
