@@ -9,6 +9,7 @@
 
 class Block;
 class Launcher;
+class Receiver;
 
 class Bullet: public Body {
 private:
@@ -35,6 +36,9 @@ public:
 
    /* Muere al chocar con un lanzador */
    virtual void handleBeginContactWith(Launcher *launcher) override;
+
+   /* Muere y activa el receptor */
+   virtual void handleBeginContactWith(Receiver *receiver) override;
 
    /* Maneja el fin de contacto con otro cuerpo */
    virtual void handleEndContactWith(Body *other_body);

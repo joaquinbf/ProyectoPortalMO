@@ -29,8 +29,15 @@
 #include <mutex>
 #include <set>
 
-#define GRAVITY b2Vec2(0.0, -9.8)
+class Chell;
+class Receiver;
+class Launcher;
+class Rock;
+class Gate;
+class Button;
+class Acid;
 
+#define GRAVITY b2Vec2(0.0, -9.8)
 
 class World {
 private:
@@ -111,6 +118,9 @@ public:
 
     /* Crea una bala en (x, y) desplazandose en direction 'direction' */
     Bullet *createBullet(float x, float y, DIRECTION direction);
+
+    /* Crea un receptor en (x, y) */
+    Receiver *createReceiver(float x, float y);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */

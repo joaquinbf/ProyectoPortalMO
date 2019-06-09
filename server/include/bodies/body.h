@@ -17,6 +17,7 @@ class Chell;
 class Gate;
 class Rock;
 class Launcher;
+class Receiver;
 
 class Body {
 protected:
@@ -79,6 +80,8 @@ public:
 
     virtual void handleBeginContactWith(Launcher *launcher);
 
+    virtual void handleBeginContactWith(Receiver *receiver);
+
     virtual void handleBeginContactWith(Rock *rock);
 
     /* Maneja el fin de contacto con acid */
@@ -95,6 +98,8 @@ public:
     virtual void handleEndContactWith(Gate *gate);
 
     virtual void handleEndContactWith(Launcher *launcher);
+
+    virtual void handleEndContactWith(Receiver *receiver);
 
     virtual void handleEndContactWith(Rock *rock);
 };

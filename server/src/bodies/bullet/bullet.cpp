@@ -8,6 +8,7 @@
 #include "../../../../common/include/update.h"
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/launcher/launcher.h"
+#include "../../../include/bodies/receiver/receiver.h"
 #include <cstdint>
 
 Bullet::Bullet(
@@ -64,6 +65,12 @@ void Bullet::handleBeginContactWith(Block *block) {
 
 void Bullet::handleBeginContactWith(Launcher *launcher) {
     this->world->addBodyForDeletion(this);
+}
+
+void Bullet::handleBeginContactWith(Receiver *receiver) {
+    receiver->turnOn();
+    this->world->addBodyForDeletion(this);
+
 }
 
 void Bullet::handleEndContactWith(Body *other_body) {

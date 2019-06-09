@@ -7,6 +7,7 @@
 #include "../../include/bodies/launcher/launcher.h"
 #include "../../include/bodies/rock/rock.h"
 #include "../../include/bodies/bullet/bullet.h"
+#include "../../include/bodies/receiver/receiver.h"
 #include "../../include/world.h"
 #include <cstdint>
 
@@ -72,6 +73,9 @@ void Body::handleBeginContactWith(Gate *gate) {
 void Body::handleBeginContactWith(Launcher *launcher) {
 }
 
+void Body::handleBeginContactWith(Receiver *receiver) {
+}
+
 void Body::handleBeginContactWith(Rock *rock) {
 }
 
@@ -94,6 +98,9 @@ void Body::handleEndContactWith(Gate *gate) {
 }
 
 void Body::handleEndContactWith(Launcher *launcher) {
+}
+
+void Body::handleEndContactWith(Receiver *receiver) {
 }
 
 void Body::handleEndContactWith(Rock *rock) {

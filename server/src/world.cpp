@@ -1,6 +1,7 @@
 #include "../include/world.h"
 
 #include "../include/bodies/body.h"
+#include "../include/bodies/receiver/receiver.h"
 #include "../include/bodies/chell/chell.h"
 #include "../include/bodies/button/button.h"
 #include "../include/bodies/gate/gate.h"
@@ -41,6 +42,7 @@ World::World(b2World *b2world):
 }
 
 World::~World() {
+    this->deleteBodiesForDeletion();
     this->deleteAllBodies();
     this->deleteB2WorldIfInternal();
     for(auto it : this->pins){
@@ -129,6 +131,11 @@ Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
 Bullet *World::createBullet(float x, float y, DIRECTION direction) {
     Bullet *bullet = new Bullet(this, x, y, direction);
     return bullet;
+}
+
+Receiver *World::createReceiver(float x, float y) {
+    Receiver *receiver = new Receiver(this, x, y);
+    return receiver;
 }
 
 std::list<Update> World::getNewPlayerUpdates() const {

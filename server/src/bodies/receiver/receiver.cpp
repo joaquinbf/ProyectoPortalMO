@@ -1,1 +1,64 @@
 #include "../../../include/bodies/receiver/receiver.h"
+#include "../../../include/world.h"
+#include "../../../include/bodies/bullet/bullet.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
+#include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
+
+Receiver::Receiver(World *world, float x, float y):
+    Body(world, ENTITY::RECEIVER_BLOCK),
+    is_on(false) {
+    b2BodyDef b2bodydef;
+    b2bodydef.type = b2_staticBody;
+    b2bodydef.position.Set(x, y);
+    b2bodydef.userData = (void *) this;
+
+    this->b2body = world->getB2World()->CreateBody(&b2bodydef);
+
+    b2PolygonShape b2polygonshape;
+    b2polygonshape.SetAsBox(this->WIDHT/2, this->HEIGHT/2);
+
+    b2FixtureDef b2fixturedef;
+    b2fixturedef.shape = &b2polygonshape;
+    b2fixturedef.userData = (void *) this;
+
+    this->b2body->CreateFixture(&b2fixturedef);
+}
+
+Update Receiver::createUpdate(COMMAND command) const {
+    Update update(
+        command,
+        this->entity,
+        this->getBodyId(),
+        STATUS::NONE_STATUS,
+        this->getPosX(),
+        this->getPosY(),
+        0);
+    return update;
+}
+
+bool Receiver::isOn() const {
+    return is_on;
+}
+
+void Receiver::turnOn() {
+    this->is_on = true;
+}
+
+bool Receiver::getAsBoolean() const {
+    return this->isOn();
+}
+
+void Receiver::handleBeginContactWith(Body *other_body) {
+    other_body->handleBeginContactWith(this);
+}
+
+void Receiver::handleBeginContactWith(Bullet *bullet) {
+    this->world->addBodyForDeletion(bullet);
+    this->turnOn();
+}
+
+void Receiver::handleEndContactWith(Body *other_body) {
+    other_body->handleEndContactWith(this);
+}

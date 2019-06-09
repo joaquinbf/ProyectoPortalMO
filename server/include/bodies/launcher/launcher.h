@@ -13,8 +13,8 @@ class Launcher: public Body {
 private:
     DIRECTION direction;
     uint32_t counter;
-    const float WIDTH = 1.00;
-    const float HEIGHT = 1.00;
+    const float WIDTH = 2.00;
+    const float HEIGHT = 2.00;
     const float MIN_CREATE_DISTANCE = 3;
     const float FRAMES_PER_LAUNCH = 50;
 
