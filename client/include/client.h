@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <exception>
 #include <list>
+#include <dirent.h> 
 
 #include "../include/serverManager.h"
 #include "../include/inputManager.h"
@@ -18,6 +19,8 @@
 #include "../../common/include/update.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/types.h"
+
+#define MAP_SAVE_ROUTE "../maps/"
 
 class Client{
 private:

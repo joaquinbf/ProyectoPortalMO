@@ -16,8 +16,13 @@ void Client::main(){
 	this->game();
 }
 
+static bool ends_with(std::string const & value, std::string const & ending)
+{
+    if (ending.size() > value.size()) return false;
+    return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
+}
+
 void Client::login(){
-	//aca haria algo
     uint32_t a = serverManager.receiveQuad();
     for(;a>0;a--){
         GameInfo gi = serverManager.receiveGameInfo();
@@ -25,6 +30,19 @@ void Client::login(){
         std::cout<<"map: "<<gi.getMapName()<<"\n";
         std::cout<<"playes: "<<gi.getPlayers()<<"\n";
         std::cout<<"capacity: "<<gi.getCapacity()<<"\n";
+    }
+
+    DIR           *dirp;
+    struct dirent *directory;
+    dirp = opendir(MAP_SAVE_ROUTE);
+    if (dirp){
+        while ((directory = readdir(dirp)) != NULL){
+            if(ends_with(std::string(directory->d_name),
+                std::string(".yaml"))){
+                std::cout<<directory->d_name<<"\n";    
+            }            
+        }
+        closedir(dirp);
     }
 }
 
