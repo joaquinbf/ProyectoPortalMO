@@ -40,19 +40,26 @@ void Gate::update(const Update& update){
 }
 
 void Gate::opened(){
-	this->status = STATUS::GATE_OPENED;
-	this->actionPtr = &Gate::opened;
-	this->texturePtr = (SdlTexture *) this->textureManager.getGateTexturePointer(this->status);
-	this->frame = 18;
-	this->frameArea = Area(0,1,192,384);
+	if(this->frame != 18){
+		this->open();
+	} else {
+		this->status = STATUS::GATE_OPENED;
+		this->actionPtr = &Gate::opened;
+		this->texturePtr = this->textureManager.getGateTexturePointer(this->status);
+		this->frameArea = Area(0,1,192,384);
+	}
 }
 
 void Gate::closed(){
-	this->status = STATUS::GATE_CLOSED;
-	this->actionPtr = &Gate::closed;
-	this->texturePtr = (SdlTexture *) this->textureManager.getGateTexturePointer(this->status);
-	this->frame = 0;
-	this->frameArea =  Area(0,0,192,384);
+	if(this->frame != 0){
+		this->close();
+	}else {
+		this->status = STATUS::GATE_CLOSED;
+		this->actionPtr = &Gate::closed;
+		this->texturePtr = this->textureManager.getGateTexturePointer(this->status);
+		this->frameArea =  Area(0,0,192,384);	
+	}
+	
 }
 void Gate::open(){
 	if(this->frame == 18){
@@ -61,7 +68,7 @@ void Gate::open(){
 	}
 	this->status = STATUS::GATE_OPENING;
 	this->actionPtr = &Gate::open;
-	this->texturePtr = (SdlTexture *) this->textureManager.getGateTexturePointer(this->status);	
+	this->texturePtr = this->textureManager.getGateTexturePointer(this->status);	
 	this->frameArea =  this->textureManager.getGateFrameArea(this->frame);
 	++this->frame;	
 }
@@ -72,8 +79,8 @@ void Gate::close(){
 		return;
 	}
 	this->status = STATUS::GATE_CLOSING;
-	this->actionPtr = &Gate::open;
-	this->texturePtr = (SdlTexture *) this->textureManager.getGateTexturePointer(this->status);
+	this->actionPtr = &Gate::close;
+	this->texturePtr = this->textureManager.getGateTexturePointer(this->status);
 	
 	this->frameArea =  this->textureManager.getGateFrameArea(this->frame);
 	--this->frame;
