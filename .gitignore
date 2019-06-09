@@ -35,3 +35,5 @@
 build/
 movies/
 libs/Box2D-master/build/
+
+editor/\.vscode/
