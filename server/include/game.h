@@ -15,7 +15,7 @@
 
 class Game{
 private:
-	static uint32_t id;
+	static uint32_t number;
 	Stage stage;
 	std::vector<Player*> players;
 	ProtectedQueue<Action> inputs;
@@ -28,7 +28,5 @@ public:
 	void addPlayer(Player* player);
 	const GameInfo& getGameInfo();
 };
-
-uint32_t Game::id = 0;
 
 #endif

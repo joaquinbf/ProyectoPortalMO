@@ -33,6 +33,7 @@ public:
 	void sendUpdate(const Update update) const;
 	Update receiveUpdate() const;
 	void sendGameInfo(const GameInfo& gi) const;
+	GameInfo receiveGameInfo() const;
 };
 
 #endif

@@ -42,4 +42,7 @@ void Player::pushBackUpdate(Update update){
 
 void Player::sendGamesList(std::list<Game*>* games){
     this->protocol.sendQuad(games->size());
+    for(Game* game : *games){
+        this->protocol.sendGameInfo(game->getGameInfo());
+    }
 }

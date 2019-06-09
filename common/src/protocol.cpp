@@ -161,8 +161,17 @@ Update Protocol::receiveUpdate() const{
 }
 
 void Protocol::sendGameInfo(const GameInfo& gi) const{
+	this->sendQuad(gi.getId());
 	this->sendLine(gi.getMapName());
 	this->sendQuad(gi.getPlayers());
 	this->sendQuad(gi.getCapacity());
+}
+
+GameInfo Protocol::receiveGameInfo() const{
+	uint32_t id = this->receiveQuad();
+	std::string map = this->receiveLine();
+	uint32_t players = this->receiveQuad();
+	uint32_t capacity = this->receiveQuad();
+	return GameInfo(id,map,players,capacity);
 }
 

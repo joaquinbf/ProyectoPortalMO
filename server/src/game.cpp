@@ -1,11 +1,13 @@
 #include "../include/game.h"
 
+uint32_t Game::number = 0;
+
 Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates),
-	broadcaster(&this->updates),gameInfo(this->id,mapName,0,0){
+	broadcaster(&this->updates),gameInfo(this->number,mapName,0,0){
 	this->gameInfo.setCapacity(stage.getCapacity());
 	this->stage.start();
 	this->broadcaster.start();
-	++this->id;
+	++this->number;
 }
 
 Game::~Game(){	

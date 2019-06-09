@@ -16,6 +16,7 @@ Accepter::~Accepter(){
 
 void Accepter::run() {
     this->games.push_back(new Game("MAPA.yaml"));
+    this->games.push_back(new Game("ASD.yaml"));
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
