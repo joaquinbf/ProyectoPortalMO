@@ -15,6 +15,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_botonNuevaPartida_clicked();
+
+    void on_botonBuscarServidor_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

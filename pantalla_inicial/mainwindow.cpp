@@ -6,6 +6,9 @@
 #include <QDir>
 #include <QDebug>
 
+#include "init_seleccionar_escenario.h"
+#include "init_seleccionar_servidor.h"
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -26,4 +29,18 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_botonNuevaPartida_clicked()
+{
+    SeleccionarEscenario seleccion;
+    seleccion.setModal(true);
+    seleccion.exec();
+}
+
+void MainWindow::on_botonBuscarServidor_clicked()
+{
+    SeleccionarServidor seleccion;
+    seleccion.setModal(true);
+    seleccion.exec();
 }

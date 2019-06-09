@@ -25,13 +25,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    init_seleccionar_escenario.cpp \
+    init_seleccionar_servidor.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    init_seleccionar_escenario.h \
+    init_seleccionar_servidor.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    init_seleccionar_servidor.ui \
+    init_seleccionar_escenario.ui
 
 RESOURCES += \
     recursos.qrc
