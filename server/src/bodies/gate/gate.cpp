@@ -114,7 +114,6 @@ void Gate::shrink() {
     vertices[3].Set(0.00, -this->height);
 
     b2polygonshape->Set(vertices, 4);
-    std::cout << "SHRINKING height: " << height << std::endl;
 }
 
 void Gate::grow() {
@@ -127,7 +126,6 @@ void Gate::grow() {
         this->height = MAX_HEIGHT;
     }
 
-    std::cout << "GROW height: " << height << std::endl;
     b2Vec2 vertices[4];
     vertices[0].Set(0.00, 0.00);
     vertices[1].Set(MAX_WIDTH, 0.00);

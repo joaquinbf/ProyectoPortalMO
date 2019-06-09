@@ -48,6 +48,7 @@ private:
     BooleanBlockFactory boolean_block_factory;
     ContactListener contact_listener;
     std::set<Body *> bodies_for_deletion;
+    std::set<Body *> new_bodies;
 
 public:
     /* Instancia un world */
@@ -113,10 +114,13 @@ public:
     std::list<Update> getNewPlayerUpdates() const;
 
     /* Devuelve una lista con updates del mundo. */
-    std::list<Update> getUpdates() const;
+    std::list<Update> getUpdates();
+
+    /* Agrega updates de los ultimos bodies creados a updates */
+    void addNewBodiesToUpdates(std::list<Update> &updates);
 
     /* Devuelve una lista de updates pero solo con los cuerpos despiertos */
-    std::list<Update> getUpdatesForAwakeBodies() const;
+    std::list<Update> getUpdatesForAwakeBodies();
     std::list<Update> getPinUpdateList();
     void createNewPin(uint32_t id, int32_t x, int32_t y);
 

@@ -26,6 +26,8 @@ PortalChell():
 
     // Cy = 0.22 aprox
     this->world.createGateWithButton(-2, 2, -4, Cy, true);
+
+    this->world.createLauncher(1, 1, DIRECTION::RIGHT_DIRECTION);
 }
 
 void Step(Settings *settings) {

@@ -18,7 +18,7 @@ Bullet::Bullet(
     b2bodydef.type = b2_dynamicBody;
     b2bodydef.position.Set(x, y);
     b2bodydef.userData = (void *) this;
-    b2bodydef.awake = false;
+    b2bodydef.awake = true;
 
     this->b2body = world->getB2World()->CreateBody(&b2bodydef);
 

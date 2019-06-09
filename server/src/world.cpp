@@ -65,6 +65,7 @@ Chell *World::createChell(float x, float y) {
     this->bodies.insert(chell);
     this->chells[chell->getBodyId()] = chell;
     this->body_count++;
+    this->new_bodies.insert(chell);
     return chell;
 }
 
@@ -76,6 +77,7 @@ Block *World::createSquareMetalBlock(float x, float y) {
                              shape, material);
     this->bodies.insert(block);
     this->body_count++;
+    this->new_bodies.insert(block);
     return block;
 }
 
@@ -87,14 +89,16 @@ Block *World::createSquareStoneBlock(float x, float y) {
                              shape, material);
     this->bodies.insert(block);
     this->body_count++;
+    this->new_bodies.insert(block);
     return block;
 }
 
 Button *World::createButton(float x, float y) {
     Button *button = new Button(this, x, y);
     this->bodies.insert(button);
-    return button;
     this->body_count++;
+    this->new_bodies.insert(button);
+    return button;
 }
 
 void World::createGateWithButton(
@@ -120,12 +124,15 @@ void World::createGateWithButton(
 
     block->add(button);
     gate->setBooleanBlock(block);
+    this->new_bodies.insert(button);
+    this->new_bodies.insert(gate);
 }
 
 Gate *World::createGate(float x, float y) {
     Gate *gate = new Gate(this, x, y);
     this->bodies.insert(gate);
     this->body_count++;
+    this->new_bodies.insert(gate);
     return gate;
 }
 
@@ -137,12 +144,10 @@ Acid *World::createAcid(float x, float y) {
 }
 
 Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
-    Launcher *launcher = new Launcher(
-        this,
-        x, y,
-        direction);
+    Launcher *launcher = new Launcher(this,x, y, direction);
     this->bodies.insert(launcher);
     this->body_count++;
+    this->new_bodies.insert(launcher);
     return launcher;
 }
 
@@ -150,17 +155,29 @@ Bullet *World::createBullet(float x, float y, DIRECTION direction) {
     Bullet *bullet = new Bullet(this, x, y, direction);
     this->bodies.insert(bullet);
     this->body_count++;
+    this->new_bodies.insert(bullet);
     return bullet;
 }
-
 
 std::list<Update> World::getNewPlayerUpdates() const {
     return this->getUpdatesWithCommand(COMMAND::CREATE_COMMAND);
 }
 
-std::list<Update> World::getUpdates() const {
-    return this->getUpdatesWithCommand(COMMAND::UPDATE_COMMAND);
+std::list<Update> World::getUpdates() {
+    std::list<Update> updates;
+    updates = this->getUpdatesWithCommand(COMMAND::UPDATE_COMMAND);
+    this->addNewBodiesToUpdates(updates);
+    return updates;
 }
+
+void World::addNewBodiesToUpdates(std::list<Update> &updates) {
+    for (Body *body: this->new_bodies) {
+        Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
+        updates.push_back(update);
+    }
+    this->new_bodies.clear();
+}
+
 
 void World::createNewPin(uint32_t id, int32_t x, int32_t y){
     Pin* ptr = new Pin(this->body_count,x,y);
@@ -199,49 +216,15 @@ std::list<Update> World::getPinUpdateList(){
     return list;
 }
 
-std::list<Update> World::getUpdatesForAwakeBodies() const {
+std::list<Update> World::getUpdatesForAwakeBodies()  {
     std::list<Update> updates;
+    this->addNewBodiesToUpdates(updates);
 
     for (Body *body: this->bodies) {
         if (body->isAwake()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             updates.push_back(update);
-
-            if (update.getIdClass() == ENTITY::CHELL && false) {
-                std::cout << "POS : ("
-                          << update.getPosX() << ", "
-                          << update.getPosY() << ")" << std::endl;
-
-                switch (update.getStatus()) {
-                case STATUS::NONE_STATUS:
-                    std::cout << "UPDATE STATUS: NONE_STATUS" << std::endl;
-                    break;
-                case STATUS::CHELL_IDLE:
-                    std::cout << "UPDATE STATUS: CHELL_IDLE" << std::endl;
-                    break;
-                case STATUS::CHELL_RUNNING:
-                    std::cout << "UPDATE STATUS: CHELL_RUNNING" << std::endl;
-                    break;
-                case STATUS::CHELL_JUMPING:
-                    std::cout << "UPDATE STATUS: CHELL_JUMPING" << std::endl;
-                    break;
-                case STATUS::CHELL_DIE:
-                    std::cout << "UPDATE STATUS: CHELL_DIE" << std::endl;
-                    break;
-                default:
-                    std::cout << "UPDATE STATUS: OTRO STATUS : "
-                              << update.getStatus() << std::endl;
-                    break;
-                }
-            } else if (update.getStatus() == STATUS::GATE_CLOSED) {
-                std::cout << "STATUS::GATE_CLOSED" << std::endl;
-            } else if (update.getStatus() == STATUS::GATE_OPENING) {
-                std::cout << "STATUS::GATE_OPENING" << std::endl;
-            } else if (update.getStatus() == STATUS::GATE_OPENED) {
-                std::cout << "STATUS::GATE_OPENED" << std::endl;
-            } else if (update.getStatus() == STATUS::GATE_CLOSING) {
-                std::cout << "STATUS::GATE_CLOSING" << std::endl;
-            }
+            std::cout << "UPDATE: " << update.getStatus() << std::endl;
         }
     }
     return updates;
@@ -265,6 +248,8 @@ void World::createWorldOne() {
 
     // Cy = 0.22 aprox
     this->createGateWithButton(-2, 2, -4, Cy, true);
+
+    this->createLauncher(1, 1, DIRECTION::RIGHT_DIRECTION);
 }
 
 void World::applyAction(const Action &action) {

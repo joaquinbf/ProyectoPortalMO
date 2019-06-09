@@ -15,9 +15,9 @@ Launcher::Launcher(
     DIRECTION direction):
     Body(world, ENTITY::LAUNCH_BLOCK),
     direction(direction),
-    counter(0) {
+    counter(200) {
     b2BodyDef b2bodydef;
-    b2bodydef.type = b2_dynamicBody;
+    b2bodydef.type = b2_staticBody;
     b2bodydef.position.Set(x, y);
     b2bodydef.userData = (void *) this;
     b2bodydef.awake = false;
@@ -55,7 +55,7 @@ void Launcher::handleEndContactWith(Body *other_body) {
 }
 
 void Launcher::applyStateAction() {
-    if (this->counter % 200 == 0) {
+    if (this->counter >= 200) {
         this->counter = 0;
         this->fireABullet();
     } else {
