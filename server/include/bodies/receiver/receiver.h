@@ -3,8 +3,6 @@
 
 #include "../body.h"
 #include "../../world.h"
-#include "../../../common/include/types.h"
-#include "../../../common/include/update.h"
 #include "../../../../server/include/boolean_suppliers/boolean_supplier.h"
 
 class Bullet;

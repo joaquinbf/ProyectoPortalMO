@@ -44,6 +44,17 @@ public:
 
     void testCuandoReceptorEsChocadoPorUnaBalaSeActivaEntoncesSeEmpiezaAAbrirLaCompuerta() {
         World world;
+        world.createLauncher(0, 0, DIRECTION::RIGHT_DIRECTION);
+        Receiver *receiver = world.createReceiver(6, 0);
+
+        // eberia chocar la bala con el receptor.
+        for (int i = 0; i < 200; i++) {
+            world.step();
+            world.applyStateActions();
+            world.deleteBodiesForDeletion();
+        }
+
+        TS_ASSERT(receiver->isOn());
     }
 };
 

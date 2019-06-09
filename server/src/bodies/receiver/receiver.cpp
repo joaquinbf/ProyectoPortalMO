@@ -55,8 +55,8 @@ void Receiver::handleBeginContactWith(Body *other_body) {
 }
 
 void Receiver::handleBeginContactWith(Bullet *bullet) {
-    this->world->addBodyForDeletion(bullet);
     this->turnOn();
+    this->world->addBodyForDeletion(bullet);
 }
 
 void Receiver::handleEndContactWith(Body *other_body) {

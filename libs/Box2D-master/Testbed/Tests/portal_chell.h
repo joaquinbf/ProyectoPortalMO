@@ -28,13 +28,13 @@ PortalChell():
     this->world.createGateWithButton(-2, 2, -4, Cy, true);
 
     this->world.createLauncher(1, 1, DIRECTION::RIGHT_DIRECTION);
+    this->world.createReceiver(20, 1);
 }
 
 void Step(Settings *settings) {
     Test::Step(settings);
     this->world.applyStateActions();
-    Update update = chell->createUpdate(COMMAND::UPDATE_COMMAND);
-    std::cout << update.getStatus() << std::endl;
+    this->world.deleteBodiesForDeletion();
 }
 
 static Test *Create() {

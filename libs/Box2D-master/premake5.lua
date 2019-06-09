@@ -47,6 +47,8 @@ project 'Testbed'
 		'../../server/include',
 		'../../server/include/chell',
 		'../../server/include/block',
+		'../../server/include/receiver',
+		'../../common/include'
 	}
 
 	files
@@ -78,6 +80,7 @@ project 'Testbed'
 		'../../server/src/bodies/acid/*',
 		'../../server/src/bodies/bullet/*',
 		'../../server/src/bodies/launcher/*',
+		'../../server/src/bodies/receiver/*',
 		'../../server/src/pin.cpp'
 	}
 
