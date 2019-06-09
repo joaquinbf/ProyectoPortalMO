@@ -85,17 +85,37 @@ void MainWindow::on_actionBloque_de_Metal_triggered()
     this->escenario.setIdClassACrear(IDCLASS_BLOQUE_METAL);
 }
 
+void MainWindow::on_actionBoton_triggered()
+{
+    this->escenario.setIdClassACrear(IDCLASS_BOTON);
+}
+
+void MainWindow::on_actionReceptor_Original_triggered()
+{
+    this->escenario.setIdClassACrear(IDCLASS_RECEPTOR);
+}
+
 void MainWindow::on_actionAcido_triggered()
 {
 
 }
 
-void MainWindow::on_actionBloque_de_Metal_en_Diagonal_triggered()
+void MainWindow::on_actionCompuerta_Regular_triggered()
 {
-
+    this->escenario.setIdClassACrear(IDCLASS_COMPUERTA_REG);
 }
 
-void MainWindow::on_actionBoton_triggered()
+void MainWindow::on_actionCompuerta_AND_triggered()
+{
+    this->escenario.setIdClassACrear(IDCLASS_COMPUERTA_AND);
+}
+
+void MainWindow::on_actionCompuerta_OR_triggered()
+{
+    this->escenario.setIdClassACrear(IDCLASS_COMPUERTA_OR);
+}
+
+void MainWindow::on_actionBloque_de_Metal_en_Diagonal_triggered()
 {
 
 }
@@ -156,26 +176,6 @@ void MainWindow::on_actionEmisor_Rotado_180_triggered()
 }
 
 void MainWindow::on_actionEmisor_Rotado_270_triggered()
-{
-
-}
-
-void MainWindow::on_actionReceptor_Original_triggered()
-{
-
-}
-
-void MainWindow::on_actionCompuerta_Regular_triggered()
-{
-
-}
-
-void MainWindow::on_actionCompuerta_AND_triggered()
-{
-
-}
-
-void MainWindow::on_actionCompuerta_OR_triggered()
 {
 
 }

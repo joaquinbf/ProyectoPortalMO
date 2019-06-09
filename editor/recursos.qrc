@@ -34,5 +34,6 @@
         <file>resources/cake.png</file>
         <file>resources/fond.png</file>
         <file>resources/configuracionCompuertas.png</file>
+        <file>resources/icono_editor.png</file>
     </qresource>
 </RCC>

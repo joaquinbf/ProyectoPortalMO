@@ -123,6 +123,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		../editor/.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -222,6 +223,7 @@ Makefile: ../editor/QTEditorPortalV2.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/l
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -301,6 +303,7 @@ Makefile: ../editor/QTEditorPortalV2.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/l
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -383,6 +386,7 @@ qrc_recursos.cpp: ../editor/recursos.qrc \
 		../editor/resources/nuevo.png \
 		../editor/resources/compuerta3.png \
 		../editor/resources/receptorEnergia0.png \
+		../editor/resources/icono_editor.png \
 		../editor/resources/fond.svg \
 		../editor/resources/bloquesMetalDiagonal180.png \
 		../editor/resources/bloquesMetalDiagonal90.png \
@@ -454,7 +458,7 @@ mainwindow.o: ../editor/mainwindow.cpp ../editor/mainwindow.h \
 		../editor/editor_escenario_grafico.h \
 		../editor/editor_item_grafico.h \
 		../editor/editor_celda_grafica.h \
-		ui_mainwindow.h \
+		../editor/ui_mainwindow.h \
 		../editor/editor_defines.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../editor/mainwindow.cpp
 
@@ -464,7 +468,11 @@ editor_escenario_grafico.o: ../editor/editor_escenario_grafico.cpp ../editor/edi
 		../editor/editor_excepcion.h \
 		../editor/editor_defines.h \
 		../editor/editor_bloque_de_roca.h \
-		../editor/editor_personaje_chell.h
+		../editor/editor_personaje_chell.h \
+		../editor/editor_bloque_de_metal.h \
+		../editor/editor_boton.h \
+		../editor/editor_compuerta.h \
+		../editor/editor_receptor.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editor_escenario_grafico.o ../editor/editor_escenario_grafico.cpp
 
 editor_item_grafico.o: ../editor/editor_item_grafico.cpp ../editor/editor_item_grafico.h \
