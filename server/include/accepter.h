@@ -10,13 +10,13 @@
 
 #include "../include/game.h"
 #include "../include/player.h"
+#include "../include/playerLogin.h"
 
 class Accepter: public Thread {
 private:
     Socket socket;
     bool keep_running;
     std::vector<Game*> games;
-
 public:
     Accepter();
     ~Accepter();

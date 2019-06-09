@@ -1,5 +1,5 @@
 #include "../include/accepter.h"
-
+#include <iostream>
 Accepter::Accepter() {
     this->socket.bindAndListen(PORT);
     this->keep_running = true;
@@ -16,11 +16,11 @@ void Accepter::run() {
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
-            //ENVIAR AL PEER LISTA DE GAMES ABIERTO
-            //ESPERAR PEER RESPONSE
-            //PROCESAR COMANDO PARA CREAR PARTIDA O UNIR PEER A PARTIDA
-            //ESTO HAY QUE HACERLO EN OTRO HILO PARA NO BLOQUEAR EL ACCEPTER
+            ///PlayerLogin playerLogin(std::ref(this->games),std::move(peer));
+            //playerLogin.start();            
+            //playerLogin.detach();   
             this->games[0]->addPlayer(std::move(peer));
+         
         }
     } catch (const ConnectionErrorException &e) {
     }
