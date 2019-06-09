@@ -5,6 +5,8 @@
 #include "../../../../server/include/bodies/chell/chell.h"
 #include "../../../../server/include/bodies/block/block.h"
 #include "../../../../server/include/bodies/button/button.h"
+#include "../../../../server/include/bodies/gate/gate.h"
+#include "../../../../server/include/bodies/receiver/receiver.h"
 #include "../../../../common/include/update.h"
 #include <iostream>
 
@@ -25,10 +27,11 @@ PortalChell():
     }
 
     // Cy = 0.22 aprox
-    this->world.createGateWithButton(-2, 2, -4, Cy, true);
-
+    Gate *gate = this->world.createGate(-2, 2);
     this->world.createLauncher(1, 1, DIRECTION::RIGHT_DIRECTION);
-    this->world.createReceiver(20, 1);
+    Receiver *receiver = this->world.createReceiver(20, 1);
+    receiver->setGate(gate);
+    gate->setBooleanSupplier(receiver);
 }
 
 void Step(Settings *settings) {

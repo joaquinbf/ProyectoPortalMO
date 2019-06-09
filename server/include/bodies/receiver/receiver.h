@@ -6,10 +6,12 @@
 #include "../../../../server/include/boolean_suppliers/boolean_supplier.h"
 
 class Bullet;
+class Gate;
 
 class Receiver: public Body, public BooleanSupplier {
 private:
     bool is_on;
+    Gate *gate;
     const float WIDHT = 2.00;
     const float HEIGHT = 2.00;
 
@@ -22,6 +24,9 @@ public:
 
     /* Activa al receptor */
     void turnOn();
+
+    /* Asigna una compuerta al receptor */
+    void setGate(Gate *gate);
 
     /* Indica si el receptor esta activado */
     virtual bool getAsBoolean() const;

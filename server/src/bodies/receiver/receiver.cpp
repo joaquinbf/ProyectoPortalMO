@@ -1,6 +1,7 @@
 #include "../../../include/bodies/receiver/receiver.h"
 #include "../../../include/world.h"
 #include "../../../include/bodies/bullet/bullet.h"
+#include "../../../include/bodies/gate/gate.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -8,7 +9,8 @@
 
 Receiver::Receiver(World *world, float x, float y):
     Body(world, ENTITY::RECEIVER_BLOCK),
-    is_on(false) {
+    is_on(false),
+    gate(0) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_staticBody;
     b2bodydef.position.Set(x, y);
@@ -43,7 +45,14 @@ bool Receiver::isOn() const {
 }
 
 void Receiver::turnOn() {
-    this->is_on = true;
+    if (!this->is_on) {
+        this->is_on = true;
+        this->gate->tryChangeState();
+    }
+}
+
+void Receiver::setGate(Gate *gate) {
+    this->gate = gate;
 }
 
 bool Receiver::getAsBoolean() const {

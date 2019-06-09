@@ -46,15 +46,18 @@ public:
         World world;
         world.createLauncher(0, 0, DIRECTION::RIGHT_DIRECTION);
         Receiver *receiver = world.createReceiver(6, 0);
+        Gate *gate = world.createGate(0, 10);
+        gate->setBooleanSupplier(receiver);
 
-        // eberia chocar la bala con el receptor.
+        // deberia chocar la bala con el receptor.
         for (int i = 0; i < 200; i++) {
             world.step();
             world.applyStateActions();
             world.deleteBodiesForDeletion();
         }
 
-        TS_ASSERT(receiver->isOn());
+        Update update = gate->createUpdate(COMMAND::UPDATE_COMMAND);
+        TS_ASSERT_EQUALS(STATUS::GATE_OPENING, update.getStatus());
     }
 };
 
