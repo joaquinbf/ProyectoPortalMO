@@ -1,5 +1,5 @@
 #include "init_seleccionar_escenario.h"
-#include "ui_init_seleccionar_escenario.h".h"
+#include "ui_init_seleccionar_escenario.h"
 #include <QMessageBox>
 
 SeleccionarEscenario::SeleccionarEscenario(QWidget *parent) :
