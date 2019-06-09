@@ -42,7 +42,7 @@ Update Launcher::createUpdate(COMMAND command) const {
         STATUS::NONE_STATUS,
         this->b2body->GetPosition().x * ZOOM_FACTOR,
         this->b2body->GetPosition().y * ZOOM_FACTOR,
-        0);
+        this->direction);
     return update;
 }
 

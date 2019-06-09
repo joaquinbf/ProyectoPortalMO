@@ -19,6 +19,7 @@ Bullet::Bullet(
     b2bodydef.position.Set(x, y);
     b2bodydef.userData = (void *) this;
     b2bodydef.awake = true;
+    b2bodydef.bullet = true;
 
     this->b2body = world->getB2World()->CreateBody(&b2bodydef);
 
@@ -30,6 +31,8 @@ Bullet::Bullet(
     b2fixturedef.userData = (void *) this;
 
     this->b2body->CreateFixture(&b2fixturedef);
+
+    this->setVelocity();
 }
 
 Bullet::~Bullet() {
@@ -60,4 +63,22 @@ void Bullet::handleBeginContactWith(Block *block) {
 
 void Bullet::handleEndContactWith(Body *other_body) {
     other_body->handleEndContactWith(this);
+}
+
+void Bullet::setVelocity() {
+
+    switch (this->direction) {
+        case DIRECTION::RIGHT_DIRECTION:
+            this->b2body->SetLinearVelocity(b2Vec2(VELOCITY, 0));
+            break;
+        case DIRECTION::LEFT_DIRECTION:
+            this->b2body->SetLinearVelocity(b2Vec2(-VELOCITY, 0));
+            break;
+        case DIRECTION::UP_DIRECTION:
+            this->b2body->SetLinearVelocity(b2Vec2(0, VELOCITY));
+            break;
+        case DIRECTION::DOWN_DIRECTION:
+            this->b2body->SetLinearVelocity(b2Vec2(0, -VELOCITY));
+            break;
+    }
 }

@@ -14,6 +14,7 @@ private:
     DIRECTION direction;
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
+    const float VELOCITY = 100;
 
 public:
     /* Instancia una bala en world en la posicion (x, y) moviendose con
@@ -33,6 +34,11 @@ public:
 
    /* Maneja el fin de contacto con otro cuerpo */
    virtual void handleEndContactWith(Body *other_body);
+
+private:
+
+    /* settea la velocidad de la bala */
+    void setVelocity();
 };
 
 #endif

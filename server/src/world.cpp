@@ -250,6 +250,10 @@ void World::createWorldOne() {
     this->createGateWithButton(-2, 2, -4, Cy, true);
 
     this->createLauncher(1, 1, DIRECTION::RIGHT_DIRECTION);
+    this->createLauncher(1, 10, DIRECTION::DOWN_DIRECTION);
+    this->createLauncher(10, 10, DIRECTION::LEFT_DIRECTION);
+    this->createLauncher(10, 1, DIRECTION::UP_DIRECTION);
+
 }
 
 void World::applyAction(const Action &action) {
