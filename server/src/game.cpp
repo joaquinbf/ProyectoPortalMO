@@ -36,3 +36,7 @@ void Game::addPlayer(Player* player){
 const GameInfo& Game::getGameInfo(){
 	return this->gameInfo;
 }
+
+uint32_t Game::getId() const{
+	return this->gameInfo.getId();
+}

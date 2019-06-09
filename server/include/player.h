@@ -27,6 +27,9 @@ public:
     ProtectedQueue<Update>* getUpdatesPtr();
     void pushBackUpdate(Update update);
     void sendGamesList(std::list<Game*>* games);
+    uint8_t receiveByte() const;
+    uint32_t receiveQuad() const;
+    std::string receiveLine() const;
 };
 
 #endif
