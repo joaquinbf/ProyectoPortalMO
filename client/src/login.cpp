@@ -1,11 +1,44 @@
  #include "../include/login.h"
-
+#include <iostream>
 
 Login::Login(const ServerManager& sm,std::list<GameInfo> games, std::list<std::string> maps) 
 : QWidget(0), serverManager(sm), games(games), maps(maps), tableWidget(0,4), exitButton("Salir"),
 createGameButton("Crear partida"){
-	this->tableWidget.verticalHeader()->hide();
+	this->createTable();
+    this->createComboBox();
+    QVBoxLayout* verticalLayout = new QVBoxLayout();
+    QHBoxLayout* horizontalLayout = new QHBoxLayout();
+	verticalLayout->addWidget(&this->tableWidget);
+    horizontalLayout->addWidget(&this->comboBox);
+    horizontalLayout->addWidget(&this->createGameButton);
+    verticalLayout->addLayout(horizontalLayout);
+    verticalLayout->addWidget(&this->exitButton);
+    this->setLayout(verticalLayout);
+    QObject::connect(&this->createGameButton, &QPushButton::clicked,this, &Login::create);
+    QObject::connect(&this->exitButton, &QPushButton::clicked,this, &Login::exit);
+}
 
+void Login::exit(){
+    this->close();
+}
+
+void Login::join(uint32_t game){
+    this->serverManager.joinGame(game);
+    this->close();
+}
+
+void Login::create(){
+    if(this->comboBox.currentIndex() != -1){    
+        QString qs = this->comboBox.currentText();
+        std::string str = qs.toUtf8().constData();
+        str += ".yaml";
+        this->serverManager.createGame(str);
+        this->close();    
+    }    
+}
+
+void Login::createTable(){
+    this->tableWidget.verticalHeader()->hide();
     QStringList horzHeaders;
     horzHeaders<<"id"<<"Mapa"<<"Jugadores"<<"Unirse";
     this->tableWidget.setHorizontalHeaderLabels(horzHeaders);
@@ -37,24 +70,13 @@ createGameButton("Crear partida"){
             this->tableWidget.setCellWidget(this->tableWidget.rowCount()-1,3,btn);
         }
     }
-    
-
-    QVBoxLayout* verticalLayout = new QVBoxLayout();
-	verticalLayout->addWidget(&this->tableWidget);
-	verticalLayout->addWidget(&this->createGameButton);
-	verticalLayout->addWidget(&this->exitButton);
-    this->setLayout(verticalLayout);
-
-    QObject::connect(&this->exitButton, &QPushButton::clicked,this, &Login::exit);
 }
 
-void Login::exit(){
-    this->close();
+void Login::createComboBox(){
+    this->comboBox.setEditable(false);
+    for(std::string map : this->maps){
+        map = map.substr(0, map.size()-5);
+        this->comboBox.addItem(QString(map.c_str()));
+    }
+    this->comboBox.setCurrentIndex(-1);
 }
-
-void Login::join(uint32_t game){
-    this->serverManager.joinGame(game);
-    this->close();
-}
-
-

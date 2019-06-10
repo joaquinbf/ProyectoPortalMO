@@ -10,6 +10,7 @@
 #include <string>
 #include <QString>
 #include <QHeaderView>
+#include <QComboBox>
 
 #include "../../common/include/gameInfo.h"
 #include "../include/serverManager.h"
@@ -26,8 +27,12 @@ private:
     QPushButton exitButton;
     QPushButton joinGameButton;
     QPushButton createGameButton;
+    QComboBox comboBox;
     void exit();
     void join(uint32_t game);
+    void create();
+    void createTable();
+    void createComboBox();
 };
 
 
