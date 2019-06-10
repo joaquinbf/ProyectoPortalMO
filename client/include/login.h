@@ -1,7 +1,7 @@
 #ifndef _LOGIN_H_
 #define _LOGIN_H_
 
-#include <QWidget>
+#include <QDialog>
 #include <QLabel>
 #include <QTableWidget>
 #include <QPushButton>
@@ -15,7 +15,7 @@
 #include "../../common/include/gameInfo.h"
 #include "../include/serverManager.h"
 
-class Login : public QWidget {
+class Login : public QDialog{
 public:
     explicit Login(const ServerManager& sm,std::list<GameInfo> games, std::list<std::string> maps);
 private:

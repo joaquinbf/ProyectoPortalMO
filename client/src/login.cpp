@@ -1,12 +1,13 @@
- #include "../include/login.h"
-#include <iostream>
+#include "../include/login.h"
 
 Login::Login(const ServerManager& sm,std::list<GameInfo> games, std::list<std::string> maps) 
-: QWidget(0), serverManager(sm), games(games), maps(maps), tableWidget(0,4), exitButton("Salir"),
+: QDialog(nullptr), serverManager(sm), games(games), maps(maps), tableWidget(0,4), exitButton("Salir"),
 createGameButton("Crear partida"){
 	this->createTable();
     this->createComboBox();
+    this->setMinimumSize(342, 400);
     QVBoxLayout* verticalLayout = new QVBoxLayout();
+    verticalLayout->setSpacing(30);
     QHBoxLayout* horizontalLayout = new QHBoxLayout();
 	verticalLayout->addWidget(&this->tableWidget);
     horizontalLayout->addWidget(&this->comboBox);
@@ -19,12 +20,13 @@ createGameButton("Crear partida"){
 }
 
 void Login::exit(){
-    this->close();
+    this->serverManager.sendNoneCommand();
+    this->done(1);
 }
 
 void Login::join(uint32_t game){
     this->serverManager.joinGame(game);
-    this->close();
+    this->done(0);
 }
 
 void Login::create(){
@@ -33,7 +35,7 @@ void Login::create(){
         std::string str = qs.toUtf8().constData();
         str += ".yaml";
         this->serverManager.createGame(str);
-        this->close();    
+        this->done(0);
     }    
 }
 
@@ -42,6 +44,11 @@ void Login::createTable(){
     QStringList horzHeaders;
     horzHeaders<<"id"<<"Mapa"<<"Jugadores"<<"Unirse";
     this->tableWidget.setHorizontalHeaderLabels(horzHeaders);
+    this->tableWidget.horizontalHeader()->setSectionResizeMode (QHeaderView::Fixed);
+    this->tableWidget.setColumnWidth(0,40);
+    this->tableWidget.setColumnWidth(1,120);
+    this->tableWidget.setColumnWidth(2,80);
+    this->tableWidget.setColumnWidth(3,80);
     for(GameInfo gi : games){
         if(gi.getPlayers() < gi.getCapacity()){            
             this->tableWidget.insertRow ( this->tableWidget.rowCount() );

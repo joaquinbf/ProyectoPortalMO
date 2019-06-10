@@ -24,6 +24,7 @@ public:
 	GameInfo receiveGameInfo() const;
 	void joinGame(uint32_t id) const;
 	void createGame(const std::string& map) const;
+	void sendNoneCommand() const;
 };
 
 #endif

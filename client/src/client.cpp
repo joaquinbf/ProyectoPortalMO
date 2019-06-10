@@ -1,5 +1,5 @@
 #include "../include/client.h"
-
+#include <iostream>
 Client::Client()
 : serverManager("localhost", PORT),
 gameView(800,600,this->soundManager),
@@ -10,8 +10,9 @@ updateReceiver(this->serverManager,this->updates)
 Client::~Client(){}
 
 void Client::main(){
-	this->login();
-	this->game();
+	if(this->login()){
+        this->game();
+    }   	
 }
 
 static bool ends_with(std::string const & value, std::string const & ending){
@@ -19,7 +20,7 @@ static bool ends_with(std::string const & value, std::string const & ending){
     return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
 }
 
-void Client::login(){
+int Client::login(){
     std::list<GameInfo> games;
     std::list<std::string> maps;
     uint32_t a = this->serverManager.receiveQuad();
@@ -39,18 +40,16 @@ void Client::login(){
             }            
         }
         closedir(dirp);
-    }
-    //this->serverManager.joinGame(0);
-    //this->serverManager.createGame("MAPA.yaml");
-    
+    }   
     int b = 0;
     QApplication app(b,NULL);
     Login login(this->serverManager,games,maps);
+    login.setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     login.show();
-    app.exec();
+    return login.exec();
 }
 
-void Client::game(){   
+void Client::game(){
     uint32_t chellId = serverManager.receiveChellId();
     this->gameView.setChellId(chellId);
 

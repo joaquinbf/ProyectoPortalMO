@@ -38,7 +38,7 @@ public:
 	Client();
 	~Client();
 	void main();
-	void login();
+	int login();
 	void game();
 };
 
