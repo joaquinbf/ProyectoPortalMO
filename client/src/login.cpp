@@ -39,6 +39,11 @@ void Login::create(){
     }    
 }
 
+void Login::reject(){
+  this->serverManager.sendNoneCommand();
+    this->done(1);  
+}
+
 void Login::createTable(){
     this->tableWidget.verticalHeader()->hide();
     QStringList horzHeaders;

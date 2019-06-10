@@ -31,6 +31,7 @@ private:
     void exit();
     void join(uint32_t game);
     void create();
+    void reject() override;
     void createTable();
     void createComboBox();
 };
