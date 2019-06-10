@@ -10,7 +10,7 @@ updateReceiver(this->serverManager,this->updates)
 Client::~Client(){}
 
 void Client::main(){
-	if(this->login()){
+	if(!this->login()){
         this->game();
     }   	
 }
