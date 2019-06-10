@@ -21,6 +21,10 @@ sudo apt install libsdl2-mixer-dev
 Ademas necesita a Tiff (por alguna razon).
 ```
 sudo apt install libtiff5
+sudo apt install libtiff-opengl libtiffxx
+sudo apt install libtiff5-dev
+sudo apt install libtiff-tools
+sudo apt install libtiff-dev
 ```
 
 
