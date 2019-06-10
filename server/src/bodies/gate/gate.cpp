@@ -95,8 +95,6 @@ void Gate::changeStateToClosed() {
     this->state = &this->closed_gate_state;
 }
 
-
-
 void Gate::shrink() {
     b2Fixture *b2fixture = this->b2body->GetFixtureList();
     b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();

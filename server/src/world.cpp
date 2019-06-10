@@ -95,8 +95,8 @@ void World::createUpdates() {
         if (body->isAwake()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             this->internal_updates.emplace_back(update);
+            std::cout << update.getStatus() << std::endl;
         }
-
     }
 }
 
