@@ -57,8 +57,10 @@ SOURCES       = ../editor/main.cpp \
 		../editor/editor_personaje_chell.cpp \
 		../editor/editor_excepcion.cpp \
 		../editor/editor_celda_grafica.cpp \
-		../editor/editor_bloque_de_roca.cpp qrc_recursos.cpp \
-		moc_mainwindow.cpp
+		../editor/editor_bloque_de_roca.cpp \
+		../editor/editor_listado_de_activables.cpp qrc_recursos.cpp \
+		moc_mainwindow.cpp \
+		moc_editor_listado_de_activables.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		editor_escenario_grafico.o \
@@ -67,8 +69,10 @@ OBJECTS       = main.o \
 		editor_excepcion.o \
 		editor_celda_grafica.o \
 		editor_bloque_de_roca.o \
+		editor_listado_de_activables.o \
 		qrc_recursos.o \
-		moc_mainwindow.o
+		moc_mainwindow.o \
+		moc_editor_listado_de_activables.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -150,14 +154,16 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../editor/editor_personaje_chell.h \
 		../editor/editor_excepcion.h \
 		../editor/editor_celda_grafica.h \
-		../editor/editor_bloque_de_roca.h ../editor/main.cpp \
+		../editor/editor_bloque_de_roca.h \
+		../editor/editor_listado_de_activables.h ../editor/main.cpp \
 		../editor/mainwindow.cpp \
 		../editor/editor_escenario_grafico.cpp \
 		../editor/editor_item_grafico.cpp \
 		../editor/editor_personaje_chell.cpp \
 		../editor/editor_excepcion.cpp \
 		../editor/editor_celda_grafica.cpp \
-		../editor/editor_bloque_de_roca.cpp
+		../editor/editor_bloque_de_roca.cpp \
+		../editor/editor_listado_de_activables.cpp
 QMAKE_TARGET  = QTEditorPortalV2
 DESTDIR       = 
 TARGET        = QTEditorPortalV2
@@ -166,7 +172,7 @@ TARGET        = QTEditorPortalV2
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_editor_listado_de_activables.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../editor/QTEditorPortalV2.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -344,9 +350,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../editor/recursos.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../editor/mainwindow.h ../editor/editor_defines.h ../editor/editor_escenario_grafico.h ../editor/editor_item_grafico.h ../editor/editor_personaje_chell.h ../editor/editor_excepcion.h ../editor/editor_celda_grafica.h ../editor/editor_bloque_de_roca.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../editor/main.cpp ../editor/mainwindow.cpp ../editor/editor_escenario_grafico.cpp ../editor/editor_item_grafico.cpp ../editor/editor_personaje_chell.cpp ../editor/editor_excepcion.cpp ../editor/editor_celda_grafica.cpp ../editor/editor_bloque_de_roca.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../editor/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../editor/mainwindow.h ../editor/editor_defines.h ../editor/editor_escenario_grafico.h ../editor/editor_item_grafico.h ../editor/editor_personaje_chell.h ../editor/editor_excepcion.h ../editor/editor_celda_grafica.h ../editor/editor_bloque_de_roca.h ../editor/editor_listado_de_activables.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../editor/main.cpp ../editor/mainwindow.cpp ../editor/editor_escenario_grafico.cpp ../editor/editor_item_grafico.cpp ../editor/editor_personaje_chell.cpp ../editor/editor_excepcion.cpp ../editor/editor_celda_grafica.cpp ../editor/editor_bloque_de_roca.cpp ../editor/editor_listado_de_activables.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../editor/mainwindow.ui ../editor/editor_listado_de_activables.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -418,9 +424,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_editor_listado_de_activables.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_editor_listado_de_activables.cpp
 moc_mainwindow.cpp: ../editor/editor_escenario_grafico.h \
 		../editor/editor_item_grafico.h \
 		../editor/editor_celda_grafica.h \
@@ -429,14 +435,23 @@ moc_mainwindow.cpp: ../editor/editor_escenario_grafico.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/joacko/TPFinalPortal/editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../editor/mainwindow.h -o moc_mainwindow.cpp
 
+moc_editor_listado_de_activables.cpp: ../editor/editor_listado_de_activables.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/joacko/TPFinalPortal/editor -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../editor/editor_listado_de_activables.h -o moc_editor_listado_de_activables.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_editor_listado_de_activables.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_editor_listado_de_activables.h
 ui_mainwindow.h: ../editor/mainwindow.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic ../editor/mainwindow.ui -o ui_mainwindow.h
+
+ui_editor_listado_de_activables.h: ../editor/editor_listado_de_activables.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic ../editor/editor_listado_de_activables.ui -o ui_editor_listado_de_activables.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -497,11 +512,18 @@ editor_bloque_de_roca.o: ../editor/editor_bloque_de_roca.cpp ../editor/editor_bl
 		../editor/editor_defines.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editor_bloque_de_roca.o ../editor/editor_bloque_de_roca.cpp
 
+editor_listado_de_activables.o: ../editor/editor_listado_de_activables.cpp ../editor/editor_listado_de_activables.h \
+		ui_editor_listado_de_activables.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o editor_listado_de_activables.o ../editor/editor_listado_de_activables.cpp
+
 qrc_recursos.o: qrc_recursos.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_recursos.o qrc_recursos.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_editor_listado_de_activables.o: moc_editor_listado_de_activables.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_editor_listado_de_activables.o moc_editor_listado_de_activables.cpp
 
 ####### Install
 

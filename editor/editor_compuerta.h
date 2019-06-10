@@ -3,109 +3,103 @@
 
 #include "editor_item_grafico.h"
 #include "editor_defines.h"
+#include "editor_listado_de_activables.h"
 #include <yaml-cpp/yaml.h>
 
-class CompuertaRegular : public ItemGrafico
+class Compuerta : public ItemGrafico
+{
+private:
+    /* data */
+public:
+    Compuerta(QString direccionSprite, unsigned idClass);
+    ~Compuerta();
+
+    virtual void guardar(YAML::Node &nodo);
+    virtual void abrir(YAML::Node &nodo);
+
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+};
+
+Compuerta::Compuerta(QString direccionSprite, unsigned idClass) : ItemGrafico(direccionSprite, idClass)
+{
+    this->sprite = this->sprite.scaled(CELL_SIZE_W, CELL_SIZE_H * 2);
+    this->setPixmap(this->sprite);
+}
+
+Compuerta::~Compuerta()
+{
+}
+
+void Compuerta::guardar(YAML::Node &nodo)
+{
+    int idCelda = this->getIdCelda();
+    nodo["celdas"][idCelda]["idClass"] = this->idClass;
+    nodo["celdas"][idCelda]["x"] = this->scenePos().x();
+    nodo["celdas"][idCelda]["y"] = this->scenePos().y();
+}
+
+void Compuerta::abrir(YAML::Node &nodo)
+{
+}
+
+void Compuerta::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
+    ListadoDeActivables listado;
+    listado.setModal(true);
+    listado.exec();
+}
+
+/****************************************************************************/
+
+class CompuertaRegular : public Compuerta
 {
 private:
 public:
     CompuertaRegular();
     ~CompuertaRegular();
-
-    virtual void guardar(YAML::Node &nodo);
-    virtual void abrir(YAML::Node &nodo);
 };
 
-CompuertaRegular::CompuertaRegular() : ItemGrafico(DIR_IMAGEN_COMPUERTA_REG,
-                                                   IDCLASS_COMPUERTA_REG)
+CompuertaRegular::CompuertaRegular() : Compuerta(DIR_IMAGEN_COMPUERTA_REG,
+                                                 IDCLASS_COMPUERTA_REG)
 {
-    this->sprite = this->sprite.scaled(CELL_SIZE_W, CELL_SIZE_H * 2);
-    this->setPixmap(this->sprite);
 }
 
 CompuertaRegular::~CompuertaRegular()
 {
 }
 
-void CompuertaRegular::guardar(YAML::Node &nodo)
-{
-    int idCelda = this->getIdCelda();
-    nodo["celdas"][idCelda]["idClass"] = this->idClass;
-    nodo["celdas"][idCelda]["x"] = this->scenePos().x();
-    nodo["celdas"][idCelda]["y"] = this->scenePos().y();
-}
-
-void CompuertaRegular::abrir(YAML::Node &nodo)
-{
-}
-
 /*****************************************************************************/
-class CompuertaAND : public ItemGrafico
+class CompuertaAND : public Compuerta
 {
 private:
 public:
     CompuertaAND();
     ~CompuertaAND();
-
-    virtual void guardar(YAML::Node &nodo);
-    virtual void abrir(YAML::Node &nodo);
 };
 
-CompuertaAND::CompuertaAND() : ItemGrafico(DIR_IMAGEN_COMPUERTA_AND,
-                                           IDCLASS_COMPUERTA_AND)
+CompuertaAND::CompuertaAND() : Compuerta(DIR_IMAGEN_COMPUERTA_AND,
+                                         IDCLASS_COMPUERTA_AND)
 {
-    this->sprite = this->sprite.scaled(CELL_SIZE_W, CELL_SIZE_H * 2);
-    this->setPixmap(this->sprite);
 }
 
 CompuertaAND::~CompuertaAND()
 {
 }
 
-void CompuertaAND::guardar(YAML::Node &nodo)
-{
-    int idCelda = this->getIdCelda();
-    nodo["celdas"][idCelda]["idClass"] = this->idClass;
-    nodo["celdas"][idCelda]["x"] = this->scenePos().x();
-    nodo["celdas"][idCelda]["y"] = this->scenePos().y();
-}
-
-void CompuertaAND::abrir(YAML::Node &nodo)
-{
-}
-
 /*****************************************************************************/
-class CompuertaOR : public ItemGrafico
+class CompuertaOR : public Compuerta
 {
 private:
 public:
     CompuertaOR();
     ~CompuertaOR();
-
-    virtual void guardar(YAML::Node &nodo);
-    virtual void abrir(YAML::Node &nodo);
 };
 
-CompuertaOR::CompuertaOR() : ItemGrafico(DIR_IMAGEN_COMPUERTA_OR,
-                                         IDCLASS_COMPUERTA_OR)
+CompuertaOR::CompuertaOR() : Compuerta(DIR_IMAGEN_COMPUERTA_OR,
+                                       IDCLASS_COMPUERTA_OR)
 {
-    this->sprite = this->sprite.scaled(CELL_SIZE_W, CELL_SIZE_H * 2);
-    this->setPixmap(this->sprite);
 }
 
 CompuertaOR::~CompuertaOR()
-{
-}
-
-void CompuertaOR::guardar(YAML::Node &nodo)
-{
-    int idCelda = this->getIdCelda();
-    nodo["celdas"][idCelda]["idClass"] = this->idClass;
-    nodo["celdas"][idCelda]["x"] = this->scenePos().x();
-    nodo["celdas"][idCelda]["y"] = this->scenePos().y();
-}
-
-void CompuertaOR::abrir(YAML::Node &nodo)
 {
 }
 

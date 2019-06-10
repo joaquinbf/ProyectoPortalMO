@@ -3,16 +3,22 @@
 
 #include "editor_item_grafico.h"
 #include "editor_defines.h"
+#include <QInputDialog>
+#include <QString>
 
 class Boton : public ItemGrafico
 {
 private:
+    QString nombre;
+
 public:
     Boton();
     virtual ~Boton();
 
     virtual void guardar(YAML::Node &nodo);
     virtual void abrir(YAML::Node &nodo);
+
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 };
 
 Boton::Boton() : ItemGrafico(DIR_IMAGEN_BOTON, IDCLASS_BOTON)
@@ -35,6 +41,13 @@ void Boton::guardar(YAML::Node &nodo)
 
 void Boton::abrir(YAML::Node &nodo)
 {
+}
+
+void Boton::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+    this->nombre = QInputDialog::getText(nullptr,
+                                         "Nombrando un Boton",
+                                         "Ingrese un nombre para el boton: ");
 }
 
 #endif // EDITOR_BOTON_H

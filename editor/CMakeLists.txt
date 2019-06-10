@@ -12,8 +12,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 file(GLOB project_sources ./*.cpp)
 file(GLOB project_headers ./*.h)
 file(GLOB project_ui mainwindow.ui)
+file(GLOB lactivables editor_listado_de_activables.ui)
+
 # wrap the ui file to a c++ header
 qt5_wrap_ui(ui_wrap ${project_ui})
+qt5_wrap_ui(ui_wrap ${lactivables})
+
 qt5_wrap_cpp(moc_sources ${project_headers})
 add_executable(portal_editor 
 	${project_sources} 

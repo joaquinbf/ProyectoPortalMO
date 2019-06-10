@@ -3,16 +3,22 @@
 
 #include "editor_item_grafico.h"
 #include "editor_defines.h"
+#include <QInputDialog>
+#include <QString>
 
 class Receptor : public ItemGrafico
 {
 private:
+    QString nombre;
+
 public:
     Receptor();
     ~Receptor();
 
     virtual void guardar(YAML::Node &nodo);
     virtual void abrir(YAML::Node &nodo);
+
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 };
 
 Receptor::Receptor() : ItemGrafico(DIR_IMAGEN_RECEPTOR, IDCLASS_RECEPTOR)
@@ -35,6 +41,13 @@ void Receptor::guardar(YAML::Node &nodo)
 
 void Receptor::abrir(YAML::Node &nodo)
 {
+}
+
+void Receptor::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+    this->nombre = QInputDialog::getText(nullptr,
+                                         "Nombrando un receptor",
+                                         "Ingrese un nombre para el boton: ");
 }
 
 #endif // EDITOR_RECEPTOR_H
