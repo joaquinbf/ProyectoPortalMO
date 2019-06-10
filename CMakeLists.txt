@@ -11,6 +11,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O0 -Werror -pedantic")
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -DDEBUG -fno-inline")
 # threads
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+
 #qt
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -53,8 +54,15 @@ add_library(libserver SHARED ${SERVER_SRCS})
 add_library(libclient SHARED ${CLIENT_SRCS})
 add_library(libeditor SHARED ${EDITOR_SRCS})
 TARGET_LINK_LIBRARIES(libserver libcommon libbox2d)
-target_link_libraries(libclient libcommon avformat avcodec avutil swscale ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} Qt5::Core	Qt5::Gui Qt5::Widgets)
+target_link_libraries(libclient libcommon avformat avcodec avutil swscale ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} Qt5::Core	Qt5::Gui Qt5::Widgets ${TIFF_LIBRARIES})
 target_link_libraries(libeditor libcommon Qt5::Core	Qt5::Gui Qt5::Widgets yaml-cpp)
+
+# Tiff
+find_package(TIFF REQUIRED)
+if (TIFF_FOUND)
+    include_directories(${TIFF_INCLUDE_DIRS})
+    target_link_libraries(libclient ${TIFF_LIBRARIES})
+endif( TIFF_FOUND )
 
 # Including CxxTest
 file(GLOB_RECURSE TEST_CLIENT_HEADERS ./test/client/*.h)
