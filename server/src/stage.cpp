@@ -11,6 +11,13 @@ running(true),inputs(inputs),updates(updates)
 Stage::~Stage(){}
 
 void Stage::run(){
+	// world.setInputs(inputs)
+	// world.setUpdates(updates)
+	// while (this->running) {
+	// 	world.gameLoop()
+	// 	usleep(50000)
+	// }
+
 	Action action;
 	std::list<Update> list;
 	while(this->running){

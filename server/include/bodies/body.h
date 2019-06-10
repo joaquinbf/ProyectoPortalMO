@@ -19,6 +19,7 @@ class Gate;
 class Rock;
 class Launcher;
 class Receiver;
+class Portal;
 
 class Body {
 protected:
@@ -32,6 +33,15 @@ public:
 
     /* Libera los recursos utilizados */
     virtual ~Body();
+
+    /* Posiciona al cuerpo en la nueva posicion */
+    void setPosition(b2Vec2 pos);
+
+    /* Devuelve la posicion del cuerpo */
+    b2Vec2 getPosition() const;
+
+    /* Devuelve la magnitud de la velocidad */
+    float getMagnitudOfVelocity() const;
 
     /* Devuelve la posicion x */
     float getPosX() const;
@@ -81,6 +91,8 @@ public:
 
     virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact);
 
+    virtual void handleBeginContactWith(Portal *portal, b2Contact *contact);
+
     virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact);
 
     virtual void handleBeginContactWith(Rock *rock, b2Contact *contact);
@@ -99,6 +111,8 @@ public:
     virtual void handleEndContactWith(Gate *gate, b2Contact *contact);
 
     virtual void handleEndContactWith(Launcher *launcher, b2Contact *contact);
+
+    virtual void handleEndContactWith(Portal *portal, b2Contact *contact);
 
     virtual void handleEndContactWith(Receiver *receiver, b2Contact *contact);
 

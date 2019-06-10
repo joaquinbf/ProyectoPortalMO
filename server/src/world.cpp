@@ -72,6 +72,7 @@ b2World *World::getB2World() {
 Chell *World::createChell(float x, float y) {
     Chell *chell = new Chell(this, x, y);
     this->chells[chell->getBodyId()] = chell;
+    this->insertNewBody(chell);
     return chell;
 }
 
@@ -79,6 +80,7 @@ Block *World::createSquareMetalBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new MetalMaterial();
     Block *block = new Block(this, x, y, shape, material);
+    this->insertNewBody(block);
     return block;
 }
 
@@ -86,11 +88,13 @@ Block *World::createSquareStoneBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new StoneMaterial();
     Block *block = new Block(this, x, y, shape, material);
+    this->insertNewBody(block);
     return block;
 }
 
 Button *World::createButton(float x, float y) {
     Button *button = new Button(this, x, y);
+    this->insertNewBody(button);
     return button;
 }
 
@@ -100,6 +104,8 @@ void World::createGateWithButton(
     bool open_gate_when_button_is_pressed) {
     Gate *gate = new Gate(this, x1, y1);
     Button *button = new Button(this, x2, y2);
+    this->insertNewBody(gate);
+    this->insertNewBody(button);
 
     button->setGate(gate);
 
@@ -116,34 +122,40 @@ void World::createGateWithButton(
 
 Gate *World::createGate(float x, float y) {
     Gate *gate = new Gate(this, x, y);
+    this->insertNewBody(gate);
     return gate;
 }
 
 Acid *World::createAcid(float x, float y) {
     Acid *acid = new Acid(this, x, y);
+    this->insertNewBody(acid);
     return acid;
 }
 
 Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
     Launcher *launcher = new Launcher(this,x, y, direction);
+    this->insertNewBody(launcher);
     return launcher;
 }
 
 Bullet *World::createBullet(float x, float y, DIRECTION direction) {
     Bullet *bullet = new Bullet(this, x, y, direction);
+    this->insertNewBody(bullet);
     return bullet;
 }
 
 Receiver *World::createReceiver(float x, float y) {
     Receiver *receiver = new Receiver(this, x, y);
+    this->insertNewBody(receiver);
     return receiver;
 }
 
-Portal *World::createPortal(b2Vec2 pos, b2Vec2 n, uint8_t number) {
-    Portal *portal = new Portal(this, pos, n, number);
+Portal *World::createPortal(uint8_t number) {
+    Portal *portal = new Portal(this, number);
+    this->bodies.insert(portal);
+    this->body_count++;
     return portal;
 }
-
 
 std::list<Update> World::getNewPlayerUpdates() const {
     std::list<Update> updates;

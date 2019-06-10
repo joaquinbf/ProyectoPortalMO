@@ -52,7 +52,7 @@ Chell::Chell(World *world, float x, float y):
 }
 
 void Chell::firePortalOne(float x, float y) {
-    
+
 }
 
 bool Chell::isFacingRight() {
