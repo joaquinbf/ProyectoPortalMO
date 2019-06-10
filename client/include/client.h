@@ -20,6 +20,7 @@
 #include "../../common/include/update.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/types.h"
+#include "../../common/include/gameInfo.h"
 
 #define MAP_SAVE_ROUTE "../maps/"
 

@@ -1,39 +1,60 @@
  #include "../include/login.h"
 
 
-Login::Login(QWidget *parent) : QWidget(parent),exitButton("Salir"),
-joinGameButton("Unirse a partida"),createGameButton("Crear partida"){
-	QVBoxLayout* verticalLayout = new QVBoxLayout();
-	verticalLayout->addWidget(&this->joinGameButton);
+Login::Login(const ServerManager& sm,std::list<GameInfo> games, std::list<std::string> maps) 
+: QWidget(0), serverManager(sm), games(games), maps(maps), tableWidget(0,4), exitButton("Salir"),
+createGameButton("Crear partida"){
+	this->tableWidget.verticalHeader()->hide();
+
+    QStringList horzHeaders;
+    horzHeaders<<"id"<<"Mapa"<<"Jugadores"<<"Unirse";
+    this->tableWidget.setHorizontalHeaderLabels(horzHeaders);
+    for(GameInfo gi : games){
+        if(gi.getPlayers() < gi.getCapacity()){            
+            this->tableWidget.insertRow ( this->tableWidget.rowCount() );
+
+            std::string str = std::to_string(gi.getId());
+            QTableWidgetItem * item = new QTableWidgetItem(QString(str.c_str()));
+            item->setTextAlignment(Qt::AlignCenter);
+            this->tableWidget.setItem   ( this->tableWidget.rowCount()-1, 0, item);        
+            
+            str = gi.getMapName();
+            str = str.substr(0, str.size()-5);
+            item = new QTableWidgetItem(QString(str.c_str()));
+            item->setTextAlignment(Qt::AlignCenter);
+            this->tableWidget.setItem   ( this->tableWidget.rowCount()-1, 1, item);
+            
+            str = std::to_string(gi.getPlayers()) + "/" + std::to_string(gi.getCapacity());
+            item = new QTableWidgetItem(QString(str.c_str()));
+            item->setTextAlignment(Qt::AlignCenter);
+            this->tableWidget.setItem   ( this->tableWidget.rowCount()-1, 2, item);
+
+            
+            QPushButton *btn = new QPushButton();
+            btn->setText("Unirse");
+            btn->setVisible(true);
+            QObject::connect(btn, &QPushButton::clicked,this, [=]{this->join(gi.getId());});
+            this->tableWidget.setCellWidget(this->tableWidget.rowCount()-1,3,btn);
+        }
+    }
+    
+
+    QVBoxLayout* verticalLayout = new QVBoxLayout();
+	verticalLayout->addWidget(&this->tableWidget);
 	verticalLayout->addWidget(&this->createGameButton);
 	verticalLayout->addWidget(&this->exitButton);
+    this->setLayout(verticalLayout);
+
+    QObject::connect(&this->exitButton, &QPushButton::clicked,this, &Login::exit);
 }
 
-/*
-Greeter::Greeter(QWidget *parent) : QWidget(parent), buttonGreet("Saludar") {
-    QVBoxLayout* greeterLayout = new QVBoxLayout();
-    QHBoxLayout* inputLayout = new QHBoxLayout();
-    // Armo la primer linea de widgets con un layout horizontal
-    inputLayout->addWidget(&this->inputName);
-    inputLayout->addWidget(&this->buttonGreet);
-    // Inserto el input y el boton de saludar en la primer linea
-    greeterLayout->addLayout(inputLayout);
-    greeterLayout->addWidget(&this->labelOut);
-    this->labelOut.setText("Ingrese un nombre");
-    this->setLayout(greeterLayout);*/
-    /**
-     * Conecto el evento "clicked" del boton a la funcion "updateGreetings"
-     * del Greeter. El primer parametro es el boton que lanza el evento, el
-     * segundo es el evento que se esta conectando, el tercer parametro es
-     * el widget que recibe el evento, y el cuarto es la funcion que responde
-     * al evento
-     **/
-/*    QObject::connect(&this->buttonGreet, &QPushButton::clicked,
-                     this, &Greeter::updateGreetings);
+void Login::exit(){
+    this->close();
 }
 
-void Greeter::updateGreetings() {
-    QString name = this->inputName.text();
-    QString greetings = QString("Hola %1").arg(name);
-    this->labelOut.setText(greetings);
-}*/
+void Login::join(uint32_t game){
+    this->serverManager.joinGame(game);
+    this->close();
+}
+
+
