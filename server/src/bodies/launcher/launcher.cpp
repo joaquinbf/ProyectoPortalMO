@@ -1,5 +1,6 @@
 #include "../../../include/bodies/launcher/launcher.h"
 #include "../../../include/bodies/bullet/bullet.h"
+#include "../../../include/instructions/create_bullet_instruction.h"
 #include "../../../include/world.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
@@ -71,24 +72,29 @@ Bullet *Launcher::fireABullet() {
     float x = this->getPosX();
     float y = this->getPosY();
 
-    Bullet *bullet;
+    Instruction *inst = 0;
     switch (this->direction) {
         case DIRECTION::RIGHT_DIRECTION:
             x += MIN_CREATE_DISTANCE;
-            bullet = this->world->createBullet(x, y , DIRECTION::RIGHT_DIRECTION);
+            inst = new CreateBulletInstruction(
+                this->world, b2Vec2(x, y), DIRECTION::RIGHT_DIRECTION);
             break;
         case DIRECTION::LEFT_DIRECTION:
             x -= MIN_CREATE_DISTANCE;
-            bullet = this->world->createBullet(x, y, DIRECTION::LEFT_DIRECTION);
+            inst = new CreateBulletInstruction(
+                this->world, b2Vec2(x, y), DIRECTION::LEFT_DIRECTION);
             break;
         case DIRECTION::UP_DIRECTION:
             y += MIN_CREATE_DISTANCE;
-            bullet = this->world->createBullet(x, y, DIRECTION::UP_DIRECTION);
+            inst = new CreateBulletInstruction(
+                this->world, b2Vec2(x, y), DIRECTION::UP_DIRECTION);
             break;
         case DIRECTION::DOWN_DIRECTION:
             y -= MIN_CREATE_DISTANCE;
-            bullet = this->world->createBullet(x, y, DIRECTION::DOWN_DIRECTION);
+            inst = new CreateBulletInstruction(
+                this->world, b2Vec2(x, y), DIRECTION::DOWN_DIRECTION);
             break;
     }
-    return bullet;
+    this->world->addInstruction(inst);
+    return 0;
 }
