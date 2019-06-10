@@ -43,7 +43,6 @@ World::World(b2World *b2world):
 }
 
 World::~World() {
-    this->deleteBodiesForDeletion();
     this->deleteAllBodies();
     this->deleteB2WorldIfInternal();
     for(auto it : this->pins){

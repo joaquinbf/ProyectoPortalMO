@@ -10,7 +10,6 @@ CreateBulletInstruction::CreateBulletInstruction(
     world(world), pos(pos), direction(direction) {
 }
 
-
 void CreateBulletInstruction::execute() {
     Bullet *bullet = world->createBullet(pos.x, pos.y, direction);
     Update update = bullet->createUpdate(COMMAND::CREATE_COMMAND);
