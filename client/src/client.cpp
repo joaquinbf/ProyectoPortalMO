@@ -40,14 +40,13 @@ void Client::login(){
         }
         closedir(dirp);
     }
-    this->serverManager.joinGame(0);
+    //this->serverManager.joinGame(0);
     //this->serverManager.createGame("MAPA.yaml");
+    
     int b = 0;
-    QApplication app(b,NULL,0);
-    // Instancio el greeter
-    Login login;
+    QApplication app(b,NULL);
+    Login login(this->serverManager,games,maps);
     login.show();
-    // Arranca el loop de la UI
     app.exec();
 }
 
