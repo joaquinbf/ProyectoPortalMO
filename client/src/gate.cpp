@@ -1,10 +1,25 @@
 #include "../include/gate.h"
 
 Gate::Gate(const TextureManager& tm,int32_t x, int32_t y,
-		uint32_t width, uint32_t height):
+		uint32_t width, uint32_t height,STATUS status):
 Entity(x,y,width,height,0),
-textureManager(tm), frameArea(0,0,192,384), frame(0), status(STATUS::GATE_CLOSED){
-	this->actionPtr = &Gate::closed;
+textureManager(tm), frameArea(0,0,192,384), frame(0), status(status){
+	switch(this->status){
+		case STATUS::GATE_OPENED:
+			this->opened();
+			break;
+		case STATUS::GATE_CLOSED:
+			this->closed();
+			break;
+		case STATUS::GATE_OPENING:
+			this->open();
+			break;
+		case STATUS::GATE_CLOSING:
+			this->close();
+			break;
+		default:
+			break;
+	}
 	this->texturePtr = (SdlTexture *) this->textureManager.getGateTexturePointer(this->status);
 }
 

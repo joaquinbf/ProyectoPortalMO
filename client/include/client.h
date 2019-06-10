@@ -32,6 +32,7 @@ private:
 	SoundManager soundManager;
 	VideoRecorder videoRecorder;
 	UpdateReceiver updateReceiver;
+	
 public:
 	Client();
 	~Client();

@@ -36,7 +36,7 @@ Entity* EntityFactory::create(const Update& update, const TextureManager& tm, co
 			return new Button(tm,update.getStatus(),update.getPosX(),update.getPosY(),200,50);	
 			break;
 		case ENTITY::GATE:
-			return new Gate(tm,update.getPosX(),update.getPosY(),200,400);
+			return new Gate(tm,update.getPosX(),update.getPosY(),200,400,update.getStatus());
 			break;
 		case ENTITY::ACID:
 			return new Acid(tm,update.getPosX(),update.getPosY(),200,60);
