@@ -51,6 +51,11 @@ World::~World() {
     }
 }
 
+void World::addUpdate(Update update) {
+    this->internal_updates.push_back(update);
+}
+
+
 void World::deleteBody(Body *body) {
     this->bodies.erase(body);
     delete body;

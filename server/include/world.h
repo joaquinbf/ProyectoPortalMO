@@ -79,6 +79,9 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Agrega una update a la coleccion de updates*/
+    void addUpdate(Update update);
+
     /* Elimina a body de world */
     void deleteBody(Body *body);
 
