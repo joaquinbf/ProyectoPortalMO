@@ -1,6 +1,7 @@
 #include "../include/world.h"
 
 #include "../include/bodies/body.h"
+#include "../include/bodies/portal/portal.h"
 #include "../include/bodies/receiver/receiver.h"
 #include "../include/bodies/chell/chell.h"
 #include "../include/bodies/button/button.h"
@@ -137,6 +138,12 @@ Receiver *World::createReceiver(float x, float y) {
     Receiver *receiver = new Receiver(this, x, y);
     return receiver;
 }
+
+Portal *World::createPortal(b2Vec2 pos, b2Vec2 n, uint8_t number) {
+    Portal *portal = new Portal(this, pos, n, number);
+    return portal;
+}
+
 
 std::list<Update> World::getNewPlayerUpdates() const {
     std::list<Update> updates;

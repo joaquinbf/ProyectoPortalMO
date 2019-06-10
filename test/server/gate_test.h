@@ -52,7 +52,7 @@ public:
         receiver->setGate(gate);
 
         // deberia chocar la bala con el receptor.
-        for (int i = 0; i < (6/5)*20; i++) {
+        for (int i = 0; i < 1000; i++) {
             world.step();
             world.applyStateActions();
             world.deleteBodiesForDeletion();

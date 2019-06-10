@@ -51,6 +51,10 @@ Chell::Chell(World *world, float x, float y):
     b2fixture->SetUserData((void *)this);
 }
 
+void Chell::firePortalOne(float x, float y) {
+    
+}
+
 bool Chell::isFacingRight() {
     return this->is_facing_right;
 }

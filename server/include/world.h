@@ -36,6 +36,7 @@ class Rock;
 class Gate;
 class Button;
 class Acid;
+class Portal;
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
@@ -121,6 +122,10 @@ public:
 
     /* Crea un receptor en (x, y) */
     Receiver *createReceiver(float x, float y);
+
+    /* Crea un portal 'number' (1 o 2) en posicion pos con vector
+     * normal n asociada*/
+    Portal *createPortal(b2Vec2 pos, b2Vec2 n, uint8_t number);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */

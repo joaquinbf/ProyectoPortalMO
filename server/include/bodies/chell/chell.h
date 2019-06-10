@@ -45,6 +45,9 @@ public:
      * posicion (x, y) mirando a la derecha en estado idle. */
     Chell(World *world, float x, float y);
 
+    /* Dispara un portal hacia la posicion (x, y) */
+    void firePortalOne(float x, float y);
+
     /* Indica si chell esta mirando hacia la derecha */
     bool isFacingRight();
 
