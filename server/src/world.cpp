@@ -106,6 +106,11 @@ void World::fillUpdates(ProtectedQueue<Update> *ext_updates) {
         internal_updates.pop_front();
         ext_updates->push(update);
     }
+
+    std::list<Update> pins = this->getPinUpdateList();
+    for (Update &update: pins) {
+        ext_updates->push(update);
+    }
 }
 
 void World::insertNewBody(Body *body) {
