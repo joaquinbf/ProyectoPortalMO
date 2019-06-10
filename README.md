@@ -11,7 +11,6 @@
 ```
 sudo apt install ffmpeg
 sudo apt install libavformat-dev
-sudo apt install libavformat-dev
 ```
 
 ## Instalacion de SDL2 mixer en ubuntu
@@ -19,6 +18,11 @@ sudo apt install libavformat-dev
 sudo apt install libsdl2-mixer-2.0-0
 sudo apt install libsdl2-mixer-dev
 ```
+Ademas necesita a Tiff (por alguna razon).
+```
+sudo apt install libtiff5
+```
+
 
 ## Instalacion de CMAKE
 
