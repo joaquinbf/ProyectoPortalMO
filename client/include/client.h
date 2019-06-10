@@ -30,9 +30,7 @@ private:
 	ServerManager serverManager;
 	ProtectedQueue<Update> updates;
 	SoundManager soundManager;
-	GameView gameView;
 	VideoRecorder videoRecorder;
-	InputManager inputManager;
 	UpdateReceiver updateReceiver;
 public:
 	Client();
