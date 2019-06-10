@@ -34,6 +34,9 @@ public:
     /* Libera los recursos utilizados */
     virtual ~Body();
 
+    /* Devuelve world */
+    World *getWorld() const;
+
     /* Posiciona al cuerpo en la nueva posicion */
     void setPosition(b2Vec2 pos);
 

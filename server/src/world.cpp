@@ -51,6 +51,16 @@ World::~World() {
     }
 }
 
+void World::deleteBody(Body *body) {
+    this->bodies.erase(body);
+    delete body;
+}
+
+void World::addInstruction(Instruction *instruction) {
+    this->instructions.push_back(instruction);
+}
+
+
 void World::addExternalInput(ProtectedQueue<Action> *input) {
     Action action;
     while (input->try_pop(action)) {

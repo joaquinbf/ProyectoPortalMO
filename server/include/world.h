@@ -79,6 +79,12 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Elimina a body de world */
+    void deleteBody(Body *body);
+
+    /* Agrega una instruccion a la cola de instrucciones */
+    void addInstruction(Instruction *instruction);
+
     /* Aplica inputs externos sobre world. */
     void addExternalInput(ProtectedQueue<Action> *inputs);
 

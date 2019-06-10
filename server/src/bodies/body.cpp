@@ -21,6 +21,11 @@ Body::Body(World *world, ENTITY entity):
 Body::~Body() {
 }
 
+World *Body::getWorld() const {
+    return this->world;
+}
+
+
 void Body::setPosition(b2Vec2 pos) {
     this->b2body->SetTransform(pos, 0);
 }
