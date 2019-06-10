@@ -81,6 +81,7 @@ project 'Testbed'
 		'../../server/src/bodies/bullet/*',
 		'../../server/src/bodies/launcher/*',
 		'../../server/src/bodies/receiver/*',
+		'../../server/src/bodies/portal/*',
 		'../../server/src/pin.cpp'
 	}
 

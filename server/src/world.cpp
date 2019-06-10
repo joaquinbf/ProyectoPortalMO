@@ -51,6 +51,49 @@ World::~World() {
     }
 }
 
+void World::addExternalInput(ProtectedQueue<Action> *input) {
+    Action action;
+    while (input->try_pop(action)) {
+        Instruction *instruction = this->instruction_factory.createInstruction(
+                                                         action, chells, this);
+        this->instructions.emplace_back(instruction);
+    }
+}
+
+void World::bigStep() {
+    this->applyInstructions();
+    this->applyStateActions();
+    this->step();
+    this->createUpdates();
+}
+
+void World::applyInstructions() {
+    while (!this->instructions.empty()) {
+        Instruction *instruction = this->instructions.front();
+        this->instructions.pop_front();
+        instruction->execute();
+        delete instruction;
+    }
+}
+
+void World::createUpdates() {
+    for (Body *body: this->bodies) {
+        if (body->isAwake()) {
+            Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
+            this->internal_updates.emplace_back(update);
+        }
+
+    }
+}
+
+void World::fillUpdates(ProtectedQueue<Update> *ext_updates) {
+    while (!this->internal_updates.empty()) {
+        Update update = internal_updates.front();
+        internal_updates.pop_front();
+        ext_updates->push(update);
+    }
+}
+
 void World::insertNewBody(Body *body) {
     this->new_bodies.insert(body);
     this->bodies.insert(body);

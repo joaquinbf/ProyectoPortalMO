@@ -10,52 +10,57 @@ running(true),inputs(inputs),updates(updates)
 
 Stage::~Stage(){}
 
-void Stage::run(){
+void Stage::run() {
 	// world.setInputs(inputs)
 	// world.setUpdates(updates)
 	// while (this->running) {
 	// 	world.gameLoop()
 	// 	usleep(50000)
 	// }
-
-	Action action;
-	std::list<Update> list;
+	//
+	// Action action;
+	// std::list<Update> list;
 	while(this->running){
-		while(this->inputs->try_pop(action)){
-			if(this->running){
-				this->world.applyAction(action);
-			}
-		}
+		this->world.addExternalInput(inputs);
+		this->world.bigStep();
+		this->world.fillUpdates(updates);
+		usleep(50000);
 
-		if(this->running){
-			this->world.applyStateActions();
-		}
-
-		if(this->running){
-			this->world.step();
-		}
-
-		if(this->running){
-			list = world.getBodyUpdates();
-		}
-
-		if(this->running){
-			world.deleteBodiesForDeletion();
-		}
-
-		for(Update update : list){
-			if(this->running){
-				this->updates->push(update);
-			}
-		}
-		list = world.getPinUpdateList();
-		for(Update update : list){
-			this->updates->push(update);
-		}
-
-		if(this->running){
-			usleep(50000);
-		}
+		// while(this->inputs->try_pop(action)){
+		// 	if(this->running){
+		// 		this->world.applyAction(action);
+		// 	}
+		// }
+		//
+		// if(this->running){
+		// 	this->world.applyStateActions();
+		// }
+		//
+		// if(this->running){
+		// 	this->world.step();
+		// }
+		//
+		// if(this->running){
+		// 	list = world.getBodyUpdates();
+		// }
+		//
+		// if(this->running){
+		// 	world.deleteBodiesForDeletion();
+		// }
+		//
+		// for(Update update : list){
+		// 	if(this->running){
+		// 		this->updates->push(update);
+		// 	}
+		// }
+		// list = world.getPinUpdateList();
+		// for(Update update : list){
+		// 	this->updates->push(update);
+		// }
+		//
+		// if(this->running){
+		// 	usleep(50000);
+		// }
 	}
 }
 

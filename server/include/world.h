@@ -22,13 +22,17 @@
 #include "../../common/include/update.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
+#include "../include/instructions/instruction_factory.h"
 #include <cstdint>
 #include <vector>
 #include <list>
 #include <map>
 #include <mutex>
 #include <set>
+#include <deque>
 
+
+class Instruction;
 class Chell;
 class Receiver;
 class Launcher;
@@ -57,6 +61,9 @@ private:
     ContactListener contact_listener;
     std::set<Body *> bodies_for_deletion;
     std::set<Body *> new_bodies;
+    std::deque<Instruction *> instructions;
+    std::deque<Update>  internal_updates;
+    InstructionFactory instruction_factory;
 
 public:
     /* Instancia un world */
@@ -71,6 +78,21 @@ public:
 
     /* Libera los recursos utilizados. */
     ~World();
+
+    /* Aplica inputs externos sobre world. */
+    void addExternalInput(ProtectedQueue<Action> *inputs);
+
+    /* Aplica instrucciones, simula un step de world y genera updates. */
+    void bigStep();
+
+    /* Aplica instrucciones sobre world */
+    void applyInstructions();
+
+    /* Crea updates */
+    void createUpdates();
+
+    /* Rellana ext_updates con updates*/
+    void fillUpdates(ProtectedQueue<Update> *ext_updates);
 
     /* Agrega un nuevo body a world */
     void insertNewBody(Body *body);
