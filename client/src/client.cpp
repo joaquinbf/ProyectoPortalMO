@@ -5,9 +5,7 @@ Client::Client()
 gameView(800,600,this->soundManager),
 inputManager(this->serverManager,this->gameView,this->videoRecorder),
 updateReceiver(this->serverManager,this->updates)
-{
-
-}
+{}
 
 Client::~Client(){}
 
@@ -16,20 +14,18 @@ void Client::main(){
 	this->game();
 }
 
-static bool ends_with(std::string const & value, std::string const & ending)
-{
+static bool ends_with(std::string const & value, std::string const & ending){
     if (ending.size() > value.size()) return false;
     return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
 }
 
 void Client::login(){
+    std::list<GameInfo> games;
+    std::list<std::string> maps;
     uint32_t a = this->serverManager.receiveQuad();
     for(;a>0;a--){
         GameInfo gi = this->serverManager.receiveGameInfo();
-        std::cout<<"id: "<<gi.getId()<<"\n";
-        std::cout<<"map: "<<gi.getMapName()<<"\n";
-        std::cout<<"playes: "<<gi.getPlayers()<<"\n";
-        std::cout<<"capacity: "<<gi.getCapacity()<<"\n";
+        games.push_back(gi);
     }
 
     DIR           *dirp;
@@ -39,13 +35,20 @@ void Client::login(){
         while ((directory = readdir(dirp)) != NULL){
             if(ends_with(std::string(directory->d_name),
                 std::string(".yaml"))){
-                std::cout<<directory->d_name<<"\n";    
+                maps.push_back(std::string(directory->d_name));
             }            
         }
         closedir(dirp);
     }
     this->serverManager.joinGame(0);
     //this->serverManager.createGame("MAPA.yaml");
+    int b = 0;
+    QApplication app(b,NULL,0);
+    // Instancio el greeter
+    Login login;
+    login.show();
+    // Arranca el loop de la UI
+    app.exec();
 }
 
 void Client::game(){   

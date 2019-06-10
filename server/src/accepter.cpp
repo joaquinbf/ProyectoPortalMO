@@ -22,7 +22,7 @@ void Accepter::run() {
             Socket peer = this->socket.accept();
             PlayerLogin* playerLogin = new PlayerLogin(&this->games,std::move(peer));
             playerLogin->start();
-            playerLogin->detach();   
+            playerLogin->detach();               
             this->logins.push_back(playerLogin);
         }
     } catch (const ConnectionErrorException &e) {
