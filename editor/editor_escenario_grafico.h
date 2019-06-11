@@ -6,6 +6,7 @@
 #include <string>
 #include <QVector>
 #include <QSize>
+#include <QList>
 #include "yaml-cpp/yaml.h"
 #include "editor_item_grafico.h"
 #include "editor_celda_grafica.h"
@@ -22,6 +23,7 @@ private:
     QSize tamanio;
 
     unsigned idClassACrear;
+    QList<ItemGrafico *> compuertas;
 
 public:
     EscenarioGrafico();

@@ -17,7 +17,8 @@ public:
 
     virtual void guardar(YAML::Node &nodo);
     virtual void abrir(YAML::Node &nodo);
-
+    virtual QString getNombre();
+    virtual QString getTipoStr();
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 };
 
@@ -48,6 +49,13 @@ void Receptor::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
     this->nombre = QInputDialog::getText(nullptr,
                                          "Nombrando un receptor",
                                          "Ingrese un nombre para el boton: ");
+}
+
+QString Receptor::getNombre() {
+    return this->nombre;
+}
+QString Receptor::getTipoStr() {
+    return "Receptor";
 }
 
 #endif // EDITOR_RECEPTOR_H

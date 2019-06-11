@@ -50,8 +50,8 @@ void EscenarioGrafico::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void EscenarioGrafico::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    this->crearItem(event->scenePos());
     QGraphicsScene::mousePressEvent(event);
+    this->crearItem(event->scenePos());
     this->spinBoxX->setValue(event->scenePos().x());
     this->spinBoxY->setValue(event->scenePos().y());
 }
@@ -96,22 +96,33 @@ void EscenarioGrafico::crearItem(const QPointF posicion)
     else if (this->idClassACrear == IDCLASS_BOTON)
     {
         item = new Boton();
+        for (int i = 0; i < this->compuertas.size(); i++)
+        {
+            this->compuertas[i]->agregarElemento(item);
+        }
     }
     else if (this->idClassACrear == IDCLASS_RECEPTOR)
     {
         item = new Receptor();
+        for (int i = 0; i < this->compuertas.size(); i++)
+        {
+            this->compuertas[i]->agregarElemento(item);
+        }
     }
     else if (this->idClassACrear == IDCLASS_COMPUERTA_REG)
     {
         item = new CompuertaRegular();
+        this->compuertas.append(item);
     }
     else if (this->idClassACrear == IDCLASS_COMPUERTA_AND)
     {
         item = new CompuertaAND();
+        this->compuertas.append(item);
     }
     else if (this->idClassACrear == IDCLASS_COMPUERTA_OR)
     {
         item = new CompuertaOR();
+        this->compuertas.append(item);
     }
 
     this->agregarACeldas(item, posicion);

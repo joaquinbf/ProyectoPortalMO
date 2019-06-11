@@ -17,7 +17,8 @@ public:
 
     virtual void guardar(YAML::Node &nodo);
     virtual void abrir(YAML::Node &nodo);
-
+    virtual QString getNombre();
+    virtual QString getTipoStr();
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 };
 
@@ -48,6 +49,13 @@ void Boton::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
     this->nombre = QInputDialog::getText(nullptr,
                                          "Nombrando un Boton",
                                          "Ingrese un nombre para el boton: ");
+}
+
+QString Boton::getNombre() {
+    return this->nombre;
+}
+QString Boton::getTipoStr() {
+    return "Boton";
 }
 
 #endif // EDITOR_BOTON_H

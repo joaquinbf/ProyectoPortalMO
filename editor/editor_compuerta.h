@@ -4,18 +4,23 @@
 #include "editor_item_grafico.h"
 #include "editor_defines.h"
 #include "editor_listado_de_activables.h"
+#include "editor_boton.h"
 #include <yaml-cpp/yaml.h>
 
 class Compuerta : public ItemGrafico
 {
 private:
     /* data */
+protected:
+    QList<ItemGrafico *> elementos;
+
 public:
     Compuerta(QString direccionSprite, unsigned idClass);
     ~Compuerta();
 
     virtual void guardar(YAML::Node &nodo);
     virtual void abrir(YAML::Node &nodo);
+    virtual void agregarElemento(ItemGrafico *elemento);
 
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 };
@@ -42,10 +47,24 @@ void Compuerta::abrir(YAML::Node &nodo)
 {
 }
 
-void Compuerta::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
-    ListadoDeActivables listado;
-    listado.setModal(true);
-    listado.exec();
+void Compuerta::agregarElemento(ItemGrafico *elemento)
+{
+    this->elementos.append(elemento);
+}
+
+void Compuerta::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+    ListadoDeActivables listadoDeActivables;
+    listadoDeActivables.setWindowTitle("Logica de la Compuerta");
+    for (int i = 0; i < this->elementos.size(); i++)
+    {
+        QString nombre = this->elementos[i]->getNombre();
+        QString tipo = this->elementos[i]->getTipoStr();
+        listadoDeActivables.agregarElemento(nombre, tipo);
+    }
+    
+    listadoDeActivables.setModal(true);
+    listadoDeActivables.exec();
 }
 
 /****************************************************************************/
