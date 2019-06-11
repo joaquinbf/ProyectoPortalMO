@@ -298,6 +298,8 @@ void World::createWorldOne() {
     // Le indico a gate donde observar si esta activado o no
     // boolean supplier podrian ser varios elementos.
     gate->setBooleanSupplier(receiver);
+
+    this->createAcid(-9, 1);
 }
 
 void World::applyAction(const Action &action) {
