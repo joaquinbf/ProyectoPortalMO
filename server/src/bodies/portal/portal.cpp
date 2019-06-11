@@ -12,6 +12,7 @@ Portal::Portal(World *world, uint8_t number):
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_staticBody;
     b2bodydef.active = false;
+    b2bodydef.awake = false;
     b2bodydef.userData = (void *) this;
     b2bodydef.position.Set(-1, -1);
 

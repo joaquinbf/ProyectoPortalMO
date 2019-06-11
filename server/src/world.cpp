@@ -92,7 +92,7 @@ void World::applyInstructions() {
 
 void World::createUpdates() {
     for (Body *body: this->bodies) {
-        if (body->isAwake()) {
+        if (body->isAwake() && body->isActive()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             this->internal_updates.emplace_back(update);
         }
@@ -224,7 +224,7 @@ std::list<Update> World::getNewPlayerUpdates() const {
         if (body->isActive()) {
             Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
             updates.push_back(update);
-            std::cout << "UPDATE: " << update.getStatus() 
+            std::cout << "UPDATE: " << update.getStatus()
                       << "(" << update.getPosX()
                       << ", " << update.getPosY() << ")"
                       << std::endl;
