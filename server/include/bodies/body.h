@@ -34,6 +34,16 @@ public:
     /* Libera los recursos utilizados */
     virtual ~Body();
 
+    /* Indica si el body esta activo */
+    bool isActive() const;
+
+    /* Activa el cuerpo. Los cuerpos activos aparecen en la simulacio. */
+    void activate();
+
+    /* Desactiva el cuerpo. Los cuerpos desactivados no aparecen en la
+     * simulacion. */
+    void desactivate();
+
     /* Intenta abrir un portal en la superficie de body */
     virtual void tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal);
 

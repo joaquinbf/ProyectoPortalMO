@@ -1,6 +1,7 @@
 #include "../include/ray_cast_closest_body_callback.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2WorldCallbacks.h"
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
+#include <iostream>
 
 RayCastClosestBodyCallback::RayCastClosestBodyCallback():
     hit(false),
@@ -17,6 +18,8 @@ float32 RayCastClosestBodyCallback::ReportFixture(
     this->point = point;
     this->normal = normal;
 
+    std::cout << "(" << point.x << ", " << point.y <<  ")" << std::endl;
+
     return fraction;
 }
 
@@ -31,7 +34,6 @@ Body *RayCastClosestBodyCallback::getBody() const {
 b2Vec2 RayCastClosestBodyCallback::getPoint() const {
     return this->point;
 }
-
 
 b2Vec2 RayCastClosestBodyCallback::getNormal() const {
     return this->normal;

@@ -6,6 +6,8 @@
 #include "../../../include/world.h"
 #include "../../../include/instructions/transform_body_instruction.h"
 #include "../../../../common/include/types.h"
+#include <cmath>
+#include <iostream>
 
 
 ENTITY MetalMaterial::createEntityWithShape(DiagonalShape *diagonal_shape) {
@@ -18,5 +20,7 @@ ENTITY MetalMaterial::createEntityWithShape(SquareShape *square_shape) {
 
 void MetalMaterial::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
     World *world = portal->getWorld();
-    world->addInstruction(new TransformBodyInstruction(portal, point, 0));
+    float angle = acos(normal.y / normal.Length());
+    portal->activate();
+    world->addInstruction(new TransformBodyInstruction(portal, point, angle));
 }

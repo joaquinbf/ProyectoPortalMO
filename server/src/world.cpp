@@ -221,8 +221,10 @@ Portal *World::createPortal(uint8_t number) {
 std::list<Update> World::getNewPlayerUpdates() const {
     std::list<Update> updates;
     for (Body *body: this->bodies) {
-        Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
-        updates.push_back(update);
+        if (body->isActive()) {
+            Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
+            updates.push_back(update);
+        }
     }
     return updates;
 }
@@ -281,7 +283,7 @@ void World::step() {
 
 void World::createWorldOne() {
     for (int i = -3; i < 1; i++) {
-        this->createChell(-6.00 + 2.00*i, 1.00);
+        this->createChell(-6.00 + 2.00*i, 3.00);
     }
 
     for (int i = -10; i < 10; i++) {

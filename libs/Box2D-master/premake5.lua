@@ -82,7 +82,8 @@ project 'Testbed'
 		'../../server/src/bodies/launcher/*',
 		'../../server/src/bodies/receiver/*',
 		'../../server/src/bodies/portal/*',
-		'../../server/src/pin.cpp'
+		'../../server/src/pin.cpp',
+		'../../server/src/ray_cast_closest_body_callback.cpp'
 	}
 
     filter { 'system:windows' }

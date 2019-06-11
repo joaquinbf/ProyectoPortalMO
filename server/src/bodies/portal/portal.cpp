@@ -11,13 +11,14 @@ Portal::Portal(World *world, uint8_t number):
     is_on(false) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_staticBody;
-    b2bodydef.active = true;
+    b2bodydef.active = false;
     b2bodydef.userData = (void *) this;
+    b2bodydef.position.Set(-1, -1);
 
     this->b2body = world->getB2World()->CreateBody(&b2bodydef);
 
     b2EdgeShape b2edgeshape;
-    b2edgeshape.Set(b2Vec2(0, 0), b2Vec2(220, 0));
+    b2edgeshape.Set(b2Vec2(0, 0), b2Vec2(2.20, 0));
 
     b2FixtureDef b2fixturedef;
     b2fixturedef.shape = &b2edgeshape;
@@ -36,7 +37,6 @@ void Portal::transportBody(Body *body) const {
     new_pos += this->normal;
     body->setPosition(new_pos);
 }
-
 
 void Portal::setPairWith(Portal *portal) {
     this->opposite = portal;

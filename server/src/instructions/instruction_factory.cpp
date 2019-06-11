@@ -8,6 +8,7 @@
 #include "../../include/instructions/run_right_instruction.h"
 #include "../../include/instructions/stop_right_instruction.h"
 #include "../../include/instructions/jump_instruction.h"
+#include "../../include/instructions/fire_portal_instruction.h"
 #include "../../include/instructions/pinInstruction.h"
 #include "../../include/bodies/chell/chell.h"
 #include <map>
@@ -46,6 +47,14 @@ Instruction *InstructionFactory::createInstruction(
         case ACTION::PING:
             std::cout << "inst fact: ACTION::PING" << std::endl;
             instruction = new PinInstruction(world,action.getId(),action.getParam1(),action.getParam2());
+            break;
+        case ACTION::FIRE1:
+            instruction = new FirePortalInstruction(
+                chell, 1, action.getParam1(), action.getParam2());
+            break;
+        case ACTION::FIRE2:
+            instruction = new FirePortalInstruction(
+                chell, 2, action.getParam1(), action.getParam2());
             break;
         default:
             instruction = new DefaultInstruction();

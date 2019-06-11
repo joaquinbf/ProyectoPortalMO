@@ -66,6 +66,14 @@ Portal *Chell::getPortalTwo() const {
 }
 
 void Chell::firePortalOne(float x, float y) {
+    this->firePortal(this->portal_one, x, y);
+}
+
+void Chell::firePortalTwo(float x, float y) {
+    this->firePortal(this->portal_two, x, y);
+}
+
+void Chell::firePortal(Portal *portal, float x, float y) {
     b2Vec2 v(x, y);
     RayCastClosestBodyCallback callback;
     this->world->getB2World()->RayCast(
@@ -74,13 +82,15 @@ void Chell::firePortalOne(float x, float y) {
         RAY_ZOOM * v);
 
     if (callback.hasHit()) {
+        std::cout << "has hit" << std::endl;
         Body *body = callback.getBody();
         body->tryOpenPortal(
-            this->portal_one,
+            portal,
             callback.getPoint(),
             callback.getNormal());
     }
 }
+
 
 bool Chell::isFacingRight() {
     return this->is_facing_right;

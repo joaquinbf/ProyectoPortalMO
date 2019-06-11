@@ -21,6 +21,18 @@ Body::Body(World *world, ENTITY entity):
 Body::~Body() {
 }
 
+bool Body::isActive() const {
+    return this->b2body->IsActive();
+}
+
+void Body::activate() {
+    this->b2body->SetActive(true);
+}
+
+void Body::desactivate() {
+    this->b2body->SetActive(false);
+}
+
 void Body::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
 }
 

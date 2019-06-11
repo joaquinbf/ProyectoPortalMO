@@ -58,6 +58,12 @@ public:
     /* Dispara un portal hacia la posicion (x, y) */
     void firePortalOne(float x, float y);
 
+    /* Dispara el segundo portal hacia (x, y) */
+    void firePortalTwo(float x, float y);
+
+    /* Dispara un portal hacia (x, y) */
+    void firePortal(Portal *portal, float x, float y);
+
     /* Indica si chell esta mirando hacia la derecha */
     bool isFacingRight();
 

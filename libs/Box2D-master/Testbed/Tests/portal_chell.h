@@ -15,68 +15,79 @@ private:
     World world;
     Chell *chell;
 
-public:
-PortalChell():
-    world(this->m_world) {
-    for (int i = 0; i < 1; i++) {
-        this->chell = this->world.createChell(-6.00 + 2.00*i, 1.00);
+    public:
+    PortalChell():
+        world(this->m_world) {
+        this->m_world->SetGravity(b2Vec2(0.0, -9.8));
+
+        for (int i = 0; i < 1; i++) {
+            this->chell = this->world.createChell(-6.00 + 2.00*i, 1.00);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            this->world.createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
+        }
+        this->world.createSquareMetalBlock(-6.00 + 2.00*-10, 1.00);
+        this->world.createSquareMetalBlock(-6.00 + 2.00*10, 1.00);
+
+
+
     }
 
-    for (int i = 0; i < 3; i++) {
-        this->world.createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
+    void Step(Settings *settings) {
+        Test::Step(settings);
+        this->world.bigStep();
     }
 
-    // Cy = 0.22 aprox
-    Gate *gate = this->world.createGate(-2, 2);
-    this->world.createLauncher(1, 1, DIRECTION::RIGHT_DIRECTION);
-    Receiver *receiver = this->world.createReceiver(20, 1);
-    receiver->setGate(gate);
-    gate->setBooleanSupplier(receiver);
-}
-
-void Step(Settings *settings) {
-    Test::Step(settings);
-    this->world.applyStateActions();
-    this->world.deleteBodiesForDeletion();
-}
-
-static Test *Create() {
-    return new PortalChell();
-}
-
-void Keyboard(int key) {
-    switch (key) {
-    case GLFW_KEY_A:
-        std::cout << "pressed left" << std::endl;
-        this->chell->pressLeft();
-        break;
-    case GLFW_KEY_D:
-        std::cout << "pressed right" << std::endl;
-        this->chell->pressRight();
-        break;
-    case GLFW_KEY_W:
-        std::cout << "pressed up" << std::endl;
-        this->chell->pressUp();
-        break;
+    static Test *Create() {
+        return new PortalChell();
     }
-}
 
-void KeyboardUp(int key) {
-    switch (key) {
-    case GLFW_KEY_A:
-        std::cout << "released left" << std::endl;
-        this->chell->releaseLeft();
-        break;
-    case GLFW_KEY_D:
-        std::cout << "released right" << std::endl;
-        this->chell->releaseRight();
-        break;
-    case GLFW_KEY_W:
-        std::cout << "released up" << std::endl;
-        this->chell->releaseUp();
-        break;
+    void Keyboard(int key) {
+        switch (key) {
+        case GLFW_KEY_A:
+            std::cout << "pressed left" << std::endl;
+            this->chell->pressLeft();
+            break;
+        case GLFW_KEY_D:
+            std::cout << "pressed right" << std::endl;
+            this->chell->pressRight();
+            break;
+        case GLFW_KEY_W:
+            std::cout << "pressed up" << std::endl;
+            this->chell->pressUp();
+            break;
+        }
     }
-}
+
+    void KeyboardUp(int key) {
+        switch (key) {
+        case GLFW_KEY_A:
+            std::cout << "released left" << std::endl;
+            this->chell->releaseLeft();
+            break;
+        case GLFW_KEY_D:
+            std::cout << "released right" << std::endl;
+            this->chell->releaseRight();
+            break;
+        case GLFW_KEY_W:
+            std::cout << "released up" << std::endl;
+            this->chell->releaseUp();
+            break;
+        }
+    }
+
+    virtual void MouseDown(const b2Vec2& p) override {
+        std::cout << "(" << p.x << ", " << p.y <<  ")" << std::endl;
+        if (p.x < 0) {
+            this->chell->firePortalOne(p.x, p.y);
+        } else {
+            this->chell->firePortalTwo(p.x, p.y);
+        }
+    }
+
+
+
 };
 
 #endif
