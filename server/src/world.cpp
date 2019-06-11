@@ -95,6 +95,14 @@ void World::createUpdates() {
         if (body->isAwake() && body->isActive()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             this->internal_updates.emplace_back(update);
+            if (update.getIdClass() == ENTITY::PORTAL1 ||
+                update.getIdClass() == ENTITY::PORTAL2) {
+                    std::cout << "UPDATE: STATUS " << update.getStatus()
+                              << "--- ENTITY: " << update.getIdClass()
+                              << " --- (" << update.getPosX()
+                              << ", " << update.getPosY() << ")"
+                              << std::endl;
+            }
         }
     }
 }
@@ -224,8 +232,9 @@ std::list<Update> World::getNewPlayerUpdates() const {
         if (body->isActive()) {
             Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
             updates.push_back(update);
-            std::cout << "UPDATE: " << update.getStatus()
-                      << "(" << update.getPosX()
+            std::cout << "UPDATE: STATUS" << update.getStatus()
+                      << "ENTITY: " << update.getIdClass()
+                      << " (" << update.getPosX()
                       << ", " << update.getPosY() << ")"
                       << std::endl;
         }
