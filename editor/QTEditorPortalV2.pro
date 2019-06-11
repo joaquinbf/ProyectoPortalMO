@@ -31,7 +31,8 @@ SOURCES += \
     editor_personaje_chell.cpp \
     editor_excepcion.cpp \
     editor_celda_grafica.cpp \
-    editor_bloque_de_roca.cpp
+    editor_bloque_de_roca.cpp \
+    editor_listado_de_activables.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,10 +42,12 @@ HEADERS += \
     editor_personaje_chell.h \
     editor_excepcion.h \
     editor_celda_grafica.h \
-    editor_bloque_de_roca.h
+    editor_bloque_de_roca.h \
+    editor_listado_de_activables.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    editor_listado_de_activables.ui
 
 RESOURCES += \
     recursos.qrc
