@@ -143,6 +143,8 @@ public:
     /* Presionaa y aterriza sobre el boton si esta saltando */
     virtual void handleBeginContactWith(Button *button, b2Contact *contact) override;
 
+    virtual void handleBeginContactWith(Chell *other_body, b2Contact *contact);
+
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 

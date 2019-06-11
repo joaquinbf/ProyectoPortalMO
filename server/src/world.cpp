@@ -303,7 +303,7 @@ void World::createWorldOne() {
         this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 
-    this->createLauncher(-50, 7, DIRECTION::RIGHT_DIRECTION);
+    this->createLauncher(-200, 7, DIRECTION::RIGHT_DIRECTION);
     Gate *gate = this->createGate(-2, 2);
     Receiver *receiver = this->createReceiver(0, 7);
 

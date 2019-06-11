@@ -248,6 +248,10 @@ void Chell::handleBeginContactWith(Button *button, b2Contact *contact) {
     this->land();
 }
 
+void Chell::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    this->land();
+}
+
 void Chell::handleEndContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleEndContactWith(this, contact);
 }
