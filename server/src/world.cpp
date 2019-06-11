@@ -224,6 +224,10 @@ std::list<Update> World::getNewPlayerUpdates() const {
         if (body->isActive()) {
             Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
             updates.push_back(update);
+            std::cout << "UPDATE: " << update.getStatus() 
+                      << "(" << update.getPosX()
+                      << ", " << update.getPosY() << ")"
+                      << std::endl;
         }
     }
     return updates;
