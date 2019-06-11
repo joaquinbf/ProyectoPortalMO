@@ -21,6 +21,14 @@ Body::Body(World *world, ENTITY entity):
 Body::~Body() {
 }
 
+void Body::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
+}
+
+void Body::setTransform(b2Vec2 pos, float angle) {
+    this->b2body->SetTransform(pos, angle);
+}
+
+
 World *Body::getWorld() const {
     return this->world;
 }

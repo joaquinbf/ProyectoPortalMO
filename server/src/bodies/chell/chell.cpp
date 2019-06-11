@@ -1,7 +1,9 @@
 #include "../../../include/bodies/chell/chell.h"
 
 #include "../../../include/world.h"
+#include "../../../include/ray_cast_closest_body_callback.h"
 #include "../../../include/bodies/body.h"
+#include "../../../include/bodies/portal/portal.h"
 #include "../../../include/bodies/chell/chell_state.h"
 #include "../../../include/bodies/chell/idle_state.h"
 #include "../../../include/bodies/chell/running_state.h"
@@ -16,9 +18,8 @@
 #include "../../../include/bodies/gate/gate.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/rock/rock.h"
+#include "../../../include/bodies/portal/portal.h"
 #include <iostream>
-
-
 
 Chell::Chell(World *world, float x, float y):
     Body(world, ENTITY::CHELL),
@@ -49,10 +50,36 @@ Chell::Chell(World *world, float x, float y):
 
     b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
     b2fixture->SetUserData((void *)this);
+
+    this->portal_one = world->createPortal(1);
+    this->portal_two = world->createPortal(2);
+    this->portal_one->setPairWith(this->portal_two);
+    this->portal_two->setPairWith(this->portal_one);
+}
+
+Portal *Chell::getPortalOne() const {
+    return this->portal_one;
+}
+
+Portal *Chell::getPortalTwo() const {
+    return this->portal_two;
 }
 
 void Chell::firePortalOne(float x, float y) {
+    b2Vec2 v(x, y);
+    RayCastClosestBodyCallback callback;
+    this->world->getB2World()->RayCast(
+        &callback,
+        this->getPosition(),
+        RAY_ZOOM * v);
 
+    if (callback.hasHit()) {
+        Body *body = callback.getBody();
+        body->tryOpenPortal(
+            this->portal_one,
+            callback.getPoint(),
+            callback.getNormal());
+    }
 }
 
 bool Chell::isFacingRight() {

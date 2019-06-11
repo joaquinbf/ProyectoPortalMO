@@ -95,7 +95,6 @@ void World::createUpdates() {
         if (body->isAwake()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             this->internal_updates.emplace_back(update);
-            std::cout << update.getStatus() << std::endl;
         }
     }
 }
@@ -347,8 +346,6 @@ std::list<Update> World::getUpdatesWithCommand(COMMAND command) const {
     for (Body *body: this->bodies) {
         Update update = body->createUpdate(command);
         lista.emplace_back(update);
-        std::cout << "UPDATE: (" << update.getPosX()
-                  << " ," << update.getPosY() << ")" << std::endl;
     }
 
     return lista;

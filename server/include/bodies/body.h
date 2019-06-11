@@ -34,6 +34,13 @@ public:
     /* Libera los recursos utilizados */
     virtual ~Body();
 
+    /* Intenta abrir un portal en la superficie de body */
+    virtual void tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal);
+
+    /* Mueve al cuerpo a la posicion pos (desde el origen de world ) y
+     * rotado en un angulo angle */
+    void setTransform(b2Vec2 pos, float angle);
+
     /* Devuelve world */
     World *getWorld() const;
 

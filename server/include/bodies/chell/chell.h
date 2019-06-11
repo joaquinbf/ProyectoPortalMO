@@ -17,12 +17,14 @@
 #define JUMPSPEED 5
 #define LEFTSPEED 1.2
 #define RIGHTSPEED 1.2
+#define RAY_ZOOM 10000
 
 class World;
 class Acid;
 class Button;
 class Block;
 class Gate;
+class Portal;
 
 class Chell: public Body {
 private:
@@ -39,11 +41,19 @@ private:
     const float ANGLE = 0;
     const float FRICTION = 0.5;
     const float RESTITUTION = 0.0;
+    Portal *portal_one;
+    Portal *portal_two;
 
 public:
     /* Instancia a chell de id 'body_id' sobre world en la
      * posicion (x, y) mirando a la derecha en estado idle. */
     Chell(World *world, float x, float y);
+
+    /* Devuelve el primer portal */
+    Portal *getPortalOne() const;
+
+    /* Devuelve el segundo portal */
+    Portal *getPortalTwo() const;
 
     /* Dispara un portal hacia la posicion (x, y) */
     void firePortalOne(float x, float y);
