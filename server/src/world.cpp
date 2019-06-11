@@ -303,15 +303,22 @@ void World::createWorldOne() {
         this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 
-    this->createLauncher(-15, 7, DIRECTION::RIGHT_DIRECTION);
+    this->createLauncher(-50, 7, DIRECTION::RIGHT_DIRECTION);
     Gate *gate = this->createGate(-2, 2);
     Receiver *receiver = this->createReceiver(0, 7);
 
+    BooleanBlock *bb = this->boolean_block_factory.createAndBlock();
+    Button *button = this->createButton(-15, Cy);
+    button->setGate(gate);
+
     // Le indico al receptor que de ser activado debe comunicarse con gate
     receiver->setGate(gate);
+
+    bb->add(button);
+    bb->add(receiver);
     // Le indico a gate donde observar si esta activado o no
     // boolean supplier podrian ser varios elementos.
-    gate->setBooleanSupplier(receiver);
+    gate->setBooleanSupplier(bb);
 }
 
 void World::applyAction(const Action &action) {

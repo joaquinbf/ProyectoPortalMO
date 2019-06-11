@@ -15,7 +15,6 @@ void JumpingState::pressLeft() {
 
 void JumpingState::releaseLeft() {
     this->chell->stopLeftMovement();
-    this->chell->changeStateToIdle();
 }
 
 void JumpingState::pressRight() {
@@ -24,7 +23,6 @@ void JumpingState::pressRight() {
 
 void JumpingState::releaseRight() {
     this->chell->stopRightMovement();
-    this->chell->changeStateToIdle();
 }
 
 void JumpingState::land() {

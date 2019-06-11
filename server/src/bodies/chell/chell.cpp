@@ -98,7 +98,6 @@ void Chell::firePortal(Portal *portal, float x, float y) {
     }
 }
 
-
 bool Chell::isFacingRight() {
     return this->is_facing_right;
 }
