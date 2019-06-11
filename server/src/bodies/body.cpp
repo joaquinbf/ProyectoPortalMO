@@ -37,6 +37,8 @@ void Body::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
 }
 
 void Body::setTransform(b2Vec2 pos, float angle) {
+    while (this->world->getB2World()->IsLocked()) {
+    }
     this->b2body->SetTransform(pos, angle);
 }
 

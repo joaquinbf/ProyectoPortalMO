@@ -64,6 +64,7 @@ private:
     std::deque<Instruction *> instructions;
     std::deque<Update>  internal_updates;
     InstructionFactory instruction_factory;
+    std::mutex m;
 
 public:
     /* Instancia un world */

@@ -11,6 +11,7 @@
 #include "../../../include/bodies/button/button.h"
 #include "../../../../common/include/key.h"
 #include "../../../../common/include/keypad.h"
+#include "../../../../common/include/types.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -74,6 +75,8 @@ void Chell::firePortalTwo(float x, float y) {
 }
 
 void Chell::firePortal(Portal *portal, float x, float y) {
+    this->world->addUpdate(portal->createUpdate(COMMAND::DESTROY_COMMAND));
+    portal->desactivate();
     b2Vec2 v(x, y);
     RayCastClosestBodyCallback callback;
     this->world->getB2World()->RayCast(

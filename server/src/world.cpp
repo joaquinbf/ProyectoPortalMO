@@ -283,7 +283,7 @@ void World::step() {
 
 void World::createWorldOne() {
     for (int i = -3; i < 1; i++) {
-        this->createChell(-6.00 + 2.00*i, 3.00);
+        this->createChell(-6.00 + 2.00*i, 1.00);
     }
 
     for (int i = -10; i < 10; i++) {

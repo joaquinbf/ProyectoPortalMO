@@ -16,7 +16,7 @@ private:
     DIRECTION direction;
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
-    const float VELOCITY = 1;
+    const float VELOCITY = 10;
 
 public:
     /* Instancia una bala en world en la posicion (x, y) moviendose con

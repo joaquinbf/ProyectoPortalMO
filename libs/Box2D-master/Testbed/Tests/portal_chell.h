@@ -21,17 +21,17 @@ private:
         this->m_world->SetGravity(b2Vec2(0.0, -9.8));
 
         for (int i = 0; i < 1; i++) {
-            this->chell = this->world.createChell(-6.00 + 2.00*i, 1.00);
+            this->chell = this->world.createChell(-3.00 + 2.00*i, 1.00);
         }
 
         for (int i = 0; i < 3; i++) {
             this->world.createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
         }
-        this->world.createSquareMetalBlock(-6.00 + 2.00*-10, 1.00);
-        this->world.createSquareMetalBlock(-6.00 + 2.00*10, 1.00);
+        this->world.createSquareMetalBlock(-6.00 + 2.00*-10, -1.00);
+        this->world.createSquareMetalBlock(-6.00 + 2.00*10, -1.00);
 
-
-
+        this->world.createLauncher(-10, -1, DIRECTION::LEFT_DIRECTION);
+        this->world.createLauncher(4, -1, DIRECTION::RIGHT_DIRECTION);
     }
 
     void Step(Settings *settings) {

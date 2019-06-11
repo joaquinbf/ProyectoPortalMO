@@ -18,8 +18,10 @@ public:
         world.createSquareMetalBlock(1, 1);
         world.createBullet(1, 1, DIRECTION::RIGHT_DIRECTION);
 
-        world.step();
-        world.deleteBodiesForDeletion();
+        world.bigStep();
+        world.bigStep();
+        world.bigStep();
+        world.bigStep();
 
         TS_ASSERT_EQUALS(1, world.getBodySize());
     }

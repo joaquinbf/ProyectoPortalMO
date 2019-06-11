@@ -22,5 +22,6 @@ void MetalMaterial::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
     World *world = portal->getWorld();
     float angle = acos(normal.y / normal.Length());
     portal->activate();
+    portal->setNormal(normal);
     world->addInstruction(new TransformBodyInstruction(portal, point, angle));
 }
