@@ -25,6 +25,7 @@ Bullet::Bullet(
     b2bodydef.userData = (void *) this;
     b2bodydef.awake = true;
     b2bodydef.bullet = true;
+    b2bodydef.gravityScale = 0.0;
 
     this->b2body = world->getB2World()->CreateBody(&b2bodydef);
 
@@ -34,21 +35,23 @@ Bullet::Bullet(
     b2FixtureDef b2fixturedef;
     b2fixturedef.shape = &b2polygonshape;
     b2fixturedef.userData = (void *) this;
+    b2fixturedef.density = this->DENSITY;
+    b2fixturedef.isSensor = true;
 
     this->b2body->CreateFixture(&b2fixturedef);
 
     switch (direction) {
         case DIRECTION::RIGHT_DIRECTION:
-            this->setVelocity(b2Vec2(1, 0));
+            this->setLinearVelocity(SPEED*b2Vec2(1, 0));
             break;
         case DIRECTION::LEFT_DIRECTION:
-            this->setVelocity(b2Vec2(-1, 0));
+            this->setLinearVelocity(SPEED*b2Vec2(-1, 0));
             break;
         case DIRECTION::UP_DIRECTION:
-            this->setVelocity(b2Vec2(0, 1));
+            this->setLinearVelocity(SPEED*b2Vec2(0, 1));
             break;
         case DIRECTION::DOWN_DIRECTION:
-            this->setVelocity(b2Vec2(0, -1));
+            this->setLinearVelocity(SPEED*b2Vec2(0, -1));
             break;
     }
 }
@@ -97,13 +100,7 @@ void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleEndContactWith(this, contact);
 }
 
-void Bullet::setVelocity(b2Vec2 v) {
-    // contrarresto g
-    v = SPEED*v;
-    this->velocity.Set(v.x, v.y);
-}
-
 void Bullet::applyStateAction() {
-    this->b2body->ApplyForceToCenter(b2Vec2(0, 9.8), true);
-    this->b2body->SetLinearVelocity(this->velocity);
+    std::cout << "applyStateAction() BULLET :" << this->getLinearVelocity().x << ","
+              << this->getLinearVelocity().y << std::endl;
 }

@@ -37,6 +37,12 @@ public:
     /* Devuelve el angulo */
     float getAngle() const;
 
+    /* Settea la velocidad lineal */
+    void setLinearVelocity(b2Vec2 v);
+
+    /* Devuelve la velocidad lineal */
+    b2Vec2 getLinearVelocity() const;
+
     /* Indica si el body esta activo */
     bool isActive() const;
 

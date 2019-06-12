@@ -25,6 +25,14 @@ float Body::getAngle() const {
     return this->b2body->GetAngle();
 }
 
+void Body::setLinearVelocity(b2Vec2 v) {
+    this->b2body->SetLinearVelocity(v);
+}
+
+b2Vec2 Body::getLinearVelocity() const {
+    return this->b2body->GetLinearVelocity();
+}
+
 bool Body::isActive() const {
     return this->b2body->IsActive();
 }

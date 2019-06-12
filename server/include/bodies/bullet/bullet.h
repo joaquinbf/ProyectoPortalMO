@@ -18,7 +18,7 @@ private:
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
     const float SPEED = 10;
-    b2Vec2 velocity;
+    const float DENSITY = 1;
 
 public:
     /* Instancia una bala en world en la posicion (x, y) moviendose con
@@ -50,13 +50,6 @@ public:
 
    /* Mantiene a la bala en su direccion */
    virtual void applyStateAction() override;
-
-private:
-
-    /* settea la velocidad de la bala con la direccion dada por v y la
-     * magnitud SPEED.
-     * Pre: v debe ser un vector unitario. */
-    void setVelocity(b2Vec2 v);
 };
 
 #endif
