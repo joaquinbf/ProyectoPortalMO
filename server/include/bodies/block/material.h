@@ -3,7 +3,7 @@
 
 #include "../../../../common/include/update.h"
 #include "../../../../common/include/types.h"
-#include "../../../libs/Box2D-master/Box2D/Common/b2Math.h"
+#include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
 
 class DiagonalShape;
 class SquareShape;
