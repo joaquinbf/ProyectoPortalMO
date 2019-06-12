@@ -5,6 +5,8 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2EdgeShape.h"
 #include "../../../include/world.h"
+#include "../../../include/instructions/transform_body_instruction.h"
+#include <iostream>
 
 Portal::Portal(World *world, uint8_t number):
     Body(world, number == 1 ? ENTITY::PORTAL1 : ENTITY::PORTAL2),
@@ -33,21 +35,25 @@ void Portal::transportToOppositePortal(Body *body) const {
 }
 
 void Portal::transportBody(Body *body) const {
-    b2Vec2 new_pos(0, 0);
-    new_pos += this->getPosition();
-    new_pos += this->normal;
-    body->setPosition(new_pos);
+    std::cout << "void Portal::transportBody(Body *body) const" << std::endl;
+    if (this->isActive()) {
+        b2Vec2 new_pos(0, 0);
+        new_pos += this->getPosition();
+        new_pos += 1*normal;
+        this->world->addInstruction(
+            new TransformBodyInstruction(body, new_pos, this->getAngle() + 3.1415/2));
+        std::cout << "Creada transformBody para bullet" << std::endl;
+
+    }
 }
 
 void Portal::setPairWith(Portal *portal) {
     this->opposite = portal;
 }
 
-
 void Portal::setNormal(b2Vec2 normal) {
     this->normal = normal;
 }
-
 
 bool Portal::isOn() const {
     return is_on;
@@ -82,5 +88,6 @@ void Portal::handleEndContactWith(Body *body, b2Contact *contact) {
 }
 
 void Portal::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
+    std::cout << "choco con bullet" << std::endl;
     this->transportToOppositePortal(bullet);
 }

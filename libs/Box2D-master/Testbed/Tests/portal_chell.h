@@ -27,11 +27,11 @@ private:
         for (int i = 0; i < 3; i++) {
             this->world.createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
         }
-        this->world.createSquareMetalBlock(-6.00 + 2.00*-10, -1.00);
-        this->world.createSquareMetalBlock(-6.00 + 2.00*10, -1.00);
 
+        this->world.createSquareMetalBlock(-6.00 + 2.00*10, 5.00);
         this->world.createLauncher(-10, -1, DIRECTION::LEFT_DIRECTION);
-        this->world.createLauncher(4, -1, DIRECTION::RIGHT_DIRECTION);
+        this->world.createSquareMetalBlock(-6.00 + 2.00*-10, -1.00);
+
     }
 
     void Step(Settings *settings) {

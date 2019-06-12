@@ -21,6 +21,10 @@ Body::Body(World *world, ENTITY entity):
 Body::~Body() {
 }
 
+float Body::getAngle() const {
+    return this->b2body->GetAngle();
+}
+
 bool Body::isActive() const {
     return this->b2body->IsActive();
 }

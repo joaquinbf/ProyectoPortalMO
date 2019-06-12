@@ -79,8 +79,6 @@ void Chell::firePortal(Portal *portal, float x, float y) {
         this->world->addUpdate(portal->createUpdate(COMMAND::DESTROY_COMMAND));
     }
     portal->desactivate();
-    portal->turnOff();
-    portal->putToSleep();
     b2Vec2 v(x, y);
     RayCastClosestBodyCallback callback;
     this->world->getB2World()->RayCast(

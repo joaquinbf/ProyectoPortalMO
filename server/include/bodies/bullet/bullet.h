@@ -10,13 +10,15 @@
 class Block;
 class Launcher;
 class Receiver;
+class Portal;
 
 class Bullet: public Body {
 private:
     DIRECTION direction;
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
-    const float VELOCITY = 10;
+    const float SPEED = 10;
+    b2Vec2 velocity;
 
 public:
     /* Instancia una bala en world en la posicion (x, y) moviendose con
@@ -24,9 +26,6 @@ public:
     Bullet(World *world, float x, float y, DIRECTION direction);
 
     ~Bullet();
-
-    /* Devuelve la magnitud escalar de la velocidad */
-    float getVelocity() const;
 
    /* Crea una update con el comando indicado */
    virtual Update createUpdate(COMMAND command) const;
@@ -40,6 +39,9 @@ public:
    /* Muere al chocar con un lanzador */
    virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact) override;
 
+   /* Transportaa bullet al otro portal si esta activo */
+    virtual void handleBeginContactWith(Portal *receiver, b2Contact *contact) override;
+
    /* Muere y activa el receptor */
    virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact) override;
 
@@ -51,8 +53,10 @@ public:
 
 private:
 
-    /* settea la velocidad de la bala */
-    void setVelocity();
+    /* settea la velocidad de la bala con la direccion dada por v y la
+     * magnitud SPEED.
+     * Pre: v debe ser un vector unitario. */
+    void setVelocity(b2Vec2 v);
 };
 
 #endif

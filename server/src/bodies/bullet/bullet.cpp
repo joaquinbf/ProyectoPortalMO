@@ -10,7 +10,9 @@
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/launcher/launcher.h"
 #include "../../../include/bodies/receiver/receiver.h"
+#include "../../../include/bodies/portal/portal.h"
 #include <cstdint>
+#include <iostream>
 
 Bullet::Bullet(
     World *world,
@@ -35,7 +37,20 @@ Bullet::Bullet(
 
     this->b2body->CreateFixture(&b2fixturedef);
 
-    this->setVelocity();
+    switch (direction) {
+        case DIRECTION::RIGHT_DIRECTION:
+            this->setVelocity(b2Vec2(1, 0));
+            break;
+        case DIRECTION::LEFT_DIRECTION:
+            this->setVelocity(b2Vec2(-1, 0));
+            break;
+        case DIRECTION::UP_DIRECTION:
+            this->setVelocity(b2Vec2(0, 1));
+            break;
+        case DIRECTION::DOWN_DIRECTION:
+            this->setVelocity(b2Vec2(0, -1));
+            break;
+    }
 }
 
 Bullet::~Bullet() {
@@ -43,11 +58,6 @@ Bullet::~Bullet() {
         this->world->getB2World()->DestroyBody(this->b2body);
     }
 }
-
-float Bullet::getVelocity() const {
-    return VELOCITY;
-}
-
 
 Update Bullet::createUpdate(COMMAND command) const {
     Update update(
@@ -78,30 +88,22 @@ void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     this->world->addInstruction(new DeleteBodyInstruction(this));
 }
 
+void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {
+    std::cout << "choco con bullet" << std::endl;
+    portal->transportToOppositePortal(this);
+}
+
 void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleEndContactWith(this, contact);
 }
 
-void Bullet::setVelocity() {
+void Bullet::setVelocity(b2Vec2 v) {
     // contrarresto g
-    this->b2body->ApplyForceToCenter(b2Vec2(0, 9.8), true);
-
-    switch (this->direction) {
-        case DIRECTION::RIGHT_DIRECTION:
-            this->b2body->SetLinearVelocity(b2Vec2(VELOCITY, 0));
-            break;
-        case DIRECTION::LEFT_DIRECTION:
-            this->b2body->SetLinearVelocity(b2Vec2(-VELOCITY, 0));
-            break;
-        case DIRECTION::UP_DIRECTION:
-            this->b2body->SetLinearVelocity(b2Vec2(0, VELOCITY));
-            break;
-        case DIRECTION::DOWN_DIRECTION:
-            this->b2body->SetLinearVelocity(b2Vec2(0, -VELOCITY));
-            break;
-    }
+    v = SPEED*v;
+    this->velocity.Set(v.x, v.y);
 }
 
 void Bullet::applyStateAction() {
-    this->setVelocity();
+    this->b2body->ApplyForceToCenter(b2Vec2(0, 9.8), true);
+    this->b2body->SetLinearVelocity(this->velocity);
 }

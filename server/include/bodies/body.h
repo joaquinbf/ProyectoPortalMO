@@ -34,6 +34,9 @@ public:
     /* Libera los recursos utilizados */
     virtual ~Body();
 
+    /* Devuelve el angulo */
+    float getAngle() const;
+
     /* Indica si el body esta activo */
     bool isActive() const;
 
