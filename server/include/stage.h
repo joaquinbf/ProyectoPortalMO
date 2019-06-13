@@ -24,7 +24,7 @@ public:
 	~Stage();
     virtual void run() override;
     void stop();
-	uint32_t getCapacity() const;
+	std::list<uint32_t> getChellsIdList() const;
 	std::list<Update> getNewPlayerUpdates()const;
 };
 

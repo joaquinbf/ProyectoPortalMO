@@ -68,8 +68,8 @@ void Stage::stop(){
 	this->running = false;
 }
 
-uint32_t Stage::getCapacity() const{
-	return 4; //HARDCODED
+std::list<uint32_t> Stage::getChellsIdList() const{
+	return this->world.getChellsIdList();
 }
 
 std::list<Update> Stage::getNewPlayerUpdates() const {

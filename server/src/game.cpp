@@ -3,8 +3,9 @@
 uint32_t Game::number = 0;
 
 Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates),
-	broadcaster(&this->updates),gameInfo(this->number,mapName,0,0){
-	this->gameInfo.setCapacity(stage.getCapacity());
+	broadcaster(&this->updates),gameInfo(this->number,mapName,0,0){	
+	this->chellsIds = this->stage.getChellsIdList();
+	this->gameInfo.setCapacity(this->chellsIds.size());
 	this->stage.start();
 	this->broadcaster.start();
 	++this->number;
@@ -22,7 +23,10 @@ Game::~Game(){
 
 void Game::addPlayer(Player* player){
 	std::list<Update> ul = this->stage.getNewPlayerUpdates();
-	player->sendChellIdToClient(this->players.size());
+	
+	player->sendChellIdToClient(this->chellsIds.back());
+	this->chellsIds.pop_back();
+
 	player->setInputPtr(&this->inputs);
 	for(Update u: ul){
 		player->pushBackUpdate(u);

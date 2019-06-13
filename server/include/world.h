@@ -189,6 +189,7 @@ public:
     /* Elimina los body para ser eliminado */
     void deleteBodiesForDeletion();
 
+    std::list<uint32_t> getChellsIdList() const;
 private:
     /* Libera los bodies creados */
     void deleteAllBodies();

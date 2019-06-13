@@ -64,6 +64,11 @@ void World::addInstruction(Instruction *instruction) {
     this->instructions.push_back(instruction);
 }
 
+std::list<uint32_t> World::getChellsIdList() const{
+    std::list<uint32_t> myList;
+    return myList;
+}
+
 
 void World::addExternalInput(ProtectedQueue<Action> *input) {
     Action action;

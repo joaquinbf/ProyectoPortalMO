@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <list>
 
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
@@ -20,6 +21,7 @@ private:
 	std::vector<Player*> players;
 	ProtectedQueue<Action> inputs;
 	ProtectedQueue<Update> updates;
+	std::list<uint32_t> chellsIds;
 	Broadcaster broadcaster;
 	GameInfo gameInfo;
 public:
