@@ -21,7 +21,7 @@ private:
 public:
     explicit ListadoDeActivables(QWidget *parent = 0);
     ~ListadoDeActivables();
-    void agregarElemento(QString tipo, QString nombre);
+    void agregarElemento(QString nombre, QString tipo);
 
 private slots:
     void on_cajaBotones_accepted();

@@ -1,8 +1,37 @@
 #!/bin/sh
-mkdir build
-cd build/
-cmake ..
-make
-./portal_editor
-cd ..
-rm -r build/
+
+if [[ $1 == "-d" ]]; then
+    mkdir Debug
+    cd Debug
+    cmake -DCMAKE_BUILD_TYPE=Debug ..
+    make
+fi
+
+if [[ $1 == "-ce" ]]; then
+    mkdir build
+    cd build/
+    cmake ..
+    make
+    ./portal_editor
+    cd ..
+    rm -r build/
+fi
+
+if [[ $1 == "-c" ]]; then
+    mkdir build
+    cd build/
+    cmake ..
+    make
+    cd ..
+fi
+
+if [[ $1 == "-e" ]]; then
+    cd build/
+    ./portal_editor
+    cd ..
+fi
+
+
+if [[ $1 == "-clean" ]]; then
+    rm -r build/
+fi

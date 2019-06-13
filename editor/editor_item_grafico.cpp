@@ -23,15 +23,13 @@ int ItemGrafico::getIdCelda()
     return k;
 }
 
-void ItemGrafico::agregarElemento(ItemGrafico *elemento)
-{
-    //Hacer nada
+void ItemGrafico::guardar(YAML::Node &nodo) {
+    int idCelda = this->getIdCelda();
+    nodo["celdas"][idCelda]["idClass"] = this->idClass;
+    nodo["celdas"][idCelda]["x"] = this->scenePos().x();
+    nodo["celdas"][idCelda]["y"] = this->scenePos().y();
 }
 
-QString ItemGrafico::getNombre() {
-    return "";
-}
+void ItemGrafico::abrir(YAML::Node &nodo) {
 
-QString ItemGrafico::getTipoStr() {
-    return "";
 }

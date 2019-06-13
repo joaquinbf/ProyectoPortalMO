@@ -1,20 +1,17 @@
 #include "editor_escenario_grafico.h"
-#include "editor_item_grafico.h"
-#include "editor_excepcion.h"
 #include "editor_defines.h"
 #include "editor_bloque_de_roca.h"
 #include "editor_personaje_chell.h"
 #include "editor_bloque_de_metal.h"
 #include "editor_boton.h"
-#include "editor_compuerta.h"
 #include "editor_receptor.h"
+#include "editor_compuerta_and.h"
+#include "editor_compuerta_or.h"
+#include "editor_compuerta_regular.h"
 
-#include <QGraphicsScene>
 #include <QPixmap>
 #include <QBrush>
-#include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
-#include <QMessageBox>
 #include <QtMath>
 #include <QKeyEvent>
 
@@ -77,7 +74,7 @@ void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
 void EscenarioGrafico::crearItem(const QPointF posicion)
 {
     ItemGrafico *item;
-    if (this->idClassACrear == IDCLASS_NULL)
+    if (this->idClassACrear == IDCLASS_NULL || this->getCelda(posicion).ocupada())
     {
         return;
     }
@@ -95,34 +92,44 @@ void EscenarioGrafico::crearItem(const QPointF posicion)
     }
     else if (this->idClassACrear == IDCLASS_BOTON)
     {
-        item = new Boton();
-        for (int i = 0; i < this->compuertas.size(); i++)
+        Boton *boton = new Boton();
+        this->componentesCompuerta.append(boton);
+        for (int i = 0; i < this->compuertas.size(); ++i)
         {
-            this->compuertas[i]->agregarElemento(item);
+            this->compuertas[i]->agregar(boton);
         }
+        item = boton;
     }
     else if (this->idClassACrear == IDCLASS_RECEPTOR)
     {
-        item = new Receptor();
-        for (int i = 0; i < this->compuertas.size(); i++)
+        Receptor *receptor = new Receptor();
+        this->componentesCompuerta.append(receptor);
+        for (int i = 0; i < this->compuertas.size(); ++i)
         {
-            this->compuertas[i]->agregarElemento(item);
+            this->compuertas[i]->agregar(receptor);
         }
+        item = receptor;
     }
     else if (this->idClassACrear == IDCLASS_COMPUERTA_REG)
     {
-        item = new CompuertaRegular();
-        this->compuertas.append(item);
+        Compuerta *compuerta = new CompuertaRegular();
+        compuerta->agregar(this->componentesCompuerta);
+        this->compuertas.append(compuerta);
+        item = compuerta;
     }
     else if (this->idClassACrear == IDCLASS_COMPUERTA_AND)
     {
-        item = new CompuertaAND();
-        this->compuertas.append(item);
+        Compuerta *compuerta = new CompuertaAND();
+        compuerta->agregar(this->componentesCompuerta);
+        this->compuertas.append(compuerta);
+        item = compuerta;
     }
     else if (this->idClassACrear == IDCLASS_COMPUERTA_OR)
     {
-        item = new CompuertaOR();
-        this->compuertas.append(item);
+        Compuerta *compuerta = new CompuertaOR();
+        compuerta->agregar(this->componentesCompuerta);
+        this->compuertas.append(compuerta);
+        item = compuerta;
     }
 
     this->agregarACeldas(item, posicion);
@@ -183,7 +190,7 @@ void EscenarioGrafico::guardar(YAML::Node &nodo)
     nodo["escenario"]["tamanioAlto"] = this->tamanio.height();
     nodo["escenario"]["cantidadCeldas"] = this->celdas.size();
     //TODO otras configuraciones.
-    for (int i = 0; i < this->celdas.size(); i++)
+    for (int i = 0; i < this->celdas.size(); ++i)
     {
         nodo["celdas"][i]["ocupado"] = this->celdas[i].ocupada();
         this->celdas[i].guardar(nodo);
@@ -204,7 +211,7 @@ void EscenarioGrafico::abrir(YAML::Node &nodo)
     }
 
     //TODO otras configuraciones
-    for (int i = 0; i < this->celdas.size(); i++)
+    for (int i = 0; i < this->celdas.size(); ++i)
     {
         if (nodo["celdas"][i]["ocupado"].as<bool>())
         {
@@ -217,16 +224,10 @@ void EscenarioGrafico::abrir(YAML::Node &nodo)
 
 void EscenarioGrafico::agregarACeldas(ItemGrafico *item, QPointF posicion)
 {
-    if (!(this->getCelda(posicion).ocupada()))
-    {
-        this->addItem(item);
-        item->setPos((this->getCelda(posicion)).getPosicionRelativaEscenario());
-        item->setFlag(QGraphicsItem::ItemIsMovable);
-        item->setFlag(QGraphicsItem::ItemIsSelectable);
-        (this->getCelda(posicion)).ocupar(item);
-    }
-    else
-    {
-        delete item;
-    }
+
+    this->addItem(item);
+    item->setPos((this->getCelda(posicion)).getPosicionRelativaEscenario());
+    item->setFlag(QGraphicsItem::ItemIsMovable);
+    item->setFlag(QGraphicsItem::ItemIsSelectable);
+    (this->getCelda(posicion)).ocupar(item);
 }

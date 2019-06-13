@@ -1,13 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "editor_defines.h"
-#include "editor_escenario_grafico.h"
 
-#include <QPixmap>
-#include <QGraphicsPixmapItem>
-#include <QGraphicsItem>
 #include <QFileDialog>
-#include <QMouseEvent>
 #include <string>
 #include <QSize>
 #include <QString>

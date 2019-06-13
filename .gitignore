@@ -37,3 +37,10 @@ movies/
 libs/Box2D-master/build/
 
 editor/\.vscode/
+
+build-QTEditorPortalV2-Descktop-Debug/
+
+editor/Debug/
+editor/QTEditorPortalV2.pro.user
+editor/QTEditorPortalV2.pro
+build-QTEditorPortalV2-Descktop-Debug/Makefile

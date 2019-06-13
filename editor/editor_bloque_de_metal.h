@@ -9,9 +9,6 @@ private:
 public:
     BloqueDeMetal();
     virtual ~BloqueDeMetal();
-
-    virtual void guardar(YAML::Node &nodo);
-    virtual void abrir(YAML::Node &nodo);
 };
 
 

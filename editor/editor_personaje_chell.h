@@ -14,10 +14,6 @@ private:
 public:
     PersonajeChell();
     virtual ~PersonajeChell();
-
-    virtual void guardar(YAML::Node &nodo);
-    virtual void abrir(YAML::Node &nodo);
-
 };
 
 #endif // EDITOR_PERSONAJE_CHELL_H

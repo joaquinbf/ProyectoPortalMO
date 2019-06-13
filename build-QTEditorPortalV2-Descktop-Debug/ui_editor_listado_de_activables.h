@@ -15,8 +15,8 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QTableWidget>
 
 QT_BEGIN_NAMESPACE
@@ -24,38 +24,40 @@ QT_BEGIN_NAMESPACE
 class Ui_ListadoDeActivables
 {
 public:
-    QDialogButtonBox *buttonBox;
-    QTableWidget *tableWidget;
-    QRadioButton *radioButton;
+    QGridLayout *gridLayout;
+    QTableWidget *listado;
+    QDialogButtonBox *cajaBotones;
 
     void setupUi(QDialog *ListadoDeActivables)
     {
         if (ListadoDeActivables->objectName().isEmpty())
             ListadoDeActivables->setObjectName(QStringLiteral("ListadoDeActivables"));
         ListadoDeActivables->resize(400, 300);
-        buttonBox = new QDialogButtonBox(ListadoDeActivables);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(30, 240, 341, 32));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-        tableWidget = new QTableWidget(ListadoDeActivables);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(60, 10, 256, 192));
-        radioButton = new QRadioButton(ListadoDeActivables);
-        radioButton->setObjectName(QStringLiteral("radioButton"));
-        radioButton->setGeometry(QRect(50, 220, 112, 23));
+        gridLayout = new QGridLayout(ListadoDeActivables);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        listado = new QTableWidget(ListadoDeActivables);
+        listado->setObjectName(QStringLiteral("listado"));
+
+        gridLayout->addWidget(listado, 0, 0, 1, 1);
+
+        cajaBotones = new QDialogButtonBox(ListadoDeActivables);
+        cajaBotones->setObjectName(QStringLiteral("cajaBotones"));
+        cajaBotones->setOrientation(Qt::Horizontal);
+        cajaBotones->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+
+        gridLayout->addWidget(cajaBotones, 1, 0, 1, 1);
+
 
         retranslateUi(ListadoDeActivables);
-        QObject::connect(buttonBox, SIGNAL(accepted()), ListadoDeActivables, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), ListadoDeActivables, SLOT(reject()));
+        QObject::connect(cajaBotones, SIGNAL(accepted()), ListadoDeActivables, SLOT(accept()));
+        QObject::connect(cajaBotones, SIGNAL(rejected()), ListadoDeActivables, SLOT(reject()));
 
         QMetaObject::connectSlotsByName(ListadoDeActivables);
     } // setupUi
 
     void retranslateUi(QDialog *ListadoDeActivables)
     {
-        ListadoDeActivables->setWindowTitle(QApplication::translate("ListadoDeActivables", "Dialog", Q_NULLPTR));
-        radioButton->setText(QApplication::translate("ListadoDeActivables", "RadioButton", Q_NULLPTR));
+        ListadoDeActivables->setWindowTitle(QApplication::translate("ListadoDeActivables", "Logica de Apertura de la Compuerta", Q_NULLPTR));
     } // retranslateUi
 
 };
