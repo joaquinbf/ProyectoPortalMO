@@ -101,6 +101,4 @@ void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Bullet::applyStateAction() {
-    std::cout << "applyStateAction() BULLET :" << this->getLinearVelocity().x << ","
-              << this->getLinearVelocity().y << std::endl;
 }

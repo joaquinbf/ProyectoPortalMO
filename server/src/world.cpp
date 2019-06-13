@@ -95,14 +95,6 @@ void World::createUpdates() {
         if (body->isAwake() && body->isActive()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             this->internal_updates.emplace_back(update);
-            if (update.getIdClass() == ENTITY::PORTAL1 ||
-                update.getIdClass() == ENTITY::PORTAL2) {
-                    std::cout << "UPDATE: STATUS " << update.getStatus()
-                              << "--- ENTITY: " << update.getIdClass()
-                              << " --- (" << update.getPosX()
-                              << ", " << update.getPosY() << ")"
-                              << std::endl;
-            }
         }
     }
 }
@@ -112,6 +104,15 @@ void World::fillUpdates(ProtectedQueue<Update> *ext_updates) {
         Update update = internal_updates.front();
         internal_updates.pop_front();
         ext_updates->push(update);
+        if (update.getIdClass() == ENTITY::PORTAL1
+            || update.getIdClass() == ENTITY::PORTAL2) {
+                std::cout << "UPDATE: STATUS " << update.getStatus()
+                          << " --- ENTITY: " << update.getIdClass()
+                          << " --- (" << update.getPosX()
+                          << ", " << update.getPosY() << ")"
+                          << "--- COMMAND: " << update.getCommand() 
+                          << std::endl;
+        }
     }
 
     std::list<Update> pins = this->getPinUpdateList();
@@ -232,11 +233,6 @@ std::list<Update> World::getNewPlayerUpdates() const {
         if (body->isActive()) {
             Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
             updates.push_back(update);
-            std::cout << "UPDATE: STATUS" << update.getStatus()
-                      << "ENTITY: " << update.getIdClass()
-                      << " (" << update.getPosX()
-                      << ", " << update.getPosY() << ")"
-                      << std::endl;
         }
     }
     return updates;
@@ -295,30 +291,17 @@ void World::step() {
 }
 
 void World::createWorldOne() {
-    for (int i = -3; i < 1; i++) {
-        this->createChell(-6.00 + 2.00*i, 1.00);
+    for (int i = 0; i < 1; i++) {
+        this->createChell(-3.00 + 2.00*i, 1.00);
     }
 
-    for (int i = -10; i < 10; i++) {
+    for (int i = 0; i < 3; i++) {
         this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 
-    this->createLauncher(-200, 7, DIRECTION::RIGHT_DIRECTION);
-    Gate *gate = this->createGate(-2, 2);
-    Receiver *receiver = this->createReceiver(0, 7);
-
-    BooleanBlock *bb = this->boolean_block_factory.createAndBlock();
-    Button *button = this->createButton(-15, Cy);
-    button->setGate(gate);
-
-    // Le indico al receptor que de ser activado debe comunicarse con gate
-    receiver->setGate(gate);
-
-    bb->add(button);
-    bb->add(receiver);
-    // Le indico a gate donde observar si esta activado o no
-    // boolean supplier podrian ser varios elementos.
-    gate->setBooleanSupplier(bb);
+    this->createSquareMetalBlock(-6.00 + 2.00*10, 5.00);
+    this->createLauncher(-10, -1, DIRECTION::LEFT_DIRECTION);
+    this->createSquareMetalBlock(-6.00 + 2.00*-10, -1.00);
 }
 
 void World::applyAction(const Action &action) {

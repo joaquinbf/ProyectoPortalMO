@@ -75,7 +75,7 @@ void Chell::firePortalTwo(float x, float y) {
 }
 
 void Chell::firePortal(Portal *portal, float x, float y) {
-    if (portal->isOn()) {
+    if (portal->isActive()) {
         this->world->addUpdate(portal->createUpdate(COMMAND::DESTROY_COMMAND));
     }
     portal->desactivate();

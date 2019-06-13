@@ -27,13 +27,14 @@ protected:
     World *world;
     const ENTITY entity;
     b2Body *b2body;
+    bool is_traveling_through_a_portal;
 
 public:
     Body(World *world, ENTITY entity);
 
     /* Libera los recursos utilizados */
     virtual ~Body();
-
+    
     /* Devuelve el angulo */
     float getAngle() const;
 

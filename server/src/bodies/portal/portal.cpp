@@ -40,11 +40,10 @@ void Portal::transportBody(Body *body) const {
         b2Vec2 new_pos(0, 0);
         new_pos += this->getPosition();
         new_pos += 1*normal;
-        b2Vec2 w = normal;
-        w.Normalize();
         body->setLinearVelocity(body->getLinearVelocity().Length()*normal);
         this->world->addInstruction(
-            new TransformBodyInstruction(body, new_pos, this->getAngle() + 3.1415/2));
+            new TransformBodyInstruction(
+                body, new_pos, this->getAngle() + 3.1415/2));
         std::cout << "Creada transformBody para bullet" << std::endl;
 
     }

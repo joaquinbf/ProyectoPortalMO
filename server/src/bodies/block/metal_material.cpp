@@ -24,6 +24,7 @@ void MetalMaterial::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
     world->addUpdate(portal->createUpdate(COMMAND::CREATE_COMMAND));
     portal->activate();
     portal->setNormal(normal);
-    point += 2*normal;
+    point += 0.5*normal;
+    portal->putToSleep();
     world->addInstruction(new TransformBodyInstruction(portal, point, angle));
 }

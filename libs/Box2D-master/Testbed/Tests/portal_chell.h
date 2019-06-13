@@ -85,9 +85,6 @@ private:
             this->chell->firePortalTwo(p.x, p.y);
         }
     }
-
-
-
 };
 
 #endif
