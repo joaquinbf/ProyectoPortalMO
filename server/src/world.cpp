@@ -110,7 +110,8 @@ void World::fillUpdates(ProtectedQueue<Update> *ext_updates) {
                           << " --- ENTITY: " << update.getIdClass()
                           << " --- (" << update.getPosX()
                           << ", " << update.getPosY() << ")"
-                          << "--- COMMAND: " << update.getCommand() 
+                          << "--- COMMAND: " << update.getCommand()
+                          << "--- BODYID: " << update.getIdObject()
                           << std::endl;
         }
     }
@@ -222,8 +223,7 @@ Receiver *World::createReceiver(float x, float y) {
 
 Portal *World::createPortal(uint8_t number) {
     Portal *portal = new Portal(this, number);
-    this->bodies.insert(portal);
-    this->body_count++;
+    this->insertNewBody(portal);
     return portal;
 }
 
@@ -291,7 +291,7 @@ void World::step() {
 }
 
 void World::createWorldOne() {
-    for (int i = 0; i < 1; i++) {
+    for (int i = -3; i < 1; i++) {
         this->createChell(-3.00 + 2.00*i, 1.00);
     }
 
