@@ -53,7 +53,7 @@ class Portal;
  * Aquellos objetos aglomerados en los que tras eliminar uno se eliminen los
  * otros deben ser eliminados manualmente, en caso contrario el orden de
  * eliminacion no es asegurado pudiendo generar memory leaks.
- * Se recomienda destruir manualmente los bodys y solo dejar de eliminacion
+ * Se recomienda destruir manualmente los bodies y solo dejar a eliminacion
  * automatica a aquellos que no sean aglomerados.
  * ejemplo: body no aglomerado(simples) = bullet, block, launcher.
  *          aglomerado: Chell, puede contener portales.*/
