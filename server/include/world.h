@@ -53,7 +53,6 @@ private:
     std::map<uint32_t, Chell *> chells;
     std::map<uint32_t, Pin *> pins;
     std::map<uint32_t, uint32_t> changedPins;
-    std::mutex mutex;
     const float TIME_STEP = 1/20.0;
     const uint32_t VELOCITY_ITERATIONS = 8;
     const uint32_t POSITION_ITERATIONS = 3;
@@ -64,7 +63,6 @@ private:
     std::deque<Instruction *> instructions;
     std::deque<Update>  internal_updates;
     InstructionFactory instruction_factory;
-    std::mutex m;
 
 public:
     /* Instancia un world */

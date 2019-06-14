@@ -65,8 +65,12 @@ void World::addInstruction(Instruction *instruction) {
 }
 
 std::list<uint32_t> World::getChellsIdList() const{
-    std::list<uint32_t> myList;
-    return myList;
+    std::list<uint32_t> chell_id_list;
+
+    for (auto it = this->chells.begin(); it != this->chells.end(); ++it) {
+        chell_id_list.push_back(it->first);
+    }
+    return chell_id_list;
 }
 
 
