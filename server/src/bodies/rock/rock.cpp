@@ -31,6 +31,7 @@ Rock::Rock(World *world, float x, float y):
 }
 
 Rock::~Rock() {
+    this->world->getB2World()->DestroyBody(this->b2body);
 }
 
 Update Rock::createUpdate(COMMAND command) const {

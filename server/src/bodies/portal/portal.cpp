@@ -31,6 +31,10 @@ Portal::Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal):
     this->b2body->CreateFixture(&b2fixturedef);
 }
 
+Portal::~Portal() {
+    this->world->getB2World()->DestroyBody(this->b2body);
+}
+
 Update Portal::createUpdate(COMMAND command) const {
     Update update(
         command,

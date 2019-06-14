@@ -30,6 +30,10 @@ Receiver::Receiver(World *world, float x, float y):
     this->b2body->CreateFixture(&b2fixturedef);
 }
 
+Receiver::~Receiver() {
+    this->world->getB2World()->DestroyBody(this->b2body);
+}
+
 Update Receiver::createUpdate(COMMAND command) const {
     Update update(
         command,

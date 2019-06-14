@@ -35,6 +35,10 @@ Launcher::Launcher(
     this->b2body->CreateFixture(&b2fixturedef);
 }
 
+Launcher::~Launcher() {
+    this->world->getB2World()->DestroyBody(this->b2body);
+}
+
 Update Launcher::createUpdate(COMMAND command) const {
     Update update(
         command,

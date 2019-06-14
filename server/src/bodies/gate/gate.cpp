@@ -42,6 +42,10 @@ Gate::Gate( World *world, float x, float y):
     this->b2body->CreateFixture(&fixtureDef);
 }
 
+Gate::~Gate() {
+    this->world->getB2World()->DestroyBody(this->b2body);
+}
+
 Update Gate::createUpdate(COMMAND command) const {
     Update update(
         command,

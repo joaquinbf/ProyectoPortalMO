@@ -49,6 +49,9 @@ public:
      * posicion (x, y) mirando a la derecha en estado idle. */
     Chell(World *world, float x, float y);
 
+    /* Libera los recursos utilizados */
+    ~Chell();
+
     /* Devuelve un puntero a la portal gun */
     PortalGun *getPortalGun();
 

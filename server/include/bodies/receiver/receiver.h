@@ -19,6 +19,8 @@ public:
     /* Instancia un receptor en world en la posicion (x, y) */
     Receiver(World *world, float x, float y);
 
+    ~Receiver();
+
     /* Indica si el receptor esta activado */
     bool isOn() const;
 

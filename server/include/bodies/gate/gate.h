@@ -43,6 +43,9 @@ public:
     /* Instancia una compuerta de id 'body_id' en b2world en (x, y) */
     Gate(World *world, float x, float y);
 
+    /* Libera los recursos utilizados */
+    ~Gate();
+
     virtual Update createUpdate(COMMAND command) const;
 
     /* Asigna un boolea supplier a la compuerta */

@@ -19,6 +19,8 @@ public:
      * pos con normal 'normal' */
     Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal);
 
+    ~Portal();
+
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const;
 

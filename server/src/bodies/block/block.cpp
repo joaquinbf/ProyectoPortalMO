@@ -48,6 +48,7 @@ Block::Block(
 Block::~Block() {
     delete shape;
     delete material;
+    this->world->getB2World()->DestroyBody(this->b2body);
 }
 
 Update Block::createUpdate(COMMAND command) const {

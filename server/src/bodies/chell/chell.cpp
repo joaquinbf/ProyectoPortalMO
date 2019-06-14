@@ -54,6 +54,10 @@ Chell::Chell(World *world, float x, float y):
     b2fixture->SetUserData((void *)this);
 }
 
+Chell::~Chell() {
+    this->world->getB2World()->DestroyBody(this->b2body);
+}
+
 PortalGun *Chell::getPortalGun() {
     return &this->portal_gun;
 }

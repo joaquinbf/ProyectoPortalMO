@@ -41,6 +41,9 @@ public:
     /* Ubica un boton en world en la posicion (x, y) */
     Button(World *world, float x, float y);
 
+    /* Libera los recursos utilizados */
+    ~Button();
+
     /* Indica si el boton esta presionado */
     bool isPressed() const;
 

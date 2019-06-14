@@ -26,6 +26,8 @@ public:
         float x, float y,
         DIRECTION direction);
 
+    ~Launcher();
+
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const;
 
