@@ -11,6 +11,7 @@
 #include "../../include/instructions/fire_portal_instruction.h"
 #include "../../include/instructions/pinInstruction.h"
 #include "../../include/bodies/chell/chell.h"
+#include "../../include/bodies/portal/portal.h"
 #include <map>
 #include <cstdint>
 #include <iostream>
@@ -50,11 +51,11 @@ Instruction *InstructionFactory::createInstruction(
             break;
         case ACTION::FIRE1:
             instruction = new FirePortalInstruction(
-                chell, 1, action.getParam1(), action.getParam2());
+                chell, NPORTAL1, action.getParam1(), action.getParam2());
             break;
         case ACTION::FIRE2:
             instruction = new FirePortalInstruction(
-                chell, 2, action.getParam1(), action.getParam2());
+                chell, NPORTAL2, action.getParam1(), action.getParam2());
             break;
         default:
             instruction = new DefaultInstruction();

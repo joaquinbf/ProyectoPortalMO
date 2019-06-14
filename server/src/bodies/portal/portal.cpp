@@ -17,6 +17,8 @@ Portal::Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal):
     b2bodydef.angle = acos(normal.x/normal.Length()) - (PI/2);
     b2bodydef.fixedRotation = true;
     b2bodydef.userData = (void *) this;
+    b2bodydef.active = true;
+    b2bodydef.awake = false;
 
     this->b2body = world->getB2World()->CreateBody(&b2bodydef);
 
@@ -29,6 +31,7 @@ Portal::Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal):
     b2fixturedef.userData = (void *) this;
 
     this->b2body->CreateFixture(&b2fixturedef);
+    this->world->addUpdate(this->createUpdate(COMMAND::CREATE_COMMAND));
 }
 
 Portal::~Portal() {
