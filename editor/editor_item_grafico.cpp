@@ -4,7 +4,13 @@
 #include <QPointF>
 #include <QtMath>
 
-ItemGrafico::ItemGrafico(QString direccionSprite, unsigned idClass) : sprite(direccionSprite), idClass(idClass)
+ItemGrafico::ItemGrafico(unsigned idClass) : idClass(idClass)
+{
+}
+
+ItemGrafico::ItemGrafico(QString direccionSprite,
+                         unsigned idClass) : sprite(direccionSprite),
+                                             idClass(idClass)
 {
 }
 
@@ -23,13 +29,14 @@ int ItemGrafico::getIdCelda()
     return k;
 }
 
-void ItemGrafico::guardar(YAML::Node &nodo) {
+void ItemGrafico::guardar(YAML::Node &nodo)
+{
     int idCelda = this->getIdCelda();
     nodo["celdas"][idCelda]["idClass"] = this->idClass;
     nodo["celdas"][idCelda]["x"] = this->scenePos().x();
     nodo["celdas"][idCelda]["y"] = this->scenePos().y();
 }
 
-void ItemGrafico::abrir(YAML::Node &nodo) {
-
+void ItemGrafico::abrir(YAML::Node &nodo)
+{
 }

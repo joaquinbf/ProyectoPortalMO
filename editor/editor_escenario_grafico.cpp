@@ -8,6 +8,10 @@
 #include "editor_compuerta_and.h"
 #include "editor_compuerta_or.h"
 #include "editor_compuerta_regular.h"
+#include "editor_pastel.h"
+#include "editor_acido.h"
+#include "editor_roca.h"
+#include "editor_barrera_de_energia.h"
 
 #include <QPixmap>
 #include <QBrush>
@@ -130,6 +134,26 @@ void EscenarioGrafico::crearItem(const QPointF posicion)
         compuerta->agregar(this->componentesCompuerta);
         this->compuertas.append(compuerta);
         item = compuerta;
+    }
+    else if (this->idClassACrear == IDCLASS_PASTEL)
+    {
+        item = new Pastel();
+    }
+    else if (this->idClassACrear == IDCLASS_ACIDO)
+    {
+        item = new Acido();
+    }
+    else if (this->idClassACrear == IDCLASS_ROCA)
+    {
+        item = new Roca();
+    }
+    else if (this->idClassACrear == IDCLASS_BARRERA_HORIZONTAL)
+    {
+        item = new BarreraDeEnergia(IDCLASS_BARRERA_HORIZONTAL);
+    }
+    else if (this->idClassACrear == IDCLASS_BARRERA_VERTICAL)
+    {
+        item = new BarreraDeEnergia(IDCLASS_BARRERA_VERTICAL);
     }
 
     this->agregarACeldas(item, posicion);

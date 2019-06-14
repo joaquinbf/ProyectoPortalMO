@@ -94,6 +94,10 @@ void MainWindow::on_actionNuevo_Escenario_triggered()
     this->ui->spinBoxY->setMaximum(INT_MAX);
     this->escenario->setSpinBox(this->ui->spinBoxX, this->ui->spinBoxY);
 }
+void MainWindow::on_actionPastel_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_PASTEL);
+}
 
 void MainWindow::on_actionPersonaje_triggered()
 {
@@ -122,6 +126,7 @@ void MainWindow::on_actionReceptor_Original_triggered()
 
 void MainWindow::on_actionAcido_triggered()
 {
+    this->escenario->setIdClassACrear(IDCLASS_ACIDO);
 }
 
 void MainWindow::on_actionCompuerta_Regular_triggered()
@@ -139,11 +144,22 @@ void MainWindow::on_actionCompuerta_OR_triggered()
     this->escenario->setIdClassACrear(IDCLASS_COMPUERTA_OR);
 }
 
-void MainWindow::on_actionBloque_de_Metal_en_Diagonal_triggered()
+void MainWindow::on_actionRoca_triggered()
 {
+    this->escenario->setIdClassACrear(IDCLASS_ROCA);
 }
 
-void MainWindow::on_actionRoca_triggered()
+void MainWindow::on_actionBarrera_Horizontal_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_BARRERA_HORIZONTAL);
+}
+
+void MainWindow::on_actionBarrera_Vertical_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_BARRERA_VERTICAL);
+}
+
+void MainWindow::on_actionBloque_de_Metal_en_Diagonal_triggered()
 {
 }
 
@@ -152,10 +168,6 @@ void MainWindow::on_actionEmisor_de_Energia_triggered()
 }
 
 void MainWindow::on_actionReceptor_de_Energia_triggered()
-{
-}
-
-void MainWindow::on_actionPastel_triggered()
 {
 }
 
@@ -188,13 +200,5 @@ void MainWindow::on_actionEmisor_Rotado_180_triggered()
 }
 
 void MainWindow::on_actionEmisor_Rotado_270_triggered()
-{
-}
-
-void MainWindow::on_actionBarrera_Horizontal_triggered()
-{
-}
-
-void MainWindow::on_actionBarrera_Vertical_triggered()
 {
 }

@@ -15,6 +15,7 @@ protected:
     unsigned idClass;
 
 public:
+    ItemGrafico(unsigned idClass);
     ItemGrafico(QString direccionSprite, unsigned idClass);
     virtual ~ItemGrafico();
 

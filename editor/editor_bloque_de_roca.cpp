@@ -9,5 +9,4 @@ BloqueDeRoca::BloqueDeRoca() : ItemGrafico(DIR_IMAGEN_BLOQUE_ROCA, IDCLASS_BLOQU
 
 BloqueDeRoca::~BloqueDeRoca()
 {
-
 }

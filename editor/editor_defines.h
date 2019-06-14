@@ -21,6 +21,11 @@
 #define IDCLASS_COMPUERTA_OR 6
 #define IDCLASS_BOTON 7
 #define IDCLASS_RECEPTOR 8
+#define IDCLASS_PASTEL 9
+#define IDCLASS_ACIDO 10
+#define IDCLASS_ROCA 11
+#define IDCLASS_BARRERA_VERTICAL 12
+#define IDCLASS_BARRERA_HORIZONTAL 13
 
 #define DIR_IMAGEN_CHELL_A ":/resources/shell.png"
 #define DIR_IMAGEN_BLOQUE_ROCA ":/resources/bloqueRoca.png"
@@ -30,5 +35,11 @@
 #define DIR_IMAGEN_COMPUERTA_OR ":/resources/compuerta3.png"
 #define DIR_IMAGEN_BOTON ":/resources/boton.png"
 #define DIR_IMAGEN_RECEPTOR ":/resources/receptorEnergia270.png"
+#define DIR_IMAGEN_PASTEL ":/resources/cake.png"
+#define DIR_IMAGEN_ACIDO ":/resources/acido2.png"
+#define DIR_IMAGEN_ROCA ":/resources/roca1.png"
+#define DIR_IMAGEN_BARRERA_VERTICAL ":/resources/barreraDeEnergiaVertical.png"
+#define DIR_IMAGEN_BARRERA_HORIZONTAL ":/resources/barreraDeEnergiaHorizontal.png"
+
 
 #endif // EDITOR_DEFINES_H
