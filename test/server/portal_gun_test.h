@@ -19,10 +19,10 @@ public:
         world.createSquareMetalBlock(10, 0);
 
         chell->getPortalGun()->firePortalOne(10, 0);
-        world.bigStep();
 
         Portal *portal = chell->getPortalGun()->getPortalOne();
         TS_ASSERT_DIFFERS(nullptr, portal);
+        world.destroyBody(chell);
     }
 };
 

@@ -9,7 +9,7 @@
 #include <iostream>
 
 Portal::Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal):
-    Body(world, portal_number == 1 ? ENTITY::PORTAL1 : ENTITY::PORTAL2),
+    Body(world, portal_number == NPORTAL1 ? ENTITY::PORTAL1 : ENTITY::PORTAL2),
     normal(normal) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_staticBody;

@@ -1,6 +1,9 @@
 #ifndef __PORTAL_GUN_H__
 #define __PORTAL_GUN_H__
 
+#include <cstdint>
+#include "../../../../libs/Box2D-master/Box2D/Common/b2Math.h"
+
 class Portal;
 class Chell;
 
@@ -30,8 +33,13 @@ public:
     void firePortalTwo(float x, float y);
 
 private:
-    /* Destruye un portal */
-    void destroyPortal(Portal *&portal);
+    /* Destruye un portal.
+     * En caso de ser nullptr no hace nada. */
+    void destroyPortal(Portal *portal);
+
+    /* Dispara un portal 'portal_number' a (x, y).
+     * De ser creado devuelve su puntero, en caso contrario devuelve nullptr */
+    Portal *firePortal(uint8_t portal_number, b2Vec2 pos);
 };
 
 #endif

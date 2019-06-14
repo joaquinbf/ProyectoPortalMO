@@ -16,6 +16,7 @@ public:
 
         Update update = chell->createUpdate(COMMAND::UPDATE_COMMAND);
         TS_ASSERT_EQUALS(STATUS::CHELL_DIE, update.getStatus());
+        world.destroyBody(chell);
     }
 
 };

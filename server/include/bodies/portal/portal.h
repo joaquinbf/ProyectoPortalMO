@@ -2,6 +2,8 @@
 #define __PORTAL_H__
 
 #define PI (4*atan(1))
+#define NPORTAL1 1
+#define NPORTAL2 2
 
 #include "../body.h"
 

@@ -44,6 +44,20 @@ class Portal;
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
+/* Representa al mundo de juego.
+ * Utiliza dos sistemas de control de memoria.
+ * 1. Automatico: Se llama al destruirse world. Destruye a todos los elementos
+ *                que queden en world.
+ * 2. Manual: Permite destruir de manera controlada a objetos en world.
+ *
+ * Aquellos objetos aglomerados en los que tras eliminar uno se eliminen los
+ * otros deben ser eliminados manualmente, en caso contrario el orden de
+ * eliminacion no es asegurado pudiendo generar memory leaks.
+ * Se recomienda destruir manualmente los bodys y solo dejar de eliminacion
+ * automatica a aquellos que no sean aglomerados.
+ * ejemplo: body no aglomerado(simples) = bullet, block, launcher.
+ *          aglomerado: Chell, puede contener portales.*/
+
 class World {
 private:
     b2World *b2world;
@@ -59,7 +73,6 @@ private:
     BooleanBlockFactory boolean_block_factory;
     ContactListener contact_listener;
     std::set<Body *> bodies_for_deletion;
-    std::set<Body *> new_bodies;
     std::deque<Instruction *> instructions;
     std::deque<Update>  internal_updates;
     InstructionFactory instruction_factory;
@@ -166,9 +179,6 @@ public:
      * jugadores. */
     std::list<Update> getNewPlayerUpdates() const;
 
-    /* Devuelve una lista de updates pero solo con los cuerpos despiertos */
-    std::list<Update> getBodyUpdates();
-
     std::list<Update> getPinUpdateList();
     void createNewPin(uint32_t id, int32_t x, int32_t y);
 
@@ -204,7 +214,6 @@ private:
     /* Devuelve updates con COMMAND asignado. */
     std::list<Update> getUpdatesWithCommand(COMMAND command) const;
 
-    void addNewBodiesToUpdates(std::list<Update> &updates);
     void addAllBodiesToUpdates(std::list<Update> &updates);
     void addDeletedBodiesToUpdates(std::list<Update> &updates);
 };
