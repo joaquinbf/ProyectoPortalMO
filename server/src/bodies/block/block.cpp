@@ -51,6 +51,11 @@ Block::~Block() {
     this->world->getB2World()->DestroyBody(this->b2body);
 }
 
+bool Block::canOpenPortalOnSurface() const {
+    return this->material->canOpenPortalOnSurface();
+}
+
+
 Update Block::createUpdate(COMMAND command) const {
     Update update(
         command,

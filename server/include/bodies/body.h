@@ -35,6 +35,9 @@ public:
     /* Libera los recursos utilizados */
     virtual ~Body();
 
+    /* Indica si body puede abrir un portal en su superficie */
+    virtual bool canOpenPortalOnSurface() const;
+
     /* Devuelve el angulo */
     float getAngle() const;
 

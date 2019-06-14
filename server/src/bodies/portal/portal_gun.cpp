@@ -3,6 +3,7 @@
 #include "../../../include/bodies/chell/chell.h"
 #include "../../../include/ray_cast_closest_body_callback.h"
 #include "../../../include/world.h"
+#include <iostream>
 
 PortalGun::PortalGun(Chell *chell):
     chell(chell),
@@ -24,6 +25,9 @@ Portal *PortalGun::getPortalTwo() const {
 }
 
 void PortalGun::firePortalOne(float x, float y) {
+    std::cout << "ex id: "
+              << (portal_one == nullptr ? -1 : portal_one->getBodyId())
+              << std::endl;
     this->destroyPortal(this->portal_one);
     this->portal_one = this->firePortal(NPORTAL1, b2Vec2(x, y));
 }
@@ -49,10 +53,15 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
         chell->getPosition(),
         pos);
 
-    if (callback.hasHit()) {
+    std::cout << "after raycast" << std::endl;
+    std::cout << "raycast point (" << callback.getPoint().x
+              << ", " << callback.getPoint().y << ") " << std::endl;
+
+    if (callback.hasHit() && callback.getBody()->canOpenPortalOnSurface()) {
+        std::cout << "hiiiit" << std::endl;
         portal = world->createPortal(
             portal_number,
-            callback.getNormal(),
+            callback.getPoint(),
             callback.getNormal());
     }
 

@@ -51,6 +51,9 @@ public:
     /* Libera los recursos utilizados */
     ~Block();
 
+    /* Indica si puede abrir portales en su superficie */
+    virtual bool canOpenPortalOnSurface() const override;
+
     /* Devuelve una update del bloque */
     virtual Update createUpdate(COMMAND command) const;
 

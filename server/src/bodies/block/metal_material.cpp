@@ -17,3 +17,7 @@ ENTITY MetalMaterial::createEntityWithShape(DiagonalShape *diagonal_shape) {
 ENTITY MetalMaterial::createEntityWithShape(SquareShape *square_shape) {
     return ENTITY::METAL_BLOCK;
 }
+
+bool MetalMaterial::canOpenPortalOnSurface() const {
+    return true;
+}

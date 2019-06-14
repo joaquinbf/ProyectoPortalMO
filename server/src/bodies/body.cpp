@@ -23,6 +23,10 @@ Body::Body(World *world, ENTITY entity):
 Body::~Body() {
 }
 
+bool Body::canOpenPortalOnSurface() const {
+    return false;
+}
+
 float Body::getAngle() const {
     return this->b2body->GetAngle();
 }

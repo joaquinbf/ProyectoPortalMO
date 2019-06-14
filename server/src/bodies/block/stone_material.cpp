@@ -12,3 +12,7 @@ ENTITY StoneMaterial::createEntityWithShape(DiagonalShape *diagonal_shape) {
 ENTITY StoneMaterial::createEntityWithShape(SquareShape *square_shape) {
     return ENTITY::STONE_BLOCK;
 }
+
+bool StoneMaterial::canOpenPortalOnSurface() const {
+    return false;
+}
