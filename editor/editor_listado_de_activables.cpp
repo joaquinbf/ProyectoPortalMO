@@ -1,7 +1,6 @@
 #include "editor_listado_de_activables.h"
 #include "ui_editor_listado_de_activables.h"
 #include "editor_defines.h"
-#include <QComboBox>
 
 #define TIPO 0
 #define NOMBRE 1
@@ -35,6 +34,15 @@ ListadoDeActivables::ListadoDeActivables(QWidget *parent) : QDialog(parent),
 
 ListadoDeActivables::~ListadoDeActivables()
 {
+    for (int i = 0; i < this->cajas.size(); i++)
+    {
+        delete this->cajas[i];
+    }
+    for (int i = 0; i < this->items.size(); i++)
+    {
+        delete this->items[i];
+    }
+
     delete ui;
 }
 void ListadoDeActivables::on_cajaBotones_accepted()
@@ -57,9 +65,17 @@ void ListadoDeActivables::agregarElemento(QString nombre, QString tipo)
     negar->addItem("si");
     negar->addItem("no");
 
+    QTableWidgetItem *tipoItem = new QTableWidgetItem(tipo);
+    QTableWidgetItem *nombreItem = new QTableWidgetItem(nombre);
+
     this->ui->listado->insertRow(this->ui->listado->rowCount());
-    this->ui->listado->setItem(this->ui->listado->rowCount() - 1, TIPO, new QTableWidgetItem(tipo));
-    this->ui->listado->setItem(this->ui->listado->rowCount() - 1, NOMBRE, new QTableWidgetItem(nombre));
+    this->ui->listado->setItem(this->ui->listado->rowCount() - 1, TIPO, tipoItem);
+    this->ui->listado->setItem(this->ui->listado->rowCount() - 1, NOMBRE, nombreItem);
     this->ui->listado->setCellWidget(this->ui->listado->rowCount() - 1, AGREGADO, agregar);
     this->ui->listado->setCellWidget(this->ui->listado->rowCount() - 1, NEGADO, negar);
+
+    this->cajas.append(agregar);
+    this->cajas.append(negar);
+    this->items.append(tipoItem);
+    this->items.append(nombreItem);
 }

@@ -44,10 +44,11 @@ private slots:
     void on_actionCompuerta_OR_triggered();
     void on_actionBarrera_Horizontal_triggered();
     void on_actionBarrera_Vertical_triggered();
+    void on_actionNuevo_Escenario_triggered();
 
 private:
     Ui::MainWindow *ui;
-    EscenarioGrafico escenario;
+    EscenarioGrafico *escenario;
 };
 
 #endif // MAINWINDOW_H

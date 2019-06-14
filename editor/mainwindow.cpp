@@ -9,50 +9,53 @@
 #include <yaml-cpp/yaml.h>
 #include <fstream>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
+                                          ui(new Ui::MainWindow),
+                                          escenario(new EscenarioGrafico())
 {
     this->setMinimumSize(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
     this->setMaximumSize(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
     this->ui->setupUi(this);
-    this->ui->graphicsView->setScene(&(this->escenario));
+    this->ui->graphicsView->setScene(this->escenario);
 
     //dibujamos grilla
-    for(int i = 0; i < WINDOWS_SIZE_W; i += CELL_SIZE_W) {
-        this->escenario.addLine(i, 0, i, WINDOWS_SIZE_H, QPen(Qt::gray));
+    for (int i = 0; i < WINDOWS_SIZE_W; i += CELL_SIZE_W)
+    {
+        this->escenario->addLine(i, 0, i, WINDOWS_SIZE_H, QPen(Qt::gray));
     }
-    for(int i = 0; i < WINDOWS_SIZE_H; i += CELL_SIZE_H) {
-        this->escenario.addLine(0, i, WINDOWS_SIZE_W, i, QPen(Qt::gray));
+    for (int i = 0; i < WINDOWS_SIZE_H; i += CELL_SIZE_H)
+    {
+        this->escenario->addLine(0, i, WINDOWS_SIZE_W, i, QPen(Qt::gray));
     }
 
     //seteamos spinbox
     QSize size = this->ui->graphicsView->size();
-    this->escenario.setSceneRect(0, 0, size.width(), size.height());
+    this->escenario->setSceneRect(0, 0, size.width(), size.height());
 
     this->ui->spinBoxX->setMinimum(INT_MIN);
     this->ui->spinBoxX->setMaximum(INT_MAX);
     this->ui->spinBoxY->setMinimum(INT_MIN);
     this->ui->spinBoxY->setMaximum(INT_MAX);
-    this->escenario.setSpinBox(this->ui->spinBoxX, this->ui->spinBoxY);
+    this->escenario->setSpinBox(this->ui->spinBoxX, this->ui->spinBoxY);
 }
 
 MainWindow::~MainWindow()
 {
+    delete this->escenario;
     delete ui;
 }
 
 void MainWindow::on_actionFondo_triggered()
 {
     QString path = QFileDialog::getOpenFileName(this, "Abrir");
-    this->escenario.setFondoEscenario(path.toStdString(), this->ui->graphicsView->size());
+    this->escenario->setFondoEscenario(path.toStdString(), this->ui->graphicsView->size());
 }
 
 void MainWindow::on_actionGuardar_Escenario_triggered()
 {
     QString path = QFileDialog::getSaveFileName(this, "Guardar");
     YAML::Node nodo;
-    this->escenario.guardar(nodo);
+    this->escenario->guardar(nodo);
     std::ofstream salida((path.toStdString()).c_str());
     salida << nodo;
     salida.close();
@@ -62,125 +65,140 @@ void MainWindow::on_actionAbrir_Escenario_triggered()
 {
     QString path = QFileDialog::getOpenFileName(this, "Abrir");
     YAML::Node nodo = YAML::LoadFile((path.toStdString()).c_str());
-    this->escenario.abrir(nodo);
+    this->escenario->abrir(nodo);
+}
+
+void MainWindow::on_actionNuevo_Escenario_triggered()
+{
+    delete this->escenario;
+    this->escenario = new EscenarioGrafico();
+    this->ui->graphicsView->setScene(this->escenario);
+
+    //dibujamos grilla
+    for (int i = 0; i < WINDOWS_SIZE_W; i += CELL_SIZE_W)
+    {
+        this->escenario->addLine(i, 0, i, WINDOWS_SIZE_H, QPen(Qt::gray));
+    }
+    for (int i = 0; i < WINDOWS_SIZE_H; i += CELL_SIZE_H)
+    {
+        this->escenario->addLine(0, i, WINDOWS_SIZE_W, i, QPen(Qt::gray));
+    }
+
+    //seteamos spinbox
+    QSize size = this->ui->graphicsView->size();
+    this->escenario->setSceneRect(0, 0, size.width(), size.height());
+
+    this->ui->spinBoxX->setMinimum(INT_MIN);
+    this->ui->spinBoxX->setMaximum(INT_MAX);
+    this->ui->spinBoxY->setMinimum(INT_MIN);
+    this->ui->spinBoxY->setMaximum(INT_MAX);
+    this->escenario->setSpinBox(this->ui->spinBoxX, this->ui->spinBoxY);
+}
+void MainWindow::on_actionPastel_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_PASTEL);
 }
 
 void MainWindow::on_actionPersonaje_triggered()
 {
-    this->escenario.setIdClassACrear(IDCLASS_CHELL);
+    this->escenario->setIdClassACrear(IDCLASS_CHELL);
 }
 
 void MainWindow::on_actionBloque_de_Roca_triggered()
 {
-    this->escenario.setIdClassACrear(IDCLASS_BLOQUE_ROCA);
+    this->escenario->setIdClassACrear(IDCLASS_BLOQUE_ROCA);
 }
 
 void MainWindow::on_actionBloque_de_Metal_triggered()
 {
-    this->escenario.setIdClassACrear(IDCLASS_BLOQUE_METAL);
+    this->escenario->setIdClassACrear(IDCLASS_BLOQUE_METAL);
 }
 
 void MainWindow::on_actionBoton_triggered()
 {
-    this->escenario.setIdClassACrear(IDCLASS_BOTON);
+    this->escenario->setIdClassACrear(IDCLASS_BOTON);
 }
 
 void MainWindow::on_actionReceptor_Original_triggered()
 {
-    this->escenario.setIdClassACrear(IDCLASS_RECEPTOR);
+    this->escenario->setIdClassACrear(IDCLASS_RECEPTOR);
 }
 
 void MainWindow::on_actionAcido_triggered()
 {
-
+    this->escenario->setIdClassACrear(IDCLASS_ACIDO);
 }
 
 void MainWindow::on_actionCompuerta_Regular_triggered()
 {
-    this->escenario.setIdClassACrear(IDCLASS_COMPUERTA_REG);
+    this->escenario->setIdClassACrear(IDCLASS_COMPUERTA_REG);
 }
 
 void MainWindow::on_actionCompuerta_AND_triggered()
 {
-    this->escenario.setIdClassACrear(IDCLASS_COMPUERTA_AND);
+    this->escenario->setIdClassACrear(IDCLASS_COMPUERTA_AND);
 }
 
 void MainWindow::on_actionCompuerta_OR_triggered()
 {
-    this->escenario.setIdClassACrear(IDCLASS_COMPUERTA_OR);
-}
-
-void MainWindow::on_actionBloque_de_Metal_en_Diagonal_triggered()
-{
-
+    this->escenario->setIdClassACrear(IDCLASS_COMPUERTA_OR);
 }
 
 void MainWindow::on_actionRoca_triggered()
 {
-
-}
-
-void MainWindow::on_actionEmisor_de_Energia_triggered()
-{
-
-}
-
-void MainWindow::on_actionReceptor_de_Energia_triggered()
-{
-
-}
-
-void MainWindow::on_actionPastel_triggered()
-{
-
-}
-
-void MainWindow::on_actionBloqueOriginal_triggered()
-{
-
-}
-
-void MainWindow::on_actionBloqueRotado_90_triggered()
-{
-
-}
-
-void MainWindow::on_actionBloqueRotado_180_triggered()
-{
-
-}
-
-void MainWindow::on_actionBloqueRotado_270_triggered()
-{
-
-}
-
-void MainWindow::on_actionEmisorOriginal_triggered()
-{
-
-}
-
-void MainWindow::on_actionEmisor_Rotado_90_triggered()
-{
-
-}
-
-void MainWindow::on_actionEmisor_Rotado_180_triggered()
-{
-
-}
-
-void MainWindow::on_actionEmisor_Rotado_270_triggered()
-{
-
+    this->escenario->setIdClassACrear(IDCLASS_ROCA);
 }
 
 void MainWindow::on_actionBarrera_Horizontal_triggered()
 {
-
+    this->escenario->setIdClassACrear(IDCLASS_BARRERA_HORIZONTAL);
 }
 
 void MainWindow::on_actionBarrera_Vertical_triggered()
 {
+    this->escenario->setIdClassACrear(IDCLASS_BARRERA_VERTICAL);
+}
 
+void MainWindow::on_actionBloque_de_Metal_en_Diagonal_triggered()
+{
+}
+
+void MainWindow::on_actionEmisor_de_Energia_triggered()
+{
+}
+
+void MainWindow::on_actionReceptor_de_Energia_triggered()
+{
+}
+
+void MainWindow::on_actionBloqueOriginal_triggered()
+{
+}
+
+void MainWindow::on_actionBloqueRotado_90_triggered()
+{
+}
+
+void MainWindow::on_actionBloqueRotado_180_triggered()
+{
+}
+
+void MainWindow::on_actionBloqueRotado_270_triggered()
+{
+}
+
+void MainWindow::on_actionEmisorOriginal_triggered()
+{
+}
+
+void MainWindow::on_actionEmisor_Rotado_90_triggered()
+{
+}
+
+void MainWindow::on_actionEmisor_Rotado_180_triggered()
+{
+}
+
+void MainWindow::on_actionEmisor_Rotado_270_triggered()
+{
 }

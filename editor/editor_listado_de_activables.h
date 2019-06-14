@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QTableWidgetItem>
 #include <QString>
+#include <QComboBox>
+
 
 namespace Ui
 {
@@ -18,6 +20,8 @@ private:
     QTableWidgetItem nombre;
     QTableWidgetItem agregar;
     QTableWidgetItem negar;
+    QList<QComboBox *> cajas;
+    QList<QTableWidgetItem* > items;
 public:
     explicit ListadoDeActivables(QWidget *parent = 0);
     ~ListadoDeActivables();
