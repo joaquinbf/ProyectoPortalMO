@@ -64,7 +64,9 @@ void World::addUpdate(Update update) {
 }
 
 
-void World::deleteBody(Body *body) {
+void World::destroyBody(Body *body) {
+    Update update = body->createUpdate(COMMAND::DESTROY_COMMAND);
+    this->internal_updates.push_back(update);
     this->bodies.erase(body);
     delete body;
 }

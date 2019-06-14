@@ -69,6 +69,7 @@ void Launcher::applyStateAction() {
 }
 
 Bullet *Launcher::fireABullet() {
+    // TODO: Se llama fuera del step, no es necesario lanzar un new instruction.
     float x = this->getPosX();
     float y = this->getPosY();
 

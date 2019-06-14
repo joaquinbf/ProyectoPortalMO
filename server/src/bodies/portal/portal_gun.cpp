@@ -10,6 +10,16 @@ PortalGun::PortalGun(Chell *chell):
     portal_two(0) {
 }
 
+PortalGun::~PortalGun() {
+    if (this->portal_one != nullptr) {
+        chell->getWorld()->destroyBody(this->portal_one);
+    }
+    if (this->portal_two != nullptr) {
+        chell->getWorld()->destroyBody(this->portal_two);
+    }
+}
+
+
 Portal *PortalGun::getPortalOne() const {
     return this->portal_one;
 }
@@ -19,13 +29,13 @@ Portal *PortalGun::getPortalTwo() const {
 }
 
 void PortalGun::firePortalOne(float x, float y) {
-    this->firePortal(this->portal_one, x, y);
+    if (this->portal_one != nullptr) {
+        chell->getWorld()->destroyBody(this->portal_one);
+    }
 }
 
 void PortalGun::firePortalTwo(float x, float y) {
-    this->firePortal(this->portal_two, x, y);
-}
-
-void PortalGun::firePortal(Portal *portal, float x, float y) {
-
+    if (this->portal_two != nullptr) {
+        chell->getWorld()->destroyBody(this->portal_two);
+    }
 }

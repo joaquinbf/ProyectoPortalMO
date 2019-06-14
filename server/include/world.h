@@ -88,7 +88,7 @@ public:
     void addUpdate(Update update);
 
     /* Elimina a body de world */
-    void deleteBody(Body *body);
+    void destroyBody(Body *body);
 
     /* Agrega una instruccion a la cola de instrucciones */
     void addInstruction(Instruction *instruction);

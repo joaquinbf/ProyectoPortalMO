@@ -14,6 +14,9 @@ public:
     /* Instancia una portal gun para chell */
     PortalGun(Chell *chell);
 
+    /* Libera los recursos utilizados */
+    ~PortalGun();
+
     /* Devuelve un puntero al primer portal */
     Portal *getPortalOne() const;
 
@@ -27,8 +30,8 @@ public:
     void firePortalTwo(float x, float y);
 
 private:
-    /* Dispara el portal n a (x, y) */
-    void firePortal(Portal *portal, float x, float y);
+    /* Destruye un portal */
+    void destroyPortal(Portal *&portal);
 };
 
 #endif

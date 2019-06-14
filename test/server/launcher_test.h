@@ -18,8 +18,6 @@ public:
         World world(1/20);
         world.createLauncher(2, 2, DIRECTION::RIGHT_DIRECTION);
         world.bigStep();
-        world.bigStep();
-        world.bigStep();
 
         uint32_t count = world.getBodyCount();
 

@@ -57,9 +57,9 @@ Bullet::Bullet(
 }
 
 Bullet::~Bullet() {
-    if (this->b2body != 0) {
-        this->world->getB2World()->DestroyBody(this->b2body);
-    }
+    if (this->b2body != nullptr) {
+        world->getB2World()->DestroyBody(this->b2body);
+    }    
 }
 
 Update Bullet::createUpdate(COMMAND command) const {
