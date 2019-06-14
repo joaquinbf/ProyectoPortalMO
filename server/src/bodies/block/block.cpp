@@ -50,10 +50,6 @@ Block::~Block() {
     delete material;
 }
 
-void Block::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
-    this->material->tryOpenPortal(portal, point, normal);
-}
-
 Update Block::createUpdate(COMMAND command) const {
     Update update(
         command,

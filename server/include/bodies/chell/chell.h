@@ -13,6 +13,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
+#include "../portal/portal_gun.h"
 
 #define JUMPSPEED 5
 #define LEFTSPEED 1.2
@@ -34,6 +35,7 @@ private:
     JumpingState jumping_state;
     DeadState dead_state;
     ChellState *state;
+    PortalGun portal_gun;
     Keypad keypad;
     const float HALF_WIDTH = 0.50;
     const float HALF_HEIGHT = 1.00;
@@ -41,28 +43,14 @@ private:
     const float ANGLE = 0;
     const float FRICTION = 0.5;
     const float RESTITUTION = 0.0;
-    Portal *portal_one;
-    Portal *portal_two;
 
 public:
     /* Instancia a chell de id 'body_id' sobre world en la
      * posicion (x, y) mirando a la derecha en estado idle. */
     Chell(World *world, float x, float y);
 
-    /* Devuelve el primer portal */
-    Portal *getPortalOne() const;
-
-    /* Devuelve el segundo portal */
-    Portal *getPortalTwo() const;
-
-    /* Dispara un portal hacia la posicion (x, y) */
-    void firePortalOne(float x, float y);
-
-    /* Dispara el segundo portal hacia (x, y) */
-    void firePortalTwo(float x, float y);
-
-    /* Dispara un portal hacia (x, y) */
-    void firePortal(Portal *portal, float x, float y);
+    /* Devuelve un puntero a la portal gun */
+    PortalGun *getPortalGun();
 
     /* Indica si chell esta mirando hacia la derecha */
     bool isFacingRight();

@@ -33,6 +33,7 @@ World::World(float time_step):
     body_count(0),
     b2world_is_internal(true),
     TIME_STEP(time_step) {
+    this->b2world->SetContactListener(&this->contact_listener);
 }
 
 World::World(b2World *b2world):
@@ -48,6 +49,14 @@ World::~World() {
     for(auto it : this->pins){
         delete it.second;
     }
+}
+
+void World::incBodyCount() {
+    this->body_count++;
+}
+
+void World::addToBodies(Body *body) {
+    this->bodies.insert(body);
 }
 
 void World::addUpdate(Update update) {
@@ -230,9 +239,8 @@ Receiver *World::createReceiver(float x, float y) {
     return receiver;
 }
 
-Portal *World::createPortal(uint8_t number) {
-    Portal *portal = new Portal(this, number);
-    this->insertNewBody(portal);
+Portal *World::createPortal(uint8_t portal_number, b2Vec2 pos, b2Vec2 normal) {
+    Portal *portal = new Portal(this, portal_number, pos, normal);
     return portal;
 }
 

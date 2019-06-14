@@ -29,7 +29,8 @@ Chell::Chell(World *world, float x, float y):
     running_state(this),
     jumping_state(this),
     dead_state(this),
-    state(&this->idle_state) {
+    state(&this->idle_state),
+    portal_gun(this) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
@@ -51,49 +52,10 @@ Chell::Chell(World *world, float x, float y):
 
     b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
     b2fixture->SetUserData((void *)this);
-
-    this->portal_one = world->createPortal(1);
-    this->portal_two = world->createPortal(2);
-    this->portal_one->setPairWith(this->portal_two);
-    this->portal_two->setPairWith(this->portal_one);
 }
 
-Portal *Chell::getPortalOne() const {
-    return this->portal_one;
-}
-
-Portal *Chell::getPortalTwo() const {
-    return this->portal_two;
-}
-
-void Chell::firePortalOne(float x, float y) {
-    this->firePortal(this->portal_one, x, y);
-}
-
-void Chell::firePortalTwo(float x, float y) {
-    this->firePortal(this->portal_two, x, y);
-}
-
-void Chell::firePortal(Portal *portal, float x, float y) {
-    if (portal->isActive()) {
-        this->world->addUpdate(portal->createUpdate(COMMAND::DESTROY_COMMAND));
-    }
-    portal->desactivate();
-    b2Vec2 v(x, y);
-    RayCastClosestBodyCallback callback;
-    this->world->getB2World()->RayCast(
-        &callback,
-        this->getPosition(),
-        RAY_ZOOM * v);
-
-    if (callback.hasHit()) {
-        std::cout << "has hit" << std::endl;
-        Body *body = callback.getBody();
-        body->tryOpenPortal(
-            portal,
-            callback.getPoint(),
-            callback.getNormal());
-    }
+PortalGun *Chell::getPortalGun() {
+    return &this->portal_gun;
 }
 
 bool Chell::isFacingRight() {

@@ -12,7 +12,3 @@ ENTITY StoneMaterial::createEntityWithShape(DiagonalShape *diagonal_shape) {
 ENTITY StoneMaterial::createEntityWithShape(SquareShape *square_shape) {
     return ENTITY::STONE_BLOCK;
 }
-
-void StoneMaterial::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
-
-}

@@ -79,10 +79,13 @@ private:
 
     virtual void MouseDown(const b2Vec2& p) override {
         std::cout << "(" << p.x << ", " << p.y <<  ")" << std::endl;
-        if (p.x < 0) {
-            this->chell->firePortalOne(p.x, p.y);
-        } else {
-            this->chell->firePortalTwo(p.x, p.y);
+        PortalGun *portal_gun = this->chell->getPortalGun();
+        if (portal_gun->getPortalOne() != nullptr) {
+            if (p.x < 0) {
+                portal_gun->firePortalOne(p.x, p.y);
+            } else {
+                portal_gun->firePortalTwo(p.x, p.y);
+            }
         }
     }
 };

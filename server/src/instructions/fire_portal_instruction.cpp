@@ -7,10 +7,5 @@ FirePortalInstruction::FirePortalInstruction(
 }
 
 void FirePortalInstruction::execute() {
-    std::cout << "FIRE PORTAL INSTRUCTION "<< std::endl;
-    if (number == 1) {
-        chell->firePortalOne(x, y);
-    } else {
-        chell->firePortalTwo(x, y);
-    }
+
 }

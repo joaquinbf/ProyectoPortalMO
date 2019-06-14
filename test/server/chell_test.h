@@ -8,18 +8,7 @@
 
 class ChellTest: public CxxTest::TestSuite {
 public:
-    void testCuandoChellDisparaUnPortalContraUnBloqueCuadradoMetalicoEntoncesDebeAparecerUnPortalCerca() {
-        World world;
-        Chell *chell = world.createChell(0, 0);
-        world.createSquareMetalBlock(10, 0);
-        world.bigStep();
 
-        chell->firePortalOne(1, 0);
-        world.bigStep();
-
-        Portal *portal = chell->getPortalOne();
-        TS_ASSERT_DELTA(10, portal->getPosX(), 2);
-    }
 };
 
 #endif

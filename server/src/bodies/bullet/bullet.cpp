@@ -92,8 +92,6 @@ void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {
-    std::cout << "choco con bullet" << std::endl;
-    portal->transportToOppositePortal(this);
 }
 
 void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {

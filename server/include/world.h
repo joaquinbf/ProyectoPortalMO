@@ -78,6 +78,12 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Incrementa el contador de bodies */
+    void incBodyCount();
+
+    /* Agrega un nuevo body al set bodies */
+    void addToBodies(Body *body);
+
     /* Agrega una update a la coleccion de updates*/
     void addUpdate(Update update);
 
@@ -153,8 +159,8 @@ public:
     /* Crea un receptor en (x, y) */
     Receiver *createReceiver(float x, float y);
 
-    /* Crea un portal desactivado con number 'number' */
-    Portal *createPortal(uint8_t number);
+    /* Crea un portal de numbe 'portal_number' en pos con normal 'normal'. */
+    Portal *createPortal(uint8_t portal_number, b2Vec2 pos, b2Vec2 normal);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */
