@@ -10,7 +10,8 @@
 
 Portal::Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal):
     Body(world, portal_number == NPORTAL1 ? ENTITY::PORTAL1 : ENTITY::PORTAL2),
-    normal(normal) {
+    normal(normal),
+    opposite(nullptr) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_staticBody;
     b2bodydef.position.Set(pos.x, pos.y);
@@ -38,6 +39,19 @@ Portal::~Portal() {
     this->world->getB2World()->DestroyBody(this->b2body);
 }
 
+void Portal::teleportBody(Body *body) const {
+}
+
+
+void Portal::teleportToOppositePortal(Body *body) const {
+    this->opposite->teleportBody(body);
+}
+
+
+void Portal::setOppositePortal(Portal *opposite) {
+    this->opposite = opposite;
+}
+
 Update Portal::createUpdate(COMMAND command) const {
     Update update(
         command,
@@ -59,4 +73,5 @@ void Portal::handleEndContactWith(Body *body, b2Contact *contact) {
 }
 
 void Portal::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
+    this->teleportToOppositePortal(bullet);
 }

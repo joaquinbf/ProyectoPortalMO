@@ -40,6 +40,9 @@ private:
     /* Dispara un portal 'portal_number' a (x, y).
      * De ser creado devuelve su puntero, en caso contrario devuelve nullptr */
     Portal *firePortal(uint8_t portal_number, b2Vec2 pos);
+
+    /* Asigna un portal opuesto */
+    void setOppositePortals(Portal *portal, Portal *opposite);
 };
 
 #endif

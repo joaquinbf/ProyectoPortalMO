@@ -13,6 +13,7 @@ class Bullet;
 class Portal: public Body {
 private:
     const b2Vec2 normal;
+    Portal *opposite;
     const float WIDTH = 2.20;
     const float HEIGHT = 0.30;
 
@@ -21,7 +22,17 @@ public:
      * pos con normal 'normal' */
     Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal);
 
+    /* Libera los recursos utilizados */
     ~Portal();
+
+    /* Teletransporta a body al portal */
+    void teleportBody(Body *body) const;
+
+    /* Teletransporta a body al portal opuesto */
+    void teleportToOppositePortal(Body *body) const;
+
+    /* Asigna un portal opuesto */
+    void setOppositePortal(Portal *opposite);
 
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const;

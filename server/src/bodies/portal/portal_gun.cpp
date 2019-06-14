@@ -25,16 +25,15 @@ Portal *PortalGun::getPortalTwo() const {
 }
 
 void PortalGun::firePortalOne(float x, float y) {
-    std::cout << "ex id: "
-              << (portal_one == nullptr ? -1 : portal_one->getBodyId())
-              << std::endl;
     this->destroyPortal(this->portal_one);
     this->portal_one = this->firePortal(NPORTAL1, b2Vec2(x, y));
+    this->setOppositePortals(this->portal_one, this->portal_two);
 }
 
 void PortalGun::firePortalTwo(float x, float y) {
     this->destroyPortal(this->portal_two);
     this->portal_two = this->firePortal(NPORTAL2, b2Vec2(x, y));
+    this->setOppositePortals(this->portal_two, this->portal_one);
 }
 
 void PortalGun::destroyPortal(Portal *portal) {
@@ -66,4 +65,13 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
     }
 
     return portal;
+}
+
+void PortalGun::setOppositePortals(Portal *portal, Portal *opposite) {
+    if (portal != nullptr) {
+        portal->setOppositePortal(opposite);
+    }
+    if (opposite != nullptr) {
+        opposite->setOppositePortal(portal);
+    }
 }
