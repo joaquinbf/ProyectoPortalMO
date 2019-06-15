@@ -9,12 +9,22 @@ class DiagonalShape;
 class SquareShape;
 class Portal;
 
+class Bullet;
+
 class Material {
 public:
+    /* Libera los recursos utilizados */
     virtual ~Material();
+
     virtual ENTITY createEntityWithShape(DiagonalShape *diagonal_shape) = 0;
+
     virtual ENTITY createEntityWithShape(SquareShape *square_shape) = 0;
+
+    /* Indica si se puede abrir un portal sobre el material */
     virtual bool canOpenPortalOnSurface() const = 0;
+
+    /* Maneja el inicio de contacto con una bala */
+    virtual void handleBeginContactWith(Bullet *bullet) const = 0;
 };
 
 #endif

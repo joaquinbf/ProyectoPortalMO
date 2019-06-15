@@ -1,6 +1,6 @@
 #include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/world.h"
-#include "../../../include/instructions/delete_body_instruction.h"
+#include "../../../include/instructions/destroy_body_instruction.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -79,16 +79,16 @@ void Bullet::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Block *block, b2Contact *contact) {
-    this->world->addInstruction(new DeleteBodyInstruction(this));
+    this->world->addInstruction(new DestroyBodyInstruction(this));
 }
 
 void Bullet::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
-    this->world->addInstruction(new DeleteBodyInstruction(this));
+    this->world->addInstruction(new DestroyBodyInstruction(this));
 }
 
 void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     receiver->turnOn();
-    this->world->addInstruction(new DeleteBodyInstruction(this));
+    this->world->addInstruction(new DestroyBodyInstruction(this));
 }
 
 void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {

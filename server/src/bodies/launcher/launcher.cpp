@@ -57,7 +57,6 @@ void Launcher::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Launcher::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
-    this->world->addBodyForDeletion(bullet);
 }
 
 void Launcher::handleBeginContactWith(Chell *chell, b2Contact *contact) {

@@ -11,8 +11,6 @@
 #include "../../../include/bodies/rock/rock.h"
 #include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/world.h"
-#include "../../../include/instructions/delete_body_instruction.h"
-
 
 Block::Block(
     World *world,
@@ -72,14 +70,14 @@ void Block::handleBeginContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleBeginContactWith(this, contact);
 }
 
+void Block::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
+}
+
 void Block::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
-    this->world->addInstruction(new DeleteBodyInstruction(bullet));
+    this->material->handleBeginContactWith(bullet);
 }
 
 void Block::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     chell->land();
-}
-
-void Block::handleEndContactWith(Body *other_body, b2Contact *contact) {
-    other_body->handleEndContactWith(this, contact);
 }
