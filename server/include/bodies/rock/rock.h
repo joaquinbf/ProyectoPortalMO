@@ -12,10 +12,8 @@ class World;
 
 class Rock: public Body {
 private:
-    const float HALF_WIDTH = 1.0;
-    const float HALF_HEIGHT = 1.5;
-    const float DENSITY = 1;
-    const float ANGLE = 0;
+    const float WIDTH = 1.0;
+    const float HEIGHT = 1.0;
 
 public:
     /* Instancia una roca de id 'body_id' sobre b2orld en la

@@ -8,7 +8,12 @@
 
 class ChellTest: public CxxTest::TestSuite {
 public:
-
+    void testCuandoSeCreaChellNoDebeDevolverUnPuteroNulo() {
+        World world;
+        Chell *chell = world.createChell(0, 0);
+        TS_ASSERT_DIFFERS(nullptr, chell);
+        world.destroyBody(chell);
+    }
 };
 
 #endif

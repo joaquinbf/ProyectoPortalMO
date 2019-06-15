@@ -42,6 +42,7 @@ class Button;
 class Acid;
 class Portal;
 class Cake;
+class Rock;
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
@@ -190,6 +191,9 @@ public:
      * Pre: Solo se puede crear un unico pastel, en caso contrario
      * devuelve nullptr.  */
     Cake *createCake(float x, float y);
+
+    /* Crea una roca en la posicion (x, y) */
+    Rock *createRock(float x, float y);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */

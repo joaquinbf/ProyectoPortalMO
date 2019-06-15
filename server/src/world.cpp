@@ -7,6 +7,7 @@
 #include "../include/bodies/button/button.h"
 #include "../include/bodies/gate/gate.h"
 #include "../include/bodies/acid/acid.h"
+#include "../include/bodies/rock/rock.h"
 #include "../include/bodies/cake/cake.h"
 #include "../include/bodies/bullet/bullet.h"
 #include "../include/bodies/launcher/launcher.h"
@@ -256,6 +257,11 @@ Cake *World::createCake(float x, float y) {
     return cake;
 }
 
+Rock *World::createRock(float x, float y) {
+    Rock *rock = new Rock(this, x, y);
+    return rock;
+}
+
 
 std::list<Update> World::getNewPlayerUpdates() const {
     std::list<Update> updates;
@@ -321,13 +327,8 @@ void World::createWorldOne() {
     }
     this->createCake(50, 0.5);
 
-    createDiagonalMetalBlock(-16, 1, ORIENTATION::ORIENTATION_0);
-    createDiagonalMetalBlock(-16, 3, ORIENTATION::ORIENTATION_1);
-    createDiagonalMetalBlock(-16, 5, ORIENTATION::ORIENTATION_2);
-    createDiagonalMetalBlock(-16, 7, ORIENTATION::ORIENTATION_3);
-
+    this->createRock(-10, 0);
     createSquareMetalBlock(-16, 9);
-
 
     this->createLauncher(-30, 5, DIRECTION::LEFT_DIRECTION);
 }

@@ -78,6 +78,7 @@ project 'Testbed'
 		'../../server/src/bodies/receiver/*',
 		'../../server/src/bodies/portal/*',
 		'../../server/src/bodies/cake/*',
+		'../../server/src/bodies/rock/*',
 		'../../server/src/pin.cpp',
 		'../../server/src/ray_cast_closest_body_callback.cpp',
 		'../../server/src/math_ext.cpp'

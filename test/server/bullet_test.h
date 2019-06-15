@@ -13,9 +13,9 @@ public:
         world.createBullet(2, 2, DIRECTION::RIGHT_DIRECTION);
     }
 
-    void testSeDisparaUnaBalaChocaConUnBloqueYDebeDestruirse() {
+    void testSeDisparaUnaBalaChocaConUnBloqueDePiedraYDebeDestruirse() {
         World world;
-        world.createSquareMetalBlock(1, 1);
+        world.createSquareStoneBlock(1, 1);
         world.createBullet(1, 1, DIRECTION::RIGHT_DIRECTION);
 
         world.bigStep();

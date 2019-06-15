@@ -14,18 +14,16 @@ Rock::Rock(World *world, float x, float y):
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
-    bodyDef.angle = this->ANGLE;
     bodyDef.userData = (void *) this;
-    bodyDef.fixedRotation = true;
+    bodyDef.awake = false;
 
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
     b2PolygonShape boxShape;
-    boxShape.SetAsBox(this->HALF_WIDTH, this->HALF_HEIGHT);
+    boxShape.SetAsBox(WIDTH/2, HEIGHT/2);
 
     b2FixtureDef boxFixtureDef;
     boxFixtureDef.shape = &boxShape;
-    boxFixtureDef.density = this->DENSITY;
 
     this->b2body->CreateFixture(&boxFixtureDef);
 }
@@ -40,8 +38,8 @@ Update Rock::createUpdate(COMMAND command) const {
         ENTITY::ROCK,
         this->getBodyId(),
         STATUS::NONE_STATUS,
-        this->b2body->GetPosition().x,
-        this->b2body->GetPosition().y,
+        this->getPosX() * ZOOM_FACTOR,
+        this->getPosY() * ZOOM_FACTOR,
         0);
     return update;
 }
