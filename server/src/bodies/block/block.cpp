@@ -75,7 +75,7 @@ void Block::handleEndContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Block::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
-    this->material->handleBeginContactWith(bullet);
+    this->material->handleBeginContactWith(bullet, contact);
 }
 
 void Block::handleBeginContactWith(Chell *chell, b2Contact *contact) {

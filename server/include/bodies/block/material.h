@@ -10,6 +10,7 @@ class SquareShape;
 class Portal;
 
 class Bullet;
+class b2Contact;
 
 class Material {
 public:
@@ -24,7 +25,8 @@ public:
     virtual bool canOpenPortalOnSurface() const = 0;
 
     /* Maneja el inicio de contacto con una bala */
-    virtual void handleBeginContactWith(Bullet *bullet) const = 0;
+    virtual void handleBeginContactWith(
+        Bullet *bullet, b2Contact *contact) const = 0;
 };
 
 #endif

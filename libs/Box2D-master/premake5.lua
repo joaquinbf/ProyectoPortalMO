@@ -44,11 +44,6 @@ project 'Testbed'
 	warnings 'Default'
 	includedirs {
 		'.',
-		'../../server/include',
-		'../../server/include/chell',
-		'../../server/include/block',
-		'../../server/include/receiver',
-		'../../common/include'
 	}
 
 	files
@@ -84,7 +79,8 @@ project 'Testbed'
 		'../../server/src/bodies/portal/*',
 		'../../server/src/bodies/cake/*',
 		'../../server/src/pin.cpp',
-		'../../server/src/ray_cast_closest_body_callback.cpp'
+		'../../server/src/ray_cast_closest_body_callback.cpp',
+		'../../server/src/math_ext.cpp'
 	}
 
     filter { 'system:windows' }

@@ -18,7 +18,8 @@ public:
     virtual bool canOpenPortalOnSurface() const;
 
     /* Maneja el inicio de contacto con una bala */
-    virtual void handleBeginContactWith(Bullet *bullet) const;
+    virtual void handleBeginContactWith(
+        Bullet *bullet, b2Contact *contact) const;
 };
 
 #endif

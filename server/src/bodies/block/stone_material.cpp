@@ -19,7 +19,8 @@ bool StoneMaterial::canOpenPortalOnSurface() const {
     return false;
 }
 
-void StoneMaterial::handleBeginContactWith(Bullet *bullet) const {
+void StoneMaterial::handleBeginContactWith(
+    Bullet *bullet, b2Contact *contact) const {
     World *world = bullet->getWorld();
     world->addInstruction(new DestroyBodyInstruction(bullet));
 }
