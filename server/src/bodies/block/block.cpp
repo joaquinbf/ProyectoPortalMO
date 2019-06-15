@@ -14,14 +14,14 @@
 
 Block::Block(
     World *world,
-    float x, float y, float angle,
+    float x, float y, ORIENTATION orientation,
     Shape *shape, Material *material):
     Body(world, shape->createEntityWithMaterial(material)),
-    shape(shape), material(material) {
+    orientation(orientation), shape(shape), material(material) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);
-    bodyDef.angle = angle;
+    bodyDef.angle = -orientation * (3.1415/2);
     bodyDef.userData = (void *) this;
     bodyDef.awake = false;
 
@@ -63,7 +63,7 @@ Update Block::createUpdate(COMMAND command) const {
         STATUS::NONE_STATUS,
         this->b2body->GetPosition().x * ZOOM_FACTOR,
         this->b2body->GetPosition().y * ZOOM_FACTOR,
-        0);
+        this->orientation);
     return update;
 }
 

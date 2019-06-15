@@ -7,9 +7,9 @@
 b2PolygonShape DiagonalShape::giveShape(float width, float height) {
     b2PolygonShape b2polygonshape;
     b2Vec2 vertices[3];
-    vertices[0].Set(0.00, 0.00);
-    vertices[1].Set(0.00, 2.00);
-    vertices[2].Set(2.00, 0.00);
+    vertices[0].Set(-width/2, height/2);
+    vertices[1].Set(-width/2, -height/2);
+    vertices[2].Set(width/2, -height/2);
     b2polygonshape.Set(vertices, 3);
     return b2polygonshape;
 }

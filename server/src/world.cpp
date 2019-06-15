@@ -169,27 +169,26 @@ Chell *World::createChell(float x, float y) {
 }
 
 Block *World::createSquareMetalBlock(float x, float y) {
-    float angle = 0.00;
     Shape *shape = new SquareShape();
     Material *material = new MetalMaterial();
-    Block *block = new Block(this, x, y, angle, shape, material);
+    Block *block = new Block(
+        this, x, y, ORIENTATION::ORIENTATION_0, shape, material);
     return block;
 }
 
 Block *World::createSquareStoneBlock(float x, float y) {
-    float angle = 0.00;
     Shape *shape = new SquareShape();
     Material *material = new StoneMaterial();
-    Block *block = new Block(this, x, y, angle, shape, material);
+    Block *block = new Block(
+        this, x, y, ORIENTATION::ORIENTATION_0, shape, material);
     return block;
 }
 
 Block *World::createDiagonalMetalBlock(
-    float x, float y, DIAGONAL_BLOCK_TYPE dbt) {
-    float angle = - dbt * (3.1415/2);
+    float x, float y, ORIENTATION orientation) {
     Shape *shape = new DiagonalShape();
     Material *material = new MetalMaterial();
-    Block *block = new Block(this, x, y, angle, shape, material);
+    Block *block = new Block(this, x, y, orientation, shape, material);
     return block;
 }
 
@@ -322,9 +321,13 @@ void World::createWorldOne() {
     }
     this->createCake(50, 0.5);
 
-    for (int i = 0; i < 20; i++) {
-        this->createSquareMetalBlock(-48.00, -1.00 + 2.00*i);
-    }
+    createDiagonalMetalBlock(-16, 1, ORIENTATION::ORIENTATION_0);
+    createDiagonalMetalBlock(-16, 3, ORIENTATION::ORIENTATION_1);
+    createDiagonalMetalBlock(-16, 5, ORIENTATION::ORIENTATION_2);
+    createDiagonalMetalBlock(-16, 7, ORIENTATION::ORIENTATION_3);
+
+    createSquareMetalBlock(-16, 9);
+
 
     this->createLauncher(-30, 5, DIRECTION::LEFT_DIRECTION);
 }

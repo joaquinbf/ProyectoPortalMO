@@ -32,6 +32,7 @@ class Portal;
 
 class Block: public Body {
 private:
+    ORIENTATION orientation;
     Shape *shape;
     Material *material;
     const float WIDTH     = 2.00;
@@ -44,7 +45,7 @@ public:
      * de shape y material asignado.
      * Al liberarse el block tambien se libera shape y material. */
     Block(World *world,
-          float x, float y, float angle,
+          float x, float y, ORIENTATION orientation,
           Shape *shape, Material *material);
 
     /* Libera los recursos utilizados */

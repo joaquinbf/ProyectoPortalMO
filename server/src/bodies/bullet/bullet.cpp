@@ -33,7 +33,7 @@ Bullet::Bullet(
 
     b2CircleShape b2circleshape;
     b2circleshape.m_radius = 0.3;
-    b2circleshape.m_p.Set(0.00, 0.00);
+    b2circleshape.m_p.Set(0, 0);
 
     b2FixtureDef b2fixturedef;
     b2fixturedef.shape = &b2circleshape;
