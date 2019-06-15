@@ -16,6 +16,7 @@ public:
     Compuerta(QString direccionSprite, unsigned idClass);
     ~Compuerta();
 
+    virtual void eliminar(ComponenteCompuerta *componente);
     virtual void agregar(ComponenteCompuerta *componente);
     virtual void agregar(QList<ComponenteCompuerta *> componentes);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;

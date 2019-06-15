@@ -29,6 +29,11 @@ int ItemGrafico::getIdCelda()
     return k;
 }
 
+unsigned ItemGrafico::getIdClass()
+{
+    return this->idClass;
+}
+
 void ItemGrafico::guardar(YAML::Node &nodo)
 {
     int idCelda = this->getIdCelda();

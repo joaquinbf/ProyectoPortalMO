@@ -61,15 +61,18 @@ void EscenarioGrafico::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Backspace)
+    if (event->key() == Qt::Key_Backspace && !this->selectedItems().isEmpty())
     {
-        while (!this->selectedItems().isEmpty())
-        {
-            QGraphicsItem *item = this->selectedItems().front();
-            ItemGrafico *itemGrafico = (this->getCelda(item->scenePos())).liberar();
-            this->removeItem(this->selectedItems().front());
-            delete itemGrafico;
-        }
+        QGraphicsItem *item = this->selectedItems().front();
+        QPointF posicion = item->scenePos();
+        ItemGrafico *itemGrafico = (this->getCelda(posicion)).liberar();
+
+        // saber si es o no una clase boton o receptor
+        // eliminar de nuestra lista de componentes (mediante la posicion)
+        // pedir a cada compuerta que elimine el componentes de su 
+
+        this->removeItem(item);
+        delete itemGrafico;
     }
     else
     {

@@ -20,6 +20,7 @@ public:
     virtual ~ItemGrafico();
 
     int getIdCelda();
+    unsigned getIdClass();
     virtual void guardar(YAML::Node &nodo);
     virtual void abrir(YAML::Node &nodo);
 };

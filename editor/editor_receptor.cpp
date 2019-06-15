@@ -2,7 +2,8 @@
 #include "editor_defines.h"
 #include <QInputDialog>
 
-Receptor::Receptor() : ItemGrafico(DIR_IMAGEN_RECEPTOR, IDCLASS_RECEPTOR)
+Receptor::Receptor() : ComponenteCompuerta(DIR_IMAGEN_RECEPTOR,
+                                           IDCLASS_RECEPTOR)
 {
     this->sprite = this->sprite.scaled(CELL_SIZE_W, CELL_SIZE_H);
     this->setPixmap(this->sprite);
