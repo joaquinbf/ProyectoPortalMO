@@ -6,6 +6,8 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2EdgeShape.h"
 #include "../../../include/world.h"
 #include "../../../include/instructions/teleport_body_instruction.h"
+#include "../../../include/bodies/bullet/bullet.h"
+#include "../../../include/bodies/chell/chell.h"
 #include <iostream>
 #include <cmath>
 
@@ -85,4 +87,8 @@ void Portal::handleEndContactWith(Body *body, b2Contact *contact) {
 
 void Portal::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->teleportToOppositePortal(bullet);
+}
+
+void Portal::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    this->teleportToOppositePortal(chell);
 }

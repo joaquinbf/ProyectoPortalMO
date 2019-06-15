@@ -222,6 +222,10 @@ void Chell::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
     this->land();
 }
 
+void Chell::handleBeginContactWith(Portal *portal, b2Contact *contact) {
+    portal->teleportToOppositePortal(this);
+}
+
 void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     this->land();
 }

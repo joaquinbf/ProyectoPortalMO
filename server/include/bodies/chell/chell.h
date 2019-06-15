@@ -136,10 +136,16 @@ public:
     /* Presionaa y aterriza sobre el boton si esta saltando */
     virtual void handleBeginContactWith(Button *button, b2Contact *contact) override;
 
+    /* Aterriza sobre otra chell */
     virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);
 
+    /* Aterriza sobre un lanzador */
     virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact);
 
+    /* Teletransporta a chell */
+    virtual void handleBeginContactWith(Portal *portal, b2Contact *contact);
+
+    /* Aterriza sobre un receptor */
     virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact);
 
     /* Maneja el fin de contacto con otro cuerpo */

@@ -9,6 +9,7 @@
 
 class World;
 class Bullet;
+class Chell;
 
 class Portal: public Body {
 private:
@@ -43,8 +44,13 @@ public:
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *body, b2Contact *contact);
 
+    /* Teletransporta una bala */
     virtual void handleBeginContactWith(
         Bullet *bullet, b2Contact *contact) override;
+
+    /* Teletransporta a chell */
+    virtual void handleBeginContactWith(
+        Chell *chell, b2Contact *contact) override;
 };
 
 #endif
