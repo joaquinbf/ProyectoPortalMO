@@ -50,7 +50,7 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
     world->getB2World()->RayCast(
         &callback,
         chell->getPosition(),
-        pos);
+        1000 * pos);
 
     std::cout << "after raycast" << std::endl;
     std::cout << "raycast point (" << callback.getPoint().x
