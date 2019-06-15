@@ -1,13 +1,13 @@
 #include "../../../include/bodies/receiver/receiver.h"
 #include "../../../include/world.h"
 #include "../../../include/bodies/bullet/bullet.h"
+#include "../../../include/bodies/chell/chell.h"
 #include "../../../include/bodies/gate/gate.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../include/instructions/delete_body_instruction.h"
-
 
 Receiver::Receiver(World *world, float x, float y):
     Body(world, ENTITY::RECEIVER_BLOCK),
@@ -74,6 +74,10 @@ void Receiver::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 void Receiver::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->turnOn();
     this->world->addInstruction(new DeleteBodyInstruction(bullet));
+}
+
+void Receiver::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    chell->land();
 }
 
 void Receiver::handleEndContactWith(Body *other_body, b2Contact *contact) {

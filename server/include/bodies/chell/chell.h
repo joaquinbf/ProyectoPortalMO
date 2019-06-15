@@ -26,6 +26,8 @@ class Button;
 class Block;
 class Gate;
 class Portal;
+class Launcher;
+class Receiver;
 
 class Chell: public Body {
 private:
@@ -134,7 +136,11 @@ public:
     /* Presionaa y aterriza sobre el boton si esta saltando */
     virtual void handleBeginContactWith(Button *button, b2Contact *contact) override;
 
-    virtual void handleBeginContactWith(Chell *other_body, b2Contact *contact);
+    virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);
+
+    virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact);
+
+    virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact);
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);

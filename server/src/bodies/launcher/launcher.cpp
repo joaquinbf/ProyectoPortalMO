@@ -1,5 +1,6 @@
 #include "../../../include/bodies/launcher/launcher.h"
 #include "../../../include/bodies/bullet/bullet.h"
+#include "../../../include/bodies/chell/chell.h"
 #include "../../../include/instructions/create_bullet_instruction.h"
 #include "../../../include/world.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -57,6 +58,10 @@ void Launcher::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 
 void Launcher::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->world->addBodyForDeletion(bullet);
+}
+
+void Launcher::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    chell->land();
 }
 
 void Launcher::handleEndContactWith(Body *other_body, b2Contact *contact) {

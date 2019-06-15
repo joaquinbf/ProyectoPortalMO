@@ -59,7 +59,7 @@ Bullet::Bullet(
 Bullet::~Bullet() {
     if (this->b2body != nullptr) {
         world->getB2World()->DestroyBody(this->b2body);
-    }    
+    }
 }
 
 Update Bullet::createUpdate(COMMAND command) const {
@@ -92,6 +92,7 @@ void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {
+    portal->teleportToOppositePortal(this);
 }
 
 void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {

@@ -5,8 +5,9 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2EdgeShape.h"
 #include "../../../include/world.h"
-#include "../../../include/instructions/transform_body_instruction.h"
+#include "../../../include/instructions/teleport_body_instruction.h"
 #include <iostream>
+#include <cmath>
 
 Portal::Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal):
     Body(world, portal_number == NPORTAL1 ? ENTITY::PORTAL1 : ENTITY::PORTAL2),
@@ -40,11 +41,21 @@ Portal::~Portal() {
 }
 
 void Portal::teleportBody(Body *body) const {
+    b2Vec2 v = body->getLinearVelocity();
+    b2Vec2 new_v = v.Length() * this->normal;
+    b2Vec2 new_pos = this->getPosition() + 0.3*this->normal;
+    float new_angle = acos(
+        (v.x*normal.x + v.y*normal.y)/(v.Length()*normal.Length()));
+    Instruction *inst = new TeleportBodyInstruction(
+        body, new_v, new_pos, new_angle);
+    this->getWorld()->addInstruction(inst);
 }
 
 
 void Portal::teleportToOppositePortal(Body *body) const {
-    this->opposite->teleportBody(body);
+    if (this->opposite != nullptr) {
+        this->opposite->teleportBody(body);
+    }
 }
 
 

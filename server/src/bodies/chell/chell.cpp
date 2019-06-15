@@ -9,6 +9,8 @@
 #include "../../../include/bodies/chell/running_state.h"
 #include "../../../include/bodies/chell/jumping_state.h"
 #include "../../../include/bodies/button/button.h"
+#include "../../../include/bodies/launcher/launcher.h"
+#include "../../../include/bodies/receiver/receiver.h"
 #include "../../../../common/include/key.h"
 #include "../../../../common/include/keypad.h"
 #include "../../../../common/include/types.h"
@@ -213,6 +215,14 @@ void Chell::handleBeginContactWith(Button *button, b2Contact *contact) {
 }
 
 void Chell::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    this->land();
+}
+
+void Chell::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
+    this->land();
+}
+
+void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     this->land();
 }
 

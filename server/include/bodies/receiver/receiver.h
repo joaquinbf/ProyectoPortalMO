@@ -7,6 +7,7 @@
 
 class Bullet;
 class Gate;
+class Chell;
 
 class Receiver: public Body, public BooleanSupplier {
 private:
@@ -41,6 +42,9 @@ public:
 
     /* Activa al receptor si es colisionado por una bala */
     virtual void handleBeginContactWith(Bullet *bullet, b2Contact *contact);
+
+    /* Aterriza a chell */
+    virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);

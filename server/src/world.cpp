@@ -286,12 +286,14 @@ void World::createWorldOne() {
         this->createChell(-3.00 + 2.00*i, 1.00);
     }
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 20; i++) {
         this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 
     this->createSquareMetalBlock(-6.00 + 2.00*10, 5.00);
-    this->createLauncher(-10, -1, DIRECTION::LEFT_DIRECTION);
+    this->createLauncher(-2, -3, DIRECTION::LEFT_DIRECTION);
+    this->createSquareMetalBlock(-20, -3);
+    this->createSquareMetalBlock(-20, 4);
     this->createSquareMetalBlock(-6.00 + 2.00*-10, -1.00);
 }
 

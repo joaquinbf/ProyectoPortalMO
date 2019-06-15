@@ -57,10 +57,11 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
               << ", " << callback.getPoint().y << ") " << std::endl;
 
     if (callback.hasHit() && callback.getBody()->canOpenPortalOnSurface()) {
-        std::cout << "hiiiit" << std::endl;
+        std::cout << "rnormal (" << callback.getNormal().x
+                  << ", " << callback.getNormal().y << ") " << std::endl;
         portal = world->createPortal(
             portal_number,
-            callback.getPoint(),
+            callback.getPoint() + 1*callback.getNormal(),
             callback.getNormal());
     }
 

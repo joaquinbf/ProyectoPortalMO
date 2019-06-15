@@ -28,7 +28,7 @@ public:
     /* Teletransporta a body al portal */
     void teleportBody(Body *body) const;
 
-    /* Teletransporta a body al portal opuesto */
+    /* Teletransporta a body al portal opuesto en caso de no ser nullptr. */
     void teleportToOppositePortal(Body *body) const;
 
     /* Asigna un portal opuesto */

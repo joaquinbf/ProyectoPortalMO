@@ -8,6 +8,7 @@
 
 class World;
 class Bullet;
+class Chell;
 
 class Launcher: public Body {
 private:
@@ -35,7 +36,12 @@ public:
     virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
     /* Mata a bullet */
-    virtual void handleBeginContactWith(Bullet *bullet, b2Contact *contact) override;
+    virtual void handleBeginContactWith(
+        Bullet *bullet, b2Contact *contact) override;
+
+    /* Aterriza a chell */
+    virtual void handleBeginContactWith(
+        Chell *chell, b2Contact *contact) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
