@@ -159,6 +159,46 @@ void MainWindow::on_actionBarrera_Vertical_triggered()
     this->escenario->setIdClassACrear(IDCLASS_BARRERA_VERTICAL);
 }
 
+void MainWindow::on_actionBloqueOriginal_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_DIAGONAL_0);
+}
+
+void MainWindow::on_actionBloqueRotado_90_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_DIAGONAL_90);
+}
+
+void MainWindow::on_actionBloqueRotado_180_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_DIAGONAL_180);
+}
+
+void MainWindow::on_actionBloqueRotado_270_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_DIAGONAL_270);
+}
+
+void MainWindow::on_actionEmisorOriginal_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_EMISOR_0);
+}
+
+void MainWindow::on_actionEmisor_Rotado_90_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_EMISOR_90);
+}
+
+void MainWindow::on_actionEmisor_Rotado_180_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_EMISOR_180);
+}
+
+void MainWindow::on_actionEmisor_Rotado_270_triggered()
+{
+    this->escenario->setIdClassACrear(IDCLASS_EMISOR_270);
+}
+
 void MainWindow::on_actionBloque_de_Metal_en_Diagonal_triggered()
 {
 }
@@ -168,37 +208,5 @@ void MainWindow::on_actionEmisor_de_Energia_triggered()
 }
 
 void MainWindow::on_actionReceptor_de_Energia_triggered()
-{
-}
-
-void MainWindow::on_actionBloqueOriginal_triggered()
-{
-}
-
-void MainWindow::on_actionBloqueRotado_90_triggered()
-{
-}
-
-void MainWindow::on_actionBloqueRotado_180_triggered()
-{
-}
-
-void MainWindow::on_actionBloqueRotado_270_triggered()
-{
-}
-
-void MainWindow::on_actionEmisorOriginal_triggered()
-{
-}
-
-void MainWindow::on_actionEmisor_Rotado_90_triggered()
-{
-}
-
-void MainWindow::on_actionEmisor_Rotado_180_triggered()
-{
-}
-
-void MainWindow::on_actionEmisor_Rotado_270_triggered()
 {
 }
