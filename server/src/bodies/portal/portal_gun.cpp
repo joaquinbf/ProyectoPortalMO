@@ -52,13 +52,7 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
         chell->getPosition(),
         1000 * pos);
 
-    std::cout << "after raycast" << std::endl;
-    std::cout << "raycast point (" << callback.getPoint().x
-              << ", " << callback.getPoint().y << ") " << std::endl;
-
     if (callback.hasHit() && callback.getBody()->canOpenPortalOnSurface()) {
-        std::cout << "rnormal (" << callback.getNormal().x
-                  << ", " << callback.getNormal().y << ") " << std::endl;
         portal = world->createPortal(
             portal_number,
             callback.getPoint() + 1*callback.getNormal(),
