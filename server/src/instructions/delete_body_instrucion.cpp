@@ -7,9 +7,8 @@ DeleteBodyInstruction::DeleteBodyInstruction(Body *body):
     body(body) {
 }
 
+// TODO: Cambiar nombre a destroy body instruction.
 void DeleteBodyInstruction::execute() {
-    Update update = body->createUpdate(COMMAND::DESTROY_COMMAND);
-    World *world = this->body->getWorld();
-    world->addUpdate(update);
-    world->deleteBody(body);
+    World *world = body->getWorld();
+    world->destroyBody(body);
 }

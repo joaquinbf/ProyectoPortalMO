@@ -16,9 +16,15 @@ Body::Body(World *world, ENTITY entity):
     BODY_ID(world->getBodyCount()),
     world(world),
     entity(entity) {
+    world->incBodyCount();
+    world->addToBodies(this);
 }
 
 Body::~Body() {
+}
+
+bool Body::canOpenPortalOnSurface() const {
+    return false;
 }
 
 float Body::getAngle() const {
@@ -45,12 +51,7 @@ void Body::desactivate() {
     this->b2body->SetActive(false);
 }
 
-void Body::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
-}
-
 void Body::setTransform(b2Vec2 pos, float angle) {
-    while (this->world->getB2World()->IsLocked()) {
-    }
     this->b2body->SetTransform(pos, angle);
 }
 

@@ -27,6 +27,10 @@ Acid::Acid(World *world,  float x, float y):
     this->b2body->CreateFixture(&b2fixturedef);
 }
 
+Acid::~Acid() {
+    this->world->getB2World()->DestroyBody(this->b2body);
+}
+
 Update Acid::createUpdate(COMMAND command) const {
     Update update(
         command,

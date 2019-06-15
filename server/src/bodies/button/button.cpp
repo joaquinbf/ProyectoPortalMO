@@ -34,6 +34,10 @@ Button::Button(World *world, float x, float y):
     this->is_pressed = false;
 }
 
+Button::~Button() {
+    this->world->getB2World()->DestroyBody(this->b2body);
+}
+
 bool Button::isPressed() const {
     return this->is_pressed;
 }

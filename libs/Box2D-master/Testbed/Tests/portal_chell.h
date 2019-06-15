@@ -32,6 +32,12 @@ private:
         this->world.createLauncher(-10, -1, DIRECTION::LEFT_DIRECTION);
         this->world.createSquareMetalBlock(-6.00 + 2.00*-10, -1.00);
 
+        this->world.createPortal(1, b2Vec2(10, 10), b2Vec2(1, 0));
+        this->world.createPortal(1, b2Vec2(14, 14), b2Vec2(0, 1));
+        this->world.createPortal(1, b2Vec2(18, 18), b2Vec2(-1, 0));
+        this->world.createPortal(1, b2Vec2(22, 22), b2Vec2(0, -1));
+        this->world.createPortal(1, b2Vec2(26, 26), b2Vec2(-1, 1));
+        this->world.createPortal(1, b2Vec2(30, 30), b2Vec2(1, 1));
     }
 
     void Step(Settings *settings) {
@@ -79,10 +85,11 @@ private:
 
     virtual void MouseDown(const b2Vec2& p) override {
         std::cout << "(" << p.x << ", " << p.y <<  ")" << std::endl;
+        PortalGun *portal_gun = this->chell->getPortalGun();
         if (p.x < 0) {
-            this->chell->firePortalOne(p.x, p.y);
+            portal_gun->firePortalOne(p.x, p.y);
         } else {
-            this->chell->firePortalTwo(p.x, p.y);
+            portal_gun->firePortalTwo(p.x, p.y);
         }
     }
 };

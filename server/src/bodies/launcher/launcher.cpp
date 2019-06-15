@@ -1,5 +1,6 @@
 #include "../../../include/bodies/launcher/launcher.h"
 #include "../../../include/bodies/bullet/bullet.h"
+#include "../../../include/bodies/chell/chell.h"
 #include "../../../include/instructions/create_bullet_instruction.h"
 #include "../../../include/world.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -35,6 +36,10 @@ Launcher::Launcher(
     this->b2body->CreateFixture(&b2fixturedef);
 }
 
+Launcher::~Launcher() {
+    this->world->getB2World()->DestroyBody(this->b2body);
+}
+
 Update Launcher::createUpdate(COMMAND command) const {
     Update update(
         command,
@@ -55,6 +60,10 @@ void Launcher::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->world->addBodyForDeletion(bullet);
 }
 
+void Launcher::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    chell->land();
+}
+
 void Launcher::handleEndContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleEndContactWith(this, contact);
 }
@@ -69,6 +78,7 @@ void Launcher::applyStateAction() {
 }
 
 Bullet *Launcher::fireABullet() {
+    // TODO: Se llama fuera del step, no es necesario lanzar un new instruction.
     float x = this->getPosX();
     float y = this->getPosY();
 

@@ -1,44 +1,39 @@
 #ifndef __PORTAL_H__
 #define __PORTAL_H__
 
+#define PI (4*atan(1))
+#define NPORTAL1 1
+#define NPORTAL2 2
+
 #include "../body.h"
 
 class World;
 class Bullet;
+class Chell;
 
 class Portal: public Body {
 private:
-    const b2Vec2 pos;
-    const b2Vec2 n;
-    bool is_on;
-    b2Vec2 normal;
+    const b2Vec2 normal;
     Portal *opposite;
+    const float WIDTH = 2.20;
+    const float HEIGHT = 0.30;
 
 public:
-    /* Crea un portal desactivado con number 'number */
-    Portal(World *world, uint8_t number);
+    /* Instancia un portal de numero 'portal_number' en world en la posicion
+     * pos con normal 'normal' */
+    Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal);
 
-    /* Transporta el cuerpo al portal opuesto */
-    void transportToOppositePortal(Body *body) const;
+    /* Libera los recursos utilizados */
+    ~Portal();
 
-    /* Transporta al cuerpo a las cercanias del portal */
-    void transportBody(Body *body) const;
+    /* Teletransporta a body al portal */
+    void teleportBody(Body *body) const;
 
-    /* Crea una dupla con otro portal.
-     * Pre: No tenia previamente otro portal. */
-    void setPairWith(Portal *portal);
+    /* Teletransporta a body al portal opuesto en caso de no ser nullptr. */
+    void teleportToOppositePortal(Body *body) const;
 
-    /* Setea el vector normal */
-    void setNormal(b2Vec2 normal);
-
-    /* Indica si el portal esta activado */
-    bool isOn() const;
-
-    /* Activa el portal */
-    void turnOn();
-
-    /* Desactiva el portañ */
-    void turnOff();
+    /* Asigna un portal opuesto */
+    void setOppositePortal(Portal *opposite);
 
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const;
@@ -49,8 +44,13 @@ public:
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *body, b2Contact *contact);
 
-    /* Teletransporta a la bala al otro portal */
-    virtual void handleBeginContactWith(Bullet *bullet, b2Contact *contact);
+    /* Teletransporta una bala */
+    virtual void handleBeginContactWith(
+        Bullet *bullet, b2Contact *contact) override;
+
+    /* Teletransporta a chell */
+    virtual void handleBeginContactWith(
+        Chell *chell, b2Contact *contact) override;
 };
 
 #endif

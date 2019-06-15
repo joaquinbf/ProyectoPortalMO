@@ -33,6 +33,7 @@ World::World(float time_step):
     body_count(0),
     b2world_is_internal(true),
     TIME_STEP(time_step) {
+    this->b2world->SetContactListener(&this->contact_listener);
 }
 
 World::World(b2World *b2world):
@@ -50,12 +51,21 @@ World::~World() {
     }
 }
 
+void World::incBodyCount() {
+    this->body_count++;
+}
+
+void World::addToBodies(Body *body) {
+    this->bodies.insert(body);
+}
+
 void World::addUpdate(Update update) {
     this->internal_updates.push_back(update);
 }
 
-
-void World::deleteBody(Body *body) {
+void World::destroyBody(Body *body) {
+    Update update = body->createUpdate(COMMAND::DESTROY_COMMAND);
+    this->internal_updates.push_back(update);
     this->bodies.erase(body);
     delete body;
 }
@@ -65,8 +75,12 @@ void World::addInstruction(Instruction *instruction) {
 }
 
 std::list<uint32_t> World::getChellsIdList() const{
-    std::list<uint32_t> myList;
-    return myList;
+    std::list<uint32_t> chell_id_list;
+
+    for (auto it = this->chells.begin(); it != this->chells.end(); ++it) {
+        chell_id_list.push_back(it->first);
+    }
+    return chell_id_list;
 }
 
 
@@ -127,12 +141,6 @@ void World::fillUpdates(ProtectedQueue<Update> *ext_updates) {
     }
 }
 
-void World::insertNewBody(Body *body) {
-    this->new_bodies.insert(body);
-    this->bodies.insert(body);
-    this->body_count++;
-}
-
 uint32_t World::getBodyCount() const {
     return this->body_count;
 }
@@ -148,7 +156,6 @@ b2World *World::getB2World() {
 Chell *World::createChell(float x, float y) {
     Chell *chell = new Chell(this, x, y);
     this->chells[chell->getBodyId()] = chell;
-    this->insertNewBody(chell);
     return chell;
 }
 
@@ -156,7 +163,6 @@ Block *World::createSquareMetalBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new MetalMaterial();
     Block *block = new Block(this, x, y, shape, material);
-    this->insertNewBody(block);
     return block;
 }
 
@@ -164,13 +170,11 @@ Block *World::createSquareStoneBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new StoneMaterial();
     Block *block = new Block(this, x, y, shape, material);
-    this->insertNewBody(block);
     return block;
 }
 
 Button *World::createButton(float x, float y) {
     Button *button = new Button(this, x, y);
-    this->insertNewBody(button);
     return button;
 }
 
@@ -180,9 +184,6 @@ void World::createGateWithButton(
     bool open_gate_when_button_is_pressed) {
     Gate *gate = new Gate(this, x1, y1);
     Button *button = new Button(this, x2, y2);
-    this->insertNewBody(gate);
-    this->insertNewBody(button);
-
     button->setGate(gate);
 
     BooleanBlock *block;
@@ -198,37 +199,31 @@ void World::createGateWithButton(
 
 Gate *World::createGate(float x, float y) {
     Gate *gate = new Gate(this, x, y);
-    this->insertNewBody(gate);
     return gate;
 }
 
 Acid *World::createAcid(float x, float y) {
     Acid *acid = new Acid(this, x, y);
-    this->insertNewBody(acid);
     return acid;
 }
 
 Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
     Launcher *launcher = new Launcher(this,x, y, direction);
-    this->insertNewBody(launcher);
     return launcher;
 }
 
 Bullet *World::createBullet(float x, float y, DIRECTION direction) {
     Bullet *bullet = new Bullet(this, x, y, direction);
-    this->insertNewBody(bullet);
     return bullet;
 }
 
 Receiver *World::createReceiver(float x, float y) {
     Receiver *receiver = new Receiver(this, x, y);
-    this->insertNewBody(receiver);
     return receiver;
 }
 
-Portal *World::createPortal(uint8_t number) {
-    Portal *portal = new Portal(this, number);
-    this->insertNewBody(portal);
+Portal *World::createPortal(uint8_t portal_number, b2Vec2 pos, b2Vec2 normal) {
+    Portal *portal = new Portal(this, portal_number, pos, normal);
     return portal;
 }
 
@@ -280,15 +275,6 @@ std::list<Update> World::getPinUpdateList(){
     return list;
 }
 
-std::list<Update> World::getBodyUpdates()  {
-    std::list<Update> updates;
-    this->addNewBodiesToUpdates(updates);
-    this->addAllBodiesToUpdates(updates);
-    this->addDeletedBodiesToUpdates(updates);
-    return updates;
-}
-
-
 void World::step() {
     this->b2world->Step(this->TIME_STEP,
                         this->VELOCITY_ITERATIONS,
@@ -300,12 +286,14 @@ void World::createWorldOne() {
         this->createChell(-3.00 + 2.00*i, 1.00);
     }
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 20; i++) {
         this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
     }
 
     this->createSquareMetalBlock(-6.00 + 2.00*10, 5.00);
-    this->createLauncher(-10, -1, DIRECTION::LEFT_DIRECTION);
+    this->createLauncher(-2, -3, DIRECTION::LEFT_DIRECTION);
+    this->createSquareMetalBlock(-20, -3);
+    this->createSquareMetalBlock(-20, 4);
     this->createSquareMetalBlock(-6.00 + 2.00*-10, -1.00);
 }
 
@@ -359,14 +347,6 @@ std::list<Update> World::getUpdatesWithCommand(COMMAND command) const {
     }
 
     return lista;
-}
-
-void World::addNewBodiesToUpdates(std::list<Update> &updates) {
-    for (Body *body: this->new_bodies) {
-        Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
-        updates.push_back(update);
-    }
-    this->new_bodies.clear();
 }
 
 void World::addAllBodiesToUpdates(std::list<Update> &updates) {

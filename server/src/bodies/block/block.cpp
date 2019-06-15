@@ -48,11 +48,13 @@ Block::Block(
 Block::~Block() {
     delete shape;
     delete material;
+    this->world->getB2World()->DestroyBody(this->b2body);
 }
 
-void Block::tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) {
-    this->material->tryOpenPortal(portal, point, normal);
+bool Block::canOpenPortalOnSurface() const {
+    return this->material->canOpenPortalOnSurface();
 }
+
 
 Update Block::createUpdate(COMMAND command) const {
     Update update(

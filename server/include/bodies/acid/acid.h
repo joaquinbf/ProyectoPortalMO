@@ -21,6 +21,8 @@ public:
      * posicion (x, y) */
     Acid(World *world,  float x, float y);
 
+    ~Acid();
+
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const;
 

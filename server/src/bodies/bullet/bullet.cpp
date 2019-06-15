@@ -57,8 +57,8 @@ Bullet::Bullet(
 }
 
 Bullet::~Bullet() {
-    if (this->b2body != 0) {
-        this->world->getB2World()->DestroyBody(this->b2body);
+    if (this->b2body != nullptr) {
+        world->getB2World()->DestroyBody(this->b2body);
     }
 }
 
@@ -92,8 +92,7 @@ void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {
-    std::cout << "choco con bullet" << std::endl;
-    portal->transportToOppositePortal(this);
+    portal->teleportToOppositePortal(this);
 }
 
 void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {

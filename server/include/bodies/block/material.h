@@ -14,7 +14,7 @@ public:
     virtual ~Material();
     virtual ENTITY createEntityWithShape(DiagonalShape *diagonal_shape) = 0;
     virtual ENTITY createEntityWithShape(SquareShape *square_shape) = 0;
-    virtual void tryOpenPortal(Portal *portal, b2Vec2 point, b2Vec2 normal) = 0;
+    virtual bool canOpenPortalOnSurface() const = 0;
 };
 
 #endif

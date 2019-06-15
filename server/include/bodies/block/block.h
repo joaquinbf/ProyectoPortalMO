@@ -51,9 +51,8 @@ public:
     /* Libera los recursos utilizados */
     ~Block();
 
-    /* Intenta abrir un portal. */
-    virtual void tryOpenPortal(
-        Portal *portal, b2Vec2 point, b2Vec2 normal) override;
+    /* Indica si puede abrir portales en su superficie */
+    virtual bool canOpenPortalOnSurface() const override;
 
     /* Devuelve una update del bloque */
     virtual Update createUpdate(COMMAND command) const;
