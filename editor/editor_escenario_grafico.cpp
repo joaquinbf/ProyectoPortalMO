@@ -63,15 +63,25 @@ void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Backspace && !this->selectedItems().isEmpty())
     {
-        QGraphicsItem *item = this->selectedItems().front();
-        QPointF posicion = item->scenePos();
+        QGraphicsItem *qItem = this->selectedItems().front();
+        QPointF posicion = qItem->scenePos();
         ItemGrafico *itemGrafico = (this->getCelda(posicion)).liberar();
 
-        // saber si es o no una clase boton o receptor
-        // eliminar de nuestra lista de componentes (mediante la posicion)
-        // pedir a cada compuerta que elimine el componentes de su 
+        if (itemGrafico->getIdClass() == IDCLASS_BOTON ||
+            itemGrafico->getIdClass() == IDCLASS_RECEPTOR)
+        {
+            ComponenteCompuerta *componente;
+            // Es un casteo asegurado por idClass y que no pretende mas
+            // que usarlo para eliminar de listas.
+            componente = (ComponenteCompuerta *)itemGrafico;
+            this->componentesCompuerta.removeOne(componente);
+            for (int i = 0; i < this->compuertas.size(); i++)
+            {
+                this->compuertas[i]->eliminar(componente);
+            }
+        }
 
-        this->removeItem(item);
+        this->removeItem(qItem);
         delete itemGrafico;
     }
     else
