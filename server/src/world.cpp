@@ -301,19 +301,20 @@ void World::step() {
 }
 
 void World::createWorldOne() {
-    for (int i = -3; i < 1; i++) {
+    for (int i = 1; i > -3; i--) {
         this->createChell(-3.00 + 2.00*i, 1.00);
     }
 
+    for (int i = 0; i < 100; i++) {
+        this->createSquareMetalBlock(-48.00 + 2.00*i, -1.00);
+    }
+    this->createCake(50, 0.5);
+
     for (int i = 0; i < 20; i++) {
-        this->createSquareMetalBlock(-6.00 + 2.00*i, -1.00);
+        this->createSquareMetalBlock(-48.00, -1.00 + 2.00*i);
     }
 
-    this->createSquareMetalBlock(-6.00 + 2.00*10, 5.00);
-    this->createLauncher(-2, -3, DIRECTION::LEFT_DIRECTION);
-    this->createSquareMetalBlock(-20, -3);
-    this->createSquareMetalBlock(-20, 4);
-    this->createSquareMetalBlock(-6.00 + 2.00*-10, -1.00);
+    this->createLauncher(-30, 5, DIRECTION::LEFT_DIRECTION);
 }
 
 void World::applyAction(const Action &action) {

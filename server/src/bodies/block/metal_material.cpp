@@ -30,8 +30,17 @@ void MetalMaterial::handleBeginContactWith(
     b2WorldManifold b2worldmanifold;
     contact->GetWorldManifold(&b2worldmanifold);
     b2Vec2 normal = b2worldmanifold.normal;
-    World *world = bullet->getWorld();
+    normal.Normalize();
     b2Vec2 v = bullet->getLinearVelocity();
     b2Vec2 new_v = MathExt::reflect(normal, v);
+    // A veces da basura como normal.
+    std::cout << "normal: " << normal.x << ", " << normal.y << std::endl;
+    std::cout << "new_v: " << new_v.x << ", " << new_v.y << std::endl;
+    if (normal.x < 0.001 && normal.y < 0.001) {
+        return;
+    }
+
+    World *world = bullet->getWorld();
     world->addInstruction(new SetLinearVelocityInstruction(bullet, new_v));
+
 }

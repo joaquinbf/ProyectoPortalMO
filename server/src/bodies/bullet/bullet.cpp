@@ -24,7 +24,7 @@ Bullet::Bullet(
     b2bodydef.position.Set(x, y);
     b2bodydef.userData = (void *) this;
     b2bodydef.awake = true;
-    b2bodydef.bullet = true;
+    b2bodydef.bullet = false;
     b2bodydef.gravityScale = 0.0;
 
     this->b2body = world->getB2World()->CreateBody(&b2bodydef);
@@ -36,7 +36,7 @@ Bullet::Bullet(
     b2fixturedef.shape = &b2polygonshape;
     b2fixturedef.userData = (void *) this;
     b2fixturedef.density = this->DENSITY;
-    b2fixturedef.isSensor = true;
+    b2fixturedef.isSensor = false;
 
     this->b2body->CreateFixture(&b2fixturedef);
 
