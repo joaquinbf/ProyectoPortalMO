@@ -14,27 +14,28 @@
 
 Block::Block(
     World *world,
-    float x, float y,
+    float x, float y, float angle,
     Shape *shape, Material *material):
     Body(world, shape->createEntityWithMaterial(material)),
     shape(shape), material(material) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);
-    bodyDef.angle = this->ANGLE;
+    bodyDef.angle = angle;
     bodyDef.userData = (void *) this;
     bodyDef.awake = false;
 
+
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
-    b2PolygonShape b2polygonshape = this->shape->giveShape(this->HALF_WIDTH,
-                                                           this->HALF_HEIGHT);
+    b2PolygonShape b2polygonshape = this->shape->giveShape(WIDTH, HEIGHT);
 
     b2FixtureDef boxFixtureDef;
     boxFixtureDef.shape = &b2polygonshape;
     boxFixtureDef.density = this->DENSITY;
     boxFixtureDef.userData = (void *) this;
     boxFixtureDef.friction = this->FRICTION;
+    boxFixtureDef.restitution = 0.00;
 
     b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
     b2fixture->SetUserData((void *)this);

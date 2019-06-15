@@ -34,18 +34,17 @@ class Block: public Body {
 private:
     Shape *shape;
     Material *material;
-    const float HALF_WIDTH = 1.00;
-    const float HALF_HEIGHT = 1.00;
-    const float DENSITY = 1;
-    const float ANGLE = 0;
-    const float FRICTION = 0.5;
+    const float WIDTH     = 2.00;
+    const float HEIGHT    = 2.00;
+    const float DENSITY   = 1;
+    const float FRICTION  = 0.5;
 
 public:
     /* Instancia un block de id 'body_id' sobre world en la posicion (x, y)
      * de shape y material asignado.
      * Al liberarse el block tambien se libera shape y material. */
     Block(World *world,
-          float x, float y,
+          float x, float y, float angle,
           Shape *shape, Material *material);
 
     /* Libera los recursos utilizados */

@@ -5,6 +5,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
+#include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2CircleShape.h"
 #include "../../../../common/include/types.h"
 #include "../../../../common/include/update.h"
 #include "../../../include/bodies/block/block.h"
@@ -26,17 +27,20 @@ Bullet::Bullet(
     b2bodydef.awake = true;
     b2bodydef.bullet = false;
     b2bodydef.gravityScale = 0.0;
+    // b2bodydef.fixedRotation = true;
 
     this->b2body = world->getB2World()->CreateBody(&b2bodydef);
 
-    b2PolygonShape b2polygonshape;
-    b2polygonshape.SetAsBox(this->WIDTH/2, this->HEIGHT/2);
+    b2CircleShape b2circleshape;
+    b2circleshape.m_radius = 0.3;
+    b2circleshape.m_p.Set(0.00, 0.00);
 
     b2FixtureDef b2fixturedef;
-    b2fixturedef.shape = &b2polygonshape;
+    b2fixturedef.shape = &b2circleshape;
     b2fixturedef.userData = (void *) this;
     b2fixturedef.density = this->DENSITY;
     b2fixturedef.isSensor = false;
+    b2fixturedef.restitution = 1.00;
 
     this->b2body->CreateFixture(&b2fixturedef);
 

@@ -4,9 +4,9 @@
 #include "../../../../common/include/types.h"
 
 
-b2PolygonShape SquareShape::giveShape(float half_with, float half_height) {
+b2PolygonShape SquareShape::giveShape(float width, float height) {
     b2PolygonShape boxShape;
-    boxShape.SetAsBox(half_with, half_height);
+    boxShape.SetAsBox(width/2, height/2);
     return boxShape;
 }
 

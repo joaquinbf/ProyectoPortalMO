@@ -6,5 +6,5 @@ b2Vec2 MathExt::reflect(b2Vec2 n, b2Vec2 v) {
 }
 
 float operator*(const b2Vec2& v, const b2Vec2& u) {
-    return (v.x * u.x) + (v.y + u.y);
+    return (v.x * u.x) + (v.y * u.y);
 }

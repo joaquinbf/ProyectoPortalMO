@@ -45,7 +45,7 @@ private:
     const float DENSITY = 1;
     const float ANGLE = 0;
     const float FRICTION = 0.5;
-    const float RESTITUTION = 0.0;
+    const float RESTITUTION = 0.00;
 
 public:
     /* Instancia a chell de id 'body_id' sobre world en la

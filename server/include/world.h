@@ -151,6 +151,9 @@ public:
     /* Crea un bloque cuadrado de piedra en (x, y) */
     Block *createSquareStoneBlock(float x, float y);
 
+    /* Crea un bloque diagonal metalico en (x, y) del tipo 'dbt' */
+    Block *createDiagonalMetalBlock(float x, float y, DIAGONAL_BLOCK_TYPE dbt);
+
     /* Crea un boton. TODO: Asignar a compuertas */
     Button *createButton(float x, float y);
 

@@ -6,11 +6,16 @@
 class Material;
 
 class DiagonalShape: public Shape {
-public:
-    virtual b2PolygonShape giveShape(
-        float half_with, float half_height) override;
-    virtual ENTITY createEntityWithMaterial(Material *material) override;
+private:
+    float angle;
 
+public:
+    /* Genera un triangulo rectangulode catetos de longitud width y height */
+    virtual b2PolygonShape giveShape(float width, float height) override;
+
+    /* Devuelve un identificador del tipo de bloque dado un material y
+     * la forma diagonal. */
+    virtual ENTITY createEntityWithMaterial(Material *material) override;
 };
 
 #endif

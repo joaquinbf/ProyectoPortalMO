@@ -169,18 +169,30 @@ Chell *World::createChell(float x, float y) {
 }
 
 Block *World::createSquareMetalBlock(float x, float y) {
+    float angle = 0.00;
     Shape *shape = new SquareShape();
     Material *material = new MetalMaterial();
-    Block *block = new Block(this, x, y, shape, material);
+    Block *block = new Block(this, x, y, angle, shape, material);
     return block;
 }
 
 Block *World::createSquareStoneBlock(float x, float y) {
+    float angle = 0.00;
     Shape *shape = new SquareShape();
     Material *material = new StoneMaterial();
-    Block *block = new Block(this, x, y, shape, material);
+    Block *block = new Block(this, x, y, angle, shape, material);
     return block;
 }
+
+Block *World::createDiagonalMetalBlock(
+    float x, float y, DIAGONAL_BLOCK_TYPE dbt) {
+    float angle = - dbt * (3.1415/2);
+    Shape *shape = new DiagonalShape();
+    Material *material = new MetalMaterial();
+    Block *block = new Block(this, x, y, angle, shape, material);
+    return block;
+}
+
 
 Button *World::createButton(float x, float y) {
     Button *button = new Button(this, x, y);

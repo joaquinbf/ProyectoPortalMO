@@ -30,7 +30,8 @@ private:
         this->world.createCake(50, 0.5);
 
         for (int i = 0; i < 20; i++) {
-            this->world.createSquareMetalBlock(-48.00, -1.00 + 2.00*i);
+            this->world.createDiagonalMetalBlock(
+                -48.00 - i*2.00, -2.00 + 2.00*i, DIAGONAL_BLOCK_TYPE::DBT0);
         }
 
         this->world.createLauncher(-30, 5, DIRECTION::LEFT_DIRECTION);

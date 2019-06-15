@@ -59,4 +59,11 @@ enum DIRECTION: uint8_t {
 	UP_DIRECTION    		= 0x03
 };
 
+enum DIAGONAL_BLOCK_TYPE: uint8_t {
+	DBT0 = 0x00,
+	DBT1 = 0x01,
+	DBT2 = 0x02,
+	DBT3 = 0x03
+};
+
 #endif
