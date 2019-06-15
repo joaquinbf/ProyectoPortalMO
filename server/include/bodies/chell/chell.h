@@ -28,6 +28,7 @@ class Gate;
 class Portal;
 class Launcher;
 class Receiver;
+class Cake;
 
 class Chell: public Body {
 private:
@@ -135,6 +136,9 @@ public:
 
     /* Presionaa y aterriza sobre el boton si esta saltando */
     virtual void handleBeginContactWith(Button *button, b2Contact *contact) override;
+
+    /* Agrega chell al conjunto del pastel */
+    virtual void handleBeginContactWith(Cake *cake, b2Contact *contact) override;
 
     /* Aterriza sobre otra chell */
     virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);

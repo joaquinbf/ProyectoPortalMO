@@ -23,6 +23,7 @@
 #include "../../../include/bodies/rock/rock.h"
 #include "../../../include/bodies/portal/portal.h"
 #include <iostream>
+#include "../../../include/bodies/cake/cake.h"
 
 Chell::Chell(World *world, float x, float y):
     Body(world, ENTITY::CHELL),
@@ -212,6 +213,10 @@ void Chell::handleBeginContactWith(Block *block, b2Contact *contact) {
 void Chell::handleBeginContactWith(Button *button, b2Contact *contact) {
     button->press();
     this->land();
+}
+
+void Chell::handleBeginContactWith(Cake *cake, b2Contact *contact) {
+    cake->insertChellInSet(this);
 }
 
 void Chell::handleBeginContactWith(Chell *chell, b2Contact *contact) {

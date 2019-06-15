@@ -1,4 +1,5 @@
 #include "../../include/bodies/body.h"
+#include <cstdint>
 #include "../../include/bodies/acid/acid.h"
 #include "../../include/bodies/chell/chell.h"
 #include "../../include/bodies/block/block.h"
@@ -10,7 +11,7 @@
 #include "../../include/bodies/receiver/receiver.h"
 #include "../../include/bodies/portal/portal.h"
 #include "../../include/world.h"
-#include <cstdint>
+#include "../../include/bodies/cake/cake.h"
 
 Body::Body(World *world, ENTITY entity):
     BODY_ID(world->getBodyCount()),
@@ -117,6 +118,9 @@ void Body::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
 void Body::handleBeginContactWith(Button *button, b2Contact *contact) {
 }
 
+void Body::handleBeginContactWith(Cake *cake, b2Contact *contact) {
+}
+
 void Body::handleBeginContactWith(Chell *chell, b2Contact *contact) {
 }
 
@@ -145,6 +149,9 @@ void Body::handleEndContactWith(Button *button, b2Contact *contact) {
 }
 
 void Body::handleEndContactWith(Bullet *bullet, b2Contact *contact) {
+}
+
+void Body::handleEndContactWith(Cake *cake, b2Contact *contact) {
 }
 
 void Body::handleEndContactWith(Chell *chell, b2Contact *contact) {

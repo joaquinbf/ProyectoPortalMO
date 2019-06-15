@@ -20,6 +20,7 @@ class Rock;
 class Launcher;
 class Receiver;
 class Portal;
+class Cake;
 
 class Body {
 protected:
@@ -114,6 +115,8 @@ public:
 
     virtual void handleBeginContactWith(Button *button, b2Contact *contact);
 
+    virtual void handleBeginContactWith(Cake *cake, b2Contact *contact);
+
     /* Deja que el inicio de contacto sea manejado por chell */
     virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);
 
@@ -135,6 +138,8 @@ public:
     virtual void handleEndContactWith(Bullet *bullet, b2Contact *contact);
 
     virtual void handleEndContactWith(Button *button, b2Contact *contact);
+
+    virtual void handleEndContactWith(Cake *cake, b2Contact *contact);
 
     virtual void handleEndContactWith(Chell *chell, b2Contact *contact);
 

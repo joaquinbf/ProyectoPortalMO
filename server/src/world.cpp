@@ -7,6 +7,7 @@
 #include "../include/bodies/button/button.h"
 #include "../include/bodies/gate/gate.h"
 #include "../include/bodies/acid/acid.h"
+#include "../include/bodies/cake/cake.h"
 #include "../include/bodies/bullet/bullet.h"
 #include "../include/bodies/launcher/launcher.h"
 #include "../include/instructions/instruction.h"
@@ -226,6 +227,12 @@ Portal *World::createPortal(uint8_t portal_number, b2Vec2 pos, b2Vec2 normal) {
     Portal *portal = new Portal(this, portal_number, pos, normal);
     return portal;
 }
+
+Cake *World::createCake(float x, float y) {
+    Cake *cake = new Cake(this, x, y);
+    return cake;
+}
+
 
 std::list<Update> World::getNewPlayerUpdates() const {
     std::list<Update> updates;

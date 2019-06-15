@@ -41,6 +41,7 @@ class Gate;
 class Button;
 class Acid;
 class Portal;
+class Cake;
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
@@ -174,6 +175,9 @@ public:
 
     /* Crea un portal de numbe 'portal_number' en pos con normal 'normal'. */
     Portal *createPortal(uint8_t portal_number, b2Vec2 pos, b2Vec2 normal);
+
+    /* Crea una pastel en la posicion(x, y) */
+    Cake *createCake(float x, float y);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */
