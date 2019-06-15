@@ -12,6 +12,8 @@
 #include "editor_acido.h"
 #include "editor_roca.h"
 #include "editor_barrera_de_energia.h"
+#include "editor_bloque_de_metal_diagonal.h"
+#include "editor_emisor.h"
 
 #include <QPixmap>
 #include <QBrush>
@@ -154,6 +156,38 @@ void EscenarioGrafico::crearItem(const QPointF posicion)
     else if (this->idClassACrear == IDCLASS_BARRERA_VERTICAL)
     {
         item = new BarreraDeEnergia(IDCLASS_BARRERA_VERTICAL);
+    }
+    else if (this->idClassACrear == IDCLASS_DIAGONAL_0)
+    {
+        item = new BloqueDeMetalDiagonal(IDCLASS_DIAGONAL_0);
+    }
+    else if (this->idClassACrear == IDCLASS_DIAGONAL_90)
+    {
+        item = new BloqueDeMetalDiagonal(IDCLASS_DIAGONAL_90);
+    }
+    else if (this->idClassACrear == IDCLASS_DIAGONAL_180)
+    {
+        item = new BloqueDeMetalDiagonal(IDCLASS_DIAGONAL_180);
+    }
+    else if (this->idClassACrear == IDCLASS_DIAGONAL_270)
+    {
+        item = new BloqueDeMetalDiagonal(IDCLASS_DIAGONAL_270);
+    }
+    else if (this->idClassACrear == IDCLASS_EMISOR_0)
+    {
+        item = new Emisor(IDCLASS_EMISOR_0);
+    }
+    else if (this->idClassACrear == IDCLASS_EMISOR_90)
+    {
+        item = new Emisor(IDCLASS_EMISOR_90);
+    }
+    else if (this->idClassACrear == IDCLASS_EMISOR_180)
+    {
+        item = new Emisor(IDCLASS_EMISOR_180);
+    }
+    else if (this->idClassACrear == IDCLASS_EMISOR_270)
+    {
+        item = new Emisor(IDCLASS_EMISOR_270);
     }
 
     this->agregarACeldas(item, posicion);

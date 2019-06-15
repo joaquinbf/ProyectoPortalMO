@@ -26,6 +26,14 @@
 #define IDCLASS_ROCA 11
 #define IDCLASS_BARRERA_VERTICAL 12
 #define IDCLASS_BARRERA_HORIZONTAL 13
+#define IDCLASS_DIAGONAL_0 14
+#define IDCLASS_DIAGONAL_90 15
+#define IDCLASS_DIAGONAL_180 16
+#define IDCLASS_DIAGONAL_270 17
+#define IDCLASS_EMISOR_0 18
+#define IDCLASS_EMISOR_90 19
+#define IDCLASS_EMISOR_180 20
+#define IDCLASS_EMISOR_270 21
 
 #define DIR_IMAGEN_CHELL_A ":/resources/shell.png"
 #define DIR_IMAGEN_BLOQUE_ROCA ":/resources/bloqueRoca.png"
@@ -38,8 +46,15 @@
 #define DIR_IMAGEN_PASTEL ":/resources/cake.png"
 #define DIR_IMAGEN_ACIDO ":/resources/acido2.png"
 #define DIR_IMAGEN_ROCA ":/resources/roca1.png"
-#define DIR_IMAGEN_BARRERA_VERTICAL ":/resources/barreraDeEnergiaVertical.png"
-#define DIR_IMAGEN_BARRERA_HORIZONTAL ":/resources/barreraDeEnergiaHorizontal.png"
-
+#define DIR_IMAGEN_BARRERA_V ":/resources/barreraDeEnergiaVertical.png"
+#define DIR_IMAGEN_BARRERA_H ":/resources/barreraDeEnergiaHorizontal.png"
+#define DIR_IMAGEN_DIAGONAL_0 ":/resources/bloquesMetalDiagonal0.png"
+#define DIR_IMAGEN_DIAGONAL_90 ":/resources/bloquesMetalDiagonal90.png"
+#define DIR_IMAGEN_DIAGONAL_180 ":/resources/bloquesMetalDiagonal180.png"
+#define DIR_IMAGEN_DIAGONAL_270 ":/resources/bloquesMetalDiagonal270.png"
+#define DIR_IMAGEN_EMISOR_0 ":/resources/emisorEnergia0.png"
+#define DIR_IMAGEN_EMISOR_90 ":/resources/emisorEnergia90.png"
+#define DIR_IMAGEN_EMISOR_180 ":/resources/emisorEnergia180.png"
+#define DIR_IMAGEN_EMISOR_270 ":/resources/emisorEnergia270.png"
 
 #endif // EDITOR_DEFINES_H
