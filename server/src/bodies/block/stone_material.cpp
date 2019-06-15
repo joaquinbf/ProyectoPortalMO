@@ -5,6 +5,7 @@
 #include "../../../../common/include/types.h"
 #include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/instructions/destroy_body_instruction.h"
+#include "../../../include/world.h"
 
 ENTITY StoneMaterial::createEntityWithShape(DiagonalShape *diagonal_shape) {
     return ENTITY::NONE_ENTITY;
@@ -19,5 +20,6 @@ bool StoneMaterial::canOpenPortalOnSurface() const {
 }
 
 void StoneMaterial::handleBeginContactWith(Bullet *bullet) const {
-
+    World *world = bullet->getWorld();
+    world->addInstruction(new DestroyBodyInstruction(bullet));
 }
