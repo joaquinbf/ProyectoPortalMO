@@ -77,6 +77,7 @@ private:
     std::deque<Instruction *> instructions;
     std::deque<Update>  internal_updates;
     InstructionFactory instruction_factory;
+    Cake *cake;
 
 public:
     /* Instancia un world */
@@ -91,6 +92,12 @@ public:
 
     /* Libera los recursos utilizados. */
     ~World();
+
+    /* Indica si todos los jugadores comieron del pastel */
+    bool everybodyAteTheCake() const;
+
+    /* Indica si todos los jugadores menos uno comieron del pastel */
+    bool everybodyButOneAteTheCake() const;
 
     /* Incrementa el contador de bodies */
     void incBodyCount();
@@ -176,7 +183,9 @@ public:
     /* Crea un portal de numbe 'portal_number' en pos con normal 'normal'. */
     Portal *createPortal(uint8_t portal_number, b2Vec2 pos, b2Vec2 normal);
 
-    /* Crea una pastel en la posicion(x, y) */
+    /* Crea una pastel en la posicion(x, y).
+     * Pre: Solo se puede crear un unico pastel, en caso contrario
+     * devuelve nullptr.  */
     Cake *createCake(float x, float y);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos

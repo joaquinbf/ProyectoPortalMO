@@ -27,6 +27,10 @@ Cake::Cake(World *world, float x, float y):
     this->b2body->CreateFixture(&b2fixturedef);
 }
 
+unsigned int Cake::chellCount() const {
+    return this->chell_set.size();
+}
+
 void Cake::insertChellInSet(Chell *chell) {
     this->chell_set.insert(chell);
 }

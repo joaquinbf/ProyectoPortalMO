@@ -17,6 +17,9 @@ public:
     /* Instancia un pastel en (x, y) */
     Cake(World *world, float x, float y);
 
+    /* Indica la cantidad de chells distintas que tocaron al pastel */
+    unsigned int chellCount() const;
+
     /* Agrega a chell al conjunto de chells que tocaron el pastel */
     void insertChellInSet(Chell *chell);
 

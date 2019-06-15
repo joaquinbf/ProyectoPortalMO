@@ -52,6 +52,14 @@ World::~World() {
     }
 }
 
+bool World::everybodyAteTheCake() const {
+    return this->chells.size() == this->cake->chellCount();
+}
+
+bool World::everybodyButOneAteTheCake() const {
+    return this->chells.size() - 1 == this->cake->chellCount();
+}
+
 void World::incBodyCount() {
     this->body_count++;
 }
@@ -229,7 +237,11 @@ Portal *World::createPortal(uint8_t portal_number, b2Vec2 pos, b2Vec2 normal) {
 }
 
 Cake *World::createCake(float x, float y) {
+    if (this->cake != nullptr) {
+        return nullptr;
+    }
     Cake *cake = new Cake(this, x, y);
+    this->cake = cake;
     return cake;
 }
 
