@@ -79,7 +79,7 @@ void Bullet::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Block *block, b2Contact *contact) {
-    this->world->addInstruction(new DestroyBodyInstruction(this));
+    block->handleBeginContactWith(this, contact);
 }
 
 void Bullet::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {

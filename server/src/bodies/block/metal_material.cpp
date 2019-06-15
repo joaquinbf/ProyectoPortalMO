@@ -4,7 +4,7 @@
 #include "../../../include/bodies/block/square_shape.h"
 #include "../../../include/bodies/portal/portal.h"
 #include "../../../include/world.h"
-#include "../../../include/instructions/transform_body_instruction.h"
+#include "../../../include/instructions/set_linear_velocity_instruction.h"
 #include "../../../../common/include/types.h"
 #include <cmath>
 #include <iostream>
@@ -23,5 +23,7 @@ bool MetalMaterial::canOpenPortalOnSurface() const {
 }
 
 void MetalMaterial::handleBeginContactWith(Bullet *bullet) const {
-
+    World *world = bullet->getWorld();
+    b2Vec2 new_v = -bullet->getLinearVelocity();
+    world->addInstruction(new SetLinearVelocityInstruction(bullet, new_v));
 }
