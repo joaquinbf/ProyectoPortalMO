@@ -57,6 +57,7 @@ void Launcher::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Launcher::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
+    bullet->handleBeginContactWith(this, contact);
 }
 
 void Launcher::handleBeginContactWith(Chell *chell, b2Contact *contact) {
@@ -77,33 +78,29 @@ void Launcher::applyStateAction() {
 }
 
 Bullet *Launcher::fireABullet() {
-    // TODO: Se llama fuera del step, no es necesario lanzar un new instruction.
     float x = this->getPosX();
     float y = this->getPosY();
 
-    Instruction *inst = 0;
+    Bullet *bullet = nullptr;
     switch (this->direction) {
         case DIRECTION::RIGHT_DIRECTION:
             x += MIN_CREATE_DISTANCE;
-            inst = new CreateBulletInstruction(
-                this->world, b2Vec2(x, y), DIRECTION::RIGHT_DIRECTION);
+            bullet = this->world->createBullet(x, y, DIRECTION::RIGHT_DIRECTION);
             break;
         case DIRECTION::LEFT_DIRECTION:
             x -= MIN_CREATE_DISTANCE;
-            inst = new CreateBulletInstruction(
-                this->world, b2Vec2(x, y), DIRECTION::LEFT_DIRECTION);
+            bullet = this->world->createBullet(x, y, DIRECTION::LEFT_DIRECTION);
             break;
         case DIRECTION::UP_DIRECTION:
             y += MIN_CREATE_DISTANCE;
-            inst = new CreateBulletInstruction(
-                this->world, b2Vec2(x, y), DIRECTION::UP_DIRECTION);
+            bullet = this->world->createBullet(x, y, DIRECTION::UP_DIRECTION);
             break;
         case DIRECTION::DOWN_DIRECTION:
             y -= MIN_CREATE_DISTANCE;
-            inst = new CreateBulletInstruction(
-                this->world, b2Vec2(x, y), DIRECTION::DOWN_DIRECTION);
+            bullet =this->world->createBullet(x, y, DIRECTION::DOWN_DIRECTION);
             break;
     }
-    this->world->addInstruction(inst);
-    return 0;
+    Update update = bullet->createUpdate(COMMAND::CREATE_COMMAND);
+    this->world->addUpdate(update);
+    return bullet;
 }

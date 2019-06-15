@@ -36,6 +36,10 @@ public:
    /* Muere al chocar con un bloque */
    virtual void handleBeginContactWith(Block *block, b2Contact *contact) override;
 
+   /* Muere al chocar con otra bala */
+   virtual void handleBeginContactWith(
+       Bullet *bullet, b2Contact *contact) override;
+
    /* Muere al chocar con un lanzador */
    virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact) override;
 
