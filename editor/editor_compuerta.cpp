@@ -12,7 +12,10 @@ Compuerta::~Compuerta()
 {
 }
 
-
+void Compuerta::eliminar(ComponenteCompuerta *componente)
+{
+    this->componentes.removeOne(componente);
+}
 
 void Compuerta::agregar(ComponenteCompuerta *componente)
 {

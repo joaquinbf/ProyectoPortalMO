@@ -37,8 +37,8 @@ public:
     void setIdClassACrear(unsigned idClass);
 
     void agregarACeldas(ItemGrafico *item, QPointF posicion);
-    void moverItem(QPointF posicion);
     void crearItem(QPointF posicion);
+    void moverItem(QPointF posicion);
 
     CeldaGrafica &getCelda(QPointF posicion);
 
