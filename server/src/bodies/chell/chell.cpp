@@ -30,6 +30,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2MouseJoint.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2RopeJoint.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2FrictionJoint.h"
+#include "../../../include/instructions/grab_rock_instruction.h"
 
 
 Chell::Chell(World *world, float x, float y):
@@ -296,7 +297,7 @@ void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 
 void Chell::handleBeginContactWith(Rock *rock, b2Contact *contact) {
     if (this->isInGrabbingMode()) {
-        this->grabRock(rock);
+        this->world->addInstruction(new GrabRockInstruction(this, rock));
         this->exitGrabbingMode();
     }
 }
