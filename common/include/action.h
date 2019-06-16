@@ -12,10 +12,11 @@ enum ACTION: uint8_t {
     STOP_LEFT,
     STOP_RIGHT,
     GRAB,
+    STOP_GRAB,
     JIG,
     FIRE1,
     FIRE2,
-    PING
+    PING,
 };
 
 class Action{

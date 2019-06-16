@@ -1,6 +1,6 @@
  #include "../include/inputManager.h"
 
-InputManager::InputManager(const ServerManager& sm,GameView& v,VideoRecorder& vr) 
+InputManager::InputManager(const ServerManager& sm,GameView& v,VideoRecorder& vr)
 : running(true),serverManager(sm),chellId(0),gameView(v),videoRecorder(vr){
 }
 
@@ -45,8 +45,8 @@ void InputManager::pauseMode(const SDL_Event& event){
                         this->videoRecorder.stopRecording();
                     } else {
                         this->videoRecorder.startRecording(this->gameView.getResX(),
-                            this->gameView.getResY());    
-                    }                    
+                            this->gameView.getResY());
+                    }
                     break;
         		default:
         			break;
@@ -77,7 +77,9 @@ void InputManager::gameMode(const SDL_Event& event){
 							ACTION::JUMP);
                         break;
                     case SDLK_e:
-                        this->serverManager.sendAction(Action(this->chellId,ACTION::GRAB,0,0));
+                        this->sendPressAction(
+                            this->keypad.getKey(KEY::GRAB_KEY),
+                            ACTION::GRAB);
                         break;
                     case SDLK_b:
                     	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0,0));
@@ -90,8 +92,8 @@ void InputManager::gameMode(const SDL_Event& event){
                             this->videoRecorder.stopRecording();
                         } else{
                             this->videoRecorder.startRecording(this->gameView.getResX(),
-                                this->gameView.getResY());    
-                        }                    
+                                this->gameView.getResY());
+                        }
                         break;
 
                     case SDLK_n:
@@ -122,6 +124,12 @@ void InputManager::gameMode(const SDL_Event& event){
                         break;
                     case SDLK_s:
                         break;
+                    case SDLK_e:
+                        this->sendReleaseAction(
+                            this->keypad.getKey(KEY::GRAB_KEY),
+                            ACTION::STOP_GRAB);
+                        break;
+
                 }
             break;
         } // Fin KEY_UP
@@ -146,7 +154,7 @@ void InputManager::gameMode(const SDL_Event& event){
                 case SDL_BUTTON_RIGHT:
                     this->serverManager.sendAction(Action(this->chellId,ACTION::FIRE2,x,y));
                     break;
-                case SDL_BUTTON_MIDDLE:                   
+                case SDL_BUTTON_MIDDLE:
                     this->serverManager.sendAction(Action(this->chellId,ACTION::PING,x,y));
                     break;
             }

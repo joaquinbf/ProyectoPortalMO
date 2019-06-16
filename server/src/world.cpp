@@ -321,16 +321,15 @@ void World::createWorldOne() {
     for (int i = 1; i > -2; i--) {
         this->createChell(-3.00 + 2.00*i, 1.00);
     }
-    Chell *chell = this->createChell(-3.00 + 2.00*-3, 1.00);
+    this->createChell(-3.00 + 2.00*-3, 1.00);
 
     for (int i = 0; i < 100; i++) {
         this->createSquareMetalBlock(-48.00 + 2.00*i, -1.00);
     }
     this->createCake(50, 0.5);
 
-    Rock *rock = this->createRock(-10, 0);
-    chell->grabRock(rock);
-    createSquareMetalBlock(-16, 9);
+    this->createRock(-10, 0);
+    this->createSquareMetalBlock(-16, 9);
 
     this->createLauncher(-30, 5, DIRECTION::LEFT_DIRECTION);
 }

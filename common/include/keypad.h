@@ -3,13 +3,15 @@
 
 #include "key.h"
 #include <map>
+#include <cstdint>
 
-enum KEY {
+enum KEY: uint8_t {
     LEFT_KEY = 0,
     RIGHT_KEY,
     UP_KEY,
     DOWN_KEY,
-    FIRE_KEY
+    FIRE_KEY,
+    GRAB_KEY
 };
 
 class Keypad {

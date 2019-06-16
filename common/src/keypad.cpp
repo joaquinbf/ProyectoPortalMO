@@ -7,6 +7,7 @@ Keypad::Keypad() {
     keys[KEY::UP_KEY] = Key();
     keys[KEY::DOWN_KEY] = Key();
     keys[KEY::FIRE_KEY] = Key();
+    keys[KEY::GRAB_KEY] = Key();
 }
 
 void Keypad::press(KEY k) {
