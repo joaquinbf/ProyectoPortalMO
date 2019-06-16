@@ -2,12 +2,9 @@
 
 GameView::GameView(uint32_t x, uint32_t y, const SoundManager& sm) : 
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
-myChellId(0), scale(1), paused(false), crosshair(textureManager),background(window)
-{
-	//SDL_ShowCursor(SDL_DISABLE);	
-	SDL_Cursor* cursor;
-	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
-	SDL_SetCursor(cursor);
+myChellId(0), scale(1), paused(false), background(window){
+	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
+	SDL_SetCursor(this->cursor);
 }
 
 GameView::~GameView(){
@@ -19,6 +16,7 @@ GameView::~GameView(){
 			delete it->second;
 		}
 	}
+	SDL_FreeCursor(this->cursor);
 }
 
 void GameView::step(){
@@ -55,7 +53,6 @@ void GameView::render(){
 		this->textureManager.getBlackTexturePointer()->render(Area(0,0,600,600),
 			Area(0,0,this->resx,this->resy));
 	}
-	//this->crosshair.render();
     this->window.render();
 }
 
