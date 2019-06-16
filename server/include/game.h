@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <list>
+#include <map>
 
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
@@ -18,7 +18,7 @@ class Game{
 private:
 	static uint32_t number;
 	Stage stage;
-	std::vector<Player*> players;
+	std::map<uint32_t,Player*> players;
 	ProtectedQueue<Action> inputs;
 	ProtectedQueue<Update> updates;
 	std::list<uint32_t> chellsIds;
@@ -30,6 +30,7 @@ public:
 	void addPlayer(Player* player);
 	const GameInfo& getGameInfo();
 	uint32_t getId() const;
+	void stop();
 };
 
 #endif

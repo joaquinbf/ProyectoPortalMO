@@ -12,8 +12,8 @@ Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->upd
 }
 
 Game::~Game(){	
-	for(Player* player : this->players){
-		delete player;
+	for(auto player : this->players){
+		delete player.second;
 	}
 	this->stage.stop();
 	this->stage.join();
@@ -23,17 +23,17 @@ Game::~Game(){
 
 void Game::addPlayer(Player* player){
 	std::list<Update> ul = this->stage.getNewPlayerUpdates();
-	
-	player->sendChellIdToClient(this->chellsIds.back());
+	uint32_t id = this->chellsIds.back();
+	player->sendChellIdToClient(id);
 	this->chellsIds.pop_back();
 
 	player->setInputPtr(&this->inputs);
 	for(Update u: ul){
 		player->pushBackUpdate(u);
 	}
-	this->broadcaster.addPlayer(player->getUpdatesPtr());	
+	this->broadcaster.addPlayer(player->getUpdatesPtr(),id);	
 	player->start();	
-	this->players.push_back(player);
+	this->players[id] = player;
 	this->gameInfo.addPlayer();
 }
 
@@ -43,4 +43,14 @@ const GameInfo& Game::getGameInfo(){
 
 uint32_t Game::getId() const{
 	return this->gameInfo.getId();
+}
+
+void Game::stop(){
+	for(auto player : this->players){
+		player.second->stop();
+	}
+	this->stage.stop();
+	this->stage.join();
+	this->broadcaster.stop();
+	this->broadcaster.join();
 }

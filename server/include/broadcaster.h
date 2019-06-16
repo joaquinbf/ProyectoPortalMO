@@ -1,8 +1,9 @@
 #ifndef _BROADCASTER_H_
 #define _BROADCASTER_H_
 
-#include <list>
+#include <map>
 #include <unistd.h>
+#include <cstdint>
 
 #include "../../common/include/thread.h"
 #include "../../common/include/protected_queue.h"
@@ -12,11 +13,11 @@ class Broadcaster : public Thread{
 private:
 	bool running;
 	ProtectedQueue<Update>* source;
-	std::list<ProtectedQueue<Update>*> clients;
+	std::map<uint32_t,ProtectedQueue<Update>*> clients;
 public:
 	explicit Broadcaster(ProtectedQueue<Update>* source);
 	~Broadcaster();
-	void addPlayer(ProtectedQueue<Update>* client);
+	void addPlayer(ProtectedQueue<Update>* client,uint32_t id);
 	virtual void run() override;
     void stop();	
 };

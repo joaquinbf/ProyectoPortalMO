@@ -1,7 +1,7 @@
 #include "../include/inputReceiver.h"
-#include <iostream>
+#include "../include/game.h"
 
-InputReceiver::InputReceiver(Protocol& p) : running(true), protocol(p){
+InputReceiver::InputReceiver(Protocol& p) : running(true), protocol(p),game(nullptr){
 
 }
 
@@ -10,11 +10,8 @@ InputReceiver::~InputReceiver(){}
 void InputReceiver::run(){
 	try{
 		while(this->running){
-			Action action= this->protocol.receiveAction();
-			std::cout << "input recv : " << action.getAction() << std::endl;
-			 //bloqueante
+			Action action= this->protocol.receiveAction();//bloqueante
 			if(action.getAction() == ACTION::QUIT){
-				std::cout<<"cerro\n";
 				this->protocol.close();
 				this->running = false;
 			} else {

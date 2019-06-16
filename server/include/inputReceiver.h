@@ -6,13 +6,17 @@
 #include "../../common/include/protocol.h"
 #include "../../common/include/protected_queue.h"
 
+class Game;
+
 class InputReceiver : public Thread{
 private: 
 	bool running;
 	Protocol& protocol;
 	ProtectedQueue<Action>* inputPtr;
+	Game* game;
 public:
 	explicit InputReceiver(Protocol& p);
+	void setGamePtr();
 	~InputReceiver();
     virtual void run() override;
     void stop();	

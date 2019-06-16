@@ -1,5 +1,5 @@
 #include "../include/accepter.h"
-#include <iostream>
+
 Accepter::Accepter() {
     this->socket.bindAndListen(PORT);
     this->keep_running = true;
@@ -24,6 +24,9 @@ void Accepter::run() {
             this->logins.push_back(playerLogin);
         }
     } catch (const ConnectionErrorException &e) {
+    }
+    for(Game* game :  this->games){
+        game->stop();
     }
 }
 
