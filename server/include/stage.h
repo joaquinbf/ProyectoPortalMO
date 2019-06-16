@@ -19,7 +19,7 @@ private:
 	World world;
 	ProtectedQueue<Action>* inputs;
 	ProtectedQueue<Update>* updates;
-	const std::string MAP_PATH = "../maps";
+	const std::string MAP_PATH = "../maps/";
 
 public:
 	explicit Stage(const std::string& mapName,ProtectedQueue<Action>* inputs,

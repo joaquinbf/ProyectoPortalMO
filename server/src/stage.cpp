@@ -9,11 +9,8 @@ Stage::Stage(
 	running(true),
 	inputs(inputs),
 	updates(updates) {
+	std::cout << mapName << std::endl;
 	Serializer serializer;
-	this->world.createChell(9.0625, 32.4219);
-	this->world.createChell(9.0625, 32.4219);
-	this->world.createChell(9.0625, 32.4219);
-	this->world.createChell(9.0625, 32.4219);
 	serializer.deserialize(&this->world, MAP_PATH + mapName);
 }
 
