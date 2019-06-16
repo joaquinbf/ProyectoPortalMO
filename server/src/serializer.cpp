@@ -24,8 +24,8 @@ void Serializer::deserialize(World *world, std::string filepath) const {
 
 void Serializer::deserializeBody(
     World *world, int idclass, int editor_x, int editor_y) const {
-    float x = editor_x/SERIAL_FACTOR;
-    float y = editor_y/SERIAL_FACTOR;
+    float x = editor_x/X_SERIAL_FACTOR;
+    float y = editor_y/Y_SERIAL_FACTOR;
 
     switch (idclass) {
         case IDCLASS_NULL:
