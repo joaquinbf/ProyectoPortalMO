@@ -174,6 +174,10 @@ public:
      *en (x, y) */
     Gate *createGate(float x, float y);
 
+    /* Crea una compuerta sin estar asociada a ningun boton ni receptores
+     *en (x, y) */
+    Gate *createRegularGate(float x, float y);
+
     /* Crea una compuerta del tipo AND en (x, y) */
     Gate *createAndGate(float x, float y);
 

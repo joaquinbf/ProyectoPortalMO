@@ -204,6 +204,13 @@ Gate *World::createGate(float x, float y) {
     return gate;
 }
 
+Gate *World::createRegularGate(float x, float y) {
+    Gate *gate = this->createGate(x, y);
+    BooleanBlock *block = this->boolean_block_factory.createSameBlock();
+    gate->setBooleanBlock(block);
+    return gate;
+}
+
 Gate *World::createAndGate(float x, float y) {
     Gate *gate = this->createGate(x, y);
     BooleanBlock *block = this->boolean_block_factory.createAndBlock();
@@ -256,7 +263,6 @@ Rock *World::createRock(float x, float y) {
     Rock *rock = new Rock(this, x, y);
     return rock;
 }
-
 
 std::list<Update> World::getNewPlayerUpdates() const {
     std::list<Update> updates;

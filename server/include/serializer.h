@@ -4,6 +4,7 @@
 #include <string>
 #include "yaml-cpp/yaml.h"
 #include "../../common/include/types.h"
+#include "../../server/include/boolean_suppliers/boolean_supplier.h"
 #include <cstdint>
 
 #define X_SERIAL_FACTOR 16.00
@@ -12,6 +13,14 @@
 #define Y_GATE -1.00
 
 class World;
+class Gate;
+class Receiver;
+class Button;
+
+struct GateLogic {
+    std::map<int, Gate *> gates;
+    std::map<int, BooleanSupplier *> booleansups;
+};
 
 class Serializer {
 public:
@@ -20,7 +29,14 @@ public:
 
 private:
     void deserializeBody(
-        World *world, int idclass, int editor_x, int editor_y) const;
+        World *world, const YAML::Node &celda,
+        GateLogic &gate_logic) const;
+
+    void connect(
+        const YAML::Node &config,
+        GateLogic &gate_logic) const;
+
+    void add(Gate *gate, BooleanSupplier *booleansup, bool negate) const;
 };
 
 #endif

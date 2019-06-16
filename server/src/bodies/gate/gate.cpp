@@ -80,7 +80,6 @@ void Gate::applyStateAction() {
     this->state->applyStateAction();
 }
 
-
 void Gate::tryChangeState() {
     this->state->tryChangeState();
 }

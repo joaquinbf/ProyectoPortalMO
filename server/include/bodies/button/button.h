@@ -9,6 +9,7 @@
 #include "../../../../common/include/update.h"
 #include "../../../../common/include/types.h"
 #include "../../../../server/include/boolean_suppliers/boolean_supplier.h"
+#include "../../../../server/include/bodies/gate/gateable.h"
 
 class World;
 class Gate;
@@ -25,7 +26,7 @@ class Gate;
 // #define XADJ -Cx
 // #define YADJ -Cy
 
-class Button: public Body, public BooleanSupplier {
+class Button: public Body, public Gateable {
 public:
     bool is_pressed;
     Gate *gate;

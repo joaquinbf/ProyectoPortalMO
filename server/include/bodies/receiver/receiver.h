@@ -4,12 +4,13 @@
 #include "../body.h"
 #include "../../world.h"
 #include "../../../../server/include/boolean_suppliers/boolean_supplier.h"
+#include "../../../../server/include/bodies/gate/gateable.h"
 
 class Bullet;
 class Gate;
 class Chell;
 
-class Receiver: public Body, public BooleanSupplier {
+class Receiver: public Body, public Gateable {
 private:
     bool is_on;
     Gate *gate;
