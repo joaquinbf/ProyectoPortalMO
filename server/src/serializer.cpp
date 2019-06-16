@@ -40,16 +40,16 @@ void Serializer::deserializeBody(
             world->createSquareMetalBlock(x, y);
             break;
         case IDCLASS_COMPUERTA_REG:
-            world->createGate(x, y);
+            world->createGate(x, y + Y_GATE);
             break;
         case IDCLASS_COMPUERTA_AND:
-            world->createAndGate(x, y);
+            world->createAndGate(x, y + Y_GATE);
             break;
         case IDCLASS_COMPUERTA_OR:
-            world->createOrGate(x, y);
+            world->createOrGate(x, y + Y_GATE);
             break;
         case IDCLASS_BOTON:
-            world->createButton(x, y);
+            world->createButton(x, y + Y_BUTTON);
             break;
         case IDCLASS_RECEPTOR:
             world->createReceiver(x, y);

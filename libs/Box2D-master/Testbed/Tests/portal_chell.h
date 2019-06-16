@@ -21,9 +21,9 @@ private:
     PortalChell():
         world(this->m_world) {
         this->m_world->SetGravity(b2Vec2(0.0, -9.8));
-        this->chell = this->world.createChell(9.0625, 32.4219);
+        this->chell = this->world.createChell(10.3991, -21);
         Serializer s;
-        s.deserialize(&this->world, "../Build/bin/x86_64/Debug/test_00.ptl");
+        s.deserialize(&this->world, "../../../maps/map_00.yaml");
     }
 
     void Step(Settings *settings) {
