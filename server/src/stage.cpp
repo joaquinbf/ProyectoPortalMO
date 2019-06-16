@@ -1,11 +1,21 @@
 #include "../include/stage.h"
 #include <iostream>
+#include <string>
 
-Stage::Stage(const std::string& mapName,
-	ProtectedQueue<Action>* inputs,ProtectedQueue<Update>* updates) :
-running(true),inputs(inputs),updates(updates)
-{
-	this->world.createWorldOne();
+Stage::Stage(
+	const std::string& mapName,
+	ProtectedQueue<Action>* inputs,
+	ProtectedQueue<Update>* updates):
+	running(true),
+	inputs(inputs),
+	updates(updates) {
+	Serializer serializer;
+
+	this->world.createChell(1.65469, 10.1902);
+	this->world.createChell(1.65469, 10.1902);
+	this->world.createChell(1.65469, 10.1902);
+	this->world.createChell(1.65469, 10.1902);
+	serializer.deserialize(&this->world, "../maps/test_00.ptl");
 }
 
 Stage::~Stage(){}

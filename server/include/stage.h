@@ -11,6 +11,8 @@
 #include "../../common/include/action.h"
 #include "../../common/include/update.h"
 #include "../include/world.h"
+#include "../include/serializer.h"
+
 
 class Stage : public Thread {
 private:

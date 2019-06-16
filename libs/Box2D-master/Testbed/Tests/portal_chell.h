@@ -7,8 +7,10 @@
 #include "../../../../server/include/bodies/button/button.h"
 #include "../../../../server/include/bodies/gate/gate.h"
 #include "../../../../server/include/bodies/receiver/receiver.h"
+#include "../../../../server/include/serializer.h"
 #include "../../../../common/include/update.h"
 #include <iostream>
+#include <string>
 
 class PortalChell: public Test {
 private:
@@ -19,13 +21,9 @@ private:
     PortalChell():
         world(this->m_world) {
         this->m_world->SetGravity(b2Vec2(0.0, -9.8));
-
-        for (int i = 0; i < 1; i++) {
-            this->chell = this->world.createChell(-15.00 + 2.00*i, 1.00);
-        }
-        Rock *rock = world.createRock(-17.00, 1.00);
-
-        world.createWorldOne();
+        this->chell = this->world.createChell(1.65469, 10.1902);
+        Serializer s;
+        s.deserialize(&this->world, "../Build/bin/x86_64/Debug/test_00.ptl");
     }
 
     void Step(Settings *settings) {

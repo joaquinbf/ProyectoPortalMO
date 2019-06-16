@@ -2,10 +2,9 @@
 #define _UPDATE_H_
 
 #include <cstdint>
+#include "../include/types.h"
 
 #define ZOOM_FACTOR 100
-
-#include "../include/types.h"
 
 class Update{
 private:

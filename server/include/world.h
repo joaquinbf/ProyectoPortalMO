@@ -91,6 +91,18 @@ public:
     /* Instancia un world core sobre b2world. */
     World(b2World *b2world);
 
+    /* No se permite construccion por movimiento */
+    World(World &&world) = delete;
+
+    /* No se permite la construccion por copia */
+    World(const World &world) = delete;
+
+    /* No se permite asignacion por movimiento */
+    World &operator=(World &&other) = delete;
+
+    /* No se permite la asignacion por copia */
+    World &operator=(const World &other) = delete;
+
     /* Libera los recursos utilizados. */
     ~World();
 

@@ -16,12 +16,12 @@ Button::Button(World *world, float x, float y):
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
     b2Vec2 vertices[6];
-    vertices[0].Set(P1);
+    vertices[0].Set(0.00, 0.00);
     vertices[1].Set(0.15, 0.12);
-    vertices[2].Set(P2);
-    vertices[3].Set(P3);
+    vertices[2].Set(0.50, 0.25);
+    vertices[3].Set(1.50, 0.25);
     vertices[4].Set(1.85, 0.12);
-    vertices[5].Set(P4);
+    vertices[5].Set(2.00, 0.00);
 
     b2PolygonShape b2polygonshape;
     b2polygonshape.Set(vertices, 6);
