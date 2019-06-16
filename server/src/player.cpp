@@ -9,22 +9,25 @@ Player::Player(Socket socket):
 
 Player::~Player(){}
 
-void Player::stop(){
+void Player::stop(){    
+    this->inputReceiver.stop();
+    this->updateSender.stop();
+    this->updateSender.join();
+    this->inputReceiver.join();    
     try{
         this->protocol.close();
     } catch (const ConnectionErrorException &e){
 
     }
-    this->inputReceiver.stop();
-    this->updateSender.stop();
-    this->inputReceiver.join();
-    this->updateSender.join();
-
 }
 
 void Player::start() {
     this->inputReceiver.start();
     this->updateSender.start();
+}
+
+void Player::setDisconnecterPtr(Disconnecter* disconecter){
+    this->inputReceiver.setDisconnecterPtr(disconecter);    
 }
 
 void Player::sendChellIdToClient(uint32_t id) const{

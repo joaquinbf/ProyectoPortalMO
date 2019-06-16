@@ -1,5 +1,4 @@
 #include "../include/playerLogin.h"
-#include <iostream>
 
 PlayerLogin::PlayerLogin(std::list<Game*>* games,Socket peer): 
 games(games),peer(std::move(peer)){}
@@ -13,6 +12,7 @@ void PlayerLogin::run(){
 		uint32_t gameId = player->receiveQuad();
 		for(Game* game: *(this->games)){
 			if(game->getId() == gameId){
+				player->setDisconnecterPtr(game->getDisconnecterPtr());
 				game->addPlayer(player);
 				return;
 			}
@@ -20,6 +20,7 @@ void PlayerLogin::run(){
 	}else if (byte == 0){
 		std::string mapName = player->receiveLine();
 		Game * game = new Game(mapName);
+		player->setDisconnecterPtr(game->getDisconnecterPtr());
 		game->addPlayer(player);
 		this->games->push_back(game);
 		return;

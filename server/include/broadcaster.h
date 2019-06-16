@@ -20,6 +20,7 @@ public:
 	void addPlayer(ProtectedQueue<Update>* client,uint32_t id);
 	virtual void run() override;
     void stop();	
+    void deletePlayer(uint32_t id);
 };
 
 #endif

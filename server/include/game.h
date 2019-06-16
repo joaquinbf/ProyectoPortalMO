@@ -13,6 +13,7 @@
 #include "../include/player.h"
 #include "../include/stage.h"
 #include "../include/broadcaster.h"
+#include "../include/disconnecter.h"
 
 class Game{
 private:
@@ -23,6 +24,7 @@ private:
 	ProtectedQueue<Update> updates;
 	std::list<uint32_t> chellsIds;
 	Broadcaster broadcaster;
+	Disconnecter disconnecter;
 	GameInfo gameInfo;
 public:
 	explicit Game(const std::string& mapName); 
@@ -30,7 +32,9 @@ public:
 	void addPlayer(Player* player);
 	const GameInfo& getGameInfo();
 	uint32_t getId() const;
+	void deletePlayer(uint32_t id);
 	void stop();
+	Disconnecter* getDisconnecterPtr();
 };
 
 #endif

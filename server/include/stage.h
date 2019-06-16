@@ -13,7 +13,6 @@
 #include "../include/world.h"
 #include "../include/serializer.h"
 
-
 class Stage : public Thread {
 private:
 	bool running;

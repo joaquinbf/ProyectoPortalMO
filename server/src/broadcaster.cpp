@@ -9,18 +9,29 @@ void Broadcaster::addPlayer(ProtectedQueue<Update>* client,uint32_t id){
 	this->clients[id]=client;
 }
 
+void Broadcaster::deletePlayer(uint32_t id){
+	this->clients.erase(id);
+}
+
 void Broadcaster::run(){
 	Update update;
 	while(this->running){
-		if(this->source->try_pop(update)){
+		/*if(this->source->try_pop(update)){
 			for(auto client : this->clients){
 				client.second->push(update);
 			}	
 		}
-		usleep(1000);
+		usleep(1000);*/
+		update = this->source->wait_and_pop();
+		if(this->running){
+			for(auto client : this->clients){
+				client.second->push(update);
+			}
+		}
 	}
 }
 
 void Broadcaster::stop(){
 	this->running = false;
+	this->source->push(Update());
 }

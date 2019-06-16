@@ -18,10 +18,12 @@ void Accepter::run() {
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
-            PlayerLogin* playerLogin = new PlayerLogin(&this->games,std::move(peer));
-            playerLogin->start();
-            playerLogin->detach();               
-            this->logins.push_back(playerLogin);
+            if(this->keep_running){
+                PlayerLogin* playerLogin = new PlayerLogin(&this->games,std::move(peer));
+                playerLogin->start();
+                playerLogin->detach();               
+                this->logins.push_back(playerLogin);    
+            }            
         }
     } catch (const ConnectionErrorException &e) {
     }

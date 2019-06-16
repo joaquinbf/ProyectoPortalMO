@@ -10,6 +10,10 @@ void GameInfo::addPlayer(){
 	++this->players;
 }
 
+void GameInfo::deletePlayer(){
+	--this->players;
+}
+
 uint32_t GameInfo::getId() const{
 	return this->id;
 }

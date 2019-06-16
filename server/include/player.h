@@ -8,6 +8,7 @@
 #include "../../common/include/protected_queue.h"
 #include "../include/inputReceiver.h"
 #include "../include/updateSender.h"
+#include "../include/disconnecter.h"
 
 class Game;
 
@@ -19,7 +20,7 @@ private:
     ProtectedQueue<Update> updates;
 public:
     explicit Player(Socket socket);
-    void setGamePtr(Game* game);
+    void setDisconnecterPtr(Disconnecter* disconecter);
     ~Player();
     void start();   
     void stop();

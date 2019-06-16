@@ -3,11 +3,12 @@
 uint32_t Game::number = 0;
 
 Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates),
-	broadcaster(&this->updates),gameInfo(this->number,mapName,0,0){	
+	broadcaster(&this->updates),disconnecter(this),gameInfo(this->number,mapName,0,0){	
 	this->chellsIds = this->stage.getChellsIdList();
 	this->gameInfo.setCapacity(this->chellsIds.size());
 	this->stage.start();
 	this->broadcaster.start();
+	this->disconnecter.start();
 	++this->number;
 }
 
@@ -15,10 +16,6 @@ Game::~Game(){
 	for(auto player : this->players){
 		delete player.second;
 	}
-	this->stage.stop();
-	this->stage.join();
-	this->broadcaster.stop();
-	this->broadcaster.join();
 }
 
 void Game::addPlayer(Player* player){
@@ -46,11 +43,27 @@ uint32_t Game::getId() const{
 }
 
 void Game::stop(){
+	this->stage.stop();
+	this->broadcaster.stop();
+	this->disconnecter.stop();
 	for(auto player : this->players){
 		player.second->stop();
 	}
-	this->stage.stop();
 	this->stage.join();
-	this->broadcaster.stop();
 	this->broadcaster.join();
+	this->disconnecter.join();
+}
+
+void Game::deletePlayer(uint32_t id){
+	Player* player = this->players[id];
+	player->stop();
+	delete player;
+	this->players.erase(id);
+	this->broadcaster.deletePlayer(id);
+	this->chellsIds.push_front(id);
+	this->gameInfo.deletePlayer();
+}
+
+Disconnecter* Game::getDisconnecterPtr(){
+	return &this->disconnecter;
 }

@@ -1,7 +1,7 @@
 #include "../include/inputReceiver.h"
-#include "../include/game.h"
 
-InputReceiver::InputReceiver(Protocol& p) : running(true), protocol(p),game(nullptr){
+InputReceiver::InputReceiver(Protocol& p) :
+ running(true), protocol(p),disconnecter(nullptr){
 
 }
 
@@ -12,7 +12,7 @@ void InputReceiver::run(){
 		while(this->running){
 			Action action= this->protocol.receiveAction();//bloqueante
 			if(action.getAction() == ACTION::QUIT){
-				this->protocol.close();
+				this->disconnecter->disconnectPlayer(action.getId());
 				this->running = false;
 			} else {
 				this->inputPtr->push(std::move(action));
@@ -29,4 +29,8 @@ void InputReceiver::stop(){
 
 void InputReceiver::setInputPtr(ProtectedQueue<Action>* ptr){
 	this->inputPtr = ptr;
+}
+
+void InputReceiver::setDisconnecterPtr(Disconnecter* d){
+	this->disconnecter = d;
 }
