@@ -6,6 +6,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../include/bodies/button/button.h"
+#include "../../../include/bodies/chell/chell.h"
 #include <cstdint>
 
 
@@ -51,4 +52,8 @@ void Rock::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 
 void Rock::handleEndContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleEndContactWith(this, contact);
+}
+
+void Rock::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    chell->handleBeginContactWith(this, contact);
 }

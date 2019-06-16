@@ -28,13 +28,15 @@ protected:
     World *world;
     const ENTITY entity;
     b2Body *b2body;
-    bool is_traveling_through_a_portal;
 
 public:
     Body(World *world, ENTITY entity);
 
     /* Libera los recursos utilizados */
     virtual ~Body();
+
+    /* Devuelve un puntero a b2body */
+    b2Body *getB2Body();
 
     /* Indica si body puede abrir un portal en su superficie */
     virtual bool canOpenPortalOnSurface() const;

@@ -24,6 +24,10 @@ Body::Body(World *world, ENTITY entity):
 Body::~Body() {
 }
 
+b2Body *Body::getB2Body() {
+    return this->b2body;
+}
+
 bool Body::canOpenPortalOnSurface() const {
     return false;
 }

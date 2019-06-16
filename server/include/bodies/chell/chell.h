@@ -12,6 +12,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2Joint.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../portal/portal_gun.h"
 
@@ -29,6 +30,7 @@ class Portal;
 class Launcher;
 class Receiver;
 class Cake;
+class Rock;
 
 class Chell: public Body {
 private:
@@ -39,6 +41,8 @@ private:
     DeadState dead_state;
     ChellState *state;
     PortalGun portal_gun;
+    bool is_in_grabbing_mode;
+    b2Joint *joint;
     Keypad keypad;
     const float HALF_WIDTH = 0.50;
     const float HALF_HEIGHT = 1.00;
@@ -54,6 +58,25 @@ public:
 
     /* Libera los recursos utilizados */
     ~Chell();
+
+    /* Indica si chell mantiene una roca */
+    bool isGrabbingARock() const;
+
+    /* Suelta una roca */
+    void releaseRock();
+
+    /* Toma una roca */
+    void grabRock(Rock *rock);
+
+    /* Indica si chell esta en grabbing mode, es decir, esta en modo de tomar
+     * una roca*/
+    bool isInGrabbingMode() const;
+
+    /* Entra en grabbing mode */
+    void enterGrabbingMode();
+
+    /* Sale de grabbing mode */
+    void exitGrabbingMode();
 
     /* Devuelve un puntero a la portal gun */
     PortalGun *getPortalGun();
@@ -72,6 +95,12 @@ public:
 
     /* Devuelve un update de Command de chell */
     virtual Update createUpdate(COMMAND command) const override;
+
+    /* Presiona el boton para tomar/soltar rocas de chell */
+    void pressGrab();
+
+    /* Suelta el boton para tomar/soltar rocas de chell */
+    void releaseGrab();
 
     /* Presiona la tecla izquierda de chell*/
     void pressLeft();
@@ -151,6 +180,9 @@ public:
 
     /* Aterriza sobre un receptor */
     virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact);
+
+    /* Toma una roca si esta en grabbing mode. */
+    virtual void handleBeginContactWith(Rock *rock, b2Contact *contact) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);

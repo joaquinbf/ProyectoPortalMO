@@ -21,8 +21,9 @@ private:
         this->m_world->SetGravity(b2Vec2(0.0, -9.8));
 
         for (int i = 0; i < 1; i++) {
-            this->chell = this->world.createChell(-3.00 + 2.00*i, 1.00);
+            this->chell = this->world.createChell(-15.00 + 2.00*i, 1.00);
         }
+        Rock *rock = world.createRock(-17.00, 1.00);
 
         world.createWorldOne();
     }
@@ -50,6 +51,10 @@ private:
             std::cout << "pressed up" << std::endl;
             this->chell->pressUp();
             break;
+        case GLFW_KEY_E:
+            std::cout << "pressed E" << std::endl;
+            this->chell->pressGrab();
+            break;
         }
     }
 
@@ -66,6 +71,10 @@ private:
         case GLFW_KEY_W:
             std::cout << "released up" << std::endl;
             this->chell->releaseUp();
+            break;
+        case GLFW_KEY_E:
+            std::cout << "released E" << std::endl;
+            this->chell->releaseGrab();
             break;
         }
     }
