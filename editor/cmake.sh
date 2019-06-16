@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [[ $1 == "-d" ]]; then
-    mkdir Debug
-    cd Debug
+    mkdir debug
+    cd debug
     cmake -DCMAKE_BUILD_TYPE=Debug ..
     make
 fi
@@ -34,4 +34,5 @@ fi
 
 if [[ $1 == "-clean" ]]; then
     rm -r build/
+    rm -r debug/
 fi
