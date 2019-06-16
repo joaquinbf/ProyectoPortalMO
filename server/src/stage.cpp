@@ -11,10 +11,10 @@ Stage::Stage(
 	updates(updates) {
 	Serializer serializer;
 
-	this->world.createChell(1.65469, 10.1902);
-	this->world.createChell(1.65469, 10.1902);
-	this->world.createChell(1.65469, 10.1902);
-	this->world.createChell(1.65469, 10.1902);
+	this->world.createChell(9.0625, 32.4219);
+	this->world.createChell(9.0625, 32.4219);
+	this->world.createChell(9.0625, 32.4219);
+	this->world.createChell(9.0625, 32.4219);
 	serializer.deserialize(&this->world, "../maps/test_00.ptl");
 }
 

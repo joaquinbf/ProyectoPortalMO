@@ -23,8 +23,8 @@ void Serializer::deserializeBody(
     World *world, ENTITY entity, int x, int y) const {
     std::cout << "entity: " << entity
               << " --- (" << x << ", " << y << ")" << std::endl;
-    float fx = x / (float)ZOOM_FACTOR;
-    float fy = y / (float)ZOOM_FACTOR;
+    float fx = x/SERIAL_FACTOR;
+    float fy = y/SERIAL_FACTOR;
     switch (entity) {
         case ENTITY::METAL_BLOCK:
         std::cout << "entity: " << entity

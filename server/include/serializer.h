@@ -6,6 +6,8 @@
 #include "../../common/include/types.h"
 #include <cstdint>
 
+#define SERIAL_FACTOR 16
+
 class World;
 
 class Serializer {
