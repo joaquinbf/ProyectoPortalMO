@@ -24,6 +24,15 @@
 #include "../../../include/bodies/portal/portal.h"
 #include <iostream>
 #include "../../../include/bodies/cake/cake.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2DistanceJoint.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2PulleyJoint.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2WeldJoint.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2MouseJoint.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2RopeJoint.h"
+#include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2FrictionJoint.h"
+#include "../../../include/instructions/grab_rock_instruction.h"
+#include "../../../include/instructions/release_rock_instruction.h"
+
 
 Chell::Chell(World *world, float x, float y):
     Body(world, ENTITY::CHELL),
@@ -33,7 +42,9 @@ Chell::Chell(World *world, float x, float y):
     jumping_state(this),
     dead_state(this),
     state(&this->idle_state),
-    portal_gun(this) {
+    portal_gun(this),
+    is_in_grabbing_mode(false),
+    joint(nullptr) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
@@ -59,6 +70,42 @@ Chell::Chell(World *world, float x, float y):
 
 Chell::~Chell() {
     this->world->getB2World()->DestroyBody(this->b2body);
+}
+
+bool Chell::isGrabbingARock() const {
+    return this->joint != nullptr;
+}
+
+void Chell::releaseRock() {
+    if (this->isGrabbingARock()) {
+        this->world->getB2World()->DestroyJoint(this->joint);
+        this->joint = nullptr;
+    }
+}
+
+
+void Chell::grabRock(Rock *rock) {
+    if (!this->isGrabbingARock()) {
+        b2DistanceJointDef jointdef;
+        jointdef.length = 0;
+        jointdef.frequencyHz = 1.0;
+        jointdef.dampingRatio = 0.5;
+        jointdef.Initialize(this->getB2Body(), rock->getB2Body(),
+                            this->getPosition(), rock->getPosition());
+        this->joint = this->world->getB2World()->CreateJoint(&jointdef);
+    }
+}
+
+bool Chell::isInGrabbingMode() const {
+    return this->is_in_grabbing_mode;
+}
+
+void Chell::enterGrabbingMode() {
+    this->is_in_grabbing_mode = true;
+}
+
+void Chell::exitGrabbingMode() {
+    this->is_in_grabbing_mode = false;
 }
 
 PortalGun *Chell::getPortalGun() {
@@ -92,6 +139,21 @@ Update Chell::createUpdate(COMMAND command) const {
         this->is_facing_right? 1 : 0);
     return update;
 }
+
+void Chell::pressGrab() {
+    if (this->isGrabbingARock()) {
+        this->world->addInstruction(new ReleaseRockInstruction(this));
+    } else {
+        this->enterGrabbingMode();
+    }
+}
+
+void Chell::releaseGrab() {
+    if (this->isInGrabbingMode()) {
+        this->exitGrabbingMode();
+    }
+}
+
 
 void Chell::pressLeft() {
     this->keypad.press(KEY::LEFT_KEY);
@@ -233,6 +295,13 @@ void Chell::handleBeginContactWith(Portal *portal, b2Contact *contact) {
 
 void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     this->land();
+}
+
+void Chell::handleBeginContactWith(Rock *rock, b2Contact *contact) {
+    if (this->isInGrabbingMode()) {
+        this->world->addInstruction(new GrabRockInstruction(this, rock));
+        this->exitGrabbingMode();
+    }
 }
 
 void Chell::handleEndContactWith(Body *other_body, b2Contact *contact) {

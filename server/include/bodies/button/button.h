@@ -13,22 +13,17 @@
 class World;
 class Gate;
 
-// Trapecio isoceles
-#define b 1.00
-#define B 2.00
-#define h 0.50
-
-// Centro de masa
-#define Cx (B/2)
-#define Cy (((B + 2*b)/(B + b))*(h/3))
-
-#define P1 0.00, 0.00
-#define P2 0.50, 0.25
-#define P3 1.50, 0.25
-#define P4 2.00, 0.00
-
-#define XADJ -Cx
-#define YADJ -Cy
+// // Trapecio isoceles
+// #define b 1.00
+// #define B 2.00
+// #define h 0.50
+//
+// // Centro de masa
+// #define Cx (B/2)
+// #define Cy (((B + 2*b)/(B + b))*(h/3))
+//
+// #define XADJ -Cx
+// #define YADJ -Cy
 
 class Button: public Body, public BooleanSupplier {
 public:
@@ -36,6 +31,12 @@ public:
     Gate *gate;
     const float FRICTION = 0.7;
     const float RESTITUTION = 0.0;
+    // TODO: Eliminar constantes.
+    const float b = 1.00;
+    const float B = 2.00;
+    const float h = 0.50;
+    const float Cx = (B/2);
+    const float Cy = (((B + 2*b)/(B + b))*(h/3));
 
 public:
     /* Ubica un boton en world en la posicion (x, y) */

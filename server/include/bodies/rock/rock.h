@@ -31,6 +31,9 @@ public:
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
+
+    /* Es tomado por chell si esta en grabbing mode */
+    virtual void handleBeginContactWith(Chell *chell, b2Contact *contact) override;
 };
 
 #endif

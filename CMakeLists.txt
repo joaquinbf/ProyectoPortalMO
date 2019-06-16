@@ -53,7 +53,7 @@ add_library(libcommon SHARED ${COMMON_SRCS})
 add_library(libserver SHARED ${SERVER_SRCS})
 add_library(libclient SHARED ${CLIENT_SRCS})
 add_library(libeditor SHARED ${EDITOR_SRCS})
-TARGET_LINK_LIBRARIES(libserver libcommon libbox2d)
+TARGET_LINK_LIBRARIES(libserver libcommon libbox2d yaml-cpp)
 target_link_libraries(libclient libcommon avformat avcodec avutil swscale ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} Qt5::Core	Qt5::Gui Qt5::Widgets ${TIFF_LIBRARIES})
 #target_link_libraries(libeditor libcommon Qt5::Core	Qt5::Gui Qt5::Widgets yaml-cpp)
 

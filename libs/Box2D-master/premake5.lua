@@ -81,7 +81,8 @@ project 'Testbed'
 		'../../server/src/bodies/rock/*',
 		'../../server/src/pin.cpp',
 		'../../server/src/ray_cast_closest_body_callback.cpp',
-		'../../server/src/math_ext.cpp'
+		'../../server/src/math_ext.cpp',
+		'../../server/src/serializer.cpp'
 	}
 
     filter { 'system:windows' }
@@ -164,7 +165,8 @@ project 'Testbed'
 			'Xinerama',
 			'Xcursor',
 			'pthread',
-			'dl'
+			'dl',
+			'yaml-cpp'
 		}
 
 	filter {}
