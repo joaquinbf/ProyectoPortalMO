@@ -31,6 +31,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2RopeJoint.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2FrictionJoint.h"
 #include "../../../include/instructions/grab_rock_instruction.h"
+#include "../../../include/instructions/release_rock_instruction.h"
 
 
 Chell::Chell(World *world, float x, float y):
@@ -75,10 +76,11 @@ bool Chell::isGrabbingARock() const {
     return this->joint != nullptr;
 }
 
-
 void Chell::releaseRock() {
-    this->world->getB2World()->DestroyJoint(this->joint);
-    this->joint = nullptr;
+    if (this->isGrabbingARock()) {
+        this->world->getB2World()->DestroyJoint(this->joint);
+        this->joint = nullptr;
+    }
 }
 
 
@@ -140,7 +142,7 @@ Update Chell::createUpdate(COMMAND command) const {
 
 void Chell::pressGrab() {
     if (this->isGrabbingARock()) {
-        this->releaseRock();
+        this->world->addInstruction(new ReleaseRockInstruction(this));
     } else {
         this->enterGrabbingMode();
     }
