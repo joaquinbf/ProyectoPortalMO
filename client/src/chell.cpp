@@ -1,5 +1,4 @@
 #include "../include/chell.h"
-#include <iostream>
 
 Chell::Chell(const TextureManager& tm, const SoundManager& sm,
 		int32_t posx,int32_t posy, uint32_t width,uint32_t height,uint32_t dir)
@@ -8,7 +7,6 @@ textureManager(tm),
 frameArea(0, 0, 104, 215), 
 soundManager(sm),
 status(CHELL_IDLE){
-	std::cout<<"CHELL "<<posx<<" "<<posy<<"\n";
 	this->texturePtr =  this->textureManager.getChellTexturePointer(this->status);
 	this->actionPtr = &Chell::idleAction;
 	this->frame = 0;	
@@ -53,7 +51,6 @@ int32_t Chell::getPosY(){
 void Chell::update(const Update& update){
 	this->posx = update.getPosX();
 	this->posy = update.getPosY();
-	std::cout<<"UPDATE CHELL "<<this->posx<<" "<<this->posy<<"\n";
 	switch(update.getStatus()){
 		case CHELL_RUNNING:
 			this->run(update.getDirection());
