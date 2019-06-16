@@ -19,6 +19,7 @@ private:
     ProtectedQueue<Update> updates;
 public:
     explicit Player(Socket socket);
+    void setGamePtr(Game* game);
     ~Player();
     void start();   
     void stop();

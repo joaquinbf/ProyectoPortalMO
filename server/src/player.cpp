@@ -7,7 +7,9 @@ Player::Player(Socket socket):
     updateSender(protocol,&this->updates) {
 }
 
-Player::~Player(){
+Player::~Player(){}
+
+void Player::stop(){
     try{
         this->protocol.close();
     } catch (const ConnectionErrorException &e){
@@ -17,6 +19,7 @@ Player::~Player(){
     this->updateSender.stop();
     this->inputReceiver.join();
     this->updateSender.join();
+
 }
 
 void Player::start() {
