@@ -7,13 +7,9 @@
 class Boton : public ComponenteCompuerta
 {
 private:
-    QString nombre;
-
 public:
     Boton();
     virtual ~Boton();
-
-    virtual QString getNombre();
     virtual QString getTipoStr();
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 };

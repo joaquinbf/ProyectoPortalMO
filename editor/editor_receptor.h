@@ -7,13 +7,10 @@
 class Receptor : public ComponenteCompuerta
 {
 private:
-    QString nombre;
-
 public:
     Receptor();
     ~Receptor();
 
-    virtual QString getNombre();
     virtual QString getTipoStr();
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 };

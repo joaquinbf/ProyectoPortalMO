@@ -9,9 +9,7 @@
 class Compuerta : public ItemGrafico
 {
 private:
-    /* data */
 protected:
-    //QList<ComponenteCompuerta *> componentes;
     QMap<ComponenteCompuerta *, item_logica_t> logica;
 
 public:
@@ -22,6 +20,9 @@ public:
     virtual void agregar(ComponenteCompuerta *componente);
     virtual void agregar(QList<ComponenteCompuerta *> componentes);
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+
+    virtual void guardar(YAML::Node &nodo);
+    virtual void abrirComponentes(YAML::Node &nodo);
 };
 
 #endif // EDITOR_COMPUERTA_H

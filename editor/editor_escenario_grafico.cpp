@@ -82,7 +82,7 @@ void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
                  itemGrafico->getIdClass() == IDCLASS_COMPUERTA_OR ||
                  itemGrafico->getIdClass() == IDCLASS_COMPUERTA_AND)
         {
-            Compuerta *compuerta = (Compuerta*)itemGrafico;
+            Compuerta *compuerta = (Compuerta *)itemGrafico;
             this->compuertas.removeOne(compuerta);
         }
 
@@ -295,6 +295,11 @@ void EscenarioGrafico::abrir(YAML::Node &nodo)
             this->crearItem(this->celdas[i].getPosicionRelativaEscenario());
             this->celdas[i].abrir(nodo);
         }
+    }
+    //TODO compuertas busquen sus componentes ya cargados.
+    for (int i = 0; i < this->compuertas.size(); i++)
+    {
+        this->compuertas[i]->abrirComponentes(nodo);
     }
 }
 

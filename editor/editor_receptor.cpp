@@ -20,10 +20,6 @@ void Receptor::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
                                          "Ingrese un nombre para el boton: ");
 }
 
-QString Receptor::getNombre()
-{
-    return this->nombre;
-}
 QString Receptor::getTipoStr()
 {
     return "Receptor";
