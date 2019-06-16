@@ -3,6 +3,7 @@
 
 #include "editor_item_grafico.h"
 #include "editor_componente_compuerta.h"
+#include "editor_item_logica.h"
 #include <yaml-cpp/yaml.h>
 
 class Compuerta : public ItemGrafico
@@ -10,7 +11,8 @@ class Compuerta : public ItemGrafico
 private:
     /* data */
 protected:
-    QList<ComponenteCompuerta *> componentes;
+    //QList<ComponenteCompuerta *> componentes;
+    QMap<ComponenteCompuerta *, item_logica_t> logica;
 
 public:
     Compuerta(QString direccionSprite, unsigned idClass);
