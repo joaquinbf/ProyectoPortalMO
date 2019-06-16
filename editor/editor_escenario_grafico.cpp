@@ -296,6 +296,7 @@ void EscenarioGrafico::abrir(YAML::Node &nodo)
             this->celdas[i].abrir(nodo);
         }
     }
+    //TODO compuertas busquen sus componentes ya cargados.
 }
 
 void EscenarioGrafico::agregarACeldas(ItemGrafico *item, QPointF posicion)

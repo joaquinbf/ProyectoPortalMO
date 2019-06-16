@@ -19,10 +19,6 @@ void Boton::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
                                          "Ingrese un nombre para el boton: ");
 }
 
-QString Boton::getNombre()
-{
-    return this->nombre;
-}
 QString Boton::getTipoStr()
 {
     return "Boton";
