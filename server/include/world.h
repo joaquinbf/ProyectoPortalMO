@@ -167,22 +167,18 @@ public:
     /* Crea un bloque diagonal metalico en (x, y) del tipo 'orientation' */
     Block *createDiagonalMetalBlock(float x, float y, ORIENTATION orientation);
 
-    /* Crea un boton. TODO: Asignar a compuertas */
+    /* Crea un boton. */
     Button *createButton(float x, float y);
 
     /* Crea una compuerta sin estar asociada a ningun boton ni receptores
      *en (x, y) */
     Gate *createGate(float x, float y);
 
-    /* Crea el centro de gate en (x1, y1) y un boton con su
-     * centro en (x2, y2).
-     * Para que la compuerta se abra si el boton esta presionado entonces
-     * open_gate_when_button_is_pressed debe ser true y false en caso
-     * contrario. */
-    void createGateWithButton(
-        float x1, float y1,
-        float x2, float y2,
-        bool open_gate_when_button_is_pressed);
+    /* Crea una compuerta del tipo AND en (x, y) */
+    Gate *createAndGate(float x, float y);
+
+    /* Crea una compuerta del tipo OR en (x, y) */
+    Gate *createOrGate(float x, float y);
 
     /* Crea una mancha de acido en (x, y) */
     Acid *createAcid(float x, float y);

@@ -11,6 +11,7 @@
 #include "../../../include/bodies/block/block.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/rock/rock.h"
+#include "../../../include/boolean_suppliers/boolean_block.h"
 #include <iostream>
 
 Gate::Gate( World *world, float x, float y):
@@ -21,7 +22,8 @@ Gate::Gate( World *world, float x, float y):
     opening_gate_state(this),
     open_gate_state(this),
     closing_gate_state(this),
-    state(&this->closed_gate_state) {
+    state(&this->closed_gate_state),
+    boolean_block(nullptr) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x - (MAX_WIDTH/2), y + (MAX_HEIGHT/2));
@@ -58,8 +60,12 @@ Update Gate::createUpdate(COMMAND command) const {
     return update;
 }
 
-void Gate::setBooleanSupplier(BooleanSupplier *boolean_supplier) {
-    this->boolean_supplier = boolean_supplier;
+void Gate::setBooleanBlock(BooleanBlock *boolean_block) {
+    this->boolean_block = boolean_block;
+}
+
+BooleanBlock *Gate::getBooleanBlock() {
+    return this->boolean_block;
 }
 
 void Gate::handleBeginContactWith(Body *other_body, b2Contact *contact) {
@@ -80,7 +86,7 @@ void Gate::tryChangeState() {
 }
 
 bool Gate::conditionIsMeet() {
-    return this->boolean_supplier->getAsBoolean();
+    return this->boolean_block->getAsBoolean();
 }
 
 void Gate::changeStateToOpening() {

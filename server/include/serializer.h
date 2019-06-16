@@ -16,7 +16,8 @@ public:
     void deserialize(World *world, std::string filepath) const;
 
 private:
-    void deserializeBody(World *world, ENTITY entity, int x, int y) const;
+    void deserializeBody(
+        World *world, int idclass, int editor_x, int editor_y) const;
 };
 
 #endif

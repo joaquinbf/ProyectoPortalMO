@@ -199,27 +199,22 @@ Button *World::createButton(float x, float y) {
     return button;
 }
 
-void World::createGateWithButton(
-    float x1, float y1,
-    float x2, float y2,
-    bool open_gate_when_button_is_pressed) {
-    Gate *gate = new Gate(this, x1, y1);
-    Button *button = new Button(this, x2, y2);
-    button->setGate(gate);
-
-    BooleanBlock *block;
-    if (open_gate_when_button_is_pressed) {
-        block = this->boolean_block_factory.createSameBlock();
-    } else {
-        block = this->boolean_block_factory.createNotBlock();
-    }
-
-    block->add(button);
-    gate->setBooleanSupplier(block);
-}
-
 Gate *World::createGate(float x, float y) {
     Gate *gate = new Gate(this, x, y);
+    return gate;
+}
+
+Gate *World::createAndGate(float x, float y) {
+    Gate *gate = this->createGate(x, y);
+    BooleanBlock *block = this->boolean_block_factory.createAndBlock();
+    gate->setBooleanBlock(block);
+    return gate;
+}
+
+Gate *World::createOrGate(float x, float y) {
+    Gate *gate = this->createGate(x, y);
+    BooleanBlock *block = this->boolean_block_factory.createOrBlock();
+    gate->setBooleanBlock(block);
     return gate;
 }
 

@@ -37,7 +37,7 @@ private:
     OpenGateState open_gate_state;
     ClosingGateState closing_gate_state;
     GateState *state;
-    BooleanSupplier *boolean_supplier;
+    BooleanBlock *boolean_block;
 
 public:
     /* Instancia una compuerta de id 'body_id' en b2world en (x, y) */
@@ -46,10 +46,14 @@ public:
     /* Libera los recursos utilizados */
     ~Gate();
 
+    /* crea un update con el command asignado */
     virtual Update createUpdate(COMMAND command) const;
 
-    /* Asigna un boolea supplier a la compuerta */
-    void setBooleanSupplier(BooleanSupplier *boolean_supplier);
+    /* Asigna un boolea block a la compuerta. */
+    void setBooleanBlock(BooleanBlock *boolean_block);
+
+    /* Devuelve un puntero al boolean block de la compuerta */
+    BooleanBlock *getBooleanBlock();
 
     /* Maneja el inicio de contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
