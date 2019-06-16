@@ -5,7 +5,9 @@
 #include <QTableWidgetItem>
 #include <QString>
 #include <QComboBox>
-
+#include <QMap>
+#include "editor_componente_compuerta.h"
+#include "editor_item_logica.h"
 
 namespace Ui
 {
@@ -16,20 +18,15 @@ class ListadoDeActivables : public QDialog
 {
     Q_OBJECT
 private:
-    QTableWidgetItem tipo;
-    QTableWidgetItem nombre;
-    QTableWidgetItem agregar;
-    QTableWidgetItem negar;
-    QList<QComboBox *> cajas;
-    QList<QTableWidgetItem* > items;
+    QMap<ComponenteCompuerta *, item_logica_t> *logica;
+
 public:
     explicit ListadoDeActivables(QWidget *parent = 0);
     ~ListadoDeActivables();
-    void agregarElemento(QString nombre, QString tipo);
+    void setLogica(QMap<ComponenteCompuerta *, item_logica_t> *logica_);
 
 private slots:
     void on_cajaBotones_accepted();
-
     void on_cajaBotones_rejected();
 
 private:

@@ -14,29 +14,39 @@ Compuerta::~Compuerta()
 
 void Compuerta::eliminar(ComponenteCompuerta *componente)
 {
-    this->componentes.removeOne(componente);
+    this->logica.remove(componente);
+    //this->componentes.removeOne(componente);
 }
 
 void Compuerta::agregar(ComponenteCompuerta *componente)
 {
-    this->componentes.append(componente);
+    item_logica_t item;
+    this->logica[componente] = item;
+    //this->componentes.append(componente);
 }
 
 void Compuerta::agregar(QList<ComponenteCompuerta *> componentes)
 {
-    this->componentes.append(componentes);
+    for (int i = 0; i < componentes.size(); i++)
+    {
+        item_logica_t item;
+        this->logica[componentes[i]] = item;
+    }
+
+    //this->componentes.append(componentes);
 }
 
 void Compuerta::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
 {
     ListadoDeActivables listadoDeActivables;
-    listadoDeActivables.setWindowTitle("Logica de la Compuerta");
+    listadoDeActivables.setLogica(&(this->logica));
+/*     listadoDeActivables.setWindowTitle("Logica de la Compuerta");
     for (int i = 0; i < this->componentes.size(); ++i)
     {
         QString nombre = this->componentes[i]->getNombre();
         QString tipo = this->componentes[i]->getTipoStr();
         listadoDeActivables.agregarElemento(nombre, tipo);
-    }
+    } */
 
     listadoDeActivables.setModal(true);
     listadoDeActivables.exec();

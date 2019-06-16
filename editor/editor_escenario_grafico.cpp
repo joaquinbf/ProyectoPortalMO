@@ -71,14 +71,19 @@ void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
             itemGrafico->getIdClass() == IDCLASS_RECEPTOR)
         {
             ComponenteCompuerta *componente;
-            // Es un casteo asegurado por idClass y que no pretende mas
-            // que usarlo para eliminar de listas.
             componente = (ComponenteCompuerta *)itemGrafico;
             this->componentesCompuerta.removeOne(componente);
             for (int i = 0; i < this->compuertas.size(); i++)
             {
                 this->compuertas[i]->eliminar(componente);
             }
+        }
+        else if (itemGrafico->getIdClass() == IDCLASS_COMPUERTA_REG ||
+                 itemGrafico->getIdClass() == IDCLASS_COMPUERTA_OR ||
+                 itemGrafico->getIdClass() == IDCLASS_COMPUERTA_AND)
+        {
+            Compuerta *compuerta = (Compuerta*)itemGrafico;
+            this->compuertas.removeOne(compuerta);
         }
 
         this->removeItem(qItem);
