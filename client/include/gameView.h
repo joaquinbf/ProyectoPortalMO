@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <SDL_mixer.h>
 #include <unistd.h>
 #include <exception>
 #include <map>

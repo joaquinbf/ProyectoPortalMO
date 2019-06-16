@@ -26,7 +26,6 @@ int Client::login(){
         std::string map = this->serverManager.receiveLine();
         maps.push_back(map);
     }
-    
     int b = 0;
     QApplication app(b,NULL);
     Login login(this->serverManager,games,maps);
@@ -54,10 +53,10 @@ void Client::game(){
 		while(this->updates.try_pop(update)){
 			gameView.updateHandler(update);
 		}
-        for(int i = 0; i <10; ++i){
+        //for(int i = 0; i <10; ++i){
             gameView.render();            
-            usleep(5000);
-        }
+            usleep(50000);
+        //}
         if(this->videoRecorder.isRecording()){
             this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
             this->videoRecorder.recordFrame(gameView.getRenderer());

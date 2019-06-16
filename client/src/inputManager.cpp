@@ -167,7 +167,6 @@ void InputManager::gameMode(const SDL_Event& event){
 void InputManager::sendPressAction(Key *key, ACTION action) {
 	if (!key->isBeingPressed()) {
 		key->press();
-		std::cout << "Action PRESS send:" << action << std::endl;
 		this->serverManager.sendAction(Action(this->chellId, action,0,0));
 	}
 }
@@ -175,7 +174,6 @@ void InputManager::sendPressAction(Key *key, ACTION action) {
 void InputManager::sendReleaseAction(Key *key, ACTION action) {
 	if (key->isBeingPressed()) {
 		key->release();
-		std::cout << "Action RELEASE send:" << action << std::endl;
 		this->serverManager.sendAction(Action(this->chellId, action,0,0));
 	}
 

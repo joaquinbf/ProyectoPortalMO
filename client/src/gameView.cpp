@@ -1,13 +1,13 @@
 #include "../include/gameView.h"
 
-#include <iostream>
-#include <SDL_mixer.h>
-
 GameView::GameView(uint32_t x, uint32_t y, const SoundManager& sm) : 
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), crosshair(textureManager),background(window)
 {
-	SDL_ShowCursor(SDL_DISABLE);
+	//SDL_ShowCursor(SDL_DISABLE);	
+	SDL_Cursor* cursor;
+	cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
+	SDL_SetCursor(cursor);
 }
 
 GameView::~GameView(){
@@ -55,7 +55,7 @@ void GameView::render(){
 		this->textureManager.getBlackTexturePointer()->render(Area(0,0,600,600),
 			Area(0,0,this->resx,this->resy));
 	}
-	this->crosshair.render();
+	//this->crosshair.render();
     this->window.render();
 }
 
@@ -143,7 +143,6 @@ int32_t GameView::pixelToCoordX(int32_t x) const{
 	int32_t cordx = this->myChell->getPosX();
 	int32_t a=x-(this->resx/2);
     a = a/this->scale + cordx;
-    std::cout<<a<<" ";
     return a;
 }
 
@@ -151,7 +150,6 @@ int32_t GameView::pixelToCoordY(int32_t y) const{
 	int32_t cordy = this->myChell->getPosY();
     int32_t b=y-(2*this->resy/3);
     b = -b/this->scale + cordy;
-    std::cout<<b<<"\n";
     return b;
 }
 
