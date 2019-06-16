@@ -6,7 +6,7 @@
 #include "../../common/include/types.h"
 #include <cstdint>
 
-#define SERIAL_FACTOR 16
+#define SERIAL_FACTOR 16.00
 
 class World;
 
