@@ -33,7 +33,6 @@ void Login::create(){
     if(this->comboBox.currentIndex() != -1){    
         QString qs = this->comboBox.currentText();
         std::string str = qs.toUtf8().constData();
-        str += ".yaml";
         this->serverManager.createGame(str);
         this->done(0);
     }    
@@ -87,7 +86,6 @@ void Login::createTable(){
 void Login::createComboBox(){
     this->comboBox.setEditable(false);
     for(std::string map : this->maps){
-        map = map.substr(0, map.size()-5);
         this->comboBox.addItem(QString(map.c_str()));
     }
     this->comboBox.setCurrentIndex(-1);

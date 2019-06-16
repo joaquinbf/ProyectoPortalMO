@@ -3,12 +3,16 @@
 
 #include <cstdint>
 #include <list>
+#include <dirent.h>
+
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
 #include "../../common/include/protected_queue.h"
 #include "../include/inputReceiver.h"
 #include "../include/updateSender.h"
 #include "../include/disconnecter.h"
+
+#define MAP_SAVE_ROUTE "../maps/"
 
 class Game;
 
@@ -29,6 +33,7 @@ public:
     ProtectedQueue<Update>* getUpdatesPtr();
     void pushBackUpdate(Update update);
     void sendGamesList(std::list<Game*>* games);
+    void sendMapList();
     uint8_t receiveByte() const;
     uint32_t receiveQuad() const;
     std::string receiveLine() const;

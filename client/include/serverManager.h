@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <list>
+#include <string>
 
 #include "../../common/include/socket.h"
 #include "../../common/include/protocol.h"
@@ -25,6 +26,7 @@ public:
 	void joinGame(uint32_t id) const;
 	void createGame(const std::string& map) const;
 	void sendNoneCommand() const;
+	std::string receiveLine() const;
 };
 
 #endif

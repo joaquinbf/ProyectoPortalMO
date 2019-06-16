@@ -46,3 +46,7 @@ void ServerManager::createGame(const std::string& map) const{
 void ServerManager::sendNoneCommand() const{
 	this->protocol.sendByte(2);
 }
+
+std::string ServerManager::receiveLine() const{
+	return this->protocol.receiveLine();
+}

@@ -1,5 +1,5 @@
 #include "../include/client.h"
-#include <iostream>
+
 Client::Client()
 : serverManager("localhost", PORT),
 updateReceiver(this->serverManager,this->updates)
@@ -13,11 +13,6 @@ void Client::main(){
     }   	
 }
 
-static bool ends_with(std::string const & value, std::string const & ending){
-    if (ending.size() > value.size()) return false;
-    return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
-}
-
 int Client::login(){
     std::list<GameInfo> games;
     std::list<std::string> maps;
@@ -26,19 +21,12 @@ int Client::login(){
         GameInfo gi = this->serverManager.receiveGameInfo();
         games.push_back(gi);
     }
-
-    DIR           *dirp;
-    struct dirent *directory;
-    dirp = opendir(MAP_SAVE_ROUTE);
-    if (dirp){
-        while ((directory = readdir(dirp)) != NULL){
-            if(ends_with(std::string(directory->d_name),
-                std::string(".yaml"))){
-                maps.push_back(std::string(directory->d_name));
-            }            
-        }
-        closedir(dirp);
-    }   
+    a = this->serverManager.receiveQuad();
+    for(;a>0;a--){
+        std::string map = this->serverManager.receiveLine();
+        maps.push_back(map);
+    }
+    
     int b = 0;
     QApplication app(b,NULL);
     Login login(this->serverManager,games,maps);

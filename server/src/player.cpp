@@ -1,6 +1,11 @@
 #include "../include/player.h"
 #include "../include/game.h"
 
+static bool ends_with(std::string const & value, std::string const & ending){
+    if (ending.size() > value.size()) return false;
+    return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
+}
+
 Player::Player(Socket socket):
     protocol(std::move(socket)),
     inputReceiver(protocol),
@@ -50,6 +55,28 @@ void Player::sendGamesList(std::list<Game*>* games){
     this->protocol.sendQuad(games->size());
     for(Game* game : *games){
         this->protocol.sendGameInfo(game->getGameInfo());
+    }
+}
+
+void Player::sendMapList(){
+    std::list<std::string> maps;
+    DIR* dirp;
+    struct dirent *directory;
+    dirp = opendir(MAP_SAVE_ROUTE);
+    if (dirp){
+        while ((directory = readdir(dirp)) != NULL){
+            if(ends_with(std::string(directory->d_name),
+                std::string(".yaml"))){
+                std::string map = std::string(directory->d_name); 
+                map = map.substr(0, map.size()-5);
+                maps.push_back(map);
+            }            
+        }
+        closedir(dirp);
+    }   
+    this->protocol.sendQuad(maps.size());    
+    for(std::string str : maps){
+        this->protocol.sendLine(str);
     }
 }
 
