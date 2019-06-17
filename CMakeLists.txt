@@ -8,7 +8,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 # Flags
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O0 -Werror -pedantic")
 # debugging flags
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -DDEBUG -fno-inline")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ggdb -DDEBUG -fno-inline ")
 # threads
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
@@ -37,7 +37,8 @@ file(GLOB_RECURSE BOX2D_SRCS ./libs/Box2D-master/Box2D/*.cpp)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS})
+find_package(SDL2_ttf REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})
 
 #Including QT
 find_package(Qt5 COMPONENTS REQUIRED Core Gui Widgets)
@@ -54,8 +55,8 @@ add_library(libserver SHARED ${SERVER_SRCS})
 add_library(libclient SHARED ${CLIENT_SRCS})
 add_library(libeditor SHARED ${EDITOR_SRCS})
 TARGET_LINK_LIBRARIES(libserver libcommon libbox2d yaml-cpp)
-target_link_libraries(libclient libcommon avformat avcodec avutil swscale ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} Qt5::Core	Qt5::Gui Qt5::Widgets ${TIFF_LIBRARIES})
-#target_link_libraries(libeditor libcommon Qt5::Core	Qt5::Gui Qt5::Widgets yaml-cpp)
+target_link_libraries(libclient libcommon avformat avcodec avutil swscale ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES} Qt5::Core	Qt5::Gui Qt5::Widgets ${TIFF_LIBRARIES})
+#target_link_libraries(libeditor libcommon Qt5::Core Qt5::Gui Qt5::Widgets yaml-cpp)
 
 # Tiff
 find_package(TIFF REQUIRED)
