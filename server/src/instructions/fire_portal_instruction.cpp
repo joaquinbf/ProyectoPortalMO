@@ -3,8 +3,10 @@
 #include <iostream>
 
 FirePortalInstruction::FirePortalInstruction(
-    Chell *chell, uint8_t number, float x, float y):
-    chell(chell), number(number), x(x / ZOOM_FACTOR), y(y / ZOOM_FACTOR) {
+    Chell *chell, uint8_t number,
+    float x, float y):
+    chell(chell), number(number),
+    x(x / (float)ZOOM_FACTOR), y(y / (float)ZOOM_FACTOR) {
 }
 
 void FirePortalInstruction::execute() {

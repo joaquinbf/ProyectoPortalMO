@@ -15,6 +15,7 @@ private:
 	int32_t posX;
 	int32_t posY;
 	uint32_t direction;
+	
 public:
 	Update();
 
