@@ -33,10 +33,12 @@ private:
 	TextureManager textureManager;
 	const SoundManager& soundManager;
 	std::map<uint32_t,Entity *> entities;
+	std::map<uint32_t,Chell *> chells;
 	Chell* myChell;
 	uint32_t myChellId;
 	float scale;
 	bool paused;
+	bool danceMode = false;
 	Background background;
 	SDL_Cursor* cursor;
 public:
@@ -60,6 +62,8 @@ public:
     SDL_Renderer* getRenderer() const;
     uint32_t getResX() const;
     uint32_t getResY() const;
+private:
+	uint8_t getRand() const;
 };
 
 #endif

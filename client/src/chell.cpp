@@ -22,10 +22,7 @@ void Chell::renderCentered(int resx,int resy, float scale){
 	int a=(resx/2)-((this->width*scale)/2);
     int b=(2*resy/3)-(this->height*scale)/2;
     Area renderArea(a,b,this->width*scale,this->height*scale);
-    uint32_t red = 255;
-    uint32_t green = 155;
-    uint32_t blue = 155;
-    this->texturePtr->setColorMod(red,green,blue);
+    this->texturePtr->setColorMod(this->r,this->g,this->b);
 	if( this-> direction == 1){
 		this->texturePtr->render(this->frameArea, renderArea);
 	} else if(this-> direction == 0){
@@ -36,6 +33,7 @@ void Chell::renderCentered(int resx,int resy, float scale){
 void Chell::render(int cx,int cy,int resx,int resy,float scale){
 	int a = (this->posx-cx)*scale - (this->width/2)*scale + resx/2 ;
 	int b = -(this->posy-cy)*scale - (this->height/2)*scale + (2*resy)/3;	
+	this->texturePtr->setColorMod(this->r,this->g,this->b);
 	if( this-> direction == 1){
 		this->texturePtr->render(this->frameArea, Area(a,b,this->width*scale,this->height*scale));
 	} else if(this-> direction == 0){

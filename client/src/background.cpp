@@ -33,3 +33,16 @@ void Background::render(int x, int y, int rx, int ry,float scale){
     Area frameArea(a,b,	this->widthRendered/scale,this->heightRendered/scale);
 	this->backgroundTexture.render(frameArea,renderArea);
 }
+
+void Background::setColorMod(uint8_t r,uint8_t g,uint8_t b){
+	this->r = r;
+	this->g = g;
+	this->b = b;
+	this->backgroundTexture.setColorMod(this->r,this->g,this->b);	
+}
+void Background::resetColorMod(){
+	this->r = 255;
+	this->g = 255;
+	this->b = 255;
+	this->backgroundTexture.setColorMod(this->r,this->g,this->b);	
+}

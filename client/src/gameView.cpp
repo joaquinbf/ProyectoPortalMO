@@ -1,5 +1,5 @@
 #include "../include/gameView.h"
-
+#include <iostream>
 GameView::GameView(uint32_t x, uint32_t y, const SoundManager& sm) : 
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), background(window){
@@ -20,14 +20,20 @@ GameView::~GameView(){
 }
 
 void GameView::step(){
-	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-		if(it->second != nullptr){
-			it->second->step();
+	for( auto it : this->entities){
+		if(it.second != nullptr){
+			it.second->step();
+		}
+	}
+	for( auto it : this->chells){
+		if(it.second != nullptr){
+			it.second->step();
 		}
 	}
 	if(this->myChell != nullptr){
 		this->myChell->step();
 	}
+	this->danceMode = false;
 }
 
 void GameView::render(){
@@ -39,10 +45,23 @@ void GameView::render(){
 		posx = this->myChell->getPosX();
 		posy = this->myChell->getPosY();
 	}
+	if(this->danceMode){
+		this->background.setColorMod(rand()%255,rand()%255,rand()%255);	
+	}
 	this->background.render(posx,posy,this->resx,this->resy,this->scale);
-	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-		if(it->second != nullptr){
-			it->second->render(posx,posy,this->resx,this->resy,this->scale);	
+
+	for( auto it : this->entities){
+		if(it.second != nullptr){
+			std::cout<<it.first<<"\n";
+			if(this->danceMode){
+				it.second->setColorMod(rand()%255,rand()%255,rand()%255);
+			}
+			it.second->render(posx,posy,this->resx,this->resy,this->scale);	
+		}		
+	}
+	for( auto it : this->chells){
+		if(it.second != nullptr){
+			it.second->render(posx,posy,this->resx,this->resy,this->scale);	
 		}		
 	}
 	if(this->myChell != nullptr){
@@ -64,6 +83,9 @@ void GameView::updateHandler(Update update){
 			id = update.getIdObject();
 			if(id == this->myChellId){ 
 				this->myChell = (Chell *)ef.create(update,this->textureManager,this->soundManager);
+			} else if(update.getIdClass() == ENTITY::CHELL){
+				this->chells[id] = (Chell *) ef.create(update,this->textureManager,this->soundManager);
+				this->chells[id]->setColorMod(this->getRand(),this->getRand(),this->getRand());
 			} else {
 				this->entities[id] = ef.create(update,this->textureManager,this->soundManager);
 			}
@@ -72,7 +94,9 @@ void GameView::updateHandler(Update update){
 			id = update.getIdObject();
 			if(id == this->myChellId){
 				this->myChell->update(update);
-			} else if( this->entities[id] != nullptr){
+			} else if (this->chells.find(id) != this->chells.end()){
+				this->chells[id]->update(update);
+			} else if( this->entities.find(id) != this->entities.end()){
 				this->entities[id]->update(update);
 			}
 			break;
@@ -81,8 +105,9 @@ void GameView::updateHandler(Update update){
 			if(id == this->myChellId){
 				delete this->myChell;
 				this->myChell = nullptr;				
-			} else if( this->entities[id] != nullptr){
-				delete this->entities[id];
+			} else if (this->chells.find(id) != this->chells.end()){
+				this->chells.erase(id);
+			} else if( this->entities.find(id) != this->entities.end()){
 				this->entities.erase(id);
 			}
 			break;
@@ -160,4 +185,15 @@ uint32_t GameView::getResX() const{
 
 uint32_t GameView::getResY() const{
 	return this->resy;
+}
+
+uint8_t GameView::getRand() const{
+	double n = ((double)rand()/RAND_MAX);
+	if(n < 0.333){
+		return 180;
+	}else if(n < 0.666){
+		return 220;
+	}else{
+		return 255;
+	}
 }
