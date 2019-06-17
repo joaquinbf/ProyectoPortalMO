@@ -17,7 +17,8 @@ Portal::Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal):
     opposite(nullptr) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_staticBody;
-    b2bodydef.position.Set(pos.x, pos.y);
+    b2Vec2 adj_pos = pos +  (HEIGHT/2)*normal;
+    b2bodydef.position.Set(adj_pos.x, adj_pos.y);
     b2bodydef.angle = acos(normal.x/normal.Length()) - (PI/2);
     b2bodydef.fixedRotation = true;
     b2bodydef.userData = (void *) this;

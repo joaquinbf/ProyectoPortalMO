@@ -60,7 +60,7 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
     if (callback.hasHit() && callback.getBody()->canOpenPortalOnSurface()) {
         portal = world->createPortal(
             portal_number,
-            callback.getPoint() + 1*callback.getNormal(),
+            callback.getPoint(),
             callback.getNormal());
     }
 
