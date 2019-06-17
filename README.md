@@ -13,10 +13,11 @@ sudo apt install ffmpeg
 sudo apt install libavformat-dev
 ```
 
-## Instalacion de SDL2 mixer en ubuntu
+## Instalacion de SDL2
 ```
 sudo apt install libsdl2-mixer-2.0-0
 sudo apt install libsdl2-mixer-dev
+sudo apt-get install libsdl2-ttf-dev
 ```
 Ademas necesita a Tiff (por alguna razon).
 ```
