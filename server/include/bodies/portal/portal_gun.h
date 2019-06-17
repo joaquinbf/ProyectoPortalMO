@@ -3,6 +3,8 @@
 
 #include <cstdint>
 #include "../../../../libs/Box2D-master/Box2D/Common/b2Math.h"
+#include "../../../include/ray_cast_closest_body_callback.h"
+
 
 class Portal;
 class Chell;
@@ -43,6 +45,10 @@ private:
 
     /* Asigna un portal opuesto */
     void setOppositePortals(Portal *portal, Portal *opposite);
+
+    /* Dibuja el rayo del portal en testbed */
+    void debugDrawRayCast(
+        b2Vec2 &pos, RayCastClosestBodyCallback &callback) const;
 };
 
 #endif

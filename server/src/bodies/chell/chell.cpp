@@ -258,6 +258,8 @@ Keypad *Chell::getKeypad() {
 }
 
 void Chell::applyStateAction() {
+    std::cout << "chell v: " << this->getLinearVelocity().x << ", "
+              << this->getLinearVelocity().y << std::endl;
     this->state->applyStateAction();
 }
 
@@ -291,7 +293,7 @@ void Chell::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
 }
 
 void Chell::handleBeginContactWith(Portal *portal, b2Contact *contact) {
-    portal->teleportToOppositePortal(this);
+    portal->handleBeginContactWith(this, contact);
 }
 
 void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {

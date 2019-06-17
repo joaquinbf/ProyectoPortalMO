@@ -25,11 +25,13 @@ public:
     /* Libera los recursos utilizados */
     ~Portal();
 
-    /* Teletransporta a body al portal */
-    void teleportBody(Body *body) const;
+    /* Teletransporta a body al portal indicando si debe cambiar el
+     * el angulo de body en caso de ser necesario */
+    void teleportBody(Body *body, bool change_angle) const;
 
-    /* Teletransporta a body al portal opuesto en caso de no ser nullptr. */
-    void teleportToOppositePortal(Body *body) const;
+    /* Teletransporta a body al portal opuesto en caso de no ser nullptr e
+     * indicando si debe cambiar el angulo de body en caso de ser necesario.*/
+    void teleportToOppositePortal(Body *body, bool change_angle) const;
 
     /* Asigna un portal opuesto */
     void setOppositePortal(Portal *opposite);

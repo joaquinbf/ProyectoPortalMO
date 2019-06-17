@@ -1,0 +1,1026 @@
+celdas:
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - idObject: 64
+    idClass: 3
+    ocupado: true
+    x: 0
+    y: 64
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - idClass: 2
+    ocupado: true
+    idObject: 74
+    y: 64
+    x: 320
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - x: 0
+    idObject: 96
+    idClass: 3
+    ocupado: true
+    y: 96
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 106
+    x: 320
+    y: 96
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - idObject: 128
+    idClass: 3
+    ocupado: true
+    y: 128
+    x: 0
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 138
+    x: 320
+    y: 128
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 160
+    x: 0
+    y: 160
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 170
+    x: 320
+    y: 160
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 192
+    x: 0
+    y: 192
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 202
+    x: 320
+    y: 192
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 224
+    x: 0
+    y: 224
+  - ocupado: true
+    idClass: 1
+    idObject: 225
+    x: 32
+    y: 224
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 9
+    idObject: 232
+    x: 256
+    y: 224
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 234
+    x: 320
+    y: 224
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - idClass: 3
+    ocupado: true
+    idObject: 256
+    x: 0
+    y: 256
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 262
+    x: 192
+    y: 256
+  - ocupado: true
+    idClass: 2
+    idObject: 263
+    x: 224
+    y: 256
+  - ocupado: true
+    idClass: 2
+    idObject: 264
+    x: 256
+    y: 256
+  - ocupado: true
+    idClass: 2
+    idObject: 265
+    x: 288
+    y: 256
+  - ocupado: true
+    idClass: 2
+    idObject: 266
+    x: 320
+    y: 256
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 288
+    x: 0
+    y: 288
+  - ocupado: true
+    idClass: 3
+    idObject: 289
+    x: 32
+    y: 288
+  - ocupado: true
+    idClass: 3
+    idObject: 290
+    x: 64
+    y: 288
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 294
+    x: 192
+    y: 288
+  - ocupado: true
+    idClass: 2
+    idObject: 295
+    x: 224
+    y: 288
+  - ocupado: true
+    idClass: 2
+    idObject: 296
+    x: 256
+    y: 288
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 320
+    x: 0
+    y: 320
+  - ocupado: true
+    idClass: 3
+    idObject: 321
+    x: 32
+    y: 320
+  - ocupado: true
+    idClass: 3
+    idObject: 322
+    x: 64
+    y: 320
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 326
+    x: 192
+    y: 320
+  - ocupado: true
+    idClass: 2
+    idObject: 327
+    x: 224
+    y: 320
+  - ocupado: true
+    idClass: 2
+    idObject: 328
+    x: 256
+    y: 320
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 352
+    x: 0
+    y: 352
+  - ocupado: true
+    idClass: 3
+    idObject: 353
+    x: 32
+    y: 352
+  - ocupado: true
+    idClass: 3
+    idObject: 354
+    x: 64
+    y: 352
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 358
+    x: 192
+    y: 352
+  - ocupado: true
+    idClass: 2
+    idObject: 359
+    x: 224
+    y: 352
+  - ocupado: true
+    idClass: 2
+    idObject: 360
+    x: 256
+    y: 352
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 384
+    x: 0
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 385
+    x: 32
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 386
+    x: 64
+    y: 384
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 390
+    x: 192
+    y: 384
+  - ocupado: true
+    idClass: 2
+    idObject: 391
+    x: 224
+    y: 384
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 416
+    x: 0
+    y: 416
+  - ocupado: true
+    idClass: 3
+    idObject: 417
+    x: 32
+    y: 416
+  - ocupado: true
+    idClass: 3
+    idObject: 418
+    x: 64
+    y: 416
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 422
+    x: 192
+    y: 416
+  - ocupado: true
+    idClass: 2
+    idObject: 423
+    x: 224
+    y: 416
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 448
+    x: 0
+    y: 448
+  - ocupado: true
+    idClass: 3
+    idObject: 449
+    x: 32
+    y: 448
+  - ocupado: true
+    idClass: 3
+    idObject: 450
+    x: 64
+    y: 448
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 2
+    idObject: 454
+    x: 192
+    y: 448
+  - ocupado: true
+    idClass: 2
+    idObject: 455
+    x: 224
+    y: 448
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 482
+    x: 64
+    y: 480
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 486
+    x: 192
+    y: 480
+  - ocupado: true
+    idClass: 2
+    idObject: 487
+    x: 224
+    y: 480
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 514
+    x: 64
+    y: 512
+  - ocupado: true
+    idClass: 3
+    idObject: 515
+    x: 96
+    y: 512
+  - ocupado: true
+    idClass: 3
+    idObject: 516
+    x: 128
+    y: 512
+  - ocupado: true
+    idClass: 3
+    idObject: 517
+    x: 160
+    y: 512
+  - ocupado: true
+    idClass: 3
+    idObject: 518
+    x: 192
+    y: 512
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 547
+    x: 96
+    y: 544
+  - ocupado: true
+    idClass: 3
+    idObject: 548
+    x: 128
+    y: 544
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+escenario:
+  cantidadCeldas: 768
+  pathFondoEscenario: ""
+  tamanioAlto: -1
+  tamanioAncho: -1

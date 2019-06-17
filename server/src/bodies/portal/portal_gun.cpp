@@ -57,19 +57,7 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
         chell->getPosition(),
         1000 * (pos - chell->getPosition()));
 
-    b2Vec2 point1 = chell->getPosition();
-    b2Vec2 point2 = pos;
-    if (callback.hasHit())
-    {
-        g_debugDraw.DrawPoint(callback.getPoint(), 5.0f, b2Color(0.4f, 0.9f, 0.4f));
-        g_debugDraw.DrawSegment(point1, callback.getPoint(), b2Color(0.8f, 0.8f, 0.8f));
-        b2Vec2 head = callback.getPoint() + 0.5f * callback.getNormal();
-        g_debugDraw.DrawSegment(callback.getPoint(), head, b2Color(0.9f, 0.9f, 0.4f));
-    }
-    else
-    {
-        g_debugDraw.DrawSegment(point1, point2, b2Color(0.8f, 0.8f, 0.8f));
-    }
+    this->debugDrawRayCast(pos, callback);
 
     if (callback.hasHit() && callback.getBody()->canOpenPortalOnSurface()) {
         portal = world->createPortal(
@@ -87,5 +75,22 @@ void PortalGun::setOppositePortals(Portal *portal, Portal *opposite) {
     }
     if (opposite != nullptr) {
         opposite->setOppositePortal(portal);
+    }
+}
+
+void PortalGun::debugDrawRayCast(
+    b2Vec2 &pos,RayCastClosestBodyCallback &callback) const {
+    b2Vec2 point1 = chell->getPosition();
+    b2Vec2 point2 = pos;
+    if (callback.hasHit())
+    {
+        g_debugDraw.DrawPoint(callback.getPoint(), 5.0f, b2Color(0.4f, 0.9f, 0.4f));
+        g_debugDraw.DrawSegment(point1, callback.getPoint(), b2Color(0.8f, 0.8f, 0.8f));
+        b2Vec2 head = callback.getPoint() + 0.5f * callback.getNormal();
+        g_debugDraw.DrawSegment(callback.getPoint(), head, b2Color(0.9f, 0.9f, 0.4f));
+    }
+    else
+    {
+        g_debugDraw.DrawSegment(point1, point2, b2Color(0.8f, 0.8f, 0.8f));
     }
 }
