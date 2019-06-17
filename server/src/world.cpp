@@ -26,7 +26,8 @@
 World::World():
     b2world(new b2World(GRAVITY)),
     body_count(0),
-    b2world_is_internal(true) {
+    b2world_is_internal(true),
+    cake(nullptr) {
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
@@ -34,14 +35,16 @@ World::World(float time_step):
     b2world(new b2World(GRAVITY)),
     body_count(0),
     b2world_is_internal(true),
-    TIME_STEP(time_step) {
+    TIME_STEP(time_step),
+    cake(nullptr) {
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
 World::World(b2World *b2world):
     b2world(b2world),
     body_count(0),
-    b2world_is_internal(false) {
+    b2world_is_internal(false),
+    cake(nullptr) {
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
@@ -54,10 +57,16 @@ World::~World() {
 }
 
 bool World::everybodyAteTheCake() const {
+    if (this->cake == nullptr) {
+        return false;
+    }
     return this->chells.size() == this->cake->chellCount();
 }
 
 bool World::everybodyButOneAteTheCake() const {
+    if (this->cake == nullptr) {
+        return false;
+    }
     return this->chells.size() - 1 == this->cake->chellCount();
 }
 
