@@ -66,4 +66,15 @@ enum ORIENTATION: uint8_t {
 	ORIENTATION_3 = 0x03
 };
 
+enum ANGLE: uint16_t {
+	ANGLE_000 = 0x000,
+	ANGLE_045 = 0x02D,
+	ANGLE_090 = 0x05A,
+	ANGLE_135 = 0x087,
+	ANGLE_180 = 0x0B4,
+	ANGLE_225 = 0x0E1,
+	ANGLE_270 = 0x10E,
+	ANGLE_315 = 0x13B,
+};
+
 #endif

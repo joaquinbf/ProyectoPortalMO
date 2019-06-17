@@ -13,22 +13,24 @@ void Laser::render(int cx,int cy,int resx,int resy,float scale){
 	int a = (this->posx-cx)*scale - (this->width/2)*scale + resx/2 ;
 	int b = -(this->posy-cy)*scale - (this->height/2)*scale + (2*resy)/3;
 	Area renderArea(a,b,this->width*scale,this->height*scale);
-	switch(this->direction){
-		case 0:
-			this->texturePtr->render(this->frameArea, renderArea);
+
+	ANGLE angle = (ANGLE) this->direction;
+	switch(angle){
+		case ANGLE::ANGLE_000:
+			this->texturePtr->renderInAngle(this->frameArea, renderArea, 0);
 			break;
-		case 1:
+		case ANGLE::ANGLE_045:
 			this->texturePtr->
-				renderInAngle(this->frameArea, renderArea,90);	
+				renderInAngle(this->frameArea, renderArea, 45);
 			break;
-		case 2:
+		case ANGLE::ANGLE_090:
 			this->texturePtr->
-				renderInAngle(this->frameArea, renderArea,180);
+				renderInAngle(this->frameArea, renderArea,90);
 			break;
-		case 3:
+		case ANGLE::ANGLE_135:
 			this->texturePtr->
-				renderInAngle(this->frameArea, renderArea,270);
-			break;		
+				renderInAngle(this->frameArea, renderArea,135);
+			break;
 		default:
 			this->texturePtr->render(this->frameArea, renderArea);
 			break;

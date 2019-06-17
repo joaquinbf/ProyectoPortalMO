@@ -4,7 +4,7 @@
 #include "../body.h"
 
 class Laser: public Body {
-
+public:
 };
 
 #endif
