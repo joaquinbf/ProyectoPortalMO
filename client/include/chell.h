@@ -7,27 +7,13 @@
 #include "../include/soundManager.h"
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
-#include "../../common/include/entity.h"
+#include "../include/entity.h"
 #include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
-#define IDLE_TEXTURE "../resources/textures/chell/resting-idle.png"
-#define JIG_TEXTURE "../resources/textures/chell/jig.png"
-#define RUNNING_TEXTURE "../resources/textures/chell/running.png"
-#define STOPING_TEXTURE "../resources/textures/chell/stoping.png"
-#define TURN_TEXTURE "../resources/textures/chell/turn.png"
-#define JUMP_RISE_TEXTURE "../resources/textures/chell/jump-rise.png"
-#define JUMP_APEX_TEXTURE "../resources/textures/chell/jump-apex.png"
-#define JUMP_FALL_TEXTURE "../resources/textures/chell/jump-fall.png"
-#define JUMP_LAND_TEXTURE "../resources/textures/chell/jump-land.png"
-#define FIRE_TEXTURE "../resources/textures/chell/fire.png"
-#define FIRE_TO_IDLE_TEXTURE "../resources/textures/chell/fire-to-idle.png"
-
 class Chell : public Entity{
 private:
-	SdlTexture * texturePtr;
 	void(Chell::* actionPtr)();
-	const TextureManager & textureManager;
 	Area frameArea;
 	int frame;
 	int framey;

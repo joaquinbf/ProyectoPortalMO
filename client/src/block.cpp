@@ -1,11 +1,9 @@
 #include "../include/block.h"
 
-#include <iostream>
-
 Block::Block(const TextureManager& tm,const ENTITY e, int32_t x, int32_t y, 
 	uint32_t width, uint32_t height) 
-: Entity(x,y,width,height,0),frameArea(0, 0, 192, 192),entity(e){
-	this->texturePtr = (SdlTexture*) tm.getBlockTexturePointer(this->entity);
+: Entity(x,y,width,height,0,tm),frameArea(0, 0, 192, 192),entity(e){
+	this->texturePtr = this->textureManager.getBlockTexturePointer(this->entity);
 }
 
 Block::~Block(){}
@@ -42,8 +40,4 @@ void Block::render(int cx,int cy,int resx,int resy,float scale){
 			this->texturePtr->render(this->frameArea, renderArea);
 			break;
 	}
-}
-
-void Block::update(const Update& update){
-	//ESTA ENTIDAD NO SE DEBERIA ACTUALIZAR
 }

@@ -1,9 +1,10 @@
 #ifndef _TEXTURE_MANAGER_H_
 #define _TEXTURE_MANAGER_H_
 
-#include "../include/SdlTexture.h"
-#include "../../common/include/entity.h"
 #include "../../common/include/types.h"
+
+#include "../include/SdlTexture.h"
+#include "../include/entity.h"
 #include "../include/Area.h"
 
 #define BLACK_TEXTURE "../resources/textures/miscellaneous/black.jpg"

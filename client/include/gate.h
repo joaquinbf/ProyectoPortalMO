@@ -4,14 +4,12 @@
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../include/textureManager.h"
-#include "../../common/include/entity.h"
+#include "../include/entity.h"
 #include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
 class Gate : public Entity{
 private:
-	SdlTexture* texturePtr;
-	const TextureManager& textureManager;
 	Area frameArea;
 	uint32_t frame;
 	STATUS status;

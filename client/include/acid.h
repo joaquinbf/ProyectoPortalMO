@@ -4,13 +4,12 @@
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../include/textureManager.h"
-#include "../../common/include/entity.h"
+#include "../include/entity.h"
 #include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
 class Acid : public Entity{
 private:
-	SdlTexture * texturePtr;
 	Area frameArea;
 	uint32_t frame;
 public:
@@ -19,7 +18,6 @@ public:
 	~Acid();
 	void step() override;
 	void render(int cx,int cy,int resx,int resy,float scale) override;
-	void update(const Update& update) override;
 };
 
 #endif

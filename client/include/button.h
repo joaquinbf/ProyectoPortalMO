@@ -4,16 +4,14 @@
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../include/textureManager.h"
-#include "../../common/include/entity.h"
+#include "../include/entity.h"
 #include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
 class Button : public Entity{
 private:
-	SdlTexture* texturePtr;
 	Area frameArea;
 	STATUS status;
-	const TextureManager& textureManager;
 public:
 	explicit Button(const TextureManager& tm,const STATUS st,int32_t x, int32_t y,
 		uint32_t width, uint32_t height);

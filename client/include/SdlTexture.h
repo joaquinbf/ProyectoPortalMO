@@ -29,6 +29,7 @@ public:
     int renderFlipedDiagonal(const Area& src, const Area& dest) const;
     int renderInAngle(const Area& src, const Area& dest,double angle) const;
     SDL_Texture* loadTexture(const std::string &filename);
+    void setColorMod(uint32_t red,uint32_t green,uint32_t blue);
 private:
     SDL_Renderer* renderer;
     SDL_Texture* texture;

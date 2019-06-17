@@ -1,11 +1,10 @@
 #include "../include/bullet.h"
-#include <iostream>
+
 Bullet::Bullet(const TextureManager& tm,int32_t x, int32_t y,
 		uint32_t width, uint32_t height,uint32_t direction):
-Entity(x,y,width,height,direction),
-frameArea(0,0,103,59), frame(0)
-{
-	this->texturePtr = tm.getBulletTexturePointer();
+Entity(x,y,width,height,direction,tm),
+frameArea(0,0,103,59), frame(0){
+	this->texturePtr = this->textureManager.getBulletTexturePointer();
 }
 
 Bullet::~Bullet(){}

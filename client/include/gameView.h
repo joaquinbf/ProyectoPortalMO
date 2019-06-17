@@ -12,6 +12,7 @@
 
 #include "../include/SdlWindow.h"
 #include "../include/SdlTexture.h"
+#include "../include/entity.h"
 #include "../include/entityFactory.h"
 #include "../include/serverManager.h"
 #include "../include/soundManager.h"
@@ -21,7 +22,6 @@
 #include "../include/background.h"
 
 #include "../../common/include/port.h"
-#include "../../common/include/entity.h"
 #include "../../common/include/update.h"
 #include "../../common/include/types.h"
 

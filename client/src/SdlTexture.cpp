@@ -42,8 +42,11 @@ int SdlTexture::render(const Area& src, const Area& dest) const {
             dest.getX(), dest.getY(),
             dest.getWidth(), dest.getHeight()
     };
-
     return SDL_RenderCopy(this->renderer, this->texture, &sdlSrc, &sdlDest);
+}
+
+void SdlTexture::setColorMod(uint32_t red,uint32_t green,uint32_t blue){
+    SDL_SetTextureColorMod( this->texture, red, green, blue );
 }
 
 int SdlTexture::renderFlipedVertical(const Area& src, const Area& dest) const {

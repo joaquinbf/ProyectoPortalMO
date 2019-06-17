@@ -4,13 +4,12 @@
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../include/textureManager.h"
-#include "../../common/include/entity.h"
+#include "../include/entity.h"
 #include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
 class Portal : public Entity{
 private:
-	SdlTexture * texturePtr;
 	Area frameArea;
 public:
 	explicit Portal(const TextureManager& tm,int32_t x, int32_t y,

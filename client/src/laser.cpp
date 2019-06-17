@@ -2,10 +2,9 @@
 
 Laser::Laser(const TextureManager& tm,int32_t x, int32_t y,
 		uint32_t width, uint32_t height,uint32_t direction):
-Entity(x,y,width,height,direction),
-frameArea(0,109,228,10)
-{
-	this->texturePtr = tm.getLaserTexturePointer();
+Entity(x,y,width,height,direction,tm),
+frameArea(0,109,228,10){
+	this->texturePtr = this->textureManager.getLaserTexturePointer();
 }
 
 Laser::~Laser(){}
@@ -34,8 +33,4 @@ void Laser::render(int cx,int cy,int resx,int resy,float scale){
 			this->texturePtr->render(this->frameArea, renderArea);
 			break;
 	}
-}
-
-void Laser::update(const Update& update){
-	//esta texture no se actualiza
 }

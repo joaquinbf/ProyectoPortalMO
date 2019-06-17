@@ -4,13 +4,12 @@
 #include "../include/SdlTexture.h"
 #include "../include/Area.h"
 #include "../include/textureManager.h"
-#include "../../common/include/entity.h"
+#include "../include/entity.h"
 #include "../../common/include/types.h"
 #include "../../common/include/update.h"
 
 class Block : public Entity{
 private:
-	SdlTexture* texturePtr;
 	Area frameArea;
 	ENTITY entity;
 public:
@@ -19,7 +18,6 @@ public:
 	~Block();
 	void setDirection(uint32_t dir);
 	void render(int cx,int cy,int resx,int resy,float scale) override;
-	void update(const Update& update) override;
 };
 
 #endif

@@ -2,8 +2,7 @@
 
 Chell::Chell(const TextureManager& tm, const SoundManager& sm,
 		int32_t posx,int32_t posy, uint32_t width,uint32_t height,uint32_t dir)
-: Entity(posx,posy,width,height,dir),
-textureManager(tm),
+: Entity(posx,posy,width,height,dir,tm),
 frameArea(0, 0, 104, 215), 
 soundManager(sm),
 status(CHELL_IDLE){
@@ -23,6 +22,10 @@ void Chell::renderCentered(int resx,int resy, float scale){
 	int a=(resx/2)-((this->width*scale)/2);
     int b=(2*resy/3)-(this->height*scale)/2;
     Area renderArea(a,b,this->width*scale,this->height*scale);
+    uint32_t red = 255;
+    uint32_t green = 155;
+    uint32_t blue = 155;
+    this->texturePtr->setColorMod(red,green,blue);
 	if( this-> direction == 1){
 		this->texturePtr->render(this->frameArea, renderArea);
 	} else if(this-> direction == 0){

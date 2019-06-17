@@ -2,9 +2,9 @@
 
 Rock::Rock(const TextureManager& tm,int32_t x, int32_t y,
 		uint32_t width, uint32_t height):
-Entity(x,y,width,height,0), frameArea(0,0,0,0)
+Entity(x,y,width,height,0,tm), frameArea(0,0,0,0)
 {
-	this->texturePtr = (SdlTexture *) tm.getRockTexturePointer();
+	this->texturePtr = this->textureManager.getRockTexturePointer();
 	int i = rand() % 8;
 	frameArea = Area(0,84*i,85,83); 
 }

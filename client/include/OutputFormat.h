@@ -5,10 +5,10 @@
 #include <string>
 #include <stdexcept>
 extern "C" {
-#include <libavformat/avformat.h>
-#include <libavcodec/avcodec.h>
-#include <libavutil/opt.h>
-#include <libswscale/swscale.h>
+    #include <libavformat/avformat.h>
+    #include <libavcodec/avcodec.h>
+    #include <libavutil/opt.h>
+    #include <libswscale/swscale.h>
 }
 
 #include "../include/FormatContext.h"

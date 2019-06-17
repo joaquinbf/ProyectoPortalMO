@@ -1,9 +1,9 @@
 #ifndef _ENTITY_FACTORY_H_
 #define _ENTITY_FACTORY_H_
 
-#include "../../common/include/entity.h"
 #include "../../common/include/update.h"
 
+#include "../include/entity.h"
 #include "../include/textureManager.h"
 #include "../include/soundManager.h"
 #include "../include/SdlWindow.h"
