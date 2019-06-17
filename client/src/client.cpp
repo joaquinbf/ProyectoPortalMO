@@ -37,7 +37,8 @@ int Client::login(){
 void Client::game(){
     uint32_t chellId = serverManager.receiveChellId();
     GameView gameView(800,600,this->soundManager);
-    InputManager inputManager(this->serverManager,gameView,this->videoRecorder);
+    InputManager inputManager(this->serverManager,gameView,this->videoRecorder,
+        gameView.getPausePtr());
     gameView.setChellId(chellId);
 
     this->running = true;

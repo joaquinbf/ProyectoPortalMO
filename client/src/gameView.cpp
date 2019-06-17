@@ -1,8 +1,9 @@
 #include "../include/gameView.h"
-#include <iostream>
+
 GameView::GameView(uint32_t x, uint32_t y, const SoundManager& sm) : 
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
-myChellId(0), scale(1), paused(false), background(window){
+myChellId(0), scale(1), paused(false), background(window),
+pauseView(this->textureManager){
 	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(this->cursor);
 }
@@ -11,9 +12,14 @@ GameView::~GameView(){
 	if(this->myChell != nullptr){
 		delete this->myChell;
 	}
-	for( auto it = this->entities.begin(); it != this->entities.end(); ++it ){
-		if(it->second != nullptr){
-			delete it->second;
+	for( auto it : this->entities){
+		if(it.second != nullptr){
+			delete it.second;
+		}
+	}
+	for( auto it : this->chells){
+		if(it.second != nullptr){
+			delete it.second;
 		}
 	}
 	SDL_FreeCursor(this->cursor);
@@ -51,8 +57,7 @@ void GameView::render(){
 	this->background.render(posx,posy,this->resx,this->resy,this->scale);
 
 	for( auto it : this->entities){
-		if(it.second != nullptr){
-			std::cout<<it.first<<"\n";
+		if(it.second != nullptr){			
 			if(this->danceMode){
 				it.second->setColorMod(rand()%255,rand()%255,rand()%255);
 			}
@@ -68,9 +73,7 @@ void GameView::render(){
 		this->myChell->renderCentered(this->resx,this->resy,this->scale);	
 	}
 	if(this->paused){
-		this->textureManager.getBlackTexturePointer()->setAlpha(160);     
-		this->textureManager.getBlackTexturePointer()->render(Area(0,0,600,600),
-			Area(0,0,this->resx,this->resy));
+		this->pauseView.render(this->resx,this->resy);	
 	}
     this->window.render();
 }
@@ -79,40 +82,40 @@ void GameView::updateHandler(Update update){
 	EntityFactory ef;
 	uint32_t id;
 	switch(update.getCommand()){
-		case COMMAND::CREATE_COMMAND:			
-			id = update.getIdObject();
-			if(id == this->myChellId){ 
-				this->myChell = (Chell *)ef.create(update,this->textureManager,this->soundManager);
-			} else if(update.getIdClass() == ENTITY::CHELL){
-				this->chells[id] = (Chell *) ef.create(update,this->textureManager,this->soundManager);
-				this->chells[id]->setColorMod(this->getRand(),this->getRand(),this->getRand());
-			} else {
-				this->entities[id] = ef.create(update,this->textureManager,this->soundManager);
-			}
-			break;
-		case COMMAND::UPDATE_COMMAND:
-			id = update.getIdObject();
-			if(id == this->myChellId){
-				this->myChell->update(update);
-			} else if (this->chells.find(id) != this->chells.end()){
-				this->chells[id]->update(update);
-			} else if( this->entities.find(id) != this->entities.end()){
-				this->entities[id]->update(update);
-			}
-			break;
-		case COMMAND::DESTROY_COMMAND:
-			id = update.getIdObject();
-			if(id == this->myChellId){
-				delete this->myChell;
-				this->myChell = nullptr;				
-			} else if (this->chells.find(id) != this->chells.end()){
-				this->chells.erase(id);
-			} else if( this->entities.find(id) != this->entities.end()){
-				this->entities.erase(id);
-			}
-			break;
-		default:
-			break;
+	case COMMAND::CREATE_COMMAND:			
+		id = update.getIdObject();
+		if(id == this->myChellId){ 
+			this->myChell = (Chell *)ef.create(update,this->textureManager,this->soundManager);
+		} else if(update.getIdClass() == ENTITY::CHELL){
+			this->chells[id] = (Chell *) ef.create(update,this->textureManager,this->soundManager);
+			this->chells[id]->setColorMod(this->getRand(),this->getRand(),this->getRand());
+		} else {
+			this->entities[id] = ef.create(update,this->textureManager,this->soundManager);
+		}
+		break;
+	case COMMAND::UPDATE_COMMAND:
+		id = update.getIdObject();
+		if(id == this->myChellId){
+			this->myChell->update(update);
+		} else if (this->chells.find(id) != this->chells.end()){
+			this->chells[id]->update(update);
+		} else if( this->entities.find(id) != this->entities.end()){
+			this->entities[id]->update(update);
+		}
+		break;
+	case COMMAND::DESTROY_COMMAND:
+		id = update.getIdObject();
+		if(id == this->myChellId){
+			delete this->myChell;
+			this->myChell = nullptr;				
+		} else if (this->chells.find(id) != this->chells.end()){
+			this->chells.erase(id);
+		} else if( this->entities.find(id) != this->entities.end()){
+			this->entities.erase(id);
+		}
+		break;
+	default:
+		break;
 	}
 }
 
@@ -196,4 +199,8 @@ uint8_t GameView::getRand() const{
 	}else{
 		return 255;
 	}
+}
+
+PauseView* GameView::getPausePtr(){
+	return &this->pauseView;
 }

@@ -6,6 +6,7 @@
 #include "../include/serverManager.h"
 #include "../include/gameView.h"
 #include "../include/videoRecorder.h"
+#include "../include/pauseView.h"
 
 #include "../../common/include/action.h"
 #include "../../common/include/thread.h"
@@ -15,13 +16,15 @@
 class InputManager : public Thread{
 private:
 	bool running;
-	const ServerManager& serverManager;
+	const ServerManager& serverManager;	
 	uint32_t chellId;
 	GameView& gameView;
 	VideoRecorder& videoRecorder;
+	PauseView* pauseView;
 	Keypad keypad;
 public:
-	explicit InputManager(const ServerManager& sm,GameView& g,VideoRecorder& vr);
+	explicit InputManager(const ServerManager& sm,GameView& g,VideoRecorder& vr,
+		PauseView* pause);
 	~InputManager();
 	virtual void run() override;
     void stop();

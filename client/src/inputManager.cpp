@@ -1,7 +1,9 @@
  #include "../include/inputManager.h"
 
-InputManager::InputManager(const ServerManager& sm,GameView& v,VideoRecorder& vr)
-: running(true),serverManager(sm),chellId(0),gameView(v),videoRecorder(vr){
+InputManager::InputManager(const ServerManager& sm,GameView& v,VideoRecorder& vr, 
+    PauseView* pause)
+: running(true),serverManager(sm),chellId(0),gameView(v),videoRecorder(vr),
+pauseView(pause){
 }
 
 InputManager::~InputManager(){}

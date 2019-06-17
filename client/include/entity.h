@@ -1,6 +1,6 @@
 #ifndef _ENTITY_H_
 #define _ENTITY_H_
-#include <iostream>
+
 #include "../../common/include/update.h"
 
 #include "../include/SdlTexture.h"
@@ -28,7 +28,6 @@ public:
 		float scale){}
 	virtual void update(const Update&){}
 	void setColorMod(uint8_t r,uint8_t g,uint8_t b){
-		std::cout<<"SET\n";
 		this->r = r;
 		this->g = g;
 		this->b = b;

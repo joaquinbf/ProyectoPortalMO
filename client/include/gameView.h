@@ -20,6 +20,7 @@
 #include "../include/block.h"
 #include "../include/textureManager.h"
 #include "../include/background.h"
+#include "../include/pauseView.h"
 
 #include "../../common/include/port.h"
 #include "../../common/include/update.h"
@@ -41,6 +42,7 @@ private:
 	bool danceMode = false;
 	Background background;
 	SDL_Cursor* cursor;
+	PauseView pauseView;
 public:
 	explicit GameView(uint32_t x, uint32_t y,const SoundManager& sm);
 	~GameView();
@@ -62,6 +64,7 @@ public:
     SDL_Renderer* getRenderer() const;
     uint32_t getResX() const;
     uint32_t getResY() const;
+    PauseView* getPausePtr();
 private:
 	uint8_t getRand() const;
 };
