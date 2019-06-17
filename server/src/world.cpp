@@ -11,6 +11,7 @@
 #include "../include/bodies/cake/cake.h"
 #include "../include/bodies/bullet/bullet.h"
 #include "../include/bodies/launcher/launcher.h"
+#include "../include/bodies/laser/laser.h"
 #include "../include/instructions/instruction.h"
 #include "../include/instructions/instruction_factory.h"
 #include "../include/boolean_suppliers/boolean_block_factory.h"
@@ -271,6 +272,11 @@ Cake *World::createCake(float x, float y) {
 Rock *World::createRock(float x, float y) {
     Rock *rock = new Rock(this, x, y);
     return rock;
+}
+
+Laser *World::createLaser(float x, float y, ANGLE angle) {
+    Laser *laser = new Laser(this, x, y, angle);
+    return laser;
 }
 
 std::list<Update> World::getNewPlayerUpdates() const {

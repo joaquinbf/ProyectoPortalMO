@@ -21,6 +21,7 @@ class Launcher;
 class Receiver;
 class Portal;
 class Cake;
+class Laser;
 
 class Body {
 protected:
@@ -123,6 +124,8 @@ public:
     virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);
 
     virtual void handleBeginContactWith(Gate *gate, b2Contact *contact);
+
+    virtual void handleBeginContactWith(Laser *laser, b2Contact *contact);
 
     virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact);
 

@@ -9,9 +9,12 @@
 #include <cstdint>
 
 class World;
+class Laser;
+class Chell;
 
 class Rock: public Body {
 private:
+    Chell *chell;
     const float WIDTH = 1.0;
     const float HEIGHT = 1.0;
 
@@ -23,17 +26,33 @@ public:
     /* Libera los recursos utilizados */
     ~Rock();
 
+    /* Devuelve un puntero a chell si esta siendo tomada, en caso contrario
+     * devuelve nullptr */
+    Chell *getChell() const;
+
+    /* Indica si fue tomado por alguna chell */
+    bool isGrabbed() const;
+
+    /* Es tomado por chell */
+    void beGrabbedBy(Chell *chell);
+
+    /* Se libera de chell si fue tomado */
+    void tryReleaseFromChell();
+
     /* Devuelve una update de la roca */
     virtual Update createUpdate(COMMAND command) const;
 
     /* Maneja el inicio de contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
-    /* Maneja el fin de contacto con otro cuerpo */
-    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
-
     /* Es tomado por chell si esta en grabbing mode */
     virtual void handleBeginContactWith(Chell *chell, b2Contact *contact) override;
+
+    /* Detruye a la roca */
+    virtual void handleBeginContactWith(Laser *laser, b2Contact *contact) override;
+
+    /* Maneja el fin de contacto con otro cuerpo */
+    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 };
 
 #endif

@@ -7,11 +7,6 @@
 #include "../../server/include/boolean_suppliers/boolean_supplier.h"
 #include <cstdint>
 
-#define X_SERIAL_FACTOR 16.00
-#define Y_SERIAL_FACTOR -16.00
-#define Y_BUTTON -0.78
-#define Y_GATE -1.00
-
 class World;
 class Gate;
 class Receiver;

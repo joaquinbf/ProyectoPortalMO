@@ -43,6 +43,7 @@ class Acid;
 class Portal;
 class Cake;
 class Rock;
+class Laser;
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
@@ -206,6 +207,10 @@ public:
 
     /* Crea una roca en la posicion (x, y) */
     Rock *createRock(float x, float y);
+
+    /* Crea un laser (barrera de energia) en (x, y) con un cierto angulo.
+     * Pre: Los unicos angulos permitidos son ANGLE_000 y ANGLE_090 */
+    Laser *createLaser(float x, float y, ANGLE angle);
 
     /* Devuelve una lista con los elementos del mundo para los nuevos
      * jugadores. */

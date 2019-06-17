@@ -10,6 +10,7 @@
 #include "../../include/bodies/bullet/bullet.h"
 #include "../../include/bodies/receiver/receiver.h"
 #include "../../include/bodies/portal/portal.h"
+#include "../../include/bodies/laser/laser.h"
 #include "../../include/world.h"
 #include "../../include/bodies/cake/cake.h"
 
@@ -132,6 +133,9 @@ void Body::handleBeginContactWith(Gate *gate, b2Contact *contact) {
 }
 
 void Body::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
+}
+
+void Body::handleBeginContactWith(Laser *laser, b2Contact *contact) {
 }
 
 void Body::handleBeginContactWith(Portal *portal, b2Contact *contact) {

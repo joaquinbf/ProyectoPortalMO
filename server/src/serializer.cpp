@@ -13,6 +13,12 @@
 #include "../../common/include/update.h"
 #include "../../editor/editor_defines.h"
 
+#define X_SERIAL_FACTOR 16.00
+#define Y_SERIAL_FACTOR -16.00
+#define Y_BUTTON -0.78
+#define Y_GATE -1.00
+#define Y_LASER -2.00
+
 void Serializer::deserialize(World *world, std::string filepath) const {
     GateLogic gate_logic;
 
@@ -85,8 +91,12 @@ void Serializer::deserializeBody(
         case IDCLASS_ROCA:
             world->createRock(x, y);
             break;
-        // case IDCLASS_BARRERA_VERTICAL:
-        // case IDCLASS_BARRERA_HORIZONTAL:
+        case IDCLASS_BARRERA_VERTICAL:
+            world->createLaser(x, y + Y_LASER, ANGLE::ANGLE_090);
+            break;
+        case IDCLASS_BARRERA_HORIZONTAL:
+            world->createLaser(x, y + Y_LASER, ANGLE::ANGLE_000);
+            break;
         case IDCLASS_DIAGONAL_0:
             world->createDiagonalMetalBlock(x, y, ORIENTATION::ORIENTATION_0);
             break;

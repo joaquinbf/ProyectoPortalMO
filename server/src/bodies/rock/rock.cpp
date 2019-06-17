@@ -1,17 +1,18 @@
 #include "../../../include/bodies/rock/rock.h"
 
+#include <cstdint>
 #include "../../../include/world.h"
+#include "../../../include/bodies/laser/laser.h"
+#include "../../../include/bodies/button/button.h"
+#include "../../../include/bodies/chell/chell.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
-#include "../../../include/bodies/button/button.h"
-#include "../../../include/bodies/chell/chell.h"
-#include <cstdint>
-
 
 Rock::Rock(World *world, float x, float y):
-    Body(world, ENTITY::ROCK) {
+    Body(world, ENTITY::ROCK),
+    chell(nullptr) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
@@ -33,6 +34,28 @@ Rock::~Rock() {
     this->world->getB2World()->DestroyBody(this->b2body);
 }
 
+Chell *Rock::getChell() const {
+    return this->chell;
+}
+
+
+bool Rock::isGrabbed() const {
+    return this->chell != nullptr;
+}
+
+void Rock::beGrabbedBy(Chell *chell) {
+    if (!this->isGrabbed()) {
+        this->chell = chell;
+    }
+}
+
+void Rock::tryReleaseFromChell() {
+    if (this->isGrabbed()) {
+        this->chell->releaseRock();
+        this->chell = nullptr;
+    }
+}
+
 Update Rock::createUpdate(COMMAND command) const {
     Update update(
         command,
@@ -50,10 +73,14 @@ void Rock::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 
 }
 
-void Rock::handleEndContactWith(Body *other_body, b2Contact *contact) {
-    other_body->handleEndContactWith(this, contact);
-}
-
 void Rock::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     chell->handleBeginContactWith(this, contact);
+}
+
+void Rock::handleBeginContactWith(Laser *laser, b2Contact *contact) {
+    laser->handleBeginContactWith(this, contact);
+}
+
+void Rock::handleEndContactWith(Body *other_body, b2Contact *contact) {
+    other_body->handleEndContactWith(this, contact);
 }

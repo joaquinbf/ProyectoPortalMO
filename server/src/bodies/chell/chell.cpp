@@ -93,6 +93,7 @@ void Chell::grabRock(Rock *rock) {
         jointdef.Initialize(this->getB2Body(), rock->getB2Body(),
                             this->getPosition(), rock->getPosition());
         this->joint = this->world->getB2World()->CreateJoint(&jointdef);
+        rock->beGrabbedBy(this);
     }
 }
 
@@ -298,7 +299,7 @@ void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
 void Chell::handleBeginContactWith(Rock *rock, b2Contact *contact) {
-    if (this->isInGrabbingMode()) {
+    if (this->isInGrabbingMode() && !rock->isGrabbed()) {
         this->world->addInstruction(new GrabRockInstruction(this, rock));
         this->exitGrabbingMode();
     }
