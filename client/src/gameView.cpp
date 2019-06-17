@@ -3,7 +3,7 @@
 GameView::GameView(uint32_t x, uint32_t y, const SoundManager& sm) : 
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), background(window),
-pauseView(this->textureManager){
+pauseView(this->textureManager,window){
 	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(this->cursor);
 }
@@ -126,7 +126,7 @@ void GameView::zoomIn(){
 }
 
 void GameView::zoomOut(){
-	if(this->scale > 0.25){
+	if(this->scale > 0.05){
 		this->scale-=0.05;
 	}
 }

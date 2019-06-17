@@ -3,6 +3,7 @@
 
 #include "../../common/include/types.h"
 
+#include "../include/SdlWindow.h"
 #include "../include/SdlTexture.h"
 #include "../include/entity.h"
 #include "../include/Area.h"
@@ -46,6 +47,7 @@
 #define PORTAL2_TEXTURE "../resources/textures/miscellaneous/portal2.png"
 
 class TextureManager{
+	SdlWindow* window;
 	SdlTexture blackTexture;
 	SdlTexture chellIdleTexture;
 	SdlTexture chellJigTexture;
