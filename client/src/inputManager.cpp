@@ -53,7 +53,19 @@ void InputManager::pauseMode(const SDL_Event& event){
         		default:
         			break;
         	}
+        break;
         }
+        case SDL_MOUSEBUTTONDOWN:{
+            SDL_MouseButtonEvent& mouseEvent = (SDL_MouseButtonEvent&) event;
+            int x, y;
+            SDL_GetMouseState( &x, &y );
+            switch(mouseEvent.button){
+                case SDL_BUTTON_LEFT:
+                    this->pauseView->mouseButtonDown(x,y);
+                    break;
+                }
+            }
+        break;
     }
 }
 
