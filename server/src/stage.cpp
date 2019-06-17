@@ -11,6 +11,7 @@ Stage::Stage(
 	updates(updates) {
 	std::cout << mapName << std::endl;
 	Serializer serializer;
+	std::cout << "MAP_PATH + mapName: " << MAP_PATH + mapName << std::endl;
 	serializer.deserialize(&this->world, MAP_PATH + mapName);
 }
 

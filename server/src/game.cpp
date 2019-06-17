@@ -3,7 +3,7 @@
 uint32_t Game::number = 0;
 
 Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates),
-	broadcaster(&this->updates),disconnecter(this),gameInfo(this->number,mapName,0,0){	
+	broadcaster(&this->updates),disconnecter(this),gameInfo(this->number,mapName,0,0) {	
 	this->chellsIds = this->stage.getChellsIdList();
 	this->gameInfo.setCapacity(this->chellsIds.size());
 	this->stage.start();
@@ -12,7 +12,7 @@ Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->upd
 	++this->number;
 }
 
-Game::~Game(){	
+Game::~Game(){
 	for(auto player : this->players){
 		delete player.second;
 	}
@@ -28,8 +28,8 @@ void Game::addPlayer(Player* player){
 	for(Update u: ul){
 		player->pushBackUpdate(u);
 	}
-	this->broadcaster.addPlayer(player->getUpdatesPtr(),id);	
-	player->start();	
+	this->broadcaster.addPlayer(player->getUpdatesPtr(),id);
+	player->start();
 	this->players[id] = player;
 	this->gameInfo.addPlayer();
 }
