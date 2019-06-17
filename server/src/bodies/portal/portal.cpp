@@ -80,7 +80,7 @@ Update Portal::createUpdate(COMMAND command) const {
         STATUS::NONE_STATUS,
         this->getPosX() * ZOOM_FACTOR,
         this->getPosY() * ZOOM_FACTOR,
-        0);
+        RADTODEG(this->getAngle()));
     return update;
 }
 

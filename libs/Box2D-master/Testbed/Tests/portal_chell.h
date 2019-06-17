@@ -1,6 +1,10 @@
 #ifndef __PORTAL_CHELL_H__
 #define __PORTAL_CHELL_H__
 
+#ifndef __TESTBED__
+#define __TESTBED__
+#endif
+
 #include "../../../../server/include/world.h"
 #include "../../../../server/include/bodies/chell/chell.h"
 #include "../../../../server/include/bodies/block/block.h"

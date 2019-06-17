@@ -258,8 +258,6 @@ Keypad *Chell::getKeypad() {
 }
 
 void Chell::applyStateAction() {
-    std::cout << "chell v: " << this->getLinearVelocity().x << ", "
-              << this->getLinearVelocity().y << std::endl;
     this->state->applyStateAction();
 }
 

@@ -45,10 +45,6 @@ private:
 
     /* Asigna un portal opuesto */
     void setOppositePortals(Portal *portal, Portal *opposite);
-
-    /* Dibuja el rayo del portal en testbed */
-    void debugDrawRayCast(
-        b2Vec2 &pos, RayCastClosestBodyCallback &callback) const;
 };
 
 #endif
