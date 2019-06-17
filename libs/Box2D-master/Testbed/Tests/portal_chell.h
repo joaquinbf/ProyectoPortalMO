@@ -21,9 +21,9 @@ private:
     PortalChell():
         world(this->m_world) {
         this->m_world->SetGravity(b2Vec2(0.0, -9.8));
-        this->chell = this->world.createChell(20.3991, -21);
+        this->chell = this->world.createChell(2.69709, -23.1534);
         Serializer s;
-        s.deserialize(&this->world, "../../../maps/map_02.yaml");
+        s.deserialize(&this->world, "../../../maps/map_portal_test_00.yaml");
     }
 
     void Step(Settings *settings) {
@@ -78,7 +78,7 @@ private:
     }
 
     virtual void MouseDown(const b2Vec2& p) override {
-        std::cout << "(" << p.x << ", " << p.y <<  ")" << std::endl;
+        std::cout << "p : (" << p.x << ", " << p.y <<  ")" << std::endl;
         PortalGun *portal_gun = this->chell->getPortalGun();
         if (p.x < 0) {
             portal_gun->firePortalOne(p.x, p.y);

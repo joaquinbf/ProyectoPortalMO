@@ -4,6 +4,8 @@
 #include "../../../include/ray_cast_closest_body_callback.h"
 #include "../../../include/world.h"
 #include <iostream>
+#include "../../../../libs/Box2D-master/Testbed/Framework/DebugDraw.h"
+
 
 PortalGun::PortalGun(Chell *chell):
     chell(chell),
@@ -47,10 +49,27 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
     World *world = chell->getWorld();
     Portal *portal = nullptr;
 
+    std::cout << "chell pos: " << chell->getPosX() << ", "
+              << chell->getPosY() << std::endl;
+
     world->getB2World()->RayCast(
         &callback,
         chell->getPosition(),
-        1000 * pos);
+        1000 * (pos - chell->getPosition()));
+
+    b2Vec2 point1 = chell->getPosition();
+    b2Vec2 point2 = pos;
+    if (callback.hasHit())
+    {
+        g_debugDraw.DrawPoint(callback.getPoint(), 5.0f, b2Color(0.4f, 0.9f, 0.4f));
+        g_debugDraw.DrawSegment(point1, callback.getPoint(), b2Color(0.8f, 0.8f, 0.8f));
+        b2Vec2 head = callback.getPoint() + 0.5f * callback.getNormal();
+        g_debugDraw.DrawSegment(callback.getPoint(), head, b2Color(0.9f, 0.9f, 0.4f));
+    }
+    else
+    {
+        g_debugDraw.DrawSegment(point1, point2, b2Color(0.8f, 0.8f, 0.8f));
+    }
 
     if (callback.hasHit() && callback.getBody()->canOpenPortalOnSurface()) {
         portal = world->createPortal(
