@@ -139,10 +139,6 @@ void GameView::setChellId(uint32_t id){
 	this->myChellId = id;
 }
 
-void GameView::show(){
-	this->window.show();	
-}
-
 void GameView::updateResolution(){
 	this->resx=this->window.getResX();
 	this->resy=this->window.getResY();
@@ -150,10 +146,20 @@ void GameView::updateResolution(){
 
 void GameView::fullscreen(){
 	this->window.fullscreen();
+	this->fullscreenBool = true;
 }
 
 void GameView::windowed(){
 	this->window.windowed();
+	this->fullscreenBool = false;
+}
+
+bool GameView::isFullscreen(){
+	return this->fullscreenBool;
+}
+
+void GameView::nextRes(){
+	
 }
 
 bool GameView::isPaused() const{

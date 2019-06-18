@@ -42,6 +42,7 @@ private:
 	float scale;
 	bool paused;
 	bool danceMode = false;
+	bool fullscreenBool = false;
 	Background background;
 	SDL_Cursor* cursor;
 	PauseView pauseView;
@@ -55,7 +56,6 @@ public:
 	void zoomOut();
 	uint32_t getChellId() const;
 	void setChellId(uint32_t id);
-	void show();
 	void updateResolution();
 	void fullscreen();
     void windowed();
@@ -67,6 +67,8 @@ public:
     uint32_t getResX() const;
     uint32_t getResY() const;
     PauseView* getPausePtr();
+    bool isFullscreen();
+    void nextRes();
 private:
 	uint8_t getRand() const;
 };

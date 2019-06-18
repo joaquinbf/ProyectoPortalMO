@@ -44,6 +44,15 @@ private:
 	PauseWidget pwFxVolume3;
 	PauseWidget pwFxVolume4;
 	PauseWidget pwBack2;
+	PauseWidget pwFull1;
+	PauseWidget pwFull2;
+	PauseWidget pwFull3;
+	PauseWidget pwFull4;
+	PauseWidget pwRes1;
+	PauseWidget pwRes2;
+	PauseWidget pwRes3;
+	PauseWidget pwRes4;
+	PauseWidget pwBack3;
 	PAUSE_STATUS status = INIT;
 	uint32_t resx = 0;
 	uint32_t resy = 0;

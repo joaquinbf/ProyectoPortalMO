@@ -46,7 +46,6 @@ void Client::game(){
 
     inputManager.start();
     this->updateReceiver.start();
-    gameView.show();
     this->soundManager.playMusic();
     
     //GAME LOOP
