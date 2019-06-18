@@ -299,7 +299,9 @@ void Chell::applyStateAction() {
     	// CHELL_FIRE              = 0x09,
     	// CHELL_FIRE_TO_IDLE		= 0x0A,
     	// CHELL_JIGING            = 0x0B,
-    	// CHELL_DIE               = 0x0C,
+    	case STATUS::CHELL_DIE:
+            status = "chell die";
+            break;
         default:
             status = "default";
             break;
@@ -320,10 +322,9 @@ void Chell::handleBeginContactWith(Block *block, b2Contact *contact) {
 }
 
 void Chell::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
-    this->changeStateToDead();
-    this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
-    this->world->removeFromChells(this);
-    this->world->addInstruction(new DestroyBodyInstruction(this));
+    this->state->handleBeginContactWith(bullet);
+    world->addUpdate(bullet->createUpdate(COMMAND::DESTROY_COMMAND));
+    world->addInstruction(new DestroyBodyInstruction(bullet));
 }
 
 void Chell::handleBeginContactWith(Button *button, b2Contact *contact) {

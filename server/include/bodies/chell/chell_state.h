@@ -5,6 +5,7 @@
 #include "../../../../common/include/types.h"
 
 class Chell;
+class Bullet;
 
 class ChellState {
 protected:
@@ -15,6 +16,9 @@ protected:
 public:
     /* Instancia un estado para chell */
     ChellState(Chell *chell, STATUS status);
+
+    /* Maneja el contacto con una bala */
+    virtual void handleBeginContactWith(Bullet *bullet);
 
     /* Devuelve el estado */
     STATUS getStatus() const;

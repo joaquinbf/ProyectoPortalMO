@@ -1,11 +1,23 @@
 #include "../../../include/bodies/chell/chell_state.h"
 
 #include "../../../include/bodies/chell/chell.h"
+#include "../../../include/bodies/bullet/bullet.h"
+#include "../../../include/instructions/desactivate_body_instruction.h"
+
 
 ChellState::ChellState(Chell *chell, STATUS status):
     chell(chell),
     status(status) {
 }
+
+void ChellState::handleBeginContactWith(Bullet *bullet) {
+    this->chell->putToSleep();
+    this->chell->changeStateToDead();
+    World *world = this->chell->getWorld();
+    world->addUpdate(this->chell->createUpdate(COMMAND::UPDATE_COMMAND));
+    world->addInstruction(new DesactivateBodyInstruction(this->chell));
+}
+
 
 STATUS ChellState::getStatus() const {
     return this->status;

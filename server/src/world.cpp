@@ -88,8 +88,6 @@ void World::addUpdate(Update update) {
 }
 
 void World::destroyBody(Body *body) {
-    Update update = body->createUpdate(COMMAND::DESTROY_COMMAND);
-    this->internal_updates.push_back(update);
     this->bodies.erase(body);
     delete body;
 }
@@ -118,8 +116,8 @@ void World::addExternalInput(ProtectedQueue<Action> *input) {
 
 void World::bigStep() {
     this->step();
-    this->applyStateActions();
     this->applyInternalInstructions();
+    this->applyStateActions();
     this->createUpdates();
 }
 
@@ -146,8 +144,7 @@ void World::fillUpdates(ProtectedQueue<Update> *ext_updates) {
         Update update = internal_updates.front();
         internal_updates.pop_front();
         ext_updates->push(update);
-        if (update.getIdClass() == ENTITY::PORTAL1
-            || update.getIdClass() == ENTITY::PORTAL2) {
+        if (update.getIdClass() == ENTITY::CHELL) {
                 std::cout << "UPDATE: STATUS " << update.getStatus()
                           << " --- ENTITY: " << update.getIdClass()
                           << " --- (" << update.getPosX()
