@@ -12,6 +12,7 @@
 #include "../../include/instructions/pinInstruction.h"
 #include "../../include/instructions/press_grab_instruction.h"
 #include "../../include/instructions/stop_grab_instruction.h"
+#include "../../include/instructions/jiging_instruction.h"
 #include "../../include/bodies/chell/chell.h"
 #include "../../include/bodies/portal/portal.h"
 #include <map>
@@ -70,6 +71,9 @@ Instruction *InstructionFactory::createInstruction(
             break;
         case ACTION::NONE_ACTION:
             instruction = new DefaultInstruction();
+            break;
+        case ACTION::JIG:
+            instruction = new JigingInstruction(chell);
             break;
         default:
             instruction = new DefaultInstruction();

@@ -50,6 +50,7 @@ Chell::Chell(World *world, float x, float y):
     dead_state(this),
     fire_state(this),
     fire_to_idle_state(this),
+    jiging_state(this),
     state(&this->idle_state),
     portal_gun(this),
     is_in_grabbing_mode(false),
@@ -240,6 +241,11 @@ void Chell::changeStateToFire() {
 void Chell::changeStateToFireToIdle() {
     this->state = &this->fire_to_idle_state;
 }
+
+void Chell::changeStateToJiging() {
+    this->state = &this->jiging_state;
+}
+
 
 void Chell::land() {
     this->state->land();

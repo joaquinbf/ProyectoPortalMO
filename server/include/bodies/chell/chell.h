@@ -9,6 +9,7 @@
 #include "dead_state.h"
 #include "fire_state.h"
 #include "fire_to_idle_state.h"
+#include "jiging_state.h"
 #include "../../../../common/include/key.h"
 #include "../../../../common/include/keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -45,6 +46,7 @@ private:
     DeadState dead_state;
     FireState fire_state;
     FireToIdleState fire_to_idle_state;
+    JigingState jiging_state;
     ChellState *state;
     PortalGun portal_gun;
     bool is_in_grabbing_mode;
@@ -150,6 +152,9 @@ public:
 
     /* Cambia de estado a fire to idle */
     void changeStateToFireToIdle();
+
+    /* Cambia el estado a jiging (baila) */
+    void changeStateToJiging();
 
     /* Aterriza a chell */
     void land();
