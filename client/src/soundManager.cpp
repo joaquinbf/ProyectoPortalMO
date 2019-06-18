@@ -24,6 +24,9 @@ SoundManager::SoundManager(){
 	if(this->pinSound == nullptr) { 
 		throw SdlException("Error abriendo archivo", Mix_GetError());	
 	}
+	Mix_VolumeChunk(this->pinSound, 100);
+	Mix_VolumeMusic(100);
+	Mix_Volume(-1,100);
 }
 
 SoundManager::~SoundManager(){
@@ -45,8 +48,56 @@ void SoundManager::setMusicVolume(int volume){ //de 0 a 128
 	Mix_VolumeMusic(volume);
 }
 
+void SoundManager::turnMusicUp(){
+	int vol = Mix_VolumeMusic(-1);
+	if(vol < 100){
+		vol+=5;
+		if(vol > 100){
+			vol = 100;
+		}
+		Mix_VolumeMusic(vol);		
+	}
+}
+
+void SoundManager::turnMusicDown(){
+	int vol = Mix_VolumeMusic(-1);
+	if(vol > 0){
+		vol-=5;
+		if(vol < 0){
+			vol = 0;
+		}
+		Mix_VolumeMusic(vol);		
+	}
+}
+
 int SoundManager::getMusicVolume() const{
 	return Mix_VolumeMusic(-1);
+}
+
+void SoundManager::turnFxUp(){
+	int vol = Mix_Volume(-1,-1);
+	if(vol < 100){
+		vol+=5;
+		if(vol > 100){
+			vol = 100;
+		}
+		Mix_Volume(-1,vol);		
+	}
+}
+
+void SoundManager::turnFxDown(){
+	int vol = Mix_Volume(-1,-1);
+	if(vol > 0){
+		vol-=5;
+		if(vol < 0){
+			vol = 0;
+		}
+		Mix_Volume(-1,vol);		
+	}
+}
+
+int SoundManager::getFxVolume() const{
+	return Mix_Volume(-1,-1);
 }
 
 void SoundManager::resumeMusic() const{
@@ -62,17 +113,17 @@ bool SoundManager::isMusicPaused() const{
 }
 
 void SoundManager::playJumpSound() const{
-	Mix_PlayChannel(2, this->jumpSound, 0 );
+	Mix_PlayChannel(-1, this->jumpSound, 0 );
 }
 
 void SoundManager::playFireSound() const{
-	Mix_PlayChannel(2, this->fireSound, 0 );
+	Mix_PlayChannel(-1, this->fireSound, 0 );
 }
 
 void SoundManager::playDeathSound() const{
-	Mix_PlayChannel(2, this->deathSound, 0 );
+	Mix_PlayChannel(-1, this->deathSound, 0 );
 }
 
 void SoundManager::playPinSound() const{
-	Mix_PlayChannel(2, this->pinSound, 0 );
+	Mix_PlayChannel(-1, this->pinSound, 0 );
 }

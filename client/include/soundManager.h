@@ -32,6 +32,11 @@ public:
 	void playFireSound() const;
 	void playDeathSound() const;
 	void playPinSound() const;
+	void turnMusicDown();
+	void turnMusicUp();
+	int getFxVolume() const;
+	void turnFxDown();
+	void turnFxUp();
 };
 
 #endif
