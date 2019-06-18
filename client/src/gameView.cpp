@@ -51,6 +51,8 @@ void GameView::render(){
 	}
 	if(this->danceMode){
 		this->background.setColorMod(rand()%255,rand()%255,rand()%255);	
+	}else{
+		this->background.resetColorMod();	
 	}
 	this->background.render(this->posx,this->posy,this->resx,this->resy,this->scale);
 
@@ -58,6 +60,8 @@ void GameView::render(){
 		if(it.second != nullptr){			
 			if(this->danceMode){
 				it.second->setColorMod(rand()%255,rand()%255,rand()%255);
+			}else{
+				it.second->resetColorMod();
 			}
 			it.second->render(this->posx,this->posy,this->resx,this->resy,this->scale);	
 		}		

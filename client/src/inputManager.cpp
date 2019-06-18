@@ -77,6 +77,7 @@ void InputManager::gameMode(const SDL_Event& event){
     switch(event.type) {
         case SDL_KEYDOWN: {
                 switch (keyEvent.keysym.sym) {
+                    
                     case SDLK_a:
 						this->sendPressAction(
 							this->keypad.getKey(KEY::LEFT_KEY),
@@ -98,8 +99,12 @@ void InputManager::gameMode(const SDL_Event& event){
                             ACTION::GRAB);
                         break;
                     case SDLK_b:
-                    	this->serverManager.sendAction(Action(this->chellId,ACTION::JIG,0,0));
+                    	this->serverManager.sendAction(Action(
+                            this->chellId,ACTION::JIG,0,0));
                     	break;
+                    
+
+                    //locales
                     case SDLK_ESCAPE:
                         this->gameView.pause();
                         break;
