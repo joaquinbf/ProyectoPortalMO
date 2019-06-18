@@ -247,7 +247,6 @@ void Chell::changeStateToFireToIdle() {
 }
 
 void Chell::changeStateToJiging() {
-    this->jiging_state.resetStepCount();
     this->state = &this->jiging_state;
 }
 

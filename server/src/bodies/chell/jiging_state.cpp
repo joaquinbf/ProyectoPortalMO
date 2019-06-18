@@ -8,6 +8,7 @@ JigingState::JigingState(Chell *chell):
 void JigingState::applyStateAction() {
     this->step_count++;
     if (this->step_count > this->MAX_STEPS) {
+        this->resetStepCount();
         this->chell->changeStateToIdle();
     }
 }
