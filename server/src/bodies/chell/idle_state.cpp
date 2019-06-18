@@ -27,3 +27,13 @@ void IdleState::pressUp() {
     this->chell->applyLinearImpulseToUp();
     this->chell->changeStateToJumping();
 }
+
+void IdleState::applyStateAction() {
+    if (this->chell->getKeypad()->isBeingPressed(KEY::RIGHT_KEY)) {
+        this->chell->faceRight();
+        this->chell->changeStateToRunning();
+    } else if (this->chell->getKeypad()->isBeingPressed(KEY::LEFT_KEY)) {
+        this->chell->faceLeft();
+        this->chell->changeStateToRunning();
+    }
+}

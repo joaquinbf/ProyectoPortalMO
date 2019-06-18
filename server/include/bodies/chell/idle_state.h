@@ -13,6 +13,7 @@ public:
     virtual void pressRight() override;
     virtual void releaseRight() override;
     virtual void pressUp() override;
+    virtual void applyStateAction() override;
 };
 
 #endif

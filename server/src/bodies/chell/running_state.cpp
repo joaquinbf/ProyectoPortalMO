@@ -33,9 +33,11 @@ void RunningState::pressUp() {
 }
 
 void RunningState::applyStateAction() {
-    if (this->chell->isFacingRight()) {
-        this->chell->applyLinearImpulseToRight();
-    } else {
-        this->chell->applyLinearImpulseToLeft();
+    if (!this->chell->hasReachedMaxHorizontalSpeed()) {
+        if (this->chell->isFacingRight()) {
+            this->chell->applyLinearImpulseToRight();
+        } else {
+            this->chell->applyLinearImpulseToLeft();
+        }
     }
 }

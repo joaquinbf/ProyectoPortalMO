@@ -82,6 +82,11 @@ Chell::~Chell() {
     this->world->getB2World()->DestroyBody(this->b2body);
 }
 
+bool Chell::hasReachedMaxHorizontalSpeed() const {
+    return std::abs(this->getLinearVelocity().x) > 10;
+}
+
+
 bool Chell::isGrabbingARock() const {
     return this->joint != nullptr;
 }
@@ -258,6 +263,9 @@ Keypad *Chell::getKeypad() {
 
 void Chell::applyStateAction() {
     this->state->applyStateAction();
+
+    b2Vec2 v = this->getLinearVelocity();
+    std::cout << "v: " << v.x << ", " << v.y << std::endl;
 
     std::string status;
     switch (this->state->getStatus()) {

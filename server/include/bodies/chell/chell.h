@@ -19,6 +19,7 @@
 #define JUMPSPEED 5
 #define LEFTSPEED 1.2
 #define RIGHTSPEED 1.2
+#define MAX_HORIZONTAL_SPEED 4
 #define RAY_ZOOM 10000
 
 class World;
@@ -59,6 +60,9 @@ public:
 
     /* Libera los recursos utilizados */
     ~Chell();
+
+    /* Indica si alcanzo la maxima rapidez para correr. */
+    bool hasReachedMaxHorizontalSpeed() const;
 
     /* Indica si chell mantiene una roca */
     bool isGrabbingARock() const;
