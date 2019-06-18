@@ -50,6 +50,7 @@ public:
 	void fireAction();
 	void die();
 	void dieAction();
+	bool isDancing();
 };
 
 #endif

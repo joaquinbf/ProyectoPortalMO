@@ -18,6 +18,10 @@ void Chell::step(){
 	(this->*actionPtr)();
 }
 
+bool Chell::isDancing(){
+	return this->status == STATUS::CHELL_JIGING;
+}
+
 void Chell::renderCentered(int resx,int resy, float scale){
 	int a=(resx/2)-((this->width*scale)/2);
     int b=(2*resy/3)-(this->height*scale)/2;

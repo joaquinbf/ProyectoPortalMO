@@ -37,9 +37,9 @@ void GameView::step(){
 		}
 	}
 	if(this->myChell != nullptr){
+		this->danceMode = this->myChell->isDancing();
 		this->myChell->step();
-	}
-	this->danceMode = false;
+	}	
 }
 
 void GameView::render(){
