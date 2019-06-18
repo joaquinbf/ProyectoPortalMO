@@ -20,7 +20,16 @@ pwFxVolume1(window,"Volumen de Efectos",0.3,0.6),
 pwFxVolume2(window,"<",0.6,0.7),
 pwFxVolume3(window,"100",0.7,0.7),
 pwFxVolume4(window,">",0.8,0.7),
-pwBack2(window,"Volver",0.5,0.9)	
+pwBack2(window,"Volver",0.5,0.9),
+pwFull1(window,"Pantalla completa",0.3,0.3),
+pwFull2(window,"<",0.5,0.4),
+pwFull3(window,"no",0.6,0.4),
+pwFull4(window,">",0.7,0.4),
+pwRes1(window,"Resolucion",0.3,0.6),
+pwRes2(window,"<",0.45,0.7),
+pwRes3(window,"800x600",0.6,0.7),
+pwRes4(window,">",0.7,0.7),
+pwBack3(window,"Volver",0.5,0.9)
 {
 	this->blackTexture = this->textureManager.getBlackTexturePointer();
 	this->blackTexture->setAlpha(160);	
@@ -30,7 +39,7 @@ PauseView::~PauseView(){}
      		
 
 void PauseView::render(uint32_t resx,uint32_t resy){
-	double music,fx;
+	int music,fx;
 	this->resx = resx;
 	this->resy = resy;
 	this->blackTexture->render(this->blackArea,Area(0,0,resx,resy));	
@@ -48,14 +57,33 @@ void PauseView::render(uint32_t resx,uint32_t resy){
 			pwBack1.render(this->resx,this->resy);
 			break;
 		case SCREENOPT:
-
+			if(this->gameView.isFullscreen()){
+				pwFull3.changeString("si");
+				pwRes2.lock();
+				pwRes4.lock();
+			}else{
+				pwFull3.changeString("no");
+				pwRes2.unlock();
+				pwRes4.unlock();
+			}
+			pwRes3.changeString(std::to_string(resx)
+				+"x"+std::to_string(resy));
+			pwFull1.render(this->resx,this->resy);
+			pwFull2.render(this->resx,this->resy);
+			pwFull3.render(this->resx,this->resy);
+			pwFull4.render(this->resx,this->resy);
+			pwRes1.render(this->resx,this->resy);
+			pwRes2.render(this->resx,this->resy);
+			pwRes3.render(this->resx,this->resy);
+			pwRes4.render(this->resx,this->resy);
+			pwBack3.render(this->resx,this->resy);
 			break;
 		case SOUNDOPT:
 			music = this->soundManager.getMusicVolume();
-			pwMusicVolume3.changeString(std::to_string((int)music));
+			pwMusicVolume3.changeString(std::to_string(music));
 
 			fx = this->soundManager.getFxVolume();			
-			pwFxVolume3.changeString(std::to_string((int)fx));
+			pwFxVolume3.changeString(std::to_string(fx));
 
 			pwMusicVolume1.render(this->resx,this->resy);
 			pwMusicVolume2.render(this->resx,this->resy);
@@ -97,6 +125,29 @@ void PauseView::mouseButtonDown(uint32_t x,uint32_t y){
 			}
 			break;
 		case SCREENOPT:
+			if( this->pwBack3.cursorOn(x,y,this->resx,this->resy)){
+				this->status = OPTIONS;
+			} else if( this->pwFull2.cursorOn(x,y,this->resx,this->resy)){
+				if(this->gameView.isFullscreen()){
+					this->gameView.windowed();
+				} else {
+					this->gameView.fullscreen();
+				}
+			} else if( this->pwFull4.cursorOn(x,y,this->resx,this->resy)){
+				if(this->gameView.isFullscreen()){
+					this->gameView.windowed();
+				} else {
+					this->gameView.fullscreen();
+				}
+			} else if( this->pwRes2.cursorOn(x,y,this->resx,this->resy)){
+				if(!this->gameView.isFullscreen()){
+					this->gameView.nextRes();
+				} 
+			} else if( this->pwRes4.cursorOn(x,y,this->resx,this->resy)){
+				if(!this->gameView.isFullscreen()){
+					this->gameView.nextRes();
+				} 
+			}
 
 			break;
 		case SOUNDOPT:

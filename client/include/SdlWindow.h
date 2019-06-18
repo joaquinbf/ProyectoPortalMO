@@ -18,7 +18,6 @@ class SdlWindow {
 public:
     SdlWindow(int width, int height);
     ~SdlWindow();
-    void show();
     void fill();
     void fill(int r, int g, int b, int alpha);
     void render();

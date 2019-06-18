@@ -13,7 +13,6 @@ SdlWindow::SdlWindow(int width, int height) :
     if (errCode) {
         throw SdlException("Error al crear ventana", SDL_GetError());
     }   
-    SDL_HideWindow(this->window);
 }
 
 SdlWindow::~SdlWindow() {
@@ -28,9 +27,6 @@ SdlWindow::~SdlWindow() {
     }
 }
 
-void SdlWindow::show(){
-    SDL_ShowWindow(this->window);
-}
 
 void SdlWindow::fill(int r, int g, int b, int alpha) {
     SDL_SetRenderDrawColor(this->renderer,

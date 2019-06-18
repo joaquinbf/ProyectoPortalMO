@@ -78,7 +78,15 @@ void PauseWidget::select(){
 }
 
 void PauseWidget::deselect(){
-	this->changeColor(255,25,255);
+	this->changeColor(255,255,255);
+}
+
+void PauseWidget::lock(){
+	this->changeColor(128,128,128);
+}
+
+void PauseWidget::unlock(){
+	this->changeColor(255,255,255);
 }
 
 void PauseWidget::changeString(const std::string& s){

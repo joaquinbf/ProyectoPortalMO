@@ -111,13 +111,6 @@ void InputManager::gameMode(const SDL_Event& event){
                                 this->gameView.getResY());
                         }
                         break;
-
-                    case SDLK_n:
-                        this->gameView.fullscreen();
-                        break;
-                    case SDLK_m:
-                        this->gameView.windowed();
-                        break;
             } // Fin KEY_DOWN
             break;
         }

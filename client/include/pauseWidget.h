@@ -28,6 +28,8 @@ public:
 	void select();
 	void deselect();
 	void changeString(const std::string& s);
+	void lock();
+	void unlock();
 private:
 	void changeColor(uint8_t r,uint8_t g,uint8_t b);	
 };
