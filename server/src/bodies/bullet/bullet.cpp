@@ -123,4 +123,7 @@ void Bullet::applyStateAction() {
         this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
         this->world->destroyBody(this);
     }
+
+    b2Vec2 v = this->getLinearVelocity();
+    std::cout << "bullet vel: " << v.x << ", " << v.y << std::endl; 
 }

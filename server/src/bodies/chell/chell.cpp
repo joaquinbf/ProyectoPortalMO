@@ -56,6 +56,7 @@ Chell::Chell(World *world, float x, float y):
     bodyDef.angle = this->ANGLE;
     bodyDef.userData = (void *) this;
     bodyDef.fixedRotation = true;
+    bodyDef.bullet = true;
 
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 

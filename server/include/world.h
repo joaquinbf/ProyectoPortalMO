@@ -71,8 +71,8 @@ private:
     std::map<uint32_t, Pin *> pins;
     std::map<uint32_t, uint32_t> changedPins;
     const float TIME_STEP = 1/20.0;
-    const uint32_t VELOCITY_ITERATIONS = 8;
-    const uint32_t POSITION_ITERATIONS = 10;
+    const uint32_t VELOCITY_ITERATIONS = 50;
+    const uint32_t POSITION_ITERATIONS = 50;
     BooleanBlockFactory boolean_block_factory;
     ContactListener contact_listener;
     std::set<Body *> bodies_for_deletion;
