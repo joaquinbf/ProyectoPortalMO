@@ -57,6 +57,10 @@ World::~World() {
     }
 }
 
+void World::removeFromChells(Chell *chell) {
+    this->chells.erase(chell->getBodyId());
+}
+
 bool World::everybodyAteTheCake() const {
     if (this->cake == nullptr) {
         return false;

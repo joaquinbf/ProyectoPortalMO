@@ -22,6 +22,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../include/bodies/gate/gate.h"
 #include "../../../include/bodies/button/button.h"
+#include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/bodies/rock/rock.h"
 #include "../../../include/bodies/portal/portal.h"
 #include "../../../include/bodies/cake/cake.h"
@@ -33,6 +34,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2FrictionJoint.h"
 #include "../../../include/instructions/grab_rock_instruction.h"
 #include "../../../include/instructions/release_rock_instruction.h"
+#include "../../../include/instructions/destroy_body_instruction.h"
 
 
 Chell::Chell(World *world, float x, float y):
@@ -280,6 +282,13 @@ void Chell::handleBeginContactWith(Acid *acid, b2Contact *contact) {
 
 void Chell::handleBeginContactWith(Block *block, b2Contact *contact) {
     this->land();
+}
+
+void Chell::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
+    this->changeStateToDead();
+    this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
+    this->world->removeFromChells(this);
+    this->world->addInstruction(new DestroyBodyInstruction(this));
 }
 
 void Chell::handleBeginContactWith(Button *button, b2Contact *contact) {

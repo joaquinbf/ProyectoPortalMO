@@ -23,9 +23,19 @@ Instruction *InstructionFactory::createInstruction(
     std::map<uint32_t, Chell *> &chells,
     World* world) const {
     Instruction *instruction;
-    Chell *chell = chells[action.getId()];
+    ACTION act;
+    Chell *chell;
 
-    switch (action.getAction()) {
+    uint32_t chell_id = action.getId();
+    if (chells.count(chell_id) == 0) {
+        act = ACTION::NONE_ACTION;
+        chell = nullptr;
+    } else {
+        act = action.getAction();
+        chell = chells[chell_id];
+    }
+
+    switch (act) {
         case ACTION::RUN_LEFT:
             instruction = new RunLeftInstruction(chell);
             break;
@@ -57,6 +67,9 @@ Instruction *InstructionFactory::createInstruction(
             break;
         case ACTION::STOP_GRAB:
             instruction = new StopGrabInstruction(chell);
+            break;
+        case ACTION::NONE_ACTION:
+            instruction = new DefaultInstruction();
             break;
         default:
             instruction = new DefaultInstruction();

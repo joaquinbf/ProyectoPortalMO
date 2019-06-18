@@ -31,6 +31,7 @@ class Launcher;
 class Receiver;
 class Cake;
 class Rock;
+class Bullet;
 
 class Chell: public Body {
 private:
@@ -158,37 +159,51 @@ public:
     virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
     /* Muere por el contacto con el acido */
-    virtual void handleBeginContactWith(Acid *acid, b2Contact *contact) override;
+    virtual void handleBeginContactWith(
+        Acid *acid, b2Contact *contact) override;
 
     /* Aterriza sobre el bloque si esta saltando */
-    virtual void handleBeginContactWith(Block *block, b2Contact *contact) override;
+    virtual void handleBeginContactWith(
+        Block *block, b2Contact *contact) override;
 
-    /* Presionaa y aterriza sobre el boton si esta saltando */
-    virtual void handleBeginContactWith(Button *button, b2Contact *contact) override;
+    /* Muere tras chocar con una bala. */
+    virtual void handleBeginContactWith(
+        Bullet *bullet, b2Contact *contact) override;
+
+    /* Presiona y aterriza sobre el boton si esta saltando */
+    virtual void handleBeginContactWith(
+        Button *button, b2Contact *contact) override;
 
     /* Agrega chell al conjunto del pastel */
-    virtual void handleBeginContactWith(Cake *cake, b2Contact *contact) override;
+    virtual void handleBeginContactWith(
+        Cake *cake, b2Contact *contact) override;
 
     /* Aterriza sobre otra chell */
-    virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);
+    virtual void handleBeginContactWith(
+        Chell *chell, b2Contact *contact) override;
 
     /* Aterriza sobre un lanzador */
-    virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact);
+    virtual void handleBeginContactWith(
+        Launcher *launcher, b2Contact *contact) override;
 
     /* Teletransporta a chell */
-    virtual void handleBeginContactWith(Portal *portal, b2Contact *contact);
+    virtual void handleBeginContactWith(
+        Portal *portal, b2Contact *contact) override;
 
     /* Aterriza sobre un receptor */
-    virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact);
+    virtual void handleBeginContactWith(
+        Receiver *receiver, b2Contact *contact) override;
 
     /* Toma una roca si esta en grabbing mode. */
-    virtual void handleBeginContactWith(Rock *rock, b2Contact *contact) override;
+    virtual void handleBeginContactWith(
+        Rock *rock, b2Contact *contact) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 
     /* Suelta el boton */
-    virtual void handleEndContactWith(Button *button, b2Contact *contact) override;
+    virtual void handleEndContactWith(
+        Button *button, b2Contact *contact) override;
 };
 
 #endif

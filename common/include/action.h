@@ -4,6 +4,7 @@
 #include <cstdint>
 
 enum ACTION: uint8_t {
+    NONE_ACTION,
     QUIT,
     JUMP,
     STOP_JUMP,

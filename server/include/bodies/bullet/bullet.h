@@ -27,6 +27,7 @@ public:
      * direccion 'direction' */
     Bullet(World *world, float x, float y, DIRECTION direction);
 
+    /* Libera los recursos utilizados */
     ~Bullet();
 
    /* Crea una update con el comando indicado */
@@ -36,25 +37,30 @@ public:
    virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
 
    /* Muere al chocar con un bloque */
-   virtual void handleBeginContactWith(Block *block, b2Contact *contact) override;
+   virtual void handleBeginContactWith(
+       Block *block, b2Contact *contact) override;
 
    /* Muere al chocar con otra bala */
    virtual void handleBeginContactWith(
        Bullet *bullet, b2Contact *contact) override;
 
    /* Muere al chocar con un lanzador */
-   virtual void handleBeginContactWith(Launcher *launcher, b2Contact *contact) override;
+   virtual void handleBeginContactWith(
+       Launcher *launcher, b2Contact *contact) override;
 
    /* Transportaa bullet al otro portal si esta activo */
-    virtual void handleBeginContactWith(Portal *receiver, b2Contact *contact) override;
+    virtual void handleBeginContactWith(
+        Portal *receiver, b2Contact *contact) override;
 
    /* Muere y activa el receptor */
-   virtual void handleBeginContactWith(Receiver *receiver, b2Contact *contact) override;
+   virtual void handleBeginContactWith(
+       Receiver *receiver, b2Contact *contact) override;
 
    /* Maneja el fin de contacto con otro cuerpo */
    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 
-   /* Mantiene a la bala en su direccion */
+   /* Incrementa su contador de life steps.
+    * Si supera MAX_LIFE_STEPS es eliminada de world. */
    virtual void applyStateAction() override;
 };
 

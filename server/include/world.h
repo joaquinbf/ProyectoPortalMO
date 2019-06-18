@@ -107,6 +107,9 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Elimina a chell del conjunto de chells */
+    void removeFromChells(Chell *chell);
+
     /* Indica si todos los jugadores comieron del pastel */
     bool everybodyAteTheCake() const;
 
