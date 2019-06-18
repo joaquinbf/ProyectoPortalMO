@@ -361,9 +361,11 @@ void Chell::handleBeginContactWith(Rock *rock, b2Contact *contact) {
     contact->GetWorldManifold(&b2worldmanifold);
     b2Vec2 normal = b2worldmanifold.normal;
 
-    std::cout << "normal: " << normal.x << ", " << normal.y << std::endl;
+    if (contact->GetFixtureB()->GetBody()->GetUserData() == this) {
+        normal = -normal;
+    }
 
-    if (normal.y < 0) {
+    if (normal.y > 0) {
         this->changeStateToDead();
         this->world->addUpdate(this->createUpdate(COMMAND::UPDATE_COMMAND));
     } else if (this->isInGrabbingMode() && !rock->isGrabbed()) {
