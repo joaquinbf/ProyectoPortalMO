@@ -8,7 +8,7 @@ class Chell;
 
 class DeadState: public ChellState {
 private:
-    const unsigned int MAX_STEPS = 60;
+    const unsigned int MAX_STEPS = 72;
 
 public:
     DeadState(Chell *chell);
