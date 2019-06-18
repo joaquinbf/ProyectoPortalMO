@@ -20,7 +20,8 @@ Bullet::Bullet(
     World *world,
     float x, float y, DIRECTION direction):
     Body(world, ENTITY::BULLET),
-    direction(direction) {
+    direction(direction),
+    life_steps(0) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_dynamicBody;
     b2bodydef.position.Set(x, y);
@@ -112,4 +113,9 @@ void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Bullet::applyStateAction() {
+    this->life_steps++;
+    if (this->life_steps > this->MAX_LIFE_STEPS) {
+        this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
+        this->world->destroyBody(this);
+    }
 }

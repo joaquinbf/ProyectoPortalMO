@@ -15,6 +15,8 @@ class Portal;
 class Bullet: public Body {
 private:
     DIRECTION direction;
+    unsigned int life_steps;
+    const float MAX_LIFE_STEPS = 200;
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
     const float SPEED = 10;
