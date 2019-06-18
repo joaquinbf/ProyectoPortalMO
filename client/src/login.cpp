@@ -47,6 +47,7 @@ void Login::createTable(){
     this->tableWidget.verticalHeader()->hide();
     QStringList horzHeaders;
     horzHeaders<<"id"<<"Mapa"<<"Jugadores"<<"Unirse";
+    this->tableWidget.setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->tableWidget.setHorizontalHeaderLabels(horzHeaders);
     this->tableWidget.horizontalHeader()->setSectionResizeMode (QHeaderView::Fixed);
     this->tableWidget.setColumnWidth(0,40);
