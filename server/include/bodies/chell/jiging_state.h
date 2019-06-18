@@ -6,8 +6,12 @@
 class Chell;
 
 class JigingState: public ChellState {
+private:
+    const unsigned int MAX_STEPS = 72;
+    
 public:
     JigingState(Chell *chell);
+    virtual void applyStateAction();
 };
 
 

@@ -64,6 +64,10 @@ void ChellState::firePortalTwo(float x, float y) {
     this->chell->changeStateToFire();
 }
 
+void ChellState::jig() {
+    this->chell->changeStateToJiging();
+}
+
 void ChellState::applyStateAction() {
 }
 

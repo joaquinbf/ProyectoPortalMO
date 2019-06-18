@@ -113,6 +113,9 @@ public:
     /* Devuelve un update de Command de chell */
     virtual Update createUpdate(COMMAND command) const override;
 
+/* Presiona el boton de jig (bailar) */
+    void jig();
+
     /* Presiona el boton para tomar/soltar rocas de chell */
     void pressGrab();
 

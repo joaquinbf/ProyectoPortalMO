@@ -172,6 +172,10 @@ Update Chell::createUpdate(COMMAND command) const {
     return update;
 }
 
+void Chell::jig() {
+    this->state->jig();
+}
+
 void Chell::pressGrab() {
     if (this->isGrabbingARock()) {
         this->world->addInstruction(new ReleaseRockInstruction(this));
@@ -243,6 +247,7 @@ void Chell::changeStateToFireToIdle() {
 }
 
 void Chell::changeStateToJiging() {
+    this->jiging_state.resetStepCount();
     this->state = &this->jiging_state;
 }
 

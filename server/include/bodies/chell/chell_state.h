@@ -54,6 +54,9 @@ public:
     /* Dispara el segundo portal */
     virtual void firePortalTwo(float x, float y);
 
+    /* Baila */
+    virtual void jig();
+
     /* Aplica una accion sobre chell */
     virtual void applyStateAction();
 
