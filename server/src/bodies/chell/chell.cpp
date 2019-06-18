@@ -32,6 +32,8 @@
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2MouseJoint.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2RopeJoint.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2FrictionJoint.h"
+#include "../../libs/Box2D-master/Box2D/Collision/b2Collision.h"
+#include "../../libs/Box2D-master/Box2D/Dynamics/Contacts/b2Contact.h"
 #include "../../../include/instructions/grab_rock_instruction.h"
 #include "../../../include/instructions/release_rock_instruction.h"
 #include "../../../include/instructions/destroy_body_instruction.h"
@@ -355,7 +357,16 @@ void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
 void Chell::handleBeginContactWith(Rock *rock, b2Contact *contact) {
-    if (this->isInGrabbingMode() && !rock->isGrabbed()) {
+    b2WorldManifold b2worldmanifold;
+    contact->GetWorldManifold(&b2worldmanifold);
+    b2Vec2 normal = b2worldmanifold.normal;
+
+    std::cout << "normal: " << normal.x << ", " << normal.y << std::endl;
+
+    if (normal.y < 0) {
+        this->changeStateToDead();
+        this->world->addUpdate(this->createUpdate(COMMAND::UPDATE_COMMAND));
+    } else if (this->isInGrabbingMode() && !rock->isGrabbed()) {
         this->world->addInstruction(new GrabRockInstruction(this, rock));
         this->exitGrabbingMode();
     }

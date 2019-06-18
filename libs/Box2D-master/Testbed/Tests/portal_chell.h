@@ -27,7 +27,7 @@ private:
         this->m_world->SetGravity(b2Vec2(0.0, -9.8));
         this->chell = this->world.createChell(4.01067, -13.4432);
         Serializer s;
-        s.deserialize(&this->world, "../../../maps/test_chell_dies_from_bullet_01.yaml");
+        s.deserialize(&this->world, "../../../maps/test_rock_falls_on_chell_00.yaml");
     }
 
     void Step(Settings *settings) {

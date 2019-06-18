@@ -17,7 +17,7 @@ Rock::Rock(World *world, float x, float y):
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
     bodyDef.userData = (void *) this;
-    bodyDef.awake = false;
+    bodyDef.awake = true;
 
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
