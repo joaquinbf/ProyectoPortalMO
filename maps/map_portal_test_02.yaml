@@ -1,0 +1,914 @@
+celdas:
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 1
+    idObject: 320
+    x: 0
+    y: 320
+  - ocupado: true
+    idClass: 1
+    idObject: 321
+    x: 32
+    y: 320
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 384
+    x: 0
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 385
+    x: 32
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 386
+    x: 64
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 387
+    x: 96
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 388
+    x: 128
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 389
+    x: 160
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 390
+    x: 192
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 391
+    x: 224
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 392
+    x: 256
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 393
+    x: 288
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 394
+    x: 320
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 395
+    x: 352
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 396
+    x: 384
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 397
+    x: 416
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 398
+    x: 448
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 399
+    x: 480
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 400
+    x: 512
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 401
+    x: 544
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 402
+    x: 576
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 403
+    x: 608
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 404
+    x: 640
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 405
+    x: 672
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 406
+    x: 704
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 407
+    x: 736
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 408
+    x: 768
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 409
+    x: 800
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 410
+    x: 832
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 411
+    x: 864
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 412
+    x: 896
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 413
+    x: 928
+    y: 384
+  - ocupado: true
+    idClass: 3
+    idObject: 414
+    x: 960
+    y: 384
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - x: 192
+    ocupado: true
+    idClass: 3
+    idObject: 422
+    y: 416
+  - ocupado: true
+    idClass: 3
+    idObject: 423
+    x: 224
+    y: 416
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+escenario:
+  tamanioAlto: -1
+  tamanioAncho: -1
+  cantidadCeldas: 768
+  pathFondoEscenario: ""

@@ -56,11 +56,18 @@ Chell::Chell(World *world, float x, float y):
 
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
-    b2PolygonShape boxShape;
-    boxShape.SetAsBox(this->HALF_WIDTH, this->HALF_HEIGHT);
+    b2Vec2 vertices[6];
+    vertices[0].Set(-WIDTH/2, HEIGHT/2);
+    vertices[1].Set(WIDTH/2, HEIGHT/2);
+    vertices[2].Set(WIDTH/2, -(3.88/8.0)*HEIGHT);
+    vertices[3].Set(WIDTH/4, -HEIGHT/2);
+    vertices[4].Set(-WIDTH/4, -HEIGHT/2);
+    vertices[5].Set(-WIDTH/2, -(3.88/8.0)*HEIGHT);
+    b2PolygonShape b2polygonshape;
+    b2polygonshape.Set(vertices, 6);
 
     b2FixtureDef boxFixtureDef;
-    boxFixtureDef.shape = &boxShape;
+    boxFixtureDef.shape = &b2polygonshape;
     boxFixtureDef.density = this->DENSITY;
     boxFixtureDef.userData = (void *) this;
     boxFixtureDef.friction = this->FRICTION;
@@ -294,7 +301,7 @@ void Chell::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
 
 void Chell::handleBeginContactWith(Portal *portal, b2Contact *contact) {
     bool change_angle = false;
-    float d = std::max(HALF_WIDTH, HALF_HEIGHT);
+    float d = std::max(WIDTH/2, HEIGHT/2);
     portal->teleportToOppositePortal(this, change_angle, d);
 }
 

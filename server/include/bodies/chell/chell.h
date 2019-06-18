@@ -44,8 +44,8 @@ private:
     bool is_in_grabbing_mode;
     b2Joint *joint;
     Keypad keypad;
-    const float HALF_WIDTH = 0.50;
-    const float HALF_HEIGHT = 1.00;
+    const float WIDTH = 1.00;
+    const float HEIGHT = 2.00;
     const float DENSITY = 1;
     const float ANGLE = 0;
     const float FRICTION = 0.5;
