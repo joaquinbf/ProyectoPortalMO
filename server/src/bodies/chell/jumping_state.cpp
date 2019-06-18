@@ -26,5 +26,9 @@ void JumpingState::releaseRight() {
 }
 
 void JumpingState::land() {
-    this->chell->changeStateToIdle();
+    if (this->chell->getLinearVelocity().x != 0) {
+        this->chell->changeStateToRunning();
+    } else {
+        this->chell->changeStateToIdle();
+    }
 }

@@ -54,7 +54,6 @@ Chell::Chell(World *world, float x, float y):
     bodyDef.angle = this->ANGLE;
     bodyDef.userData = (void *) this;
     bodyDef.fixedRotation = true;
-    bodyDef.bullet = true;
 
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
@@ -197,13 +196,7 @@ void Chell::releaseUp() {
     this->state->releaseUp();
 }
 
-
 void Chell::changeStateToRunning() {
-    if (this->isFacingRight()) {
-        this->applyLinearImpulseToRight();
-    } else {
-        this->applyLinearImpulseToLeft();
-    }
     this->state = &this->running_state;
 }
 
@@ -213,7 +206,6 @@ void Chell::changeStateToIdle() {
 
 void Chell::changeStateToJumping() {
     this->state = &this->jumping_state;
-    this->applyLinearImpulseToUp();
 }
 
 void Chell::changeStateToDead() {
@@ -238,10 +230,8 @@ void Chell::applyLinearImpulseToRight() {
 
 void Chell::applyLinearImpulseToUp() {
     float mass = this->b2body->GetMass();
-    b2Vec2 v = this->b2body->GetLinearVelocity();
-    float impx = mass * v.x;
     float impy = mass * JUMPSPEED;
-    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(impx, impy), true);
+    this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, impy), true);
 }
 
 void Chell::stopLeftMovement() {
@@ -249,8 +239,7 @@ void Chell::stopLeftMovement() {
     if (v.x < 0) {
         float mass = this->b2body->GetMass();
         float impx = mass * v.x;
-        float impy = mass * v.y;
-        this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-impx, impy), true);
+        this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-impx, 0), true);
     }
 }
 
@@ -259,8 +248,7 @@ void Chell::stopRightMovement() {
     if (v.x > 0) {
         float mass = this->b2body->GetMass();
         float impx = mass * v.x;
-        float impy = mass * v.y;
-        this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-impx, impy), true);
+        this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-impx, 0), true);
     }
 }
 
@@ -270,6 +258,45 @@ Keypad *Chell::getKeypad() {
 
 void Chell::applyStateAction() {
     this->state->applyStateAction();
+
+    std::string status;
+    switch (this->state->getStatus()) {
+        case STATUS::NONE_STATUS:
+            status = "none status";
+            break;
+    	case STATUS::CHELL_IDLE:
+            status = "chell idle";
+            break;
+    	case STATUS::CHELL_RUNNING:
+            status = "chell running";
+            break;
+    	case STATUS::CHELL_TURNING:
+            status = "chell turning";
+            break;
+    	case STATUS::CHELL_STOPING:
+            status = "chell stoping";
+            break;
+    	case STATUS::CHELL_JUMPING:
+            status = "chell jumping";
+            break;
+    	case STATUS::CHELL_JUMPING_APEX:
+            status = "chell jumping apex";
+            break;
+    	case STATUS::CHELL_FALLING:
+            status = "chell falling";
+            break;
+        case STATUS::CHELL_LANDING:
+            status = "chell landing";
+            break;
+    	// CHELL_FIRE              = 0x09,
+    	// CHELL_FIRE_TO_IDLE		= 0x0A,
+    	// CHELL_JIGING            = 0x0B,
+    	// CHELL_DIE               = 0x0C,
+        default:
+            status = "default";
+            break;
+    }
+    std::cout << "CHELL STATUS: " <<  status << std::endl;
 }
 
 void Chell::handleBeginContactWith(Body *other_body, b2Contact *contact) {

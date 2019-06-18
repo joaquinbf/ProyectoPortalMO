@@ -28,6 +28,7 @@ void RunningState::releaseRight() {
 }
 
 void RunningState::pressUp() {
+    this->chell->applyLinearImpulseToUp();
     this->chell->changeStateToJumping();
 }
 
