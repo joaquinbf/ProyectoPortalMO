@@ -76,3 +76,22 @@ bool PauseWidget::cursorOn(uint32_t px,uint32_t py,uint32_t resx,uint32_t resy){
 void PauseWidget::select(){
 	this->changeColor(255,200,0);
 }
+
+void PauseWidget::deselect(){
+	this->changeColor(255,25,255);
+}
+
+void PauseWidget::changeString(const std::string& s){
+	this->str = s;
+	if(this->textSurface != nullptr){
+		SDL_FreeSurface(this->textSurface);
+		this->textSurface = nullptr;
+	}
+	if(this->texturePtr != nullptr){
+		SDL_DestroyTexture(this->texturePtr);
+		this->texturePtr = nullptr;
+	}
+	this->textSurface = TTF_RenderText_Solid( this->font, str.c_str(), this->textColor );
+	this->texturePtr = SDL_CreateTextureFromSurface( this->window.getRenderer(), 
+		this->textSurface );
+}

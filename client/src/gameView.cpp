@@ -1,9 +1,9 @@
 #include "../include/gameView.h"
-
-GameView::GameView(uint32_t x, uint32_t y, const SoundManager& sm) : 
+#include <iostream>
+GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm) : 
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), background(window),
-pauseView(this->textureManager,window,*this){
+pauseView(this->textureManager,window,*this,this->soundManager){
 	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(this->cursor);
 }
@@ -45,28 +45,26 @@ void GameView::step(){
 void GameView::render(){
 	this->updateResolution();
 	this->window.fill(); // Repinto el fondo gris
-	int32_t posx = 0;
-	int32_t posy = 0;
 	if(this->myChell != nullptr){
-		posx = this->myChell->getPosX();
-		posy = this->myChell->getPosY();
+		this->posx = this->myChell->getPosX();
+		this->posy = this->myChell->getPosY();
 	}
 	if(this->danceMode){
 		this->background.setColorMod(rand()%255,rand()%255,rand()%255);	
 	}
-	this->background.render(posx,posy,this->resx,this->resy,this->scale);
+	this->background.render(this->posx,this->posy,this->resx,this->resy,this->scale);
 
 	for( auto it : this->entities){
 		if(it.second != nullptr){			
 			if(this->danceMode){
 				it.second->setColorMod(rand()%255,rand()%255,rand()%255);
 			}
-			it.second->render(posx,posy,this->resx,this->resy,this->scale);	
+			it.second->render(this->posx,this->posy,this->resx,this->resy,this->scale);	
 		}		
 	}
 	for( auto it : this->chells){
 		if(it.second != nullptr){
-			it.second->render(posx,posy,this->resx,this->resy,this->scale);	
+			it.second->render(this->posx,this->posy,this->resx,this->resy,this->scale);	
 		}		
 	}
 	if(this->myChell != nullptr){
@@ -96,7 +94,9 @@ void GameView::updateHandler(Update update){
 	case COMMAND::UPDATE_COMMAND:
 		id = update.getIdObject();
 		if(id == this->myChellId){
-			this->myChell->update(update);
+			if(this->myChell != nullptr){
+				this->myChell->update(update);	
+			}			
 		} else if (this->chells.find(id) != this->chells.end()){
 			this->chells[id]->update(update);
 		} else if( this->entities.find(id) != this->entities.end()){
@@ -105,7 +105,7 @@ void GameView::updateHandler(Update update){
 		break;
 	case COMMAND::DESTROY_COMMAND:
 		id = update.getIdObject();
-		if(id == this->myChellId){
+		if(id == this->myChellId){			
 			delete this->myChell;
 			this->myChell = nullptr;				
 		} else if (this->chells.find(id) != this->chells.end()){

@@ -30,9 +30,11 @@ class GameView{
 private:
 	int resx;
 	int resy;	
+	int32_t posx = 0;
+	int32_t posy = 0;
 	SdlWindow window;
 	TextureManager textureManager;
-	const SoundManager& soundManager;
+	SoundManager& soundManager;
 	std::map<uint32_t,Entity *> entities;
 	std::map<uint32_t,Chell *> chells;
 	Chell* myChell;
@@ -44,7 +46,7 @@ private:
 	SDL_Cursor* cursor;
 	PauseView pauseView;
 public:
-	explicit GameView(uint32_t x, uint32_t y,const SoundManager& sm);
+	explicit GameView(uint32_t x, uint32_t y,SoundManager& sm);
 	~GameView();
 	void step();
 	void render();
