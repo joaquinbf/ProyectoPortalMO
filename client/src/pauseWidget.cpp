@@ -58,3 +58,21 @@ void PauseWidget::changeColor(uint8_t r,uint8_t g,uint8_t b){
 	this->texturePtr = SDL_CreateTextureFromSurface( this->window.getRenderer(), 
 		this->textSurface );
 }
+
+bool PauseWidget::cursorOn(uint32_t px,uint32_t py,uint32_t resx,uint32_t resy){
+	if(px < (resx-this->textSurface->w)*this->x){
+		return false;
+	} else if (px > (resx-this->textSurface->w)*this->x+this->textSurface->w){
+		return false;
+	} else if (py < (resy-this->textSurface->h)*this->y){
+		return false;
+	}  else if (py > (resy-this->textSurface->h)*this->y+this->textSurface->h){
+		return false;
+	} else{
+		return true;
+	}
+} 
+
+void PauseWidget::select(){
+	this->changeColor(255,200,0);
+}

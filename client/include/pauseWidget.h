@@ -24,6 +24,8 @@ public:
 	explicit PauseWidget(const SdlWindow& window,const std::string str,float x,float y);
 	~PauseWidget();
 	void render(uint32_t resx,uint32_t resy);
+	bool cursorOn(uint32_t x,uint32_t y,uint32_t resx,uint32_t resy);
+	void select();
 private:
 	void changeColor(uint8_t r,uint8_t g,uint8_t b);
 	

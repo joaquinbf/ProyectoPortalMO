@@ -10,7 +10,7 @@ InputManager::~InputManager(){}
 
 
 void InputManager::stop(){
-	this->running = false;
+    this->running = false;
 }
 
 bool InputManager::isRunning() const{
@@ -28,8 +28,7 @@ void InputManager::run(){
     		this->gameMode(event);
     	}
 	    if(event.type == SDL_QUIT){
-	    	this->serverManager.sendAction(Action(this->chellId,ACTION::QUIT,0,0));
-            this->running = false;
+	    	this->stop();
 	    }
     }
 }
@@ -40,7 +39,7 @@ void InputManager::pauseMode(const SDL_Event& event){
 			SDL_KeyboardEvent& keyEvent = (SDL_KeyboardEvent&) event;
         	switch (keyEvent.keysym.sym) {
 				case SDLK_ESCAPE:
-    				this->gameView.pause();
+    				this->pauseView->back();
         			break;
                 case SDLK_o:
                     if(this->videoRecorder.isRecording()){
@@ -62,6 +61,9 @@ void InputManager::pauseMode(const SDL_Event& event){
             switch(mouseEvent.button){
                 case SDL_BUTTON_LEFT:
                     this->pauseView->mouseButtonDown(x,y);
+                    if(this->pauseView->stoped()){
+                        this->stop();
+                    }
                     break;
                 }
             }
