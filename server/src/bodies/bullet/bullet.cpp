@@ -14,6 +14,7 @@
 #include "../../../include/bodies/portal/portal.h"
 #include <cstdint>
 #include <iostream>
+#include <algorithm>
 
 Bullet::Bullet(
     World *world,
@@ -101,7 +102,9 @@ void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {
-    portal->handleBeginContactWith(this, contact);
+    bool change_angle = true;
+    float d = std::max(WIDTH/2, HEIGHT/2);
+    portal->teleportToOppositePortal(this, change_angle, d);
 }
 
 void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {

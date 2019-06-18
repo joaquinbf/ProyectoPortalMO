@@ -43,10 +43,10 @@ Portal::~Portal() {
     this->world->getB2World()->DestroyBody(this->b2body);
 }
 
-void Portal::teleportBody(Body *body, bool change_angle) const {
+void Portal::teleportBody(Body *body, bool change_angle, float d) const {
     b2Vec2 v = body->getLinearVelocity();
     b2Vec2 new_v = v.Length() * this->normal;
-    b2Vec2 new_pos = this->getPosition() + 0.3*this->normal;
+    b2Vec2 new_pos = this->getPosition() + d*this->normal;
 
     float new_angle;
     if (change_angle) {
@@ -62,9 +62,9 @@ void Portal::teleportBody(Body *body, bool change_angle) const {
 }
 
 
-void Portal::teleportToOppositePortal(Body *body, bool change_angle) const {
+void Portal::teleportToOppositePortal(Body *body, bool change_angle, float d) const {
     if (this->opposite != nullptr) {
-        this->opposite->teleportBody(body, change_angle);
+        this->opposite->teleportBody(body, change_angle, d);
     }
 }
 
@@ -97,9 +97,9 @@ void Portal::handleEndContactWith(Body *body, b2Contact *contact) {
 }
 
 void Portal::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
-    this->teleportToOppositePortal(bullet, true);
+    bullet->handleBeginContactWith(this, contact);
 }
 
 void Portal::handleBeginContactWith(Chell *chell, b2Contact *contact) {
-    this->teleportToOppositePortal(chell, false);
+    chell->handleBeginContactWith(this, contact);
 }

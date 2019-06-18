@@ -1,5 +1,7 @@
 #include "../../../include/bodies/chell/chell.h"
 
+#include <iostream>
+#include <algorithm>
 #include "../../../include/world.h"
 #include "../../../include/ray_cast_closest_body_callback.h"
 #include "../../../include/bodies/body.h"
@@ -22,7 +24,6 @@
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/rock/rock.h"
 #include "../../../include/bodies/portal/portal.h"
-#include <iostream>
 #include "../../../include/bodies/cake/cake.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2DistanceJoint.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/Joints/b2PulleyJoint.h"
@@ -51,6 +52,7 @@ Chell::Chell(World *world, float x, float y):
     bodyDef.angle = this->ANGLE;
     bodyDef.userData = (void *) this;
     bodyDef.fixedRotation = true;
+    bodyDef.bullet = true;
 
     this->b2body = world->getB2World()->CreateBody(&bodyDef);
 
@@ -291,7 +293,9 @@ void Chell::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
 }
 
 void Chell::handleBeginContactWith(Portal *portal, b2Contact *contact) {
-    portal->handleBeginContactWith(this, contact);
+    bool change_angle = false;
+    float d = std::max(HALF_WIDTH, HALF_HEIGHT);
+    portal->teleportToOppositePortal(this, change_angle, d);
 }
 
 void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
