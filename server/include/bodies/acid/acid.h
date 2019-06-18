@@ -21,6 +21,7 @@ public:
      * posicion (x, y) */
     Acid(World *world,  float x, float y);
 
+    /* Libera los recursos utilizados */
     ~Acid();
 
     /* Crea una update con el comando indicado */

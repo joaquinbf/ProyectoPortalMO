@@ -11,11 +11,15 @@ class ChellState {
 protected:
     Chell *chell;
     STATUS status;
+    unsigned int step_count;
     Timer timer;
 
 public:
     /* Instancia un estado para chell */
     ChellState(Chell *chell, STATUS status);
+
+    /* Reinicia el contador de steps */
+    virtual void resetStepCount();
 
     /* Maneja el contacto con una bala */
     virtual void handleBeginContactWith(Bullet *bullet);
@@ -43,6 +47,12 @@ public:
 
     /* Aterriza a chell */
     virtual void land();
+
+    /* Dispara el primer portal */
+    virtual void firePortalOne(float x, float y);
+
+    /* Dispara el segundo portal */
+    virtual void firePortalTwo(float x, float y);
 
     /* Aplica una accion sobre chell */
     virtual void applyStateAction();

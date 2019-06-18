@@ -12,8 +12,8 @@ FirePortalInstruction::FirePortalInstruction(
 void FirePortalInstruction::execute() {
     std::cout << "p: " << x << ", " << y << std::endl;
     if (number == 1) {
-        chell->getPortalGun()->firePortalOne(x, y);
+        chell->firePortalOne(x, y);
     } else {
-        chell->getPortalGun()->firePortalTwo(x, y);
+        chell->firePortalTwo(x, y);
     }
 }

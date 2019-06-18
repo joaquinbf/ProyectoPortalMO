@@ -8,7 +8,6 @@ class Chell;
 
 class DeadState: public ChellState {
 private:
-    unsigned int step_count;
     const unsigned int MAX_STEPS = 60;
 
 public:

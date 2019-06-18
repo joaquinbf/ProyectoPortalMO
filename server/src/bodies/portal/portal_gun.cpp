@@ -27,12 +27,18 @@ Portal *PortalGun::getPortalTwo() const {
 }
 
 void PortalGun::firePortalOne(float x, float y) {
+    this->addPortalUpdateToWorld(
+        this->portal_one,
+        COMMAND::DESTROY_COMMAND);
     this->destroyPortal(this->portal_one);
     this->portal_one = this->firePortal(NPORTAL1, b2Vec2(x, y));
     this->setOppositePortals(this->portal_one, this->portal_two);
 }
 
 void PortalGun::firePortalTwo(float x, float y) {
+    this->addPortalUpdateToWorld(
+        this->portal_two,
+        COMMAND::DESTROY_COMMAND);
     this->destroyPortal(this->portal_two);
     this->portal_two = this->firePortal(NPORTAL2, b2Vec2(x, y));
     this->setOppositePortals(this->portal_two, this->portal_one);
@@ -73,5 +79,12 @@ void PortalGun::setOppositePortals(Portal *portal, Portal *opposite) {
     }
     if (opposite != nullptr) {
         opposite->setOppositePortal(portal);
+    }
+}
+
+void PortalGun::addPortalUpdateToWorld(Portal *portal, COMMAND command) {
+    if (portal != nullptr) {
+        Update update = portal->createUpdate(command);
+        this->chell->getWorld()->addUpdate(update);
     }
 }

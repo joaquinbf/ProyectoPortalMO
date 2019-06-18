@@ -4,6 +4,8 @@
 #include <cstdint>
 #include "../../../../libs/Box2D-master/Box2D/Common/b2Math.h"
 #include "../../../include/ray_cast_closest_body_callback.h"
+#include "../../common/include/types.h"
+
 
 
 class Portal;
@@ -45,6 +47,10 @@ private:
 
     /* Asigna un portal opuesto */
     void setOppositePortals(Portal *portal, Portal *opposite);
+
+    /* Intenta enviar un update de portal a world.
+     * Si portal es nulo no hace nada.*/
+    void addPortalUpdateToWorld(Portal *portal, COMMAND command);
 };
 
 #endif

@@ -8,8 +8,7 @@
 #include "../../../../common/include/update.h"
 
 DeadState::DeadState(Chell *chell):
-    ChellState(chell, STATUS::CHELL_DIE),
-    step_count(0) {
+    ChellState(chell, STATUS::CHELL_DIE) {
 }
 
 void DeadState::handleBeginContactWith(Bullet *bullet) {

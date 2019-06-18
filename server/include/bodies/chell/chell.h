@@ -7,6 +7,8 @@
 #include "running_state.h"
 #include "jumping_state.h"
 #include "dead_state.h"
+#include "fire_state.h"
+#include "fire_to_idle_state.h"
 #include "../../../../common/include/key.h"
 #include "../../../../common/include/keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -41,6 +43,8 @@ private:
     RunningState running_state;
     JumpingState jumping_state;
     DeadState dead_state;
+    FireState fire_state;
+    FireToIdleState fire_to_idle_state;
     ChellState *state;
     PortalGun portal_gun;
     bool is_in_grabbing_mode;
@@ -60,6 +64,12 @@ public:
 
     /* Libera los recursos utilizados */
     ~Chell();
+
+    /* Dispara el primer portal a (x, y) */
+    void firePortalOne(float x, float y);
+
+    /* Dispara el segundo portal a (x, y) */
+    void firePortalTwo(float x, float y);
 
     /* Indica si alcanzo la maxima rapidez para correr. */
     bool hasReachedMaxHorizontalSpeed() const;
@@ -134,6 +144,12 @@ public:
 
     /* Cambia el estado de chell a muerta */
     void changeStateToDead();
+
+    /* Cambia el estado de chell a disparando */
+    void changeStateToFire();
+
+    /* Cambia de estado a fire to idle */
+    void changeStateToFireToIdle();
 
     /* Aterriza a chell */
     void land();

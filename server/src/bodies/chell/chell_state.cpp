@@ -7,7 +7,12 @@
 
 ChellState::ChellState(Chell *chell, STATUS status):
     chell(chell),
-    status(status) {
+    status(status),
+    step_count(0) {
+}
+
+void ChellState::resetStepCount() {
+    this->step_count = 0;
 }
 
 void ChellState::handleBeginContactWith(Bullet *bullet) {
@@ -44,12 +49,20 @@ void ChellState::pressUp() {
 }
 
 void ChellState::releaseUp() {
-
 }
 
 void ChellState::land(){
 }
 
+void ChellState::firePortalOne(float x, float y) {
+    this->chell->getPortalGun()->firePortalOne(x, y);
+    this->chell->changeStateToFire();
+}
+
+void ChellState::firePortalTwo(float x, float y) {
+    this->chell->getPortalGun()->firePortalTwo(x, y);
+    this->chell->changeStateToFire();
+}
 
 void ChellState::applyStateAction() {
 }

@@ -10,6 +10,8 @@
 #include "../../../include/bodies/chell/idle_state.h"
 #include "../../../include/bodies/chell/running_state.h"
 #include "../../../include/bodies/chell/jumping_state.h"
+#include "../../../include/bodies/chell/fire_state.h"
+#include "../../../include/bodies/chell/fire_to_idle_state.h"
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/launcher/launcher.h"
 #include "../../../include/bodies/receiver/receiver.h"
@@ -46,6 +48,8 @@ Chell::Chell(World *world, float x, float y):
     running_state(this),
     jumping_state(this),
     dead_state(this),
+    fire_state(this),
+    fire_to_idle_state(this),
     state(&this->idle_state),
     portal_gun(this),
     is_in_grabbing_mode(false),
@@ -83,6 +87,14 @@ Chell::Chell(World *world, float x, float y):
 
 Chell::~Chell() {
     this->world->getB2World()->DestroyBody(this->b2body);
+}
+
+void Chell::firePortalOne(float x, float y) {
+    this->state->firePortalOne(x, y);
+}
+
+void Chell::firePortalTwo(float x, float y) {
+    this->state->firePortalTwo(x, y);
 }
 
 bool Chell::hasReachedMaxHorizontalSpeed() const {
@@ -220,6 +232,15 @@ void Chell::changeStateToDead() {
     this->state = &this->dead_state;
 }
 
+void Chell::changeStateToFire() {
+    this->fire_state.resetStepCount();
+    this->state = &this->fire_state;
+}
+
+void Chell::changeStateToFireToIdle() {
+    this->state = &this->fire_to_idle_state;
+}
+
 void Chell::land() {
     this->state->land();
 }
@@ -299,9 +320,15 @@ void Chell::applyStateAction() {
         case STATUS::CHELL_LANDING:
             status = "chell landing";
             break;
-    	// CHELL_FIRE              = 0x09,
-    	// CHELL_FIRE_TO_IDLE		= 0x0A,
-    	// CHELL_JIGING            = 0x0B,
+    	case STATUS::CHELL_FIRE:
+            status = "chell fire";
+            break;
+    	case STATUS::CHELL_FIRE_TO_IDLE:
+            status = "chell fire to idle";
+            break;
+    	case STATUS::CHELL_JIGING:
+            status = "chell jiging";
+            break;
     	case STATUS::CHELL_DIE:
             status = "chell die";
             break;
