@@ -107,7 +107,6 @@ std::list<uint32_t> World::getChellsIdList() const{
     return chell_id_list;
 }
 
-
 void World::addExternalInput(ProtectedQueue<Action> *input) {
     Action action;
     while (input->try_pop(action)) {
@@ -118,13 +117,13 @@ void World::addExternalInput(ProtectedQueue<Action> *input) {
 }
 
 void World::bigStep() {
-    this->applyInstructions();
-    this->applyStateActions();
     this->step();
+    this->applyStateActions();
+    this->applyInternalInstructions();
     this->createUpdates();
 }
 
-void World::applyInstructions() {
+void World::applyInternalInstructions() {
     while (!this->instructions.empty()) {
         Instruction *instruction = this->instructions.front();
         this->instructions.pop_front();

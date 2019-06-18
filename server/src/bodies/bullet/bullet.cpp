@@ -12,6 +12,7 @@
 #include "../../../include/bodies/launcher/launcher.h"
 #include "../../../include/bodies/receiver/receiver.h"
 #include "../../../include/bodies/portal/portal.h"
+#include "../../../include/bodies/chell/chell.h"
 #include <cstdint>
 #include <iostream>
 #include <algorithm>
@@ -91,6 +92,10 @@ void Bullet::handleBeginContactWith(Block *block, b2Contact *contact) {
 void Bullet::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->world->addInstruction(new DestroyBodyInstruction(this));
     this->world->addInstruction(new DestroyBodyInstruction(bullet));
+}
+
+void Bullet::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    chell->handleBeginContactWith(this, contact);
 }
 
 void Bullet::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {

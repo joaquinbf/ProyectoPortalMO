@@ -11,6 +11,7 @@ class Block;
 class Launcher;
 class Receiver;
 class Portal;
+class Chell;
 
 class Bullet: public Body {
 private:
@@ -43,6 +44,10 @@ public:
    /* Muere al chocar con otra bala */
    virtual void handleBeginContactWith(
        Bullet *bullet, b2Contact *contact) override;
+
+   /* Mata a chell. */
+   virtual void handleBeginContactWith(
+       Chell *chell, b2Contact *contact) override;
 
    /* Muere al chocar con un lanzador */
    virtual void handleBeginContactWith(

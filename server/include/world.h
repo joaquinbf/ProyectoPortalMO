@@ -72,7 +72,7 @@ private:
     std::map<uint32_t, uint32_t> changedPins;
     const float TIME_STEP = 1/20.0;
     const uint32_t VELOCITY_ITERATIONS = 8;
-    const uint32_t POSITION_ITERATIONS = 3;
+    const uint32_t POSITION_ITERATIONS = 10;
     BooleanBlockFactory boolean_block_factory;
     ContactListener contact_listener;
     std::set<Body *> bodies_for_deletion;
@@ -137,8 +137,8 @@ public:
     /* Aplica instrucciones, simula un step de world y genera updates. */
     void bigStep();
 
-    /* Aplica instrucciones sobre world */
-    void applyInstructions();
+    /* Aplica instrucciones internas sobre world */
+    void applyInternalInstructions();
 
     /* Crea updates */
     void createUpdates();
