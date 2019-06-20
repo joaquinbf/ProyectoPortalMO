@@ -10,6 +10,9 @@ Accepter::~Accepter(){
         delete game;
     }
     for(PlayerLogin* pl: this->logins){
+        if(pl->isJoinable()){
+            pl->join();
+        }
         delete pl;
     }
 }
@@ -21,8 +24,12 @@ void Accepter::run() {
             if(this->keep_running){
                 PlayerLogin* playerLogin = new PlayerLogin(&this->games,std::move(peer));
                 playerLogin->start();
-                playerLogin->detach();               
                 this->logins.push_back(playerLogin);    
+                for(PlayerLogin* pl: this->logins){
+                    if(pl->isJoinable()){
+                        pl->join();
+                    }
+                }               
             }            
         }
     } catch (const ConnectionErrorException &e) {

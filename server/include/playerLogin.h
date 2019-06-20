@@ -13,12 +13,13 @@
 
 class PlayerLogin : public Thread{
 private: 
+	bool joinable;
 	std::list<Game*>* games;
 	Socket peer;
 public:
 	explicit PlayerLogin(std::list<Game*>* games,Socket peer);
 	virtual void run() override;
-	
+	bool isJoinable();	
 };
 
 #endif

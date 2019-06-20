@@ -12,12 +12,12 @@ void VideoRecorder::startRecording(uint32_t width, uint32_t height){
 	if(!this->recording){
 		this->bufferWidth = width;
 		this->bufferHeight = height;
-		this->recording = true;
 		this->ctx = sws_getContext(this->bufferWidth, this->bufferHeight,
 	        AV_PIX_FMT_RGB24, this->bufferWidth, this->bufferHeight,
 	        AV_PIX_FMT_YUV420P, 0, 0, 0, 0);
 		this->dataBuffer.resize(this->bufferWidth*this->bufferHeight*3);
 		this->videoOutput = new OutputFormat(this->context, this->generateName(), width, height);
+		this->recording = true;
 	}
 }
 

@@ -1,7 +1,7 @@
 #include "../include/playerLogin.h"
 
 PlayerLogin::PlayerLogin(std::list<Game*>* games,Socket peer): 
-games(games),peer(std::move(peer)){}
+joinable(false),games(games),peer(std::move(peer)){}
 
 void PlayerLogin::run(){
 	Player* player = new Player(std::move(this->peer));
@@ -17,6 +17,7 @@ void PlayerLogin::run(){
 			if(game->getId() == gameId){
 				player->setDisconnecterPtr(game->getDisconnecterPtr());
 				game->addPlayer(player);
+				this->joinable = true;
 				return;
 			}
 		}
@@ -27,8 +28,14 @@ void PlayerLogin::run(){
 		player->setDisconnecterPtr(game->getDisconnecterPtr());
 		game->addPlayer(player);
 		this->games->push_back(game);
+		this->joinable = true;
 		return;
 	}else{
+		this->joinable = true;
 		return;
 	}
+}
+
+bool PlayerLogin::isJoinable(){
+	return this->joinable;
 }
