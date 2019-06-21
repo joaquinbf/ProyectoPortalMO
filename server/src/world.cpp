@@ -58,6 +58,10 @@ World::~World() {
     }
 }
 
+bool World::isFinished() const {
+    return this->everybodyAteTheCake();
+}
+
 std::map<uint32_t, Chell *> *World::getChells() {
     return &this->chells;
 }

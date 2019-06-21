@@ -107,6 +107,9 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Indica si se gano la partida */
+    bool isFinished() const;
+
     /* Devuelve un mapa con clave chell_id y valor puntero a chell. */
     std::map<uint32_t, Chell *> *getChells();
 
