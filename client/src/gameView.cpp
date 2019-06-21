@@ -1,5 +1,5 @@
 #include "../include/gameView.h"
-#include <iostream>
+
 GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm) : 
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), background(window),

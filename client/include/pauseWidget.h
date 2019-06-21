@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL_ttf.h>
 #include <string>
+#include <stdexcept>
 
 #include "../include/SdlWindow.h"
 #include "../include/SdlTexture.h"

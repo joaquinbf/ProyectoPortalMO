@@ -2,7 +2,7 @@
 #define _VIDEO_RECORDER_H_
 
 #include <SDL2/SDL.h>
-#include <exception>
+#include <stdexcept>
 #include <sstream>
 #include <iomanip>
 #include <ctime>

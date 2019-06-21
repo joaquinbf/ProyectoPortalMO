@@ -1,13 +1,14 @@
 #include "../include/pauseWidget.h"
-#include <iostream>
+
 PauseWidget::PauseWidget(const SdlWindow& window,const std::string str,float x,float y):
 window(window),str(str),x(x),y(y),selected(false){
-	if( TTF_Init() == -1 ) { 
-		printf( "SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError() ); 
+	if( TTF_Init() == -1 ) { 		
+		throw std::runtime_error("SDL_ttf could not initialize! SDL_ttf Error: "+
+			std::string(TTF_GetError())+"\n");
 	}
 	this->font = TTF_OpenFont(FONT_DIR, 42 );
 	if(this->font == NULL){
-		std::cout<<"NULL\n";
+		throw std::runtime_error("SDL_ttf could not open font\n");
 	}
 	this->textColor = { 255, 255, 255 };
 	this->textSurface = TTF_RenderText_Solid( this->font, str.c_str(), this->textColor );
