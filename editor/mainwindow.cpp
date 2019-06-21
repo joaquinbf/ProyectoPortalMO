@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow),
                                           escenario(new EscenarioGrafico())
 {
-    this->setMinimumSize(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
-    this->setMaximumSize(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
+    //this->setMinimumSize(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
+    //this->setMaximumSize(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
     this->ui->setupUi(this);
     this->ui->graphicsView->setScene(this->escenario);
 
@@ -29,7 +29,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     }
 
     //seteamos spinbox
-    QSize size = this->ui->graphicsView->size();
+    //QSize size = this->ui->graphicsView->size();
+    QSize size(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
     this->escenario->setSceneRect(0, 0, size.width(), size.height());
 
     this->ui->spinBoxX->setMinimum(INT_MIN);
@@ -47,8 +48,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionFondo_triggered()
 {
+    QSize size(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
     QString path = QFileDialog::getOpenFileName(this, "Abrir");
-    this->escenario->setFondoEscenario(path.toStdString(), this->ui->graphicsView->size());
+    this->escenario->setFondoEscenario(path.toStdString(), size);
 }
 
 void MainWindow::on_actionGuardar_Escenario_triggered()
@@ -85,7 +87,7 @@ void MainWindow::on_actionNuevo_Escenario_triggered()
     }
 
     //seteamos spinbox
-    QSize size = this->ui->graphicsView->size();
+    QSize size(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
     this->escenario->setSceneRect(0, 0, size.width(), size.height());
 
     this->ui->spinBoxX->setMinimum(INT_MIN);

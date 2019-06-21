@@ -38,6 +38,14 @@ EscenarioGrafico::~EscenarioGrafico()
 
 void EscenarioGrafico::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
+    if ((event->scenePos().x() < 0 ||
+         event->scenePos().x() > WINDOWS_SIZE_W) ||
+         (event->scenePos().y() < 0 ||
+         event->scenePos().y() > WINDOWS_SIZE_H-1))
+    {
+        return;
+    }
+
     if (event->buttons() & Qt::LeftButton)
     {
         QGraphicsScene::mouseMoveEvent(event);
@@ -98,7 +106,10 @@ void EscenarioGrafico::keyPressEvent(QKeyEvent *event)
 void EscenarioGrafico::crearItem(const QPointF posicion)
 {
     ItemGrafico *item;
-    if (this->idClassACrear == IDCLASS_NULL || this->getCelda(posicion).ocupada())
+    if (this->idClassACrear == IDCLASS_NULL ||
+        this->getCelda(posicion).ocupada() ||
+        (posicion.x() < 0 || posicion.x() > WINDOWS_SIZE_W) ||
+        (posicion.y() < 0 || posicion.y() > WINDOWS_SIZE_H))
     {
         return;
     }

@@ -1,8 +1,8 @@
 #ifndef EDITOR_DEFINES_H
 #define EDITOR_DEFINES_H
 
-#define WINDOWS_SIZE_W 1024
-#define WINDOWS_SIZE_H 768
+#define WINDOWS_SIZE_W 1920
+#define WINDOWS_SIZE_H 1056
 
 #define CELL_SIZE_W 32
 #define CELL_SIZE_H 32
