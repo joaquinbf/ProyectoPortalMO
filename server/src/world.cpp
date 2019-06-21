@@ -58,6 +58,10 @@ World::~World() {
     }
 }
 
+std::map<uint32_t, Chell *> *World::getChells() {
+    return &this->chells;
+}
+
 void World::removeFromChells(Chell *chell) {
     this->chells.erase(chell->getBodyId());
 }

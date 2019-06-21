@@ -107,6 +107,9 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Devuelve un mapa con clave chell_id y valor puntero a chell. */
+    std::map<uint32_t, Chell *> *getChells();
+
     /* Elimina a chell del conjunto de chells */
     void removeFromChells(Chell *chell);
 
