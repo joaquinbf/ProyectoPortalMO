@@ -76,8 +76,7 @@ void InputManager::gameMode(const SDL_Event& event){
     SDL_MouseButtonEvent& mouseEvent = (SDL_MouseButtonEvent&) event;
     switch(event.type) {
         case SDL_KEYDOWN: {
-                switch (keyEvent.keysym.sym) {
-                    
+                switch (keyEvent.keysym.sym) {                    
                     case SDLK_a:
 						this->sendPressAction(
 							this->keypad.getKey(KEY::LEFT_KEY),

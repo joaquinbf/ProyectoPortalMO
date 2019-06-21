@@ -47,6 +47,7 @@ void Client::game(){
     inputManager.start();
     this->updateReceiver.start();
     this->soundManager.playMusic();
+    this->videoRecorder.start();
     
     //GAME LOOP
     while (inputManager.isRunning()){
@@ -54,19 +55,18 @@ void Client::game(){
 			gameView.updateHandler(update);
 		}        
         gameView.render();            
-        usleep(50000);        
+        usleep(50000);
         if(this->videoRecorder.isRecording()){
             this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
             this->videoRecorder.recordFrame(gameView.getRenderer());
         }
         gameView.step();
     }
-    if(this->videoRecorder.isRecording()){
-        this->videoRecorder.stopRecording();    
-    }    
+    this->videoRecorder.stop();    
     this->serverManager.sendAction(Action(gameView.getChellId(),ACTION::QUIT,0,0));
     this->serverManager.stop();
     this->updateReceiver.stop();
     inputManager.join();
+    this->videoRecorder.join();
     this->updateReceiver.join();
 }
