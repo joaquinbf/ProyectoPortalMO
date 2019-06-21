@@ -39,7 +39,7 @@ public:
 private:
     /* Destruye un portal.
      * En caso de ser nullptr no hace nada. */
-    void destroyPortal(Portal *portal);
+    void destroyPortal(Portal *&portal);
 
     /* Dispara un portal 'portal_number' a (x, y).
      * De ser creado devuelve su puntero, en caso contrario devuelve nullptr */

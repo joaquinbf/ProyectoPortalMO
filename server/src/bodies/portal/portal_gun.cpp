@@ -44,9 +44,10 @@ void PortalGun::firePortalTwo(float x, float y) {
     this->setOppositePortals(this->portal_two, this->portal_one);
 }
 
-void PortalGun::destroyPortal(Portal *portal) {
+void PortalGun::destroyPortal(Portal *&portal) {
     if (portal != nullptr) {
         chell->getWorld()->destroyBody(portal);
+        portal = nullptr;
     }
 }
 

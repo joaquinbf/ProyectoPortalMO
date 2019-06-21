@@ -245,8 +245,11 @@ public:
 
     std::list<uint32_t> getChellsIdList() const;
 private:
+    /* Libera los recursos utiliados por chell */
+    void destroyChells();
+
     /* Libera los bodies creados */
-    void deleteAllBodies();
+    void destroyAllBodies();
 
     /* Libera a b2world si fue creado internamente */
     void deleteB2WorldIfInternal();

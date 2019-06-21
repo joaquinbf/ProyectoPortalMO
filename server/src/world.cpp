@@ -50,7 +50,8 @@ World::World(b2World *b2world):
 }
 
 World::~World() {
-    this->deleteAllBodies();
+    this->destroyChells();
+    this->destroyAllBodies();
     this->deleteB2WorldIfInternal();
     for(auto it : this->pins){
         delete it.second;
@@ -379,9 +380,19 @@ void World::deleteBodiesForDeletion() {
     this->bodies_for_deletion.clear();
 }
 
-void World::deleteAllBodies() {
+void World::destroyChells() {
+    Chell *chell;
+    for (auto pair: this->chells) {
+        chell = pair.second;
+        this->destroyBody(chell);
+    }
+    this->chells.clear();
+}
+
+
+void World::destroyAllBodies() {
     for (Body *body: this->bodies) {
-        delete body;
+        this->destroyBody(body);
     }
 }
 
