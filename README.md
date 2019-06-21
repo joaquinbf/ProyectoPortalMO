@@ -7,9 +7,9 @@
 | Rack Lucas     | 99425  |
 
 ## Informes
-[Manual de Usuario](https://www.overleaf.com/8662443479fxhrvfhpcpjb)
-[Documentacion Tecnica](https://www.overleaf.com/5422846237hqmsxttbympm)
-[Manual de Proyecto](https://www.overleaf.com/8295884323xsbzrjvqpbzw)
+[Manual de Usuario](https://www.overleaf.com/8662443479fxhrvfhpcpjb)    
+[Documentacion Tecnica](https://www.overleaf.com/5422846237hqmsxttbympm)    
+[Manual de Proyecto](https://www.overleaf.com/8295884323xsbzrjvqpbzw)   
 
 ## Instalacion de ffmpeg y bibliotecas adicionales en ubuntu
 ```
