@@ -32,7 +32,8 @@ enum COMMAND : uint8_t{
 	NONE_COMMAND			= 0x00,
 	CREATE_COMMAND			= 0x01,
 	UPDATE_COMMAND			= 0x02,
-	DESTROY_COMMAND			= 0x03
+	DESTROY_COMMAND			= 0x03,
+	WIN_COMMAND				= 0x04
 };
 
 enum STATUS: uint8_t {
@@ -54,7 +55,7 @@ enum STATUS: uint8_t {
 	GATE_OPENED             = 0x0F,
 	GATE_CLOSED				= 0x10,
 	GATE_OPENING			= 0x11,
-	GATE_CLOSING            = 0x12
+	GATE_CLOSING            = 0x12,
 };
 
 enum DIRECTION: uint8_t {

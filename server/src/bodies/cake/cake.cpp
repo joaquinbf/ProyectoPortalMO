@@ -58,4 +58,10 @@ void Cake::handleEndContactWith(Body *body, b2Contact *contact) {
 
 void Cake::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     this->insertChellInSet(chell);
+
+    if (this->world->everybodyAteTheCake()) {
+        Update update;
+        update.setCommand(COMMAND::WIN_COMMAND);
+        this->world->addUpdate(update);
+    }
 }

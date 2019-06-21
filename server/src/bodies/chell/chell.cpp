@@ -373,7 +373,7 @@ void Chell::handleBeginContactWith(Button *button, b2Contact *contact) {
 }
 
 void Chell::handleBeginContactWith(Cake *cake, b2Contact *contact) {
-    cake->insertChellInSet(this);
+    cake->handleBeginContactWith(this, contact);
 }
 
 void Chell::handleBeginContactWith(Chell *chell, b2Contact *contact) {
