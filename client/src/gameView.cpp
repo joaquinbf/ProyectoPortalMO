@@ -200,6 +200,12 @@ bool GameView::isPaused() const{
 
 void GameView::pause(){
 	this->paused = !this->paused;
+	if(this->paused){
+		this->soundManager.pauseMusic();
+	} else {
+		this->soundManager.resumeMusic();
+	}
+
 }
 
 int32_t GameView::pixelToCoordX(int32_t x) const{

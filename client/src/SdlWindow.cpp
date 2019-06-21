@@ -90,4 +90,5 @@ void SdlWindow::windowed(){
 
 void SdlWindow::changeRes(int w, int h){
     SDL_SetWindowSize(this->window,w,h);
+    SDL_SetWindowPosition(this->window,SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED);
 }
