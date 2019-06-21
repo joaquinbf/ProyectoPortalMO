@@ -5,6 +5,7 @@
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
 #include <SDL_mixer.h>
+#include <vector>
 
 #include "../include/SdlException.h"
 #include "Area.h"
@@ -26,6 +27,8 @@ public:
     int getResX() const;
     int getResY() const;
     SDL_Renderer* getRenderer() const;
+    void changeRes(int w, int h);
+    std::vector<std::pair<int,int>> getResolutions() const;
 private:
     int width;
     int height;

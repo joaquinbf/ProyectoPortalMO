@@ -6,6 +6,8 @@ myChellId(0), scale(1), paused(false), background(window),
 pauseView(this->textureManager,window,*this,this->soundManager){
 	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(this->cursor);
+	this->resolutions = this->window.getResolutions();
+	this->getResolutionsIndex();
 }
 
 GameView::~GameView(){
@@ -23,6 +25,17 @@ GameView::~GameView(){
 		}
 	}
 	SDL_FreeCursor(this->cursor);
+}
+
+void GameView::getResolutionsIndex(){
+	for(uint32_t i = 0; i < this->resolutions.size(); ++i){
+		if(this->resolutions[i].first == 800
+			&& this->resolutions[i].second == 600){
+			this->resolutionsIndex = i;
+			return;
+		}
+	}
+	this->resolutionsIndex = 0;
 }
 
 void GameView::step(){
@@ -162,8 +175,23 @@ bool GameView::isFullscreen(){
 	return this->fullscreenBool;
 }
 
+void GameView::prevRes(){
+	if(this->resolutionsIndex == 0){
+		this->resolutionsIndex = this->resolutions.size() - 1;
+	} else {
+		--this->resolutionsIndex;
+	}
+	this->window.changeRes(this->resolutions[this->resolutionsIndex].first,
+		this->resolutions[this->resolutionsIndex].second);
+}
+
 void GameView::nextRes(){
-	
+	++this->resolutionsIndex;
+	if(this->resolutionsIndex == this->resolutions.size()){
+		this->resolutionsIndex = 0;
+	}
+	this->window.changeRes(this->resolutions[this->resolutionsIndex].first,
+		this->resolutions[this->resolutionsIndex].second);
 }
 
 bool GameView::isPaused() const{

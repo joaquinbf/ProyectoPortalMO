@@ -20,7 +20,6 @@ SdlWindow::~SdlWindow() {
         SDL_DestroyRenderer(this->renderer);
         this->renderer = nullptr;
     }
-
     if (this->window) {
         SDL_DestroyWindow(this->window);
         this->window = nullptr;
@@ -45,7 +44,7 @@ void SdlWindow::render() {
 int SdlWindow::getResX() const{
     int resx;
     int resy;
-    SDL_GetWindowSize(this->window, &resx,&resy);
+    SDL_GetWindowSize(this->window, &resx, &resy);
     return resx;
 }
 
@@ -56,6 +55,25 @@ int SdlWindow::getResY() const{
     return resy;
 }
 
+std::vector<std::pair<int,int>> SdlWindow::getResolutions() const{
+    std::vector<std::pair<int,int>> resolutions;
+
+    int modes_count = SDL_GetNumDisplayModes(0);
+
+    for (int mode_index = 0; mode_index <= modes_count; mode_index++)
+    {
+        SDL_DisplayMode mode = { SDL_PIXELFORMAT_UNKNOWN, 0, 0, 0, 0 };
+
+        if (SDL_GetDisplayMode(0, mode_index, &mode) == 0){            
+            if(mode.refresh_rate == 60 && mode.w >= 800 && mode.h>=600){                
+                resolutions.push_back(std::pair <int,int>(mode.w,mode.h));    
+            }            
+        }
+    }    
+    return resolutions;
+}
+
+
 SDL_Renderer* SdlWindow::getRenderer() const {
     return this->renderer;
 }
@@ -64,6 +82,12 @@ void SdlWindow::fullscreen(){
     SDL_SetWindowFullscreen(this->window,SDL_WINDOW_FULLSCREEN_DESKTOP);
 }
 
+
 void SdlWindow::windowed(){
     SDL_SetWindowFullscreen(this->window,0);
+}
+
+
+void SdlWindow::changeRes(int w, int h){
+    SDL_SetWindowSize(this->window,w,h);
 }

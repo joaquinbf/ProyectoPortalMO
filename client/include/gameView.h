@@ -46,6 +46,8 @@ private:
 	Background background;
 	SDL_Cursor* cursor;
 	PauseView pauseView;
+	std::vector<std::pair<int,int>> resolutions;
+	uint32_t resolutionsIndex;
 public:
 	explicit GameView(uint32_t x, uint32_t y,SoundManager& sm);
 	~GameView();
@@ -69,8 +71,10 @@ public:
     PauseView* getPausePtr();
     bool isFullscreen();
     void nextRes();
+    void prevRes();
 private:
 	uint8_t getRand() const;
+	void getResolutionsIndex();
 };
 
 #endif
