@@ -37,7 +37,8 @@ void Stage::stop(){
 }
 
 bool Stage::isRunning(){
-	return this->running;
+	GameLoop *game_loop = this->world.getGameLoop();
+	return !game_loop->isFinished();
 }
 
 std::list<uint32_t> Stage::getChellsIdList() const{

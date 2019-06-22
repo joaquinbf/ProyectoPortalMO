@@ -53,7 +53,8 @@ private:
 	TextWidget* endMesage = nullptr;
 	TextWidget recordingDot;
 public:
-	explicit GameView(uint32_t x, uint32_t y,SoundManager& sm);
+	explicit GameView(uint32_t x, uint32_t y,SoundManager& sm,
+		const std::string backgroundFile);
 	~GameView();
 	void step();
 	void render(bool recording);

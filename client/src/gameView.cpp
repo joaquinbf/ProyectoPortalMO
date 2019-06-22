@@ -1,8 +1,10 @@
 #include "../include/gameView.h"
-#include <iostream>
-GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm) : finished(false),
+
+GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm,
+	const std::string backgroundFile) :
+ 	finished(false),
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
-myChellId(0), scale(1), paused(false), background(window,"1.jpg"),
+myChellId(0), scale(1), paused(false), background(window,backgroundFile),
 pauseView(this->textureManager,window,*this,this->soundManager),
 recordingDot(this->window,".",0.95,0,100,1){
 	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
@@ -131,7 +133,7 @@ void GameView::updateHandler(Update update){
 			this->entities.erase(id);
 		}
 		break;
-	case COMMAND::WIN_COMMAND:
+	case COMMAND::WIN_COMMAND:		
 		this->myChell->jig();
 		this->finished = true;
 		this->showWinMesage();
