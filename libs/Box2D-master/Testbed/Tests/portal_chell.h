@@ -25,11 +25,11 @@ private:
     PortalChell():
         world(this->m_world) {
         this->m_world->SetGravity(b2Vec2(0.0, -9.8));
-        this->chell = this->world.createChell(13.5, -14.907);
+        this->chell = this->world.createChell(18.6415, -31);
         Serializer s;
         s.deserialize(
             &this->world,
-            "../../../maps/test_portal_01.yaml",
+            "../../../maps/nivel_0.yaml",
             "../../../config/config.yaml" );
     }
 
