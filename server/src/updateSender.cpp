@@ -10,7 +10,7 @@ void UpdateSender::run(){
 	while(this->running){
 		update = this->updates->wait_and_pop();
 		if(this->running){
-			this->protocol.sendUpdate(update);	
+			this->protocol.sendUpdate(update);
 		}					
 	}
 }

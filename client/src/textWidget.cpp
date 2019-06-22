@@ -27,7 +27,7 @@ window(window),str(str),x(x),y(y),selected(false){
 	if(this->font == NULL){
 		throw std::runtime_error("SDL_ttf could not open font\n");
 	}
-	this->textColor = { 255, 255, 255 };
+	this->textColor = { 255, 200, 0 };
 	this->textSurface = TTF_RenderText_Solid( this->font, str.c_str(), this->textColor );
 	this->texturePtr = SDL_CreateTextureFromSurface( this->window.getRenderer(), 
 		this->textSurface );

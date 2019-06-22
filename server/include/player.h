@@ -15,8 +15,6 @@
 
 #define MAP_SAVE_ROUTE "../maps/"
 
-class Game;
-
 class Player {
 private:
     Protocol protocol;  
@@ -33,7 +31,7 @@ public:
     void setInputPtr(ProtectedQueue<Action>* ptr);
     ProtectedQueue<Update>* getUpdatesPtr();
     void pushBackUpdate(Update update);
-    void sendGamesList(std::map<uint32_t,Game*>* games);
+    void sendGamesList(const std::list<GameInfo>& games);
     void sendMapList();
     void sendByte(uint8_t byte) const;
     uint8_t receiveByte() const;

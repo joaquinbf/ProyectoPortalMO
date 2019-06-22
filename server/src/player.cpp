@@ -1,5 +1,4 @@
 #include "../include/player.h"
-#include "../include/game.h"
 
 static bool ends_with(std::string const & value, std::string const & ending){
     if (ending.size() > value.size()) return false;
@@ -51,10 +50,10 @@ void Player::pushBackUpdate(Update update){
     this->updates.push(update);
 }
 
-void Player::sendGamesList(std::map<uint32_t,Game*>* games){
-    this->protocol.sendQuad(games->size());
-    for(auto it : *games){
-        this->protocol.sendGameInfo(it.second->getGameInfo());
+void Player::sendGamesList(const std::list<GameInfo>& games){
+    this->protocol.sendQuad(games.size());
+    for(GameInfo gi: games){
+        this->protocol.sendGameInfo(gi);
     }
 }
 

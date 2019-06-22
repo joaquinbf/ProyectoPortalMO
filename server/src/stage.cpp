@@ -49,3 +49,13 @@ std::list<uint32_t> Stage::getChellsIdList() const{
 std::list<Update> Stage::getNewPlayerUpdates() const {
 	return this->world.getNewPlayerUpdates();
 }
+
+bool Stage::isChellAlive(uint32_t id) const{
+	//return this->world.isChellAlive();
+	return true;
+}
+
+uint32_t Stage::chellsAlive() const{
+	//return this->world.chellsAlive();	
+	return 0;
+}

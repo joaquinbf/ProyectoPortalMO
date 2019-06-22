@@ -50,6 +50,13 @@ const GameInfo& Game::getGameInfo(){
 }
 
 void Game::refreshInfo(){
+	uint32_t playersAlive = 0;
+	//uint32_t chellsAlive = this->stage.chellsAlive();
+	for(auto it : this->players){
+		if(this->stage.isChellAlive(it.first)){
+			++playersAlive;
+		}
+	} 
 
 }
 
@@ -73,9 +80,11 @@ void Game::deletePlayer(uint32_t id){
 	Player* player = this->players[id];
 	player->stop();
 	delete player;
-	this->players.erase(id);
+	this->players.erase(id);	
 	this->broadcaster.deletePlayer(id);
-	this->chellsIds.push_front(id);
+	if(this->stage.isChellAlive(id)){
+		this->chellsIds.push_front(id);	
+	}
 	this->gameInfo.deletePlayer();
 }
 

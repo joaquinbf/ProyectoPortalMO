@@ -2,10 +2,12 @@
 #define _PLAYER_LOGIN_H_
 
 #include <map>
+#include <list>
 #include <string>
 
 #include "../../common/include/thread.h"
 #include "../../common/include/socket.h"
+#include "../../common/include/gameInfo.h"
 
 #include "../include/game.h"
 #include "../include/player.h"

@@ -13,14 +13,14 @@
 #include "../include/world.h"
 #include "../include/serializer.h"
 
+#define MAP_PATH "../maps/"
+
 class Stage : public Thread {
 private:
 	bool running;
 	World world;
 	ProtectedQueue<Action>* inputs;
 	ProtectedQueue<Update>* updates;
-	const std::string MAP_PATH = "../maps/";
-
 public:
 	explicit Stage(const std::string& mapName,ProtectedQueue<Action>* inputs,
 		ProtectedQueue<Update>* updates);
@@ -31,6 +31,8 @@ public:
 	std::list<Update> getNewPlayerUpdates()const;
 	bool validateMap();
 	bool isRunning();
+	bool isChellAlive(uint32_t id) const;
+	uint32_t chellsAlive() const;
 };
 
 #endif

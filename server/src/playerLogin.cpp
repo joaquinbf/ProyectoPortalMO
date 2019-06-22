@@ -4,9 +4,12 @@ PlayerLogin::PlayerLogin(std::map<uint32_t,Game*>* games,Socket peer):
 joinable(false),games(games),peer(std::move(peer)){}
 
 void PlayerLogin::run(){
+	std::list<GameInfo> gameInfoList;
 	Player* player = new Player(std::move(this->peer));
-	
-	player->sendGamesList(this->games);
+	for(auto it : *games){
+		gameInfoList.push_back(it.second->getGameInfo());
+	}
+	player->sendGamesList(gameInfoList);
 	player->sendMapList();
 
 	uint8_t byte = player->receiveByte();
