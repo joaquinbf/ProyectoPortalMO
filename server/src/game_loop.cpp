@@ -41,15 +41,22 @@ void GameLoop::step() {
 }
 
 void GameLoop::fillUpdates(ProtectedQueue<Update> *ext_updates) {
-    while (!this->internal_updates->empty()) {
+    bool is_final_update = false;
+    
+    while (!this->internal_updates->empty() && !is_final_update) {
         Update update = this->internal_updates->front();
         this->internal_updates->pop_front();
         ext_updates->push(update);
+        if (update.getCommand() == COMMAND::WIN_COMMAND) {
+            is_final_update = true;
+        }
     }
 
-    std::list<Update> pins = this->world->getPinUpdateList();
-    for (Update &update: pins) {
-        ext_updates->push(update);
+    if (!is_final_update) {
+        std::list<Update> pins = this->world->getPinUpdateList();
+        for (Update &update: pins) {
+            ext_updates->push(update);
+        }
     }
 }
 

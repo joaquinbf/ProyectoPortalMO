@@ -46,7 +46,7 @@ Portal::~Portal() {
 void Portal::teleportBody(Body *body, bool change_angle, float d) const {
     b2Vec2 v = body->getLinearVelocity();
     b2Vec2 new_v = v.Length() * this->normal;
-    b2Vec2 new_pos = this->getPosition() + d*this->normal;
+    b2Vec2 new_pos = this->getPosition() + (d + HEIGHT)*this->normal;
 
     float new_angle;
     if (change_angle) {
@@ -57,7 +57,13 @@ void Portal::teleportBody(Body *body, bool change_angle, float d) const {
     }
 
     Instruction *inst = new TeleportBodyInstruction(
-        body, new_v, new_pos, new_angle);
+        body,
+        new_v,
+        new_pos,
+        new_angle);
+
+    std::cout << "old v: " << v.x << ", " << v.y << std::endl;
+    std::cout << "new v: " << new_v.x << ", " << new_v.y << std::endl;
     this->getWorld()->addInstruction(inst);
 }
 
@@ -74,9 +80,6 @@ void Portal::setOppositePortal(Portal *opposite) {
 }
 
 Update Portal::createUpdate(COMMAND command) const {
-
-    std::cout << "angle portal " << RADTODEG(this->getAngle())
-              << std::endl;
     Update update(
         command,
         this->entity,
