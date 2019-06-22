@@ -46,8 +46,14 @@ Portal::~Portal() {
 
 void Portal::teleportBody(Body *body, bool change_angle, float d, float alfa) const {
     b2Vec2 v = body->getLinearVelocity();
-    b2Vec2 new_v = MathExt::rotate(v.Length() * this->normal, alfa);
     b2Vec2 new_pos = this->getPosition() + (d + HEIGHT)*this->normal;
+    b2Vec2 new_v;
+
+    if (v.Length() == 0) {
+        new_v = b2Vec2(0, 0);
+    } else {
+        new_v = MathExt::rotate(v.Length() * this->normal, alfa);
+    }
 
     float new_angle;
     if (change_angle) {
