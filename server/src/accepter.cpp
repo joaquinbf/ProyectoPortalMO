@@ -10,8 +10,10 @@ Accepter::~Accepter(){
         delete it.second;
     }
     for(PlayerLogin* pl: this->logins){
-        pl->join();        
-        delete pl;
+        if(pl != nullptr){
+            pl->join();        
+            delete pl;    
+        }        
     }
 }
 
@@ -32,10 +34,12 @@ void Accepter::run() {
                 playerLogin->start();
                 this->logins.push_back(playerLogin);    
 
-                for(PlayerLogin* pl: this->logins){
-                    if(pl->isJoinable()){
-                        //pl->join();                        
-                        //falta fix
+                for(uint32_t i = 0; i < this->logins.size(); ++i ){
+                    if(this->logins[i] != nullptr &&
+                        this->logins[i]->isJoinable()){
+                        this->logins[i]->join();
+                        delete this->logins[i];
+                        this->logins[i] = nullptr;
                     }
                 }
             }            
