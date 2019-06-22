@@ -40,7 +40,6 @@
 #define ACID_TEXTURE "../resources/textures/miscellaneous/acid.png"
 #define BULLET_TEXTURE "../resources/textures/miscellaneous/bullet.png"
 #define LASER_TEXTURE "../resources/textures/miscellaneous/laser.png"
-#define CROSSHAIR_TEXTURE "../resources/textures/miscellaneous/crosshair.png"
 #define PIN_TEXTURE "../resources/textures/miscellaneous/pin.png"
 #define CAKE_TEXTURE "../resources/textures/miscellaneous/cake.png"
 #define PORTAL1_TEXTURE "../resources/textures/miscellaneous/portal1.png"

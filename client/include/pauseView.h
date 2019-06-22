@@ -7,7 +7,7 @@
 #include "../include/SdlTexture.h"
 #include "../include/textureManager.h"
 #include "../include/Area.h"
-#include "../include/pauseWidget.h"
+#include "../include/textWidget.h"
 #include "../include/soundManager.h"
 
 class GameView;
@@ -27,32 +27,32 @@ private:
 	SdlTexture* blackTexture;
 	SoundManager& soundManager;
 	Area blackArea;
-	PauseWidget pwPause;
-	PauseWidget pwResume;
-	PauseWidget pwOptions;
-	PauseWidget pwExit;
-	PauseWidget pwScreenOpt;
-	PauseWidget pwControlOpt;
-	PauseWidget pwSoundOpt;
-	PauseWidget pwBack1;
-	PauseWidget pwMusicVolume1;
-	PauseWidget pwMusicVolume2;
-	PauseWidget pwMusicVolume3;
-	PauseWidget pwMusicVolume4;
-	PauseWidget pwFxVolume1;
-	PauseWidget pwFxVolume2;
-	PauseWidget pwFxVolume3;
-	PauseWidget pwFxVolume4;
-	PauseWidget pwBack2;
-	PauseWidget pwFull1;
-	PauseWidget pwFull2;
-	PauseWidget pwFull3;
-	PauseWidget pwFull4;
-	PauseWidget pwRes1;
-	PauseWidget pwRes2;
-	PauseWidget pwRes3;
-	PauseWidget pwRes4;
-	PauseWidget pwBack3;
+	TextWidget twPause;
+	TextWidget twResume;
+	TextWidget twOptions;
+	TextWidget twExit;
+	TextWidget twScreenOpt;
+	TextWidget twControlOpt;
+	TextWidget twSoundOpt;
+	TextWidget twBack1;
+	TextWidget twMusicVolume1;
+	TextWidget twMusicVolume2;
+	TextWidget twMusicVolume3;
+	TextWidget twMusicVolume4;
+	TextWidget twFxVolume1;
+	TextWidget twFxVolume2;
+	TextWidget twFxVolume3;
+	TextWidget twFxVolume4;
+	TextWidget twBack2;
+	TextWidget twFull1;
+	TextWidget twFull2;
+	TextWidget twFull3;
+	TextWidget twFull4;
+	TextWidget twRes1;
+	TextWidget twRes2;
+	TextWidget twRes3;
+	TextWidget twRes4;
+	TextWidget twBack3;
 	PAUSE_STATUS status = INIT;
 	uint32_t resx = 0;
 	uint32_t resy = 0;

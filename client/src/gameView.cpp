@@ -25,17 +25,9 @@ GameView::~GameView(){
 		}
 	}
 	SDL_FreeCursor(this->cursor);
-}
-
-void GameView::getResolutionsIndex(){
-	for(uint32_t i = 0; i < this->resolutions.size(); ++i){
-		if(this->resolutions[i].first == 800
-			&& this->resolutions[i].second == 600){
-			this->resolutionsIndex = i;
-			return;
-		}
+	if(this->endMesage != nullptr){
+		delete this->endMesage;
 	}
-	this->resolutionsIndex = 0;
 }
 
 void GameView::step(){
@@ -87,7 +79,9 @@ void GameView::render(){
 	if(this->myChell != nullptr){
 		this->myChell->renderCentered(this->resx,this->resy,this->scale);	
 	}
-	if(this->paused){
+	if(this->endMesage != nullptr){
+		this->endMesage->render(this->resx,this->resy);
+	} else if(this->paused){
 		this->pauseView.render(this->resx,this->resy);	
 	}
     this->window.render();
@@ -137,11 +131,11 @@ void GameView::updateHandler(Update update){
 	case COMMAND::WIN_COMMAND:
 		this->myChell->jig();
 		this->finished = true;
-		//this->showWinMesage();
+		this->showWinMesage();
 		break;
 	case COMMAND::LOSE_COMMAND:
 		this->finished = true;
-		//this->showLoseMesage();
+		this->showLoseMesage();
 		break;
 	default:
 		break;
@@ -263,4 +257,23 @@ uint8_t GameView::getRand() const{
 
 PauseView* GameView::getPausePtr(){
 	return &this->pauseView;
+}
+
+void GameView::showLoseMesage(){
+	this->endMesage = new TextWidget(this->window,"DERROTA",0.5,0.5,100);
+}
+
+void GameView::showWinMesage(){
+	this->endMesage = new TextWidget(this->window,"VICTORIA",0.5,0.5,100);
+}
+
+void GameView::getResolutionsIndex(){
+	for(uint32_t i = 0; i < this->resolutions.size(); ++i){
+		if(this->resolutions[i].first == 800
+			&& this->resolutions[i].second == 600){
+			this->resolutionsIndex = i;
+			return;
+		}
+	}
+	this->resolutionsIndex = 0;
 }

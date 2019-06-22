@@ -1,6 +1,6 @@
-#include "../include/pauseWidget.h"
+#include "../include/textWidget.h"
 
-PauseWidget::PauseWidget(const SdlWindow& window,const std::string str,float x,float y):
+TextWidget::TextWidget(const SdlWindow& window,const std::string str,float x,float y):
 window(window),str(str),x(x),y(y),selected(false){
 	if( TTF_Init() == -1 ) { 		
 		throw std::runtime_error("SDL_ttf could not initialize! SDL_ttf Error: "+
@@ -16,7 +16,24 @@ window(window),str(str),x(x),y(y),selected(false){
 		this->textSurface );
 }
 
-PauseWidget::~PauseWidget(){
+TextWidget::TextWidget(const SdlWindow& window,const std::string str,float x,float y,
+	uint32_t size):
+window(window),str(str),x(x),y(y),selected(false){
+	if( TTF_Init() == -1 ) { 		
+		throw std::runtime_error("SDL_ttf could not initialize! SDL_ttf Error: "+
+			std::string(TTF_GetError())+"\n");
+	}
+	this->font = TTF_OpenFont(FONT_DIR, size);
+	if(this->font == NULL){
+		throw std::runtime_error("SDL_ttf could not open font\n");
+	}
+	this->textColor = { 255, 255, 255 };
+	this->textSurface = TTF_RenderText_Solid( this->font, str.c_str(), this->textColor );
+	this->texturePtr = SDL_CreateTextureFromSurface( this->window.getRenderer(), 
+		this->textSurface );
+}
+
+TextWidget::~TextWidget(){
 	TTF_CloseFont(this->font );
 	if(this->textSurface != nullptr){
 		SDL_FreeSurface(this->textSurface);
@@ -28,7 +45,7 @@ PauseWidget::~PauseWidget(){
 	}
 }
 
-void PauseWidget::render(uint32_t resx,uint32_t resy){
+void TextWidget::render(uint32_t resx,uint32_t resy){
 	Area src(0,0,this->textSurface->w,this->textSurface->h);
 	Area dest((resx-this->textSurface->w)*this->x,
 		(resy-this->textSurface->h)*this->y,
@@ -45,7 +62,7 @@ void PauseWidget::render(uint32_t resx,uint32_t resy){
     SDL_RenderCopy(this->window.getRenderer(), this->texturePtr, &sdlSrc, &sdlDest);    
 }
 
-void PauseWidget::changeColor(uint8_t r,uint8_t g,uint8_t b){
+void TextWidget::changeColor(uint8_t r,uint8_t g,uint8_t b){
 	this->textColor = {r,g,b};
 	if(this->textSurface != nullptr){
 		SDL_FreeSurface(this->textSurface);
@@ -60,7 +77,7 @@ void PauseWidget::changeColor(uint8_t r,uint8_t g,uint8_t b){
 		this->textSurface );
 }
 
-bool PauseWidget::cursorOn(uint32_t px,uint32_t py,uint32_t resx,uint32_t resy){
+bool TextWidget::cursorOn(uint32_t px,uint32_t py,uint32_t resx,uint32_t resy){
 	if(px < (resx-this->textSurface->w)*this->x){
 		return false;
 	} else if (px > (resx-this->textSurface->w)*this->x+this->textSurface->w){
@@ -74,23 +91,23 @@ bool PauseWidget::cursorOn(uint32_t px,uint32_t py,uint32_t resx,uint32_t resy){
 	}
 } 
 
-void PauseWidget::select(){
+void TextWidget::select(){
 	this->changeColor(255,200,0);
 }
 
-void PauseWidget::deselect(){
+void TextWidget::deselect(){
 	this->changeColor(255,255,255);
 }
 
-void PauseWidget::lock(){
+void TextWidget::lock(){
 	this->changeColor(128,128,128);
 }
 
-void PauseWidget::unlock(){
+void TextWidget::unlock(){
 	this->changeColor(255,255,255);
 }
 
-void PauseWidget::changeString(const std::string& s){
+void TextWidget::changeString(const std::string& s){
 	this->str = s;
 	if(this->textSurface != nullptr){
 		SDL_FreeSurface(this->textSurface);

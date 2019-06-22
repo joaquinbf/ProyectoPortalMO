@@ -21,6 +21,7 @@
 #include "../include/textureManager.h"
 #include "../include/background.h"
 #include "../include/pauseView.h"
+#include "../include/textWidget.h"
 
 #include "../../common/include/port.h"
 #include "../../common/include/update.h"
@@ -49,6 +50,7 @@ private:
 	PauseView pauseView;
 	std::vector<std::pair<int,int>> resolutions;
 	uint32_t resolutionsIndex;
+	TextWidget* endMesage = nullptr;
 public:
 	explicit GameView(uint32_t x, uint32_t y,SoundManager& sm);
 	~GameView();
@@ -77,6 +79,8 @@ public:
 private:
 	uint8_t getRand() const;
 	void getResolutionsIndex();
+	void showLoseMesage();
+	void showWinMesage();
 };
 
 #endif
