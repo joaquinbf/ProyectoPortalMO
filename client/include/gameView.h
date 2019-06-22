@@ -28,6 +28,7 @@
 
 class GameView{
 private:
+	bool finished;
 	int resx;
 	int resy;	
 	int32_t posx = 0;
@@ -72,6 +73,7 @@ public:
     bool isFullscreen();
     void nextRes();
     void prevRes();
+    bool isFinished() const;    
 private:
 	uint8_t getRand() const;
 	void getResolutionsIndex();

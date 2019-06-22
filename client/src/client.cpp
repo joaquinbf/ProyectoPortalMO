@@ -1,5 +1,5 @@
 #include "../include/client.h"
-
+#include <iostream>
 Client::Client()
 : serverManager("localhost", PORT),
 updateReceiver(this->serverManager,this->updates)
@@ -36,6 +36,7 @@ int Client::login(){
 
 void Client::game(){
     uint32_t chellId = serverManager.receiveChellId();
+    std::cout<<chellId<<"\n";
     GameView gameView(800,600,this->soundManager);
     InputManager inputManager(this->serverManager,gameView,this->videoRecorder,
         gameView.getPausePtr());
@@ -61,7 +62,19 @@ void Client::game(){
             this->videoRecorder.recordFrame(gameView.getRenderer());
         }
         gameView.step();
+        if(gameView.isFinished()){
+            inputManager.stop();
+        }
     }
+    for(int i = 0; i< 80; ++i){
+        gameView.render();            
+        usleep(50000);
+        if(this->videoRecorder.isRecording()){
+            this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
+            this->videoRecorder.recordFrame(gameView.getRenderer());
+        }
+        gameView.step();
+    }    
     this->videoRecorder.stop();    
     this->serverManager.sendAction(Action(gameView.getChellId(),ACTION::QUIT,0,0));
     this->serverManager.stop();
