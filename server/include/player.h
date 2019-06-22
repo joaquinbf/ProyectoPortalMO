@@ -35,6 +35,7 @@ public:
     void pushBackUpdate(Update update);
     void sendGamesList(std::map<uint32_t,Game*>* games);
     void sendMapList();
+    void sendByte(uint8_t byte) const;
     uint8_t receiveByte() const;
     uint32_t receiveQuad() const;
     std::string receiveLine() const;

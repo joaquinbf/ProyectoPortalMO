@@ -80,6 +80,10 @@ void Player::sendMapList(){
     }
 }
 
+void Player::sendByte(uint8_t byte) const{
+    this->protocol.sendByte(byte);
+}
+
 uint8_t Player::receiveByte() const{
     return this->protocol.receiveByte();
 }

@@ -16,9 +16,7 @@ void PlayerLogin::run(){
 		for(auto it: *(this->games)){
 			if(it.first == gameId){
 				player->setDisconnecterPtr(it.second->getDisconnecterPtr());
-				it.second->addPlayer(player);
-				this->joinable = true;
-				return;
+				it.second->addPlayer(player);				
 			}
 		}
 	}else if (byte == 0){
@@ -29,15 +27,19 @@ void PlayerLogin::run(){
 			player->setDisconnecterPtr(game->getDisconnecterPtr());
 			game->addPlayer(player);
 			(*this->games)[game->getId()] = game;
+		} else {
+			player->sendByte(1);
 			this->joinable = true;
 			return;	
-		} else {
-
 		}
 	}else{
+		player->sendByte(1);
 		this->joinable = true;
 		return;
 	}
+	player->sendByte(0);
+	//playerSendBackground();
+	this->joinable = true;
 }
 
 bool PlayerLogin::isJoinable(){

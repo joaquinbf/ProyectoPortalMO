@@ -27,6 +27,7 @@ public:
 	void createGame(const std::string& map) const;
 	void sendNoneCommand() const;
 	std::string receiveLine() const;
+	uint8_t receiveByte() const;
 };
 
 #endif

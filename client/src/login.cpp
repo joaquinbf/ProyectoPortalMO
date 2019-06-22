@@ -26,6 +26,10 @@ void Login::exit(){
 
 void Login::join(uint32_t game){
     this->serverManager.joinGame(game);
+    if(this->serverManager.receiveByte()){
+        this->done(1);
+        return;
+    }
     this->done(0);
 }
 
@@ -34,12 +38,16 @@ void Login::create(){
         QString qs = this->comboBox.currentText();
         std::string str = qs.toUtf8().constData();
         this->serverManager.createGame(str);
+        if(this->serverManager.receiveByte()){
+            this->done(1);
+            return;
+        }
         this->done(0);
     }    
 }
 
 void Login::reject(){
-  this->serverManager.sendNoneCommand();
+    this->serverManager.sendNoneCommand();
     this->done(1);  
 }
 

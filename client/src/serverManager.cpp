@@ -50,3 +50,7 @@ void ServerManager::sendNoneCommand() const{
 std::string ServerManager::receiveLine() const{
 	return this->protocol.receiveLine();
 }
+
+uint8_t ServerManager::receiveByte() const{
+	return this->protocol.receiveByte();
+}
