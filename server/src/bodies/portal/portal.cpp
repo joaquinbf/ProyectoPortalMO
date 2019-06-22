@@ -5,6 +5,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2EdgeShape.h"
 #include "../../../include/world.h"
+#include "../../../include/math_ext.h"
 #include "../../../include/instructions/teleport_body_instruction.h"
 #include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/bodies/chell/chell.h"
@@ -43,15 +44,14 @@ Portal::~Portal() {
     this->world->getB2World()->DestroyBody(this->b2body);
 }
 
-void Portal::teleportBody(Body *body, bool change_angle, float d) const {
+void Portal::teleportBody(Body *body, bool change_angle, float d, float alfa) const {
     b2Vec2 v = body->getLinearVelocity();
-    b2Vec2 new_v = v.Length() * this->normal;
+    b2Vec2 new_v = MathExt::rotate(v.Length() * this->normal, alfa);
     b2Vec2 new_pos = this->getPosition() + (d + HEIGHT)*this->normal;
 
     float new_angle;
     if (change_angle) {
-        new_angle = acos(
-            (v.x*normal.x + v.y*normal.y)/(v.Length()*normal.Length()));
+        new_angle = alfa;
     } else {
         new_angle = body->getAngle();
     }
@@ -68,9 +68,11 @@ void Portal::teleportBody(Body *body, bool change_angle, float d) const {
 }
 
 
-void Portal::teleportToOppositePortal(Body *body, bool change_angle, float d) const {
+void Portal::teleportToOppositePortal(
+    Body *body, bool change_angle, float d) const {
     if (this->opposite != nullptr) {
-        this->opposite->teleportBody(body, change_angle, d);
+        float alfa = MathExt::angle(this->normal, -body->getLinearVelocity());
+        this->opposite->teleportBody(body, change_angle, d, alfa);
     }
 }
 

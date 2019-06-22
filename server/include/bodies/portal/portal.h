@@ -27,12 +27,14 @@ public:
 
     /* Teletransporta a body al portal indicando si debe cambiar el
      * el angulo de body en caso de ser necesario.
-     * d es la distancia de separacion al portal al aparecer. */
-    void teleportBody(Body *body, bool change_angle, float d) const;
+     * d es la distancia de separacion al portal al aparecer.
+     * alfa es el angulo de la nueva velocidad. */
+    void teleportBody(Body *body, bool change_angle, float d, float alfa) const;
 
     /* Teletransporta a body al portal opuesto en caso de no ser nullptr e
      * indicando si debe cambiar el angulo de body en caso de ser necesario.
-     * d es la distancia de separacion al portal al aparecer.*/
+     * d es la distancia de separacion al portal al aparecer.
+     * v es la velocidad linear de */
     void teleportToOppositePortal(Body *body, bool change_angle, float d) const;
 
     /* Asigna un portal opuesto */
