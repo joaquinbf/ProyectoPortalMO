@@ -51,7 +51,6 @@ const GameInfo& Game::getGameInfo(){
 
 void Game::refreshInfo(){
 	uint32_t playersAlive = 0;
-	//uint32_t chellsAlive = this->stage.chellsAlive();
 	for(auto it : this->players){
 		if(this->stage.isChellAlive(it.first)){
 			++playersAlive;

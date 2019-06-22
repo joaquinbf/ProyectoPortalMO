@@ -32,7 +32,6 @@ public:
 	bool validateMap();
 	bool isRunning();
 	bool isChellAlive(uint32_t id) const;
-	uint32_t chellsAlive() const;
 };
 
 #endif
