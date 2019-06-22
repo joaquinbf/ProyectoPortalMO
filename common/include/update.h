@@ -14,7 +14,7 @@ private:
 	STATUS status;
 	int32_t posX;
 	int32_t posY;
-	uint32_t direction;
+	int32_t direction;
 	
 public:
 	Update();
@@ -26,7 +26,7 @@ public:
 		STATUS status,
 		int32_t posx,
 		int32_t posy,
-		uint32_t dir);
+		int32_t dir);
 
 	~Update();
 
@@ -36,7 +36,7 @@ public:
 	STATUS getStatus() const;
 	int32_t getPosX() const;
 	int32_t getPosY() const;
-	uint32_t getDirection() const;
+	int32_t getDirection() const;
 
 	void setCommand(COMMAND command);
 	void setEntity(ENTITY entity);
@@ -44,7 +44,7 @@ public:
 	void setStatus(STATUS status);
 	void setPosX(int32_t posX);
 	void setPosY(int32_t posY);
-	void setDirection(uint32_t direction);
+	void setDirection(int32_t direction);
 };
 
 #endif

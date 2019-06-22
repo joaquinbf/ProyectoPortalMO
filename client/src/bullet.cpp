@@ -25,7 +25,8 @@ void Bullet::render(int cx,int cy,int resx,int resy,float scale){
 	int a = (this->posx-cx)*scale - (this->width/2)*scale + resx/2 ;
 	int b = -(this->posy-cy)*scale - (this->height/2)*scale + (2*resy)/3;
 	Area renderArea(a,b,this->width*scale,this->height*scale);
-	switch(this->direction){
+	this->texturePtr->renderInAngle(this->frameArea, renderArea, this->direction);
+/*	switch(this->direction){
 		case 0:
 			this->texturePtr->render(this->frameArea, renderArea);
 			break;
@@ -44,7 +45,7 @@ void Bullet::render(int cx,int cy,int resx,int resy,float scale){
 		default:
 			this->texturePtr->render(this->frameArea, renderArea);
 			break;
-	}	
+	}	*/
 }
 
 void Bullet::update(const Update& update){

@@ -17,7 +17,7 @@ Update::Update(
 	STATUS status,
 	int32_t posx,
 	int32_t posy,
-	uint32_t dir):
+	int32_t dir):
 	command(command),
 	idClass(entity),
 	idObject(id),
@@ -53,7 +53,7 @@ int32_t Update::getPosY() const{
 	return this->posY;
 }
 
-uint32_t Update::getDirection() const{
+int32_t Update::getDirection() const{
 	return this->direction;
 }
 
@@ -81,6 +81,6 @@ void Update::setPosY(int32_t posY) {
 	this->posY = posY;
 }
 
-void Update::setDirection(uint32_t direction) {
+void Update::setDirection(int32_t direction) {
 	this->direction = direction;
 }
