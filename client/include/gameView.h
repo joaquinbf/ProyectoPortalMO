@@ -51,11 +51,12 @@ private:
 	std::vector<std::pair<int,int>> resolutions;
 	uint32_t resolutionsIndex;
 	TextWidget* endMesage = nullptr;
+	TextWidget recordingDot;
 public:
 	explicit GameView(uint32_t x, uint32_t y,SoundManager& sm);
 	~GameView();
 	void step();
-	void render();
+	void render(bool recording);
 	void updateHandler(Update update);
 	void zoomIn();
 	void zoomOut();
@@ -75,7 +76,7 @@ public:
     bool isFullscreen();
     void nextRes();
     void prevRes();
-    bool isFinished() const;    
+    bool isFinished() const; 
 private:
 	uint8_t getRand() const;
 	void getResolutionsIndex();
