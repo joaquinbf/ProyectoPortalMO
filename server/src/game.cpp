@@ -41,15 +41,14 @@ void Game::addPlayer(Player* player){
 	this->broadcaster.addPlayer(player->getUpdatesPtr(),id);
 	player->start();
 	this->players[id] = player;
-	this->gameInfo.addPlayer();
 }
 
 const GameInfo& Game::getGameInfo(){
-	this->refreshInfo();
+	this->refreshGameInfo();
 	return this->gameInfo;
 }
 
-void Game::refreshInfo(){
+void Game::refreshGameInfo(){
 	uint32_t playersAlive = 0;
 	for(auto it : this->players){
 		if(this->stage.isChellAlive(it.first)){
@@ -57,7 +56,7 @@ void Game::refreshInfo(){
 		}
 	} 
 	this->gameInfo.setPlayers(playersAlive);
-	this->gameInfo.setPlayers(playersAlive + this->chellsIds.size());
+	this->gameInfo.setCapacity(playersAlive + this->chellsIds.size());
 }
 
 uint32_t Game::getId() const{
@@ -85,7 +84,6 @@ void Game::deletePlayer(uint32_t id){
 	if(this->stage.isChellAlive(id)){
 		this->chellsIds.push_front(id);	
 	}
-	this->gameInfo.deletePlayer();
 }
 
 Disconnecter* Game::getDisconnecterPtr(){

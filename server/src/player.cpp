@@ -14,15 +14,15 @@ Player::Player(Socket socket):
 Player::~Player(){}
 
 void Player::stop(){    
-    this->inputReceiver.stop();
-    this->updateSender.stop();
-    this->updateSender.join();
-    this->inputReceiver.join();    
     try{
         this->protocol.close();
     } catch (const ConnectionErrorException &e){
 
     }
+    this->inputReceiver.stop();
+    this->updateSender.stop();
+    this->updateSender.join();
+    this->inputReceiver.join();    
 }
 
 void Player::start() {

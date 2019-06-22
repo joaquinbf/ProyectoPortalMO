@@ -13,8 +13,6 @@ public:
 	explicit GameInfo(uint32_t id,const std::string& mapName, 
 		uint32_t players, uint32_t capacity);
 	~GameInfo();
-	void addPlayer();
-	void deletePlayer();
 	uint32_t getId() const;
 	const std::string& getMapName() const;
 	uint32_t getPlayers() const;

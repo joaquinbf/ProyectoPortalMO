@@ -36,7 +36,7 @@ public:
 	void deletePlayer(uint32_t id);
 	void stop();
 	Disconnecter* getDisconnecterPtr();
-	void refreshInfo();
+	void refreshGameInfo();
 	bool isFinished();
 };
 
