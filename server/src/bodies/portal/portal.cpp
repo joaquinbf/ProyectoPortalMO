@@ -20,7 +20,13 @@ Portal::Portal(World *world, uint8_t portal_number, b2Vec2 pos, b2Vec2 normal):
     b2bodydef.type = b2_staticBody;
     b2Vec2 adj_pos = pos +  (HEIGHT/2)*normal;
     b2bodydef.position.Set(adj_pos.x, adj_pos.y);
-    b2bodydef.angle = acos(normal.x/normal.Length()) - (PI/2);
+
+    float new_angle = MathExt::angle(normal, b2Vec2(1, 0)) + (PI/2);
+    if (normal.y < 0) {
+        new_angle = 2*PI - new_angle;
+    }
+
+    b2bodydef.angle = new_angle;
     b2bodydef.fixedRotation = true;
     b2bodydef.userData = (void *) this;
     b2bodydef.active = true;
@@ -67,9 +73,6 @@ void Portal::teleportBody(Body *body, bool change_angle, float d, float alfa) co
         new_v,
         new_pos,
         new_angle);
-
-    std::cout << "old v: " << v.x << ", " << v.y << std::endl;
-    std::cout << "new v: " << new_v.x << ", " << new_v.y << std::endl;
     this->getWorld()->addInstruction(inst);
 }
 
@@ -97,7 +100,7 @@ Update Portal::createUpdate(COMMAND command) const {
         STATUS::NONE_STATUS,
         this->getPosX() * ZOOM_FACTOR,
         this->getPosY() * ZOOM_FACTOR,
-        (int32_t)RADTODEG(this->getAngle()));
+        (int32_t)RADTODEG(-this->getAngle()));
     return update;
 }
 

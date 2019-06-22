@@ -83,7 +83,8 @@ project 'Testbed'
 		'../../server/src/pin.cpp',
 		'../../server/src/ray_cast_closest_body_callback.cpp',
 		'../../server/src/math_ext.cpp',
-		'../../server/src/serializer.cpp'
+		'../../server/src/serializer.cpp',
+		'../../server/src/game_loop.cpp'
 	}
 
     filter { 'system:windows' }

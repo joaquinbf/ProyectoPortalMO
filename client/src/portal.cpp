@@ -2,7 +2,7 @@
 #include <iostream>
 
 Portal::Portal(const TextureManager& tm,int32_t x, int32_t y,
-	uint32_t width, uint32_t height, uint32_t dir,ENTITY en):
+	uint32_t width, uint32_t height, int32_t dir,ENTITY en):
 Entity(x,y,width,height,dir,tm),frameArea(0,0,400,500){
 	this->texturePtr = this->textureManager.getPortalTexturePointer(en);
 }

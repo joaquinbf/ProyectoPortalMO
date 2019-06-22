@@ -25,14 +25,17 @@ private:
     PortalChell():
         world(this->m_world) {
         this->m_world->SetGravity(b2Vec2(0.0, -9.8));
-        this->chell = this->world.createChell(4.01067, -13.4432);
+        this->chell = this->world.createChell(13.5, -14.907);
         Serializer s;
-        s.deserialize(&this->world, "../../../maps/test_running.yaml");
+        s.deserialize(
+            &this->world,
+            "../../../maps/test_portal_01.yaml",
+            "../../../config/config.yaml" );
     }
 
     void Step(Settings *settings) {
         Test::Step(settings);
-        this->world.bigStep();
+        this->world.getGameLoop()->step();
     }
 
     static Test *Create() {
@@ -84,11 +87,7 @@ private:
     virtual void MouseDown(const b2Vec2& p) override {
         std::cout << "p : (" << p.x << ", " << p.y <<  ")" << std::endl;
         PortalGun *portal_gun = this->chell->getPortalGun();
-        if (p.x < 0) {
-            portal_gun->firePortalOne(p.x, p.y);
-        } else {
-            portal_gun->firePortalTwo(p.x, p.y);
-        }
+        portal_gun->firePortalOne(p.x, p.y);
     }
 };
 
