@@ -10,6 +10,7 @@
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../common/include/update.h"
 #include "../../../../common/include/types.h"
+#include "block_def.h"
 
 #include <cstdint>
 
@@ -35,18 +36,20 @@ private:
     ORIENTATION orientation;
     Shape *shape;
     Material *material;
+    BlockDef def;
     const float WIDTH     = 2.00;
     const float HEIGHT    = 2.00;
     const float DENSITY   = 1;
-    const float FRICTION  = 0.5;
 
 public:
     /* Instancia un block de id 'body_id' sobre world en la posicion (x, y)
      * de shape y material asignado.
-     * Al liberarse el block tambien se libera shape y material. */
+     * Al liberarse el block tambien se libera shape y material.
+     * def contiene constantes para block. */
     Block(World *world,
           float x, float y, ORIENTATION orientation,
-          Shape *shape, Material *material);
+          Shape *shape, Material *material,
+          const BlockDef &def);
 
     /* Libera los recursos utilizados */
     ~Block();

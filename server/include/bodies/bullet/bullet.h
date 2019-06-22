@@ -1,6 +1,7 @@
 #ifndef __BULLET_H__
 #define __BULLET_H__
 
+#include "bullet_def.h"
 #include "../body.h"
 #include "../../../include/world.h"
 #include "../../../../common/include/types.h"
@@ -17,16 +18,17 @@ class Bullet: public Body {
 private:
     DIRECTION direction;
     unsigned int life_steps;
-    const float MAX_LIFE_STEPS = 200;
+    BulletDef def;
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
-    const float SPEED = 10;
     const float DENSITY = 1;
 
 public:
     /* Instancia una bala en world en la posicion (x, y) moviendose con
      * direccion 'direction' */
-    Bullet(World *world, float x, float y, DIRECTION direction);
+    Bullet(
+        World *world, float x, float y,
+        DIRECTION direction, const BulletDef &def);
 
     /* Libera los recursos utilizados */
     ~Bullet();

@@ -3,6 +3,8 @@
 
 class WorldDef {
 public:
+    float gravity_x = 0;
+    float gravity_y = -9.8;
 };
 
 #endif

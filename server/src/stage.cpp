@@ -8,10 +8,14 @@ Stage::Stage(
 	inputs(inputs),
 	updates(updates) {
 	Serializer serializer;
-	serializer.deserialize(&this->world, MAP_PATH + mapName);
+	serializer.deserialize(
+		&this->world,
+		MAP_PATH + mapName,
+		"../config/config.yaml");
 }
 
-Stage::~Stage(){}
+Stage::~Stage() {
+}
 
 bool Stage::validateMap() {
 	return this->world.isValid();

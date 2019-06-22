@@ -67,6 +67,11 @@ World::~World() {
     }
 }
 
+void World::setWorldConfig(const WorldConfig &config) {
+    this->config = config;
+}
+
+
 bool World::isChellAlive(uint32_t chell_id) const {
     return this->chells.count(chell_id) > 0;
 }
@@ -162,7 +167,10 @@ Block *World::createSquareMetalBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new MetalMaterial();
     Block *block = new Block(
-        this, x, y, ORIENTATION::ORIENTATION_0, shape, material);
+        this, x, y,
+        ORIENTATION::ORIENTATION_0,
+        shape, material,
+        this->config.block_def);
     return block;
 }
 
@@ -170,7 +178,8 @@ Block *World::createSquareStoneBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new StoneMaterial();
     Block *block = new Block(
-        this, x, y, ORIENTATION::ORIENTATION_0, shape, material);
+        this, x, y, ORIENTATION::ORIENTATION_0, shape, material,
+        this->config.block_def);
     return block;
 }
 
@@ -178,7 +187,8 @@ Block *World::createDiagonalMetalBlock(
     float x, float y, ORIENTATION orientation) {
     Shape *shape = new DiagonalShape();
     Material *material = new MetalMaterial();
-    Block *block = new Block(this, x, y, orientation, shape, material);
+    Block *block = new Block(
+        this, x, y, orientation, shape, material, this->config.block_def);
     return block;
 }
 
@@ -225,7 +235,7 @@ Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
 }
 
 Bullet *World::createBullet(float x, float y, DIRECTION direction) {
-    Bullet *bullet = new Bullet(this, x, y, direction);
+    Bullet *bullet = new Bullet(this, x, y, direction, this->config.bullet_def);
     return bullet;
 }
 

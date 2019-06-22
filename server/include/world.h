@@ -1,6 +1,7 @@
 #ifndef __WORLD_H__
 #define __WORLD_H__
 
+#include "world_config.h"
 #include "pin.h"
 #include "boolean_suppliers/boolean_block_factory.h"
 #include "contact_listener.h"
@@ -74,6 +75,7 @@ private:
     InstructionFactory instruction_factory;
     Cake *cake;
     GameLoop game_loop;
+    WorldConfig config;
 
 public:
     /* Instancia un world */
@@ -96,6 +98,9 @@ public:
 
     /* Libera los recursos utilizados. */
     ~World();
+
+    /* Asigna parametros de configuracion */
+    void setWorldConfig(const WorldConfig &config);
 
     /* Indica si chell de chell_id esta viva */
     bool isChellAlive(uint32_t chell_id) const;

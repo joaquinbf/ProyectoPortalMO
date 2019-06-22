@@ -15,9 +15,11 @@
 Block::Block(
     World *world,
     float x, float y, ORIENTATION orientation,
-    Shape *shape, Material *material):
+    Shape *shape, Material *material,
+    const BlockDef &def):
     Body(world, shape->createEntityWithMaterial(material)),
-    orientation(orientation), shape(shape), material(material) {
+    orientation(orientation), shape(shape), material(material),
+    def(def) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);
@@ -34,7 +36,7 @@ Block::Block(
     boxFixtureDef.shape = &b2polygonshape;
     boxFixtureDef.density = this->DENSITY;
     boxFixtureDef.userData = (void *) this;
-    boxFixtureDef.friction = this->FRICTION;
+    boxFixtureDef.friction = this->def.friction;
     boxFixtureDef.restitution = 0.00;
 
     b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);

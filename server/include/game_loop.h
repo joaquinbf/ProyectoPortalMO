@@ -27,7 +27,7 @@ private:
     const uint32_t POSITION_ITERATIONS = 50;
 
 public:
-    /* Instancia un constrolador de game loop para world */
+    /* Instancia un controlador de game loop para world */
     GameLoop(
         World *world,
         std::set<Body *> *bodies,

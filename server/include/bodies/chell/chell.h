@@ -1,6 +1,7 @@
 #ifndef __CHELL_H__
 #define __CHELL_H__
 
+#include "chell_def.h"
 #include "../body.h"
 #include "chell_state.h"
 #include "idle_state.h"

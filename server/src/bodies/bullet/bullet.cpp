@@ -19,10 +19,11 @@
 
 Bullet::Bullet(
     World *world,
-    float x, float y, DIRECTION direction):
+    float x, float y, DIRECTION direction, const BulletDef &def):
     Body(world, ENTITY::BULLET),
     direction(direction),
-    life_steps(0) {
+    life_steps(0),
+    def(def) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_dynamicBody;
     b2bodydef.position.Set(x, y);
@@ -46,6 +47,7 @@ Bullet::Bullet(
     b2fixturedef.restitution = 1.00;
 
     this->b2body->CreateFixture(&b2fixturedef);
+    const unsigned int SPEED = this->def.speed;
 
     switch (direction) {
         case DIRECTION::RIGHT_DIRECTION:
@@ -119,11 +121,11 @@ void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
 
 void Bullet::applyStateAction() {
     this->life_steps++;
-    if (this->life_steps > this->MAX_LIFE_STEPS) {
+    if (this->life_steps > this->def.max_life_steps) {
         this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
         this->world->destroyBody(this);
     }
 
     b2Vec2 v = this->getLinearVelocity();
-    std::cout << "bullet vel: " << v.x << ", " << v.y << std::endl; 
+    std::cout << "bullet vel: " << v.x << ", " << v.y << std::endl;
 }

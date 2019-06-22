@@ -1,6 +1,7 @@
 #include "../include/serializer.h"
 
 #include <iostream>
+#include <string>
 #include <map>
 #include "yaml-cpp/yaml.h"
 #include "../include/world.h"
@@ -12,6 +13,7 @@
 #include "../../common/include/types.h"
 #include "../../common/include/update.h"
 #include "../../editor/editor_defines.h"
+#include "../include/world_config.h"
 
 #define X_SERIAL_FACTOR 16.00
 #define Y_SERIAL_FACTOR -16.00
@@ -19,7 +21,15 @@
 #define Y_GATE -1.00
 #define Y_LASER -2.00
 
-void Serializer::deserialize(World *world, std::string filepath) const {
+void Serializer::deserialize(
+    World *world,
+    std::string filepath,
+    std::string configpath) const {
+    this->deserializeConfig(world, configpath);
+    this->deserializeMap(world, filepath);
+}
+
+void Serializer::deserializeMap(World *world, std::string filepath) const {
     GateLogic gate_logic;
 
     YAML::Node config = YAML::LoadFile(filepath);
@@ -33,6 +43,44 @@ void Serializer::deserialize(World *world, std::string filepath) const {
     }
 
     this->connect(config, gate_logic);
+}
+
+void Serializer::deserializeConfig(World *world, std::string configpath) const {
+    WorldConfig world_config;
+    YAML::Node config = YAML::LoadFile(configpath);
+
+    world_config.block_def.friction = config["block"]["friction"].as<float>();
+
+    YAML::Node bullet = config["bullet"];
+    world_config.bullet_def.max_life_steps = bullet["max_life_steps"].as<unsigned int>();
+    world_config.bullet_def.speed = bullet["speed"].as<float>();
+
+    YAML::Node button = config["button"];
+    world_config.button_def.friction = button["friction"].as<float>();
+
+    YAML::Node chell = config["chell"];
+    world_config.chell_def.jumpspeed = chell["jumpspeed"].as<float>();
+    world_config.chell_def.max_horizontal_speed = chell["max_horizontal_speed"].as<float>();
+    world_config.chell_def.horizontal_speed = chell["horizontal_speed"].as<float>();
+    world_config.chell_def.ray_zoom = chell["ray_zoom"].as<float>();
+
+    YAML::Node launcher = config["launcher"];
+    world_config.launcher_def.steps_per_launch = launcher["steps_per_launch"].as<unsigned int>();
+
+    YAML::Node pin = config["pin"];
+    world_config.pin_def.time = pin["time"].as<unsigned int>();
+
+    YAML::Node stage = config["stage"];
+    world_config.stage_def.map_path = stage["map_path"].as<std::string>();
+
+    YAML::Node world_node = config["world"];
+    world_config.world_def.gravity_x = world_node["gravity_x"].as<float>();
+    world_config.world_def.gravity_y = world_node["gravity_y"].as<float>();
+
+    YAML::Node gameloop = config["gameloop"];
+    world_config.game_loop_def.fps = gameloop["fps"].as<unsigned int>();
+
+    world->setWorldConfig(world_config);
 }
 
 void Serializer::deserializeBody(
