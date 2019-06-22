@@ -66,9 +66,6 @@ private:
     std::map<uint32_t, Chell *> chells;
     std::map<uint32_t, Pin *> pins;
     std::map<uint32_t, uint32_t> changedPins;
-    const float TIME_STEP = 1/20.0;
-    const uint32_t VELOCITY_ITERATIONS = 50;
-    const uint32_t POSITION_ITERATIONS = 50;
     BooleanBlockFactory boolean_block_factory;
     ContactListener contact_listener;
     std::set<Body *> bodies_for_deletion;
@@ -81,10 +78,6 @@ private:
 public:
     /* Instancia un world */
     World();
-
-    /* Instancia un world con time_step como la cantidad de tiempo a simular
-     * en cada step */
-    World(float time_step);
 
     /* Instancia un world core sobre b2world. */
     World(b2World *b2world);
@@ -142,21 +135,6 @@ public:
 
     /* Agrega una instruccion a la cola de instrucciones */
     void addInstruction(Instruction *instruction);
-
-    /* Aplica inputs externos sobre world. */
-    void addExternalInput(ProtectedQueue<Action> *inputs);
-
-    /* Aplica instrucciones, simula un step de world y genera updates. */
-    void bigStep();
-
-    /* Aplica instrucciones internas sobre world */
-    void applyInternalInstructions();
-
-    /* Crea updates */
-    void createUpdates();
-
-    /* Rellana ext_updates con updates*/
-    void fillUpdates(ProtectedQueue<Update> *ext_updates);
 
     /* Agrega un nuevo body a world */
     void insertNewBody(Body *body);
@@ -232,30 +210,14 @@ public:
     std::list<Update> getNewPlayerUpdates() const;
 
     std::list<Update> getPinUpdateList();
+
     void createNewPin(uint32_t id, int32_t x, int32_t y);
-
-    /* Actualiza el mundo en un step. */
-    void step();
-
-    /* Crea el world 01: Un mundo de 6 bloques de metal y 4 chells.  */
-    void createWorldOne();
-
-    /* Aplica una accion sobre world. */
-    void applyAction(const Action &action);
-
-    /* Aplica las acciones de estado sobre los bodies */
-    void applyStateActions();
 
     /* Devuelve su boolean block factory */
     BooleanBlockFactory *getBooleanBlockFactory();
 
-    /* Agrega un body para ser eliminado */
-    void addBodyForDeletion(Body *body);
-
-    /* Elimina los body para ser eliminado */
-    void deleteBodiesForDeletion();
-
     std::list<uint32_t> getChellsIdList() const;
+
 private:
     /* Libera los recursos utiliados por chell */
     void destroyChells();
@@ -266,11 +228,6 @@ private:
     /* Libera a b2world si fue creado internamente */
     void deleteB2WorldIfInternal();
 
-    /* Devuelve updates con COMMAND asignado. */
-    std::list<Update> getUpdatesWithCommand(COMMAND command) const;
-
-    void addAllBodiesToUpdates(std::list<Update> &updates);
-    void addDeletedBodiesToUpdates(std::list<Update> &updates);
 };
 
 #endif

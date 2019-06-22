@@ -18,10 +18,10 @@ public:
         world.createSquareStoneBlock(1, 1);
         world.createBullet(1, 1, DIRECTION::RIGHT_DIRECTION);
 
-        world.bigStep();
-        world.bigStep();
-        world.bigStep();
-        world.bigStep();
+        world.getGameLoop()->step();
+        world.getGameLoop()->step();
+        world.getGameLoop()->step();
+        world.getGameLoop()->step();
 
         TS_ASSERT_EQUALS(1, world.getBodySize());
     }

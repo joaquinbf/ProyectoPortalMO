@@ -13,9 +13,9 @@ public:
         World world;
 
         Bullet *bullet = world.createBullet(0, 0, DIRECTION::RIGHT_DIRECTION);
-        world.bigStep();
+        world.getGameLoop()->step();
         world.addInstruction(new DestroyBodyInstruction(bullet));
-        world.bigStep();
+        world.getGameLoop()->step();
 
         TS_ASSERT_EQUALS(0, world.getBodySize());
     }

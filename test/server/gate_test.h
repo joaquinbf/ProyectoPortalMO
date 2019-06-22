@@ -38,7 +38,7 @@ public:
         //
         // // deberia chocar la bala con el receptor.
         // for (int i = 0; i < 1000; i++) {
-        //     world.bigStep();
+        //     world.getGameLoop()->step();
         // }
         //
         // Update update = gate->createUpdate(COMMAND::UPDATE_COMMAND);

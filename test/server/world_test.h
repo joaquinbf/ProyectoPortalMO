@@ -13,11 +13,8 @@ public:
 
     void testSeAgregaUnBodyAWorldLuegoSeEliminaYDisminuyeLaCantidadDeBodyPresentes() {
         World world;
-        Bullet *bullet = world.createBullet(1, 1, DIRECTION::RIGHT_DIRECTION);
-        world.step();
-
-        world.addBodyForDeletion(bullet);
-        world.deleteBodiesForDeletion();
+        world.createBullet(1, 1, DIRECTION::RIGHT_DIRECTION);
+        world.getGameLoop()->step();
 
         TS_ASSERT_EQUALS(0, world.getBodySize());
     }
@@ -38,7 +35,7 @@ public:
         world.createLauncher(0, 1, DIRECTION::RIGHT_DIRECTION);
 
         for (int i = 0; i < 1000; i++) {
-            world.bigStep();
+            world.getGameLoop()->step();
         }
     }
 };

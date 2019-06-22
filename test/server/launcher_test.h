@@ -17,8 +17,8 @@ public:
         // 20fps
         World world;
         world.createLauncher(2, 2, DIRECTION::RIGHT_DIRECTION);
-        world.bigStep();
-        world.bigStep();
+        world.getGameLoop()->step();
+        world.getGameLoop()->step();
 
         uint32_t count = world.getBodyCount();
 

@@ -45,20 +45,6 @@ World::World():
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
-World::World(float time_step):
-    b2world(new b2World(GRAVITY)),
-    body_count(0),
-    b2world_is_internal(true),
-    TIME_STEP(time_step),
-    cake(nullptr),
-    game_loop(
-        this,
-        &this->bodies,
-        &this->internal_updates,
-        &this->instructions) {
-    this->b2world->SetContactListener(&this->contact_listener);
-}
-
 World::World(b2World *b2world):
     b2world(b2world),
     body_count(0),
@@ -149,62 +135,6 @@ std::list<uint32_t> World::getChellsIdList() const{
         chell_id_list.push_back(it->first);
     }
     return chell_id_list;
-}
-
-void World::addExternalInput(ProtectedQueue<Action> *input) {
-    Action action;
-    while (input->try_pop(action)) {
-        Instruction *instruction = this->instruction_factory.createInstruction(
-                                                         action, chells, this);
-        this->instructions.emplace_back(instruction);
-    }
-}
-
-void World::bigStep() {
-    this->step();
-    this->applyInternalInstructions();
-    this->applyStateActions();
-    this->createUpdates();
-}
-
-void World::applyInternalInstructions() {
-    while (!this->instructions.empty()) {
-        Instruction *instruction = this->instructions.front();
-        this->instructions.pop_front();
-        instruction->execute();
-        delete instruction;
-    }
-}
-
-void World::createUpdates() {
-    for (Body *body: this->bodies) {
-        if (body->isAwake() && body->isActive()) {
-            Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
-            this->internal_updates.emplace_back(update);
-        }
-    }
-}
-
-void World::fillUpdates(ProtectedQueue<Update> *ext_updates) {
-    while (!this->internal_updates.empty()) {
-        Update update = internal_updates.front();
-        internal_updates.pop_front();
-        ext_updates->push(update);
-        if (update.getIdClass() == ENTITY::CHELL) {
-                std::cout << "UPDATE: STATUS " << update.getStatus()
-                          << " --- ENTITY: " << update.getIdClass()
-                          << " --- (" << update.getPosX()
-                          << ", " << update.getPosY() << ")"
-                          << "--- COMMAND: " << update.getCommand()
-                          << "--- BODYID: " << update.getIdObject()
-                          << std::endl;
-        }
-    }
-
-    std::list<Update> pins = this->getPinUpdateList();
-    for (Update &update: pins) {
-        ext_updates->push(update);
-    }
 }
 
 uint32_t World::getBodyCount() const {
@@ -373,56 +303,8 @@ std::list<Update> World::getPinUpdateList(){
     return list;
 }
 
-void World::step() {
-    this->b2world->Step(this->TIME_STEP,
-                        this->VELOCITY_ITERATIONS,
-                        this->POSITION_ITERATIONS);
-}
-
-void World::createWorldOne() {
-    for (int i = 1; i > -2; i--) {
-        this->createChell(-3.00 + 2.00*i, 1.00);
-    }
-    this->createChell(-3.00 + 2.00*-3, 1.00);
-
-    for (int i = 0; i < 100; i++) {
-        this->createSquareMetalBlock(-48.00 + 2.00*i, -1.00);
-    }
-    this->createCake(50, 0.5);
-
-    this->createRock(-10, 0);
-    this->createSquareMetalBlock(-16, 9);
-
-    this->createLauncher(-30, 5, DIRECTION::LEFT_DIRECTION);
-}
-
-void World::applyAction(const Action &action) {
-    InstructionFactory insf;
-    Instruction *instruction = insf.createInstruction(action,this->chells,this);
-    instruction->execute();
-    delete instruction;
-}
-
-void World::applyStateActions() {
-    for (Body *body: this->bodies) {
-        body->applyStateAction();
-    }
-}
-
 BooleanBlockFactory *World::getBooleanBlockFactory() {
     return &this->boolean_block_factory;
-}
-
-void World::addBodyForDeletion(Body *body) {
-    this->bodies_for_deletion.insert(body);
-}
-
-void World::deleteBodiesForDeletion() {
-    for (Body *body: this->bodies_for_deletion) {
-        this->bodies.erase(body);
-        delete body;
-    }
-    this->bodies_for_deletion.clear();
 }
 
 void World::destroyChells() {
@@ -444,30 +326,5 @@ void World::destroyAllBodies() {
 void World::deleteB2WorldIfInternal() {
     if (this->b2world_is_internal) {
         delete this->b2world;
-    }
-}
-
-std::list<Update> World::getUpdatesWithCommand(COMMAND command) const {
-    std::list<Update> lista;
-
-    for (Body *body: this->bodies) {
-        Update update = body->createUpdate(command);
-        lista.emplace_back(update);
-    }
-
-    return lista;
-}
-
-void World::addAllBodiesToUpdates(std::list<Update> &updates) {
-    for (Body *body: this->bodies) {
-        Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
-        updates.push_back(update);
-    }
-}
-
-void World::addDeletedBodiesToUpdates(std::list<Update> &updates) {
-    for (Body *body: this->bodies_for_deletion) {
-        Update update = body->createUpdate(COMMAND::DESTROY_COMMAND);
-        updates.push_back(update);
     }
 }
