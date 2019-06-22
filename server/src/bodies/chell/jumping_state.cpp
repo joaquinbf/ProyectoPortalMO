@@ -10,6 +10,7 @@ JumpingState::JumpingState(Chell *chell):
 }
 
 void JumpingState::pressLeft() {
+    this->chell->faceLeft();
     this->chell->applyLinearImpulseToLeft();
 }
 
@@ -18,6 +19,7 @@ void JumpingState::releaseLeft() {
 }
 
 void JumpingState::pressRight() {
+    this->chell->faceRight();
     this->chell->applyLinearImpulseToRight();
 }
 
