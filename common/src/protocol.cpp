@@ -156,7 +156,7 @@ Update Protocol::receiveUpdate() const{
 	STATUS st =(STATUS) this->receiveByte();
 	int32_t posx = this->receiveQuad();
 	int32_t posy = this->receiveQuad();
-	uint32_t dir = this->receiveQuad();
+	int32_t dir = this->receiveQuad();
 	return Update(cm,en,id,st,posx,posy,dir);
 }
 
