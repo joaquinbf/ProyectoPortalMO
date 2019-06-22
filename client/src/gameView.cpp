@@ -94,6 +94,9 @@ void GameView::render(){
 }
 
 void GameView::updateHandler(Update update){
+	if(this->finished){
+		return;
+	}
 	EntityFactory ef;
 	uint32_t id;
 	switch(update.getCommand()){

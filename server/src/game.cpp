@@ -1,5 +1,4 @@
 #include "../include/game.h"
-#include <iostream>
 uint32_t Game::number = 0;
 
 Game::Game(const std::string& mapName) :finished(false), 
@@ -7,9 +6,6 @@ stage(mapName, &this->inputs,&this->updates),
 broadcaster(&this->updates),disconnecter(this),gameInfo(this->number,mapName,0,0) {	
 	if(this->stage.validateMap()){
 		this->chellsIds = this->stage.getChellsIdList();
-		for(uint32_t id : this->chellsIds){
-			std::cout<<"id "<<id<<"\n";
-		}
 		this->gameInfo.setCapacity(this->chellsIds.size());
 		this->stage.start();
 		this->broadcaster.start();
@@ -27,6 +23,9 @@ Game::~Game(){
 }
 
 bool Game::isFinished(){
+	if(!this->finished){
+		this->finished = !this->stage.isRunning();
+	}
 	return this->finished;
 }
 
@@ -35,9 +34,6 @@ void Game::addPlayer(Player* player){
 	uint32_t id = this->chellsIds.back();
 	player->sendChellIdToClient(id);
 	this->chellsIds.pop_back();
-	for(uint32_t id : this->chellsIds){
-		std::cout<<"id "<<id<<"\n";
-	}
 	player->setInputPtr(&this->inputs);
 	for(Update u: ul){
 		player->pushBackUpdate(u);

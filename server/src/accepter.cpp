@@ -22,19 +22,19 @@ void Accepter::run() {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
             if(this->keep_running){
+                for(auto it : this->games){
+                    if(it.second->isFinished()){
+                        it.second->stop();
+                        this->games.erase(it.first);
+                        delete it.second;                        
+                    }
+                }
                 PlayerLogin* playerLogin = new PlayerLogin(&this->games,std::move(peer));
                 playerLogin->start();
                 this->logins.push_back(playerLogin);    
                 for(PlayerLogin* pl: this->logins){
                     if(pl->isJoinable()){
                         pl->join();
-                    }
-                }
-                for(auto it : this->games){
-                    if(it.second->isFinished()){
-                        it.second->stop();
-                        this->games.erase(it.first);
-                        delete it.second;                        
                     }
                 }
             }            
