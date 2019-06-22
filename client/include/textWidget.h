@@ -36,6 +36,7 @@ public:
 	void lock();
 	void unlock();
 	void changeColor(uint8_t r,uint8_t g,uint8_t b);	
+	void setOutline(uint32_t pixels);
 };
 
 #endif

@@ -73,6 +73,21 @@ void TextWidget::changeColor(uint8_t r,uint8_t g,uint8_t b){
 		this->textSurface );
 }
 
+void TextWidget::setOutline(uint32_t pixels){
+	TTF_SetFontOutline(this->font, pixels);
+	if(this->textSurface != nullptr){
+		SDL_FreeSurface(this->textSurface);
+		this->textSurface = nullptr;
+	}
+	if(this->texturePtr != nullptr){
+		SDL_DestroyTexture(this->texturePtr);
+		this->texturePtr = nullptr;
+	}
+	this->textSurface = TTF_RenderText_Solid( this->font, str.c_str(), this->textColor );
+	this->texturePtr = SDL_CreateTextureFromSurface( this->window.getRenderer(), 
+		this->textSurface );
+}
+
 bool TextWidget::cursorOn(uint32_t px,uint32_t py,uint32_t resx,uint32_t resy){
 	if(px < (resx-this->textSurface->w)*this->x){
 		return false;
