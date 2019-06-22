@@ -21,7 +21,8 @@ void Accepter::run() {
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
-            if(this->keep_running){
+            
+            if(this->keep_running){//detengo las partidas terminadas
                 for(auto it : this->games){
                     if(it.second->isFinished()){
                         it.second->stop();
@@ -34,6 +35,7 @@ void Accepter::run() {
                 playerLogin->start();
                 this->logins.push_back(playerLogin);    
 
+                //cierro los login terminados
                 for(uint32_t i = 0; i < this->logins.size(); ++i ){
                     if(this->logins[i] != nullptr &&
                         this->logins[i]->isJoinable()){

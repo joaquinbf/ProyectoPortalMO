@@ -16,8 +16,8 @@ void PlayerLogin::run(){
 		for(auto it: *(this->games)){
 			if(it.first == gameId){
 				player->setDisconnecterPtr(it.second->getDisconnecterPtr());
-				it.second->addPlayer(player);
 				player->sendByte(0);
+				it.second->addPlayer(player);				
 				this->joinable = true;
 				return;				
 			}

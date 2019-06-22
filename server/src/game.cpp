@@ -5,7 +5,7 @@ Game::Game(const std::string& mapName) :finished(false),
 stage(mapName, &this->inputs,&this->updates),
 broadcaster(&this->updates),disconnecter(this),gameInfo(this->number,mapName,0,0) {	
 	if(this->stage.validateMap()){
-		this->chellsIds = this->stage.getChellsIdList();
+		this->chellsIds = this->stage.getChellsIdList();		
 		this->gameInfo.setCapacity(this->chellsIds.size());
 		this->stage.start();
 		this->broadcaster.start();

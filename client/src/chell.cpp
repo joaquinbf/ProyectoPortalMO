@@ -255,19 +255,11 @@ void Chell::landAction(){
 
 void Chell::fire(int dir){
 	if(this->status != CHELL_FIRE && this->status != CHELL_FIRE_TO_IDLE){
+		this->direction = dir;
 		this->soundManager.playFireSound();
 		this->frame = 0;
 		this->fireAction();	
-	}/*else if(this->status == CHELL_RUNNING){
-		this->frame = 0;
-		//this->fireRunningAction();	
-		this->fireAction();	
-	}else if(this->status == CHELL_JUMPING || 
-			this->status == CHELL_FALLING){
-		this->frame = 0;
-		//this->fireRunningAction();	
-		this->fireAction();	
-	}	*/	
+	}
 }
 
 void Chell::fireAction(){

@@ -1,14 +1,10 @@
-#include <iostream>
 #include "../include/background.h"
-#include "../include/Area.h"
-#include "../include/SdlTexture.h"
 
-Background::Background(const SdlWindow& window) : 
-backgroundTexture(BACKGROUND_TEXTURE,window){
-	this->resx = 1800;
-	this->resy = 1100;
-	this->widthRendered=400;
-	this->heightRendered=300;
+Background::Background(const SdlWindow& window,const std::string& file) :
+backgroundTexture(BACKGROUND_PATH + file,window){
+	this->backgroundTexture.getSize(&this->resx,&this->resy);	
+	this->widthRendered = this->resx/4;
+	this->heightRendered = this->resy/4;
 }
 
 Background::~Background(){}

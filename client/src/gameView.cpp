@@ -2,7 +2,7 @@
 
 GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm) : finished(false),
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
-myChellId(0), scale(1), paused(false), background(window),
+myChellId(0), scale(1), paused(false), background(window,"1.jpg"),
 pauseView(this->textureManager,window,*this,this->soundManager){
 	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(this->cursor);

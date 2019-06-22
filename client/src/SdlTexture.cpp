@@ -111,3 +111,7 @@ int SdlTexture::renderInAngle(const Area& src, const Area& dest,double angle) co
     return SDL_RenderCopyEx(this->renderer, this->texture, &sdlSrc, &sdlDest,
         angle,&center, SDL_FLIP_NONE);
 }
+
+void SdlTexture::getSize(int* w,int* h){
+    SDL_QueryTexture(this->texture,NULL,NULL, w, h);
+}

@@ -65,15 +65,17 @@ void Client::game(){
             inputManager.stop();
         }
     }
-    for(int i = 0; i< 80; ++i){
-        gameView.render();            
-        usleep(50000);
-        if(this->videoRecorder.isRecording()){
-            this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
-            this->videoRecorder.recordFrame(gameView.getRenderer());
-        }
-        gameView.step();
-    }    
+    if(gameView.isFinished()){
+        for(int i = 0; i< 80; ++i){
+            gameView.render();            
+            usleep(50000);
+            if(this->videoRecorder.isRecording()){
+                this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
+                this->videoRecorder.recordFrame(gameView.getRenderer());
+            }
+            gameView.step();
+        }   
+    } 
     this->videoRecorder.stop();    
     this->serverManager.sendAction(Action(gameView.getChellId(),ACTION::QUIT,0,0));
     this->serverManager.stop();
