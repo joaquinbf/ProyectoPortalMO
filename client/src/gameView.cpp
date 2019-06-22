@@ -134,7 +134,9 @@ void GameView::updateHandler(Update update){
 		}
 		break;
 	case COMMAND::WIN_COMMAND:		
-		this->myChell->jig();
+		if(this->myChell != nullptr){
+			this->myChell->jig();
+		}		
 		this->finished = true;
 		this->showWinMesage();
 		break;

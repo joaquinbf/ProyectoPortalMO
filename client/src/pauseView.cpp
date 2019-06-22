@@ -9,8 +9,8 @@ twResume(window,"Resumir",0.5,0.4,48,1),
 twOptions(window,"Opciones",0.5,0.5,48,1),
 twExit(window,"Salir",0.5,0.6,48,1),
 twScreenOpt(window,"Video",0.5,0.4,48,1),
-twControlOpt(window,"Controles",0.5,0.5,48,1),
-twSoundOpt(window,"Sonido",0.5,0.6,48,1),
+twControlOpt(window,"Controles",0.5,0.6,48,1), //wip
+twSoundOpt(window,"Sonido",0.5,0.5,48,1),
 twBack1(window,"Volver",0.5,0.7,48,1),
 twMusicVolume1(window,"Volumen de musica",0.3,0.3,48,1),
 twMusicVolume2(window,"<100>",0.72,0.4,48,1),
@@ -48,7 +48,7 @@ void PauseView::render(uint32_t resx,uint32_t resy){
 		case OPTIONS:
 			twScreenOpt.render(this->resx,this->resy);
 			twSoundOpt.render(this->resx,this->resy);
-			twControlOpt.render(this->resx,this->resy);
+			//twControlOpt.render(this->resx,this->resy);
 			twBack1.render(this->resx,this->resy);
 			break;
 		case SCREENOPT:
@@ -104,7 +104,7 @@ void PauseView::mouseButtonDown(uint32_t x,uint32_t y){
 			}else if(this->twScreenOpt.cursorOn(x,y,this->resx,this->resy)){
 				this->status = SCREENOPT;
 			}else if( this->twControlOpt.cursorOn(x,y,this->resx,this->resy)){
-				this->status = CONTROLOPT;
+				//this->status = CONTROLOPT;
 			}else if( this->twBack1.cursorOn(x,y,this->resx,this->resy)){
 				this->status = INIT;
 			}
