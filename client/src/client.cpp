@@ -1,5 +1,5 @@
 #include "../include/client.h"
-#include <iostream>
+
 Client::Client()
 : serverManager("localhost", PORT),
 updateReceiver(this->serverManager,this->updates)
@@ -36,7 +36,6 @@ int Client::login(){
 
 void Client::game(){
     uint32_t chellId = serverManager.receiveChellId();
-    std::cout<<chellId<<"\n";
     GameView gameView(800,600,this->soundManager);
     InputManager inputManager(this->serverManager,gameView,this->videoRecorder,
         gameView.getPausePtr());
