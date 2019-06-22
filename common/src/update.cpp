@@ -7,7 +7,27 @@ Update::Update():
 	status(STATUS::NONE_STATUS),
 	posX(0),
 	posY(0),
-	direction(0){
+	direction(0),
+	angle(0) {
+}
+
+Update::Update(
+	COMMAND command,
+	ENTITY entity,
+	uint32_t id,
+	STATUS status,
+	int32_t posx,
+	int32_t posy,
+	int32_t dir,
+	int32_t angle):
+	command(command),
+	idClass(entity),
+	idObject(id),
+	status(status),
+	posX(posx),
+	posY(posy),
+	direction(dir),
+	angle(angle) {
 }
 
 Update::Update(
@@ -24,8 +44,10 @@ Update::Update(
 	status(status),
 	posX(posx),
 	posY(posy),
-	direction(dir) {
-}
+	direction(dir),
+	angle(0) {
+	}
+
 
 Update::~Update(){}
 

@@ -1,4 +1,5 @@
 #include "../include/portal.h"
+#include <iostream>
 
 Portal::Portal(const TextureManager& tm,int32_t x, int32_t y,
 	uint32_t width, uint32_t height, uint32_t dir,ENTITY en):
@@ -12,6 +13,7 @@ void Portal::render(int cx,int cy,int resx,int resy,float scale){
 	int a = (this->posx-cx)*scale - (this->width/2)*scale + resx/2 ;
 	int b = -(this->posy-cy)*scale - (this->height/2)*scale + (2*resy)/3;
 	Area renderArea(a,b,this->width*scale,this->height*scale);
+	std::cout << "ANGLE: " << this->direction << std::endl;
 	this->texturePtr->
 		  renderInAngle(this->frameArea, renderArea, this->direction);
 }

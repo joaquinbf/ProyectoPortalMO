@@ -84,10 +84,9 @@ void GameLoop::applyStateActions() {
 
 void GameLoop::createUpdates() {
     for (Body *body: *this->bodies) {
-        if (body->isAwake() && body->isActive()) {
+        if (body->isUpdatable()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             this->internal_updates->emplace_back(update);
-            std::cout << update.getCommand() << std::endl;
         }
     }
 }

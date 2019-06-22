@@ -15,9 +15,20 @@ private:
 	int32_t posX;
 	int32_t posY;
 	int32_t direction;
-	
+	int32_t angle;
+
 public:
 	Update();
+
+	Update(
+	   COMMAND command,
+	   ENTITY entity,
+	   uint32_t body_id,
+	   STATUS status,
+	   int32_t posx,
+	   int32_t posy,
+	   int32_t dir,
+   	   int32_t angle);
 
 	explicit Update(
 		COMMAND command,

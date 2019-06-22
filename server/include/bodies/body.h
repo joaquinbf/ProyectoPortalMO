@@ -36,6 +36,9 @@ public:
     /* Libera los recursos utilizados */
     virtual ~Body();
 
+    /* Indica si body esta en condiciones de crear una update */
+    bool isUpdatable() const;
+
     /* Devuelve un puntero a b2body */
     b2Body *getB2Body();
 

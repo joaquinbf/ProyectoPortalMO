@@ -24,6 +24,7 @@ void DeadState::applyStateAction() {
         world->destroyBody(this->chell);
 
         this->addLoseUpdateIfAllChellsAreDead(world);
+        this->addWinUpdateIfAllRemainingChellsAteTheCake(world);
     }
 }
 
@@ -31,6 +32,14 @@ void DeadState::addLoseUpdateIfAllChellsAreDead(World *world) const {
     if (world->countLiveChells() == 0) {
         Update update;
         update.setCommand(COMMAND::LOSE_COMMAND);
+        world->addUpdate(update);
+    }
+}
+
+void DeadState::addWinUpdateIfAllRemainingChellsAteTheCake(World *world) const {
+    if (world->everybodyAteTheCake()) {
+        Update update;
+        update.setCommand(COMMAND::WIN_COMMAND);
         world->addUpdate(update);
     }
 }

@@ -78,6 +78,9 @@ WorldConfig World::getWorldConfig() const {
 
 void World::setWorldConfig(const WorldConfig &config) {
     this->config = config;
+    b2Vec2 g;
+    g.Set(config.world_def.gravity_x, config.world_def.gravity_y);
+    this->b2world->SetGravity(g);
 }
 
 

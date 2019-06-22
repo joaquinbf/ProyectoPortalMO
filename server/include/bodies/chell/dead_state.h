@@ -19,6 +19,9 @@ public:
 private:
     /* Agrega una update con command LOSE si todas las chells estan muertas*/
     void addLoseUpdateIfAllChellsAreDead(World *world) const;
+
+    /* Envia una update WIN si las demas chells vivas comieron del pastel*/
+    void addWinUpdateIfAllRemainingChellsAteTheCake(World *world) const;
 };
 
 #endif

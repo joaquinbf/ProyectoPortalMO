@@ -25,6 +25,10 @@ Body::Body(World *world, ENTITY entity):
 Body::~Body() {
 }
 
+bool Body::isUpdatable() const {
+    return this->isAwake() && this->isActive();
+}
+
 b2Body *Body::getB2Body() {
     return this->b2body;
 }
