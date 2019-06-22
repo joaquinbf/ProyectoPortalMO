@@ -26,12 +26,10 @@ void Stage::run() {
 
 	while(this->running){
 		game_loop->executeExternalInput(inputs);
-		for (int i = 0; i < 6; i++) {
-			game_loop->step();
-			if (game_loop->isFinished()) {
-				this->running = false;
-				break;
-			}
+		game_loop->step();
+		if (game_loop->isFinished()) {
+			this->running = false;
+			break;
 		}
 		game_loop->fillUpdates(updates);
 		usleep(50000);

@@ -34,8 +34,10 @@ void GameLoop::executeExternalInput(ProtectedQueue<Action> *inputs) {
 }
 
 void GameLoop::step() {
-    this->worldStep();
-    this->applyInternalInstructions();
+    for (int i = 0;i < 6; i++) {
+        this->worldStep();
+        this->applyInternalInstructions();
+    }
     this->applyStateActions();
     this->createUpdates();
 }
