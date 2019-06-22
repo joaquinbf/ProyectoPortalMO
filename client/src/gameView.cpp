@@ -1,6 +1,6 @@
 #include "../include/gameView.h"
 
-GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm) : 
+GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm) : finished(false),
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), background(window),
 pauseView(this->textureManager,window,*this,this->soundManager){
@@ -131,9 +131,22 @@ void GameView::updateHandler(Update update){
 			this->entities.erase(id);
 		}
 		break;
+	case COMMAND::WIN_COMMAND:
+		this->myChell->jig();
+		this->finished = true;
+		//this->showWinMesage();
+		break;
+	case COMMAND::LOSE_COMMAND:
+		this->finished = true;
+		//this->showLoseMesage();
+		break;
 	default:
 		break;
 	}
+}
+
+bool GameView::isFinished() const{
+	return this->finished;
 }
 
 void GameView::zoomIn(){

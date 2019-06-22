@@ -33,7 +33,8 @@ enum COMMAND : uint8_t{
 	CREATE_COMMAND			= 0x01,
 	UPDATE_COMMAND			= 0x02,
 	DESTROY_COMMAND			= 0x03,
-	WIN_COMMAND				= 0x04
+	WIN_COMMAND				= 0x04,
+	LOSE_COMMAND			= 0x05,
 };
 
 enum STATUS: uint8_t {

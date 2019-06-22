@@ -1,8 +1,8 @@
 #include "../include/login.h"
 
 Login::Login(const ServerManager& sm,std::list<GameInfo> games, std::list<std::string> maps) 
-: QDialog(nullptr), serverManager(sm), games(games), maps(maps), tableWidget(0,4), exitButton("Salir"),
-createGameButton("Crear partida"){
+: QDialog(nullptr), serverManager(sm), games(games), maps(maps), tableWidget(0,4), 
+exitButton("Salir"), createGameButton("Crear partida"){
 	this->createTable();
     this->createComboBox();
     this->setMinimumSize(342, 400);
@@ -26,11 +26,11 @@ void Login::exit(){
 
 void Login::join(uint32_t game){
     this->serverManager.joinGame(game);
-    if(this->serverManager.receiveByte()){
-        this->done(1);
-        return;
-    }
-    this->done(0);
+    if(this->serverManager.receiveByte() == 0){
+        this->done(0);
+    } else {
+        this->done(1);    
+    }    
 }
 
 void Login::create(){
@@ -38,11 +38,11 @@ void Login::create(){
         QString qs = this->comboBox.currentText();
         std::string str = qs.toUtf8().constData();
         this->serverManager.createGame(str);
-        if(this->serverManager.receiveByte()){
-            this->done(1);
-            return;
-        }
-        this->done(0);
+        if(this->serverManager.receiveByte() == 0){
+            this->done(0);      
+        } else {
+            this->done(1);    
+        }        
     }    
 }
 

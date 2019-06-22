@@ -1,5 +1,5 @@
 #include "../include/chell.h"
-#include <iostream>
+
 Chell::Chell(const TextureManager& tm, const SoundManager& sm,
 		int32_t posx,int32_t posy, uint32_t width,uint32_t height,uint32_t dir)
 : Entity(posx,posy,width,height,dir,tm),
@@ -113,7 +113,6 @@ void Chell::idleAction(){
 }
 
 void Chell::jig(){	
-	std::cout<<"BAILO\n";
 	if(this->status != CHELL_JIGING){
 		this->frame = 0;
 		this->jigAction();	

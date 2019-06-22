@@ -16,7 +16,10 @@ void PlayerLogin::run(){
 		for(auto it: *(this->games)){
 			if(it.first == gameId){
 				player->setDisconnecterPtr(it.second->getDisconnecterPtr());
-				it.second->addPlayer(player);				
+				it.second->addPlayer(player);
+				player->sendByte(0);
+				this->joinable = true;
+				return;				
 			}
 		}
 	}else if (byte == 0){
@@ -24,9 +27,12 @@ void PlayerLogin::run(){
 		mapName += ".yaml";
 		Game * game = new Game(mapName);
 		if(!game->isFinished()){
+			player->sendByte(0);
 			player->setDisconnecterPtr(game->getDisconnecterPtr());
 			game->addPlayer(player);
 			(*this->games)[game->getId()] = game;
+			this->joinable = true;
+			return;
 		} else {
 			player->sendByte(1);
 			this->joinable = true;
@@ -37,9 +43,6 @@ void PlayerLogin::run(){
 		this->joinable = true;
 		return;
 	}
-	player->sendByte(0);
-	//playerSendBackground();
-	this->joinable = true;
 }
 
 bool PlayerLogin::isJoinable(){
