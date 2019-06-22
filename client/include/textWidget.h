@@ -8,7 +8,9 @@
 #include "../include/SdlWindow.h"
 #include "../include/SdlTexture.h"
 
-#define FONT_DIR "../resources/fonts/font.ttf"
+#define FONT_DIR1 "../resources/fonts/font.ttf"
+#define FONT_DIR2 "../resources/fonts/font2.ttf"
+#define FONT_DIR3 "../resources/fonts/font3.ttf"
 
 class TextWidget{
 private:	

@@ -6,7 +6,7 @@ window(window),str(str),x(x),y(y),selected(false){
 		throw std::runtime_error("SDL_ttf could not initialize! SDL_ttf Error: "+
 			std::string(TTF_GetError())+"\n");
 	}
-	this->font = TTF_OpenFont(FONT_DIR, 42 );
+	this->font = TTF_OpenFont(FONT_DIR1, 42 );
 	if(this->font == NULL){
 		throw std::runtime_error("SDL_ttf could not open font\n");
 	}
@@ -23,7 +23,7 @@ window(window),str(str),x(x),y(y),selected(false){
 		throw std::runtime_error("SDL_ttf could not initialize! SDL_ttf Error: "+
 			std::string(TTF_GetError())+"\n");
 	}
-	this->font = TTF_OpenFont(FONT_DIR, size);
+	this->font = TTF_OpenFont(FONT_DIR3, size);
 	if(this->font == NULL){
 		throw std::runtime_error("SDL_ttf could not open font\n");
 	}

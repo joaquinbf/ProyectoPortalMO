@@ -51,6 +51,5 @@ std::list<Update> Stage::getNewPlayerUpdates() const {
 }
 
 bool Stage::isChellAlive(uint32_t id) const{
-	this->world.isChellAlive(id);
-	return true;
+	return this->world.isChellAlive(id);
 }

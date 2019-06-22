@@ -22,7 +22,7 @@ void Player::stop(){
     this->inputReceiver.stop();
     this->updateSender.stop();
     this->updateSender.join();
-    this->inputReceiver.join();    
+    this->inputReceiver.join();   
 }
 
 void Player::start() {
