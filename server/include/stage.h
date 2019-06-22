@@ -29,6 +29,8 @@ public:
     void stop();
 	std::list<uint32_t> getChellsIdList() const;
 	std::list<Update> getNewPlayerUpdates()const;
+	bool validateMap();
+	bool isRunning();
 };
 
 #endif

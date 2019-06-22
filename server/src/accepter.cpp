@@ -6,8 +6,8 @@ Accepter::Accepter() {
 }
 
 Accepter::~Accepter(){
-    for(Game* game :  this->games){
-        delete game;
+    for(auto it :  this->games){
+        delete it.second;
     }
     for(PlayerLogin* pl: this->logins){
         if(pl->isJoinable()){
@@ -29,13 +29,20 @@ void Accepter::run() {
                     if(pl->isJoinable()){
                         pl->join();
                     }
-                }               
+                }
+                for(auto it : this->games){
+                    if(it.second->isFinished()){
+                        it.second->stop();
+                        this->games.erase(it.first);
+                        delete it.second;                        
+                    }
+                }
             }            
         }
     } catch (const ConnectionErrorException &e) {
     }
-    for(Game* game :  this->games){
-        game->stop();
+    for(auto it :  this->games){
+        it.second->stop();
     }
 }
 

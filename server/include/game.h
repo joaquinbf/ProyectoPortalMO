@@ -18,6 +18,7 @@
 class Game{
 private:
 	static uint32_t number;
+	bool finished;
 	Stage stage;
 	std::map<uint32_t,Player*> players;
 	ProtectedQueue<Action> inputs;
@@ -35,6 +36,8 @@ public:
 	void deletePlayer(uint32_t id);
 	void stop();
 	Disconnecter* getDisconnecterPtr();
+	void refreshInfo();
+	bool isFinished();
 };
 
 #endif

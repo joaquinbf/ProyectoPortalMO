@@ -1,6 +1,6 @@
 #include "../include/playerLogin.h"
 
-PlayerLogin::PlayerLogin(std::list<Game*>* games,Socket peer): 
+PlayerLogin::PlayerLogin(std::map<uint32_t,Game*>* games,Socket peer): 
 joinable(false),games(games),peer(std::move(peer)){}
 
 void PlayerLogin::run(){
@@ -13,10 +13,10 @@ void PlayerLogin::run(){
 	
 	if(byte == 1){
 		uint32_t gameId = player->receiveQuad();
-		for(Game* game: *(this->games)){
-			if(game->getId() == gameId){
-				player->setDisconnecterPtr(game->getDisconnecterPtr());
-				game->addPlayer(player);
+		for(auto it: *(this->games)){
+			if(it.first == gameId){
+				player->setDisconnecterPtr(it.second->getDisconnecterPtr());
+				it.second->addPlayer(player);
 				this->joinable = true;
 				return;
 			}
@@ -25,11 +25,15 @@ void PlayerLogin::run(){
 		std::string mapName = player->receiveLine();
 		mapName += ".yaml";
 		Game * game = new Game(mapName);
-		player->setDisconnecterPtr(game->getDisconnecterPtr());
-		game->addPlayer(player);
-		this->games->push_back(game);
-		this->joinable = true;
-		return;
+		if(!game->isFinished()){
+			player->setDisconnecterPtr(game->getDisconnecterPtr());
+			game->addPlayer(player);
+			(*this->games)[game->getId()] = game;
+			this->joinable = true;
+			return;	
+		} else {
+
+		}
 	}else{
 		this->joinable = true;
 		return;

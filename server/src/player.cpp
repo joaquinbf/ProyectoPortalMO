@@ -51,10 +51,10 @@ void Player::pushBackUpdate(Update update){
     this->updates.push(update);
 }
 
-void Player::sendGamesList(std::list<Game*>* games){
+void Player::sendGamesList(std::map<uint32_t,Game*>* games){
     this->protocol.sendQuad(games->size());
-    for(Game* game : *games){
-        this->protocol.sendGameInfo(game->getGameInfo());
+    for(auto it : *games){
+        this->protocol.sendGameInfo(it.second->getGameInfo());
     }
 }
 

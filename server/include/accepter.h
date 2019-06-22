@@ -17,7 +17,7 @@ class Accepter: public Thread {
 private:
     Socket socket;
     bool keep_running;
-    std::list<Game*> games;
+    std::map<uint32_t,Game*> games;
     std::vector<PlayerLogin *> logins;
 public:
     Accepter();

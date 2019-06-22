@@ -1,7 +1,7 @@
 #ifndef _PLAYER_LOGIN_H_
 #define _PLAYER_LOGIN_H_
 
-#include <list>
+#include <map>
 #include <string>
 
 #include "../../common/include/thread.h"
@@ -14,10 +14,10 @@
 class PlayerLogin : public Thread{
 private: 
 	bool joinable;
-	std::list<Game*>* games;
+	std::map<uint32_t,Game*>* games;
 	Socket peer;
 public:
-	explicit PlayerLogin(std::list<Game*>* games,Socket peer);
+	explicit PlayerLogin(std::map<uint32_t,Game*>* games,Socket peer);
 	virtual void run() override;
 	bool isJoinable();	
 };

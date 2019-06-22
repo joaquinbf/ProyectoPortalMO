@@ -1,6 +1,4 @@
 #include "../include/stage.h"
-#include <iostream>
-#include <string>
 
 Stage::Stage(
 	const std::string& mapName,
@@ -9,18 +7,24 @@ Stage::Stage(
 	running(true),
 	inputs(inputs),
 	updates(updates) {
-	std::cout << mapName << std::endl;
 	Serializer serializer;
-	std::cout << "MAP_PATH + mapName: " << MAP_PATH + mapName << std::endl;
 	serializer.deserialize(&this->world, MAP_PATH + mapName);
 }
 
 Stage::~Stage(){}
 
+bool Stage::validateMap(){
+	//completar
+	return true;
+}
+
 void Stage::run() {
 	while(this->running){
 		this->world.addExternalInput(inputs);
 		this->world.bigStep();
+		if(this->world.isFinished()){
+			this->running = false;
+		}
 		this->world.fillUpdates(updates);
 		usleep(50000);
 	}
@@ -28,6 +32,10 @@ void Stage::run() {
 
 void Stage::stop(){
 	this->running = false;
+}
+
+bool Stage::isRunning(){
+	return this->running;
 }
 
 std::list<uint32_t> Stage::getChellsIdList() const{

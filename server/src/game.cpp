@@ -2,20 +2,29 @@
 
 uint32_t Game::number = 0;
 
-Game::Game(const std::string& mapName) : stage(mapName, &this->inputs,&this->updates),
-	broadcaster(&this->updates),disconnecter(this),gameInfo(this->number,mapName,0,0) {	
-	this->chellsIds = this->stage.getChellsIdList();
-	this->gameInfo.setCapacity(this->chellsIds.size());
-	this->stage.start();
-	this->broadcaster.start();
-	this->disconnecter.start();
-	++this->number;
+Game::Game(const std::string& mapName) :finished(false), 
+stage(mapName, &this->inputs,&this->updates),
+broadcaster(&this->updates),disconnecter(this),gameInfo(this->number,mapName,0,0) {	
+	if(this->stage.validateMap()){
+		this->chellsIds = this->stage.getChellsIdList();
+		this->gameInfo.setCapacity(this->chellsIds.size());
+		this->stage.start();
+		this->broadcaster.start();
+		this->disconnecter.start();
+		++this->number;		
+	} else {
+		this->finished = true;
+	}	
 }
 
 Game::~Game(){
 	for(auto player : this->players){
 		delete player.second;
 	}
+}
+
+bool Game::isFinished(){
+	return this->finished;
 }
 
 void Game::addPlayer(Player* player){
@@ -35,7 +44,12 @@ void Game::addPlayer(Player* player){
 }
 
 const GameInfo& Game::getGameInfo(){
+	this->refreshInfo();
 	return this->gameInfo;
+}
+
+void Game::refreshInfo(){
+
 }
 
 uint32_t Game::getId() const{

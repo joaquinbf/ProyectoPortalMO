@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <list>
+#include <map>
 #include <dirent.h>
 
 #include "../../common/include/socket.h"
@@ -32,7 +33,7 @@ public:
     void setInputPtr(ProtectedQueue<Action>* ptr);
     ProtectedQueue<Update>* getUpdatesPtr();
     void pushBackUpdate(Update update);
-    void sendGamesList(std::list<Game*>* games);
+    void sendGamesList(std::map<uint32_t,Game*>* games);
     void sendMapList();
     uint8_t receiveByte() const;
     uint32_t receiveQuad() const;

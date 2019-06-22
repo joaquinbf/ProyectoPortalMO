@@ -16,7 +16,6 @@ public:
 		uint32_t width, uint32_t height, uint32_t dir,ENTITY en);
 	~Portal();
 	void render(int cx,int cy,int resx,int resy,float scale) override;
-	void update(const Update& update) override;
 };
 
 #endif
