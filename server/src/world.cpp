@@ -19,6 +19,13 @@
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
 #include "../../common/include/update.h"
+#include "../include/bodies/block/block.h"
+#include "../include/bodies/block/material.h"
+#include "../include/bodies/block/shape.h"
+#include "../include/bodies/block/metal_material.h"
+#include "../include/bodies/block/stone_material.h"
+#include "../include/bodies/block/square_shape.h"
+#include "../include/bodies/block/diagonal_shape.h"
 #include <cstdint>
 #include <vector>
 #include <list>
@@ -49,6 +56,11 @@ World::World(b2World *b2world):
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
+std::set<Body *> *World::getBodies() {
+    return &this->bodies;
+}
+
+
 World::~World() {
     this->destroyChells();
     this->destroyAllBodies();
@@ -57,6 +69,11 @@ World::~World() {
         delete it.second;
     }
 }
+
+bool World::isValid() {
+    return this->chells.size() != 0 && this->cake != nullptr;
+}
+
 
 bool World::isFinished() const {
     return this->everybodyAteTheCake();
