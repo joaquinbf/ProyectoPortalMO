@@ -22,9 +22,12 @@ void Stage::run() {
 
 	while(this->running){
 		game_loop->executeExternalInput(inputs);
-		game_loop->step();
-		if(this->world.isFinished()){
-			this->running = false;
+		for (int i = 0; i < 6; i++) {
+			game_loop->step();
+			if(this->world.isFinished()){
+				this->running = false;
+				break;
+			}
 		}
 		game_loop->fillUpdates(updates);
 		usleep(50000);
