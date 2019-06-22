@@ -1,13 +1,15 @@
 #include "../include/gameView.h"
-
+#include <iostream>
 GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm) : finished(false),
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), background(window,"1.jpg"),
-pauseView(this->textureManager,window,*this,this->soundManager){
+pauseView(this->textureManager,window,*this,this->soundManager),
+recordingDot(this->window,".",0.95,0,100,1){
 	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(this->cursor);
 	this->resolutions = this->window.getResolutions();
 	this->getResolutionsIndex();
+	this->recordingDot.changeColor(255,0,0);
 }
 
 GameView::~GameView(){
@@ -47,7 +49,7 @@ void GameView::step(){
 	}	
 }
 
-void GameView::render(){
+void GameView::render(bool recording){
 	this->updateResolution();
 	this->window.fill(); // Repinto el fondo gris
 	if(this->myChell != nullptr){
@@ -79,6 +81,9 @@ void GameView::render(){
 	if(this->myChell != nullptr){
 		this->myChell->renderCentered(this->resx,this->resy,this->scale);	
 	}
+	if(recording){
+		this->recordingDot.render(this->resx,this->resy);
+	}
 	if(this->endMesage != nullptr){
 		this->endMesage->render(this->resx,this->resy);
 	} else if(this->paused){
@@ -107,10 +112,8 @@ void GameView::updateHandler(Update update){
 		break;
 	case COMMAND::UPDATE_COMMAND:
 		id = update.getIdObject();
-		if(id == this->myChellId){
-			if(this->myChell != nullptr){
-				this->myChell->update(update);	
-			}			
+		if(id == this->myChellId && this->myChell != nullptr){
+			this->myChell->update(update);			
 		} else if (this->chells.find(id) != this->chells.end()){
 			this->chells[id]->update(update);
 		} else if( this->entities.find(id) != this->entities.end()){
@@ -219,6 +222,9 @@ void GameView::pause(){
 }
 
 int32_t GameView::pixelToCoordX(int32_t x) const{
+	if(this->myChell == nullptr){
+		return 0;
+	}
 	int32_t cordx = this->myChell->getPosX();
 	int32_t a=x-(this->resx/2);
     a = a/this->scale + cordx;
@@ -226,6 +232,9 @@ int32_t GameView::pixelToCoordX(int32_t x) const{
 }
 
 int32_t GameView::pixelToCoordY(int32_t y) const{
+	if(this->myChell == nullptr){
+		return 0;
+	}
 	int32_t cordy = this->myChell->getPosY();
     int32_t b=y-(2*this->resy/3);
     b = -b/this->scale + cordy;

@@ -54,7 +54,7 @@ void Client::game(){
 		while(this->updates.try_pop(update)){
 			gameView.updateHandler(update);
 		}        
-        gameView.render();            
+        gameView.render(this->videoRecorder.isRecording());            
         usleep(50000);
         if(this->videoRecorder.isRecording()){
             this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
@@ -67,12 +67,12 @@ void Client::game(){
     }
     if(gameView.isFinished()){
         for(int i = 0; i< 80; ++i){
-            gameView.render();            
-            usleep(50000);
+            gameView.render(this->videoRecorder.isRecording());                        
             if(this->videoRecorder.isRecording()){
                 this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
                 this->videoRecorder.recordFrame(gameView.getRenderer());
             }
+            usleep(50000);
             gameView.step();
         }   
     } 
