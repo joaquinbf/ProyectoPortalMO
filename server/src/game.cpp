@@ -33,6 +33,7 @@ void Game::addPlayer(Player* player){
 	std::list<Update> ul = this->stage.getNewPlayerUpdates();
 	uint32_t id = this->chellsIds.back();
 	player->sendChellIdToClient(id);
+	player->sendBackground(this->stage.getBackground());
 	this->chellsIds.pop_back();
 	player->setInputPtr(&this->inputs);
 	for(Update u: ul){

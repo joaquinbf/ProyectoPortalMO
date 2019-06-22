@@ -52,3 +52,8 @@ std::list<Update> Stage::getNewPlayerUpdates() const {
 bool Stage::isChellAlive(uint32_t id) const{
 	return this->world.isChellAlive(id);
 }
+
+std::string Stage::getBackground() const{
+	//completar
+	return "1.jpg";
+}

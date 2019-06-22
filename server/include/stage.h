@@ -32,6 +32,7 @@ public:
 	bool validateMap();
 	bool isRunning();
 	bool isChellAlive(uint32_t id) const;
+	std::string getBackground() const;
 };
 
 #endif

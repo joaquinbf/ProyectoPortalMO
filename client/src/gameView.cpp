@@ -6,12 +6,13 @@ GameView::GameView(uint32_t x, uint32_t y, SoundManager& sm,
 resx(x),resy(y),window(x,y), textureManager(window), soundManager(sm),myChell(nullptr),
 myChellId(0), scale(1), paused(false), background(window,backgroundFile),
 pauseView(this->textureManager,window,*this,this->soundManager),
-recordingDot(this->window,".",0.95,0,100,1){
+recordingDot(this->window,"o",0.98,0.02,10,1){
 	this->cursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_CROSSHAIR);
 	SDL_SetCursor(this->cursor);
 	this->resolutions = this->window.getResolutions();
 	this->getResolutionsIndex();
 	this->recordingDot.changeColor(255,0,0);
+	this->recordingDot.setOutline(5);
 }
 
 GameView::~GameView(){
@@ -134,7 +135,9 @@ void GameView::updateHandler(Update update){
 		}
 		break;
 	case COMMAND::WIN_COMMAND:		
-		this->myChell->jig();
+		if(this->myChell != nullptr){
+			this->myChell->jig();
+		}		
 		this->finished = true;
 		this->showWinMesage();
 		break;

@@ -94,3 +94,7 @@ uint32_t Player::receiveQuad() const{
 std::string Player::receiveLine() const{
     return this->protocol.receiveLine();
 }
+
+void Player::sendBackground(const std::string& str) const{
+    this->protocol.sendLine(str);
+}
