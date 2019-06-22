@@ -3,6 +3,7 @@
 #include "../../include/instructions/instruction.h"
 #include "../.././common/include/types.h"
 #include "../../include/world.h"
+#include "../../include/bodies/bullet/bullet.h"
 
 
 CreateBulletInstruction::CreateBulletInstruction(

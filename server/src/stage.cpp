@@ -13,16 +13,15 @@ Stage::Stage(
 
 Stage::~Stage(){}
 
-bool Stage::validateMap(){
-	//completar
-	return true;
+bool Stage::validateMap() {
+	return this->world.isValid();
 }
 
 void Stage::run() {
 	while(this->running){
 		this->world.addExternalInput(inputs);
 		this->world.bigStep();
-		if(this->world.isFinished()){
+		if (this->world.isFinished()) {
 			this->running = false;
 		}
 		this->world.fillUpdates(updates);

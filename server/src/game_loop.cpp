@@ -6,8 +6,13 @@
 #include "../include/instructions/instruction_factory.h"
 #include "../include/instructions/instruction.h"
 
-GameLoop::GameLoop(World *world):
-    world(world) {
+GameLoop::GameLoop(
+    World *world,
+    std::set<Body *> *bodies,
+    std::deque<Update> *internal_updates):
+    world(world),
+    bodies(bodies),
+    internal_updates(internal_updates) {
 }
 
 void GameLoop::executeExternalInput(ProtectedQueue<Action> *inputs) {
@@ -24,9 +29,31 @@ void GameLoop::executeExternalInput(ProtectedQueue<Action> *inputs) {
 }
 
 void GameLoop::step() {
-
+    this->worldStep();
+    this->applyInternalInstructions();
+    this->applyStateActions();
+    this->createUpdates();
 }
 
 void GameLoop::fillUpdates(ProtectedQueue<Update> *ext_updates) {
+
+}
+
+void GameLoop::worldStep() {
+    this->world->getB2World()->Step(
+        this->TIME_STEP,
+        this->VELOCITY_ITERATIONS,
+        this->POSITION_ITERATIONS);
+}
+
+void GameLoop::applyInternalInstructions() {
+
+}
+
+void GameLoop::applyStateActions() {
+
+}
+
+void GameLoop::createUpdates() {
 
 }

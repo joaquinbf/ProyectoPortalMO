@@ -1,21 +1,8 @@
 #ifndef __WORLD_H__
 #define __WORLD_H__
 
-#include "bodies/body.h"
-#include "bodies/chell/chell.h"
-#include "bodies/bullet/bullet.h"
-#include "../include/bodies/button/button.h"
 #include "pin.h"
-#include "bodies/block/block.h"
-#include "bodies/block/shape.h"
-#include "bodies/block/square_shape.h"
-#include "bodies/block/diagonal_shape.h"
-#include "bodies/block/material.h"
-#include "bodies/block/metal_material.h"
-#include "bodies/block/stone_material.h"
-#include "../include/bodies/launcher/launcher.h"
 #include "boolean_suppliers/boolean_block_factory.h"
-#include "bodies/acid/acid.h"
 #include "contact_listener.h"
 #include "../../common/include/protected_queue.h"
 #include "../../common/include/action.h"
@@ -44,6 +31,13 @@ class Portal;
 class Cake;
 class Rock;
 class Laser;
+class Rock;
+class Material;
+class Shape;
+class MetalMaterial;
+class StoneMaterial;
+class SquareShape;
+class DiagonalShape;
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
@@ -106,6 +100,12 @@ public:
 
     /* Libera los recursos utilizados. */
     ~World();
+
+    /* Indica si el mundo cargado es valido */
+    bool isValid();
+
+    /* Devuelve un conjunto de bodies */
+    std::set<Body *> *getBodies();
 
     /* Indica si se gano la partida */
     bool isFinished() const;
