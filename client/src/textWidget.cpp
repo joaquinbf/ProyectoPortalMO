@@ -1,33 +1,29 @@
 #include "../include/textWidget.h"
 
-TextWidget::TextWidget(const SdlWindow& window,const std::string str,float x,float y):
+
+TextWidget::TextWidget(const SdlWindow& window,const std::string str,float x,float y,
+	uint32_t size,uint32_t font):
 window(window),str(str),x(x),y(y),selected(false){
 	if( TTF_Init() == -1 ) { 		
 		throw std::runtime_error("SDL_ttf could not initialize! SDL_ttf Error: "+
 			std::string(TTF_GetError())+"\n");
 	}
-	this->font = TTF_OpenFont(FONT_DIR1, 42 );
+	switch(font){
+		case 1:
+			this->font = TTF_OpenFont(FONT_DIR1, size);	
+			break;
+		case 2:
+			this->font = TTF_OpenFont(FONT_DIR2, size);	
+			break;
+		default:
+			this->font = TTF_OpenFont(FONT_DIR1, size);	
+			break;
+	}
+	
 	if(this->font == NULL){
 		throw std::runtime_error("SDL_ttf could not open font\n");
 	}
 	this->textColor = { 255, 255, 255 };
-	this->textSurface = TTF_RenderText_Solid( this->font, str.c_str(), this->textColor );
-	this->texturePtr = SDL_CreateTextureFromSurface( this->window.getRenderer(), 
-		this->textSurface );
-}
-
-TextWidget::TextWidget(const SdlWindow& window,const std::string str,float x,float y,
-	uint32_t size):
-window(window),str(str),x(x),y(y),selected(false){
-	if( TTF_Init() == -1 ) { 		
-		throw std::runtime_error("SDL_ttf could not initialize! SDL_ttf Error: "+
-			std::string(TTF_GetError())+"\n");
-	}
-	this->font = TTF_OpenFont(FONT_DIR3, size);
-	if(this->font == NULL){
-		throw std::runtime_error("SDL_ttf could not open font\n");
-	}
-	this->textColor = { 255, 200, 0 };
 	this->textSurface = TTF_RenderText_Solid( this->font, str.c_str(), this->textColor );
 	this->texturePtr = SDL_CreateTextureFromSurface( this->window.getRenderer(), 
 		this->textSurface );
@@ -120,4 +116,35 @@ void TextWidget::changeString(const std::string& s){
 	this->textSurface = TTF_RenderText_Solid( this->font, str.c_str(), this->textColor );
 	this->texturePtr = SDL_CreateTextureFromSurface( this->window.getRenderer(), 
 		this->textSurface );
+}
+
+bool TextWidget::firstCursorOn(uint32_t px,uint32_t py,uint32_t resx,uint32_t resy){
+	if(px < (resx-this->textSurface->w)*this->x){
+		return false;
+	} else if (px > (resx-((this->textSurface->w)))*this->x
+		+ this->textSurface->w/this->str.size()){
+		return false;
+	} else if (py < (resy-this->textSurface->h)*this->y){
+		return false;
+	}  else if (py > (resy-this->textSurface->h)*this->y+this->textSurface->h){
+		return false;
+	} else{
+		return true;
+	}
+}
+
+bool TextWidget::lastCursorOn(uint32_t px,uint32_t py,uint32_t resx,uint32_t resy){
+	if(px < (resx-this->textSurface->w)*this->x 
+		+ this->textSurface->w/this->str.size()*(this->str.size()-1))
+	{
+		return false;
+	} else if (px > (resx-this->textSurface->w)*this->x+this->textSurface->w){
+		return false;
+	} else if (py < (resy-this->textSurface->h)*this->y){
+		return false;
+	}  else if (py > (resy-this->textSurface->h)*this->y+this->textSurface->h){
+		return false;
+	} else{
+		return true;
+	}
 }

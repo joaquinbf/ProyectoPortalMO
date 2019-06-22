@@ -4,33 +4,26 @@
 PauseView::PauseView(const TextureManager& tm,const SdlWindow& window,GameView& gv,
 	SoundManager& sm):
 textureManager(tm),gameView(gv),soundManager(sm),blackArea(0,0,600,600),
-twPause(window,"Pausa",0.05,0.05),
-twResume(window,"Resumir",0.5,0.4),
-twOptions(window,"Opciones",0.5,0.5),
-twExit(window,"Salir",0.5,0.6),
-twScreenOpt(window,"Video",0.5,0.4),
-twControlOpt(window,"Controles",0.5,0.5),
-twSoundOpt(window,"Sonido",0.5,0.6),
-twBack1(window,"Volver",0.5,0.7),
-twMusicVolume1(window,"Volumen de musica",0.3,0.3),
-twMusicVolume2(window,"<",0.6,0.4),
-twMusicVolume3(window,"100",0.7,0.4),
-twMusicVolume4(window,">",0.8,0.4),
-twFxVolume1(window,"Volumen de Efectos",0.3,0.6),
-twFxVolume2(window,"<",0.6,0.7),
-twFxVolume3(window,"100",0.7,0.7),
-twFxVolume4(window,">",0.8,0.7),
-twBack2(window,"Volver",0.5,0.9),
-twFull1(window,"Pantalla completa",0.3,0.3),
-twFull2(window,"<",0.5,0.4),
-twFull3(window,"no",0.6,0.4),
-twFull4(window,">",0.7,0.4),
-twRes1(window,"Resolucion",0.3,0.6),
-twRes2(window,"<",0.45,0.7),
-twRes3(window,"800x600",0.6,0.7),
-twRes4(window,">",0.7,0.7),
-twBack3(window,"Volver",0.5,0.9)
+twPause(window,"(Pausa)",0.05,0.05,48,2),
+twResume(window,"Resumir",0.5,0.4,48,1),
+twOptions(window,"Opciones",0.5,0.5,48,1),
+twExit(window,"Salir",0.5,0.6,48,1),
+twScreenOpt(window,"Video",0.5,0.4,48,1),
+twControlOpt(window,"Controles",0.5,0.5,48,1),
+twSoundOpt(window,"Sonido",0.5,0.6,48,1),
+twBack1(window,"Volver",0.5,0.7,48,1),
+twMusicVolume1(window,"Volumen de musica",0.3,0.3,48,1),
+twMusicVolume2(window,"<100>",0.72,0.4,48,1),
+twFxVolume1(window,"Volumen de Efectos",0.3,0.6,48,1),
+twFxVolume2(window,"<100>",0.72,0.7,48,1),
+twBack2(window,"Volver",0.5,0.9,48,1),
+twFull1(window,"Pantalla completa",0.3,0.3,48,1),
+twFull2(window,"no",0.6,0.4,48,1),
+twRes1(window,"Resolucion",0.3,0.6,48,1),
+twRes2(window,"800x600",0.62,0.7,48,1),
+twBack3(window,"Volver",0.5,0.9,48,1)
 {
+	this->twPause.changeColor(255,0,0);
 	this->blackTexture = this->textureManager.getBlackTexturePointer();
 	this->blackTexture->setAlpha(160);	
 }
@@ -60,41 +53,31 @@ void PauseView::render(uint32_t resx,uint32_t resy){
 			break;
 		case SCREENOPT:
 			if(this->gameView.isFullscreen()){
-				twFull3.changeString("si");
+				twFull2.changeString("<si>");
 				twRes2.lock();
-				twRes4.lock();
 			}else{
-				twFull3.changeString("no");
-				twRes2.unlock();
-				twRes4.unlock();
+				twFull2.changeString("<no>");
+				twRes2.unlock();				
 			}
-			twRes3.changeString(std::to_string(resx)
-				+"x"+std::to_string(resy));
+			twRes2.changeString("<"+std::to_string(resx)
+				+"x"+std::to_string(resy)+">");
 			twFull1.render(this->resx,this->resy);
 			twFull2.render(this->resx,this->resy);
-			twFull3.render(this->resx,this->resy);
-			twFull4.render(this->resx,this->resy);
 			twRes1.render(this->resx,this->resy);
 			twRes2.render(this->resx,this->resy);
-			twRes3.render(this->resx,this->resy);
-			twRes4.render(this->resx,this->resy);
 			twBack3.render(this->resx,this->resy);
 			break;
 		case SOUNDOPT:
 			music = this->soundManager.getMusicVolume();
-			twMusicVolume3.changeString(std::to_string(music));
+			twMusicVolume2.changeString("<"+std::to_string(music)+">");
 
 			fx = this->soundManager.getFxVolume();			
-			twFxVolume3.changeString(std::to_string(fx));
+			twFxVolume2.changeString("<"+std::to_string(fx)+">");
 
 			twMusicVolume1.render(this->resx,this->resy);
 			twMusicVolume2.render(this->resx,this->resy);
-			twMusicVolume3.render(this->resx,this->resy);
-			twMusicVolume4.render(this->resx,this->resy);
 			twFxVolume1.render(this->resx,this->resy);
 			twFxVolume2.render(this->resx,this->resy);
-			twFxVolume3.render(this->resx,this->resy);
-			twFxVolume4.render(this->resx,this->resy);
 			twBack2.render(this->resx,this->resy);
 			break;
 		case CONTROLOPT:
@@ -129,43 +112,40 @@ void PauseView::mouseButtonDown(uint32_t x,uint32_t y){
 		case SCREENOPT:
 			if( this->twBack3.cursorOn(x,y,this->resx,this->resy)){
 				this->status = OPTIONS;
-			} else if( this->twFull2.cursorOn(x,y,this->resx,this->resy)){
+			} else if( this->twFull2.firstCursorOn(x,y,this->resx,this->resy)){
 				if(this->gameView.isFullscreen()){
 					this->gameView.windowed();
 				} else {
 					this->gameView.fullscreen();
 				}
-			} else if( this->twFull4.cursorOn(x,y,this->resx,this->resy)){
+			} else if( this->twFull2.lastCursorOn(x,y,this->resx,this->resy)){
 				if(this->gameView.isFullscreen()){
 					this->gameView.windowed();
 				} else {
 					this->gameView.fullscreen();
 				}
-			} else if( this->twRes2.cursorOn(x,y,this->resx,this->resy)){
+			} else if( this->twRes2.firstCursorOn(x,y,this->resx,this->resy)){
 				if(!this->gameView.isFullscreen()){
-					this->gameView.nextRes();
+					this->gameView.prevRes();
 				} 
-			} else if( this->twRes4.cursorOn(x,y,this->resx,this->resy)){
+			} else if( this->twRes2.lastCursorOn(x,y,this->resx,this->resy)){
 				if(!this->gameView.isFullscreen()){
 					this->gameView.nextRes();
 				} 
 			}
-
 			break;
 		case SOUNDOPT:
 			if( this->twBack2.cursorOn(x,y,this->resx,this->resy)){
 				this->status = OPTIONS;
-			} else if (this->twMusicVolume2.cursorOn(x,y,this->resx,this->resy)){
+			} else if (this->twMusicVolume2.firstCursorOn(x,y,this->resx,this->resy)){
 				this->soundManager.turnMusicDown();
-			} else if (this->twMusicVolume4.cursorOn(x,y,this->resx,this->resy)){
+			} else if (this->twMusicVolume2.lastCursorOn(x,y,this->resx,this->resy)){
 				this->soundManager.turnMusicUp();
-			} else if (this->twFxVolume2.cursorOn(x,y,this->resx,this->resy)){
+			} else if (this->twFxVolume2.firstCursorOn(x,y,this->resx,this->resy)){
 				this->soundManager.turnFxDown();
-			} else if (this->twFxVolume4.cursorOn(x,y,this->resx,this->resy)){
+			} else if (this->twFxVolume2.lastCursorOn(x,y,this->resx,this->resy)){
 				this->soundManager.turnFxUp();
 			}
-
-
 			break;
 		case CONTROLOPT:
 

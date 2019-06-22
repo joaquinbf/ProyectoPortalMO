@@ -260,11 +260,13 @@ PauseView* GameView::getPausePtr(){
 }
 
 void GameView::showLoseMesage(){
-	this->endMesage = new TextWidget(this->window,"(DERROTA!",0.5,0.5,70);
+	this->endMesage = new TextWidget(this->window,"(DERROTA!)",0.5,0.5,70,2);
+	this->endMesage->changeColor(255,200,0);
 }
 
 void GameView::showWinMesage(){
-	this->endMesage = new TextWidget(this->window,"(VICTORIA!",0.5,0.5,70);
+	this->endMesage = new TextWidget(this->window,"(VICTORIA!)",0.5,0.5,70,2);
+	this->endMesage->changeColor(255,200,0);
 }
 
 void GameView::getResolutionsIndex(){
