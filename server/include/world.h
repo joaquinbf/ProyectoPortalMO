@@ -10,6 +10,7 @@
 #include "../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
 #include "../include/instructions/instruction_factory.h"
+#include "../include/game_loop.h"
 #include <cstdint>
 #include <vector>
 #include <list>
@@ -38,6 +39,7 @@ class MetalMaterial;
 class StoneMaterial;
 class SquareShape;
 class DiagonalShape;
+class GameLoop;
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
@@ -74,6 +76,7 @@ private:
     std::deque<Update>  internal_updates;
     InstructionFactory instruction_factory;
     Cake *cake;
+    GameLoop game_loop;
 
 public:
     /* Instancia un world */
@@ -100,6 +103,9 @@ public:
 
     /* Libera los recursos utilizados. */
     ~World();
+
+    /* Devuelve un puntero al controlador de game loop */
+    GameLoop *getGameLoop();
 
     /* Indica si el mundo cargado es valido */
     bool isValid();

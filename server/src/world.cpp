@@ -26,6 +26,7 @@
 #include "../include/bodies/block/stone_material.h"
 #include "../include/bodies/block/square_shape.h"
 #include "../include/bodies/block/diagonal_shape.h"
+#include "../include/game_loop.h"
 #include <cstdint>
 #include <vector>
 #include <list>
@@ -35,7 +36,12 @@ World::World():
     b2world(new b2World(GRAVITY)),
     body_count(0),
     b2world_is_internal(true),
-    cake(nullptr) {
+    cake(nullptr),
+    game_loop(
+        this,
+        &this->bodies,
+        &this->internal_updates,
+        &this->instructions) {
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
@@ -44,7 +50,12 @@ World::World(float time_step):
     body_count(0),
     b2world_is_internal(true),
     TIME_STEP(time_step),
-    cake(nullptr) {
+    cake(nullptr),
+    game_loop(
+        this,
+        &this->bodies,
+        &this->internal_updates,
+        &this->instructions) {
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
@@ -52,8 +63,17 @@ World::World(b2World *b2world):
     b2world(b2world),
     body_count(0),
     b2world_is_internal(false),
-    cake(nullptr) {
+    cake(nullptr),
+    game_loop(
+        this,
+        &this->bodies,
+        &this->internal_updates,
+        &this->instructions) {
     this->b2world->SetContactListener(&this->contact_listener);
+}
+
+GameLoop *World::getGameLoop() {
+    return &this->game_loop;
 }
 
 std::set<Body *> *World::getBodies() {
