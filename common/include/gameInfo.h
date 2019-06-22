@@ -19,6 +19,7 @@ public:
 	const std::string& getMapName() const;
 	uint32_t getPlayers() const;
 	uint32_t getCapacity() const;
+	void setPlayers(uint32_t p);
 	void setCapacity(uint32_t c);
 };
 

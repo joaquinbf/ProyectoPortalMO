@@ -30,6 +30,10 @@ uint32_t GameInfo::getCapacity() const{
 	return this->capacity;
 }
 
+void GameInfo::setPlayers(uint32_t p){
+	this->players = p;
+}
+
 void GameInfo::setCapacity(uint32_t c){
 	this->capacity = c;
 }

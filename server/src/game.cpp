@@ -56,7 +56,8 @@ void Game::refreshInfo(){
 			++playersAlive;
 		}
 	} 
-
+	this->gameInfo.setPlayers(playersAlive);
+	this->gameInfo.setPlayers(playersAlive + this->chellsIds.size());
 }
 
 uint32_t Game::getId() const{
