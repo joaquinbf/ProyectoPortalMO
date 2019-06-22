@@ -58,15 +58,6 @@ World::World(b2World *b2world):
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
-GameLoop *World::getGameLoop() {
-    return &this->game_loop;
-}
-
-std::set<Body *> *World::getBodies() {
-    return &this->bodies;
-}
-
-
 World::~World() {
     this->destroyChells();
     this->destroyAllBodies();
@@ -74,6 +65,18 @@ World::~World() {
     for(auto it : this->pins){
         delete it.second;
     }
+}
+
+bool World::isChellAlive(uint32_t chell_id) const {
+    return this->chells.count(chell_id) > 0;
+}
+
+GameLoop *World::getGameLoop() {
+    return &this->game_loop;
+}
+
+std::set<Body *> *World::getBodies() {
+    return &this->bodies;
 }
 
 bool World::isValid() {

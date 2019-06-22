@@ -97,6 +97,9 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Indica si chell de chell_id esta viva */
+    bool isChellAlive(uint32_t chell_id) const;
+
     /* Devuelve un puntero al controlador de game loop */
     GameLoop *getGameLoop();
 
