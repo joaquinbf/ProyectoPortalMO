@@ -19,7 +19,6 @@ class Instruction;
 class GameLoop {
 private:
     World *world;
-    std::map<uint32_t, Chell *> *chells;
     std::set<Body *> *bodies;
     std::deque<Update> *internal_updates;
     std::deque<Instruction *> *internal_instructions;

@@ -18,26 +18,17 @@ bool Stage::validateMap() {
 }
 
 void Stage::run() {
+	GameLoop *game_loop = this->world.getGameLoop();
+
 	while(this->running){
-		this->world.addExternalInput(inputs);
-		this->world.bigStep();
+		game_loop->executeExternalInput(inputs);
+		game_loop->step();
 		if(this->world.isFinished()){
 			this->running = false;
 		}
-		this->world.fillUpdates(updates);
+		game_loop->fillUpdates(updates);
 		usleep(50000);
 	}
-
-	// GameLoop *game_loop = this->world.getGameLoop();
-	// while(this->running){
-	// 	game_loop->executeExternalInput(inputs);
-	// 	game_loop->step();
-	// 	if (this->world.isFinished()) {
-	// 		this->running = false;
-	// 	}
-	// 	game_loop->fillUpdates(updates);
-	// 	usleep(50000);
-	// }
 }
 
 void Stage::stop(){

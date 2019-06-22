@@ -24,7 +24,10 @@ void GameLoop::executeExternalInput(ProtectedQueue<Action> *inputs) {
     Action action;
 
     while (inputs->try_pop(action)) {
-        inst = inst_fact.createInstruction(action, *this->chells, this->world);
+        inst = inst_fact.createInstruction(
+            action,
+            *this->world->getChells(),
+            this->world);
         inst->execute();
         delete inst;
     }
