@@ -1,8 +1,17 @@
 escenario:
   cantidadCeldas: 1980
-  tamanioAlto: 1056
   tamanioAncho: 1920
+  tamanioAlto: 1056
   pathFondoEscenario: /home/lucas/Taller/TPFinalPortal/resources/textures/backgrounds/1.jpg
+compuertas:
+  845:
+    size: 0
+  1225:
+    0:
+      idCelda: 1280
+      idObject: 1280
+      negado: false
+    size: 1
 celdas:
   - ocupado: false
   - ocupado: false
@@ -670,6 +679,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 662
+    x: 64
+    y: 352
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -789,8 +803,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: false
-  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 782
+    x: 64
+    y: 416
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -1607,24 +1624,28 @@ celdas:
     idObject: 1333
     x: 416
     y: 704
-  - ocupado: false
+  - ocupado: true
+    idClass: 10
+    idObject: 1334
+    x: 448
+    y: 704
   - ocupado: true
     idClass: 3
     idObject: 1335
     x: 480
     y: 704
   - ocupado: true
-    idClass: 3
+    idClass: 2
     idObject: 1336
     x: 512
     y: 704
   - ocupado: true
-    idClass: 3
+    idClass: 2
     idObject: 1337
     x: 544
     y: 704
   - ocupado: true
-    idClass: 3
+    idClass: 2
     idObject: 1338
     x: 576
     y: 704
@@ -1736,11 +1757,7 @@ celdas:
     x: 288
     y: 736
   - ocupado: false
-  - ocupado: true
-    idClass: 10
-    idObject: 1391
-    x: 352
-    y: 736
+  - ocupado: false
   - ocupado: false
   - ocupado: true
     idClass: 3
@@ -1753,6 +1770,21 @@ celdas:
     x: 448
     y: 736
   - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 1396
+    x: 512
+    y: 736
+  - ocupado: true
+    idClass: 3
+    idObject: 1397
+    x: 544
+    y: 736
+  - ocupado: true
+    idClass: 3
+    idObject: 1398
+    x: 576
+    y: 736
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -2334,15 +2366,3 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-compuertas:
-  845:
-    size: 0
-  1225:
-    0:
-      idCelda: 1280
-      idObject: 1280
-      negado: false
-    size: 1
