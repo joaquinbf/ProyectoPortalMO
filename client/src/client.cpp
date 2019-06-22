@@ -36,7 +36,7 @@ int Client::login(){
 
 void Client::game(){
     uint32_t chellId = serverManager.receiveQuad();
-    std::string background = "1.jpg";// serverManager.receiveLine();
+    std::string background = serverManager.receiveLine();
     GameView gameView(800,600,this->soundManager,background);
     InputManager inputManager(this->serverManager,gameView,this->videoRecorder,
         gameView.getPausePtr());

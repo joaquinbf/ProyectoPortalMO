@@ -37,6 +37,7 @@ public:
     uint8_t receiveByte() const;
     uint32_t receiveQuad() const;
     std::string receiveLine() const;
+    void sendBackground(const std::string& str) const;
 };
 
 #endif
