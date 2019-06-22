@@ -43,6 +43,9 @@ public:
     /* Rellena con uodates a ext_updates */
     void fillUpdates(ProtectedQueue<Update> *ext_updates);
 
+    /* Indica si el juego esta terminado */
+    bool isFinished() const;
+
 private:
     /* Genera una simulacion de world */
     void worldStep();

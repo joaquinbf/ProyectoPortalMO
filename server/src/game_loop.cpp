@@ -53,6 +53,10 @@ void GameLoop::fillUpdates(ProtectedQueue<Update> *ext_updates) {
     }
 }
 
+bool GameLoop::isFinished() const {
+    return this->world->isFinished();
+}
+
 void GameLoop::worldStep() {
     this->world->getB2World()->Step(
         this->TIME_STEP,

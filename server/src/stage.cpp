@@ -24,7 +24,7 @@ void Stage::run() {
 		game_loop->executeExternalInput(inputs);
 		for (int i = 0; i < 6; i++) {
 			game_loop->step();
-			if(this->world.isFinished()){
+			if (game_loop->isFinished()) {
 				this->running = false;
 				break;
 			}
