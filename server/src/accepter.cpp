@@ -10,9 +10,7 @@ Accepter::~Accepter(){
         delete it.second;
     }
     for(PlayerLogin* pl: this->logins){
-        if(pl->isJoinable()){
-            pl->join();
-        }
+        pl->join();        
         delete pl;
     }
 }
@@ -29,12 +27,15 @@ void Accepter::run() {
                         delete it.second;                        
                     }
                 }
+
                 PlayerLogin* playerLogin = new PlayerLogin(&this->games,std::move(peer));
                 playerLogin->start();
                 this->logins.push_back(playerLogin);    
+
                 for(PlayerLogin* pl: this->logins){
                     if(pl->isJoinable()){
-                        pl->join();
+                        //pl->join();                        
+                        //falta fix
                     }
                 }
             }            
