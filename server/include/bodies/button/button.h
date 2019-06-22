@@ -29,11 +29,11 @@ class Gate;
 
 class Button: public Body, public Gateable {
 public:
+    ButtonDef def;
     bool is_pressed;
     Gate *gate;
     const float FRICTION = 0.7;
     const float RESTITUTION = 0.0;
-    // TODO: Eliminar constantes.
     const float b = 1.00;
     const float B = 2.00;
     const float h = 0.50;

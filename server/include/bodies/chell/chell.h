@@ -52,6 +52,7 @@ private:
     PortalGun portal_gun;
     bool is_in_grabbing_mode;
     b2Joint *joint;
+    ChellDef def;
     Keypad keypad;
     const float WIDTH = 1.00;
     const float HEIGHT = 2.00;

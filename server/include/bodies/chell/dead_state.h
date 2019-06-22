@@ -5,6 +5,7 @@
 #include "chell_state.h"
 
 class Chell;
+class World;
 
 class DeadState: public ChellState {
 private:
@@ -14,6 +15,10 @@ public:
     DeadState(Chell *chell);
     virtual void handleBeginContactWith(Bullet *bullet) override;
     virtual void applyStateAction() override;
+
+private:
+    /* Agrega una update con command LOSE si todas las chells estan muertas*/
+    void addLoseUpdateIfAllChellsAreDead(World *world) const;
 };
 
 #endif

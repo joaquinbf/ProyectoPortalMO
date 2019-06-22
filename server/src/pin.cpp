@@ -1,8 +1,11 @@
 #include "../include/pin.h"
 
 Pin::Pin(uint32_t id,int32_t x,int32_t y):
-id(id),x(x),y(y),cont(PIN_TIME){
+id(id),x(x),y(y),cont(PIN_TIME) {
+}
 
+Pin::Pin(uint32_t pin_id, int32_t x, int32_t y, uint32_t pin_time):
+	id(pin_id), x(x), y(y), cont(pin_time) {
 }
 
 Pin::~Pin(){}
@@ -21,7 +24,7 @@ bool Pin::hasUpdate(){
 }
 
 Update Pin::getUpdate(){
-	if( this-> cont == PIN_TIME){
+	if( this-> cont == PIN_TIME) {
 		-- this->cont;
 		return Update(COMMAND::CREATE_COMMAND,ENTITY::PIN,this->id,
 			STATUS::NONE_STATUS,this->x,this->y,0);

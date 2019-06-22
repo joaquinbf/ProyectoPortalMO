@@ -7,7 +7,8 @@
 #include <iostream>
 
 Button::Button(World *world, float x, float y):
-    Body(world, ENTITY::BUTTON) {
+    Body(world, ENTITY::BUTTON),
+    def(world->getWorldConfig().button_def) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x -Cx, y - Cy);
@@ -27,7 +28,7 @@ Button::Button(World *world, float x, float y):
     b2polygonshape.Set(vertices, 6);
 
     b2FixtureDef fixtureDef;
-    fixtureDef.friction = this->FRICTION;
+    fixtureDef.friction = this->def.friction;
     fixtureDef.restitution = this->RESTITUTION;
     fixtureDef.shape = &b2polygonshape;
     this->b2body->CreateFixture(&fixtureDef);

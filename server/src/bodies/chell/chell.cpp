@@ -54,7 +54,8 @@ Chell::Chell(World *world, float x, float y):
     state(&this->idle_state),
     portal_gun(this),
     is_in_grabbing_mode(false),
-    joint(nullptr) {
+    joint(nullptr),
+    def(world->getWorldConfig().chell_def) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);

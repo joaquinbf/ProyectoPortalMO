@@ -15,11 +15,10 @@
 Block::Block(
     World *world,
     float x, float y, ORIENTATION orientation,
-    Shape *shape, Material *material,
-    const BlockDef &def):
+    Shape *shape, Material *material):
     Body(world, shape->createEntityWithMaterial(material)),
     orientation(orientation), shape(shape), material(material),
-    def(def) {
+    def(world->getWorldConfig().block_def) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(x, y);

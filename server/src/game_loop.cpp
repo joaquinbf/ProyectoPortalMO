@@ -6,6 +6,7 @@
 #include "../include/bodies/body.h"
 #include "../include/instructions/instruction_factory.h"
 #include "../include/instructions/instruction.h"
+#include <iostream>
 
 GameLoop::GameLoop(
     World *world,
@@ -34,7 +35,7 @@ void GameLoop::executeExternalInput(ProtectedQueue<Action> *inputs) {
 }
 
 void GameLoop::step() {
-    for (int i = 0;i < 6; i++) {
+    for (int i = 0; i < 6; i++) {
         this->worldStep();
         this->applyInternalInstructions();
     }
@@ -86,6 +87,7 @@ void GameLoop::createUpdates() {
         if (body->isAwake() && body->isActive()) {
             Update update = body->createUpdate(COMMAND::UPDATE_COMMAND);
             this->internal_updates->emplace_back(update);
+            std::cout << update.getCommand() << std::endl;
         }
     }
 }

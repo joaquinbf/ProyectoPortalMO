@@ -24,13 +24,9 @@ bool Stage::validateMap() {
 void Stage::run() {
 	GameLoop *game_loop = this->world.getGameLoop();
 
-	while(this->running){
+	while(!game_loop->isFinished()){
 		game_loop->executeExternalInput(inputs);
 		game_loop->step();
-		if (game_loop->isFinished()) {
-			this->running = false;
-			break;
-		}
 		game_loop->fillUpdates(updates);
 		usleep(50000);
 	}

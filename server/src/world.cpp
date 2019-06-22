@@ -67,6 +67,15 @@ World::~World() {
     }
 }
 
+unsigned int World::countLiveChells() const {
+    return this->chells.size();
+}
+
+
+WorldConfig World::getWorldConfig() const {
+    return this->config;
+}
+
 void World::setWorldConfig(const WorldConfig &config) {
     this->config = config;
 }
@@ -90,7 +99,7 @@ bool World::isValid() {
 
 
 bool World::isFinished() const {
-    return this->everybodyAteTheCake();
+    return this->everybodyAteTheCake() || this->countLiveChells() == 0;
 }
 
 std::map<uint32_t, Chell *> *World::getChells() {
@@ -105,7 +114,7 @@ bool World::everybodyAteTheCake() const {
     if (this->cake == nullptr) {
         return false;
     }
-    return this->chells.size() == this->cake->chellCount();
+    return this->countLiveChells() == this->cake->chellCount();
 }
 
 bool World::everybodyButOneAteTheCake() const {
@@ -123,7 +132,7 @@ void World::addToBodies(Body *body) {
     this->bodies.insert(body);
 }
 
-void World::addUpdate(Update update) {
+void World::addUpdate(const Update &update) {
     this->internal_updates.push_back(update);
 }
 
@@ -169,8 +178,7 @@ Block *World::createSquareMetalBlock(float x, float y) {
     Block *block = new Block(
         this, x, y,
         ORIENTATION::ORIENTATION_0,
-        shape, material,
-        this->config.block_def);
+        shape, material);
     return block;
 }
 
@@ -178,8 +186,7 @@ Block *World::createSquareStoneBlock(float x, float y) {
     Shape *shape = new SquareShape();
     Material *material = new StoneMaterial();
     Block *block = new Block(
-        this, x, y, ORIENTATION::ORIENTATION_0, shape, material,
-        this->config.block_def);
+        this, x, y, ORIENTATION::ORIENTATION_0, shape, material);
     return block;
 }
 
@@ -187,8 +194,7 @@ Block *World::createDiagonalMetalBlock(
     float x, float y, ORIENTATION orientation) {
     Shape *shape = new DiagonalShape();
     Material *material = new MetalMaterial();
-    Block *block = new Block(
-        this, x, y, orientation, shape, material, this->config.block_def);
+    Block *block = new Block(this, x, y, orientation, shape, material);
     return block;
 }
 
@@ -235,7 +241,7 @@ Launcher *World::createLauncher(float x, float y, DIRECTION direction) {
 }
 
 Bullet *World::createBullet(float x, float y, DIRECTION direction) {
-    Bullet *bullet = new Bullet(this, x, y, direction, this->config.bullet_def);
+    Bullet *bullet = new Bullet(this, x, y, direction);
     return bullet;
 }
 
@@ -280,7 +286,7 @@ std::list<Update> World::getNewPlayerUpdates() const {
 }
 
 void World::createNewPin(uint32_t id, int32_t x, int32_t y){
-    Pin* ptr = new Pin(this->body_count,x,y);
+    Pin* ptr = new Pin(this->body_count,x,y, this->config.pin_def.time);
     this->body_count++;
     if(this->pins.find(id) != this->pins.end()){
         this->changedPins[id] = this->pins[id]->getId();

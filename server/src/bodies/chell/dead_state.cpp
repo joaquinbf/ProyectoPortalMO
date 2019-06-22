@@ -22,5 +22,15 @@ void DeadState::applyStateAction() {
         world->addUpdate(update);
         world->removeFromChells(this->chell);
         world->destroyBody(this->chell);
+
+        this->addLoseUpdateIfAllChellsAreDead(world);
+    }
+}
+
+void DeadState::addLoseUpdateIfAllChellsAreDead(World *world) const {
+    if (world->countLiveChells() == 0) {
+        Update update;
+        update.setCommand(COMMAND::LOSE_COMMAND);
+        world->addUpdate(update);
     }
 }

@@ -88,6 +88,8 @@ void Portal::setOppositePortal(Portal *opposite) {
 }
 
 Update Portal::createUpdate(COMMAND command) const {
+    std::cout << "portal angle: " << (int32_t)RADTODEG(this->getAngle())
+              << std::endl;
     Update update(
         command,
         this->entity,
@@ -95,7 +97,7 @@ Update Portal::createUpdate(COMMAND command) const {
         STATUS::NONE_STATUS,
         this->getPosX() * ZOOM_FACTOR,
         this->getPosY() * ZOOM_FACTOR,
-        abs(RADTODEG(this->getAngle())));
+        (int32_t)RADTODEG(this->getAngle()));
     return update;
 }
 

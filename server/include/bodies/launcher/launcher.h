@@ -17,7 +17,6 @@ private:
     const float WIDTH = 2.00;
     const float HEIGHT = 2.00;
     const float MIN_CREATE_DISTANCE = 2;
-    const float FRAMES_PER_LAUNCH = 50;
 
 public:
     /* Instancia un launcher de id 'body_id' sobre world en la

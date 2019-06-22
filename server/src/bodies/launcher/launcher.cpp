@@ -69,7 +69,8 @@ void Launcher::handleEndContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Launcher::applyStateAction() {
-    if (this->counter >= FRAMES_PER_LAUNCH) {
+    unsigned int MAX = this->world->getWorldConfig().launcher_def.steps_per_launch;
+    if (this->counter >= MAX) {
         this->counter = 0;
         this->fireABullet();
     } else {

@@ -99,6 +99,12 @@ public:
     /* Libera los recursos utilizados. */
     ~World();
 
+    /* Devuelve la cantidad de chells vivas */
+    unsigned int countLiveChells() const;
+
+    /* Devuelve las configuracion de world*/
+    WorldConfig getWorldConfig() const;
+
     /* Asigna parametros de configuracion */
     void setWorldConfig(const WorldConfig &config);
 
@@ -136,7 +142,7 @@ public:
     void addToBodies(Body *body);
 
     /* Agrega una update a la coleccion de updates*/
-    void addUpdate(Update update);
+    void addUpdate(const Update &update);
 
     /* Elimina a body de world */
     void destroyBody(Body *body);

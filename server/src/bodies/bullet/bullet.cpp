@@ -17,13 +17,11 @@
 #include <iostream>
 #include <algorithm>
 
-Bullet::Bullet(
-    World *world,
-    float x, float y, DIRECTION direction, const BulletDef &def):
+Bullet::Bullet(World *world, float x, float y, DIRECTION direction):
     Body(world, ENTITY::BULLET),
     direction(direction),
     life_steps(0),
-    def(def) {
+    def(world->getWorldConfig().bullet_def) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_dynamicBody;
     b2bodydef.position.Set(x, y);
@@ -125,7 +123,4 @@ void Bullet::applyStateAction() {
         this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
         this->world->destroyBody(this);
     }
-
-    b2Vec2 v = this->getLinearVelocity();
-    std::cout << "bullet vel: " << v.x << ", " << v.y << std::endl;
 }

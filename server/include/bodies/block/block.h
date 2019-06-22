@@ -48,8 +48,7 @@ public:
      * def contiene constantes para block. */
     Block(World *world,
           float x, float y, ORIENTATION orientation,
-          Shape *shape, Material *material,
-          const BlockDef &def);
+          Shape *shape, Material *material);
 
     /* Libera los recursos utilizados */
     ~Block();

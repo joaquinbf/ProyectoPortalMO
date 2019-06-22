@@ -26,9 +26,7 @@ private:
 public:
     /* Instancia una bala en world en la posicion (x, y) moviendose con
      * direccion 'direction' */
-    Bullet(
-        World *world, float x, float y,
-        DIRECTION direction, const BulletDef &def);
+    Bullet(World *world, float x, float y, DIRECTION direction);
 
     /* Libera los recursos utilizados */
     ~Bullet();
