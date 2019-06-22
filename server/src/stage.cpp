@@ -24,7 +24,7 @@ bool Stage::validateMap() {
 void Stage::run() {
 	GameLoop *game_loop = this->world.getGameLoop();
 
-	while(!game_loop->isFinished()){
+	while(!game_loop->isFinished() && this->running){
 		game_loop->executeExternalInput(inputs);
 		game_loop->step();
 		game_loop->fillUpdates(updates);
@@ -38,7 +38,7 @@ void Stage::stop(){
 
 bool Stage::isRunning(){
 	GameLoop *game_loop = this->world.getGameLoop();
-	return !game_loop->isFinished();
+	return !game_loop->isFinished() && this->running;
 }
 
 std::list<uint32_t> Stage::getChellsIdList() const{
