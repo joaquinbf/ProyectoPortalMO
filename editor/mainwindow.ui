@@ -192,8 +192,6 @@
     <property name="title">
      <string>Herramientas</string>
     </property>
-    <addaction name="actionConfiguracion_de_Compuertas"/>
-    <addaction name="actionConfiguracion_de_Personajes"/>
    </widget>
    <addaction name="menuEscenario"/>
    <addaction name="menuInsertar"/>
