@@ -20,8 +20,7 @@ bool InputManager::isRunning() const{
 void InputManager::run(){
 	this->chellId = this->gameView.getChellId();
     SDL_Event event;
-    while(this->running){
-    	SDL_WaitEvent(&event);
+    while(this->running && SDL_WaitEvent(&event)){    	
     	if(this->gameView.isPaused()){
     		this->pauseMode(event);
     	} else {
