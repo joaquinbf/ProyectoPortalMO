@@ -3,8 +3,14 @@
 
 #include "../../../../libs/Box2D-master/Box2D/Collision/Shapes/b2PolygonShape.h"
 #include "../../../../common/include/types.h"
+#include <cstdint>
 
 class Material;
+
+enum class SHAPE: uint8_t {
+    DIAGONAL,
+    SQUARE
+};
 
 class Shape {
 public:

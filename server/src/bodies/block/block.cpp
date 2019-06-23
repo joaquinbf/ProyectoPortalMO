@@ -15,9 +15,11 @@
 Block::Block(
     World *world,
     float x, float y, ORIENTATION orientation,
-    Shape *shape, Material *material):
-    Body(world, shape->createEntityWithMaterial(material)),
-    orientation(orientation), shape(shape), material(material),
+    SHAPE shape, MATERIAL material):
+    Body(world, this->getEntity(shape, material)),
+    orientation(orientation),
+    shape(this->createShape(shape)),
+    material(this->createMaterial(material)),
     def(world->getWorldConfig().block_def) {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
@@ -41,8 +43,8 @@ Block::Block(
     b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
     b2fixture->SetUserData((void *)this);
 
-    this->shape = shape;
-    this->material = material;
+    this->shape = this->createShape(shape);
+    this->material = this->createMaterial(material);
 }
 
 Block::~Block() {
@@ -82,4 +84,40 @@ void Block::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
 
 void Block::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     chell->land();
+}
+
+ENTITY Block::getEntity(SHAPE shape, MATERIAL material) const {
+    if (shape == SHAPE::SQUARE && material == MATERIAL::METAL) {
+        return ENTITY::METAL_BLOCK;
+    } else if (shape == SHAPE::SQUARE && material == MATERIAL::STONE) {
+        return ENTITY::STONE_BLOCK;
+    } else {
+        return ENTITY::METAL_TRIAG_BLOCK;
+    }
+}
+
+Shape *Block::createShape(SHAPE a_shape) {
+    Shape *s= nullptr;
+    switch (a_shape) {
+        case SHAPE::DIAGONAL:
+            s = new DiagonalShape();
+            break;
+        case SHAPE::SQUARE:
+            s = new SquareShape();
+            break;
+    }
+    return s;
+}
+
+Material *Block::createMaterial(MATERIAL a_material) {
+    Material *m = nullptr;
+    switch (a_material) {
+        case MATERIAL::STONE:
+            m = new StoneMaterial();
+            break;
+        case MATERIAL::METAL:
+            m = new MetalMaterial();
+            break;
+    }
+    return m;
 }

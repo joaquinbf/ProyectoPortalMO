@@ -48,7 +48,7 @@ public:
      * def contiene constantes para block. */
     Block(World *world,
           float x, float y, ORIENTATION orientation,
-          Shape *shape, Material *material);
+          SHAPE shape, MATERIAL material);
 
     /* Libera los recursos utilizados */
     ~Block();
@@ -70,6 +70,15 @@ public:
 
     virtual void handleBeginContactWith(Chell *chell, b2Contact *contact) override;
 
+private:
+    /* Devuelve el tipo de entidad segun shape y material */
+    ENTITY getEntity(SHAPE shape, MATERIAL material) const;
+
+    /* Crea una forma */
+    Shape *createShape(SHAPE shape);
+
+    /* Crea un material */
+    Material *createMaterial(MATERIAL material);
 };
 
 #endif
