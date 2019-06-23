@@ -90,7 +90,8 @@ void MainWindow::on_actionAbrir_Escenario_triggered()
     }
     catch (YAML::Exception &e)
     {
-        QMessageBox::critical(this, "Error al abrir", e.what());
+        QMessageBox::critical(this, "Error al abrir",
+                              "Puede que el archivo este vacio o corrupto");
     }
 }
 

@@ -20,6 +20,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QtMath>
 #include <QKeyEvent>
+#include <QMessageBox>
 
 EscenarioGrafico::EscenarioGrafico() : spinBoxX(nullptr),
                                        spinBoxY(nullptr),
@@ -42,8 +43,8 @@ void EscenarioGrafico::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->scenePos().x() < 0 ||
          event->scenePos().x() > WINDOWS_SIZE_W) ||
-         (event->scenePos().y() < 0 ||
-         event->scenePos().y() > WINDOWS_SIZE_H-1))
+        (event->scenePos().y() < 0 ||
+         event->scenePos().y() > WINDOWS_SIZE_H - 1))
     {
         return;
     }
@@ -274,11 +275,37 @@ CeldaGrafica &EscenarioGrafico::getCelda(QPointF posicion)
 
 void EscenarioGrafico::guardar(YAML::Node &nodo)
 {
+    //TODO otras configuraciones.
+    QString advertencia(
+        "Existen inconsistencias en el escenario que desea guardar:\n");
+    QString inconsistencias;
+    if (this->cantidadChells == 0)
+    {
+        inconsistencias += "- Deberia existir al menos una Chell\n";
+    }
+    if (this->cantidadPasteles > 1 || this->cantidadPasteles == 0)
+    {
+        inconsistencias += "- Deberia existir un solo Pastel\n";
+    }
+    if (!inconsistencias.isEmpty())
+    {
+        advertencia += inconsistencias;
+        advertencia += "Aun asi, ¿Desea Guardar el Escenario?\n";
+        QMessageBox::StandardButton respuesta;
+        respuesta = QMessageBox::question(nullptr,
+                                          "Advertencia",
+                                          advertencia,
+                                          QMessageBox::Yes | QMessageBox::No);
+        if (respuesta == QMessageBox::No)
+        {
+            return;
+        }
+    }
+
     nodo["escenario"]["pathFondoEscenario"] = this->fondoEscenario;
     nodo["escenario"]["tamanioAncho"] = this->tamanio.width();
     nodo["escenario"]["tamanioAlto"] = this->tamanio.height();
     nodo["escenario"]["cantidadCeldas"] = this->celdas.size();
-    //TODO otras configuraciones.
     for (int i = 0; i < this->celdas.size(); ++i)
     {
         nodo["celdas"][i]["ocupado"] = this->celdas[i].ocupada();
