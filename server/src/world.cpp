@@ -341,8 +341,9 @@ void World::destroyChells() {
 
 void World::destroyAllBodies() {
     for (Body *body: this->bodies) {
-        this->destroyBody(body);
+        delete body;
     }
+    this->bodies.clear();
 }
 
 void World::deleteB2WorldIfInternal() {
