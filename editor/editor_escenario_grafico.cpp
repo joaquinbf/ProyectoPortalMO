@@ -275,7 +275,6 @@ CeldaGrafica &EscenarioGrafico::getCelda(QPointF posicion)
 
 void EscenarioGrafico::guardar(YAML::Node &nodo)
 {
-    //TODO otras configuraciones.
     QString advertencia(
         "Existen inconsistencias en el escenario que desea guardar:\n");
     QString inconsistencias;
@@ -338,8 +337,6 @@ void EscenarioGrafico::abrir(YAML::Node &nodo)
         QBrush fondo(nuevoFondo);
         this->setBackgroundBrush(fondo);
     }
-
-    //TODO otras configuraciones
     for (int i = 0; i < this->celdas.size(); ++i)
     {
         if (nodo["celdas"][i]["ocupado"].as<bool>())
@@ -349,7 +346,6 @@ void EscenarioGrafico::abrir(YAML::Node &nodo)
             this->celdas[i].abrir(nodo);
         }
     }
-    //TODO compuertas busquen sus componentes ya cargados.
     for (int i = 0; i < this->compuertas.size(); i++)
     {
         this->compuertas[i]->abrirComponentes(nodo);
