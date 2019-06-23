@@ -37,10 +37,6 @@ public:
 
         TS_ASSERT_DIFFERS(chell->getBodyId(), portal->getBodyId());
     }
-
-    void testCuandoSeCreaUnNuevoPortalDebeTenerUnNuevoBodyId() {
-
-    }
 };
 
 #endif

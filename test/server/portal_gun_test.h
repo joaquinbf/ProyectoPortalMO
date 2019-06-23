@@ -22,7 +22,6 @@ public:
 
         Portal *portal = chell->getPortalGun()->getPortalOne();
         TS_ASSERT_DIFFERS(nullptr, portal);
-        world.destroyBody(chell);
     }
 };
 
