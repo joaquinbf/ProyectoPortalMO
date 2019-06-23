@@ -424,13 +424,7 @@ void Chell::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
 void Chell::handleBeginContactWith(Rock *rock, b2Contact *contact) {
-    b2WorldManifold b2worldmanifold;
-    contact->GetWorldManifold(&b2worldmanifold);
-    b2Vec2 normal = b2worldmanifold.normal;
-
-    if (contact->GetFixtureB()->GetBody()->GetUserData() == this) {
-        normal = -normal;
-    }
+    b2Vec2 normal = this->getNormal(contact);
 
     if (normal.y > 0) {
         this->changeStateToDead();
@@ -438,8 +432,8 @@ void Chell::handleBeginContactWith(Rock *rock, b2Contact *contact) {
     } else if (this->isInGrabbingMode() && !rock->isGrabbed()) {
         this->world->addInstruction(new GrabRockInstruction(this, rock));
         this->exitGrabbingMode();
-        this->land();
     }
+    this->land();
 }
 
 void Chell::handleEndContactWith(Body *other_body, b2Contact *contact) {

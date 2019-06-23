@@ -15,8 +15,8 @@ class Chell;
 class Rock: public Body {
 private:
     Chell *chell;
-    const float WIDTH = 1.0;
-    const float HEIGHT = 1.0;
+    const float WIDTH = 0.5;
+    const float HEIGHT = 0.5;
 
 public:
     /* Instancia una roca de id 'body_id' sobre b2orld en la
