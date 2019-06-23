@@ -13,6 +13,7 @@ class Launcher;
 class Receiver;
 class Portal;
 class Chell;
+class Rock;
 
 class Bullet: public Body {
 private:
@@ -60,6 +61,10 @@ public:
    /* Muere y activa el receptor */
    virtual void handleBeginContactWith(
        Receiver *receiver, b2Contact *contact) override;
+
+   /* Muere y activa el receptor */
+   virtual void handleBeginContactWith(
+       Rock *rock, b2Contact *contact) override;
 
    /* Maneja el fin de contacto con otro cuerpo */
    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);

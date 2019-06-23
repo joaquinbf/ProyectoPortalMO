@@ -11,6 +11,7 @@
 class World;
 class Laser;
 class Chell;
+class Bullet;
 
 class Rock: public Body {
 private:
@@ -44,6 +45,9 @@ public:
 
     /* Maneja el inicio de contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
+
+    /* Destruye una bala */
+    virtual void handleBeginContactWith(Bullet *bullet, b2Contact *contact);
 
     /* Es tomado por chell si esta en grabbing mode */
     virtual void handleBeginContactWith(Chell *chell, b2Contact *contact) override;

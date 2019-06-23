@@ -13,6 +13,7 @@
 #include "../../../include/bodies/receiver/receiver.h"
 #include "../../../include/bodies/portal/portal.h"
 #include "../../../include/bodies/chell/chell.h"
+#include "../../../include/bodies/rock/rock.h"
 #include "../../../include/math_ext.h"
 #include <cstdint>
 #include <iostream>
@@ -113,6 +114,10 @@ void Bullet::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
 void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     receiver->turnOn();
     this->world->addInstruction(new DestroyBodyInstruction(this));
+}
+
+void Bullet::handleBeginContactWith(Rock *rock, b2Contact *contact) {
+    rock->handleBeginContactWith(this, contact);
 }
 
 void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {

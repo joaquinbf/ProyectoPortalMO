@@ -4,7 +4,9 @@
 #include "../../../include/world.h"
 #include "../../../include/bodies/laser/laser.h"
 #include "../../../include/bodies/button/button.h"
+#include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/bodies/chell/chell.h"
+#include "../../../include/instructions/destroy_body_instruction.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Fixture.h"
@@ -71,6 +73,11 @@ Update Rock::createUpdate(COMMAND command) const {
 void Rock::handleBeginContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleBeginContactWith(this, contact);
 
+}
+
+void Rock::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
+    this->world->addUpdate(bullet->createUpdate(COMMAND::DESTROY_COMMAND));
+    this->world->addInstruction(new DestroyBodyInstruction(bullet));
 }
 
 void Rock::handleBeginContactWith(Chell *chell, b2Contact *contact) {
