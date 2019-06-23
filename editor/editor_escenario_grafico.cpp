@@ -294,7 +294,7 @@ void EscenarioGrafico::guardar(YAML::Node &nodo)
             inconsistencias +=
                 "- Las compuertas deberian tener al menos un elemento en su";
             inconsistencias +=
-                "logica.\n Y en el caso de las compuertas regulares, solo uno";
+                "logica.\n Y en el caso de las compuertas regulares, solo uno.";
             break;
         }
     }
