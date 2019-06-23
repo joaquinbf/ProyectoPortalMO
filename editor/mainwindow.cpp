@@ -48,12 +48,21 @@ void MainWindow::on_actionFondo_triggered()
 {
     QSize size(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
     QString path = QFileDialog::getOpenFileName(this, "Abrir");
+    if (path.isEmpty())
+    {
+        return;
+    }
     this->escenario->setFondoEscenario(path.toStdString(), size);
 }
 
 void MainWindow::on_actionGuardar_Escenario_triggered()
 {
     QString path = QFileDialog::getSaveFileName(this, "Guardar");
+    if (path.isEmpty())
+    {
+        return;
+    }
+
     YAML::Node nodo;
     this->escenario->guardar(nodo);
     std::ofstream salida((path.toStdString()).c_str());
@@ -64,6 +73,10 @@ void MainWindow::on_actionGuardar_Escenario_triggered()
 void MainWindow::on_actionAbrir_Escenario_triggered()
 {
     QString path = QFileDialog::getOpenFileName(this, "Abrir");
+    if (path.isEmpty())
+    {
+        return;
+    }
     YAML::Node nodo = YAML::LoadFile((path.toStdString()).c_str());
     this->escenario->abrir(nodo);
 }
