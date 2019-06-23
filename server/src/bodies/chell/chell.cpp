@@ -378,6 +378,10 @@ void Chell::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     this->land();
 }
 
+void Chell::handleBeginContactWith(Gate *gate, b2Contact *contact) {
+    gate->handleBeginContactWith(this, contact);
+}
+
 void Chell::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
     this->land();
 }
@@ -407,6 +411,7 @@ void Chell::handleBeginContactWith(Rock *rock, b2Contact *contact) {
     } else if (this->isInGrabbingMode() && !rock->isGrabbed()) {
         this->world->addInstruction(new GrabRockInstruction(this, rock));
         this->exitGrabbingMode();
+        this->land();
     }
 }
 

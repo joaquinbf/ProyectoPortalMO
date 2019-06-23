@@ -29,7 +29,7 @@ private:
         Serializer s;
         s.deserialize(
             &this->world,
-            "../../../maps/test_gate_00.yaml",
+            "../../../maps/test_gate_01.yaml",
             "../../../config/config.yaml" );
     }
 

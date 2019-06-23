@@ -36,6 +36,9 @@ public:
     /* Libera los recursos utilizados */
     virtual ~Body();
 
+    /* Obtiene la normal del contacto */
+    b2Vec2 getNormal(b2Contact *contact) const;
+
     /* Indica si body esta en condiciones de crear una update */
     bool isUpdatable() const;
 

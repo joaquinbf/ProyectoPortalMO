@@ -25,6 +25,18 @@ Body::Body(World *world, ENTITY entity):
 Body::~Body() {
 }
 
+b2Vec2 Body::getNormal(b2Contact *contact) const {
+    b2WorldManifold b2worldmanifold;
+    contact->GetWorldManifold(&b2worldmanifold);
+    b2Vec2 normal = b2worldmanifold.normal;
+
+    if (contact->GetFixtureB()->GetBody()->GetUserData() == this) {
+        normal = -normal;
+    }
+    return normal;
+}
+
+
 bool Body::isUpdatable() const {
     return this->isAwake() && this->isActive();
 }

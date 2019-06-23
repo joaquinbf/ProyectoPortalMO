@@ -75,6 +75,16 @@ void Gate::handleBeginContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleBeginContactWith(this, contact);
 }
 
+void Gate::handleBeginContactWith(Chell *chell, b2Contact *contact) {
+    b2Vec2 normal = this->getNormal(contact);
+
+    if (normal.y < 0) {
+        chell->changeStateToDead();
+    } else {
+        chell->land();
+    }
+}
+
 void Gate::handleEndContactWith(Body *other_body, b2Contact *contact) {
     other_body->handleEndContactWith(this, contact);
 }

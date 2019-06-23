@@ -24,6 +24,7 @@ class Chell;
 class Block;
 class Button;
 class Rock;
+class Chell;
 class BooleanBlock;
 
 class Gate: public Body {
@@ -58,6 +59,10 @@ public:
 
     /* Maneja el inicio de contacto con otro cuerpo */
     virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
+
+    /* Mata a chell si se encuentra debajo de la compuertas mientras se
+     * cierra */
+    virtual void handleBeginContactWith(Chell *chell, b2Contact *contact);
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);

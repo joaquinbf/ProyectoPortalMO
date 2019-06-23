@@ -212,6 +212,10 @@ public:
     virtual void handleBeginContactWith(
         Chell *chell, b2Contact *contact) override;
 
+    /* Aterriza sobre otra chell */
+    virtual void handleBeginContactWith(
+        Gate *gate, b2Contact *contact) override;
+
     /* Aterriza sobre un lanzador */
     virtual void handleBeginContactWith(
         Launcher *launcher, b2Contact *contact) override;
