@@ -16,6 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void closeEvent (QCloseEvent *event) override;
 private slots:
     void on_actionBloque_de_Roca_triggered();
     void on_actionBloque_de_Metal_triggered();

@@ -3,6 +3,7 @@
 #include "editor_defines.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
 #include <string>
 #include <QSize>
 #include <QString>
@@ -44,6 +45,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    //TODO
+}
+
 void MainWindow::on_actionFondo_triggered()
 {
     QSize size(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
@@ -77,8 +83,15 @@ void MainWindow::on_actionAbrir_Escenario_triggered()
     {
         return;
     }
-    YAML::Node nodo = YAML::LoadFile((path.toStdString()).c_str());
-    this->escenario->abrir(nodo);
+    try
+    {
+        YAML::Node nodo = YAML::LoadFile((path.toStdString()).c_str());
+        this->escenario->abrir(nodo);
+    }
+    catch (YAML::Exception &e)
+    {
+        QMessageBox::critical(this, "Error al abrir", e.what());
+    }
 }
 
 void MainWindow::on_actionNuevo_Escenario_triggered()
