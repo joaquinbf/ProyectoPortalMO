@@ -53,6 +53,8 @@ Chell::Chell(World *world, float x, float y):
     jiging_state(this),
     falling_state(this),
     landing_state(this),
+    turning_state(this),
+    stopping_state(this),
     state(&this->idle_state),
     portal_gun(this),
     is_in_grabbing_mode(false),
@@ -147,8 +149,12 @@ PortalGun *Chell::getPortalGun() {
     return &this->portal_gun;
 }
 
-bool Chell::isFacingRight() {
+bool Chell::isFacingRight() const {
     return this->is_facing_right;
+}
+
+bool Chell::isFacingLeft() const {
+    return !this->isFacingRight();
 }
 
 void Chell::faceRight() {
@@ -259,7 +265,19 @@ void Chell::changeStateToFalling() {
 
 void Chell::changeStateToLanding() {
     this->state = &this->landing_state;
+    this->state->resetStepCount();
 }
+
+void Chell::changeStateToTurning() {
+    this->state = &this->turning_state;
+    this->state->resetStepCount();
+}
+
+void Chell::changeStateToStopping() {
+    this->state = &this->stopping_state;
+    this->state->resetStepCount();
+}
+
 
 void Chell::land() {
     this->state->land();

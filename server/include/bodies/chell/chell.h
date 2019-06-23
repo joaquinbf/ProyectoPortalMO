@@ -13,6 +13,8 @@
 #include "jiging_state.h"
 #include "falling_state.h"
 #include "landing_state.h"
+#include "turning_state.h"
+#include "stopping_state.h"
 #include "../../../../common/include/key.h"
 #include "../../../../common/include/keypad.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
@@ -52,6 +54,8 @@ private:
     JigingState jiging_state;
     FallingState falling_state;
     LandingState landing_state;
+    TurningState turning_state;
+    StoppingState stopping_state;
     ChellState *state;
     PortalGun portal_gun;
     bool is_in_grabbing_mode;
@@ -105,7 +109,10 @@ public:
     PortalGun *getPortalGun();
 
     /* Indica si chell esta mirando hacia la derecha */
-    bool isFacingRight();
+    bool isFacingRight() const;
+
+    /* Indica si chell esta mirando hacia la izquierda */
+    bool isFacingLeft() const;
 
     /* Hace mirar a la derecha */
     void faceRight();
@@ -170,6 +177,12 @@ public:
 
     /* Cambia al estado aterrizar */
     void changeStateToLanding();
+
+    /* Cambia al estado voltear */
+    void changeStateToTurning();
+
+    /* Cambia el estado a deteniendose */
+    void changeStateToStopping();
 
     /* Aterriza a chell */
     void land();

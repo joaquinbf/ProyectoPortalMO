@@ -9,21 +9,27 @@ RunningState::RunningState(Chell *chell):
 }
 
 void RunningState::pressLeft() {
+    if (this->chell->isFacingRight()) {
+        this->chell->changeStateToTurning();
+    }
     this->chell->faceLeft();
 }
 
 void RunningState::releaseLeft() {
     this->chell->stopLeftMovement();
-    this->chell->changeStateToIdle();
+    this->chell->changeStateToStopping();
 }
 
 void RunningState::pressRight() {
+    if (this->chell->isFacingLeft()) {
+        this->chell->changeStateToTurning();
+    }
     this->chell->faceRight();
 }
 
 void RunningState::releaseRight() {
     this->chell->stopRightMovement();
-    this->chell->changeStateToIdle();
+    this->chell->changeStateToStopping();
 }
 
 void RunningState::pressUp() {
