@@ -287,10 +287,23 @@ void EscenarioGrafico::guardar(YAML::Node &nodo)
     {
         inconsistencias += "- Deberia existir un solo Pastel\n";
     }
+    for (int i = 0; i < this->compuertas.size(); i++)
+    {
+        if (!this->compuertas[i]->tieneReglasBienDefinidas())
+        {
+            inconsistencias +=
+                "- Las compuertas deberian tener al menos un elemento en su";
+            inconsistencias +=
+                "logica.\n Y en el caso de las compuertas regulares, solo uno";
+            break;
+        }
+    }
+
     if (!inconsistencias.isEmpty())
     {
         advertencia += inconsistencias;
-        advertencia += "Aun asi, ¿Desea Guardar el Escenario?\n";
+        advertencia += "\n";
+        advertencia += "Aun asi, ¿Desea guardar el Escenario?\n";
         QMessageBox::StandardButton respuesta;
         respuesta = QMessageBox::question(nullptr,
                                           "Advertencia",
