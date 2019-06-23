@@ -16,8 +16,6 @@
 
 Gate::Gate( World *world, float x, float y):
     Body(world, ENTITY::GATE),
-    width(this->MAX_WIDTH),
-    height(this->MAX_HEIGHT),
     closed_gate_state(this),
     opening_gate_state(this),
     open_gate_state(this),
@@ -42,6 +40,11 @@ Gate::Gate( World *world, float x, float y):
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &b2polygonshape;
     this->b2body->CreateFixture(&fixtureDef);
+
+    this->heights = std::vector<float>({
+        4.00, 4.00, 3.80, 3.72, 3.62, 3.56, 3.34, 3.14, 2.92, 2.70,
+        2.18, 1.84, 1.48, 1.10, 0.72, 0.48, 0.36, 0.32, 0.32});
+    this->it = this->heights.begin();
 }
 
 Gate::~Gate() {
@@ -108,44 +111,37 @@ void Gate::shrink() {
     b2Fixture *b2fixture = this->b2body->GetFixtureList();
     b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
 
-    if (this->height - SIZE_RATE*8 > MIN_HEIGHT) {
-        this->height -= SIZE_RATE*8;
-    } else {
-        this->height = MIN_HEIGHT;
-    }
+    std::cout << "IT:  " << *it << std::endl;
 
     b2Vec2 vertices[4];
     vertices[0].Set(0.00, 0.00);
     vertices[1].Set(MAX_WIDTH, 0.00);
-    vertices[2].Set(MAX_WIDTH, -this->height);
-    vertices[3].Set(0.00, -this->height);
+    vertices[2].Set(MAX_WIDTH, -*this->it);
+    vertices[3].Set(0.00, -*this->it);
 
     b2polygonshape->Set(vertices, 4);
+    this->it++;
 }
 
 void Gate::grow() {
     b2Fixture *b2fixture = this->b2body->GetFixtureList();
     b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
 
-    if (this->height + SIZE_RATE < MAX_HEIGHT) {
-        this->height += SIZE_RATE;
-    } else {
-        this->height = MAX_HEIGHT;
-    }
+    this->it--;
 
     b2Vec2 vertices[4];
     vertices[0].Set(0.00, 0.00);
     vertices[1].Set(MAX_WIDTH, 0.00);
-    vertices[2].Set(MAX_WIDTH, -this->height);
-    vertices[3].Set(0.00, -this->height);
+    vertices[2].Set(MAX_WIDTH, -*this->it);
+    vertices[3].Set(0.00, -*this->it);
 
     b2polygonshape->Set(vertices, 4);
 }
 
 bool Gate::isOnMinSize() const {
-    return this->height == MIN_HEIGHT;
+    return this->it == this->heights.end();
 }
 
 bool Gate::isOnMaxSize() const {
-    return this->height == MAX_HEIGHT;
+    return this->it == this->heights.begin();
 }

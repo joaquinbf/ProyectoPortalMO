@@ -15,6 +15,7 @@
 #include "../../../../common/include/types.h"
 #include "../../boolean_suppliers/boolean_block.h"
 #include <cstdint>
+#include <vector>
 
 #define SIZE_RATE 0.05
 
@@ -30,14 +31,14 @@ private:
     const float MAX_WIDTH = 2.00;
     const float MAX_HEIGHT = 4.00;
     const float MIN_HEIGHT = 0.01;
-    float width;
-    float height;
     ClosedGateState closed_gate_state;
     OpeningGateState opening_gate_state;
     OpenGateState open_gate_state;
     ClosingGateState closing_gate_state;
     GateState *state;
     BooleanBlock *boolean_block;
+    std::vector<float> heights;
+    std::vector<float>::iterator it;
 
 public:
     /* Instancia una compuerta de id 'body_id' en b2world en (x, y) */
