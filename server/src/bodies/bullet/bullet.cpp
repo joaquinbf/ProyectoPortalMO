@@ -13,6 +13,7 @@
 #include "../../../include/bodies/receiver/receiver.h"
 #include "../../../include/bodies/portal/portal.h"
 #include "../../../include/bodies/chell/chell.h"
+#include "../../../include/math_ext.h"
 #include <cstdint>
 #include <iostream>
 #include <algorithm>
@@ -34,7 +35,7 @@ Bullet::Bullet(World *world, float x, float y, DIRECTION direction):
     this->b2body = world->getB2World()->CreateBody(&b2bodydef);
 
     b2CircleShape b2circleshape;
-    b2circleshape.m_radius = 0.3;
+    b2circleshape.m_radius = 0.1;
     b2circleshape.m_p.Set(0, 0);
 
     b2FixtureDef b2fixturedef;
@@ -70,6 +71,11 @@ Bullet::~Bullet() {
 }
 
 Update Bullet::createUpdate(COMMAND command) const {
+    int32_t angle = MathExt::angle(b2Vec2(1, 0), this->getLinearVelocity());
+    if (this->getLinearVelocity().y < 0) {
+        angle = 2*M_PI - angle;
+    }
+
     Update update(
         command,
         this->entity,
@@ -77,7 +83,7 @@ Update Bullet::createUpdate(COMMAND command) const {
         STATUS::NONE_STATUS,
         this->b2body->GetPosition().x * ZOOM_FACTOR,
         this->b2body->GetPosition().y * ZOOM_FACTOR,
-        this->direction);
+        -RADTODEG(angle));
     return update;
 }
 

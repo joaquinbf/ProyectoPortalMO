@@ -27,9 +27,7 @@ bool MetalMaterial::canOpenPortalOnSurface() const {
 
 void MetalMaterial::handleBeginContactWith(
     Bullet *bullet, b2Contact *contact) const {
-    b2WorldManifold b2worldmanifold;
-    contact->GetWorldManifold(&b2worldmanifold);
-    b2Vec2 normal = b2worldmanifold.normal;
+    b2Vec2 normal = bullet->getNormal(contact);
     normal.Normalize();
     b2Vec2 v = bullet->getLinearVelocity();
     b2Vec2 new_v = MathExt::reflect(normal, v);
