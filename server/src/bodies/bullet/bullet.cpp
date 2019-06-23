@@ -98,6 +98,8 @@ void Bullet::handleBeginContactWith(Block *block, b2Contact *contact) {
 void Bullet::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->world->addInstruction(new DestroyBodyInstruction(this));
     this->world->addInstruction(new DestroyBodyInstruction(bullet));
+    this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
+    this->world->addUpdate(bullet->createUpdate(COMMAND::DESTROY_COMMAND));
 }
 
 void Bullet::handleBeginContactWith(Chell *chell, b2Contact *contact) {
