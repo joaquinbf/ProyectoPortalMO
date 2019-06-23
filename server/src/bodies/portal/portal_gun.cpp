@@ -56,9 +56,6 @@ Portal *PortalGun::firePortal(uint8_t portal_number, b2Vec2 pos) {
     World *world = chell->getWorld();
     Portal *portal = nullptr;
 
-    std::cout << "chell pos: " << chell->getPosX() << ", "
-              << chell->getPosY() << std::endl;
-
     world->getB2World()->RayCast(
         &callback,
         chell->getPosition(),

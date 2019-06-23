@@ -18,8 +18,6 @@ float32 RayCastClosestBodyCallback::ReportFixture(
     this->point = point;
     this->normal = normal;
 
-    std::cout << "(" << point.x << ", " << point.y <<  ")" << std::endl;
-
     return fraction;
 }
 
