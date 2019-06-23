@@ -11,6 +11,7 @@
 #include "../../../include/bodies/rock/rock.h"
 #include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/world.h"
+#include <iostream>
 
 Block::Block(
     World *world,
@@ -42,9 +43,6 @@ Block::Block(
 
     b2Fixture* b2fixture = this->b2body->CreateFixture(&boxFixtureDef);
     b2fixture->SetUserData((void *)this);
-
-    this->shape = this->createShape(shape);
-    this->material = this->createMaterial(material);
 }
 
 Block::~Block() {

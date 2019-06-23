@@ -103,7 +103,7 @@ void Serializer::deserializeBody(
             world->createSquareStoneBlock(x, y);
             break;
         case IDCLASS_BLOQUE_METAL:
-            world->createSquareMetalBlock(x, y);
+            world->getWorldBuilder()->createSquareMetalBlock(x, y);
             break;
         case IDCLASS_COMPUERTA_REG: {
             Gate *gate = world->createRegularGate(x, y + Y_GATE);

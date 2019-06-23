@@ -19,6 +19,9 @@ public:
 
     /* Instancia un bloque cuadrado de metal en (x, y) */
     void createSquareMetalBlock(float x, float y);
+
+    /* Destruye todos los cuerpos */
+    void destroyAllBodies();
 };
 
 #endif

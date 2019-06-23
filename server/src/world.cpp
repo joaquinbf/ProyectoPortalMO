@@ -62,8 +62,9 @@ World::World(b2World *b2world):
 }
 
 World::~World() {
-    this->destroyChells();
-    this->destroyAllBodies();
+    // this->destroyChells();
+    // this->destroyAllBodies();
+    this->world_builder.destroyAllBodies();
     this->deleteB2WorldIfInternal();
     for(auto it : this->pins){
         delete it.second;

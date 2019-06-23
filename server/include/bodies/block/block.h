@@ -49,7 +49,7 @@ public:
           SHAPE shape, MATERIAL material);
 
     /* Libera los recursos utilizados */
-    ~Block();
+    virtual ~Block();
 
     /* Indica si puede abrir portales en su superficie */
     virtual bool canOpenPortalOnSurface() const override;
