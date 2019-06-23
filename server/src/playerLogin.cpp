@@ -38,11 +38,14 @@ void PlayerLogin::run(){
 			return;
 		} else {
 			player->sendByte(1);
+			delete player;
+			delete game;
 			this->joinable = true;
 			return;	
 		}
 	}else{
 		player->sendByte(1);
+		delete player;
 		this->joinable = true;
 		return;
 	}
