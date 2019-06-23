@@ -24,7 +24,9 @@
 EscenarioGrafico::EscenarioGrafico() : spinBoxX(nullptr),
                                        spinBoxY(nullptr),
                                        celdas(QUANTITY_CELLS),
-                                       idClassACrear(IDCLASS_NULL)
+                                       idClassACrear(IDCLASS_NULL),
+                                       cantidadChells(0),
+                                       cantidadPasteles(0)
 {
     for (int i = 0; i < this->celdas.size(); ++i)
     {
@@ -115,7 +117,7 @@ void EscenarioGrafico::crearItem(const QPointF posicion)
     }
     else if (this->idClassACrear == IDCLASS_CHELL)
     {
-        item = new PersonajeChell();
+        item = new PersonajeChell(this->cantidadChells);
     }
     else if (this->idClassACrear == IDCLASS_BLOQUE_ROCA)
     {
@@ -168,7 +170,7 @@ void EscenarioGrafico::crearItem(const QPointF posicion)
     }
     else if (this->idClassACrear == IDCLASS_PASTEL)
     {
-        item = new Pastel();
+        item = new Pastel(this->cantidadPasteles);
     }
     else if (this->idClassACrear == IDCLASS_ACIDO)
     {

@@ -10,9 +10,10 @@ class PersonajeChell : public ItemGrafico
 private:
     unsigned idColor;
     QString nombre;
+    unsigned &contador;
 
 public:
-    PersonajeChell();
+    PersonajeChell(unsigned &contador);
     virtual ~PersonajeChell();
 };
 

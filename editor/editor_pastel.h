@@ -6,10 +6,11 @@
 class Pastel : public ItemGrafico
 {
 private:
+    unsigned &contador;
+
 public:
-    Pastel();
+    Pastel(unsigned &contador);
     ~Pastel();
 };
 
 #endif // EDITOR_PASTEL_H
-

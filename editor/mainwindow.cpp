@@ -13,8 +13,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
                                           ui(new Ui::MainWindow),
                                           escenario(new EscenarioGrafico())
 {
-    //this->setMinimumSize(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
-    //this->setMaximumSize(WINDOWS_SIZE_W, WINDOWS_SIZE_H);
     this->ui->setupUi(this);
     this->ui->graphicsView->setScene(this->escenario);
 

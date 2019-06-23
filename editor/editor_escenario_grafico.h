@@ -25,6 +25,9 @@ private:
     std::string fondoEscenario;
     unsigned idClassACrear;
 
+    unsigned cantidadChells;
+    unsigned cantidadPasteles;
+
 public:
     EscenarioGrafico();
     virtual ~EscenarioGrafico();
