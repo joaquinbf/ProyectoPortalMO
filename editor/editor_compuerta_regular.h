@@ -9,6 +9,8 @@ private:
 public:
     CompuertaRegular();
     ~CompuertaRegular();
+
+    virtual bool tieneReglasBienDefinidas();
 };
 
 #endif // EDITOR_COMPUERTA_REGULAR_H

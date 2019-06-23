@@ -9,7 +9,8 @@ private:
 public:
     CompuertaAND();
     ~CompuertaAND();
-};
 
+    virtual bool tieneReglasBienDefinidas();
+};
 
 #endif // EDITOR_COMPUERTA_AND_H

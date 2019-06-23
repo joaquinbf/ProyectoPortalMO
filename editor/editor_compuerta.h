@@ -23,6 +23,8 @@ public:
 
     virtual void guardar(YAML::Node &nodo);
     virtual void abrirComponentes(YAML::Node &nodo);
+
+    virtual bool tieneReglasBienDefinidas() = 0;
 };
 
 #endif // EDITOR_COMPUERTA_H

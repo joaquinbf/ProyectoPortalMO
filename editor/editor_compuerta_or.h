@@ -9,6 +9,8 @@ private:
 public:
     CompuertaOR();
     ~CompuertaOR();
+
+    virtual bool tieneReglasBienDefinidas();
 };
 
 #endif // EDITOR_COMPUERTA_OR_H
