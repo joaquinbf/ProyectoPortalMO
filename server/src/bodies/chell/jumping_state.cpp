@@ -34,3 +34,9 @@ void JumpingState::land() {
         this->chell->changeStateToIdle();
     }
 }
+
+void JumpingState::applyStateAction(){
+    if (this->chell->getLinearVelocity().y < 0) {
+        this->chell->changeStateToFalling();
+    }
+}
