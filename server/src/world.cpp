@@ -1,5 +1,6 @@
 #include "../include/world.h"
 
+#include "../include/world_builder.h"
 #include "../include/bodies/body.h"
 #include "../include/bodies/portal/portal.h"
 #include "../include/bodies/receiver/receiver.h"
@@ -41,7 +42,8 @@ World::World():
         this,
         &this->bodies,
         &this->internal_updates,
-        &this->instructions) {
+        &this->instructions),
+    world_builder(this) {
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
@@ -54,7 +56,8 @@ World::World(b2World *b2world):
         this,
         &this->bodies,
         &this->internal_updates,
-        &this->instructions) {
+        &this->instructions),
+    world_builder(this) {
     this->b2world->SetContactListener(&this->contact_listener);
 }
 
@@ -66,6 +69,11 @@ World::~World() {
         delete it.second;
     }
 }
+
+WorldBuilder *World::getWorldBuilder() {
+    return &this->world_builder;
+}
+
 
 unsigned int World::countLiveChells() const {
     return this->chells.size();

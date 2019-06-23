@@ -12,6 +12,7 @@
 #include "../../libs/Box2D-master/Box2D/Common/b2Math.h"
 #include "../include/instructions/instruction_factory.h"
 #include "../include/game_loop.h"
+#include "../include/world_builder.h"
 #include <cstdint>
 #include <vector>
 #include <list>
@@ -41,6 +42,7 @@ class StoneMaterial;
 class SquareShape;
 class DiagonalShape;
 class GameLoop;
+class WorldBuilder;
 
 #define GRAVITY b2Vec2(0.0, -9.8)
 
@@ -76,6 +78,7 @@ private:
     Cake *cake;
     GameLoop game_loop;
     WorldConfig config;
+    WorldBuilder world_builder;
 
 public:
     /* Instancia un world */
@@ -98,6 +101,9 @@ public:
 
     /* Libera los recursos utilizados. */
     ~World();
+
+    /* Devuelve un puntero al constructor de world*/
+    WorldBuilder *getWorldBuilder();
 
     /* Devuelve la cantidad de chells vivas */
     unsigned int countLiveChells() const;
