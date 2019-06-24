@@ -34,4 +34,4 @@ valgrind-client:
 valgrind-server:
 	cd build && valgrind --leak-check=full --show-leak-kinds=all --suppressions=../libs/valgrind-supp/minimal.supp ./server
 
-.PHONY: testbed
+.PHONY: testbed install uninstall all valgrind-client valgrind-server
