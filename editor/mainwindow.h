@@ -47,6 +47,8 @@ private slots:
     void on_actionBarrera_Vertical_triggered();
     void on_actionNuevo_Escenario_triggered();
 
+    void on_actionAjustes_y_configuracion_triggered();
+
 private:
     Ui::MainWindow *ui;
     EscenarioGrafico *escenario;
