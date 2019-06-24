@@ -38,7 +38,9 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
 find_package(SDL2_ttf REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})
+include_directories(
+    ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS}
+    ${SDL2_MIXER_INCLUDE_DIRS} ${SDL2_TTF_INCLUDE_DIRS})
 
 #Including QT
 find_package(Qt5 COMPONENTS REQUIRED Core Gui Widgets)
@@ -49,13 +51,16 @@ qt5_wrap_cpp(moc_sources ${EDITOR_HEADERS})
 find_package(yaml-cpp REQUIRED)
 
 # Libraries
-add_library(libbox2d SHARED ${BOX2D_SRCS})
-add_library(libcommon SHARED ${COMMON_SRCS})
-add_library(libserver SHARED ${SERVER_SRCS})
-add_library(libclient SHARED ${CLIENT_SRCS})
-add_library(libeditor SHARED ${EDITOR_SRCS})
+add_library(libbox2d STATIC ${BOX2D_SRCS})
+add_library(libcommon STATIC ${COMMON_SRCS})
+add_library(libserver STATIC ${SERVER_SRCS})
+add_library(libclient STATIC ${CLIENT_SRCS})
+add_library(libeditor STATIC ${EDITOR_SRCS})
 TARGET_LINK_LIBRARIES(libserver libcommon libbox2d yaml-cpp)
-target_link_libraries(libclient libcommon avformat avcodec avutil swscale ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2_TTF_LIBRARIES} Qt5::Core	Qt5::Gui Qt5::Widgets ${TIFF_LIBRARIES})
+target_link_libraries(
+    libclient libcommon avformat avcodec avutil swscale
+    ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES}
+    ${SDL2_TTF_LIBRARIES} Qt5::Core	Qt5::Gui Qt5::Widgets ${TIFF_LIBRARIES})
 #target_link_libraries(libeditor libcommon Qt5::Core Qt5::Gui Qt5::Widgets yaml-cpp)
 
 # Tiff
@@ -85,11 +90,28 @@ if(CXXTEST_FOUND)
 endif()
 
 # Executables
-add_executable(client "client/src/main.cpp")
-TARGET_LINK_LIBRARIES(client libclient)
+add_executable(portal-client "client/src/main.cpp")
+TARGET_LINK_LIBRARIES(portal-client libclient)
 
-add_executable(server "server/src/main.cpp")
-TARGET_LINK_LIBRARIES(server libserver)
+add_executable(portal-server "server/src/main.cpp")
+TARGET_LINK_LIBRARIES(portal-server libserver)
 
 #add_executable(editor "editor/main.cpp" ./editor/recursos.qrc)
 #TARGET_LINK_LIBRARIES(editor libeditor)
+
+# INSTALL
+install(TARGETS portal-server portal-client libclient libserver libcommon libbox2d
+        ARCHIVE DESTINATION "games/portal/lib"
+        RUNTIME DESTINATION "games/portal/bin"
+        INCLUDES DESTINATION "games/portal/include")
+install(DIRECTORY resources DESTINATION "games/portal/")
+install(DIRECTORY maps DESTINATION "games/portal")
+install(DIRECTORY config DESTINATION "games/portal")
+
+macro(install_symlink filepath sympath)
+    install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${filepath} ${sympath})")
+    install(CODE "message(\"-- Created symlink: ${sympath} -> ${filepath}\")")
+endmacro(install_symlink)
+
+install_symlink($ENV{DESTDIR}/games/portal/bin/portal-server $ENV{DESTDIR}/bin/portal-server )
+install_symlink($ENV{DESTDIR}/games/portal/bin/portal-client $ENV{DESTDIR}/bin/portal-client)
