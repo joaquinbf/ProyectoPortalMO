@@ -1,7 +1,8 @@
 #include "../include/accepter.h"
 
-Accepter::Accepter() {
-    this->socket.bindAndListen(PORT);
+Accepter::Accepter(const char *port):
+    port(port) {
+    this->socket.bindAndListen(this->port);
     this->keep_running = true;
 }
 
@@ -11,29 +12,29 @@ Accepter::~Accepter(){
     }
     for(PlayerLogin* pl: this->logins){
         if(pl != nullptr){
-            pl->join();        
-            delete pl;    
-        }        
+            pl->join();
+            delete pl;
+        }
     }
 }
 
-void Accepter::run() {    
+void Accepter::run() {
     try {
         while (this->keep_running) {
             Socket peer = this->socket.accept();
-            
+
             if(this->keep_running){//detengo las partidas terminadas
                 for(auto it : this->games){
                     if(it.second->isFinished()){
                         it.second->stop();
                         this->games.erase(it.first);
-                        delete it.second;                        
+                        delete it.second;
                     }
                 }
 
                 PlayerLogin* playerLogin = new PlayerLogin(&this->games,std::move(peer));
                 playerLogin->start();
-                this->logins.push_back(playerLogin);    
+                this->logins.push_back(playerLogin);
 
                 //cierro los login terminados
                 for(uint32_t i = 0; i < this->logins.size(); ++i ){
@@ -44,7 +45,7 @@ void Accepter::run() {
                         this->logins[i] = nullptr;
                     }
                 }
-            }            
+            }
         }
     } catch (const ConnectionErrorException &e) {
     }

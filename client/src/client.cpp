@@ -1,7 +1,7 @@
 #include "../include/client.h"
-
-Client::Client()
-: serverManager("localhost", PORT),
+#include <string>
+Client::Client(const char *port)
+: serverManager("localhost", port),
 updateReceiver(this->serverManager,this->updates)
 {}
 
@@ -10,7 +10,7 @@ Client::~Client(){}
 void Client::main(){
 	if(!this->login()){
         this->game();
-    }   	
+    }
 }
 
 int Client::login(){
@@ -49,13 +49,13 @@ void Client::game(){
     this->updateReceiver.start();
     this->soundManager.playMusic();
     this->videoRecorder.start();
-    
+
     //GAME LOOP
     while (inputManager.isRunning()){
 		while(this->updates.try_pop(update)){
 			gameView.updateHandler(update);
-		}        
-        gameView.render(this->videoRecorder.isRecording());            
+		}
+        gameView.render(this->videoRecorder.isRecording());
         usleep(50000);
         if(this->videoRecorder.isRecording()){
             this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
@@ -68,16 +68,16 @@ void Client::game(){
     }
     if(gameView.isFinished()){
         for(int i = 0; i< 80; ++i){
-            gameView.render(this->videoRecorder.isRecording());                        
+            gameView.render(this->videoRecorder.isRecording());
             if(this->videoRecorder.isRecording()){
                 this->videoRecorder.checkResolution(gameView.getResX(),gameView.getResY());
                 this->videoRecorder.recordFrame(gameView.getRenderer());
             }
             usleep(50000);
             gameView.step();
-        }   
-    } 
-    this->videoRecorder.stop();    
+        }
+    }
+    this->videoRecorder.stop();
     this->serverManager.sendAction(Action(gameView.getChellId(),ACTION::QUIT,0,0));
     this->serverManager.stop();
     this->updateReceiver.stop();

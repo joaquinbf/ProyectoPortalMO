@@ -1,8 +1,17 @@
 #include "../include/client.h"
+#include <string>
+#include <iostream>
 
-int main() {    
+#define ARG_MAIN_CLIENT 2
+
+int main(int argc, char *argv[]) {
+
+	if (argc != ARG_MAIN_CLIENT) {
+		return 1;
+	}
+
 	try{
-		Client client;
+		Client client(argv[NPORT]);
 	    client.main();
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;

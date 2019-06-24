@@ -19,8 +19,10 @@ private:
     bool keep_running;
     std::map<uint32_t,Game*> games;
     std::vector<PlayerLogin *> logins;
+    const char *port;
+    
 public:
-    Accepter();
+    Accepter(const char *port);
     ~Accepter();
     virtual void run() override;
     void stop();

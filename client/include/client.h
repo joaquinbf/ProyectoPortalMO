@@ -29,9 +29,9 @@ private:
 	SoundManager soundManager;
 	VideoRecorder videoRecorder;
 	UpdateReceiver updateReceiver;
-	
+
 public:
-	Client();
+	Client(const char *port);
 	~Client();
 	void main();
 	int login();

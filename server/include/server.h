@@ -5,7 +5,11 @@
 #include <iostream>
 
 class Server {
+private:
+    const char *port;
+    
 public:
+    Server(const char *port);
     int main();
 };
 

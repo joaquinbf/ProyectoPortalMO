@@ -1,8 +1,12 @@
 #include "../include/server.h"
 
+Server::Server(const char *port):
+    port(port) {
+}
+
 int Server::main() {
 
-    Accepter accepter;
+    Accepter accepter(this->port);
     accepter.start();
 
     const char QUIT = 'q';
