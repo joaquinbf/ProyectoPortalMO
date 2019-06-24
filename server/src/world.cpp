@@ -63,7 +63,9 @@ World::~World() {
     this->destroyAllBodies();
     this->deleteB2WorldIfInternal();
     for(auto it : this->pins){
-        delete it.second;
+        if(it.second != nullptr){
+            delete it.second;    
+        }        
     }
 }
 
@@ -316,7 +318,7 @@ std::list<Update> World::getPinUpdateList(){
                 update = it.second->getUpdate();
                 if(update.getCommand()==COMMAND::DESTROY_COMMAND){
                     delete it.second;
-                    this->pins.erase(it.first);
+                    this->pins[it.first] = nullptr;
                 }
                 list.push_back(update);
             }
