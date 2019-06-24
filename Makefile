@@ -14,15 +14,16 @@ install:
 	cd build && cmake .. && make install
 	cd editor && mkdir -p build
 	cd editor/build && cmake .. && make install
-	ln -sf /usr/local/games/portal-2d/bin/portal-client /usr/local/bin/portal-client
-	ln -sf /usr/local/games/portal-2d/bin/portal-server /usr/local/bin/portal-server
-	ln -sf /usr/local/games/portal-2d/bin/portal-editor /usr/local/bin/portal-editor
+	cp resources/scripts/portal-client /usr/local/bin
+	cp resources/scripts/portal-server /usr/local/bin
+	cp resources/scripts/portal-editor /usr/local/bin
 
 uninstall:
 	$(RM) -rfv /usr/local/games/portal-2d
-	$(RM) -v /usr/local/bin/portal-client
-	$(RM) -v /usr/local/bin/portal-server
-	$(RM) -v /usr/local/bin/portal-editor
+	$(RM) -rfv /usr/local/bin/portal-client
+	$(RM) -rfv /usr/local/bin/portal-server
+	$(RM) -rfv /usr/local/bin/portal-editor
+
 
 # Corre el entorno de pruebas de Box2D
 testbed:
