@@ -92,10 +92,10 @@ TARGET_LINK_LIBRARIES(portal-server libserver)
 
 # INSTALL
 install(TARGETS portal-server portal-client libclient libserver libcommon libbox2d
-        ARCHIVE DESTINATION "games/portal-2d/lib"
-        RUNTIME DESTINATION "games/portal-2d/bin"
-    INCLUDES DESTINATION "games/portal-2d/include")
-install(DIRECTORY resources DESTINATION "games/portal-2d")
-install(DIRECTORY maps DESTINATION "games/portal-2d")
-install(DIRECTORY config DESTINATION "games/portal-2d")
-install(DIRECTORY movies DESTINATION "games/portal-2d")
+        ARCHIVE DESTINATION "lib"
+        RUNTIME DESTINATION "bin"
+        INCLUDES DESTINATION "include")
+install(DIRECTORY resources DESTINATION ".")
+install(DIRECTORY maps DESTINATION ".")
+install(DIRECTORY config DESTINATION ".")
+install(DIRECTORY movies DESTINATION ".")

@@ -1,29 +1,9 @@
 # Makefile solo para evitar tener que escribir ciertos commands que no se
 # se puedan agregar a CMake
 
-all:
-	mkdir -p movies
-	mkdir -p build
-	cd build && cmake .. && make
-	cd editor && mkdir -p build
-	cd editor/build && cmake .. && make
-
 install:
-	mkdir -p movies
-	mkdir -p build
-	cd build && cmake .. && make install
-	cd editor && mkdir -p build
-	cd editor/build && cmake .. && make install
-	cp resources/scripts/portal-client /usr/local/bin
-	cp resources/scripts/portal-server /usr/local/bin
-	cp resources/scripts/portal-editor /usr/local/bin
-
-uninstall:
-	$(RM) -rfv /usr/local/games/portal-2d
-	$(RM) -rfv /usr/local/bin/portal-client
-	$(RM) -rfv /usr/local/bin/portal-server
-	$(RM) -rfv /usr/local/bin/portal-editor
-
+	cd ./build && cmake -DCMAKE_INSTALL_PREFIX=${IPATH} .. && make install
+	cd ./editor/build && cmake -DCMAKE_INSTALL_PREFIX=${IPATH} .. && make install
 
 # Corre el entorno de pruebas de Box2D
 testbed:

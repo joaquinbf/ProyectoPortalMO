@@ -43,4 +43,4 @@ if(WIN32)
 endif(WIN32)
 
 # INSTALL
-install(TARGETS portal-editor RUNTIME DESTINATION "games/portal-2d/bin")
+install(TARGETS portal-editor RUNTIME DESTINATION "bin")
