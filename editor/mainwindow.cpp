@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "editor_defines.h"
+#include "editor_ajustes.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -236,4 +237,11 @@ void MainWindow::on_actionEmisor_de_Energia_triggered()
 
 void MainWindow::on_actionReceptor_de_Energia_triggered()
 {
+}
+
+void MainWindow::on_actionAjustes_y_configuracion_triggered()
+{
+    Ajustes ajustes;
+    ajustes.setModal(true);
+    ajustes.exec();
 }

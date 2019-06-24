@@ -192,6 +192,7 @@
     <property name="title">
      <string>Herramientas</string>
     </property>
+    <addaction name="actionAjustes_y_configuracion"/>
    </widget>
    <addaction name="menuEscenario"/>
    <addaction name="menuInsertar"/>
@@ -531,6 +532,15 @@
    </property>
    <property name="text">
     <string>Configuracion de Personajes</string>
+   </property>
+  </action>
+  <action name="actionAjustes_y_configuracion">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/resources/configuracionCompuertas.png</normaloff>:/resources/configuracionCompuertas.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ajustes y configuracion</string>
    </property>
   </action>
  </widget>
