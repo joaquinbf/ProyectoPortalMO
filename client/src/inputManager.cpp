@@ -11,6 +11,11 @@ InputManager::~InputManager(){}
 
 void InputManager::stop(){
     this->running = false;
+    //pusheo un evento para destrabar la cola
+    SDL_Event sdlevent;
+    sdlevent.type = SDL_KEYDOWN;
+    sdlevent.key.keysym.sym = SDLK_0;//este evento no hace nada
+    SDL_PushEvent(&sdlevent);
 }
 
 bool InputManager::isRunning() const{
