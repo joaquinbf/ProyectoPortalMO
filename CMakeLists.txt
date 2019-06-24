@@ -21,19 +21,14 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 file(GLOB_RECURSE COMMON_SRCS ./common/src/*.cpp)
 file(GLOB_RECURSE CLIENT_SRCS ./client/src/*.cpp)
 file(GLOB_RECURSE SERVER_SRCS ./server/src/*.cpp)
-#file(GLOB_RECURSE EDITOR_SRCS ./editor/*.cpp)
-#file(GLOB EDITOR_HEADERS ./*.h)
-#file(GLOB_RECURSE EDITORUI ./editor/mainwindow.ui)
 list(FILTER CLIENT_SRCS EXCLUDE REGEX "main.cpp")
 list(FILTER SERVER_SRCS EXCLUDE REGEX "main.cpp")
-#list(FILTER EDITOR_SRCS EXCLUDE REGEX "main.cpp")
 
 # Including Box2D
 include_directories(./libs/Box2D-master)
 file(GLOB_RECURSE BOX2D_SRCS ./libs/Box2D-master/Box2D/*.cpp)
 
 # Including SDL2
-#INCLUDE(FindPkgConfig)
 find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_mixer REQUIRED)
@@ -55,13 +50,11 @@ add_library(libbox2d STATIC ${BOX2D_SRCS})
 add_library(libcommon STATIC ${COMMON_SRCS})
 add_library(libserver STATIC ${SERVER_SRCS})
 add_library(libclient STATIC ${CLIENT_SRCS})
-add_library(libeditor STATIC ${EDITOR_SRCS})
 TARGET_LINK_LIBRARIES(libserver libcommon libbox2d yaml-cpp)
 target_link_libraries(
     libclient libcommon avformat avcodec avutil swscale
     ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES} ${SDL2_MIXER_LIBRARIES}
     ${SDL2_TTF_LIBRARIES} Qt5::Core	Qt5::Gui Qt5::Widgets ${TIFF_LIBRARIES})
-#target_link_libraries(libeditor libcommon Qt5::Core Qt5::Gui Qt5::Widgets yaml-cpp)
 
 # Tiff
 find_package(TIFF REQUIRED)
@@ -96,8 +89,6 @@ TARGET_LINK_LIBRARIES(portal-client libclient)
 add_executable(portal-server "server/src/main.cpp")
 TARGET_LINK_LIBRARIES(portal-server libserver)
 
-#add_executable(editor "editor/main.cpp" ./editor/recursos.qrc)
-#TARGET_LINK_LIBRARIES(editor libeditor)
 
 # INSTALL
 install(TARGETS portal-server portal-client libclient libserver libcommon libbox2d
@@ -107,11 +98,4 @@ install(TARGETS portal-server portal-client libclient libserver libcommon libbox
 install(DIRECTORY resources DESTINATION "games/portal/")
 install(DIRECTORY maps DESTINATION "games/portal")
 install(DIRECTORY config DESTINATION "games/portal")
-
-macro(install_symlink filepath sympath)
-    install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${filepath} ${sympath})")
-    install(CODE "message(\"-- Created symlink: ${sympath} -> ${filepath}\")")
-endmacro(install_symlink)
-
-install_symlink($ENV{DESTDIR}/games/portal/bin/portal-server $ENV{DESTDIR}/bin/portal-server )
-install_symlink($ENV{DESTDIR}/games/portal/bin/portal-client $ENV{DESTDIR}/bin/portal-client)
+install(DIRECTORY movies DESTINATION "games/portal")

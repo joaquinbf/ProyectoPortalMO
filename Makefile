@@ -10,5 +10,12 @@ valgrind-client:
 	
 valgrind-server:
 	cd build && valgrind --leak-check=full --show-leak-kinds=all --suppressions=../libs/valgrind-supp/minimal.supp ./server
-
+	
+install:
+	mkdir -p movies
+	mkdir -p build
+	cd build && cmake .. && make DESTIR=$(DESTDIR) install
+	cd editor && mkdir -p build
+	cd editor/build && cmake .. && make DESTDIR=$(DESTDIR) install
+	
 .PHONY: testbed

@@ -32,7 +32,7 @@
 *.app
 
 # build directories
-build/
+build
 movies/
 libs/Box2D-master/build/
 
