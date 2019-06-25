@@ -6,8 +6,8 @@
 int main(int argc, char *argv[]) {
 
     if (argc != ARG_MAIN_SERVER) {
-        std::cout << "Error: Argumentos insuficientes."
-				  << "Modo de uso: ./portal-server <PORT>"
+        std::cout << "Error: Cantidad de argumentos invalida."
+				  << "\nModo de uso: ./portal-server <PORT>"
 				  << std::endl;
         return 1;
     }
