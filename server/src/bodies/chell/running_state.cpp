@@ -40,7 +40,7 @@ void RunningState::pressUp() {
 }
 
 void RunningState::applyStateAction() {
-    if (this->chell->getLinearVelocity().y < 0) {
+    if (this->chell->getLinearVelocity().y < FALLING_VELOCITY) {
         this->chell->changeStateToFalling();
     } else if (!this->chell->hasReachedMaxHorizontalSpeed()) {
         if (this->chell->getKeypad()->isBeingPressed(KEY::RIGHT_KEY)) {
