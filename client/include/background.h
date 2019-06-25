@@ -4,10 +4,10 @@
 #include "../include/Area.h"
 #include "../include/SdlTexture.h"
 
-#define BACKGROUND_PATH "../resources/textures/backgrounds/"
+#define DEFAULT_BG "../resources/textures/backgrounds/1.jpg"
 
 class Background{
-private: 
+private:
 	SdlTexture backgroundTexture;
 	int resx;
 	int resy;

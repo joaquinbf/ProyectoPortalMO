@@ -1,7 +1,9 @@
 #include "../include/background.h"
 
 Background::Background(const SdlWindow& window,const std::string& file) :
-backgroundTexture(file,window){
+backgroundTexture(
+	file == "" ? DEFAULT_BG : file,
+	window) {
 	this->backgroundTexture.getSize(&this->resx,&this->resy);
 	this->widthRendered = this->resx/4;
 	this->heightRendered = this->resy/4;
