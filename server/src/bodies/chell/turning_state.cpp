@@ -7,9 +7,12 @@ TurningState::TurningState(Chell *chell):
 
 void TurningState::applyStateAction() {
     this->step_count++;
-    if (this->step_count > this->MAX_STEPS) {
-        this->chell->changeStateToRunning();
+    if (this->chell->getLinearVelocity().y < this->FALLING_VELOCITY) {
         this->resetStepCount();
+        this->chell->changeStateToFalling();
+    } else if (this->step_count > this->MAX_STEPS) {
+        this->resetStepCount();
+        this->chell->changeStateToRunning();
     }
 }
 

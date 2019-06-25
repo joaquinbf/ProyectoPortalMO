@@ -40,7 +40,9 @@ void RunningState::pressUp() {
 }
 
 void RunningState::applyStateAction() {
-    if (!this->chell->hasReachedMaxHorizontalSpeed()) {
+    if (this->chell->getLinearVelocity().y < this->FALLING_VELOCITY) {
+        this->chell->changeStateToFalling();
+    } else if (!this->chell->hasReachedMaxHorizontalSpeed()) {
         if (this->chell->isFacingRight()) {
             this->chell->applyLinearImpulseToRight();
         } else {

@@ -8,6 +8,8 @@ class Chell;
 class TurningState: public ChellState {
 private:
     const unsigned int MAX_STEPS = 8;
+    const float FALLING_VELOCITY = -0.5;
+
 public:
     TurningState(Chell *chell);
     virtual void applyStateAction() override;

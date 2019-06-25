@@ -6,6 +6,9 @@
 class Chell;
 
 class RunningState: public ChellState {
+private:
+    const float FALLING_VELOCITY = -0.5;
+
 public:
     RunningState(Chell *chell);
     virtual void pressLeft() override;

@@ -7,6 +7,9 @@
 int main(int argc, char *argv[]) {
 
 	if (argc != ARG_MAIN_CLIENT) {
+		std::cout << "Error: Argumentos insuficientes."
+				  << "Modo de uso: ./portal-client <PORT>"
+				  << std::endl;
 		return 1;
 	}
 
