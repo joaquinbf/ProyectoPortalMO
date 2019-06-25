@@ -7,6 +7,7 @@
 #define PI (4*atan(1))
 #define DEGTORAD(alfa) (alfa*(PI/180.0))
 #define RADTODEG(alfa) (alfa*(180.0/PI))
+#define FPS_FACTOR 6
 
 enum ENTITY: uint8_t {
 	NONE_ENTITY 			= 0x00,

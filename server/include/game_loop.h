@@ -22,7 +22,7 @@ private:
     std::set<Body *> *bodies;
     std::deque<Update> *internal_updates;
     std::deque<Instruction *> *internal_instructions;
-    const float TIME_STEP = 1/120.0;
+    const float TIME_STEP = 1/(20.0 * FPS_FACTOR);
     const uint32_t VELOCITY_ITERATIONS = 50;
     const uint32_t POSITION_ITERATIONS = 50;
 

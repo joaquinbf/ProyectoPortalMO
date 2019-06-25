@@ -7,7 +7,7 @@ class Chell;
 
 class StoppingState: public ChellState {
 private:
-    const unsigned int MAX_STEPS = 12;
+    const unsigned int MAX_STEPS = 12 * FPS_FACTOR;
 
 public:
     StoppingState(Chell *chell);

@@ -9,7 +9,7 @@ class World;
 
 class DeadState: public ChellState {
 private:
-    const unsigned int MAX_STEPS = 72;
+    const unsigned int MAX_STEPS = 72 * FPS_FACTOR;
 
 public:
     DeadState(Chell *chell);

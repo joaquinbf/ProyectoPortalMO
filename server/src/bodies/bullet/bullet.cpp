@@ -131,7 +131,7 @@ void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
 
 void Bullet::applyStateAction() {
     this->life_steps++;
-    if (this->life_steps > this->def.max_life_steps) {
+    if (this->life_steps > this->def.max_life_steps * FPS_FACTOR) {
         this->tryDestroy();
     }
 }

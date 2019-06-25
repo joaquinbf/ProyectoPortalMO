@@ -7,7 +7,7 @@ class Chell;
 
 class TurningState: public ChellState {
 private:
-    const unsigned int MAX_STEPS = 8;
+    const unsigned int MAX_STEPS = 8 * FPS_FACTOR;
     const float FALLING_VELOCITY = -0.5;
 
 public:
