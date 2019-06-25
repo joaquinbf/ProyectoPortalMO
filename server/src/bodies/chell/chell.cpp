@@ -341,8 +341,7 @@ void Chell::handleBeginContactWith(Block *block, b2Contact *contact) {
 
 void Chell::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
     this->state->handleBeginContactWith(bullet);
-    world->addUpdate(bullet->createUpdate(COMMAND::DESTROY_COMMAND));
-    world->addInstruction(new DestroyBodyInstruction(bullet));
+    bullet->destroy();
 }
 
 void Chell::handleBeginContactWith(Button *button, b2Contact *contact) {

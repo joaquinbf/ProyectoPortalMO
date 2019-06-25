@@ -76,8 +76,7 @@ void Rock::handleBeginContactWith(Body *other_body, b2Contact *contact) {
 }
 
 void Rock::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
-    this->world->addUpdate(bullet->createUpdate(COMMAND::DESTROY_COMMAND));
-    this->world->addInstruction(new DestroyBodyInstruction(bullet));
+    bullet->handleBeginContactWith(this, contact);
 }
 
 void Rock::handleBeginContactWith(Chell *chell, b2Contact *contact) {

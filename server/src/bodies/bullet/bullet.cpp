@@ -128,7 +128,7 @@ void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Rock *rock, b2Contact *contact) {
-    rock->handleBeginContactWith(this, contact);
+    this->destroy();
 }
 
 void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {
@@ -144,7 +144,6 @@ void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
 void Bullet::applyStateAction() {
     this->life_steps++;
     if (this->life_steps > this->def.max_life_steps) {
-        this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
-        this->world->destroyBody(this);
+        this->destroy();
     }
 }
