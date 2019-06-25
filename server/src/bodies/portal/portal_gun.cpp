@@ -18,6 +18,13 @@ PortalGun::~PortalGun() {
     this->destroyPortal(portal_two);
 }
 
+void PortalGun::resetPortals() {
+    this->addPortalUpdateToWorld(this->portal_one, COMMAND::DESTROY_COMMAND);
+    this->addPortalUpdateToWorld(this->portal_two, COMMAND::DESTROY_COMMAND);
+    this->destroyPortal(portal_one);
+    this->destroyPortal(portal_two);
+}
+
 Portal *PortalGun::getPortalOne() const {
     return this->portal_one;
 }

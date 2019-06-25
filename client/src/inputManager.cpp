@@ -1,6 +1,6 @@
  #include "../include/inputManager.h"
 
-InputManager::InputManager(const ServerManager& sm,GameView& v,VideoRecorder& vr, 
+InputManager::InputManager(const ServerManager& sm,GameView& v,VideoRecorder& vr,
     PauseView* pause)
 : running(true),serverManager(sm),chellId(0),gameView(v),videoRecorder(vr),
 pauseView(pause){
@@ -25,7 +25,7 @@ bool InputManager::isRunning() const{
 void InputManager::run(){
 	this->chellId = this->gameView.getChellId();
     SDL_Event event;
-    while(this->running && SDL_WaitEvent(&event)){    	
+    while(this->running && SDL_WaitEvent(&event)){
     	if(this->gameView.isPaused()){
     		this->pauseMode(event);
     	} else {
@@ -80,7 +80,7 @@ void InputManager::gameMode(const SDL_Event& event){
     SDL_MouseButtonEvent& mouseEvent = (SDL_MouseButtonEvent&) event;
     switch(event.type) {
         case SDL_KEYDOWN: {
-                switch (keyEvent.keysym.sym) {                    
+                switch (keyEvent.keysym.sym) {
                     case SDLK_a:
 						this->sendPressAction(
 							this->keypad.getKey(KEY::LEFT_KEY),
@@ -105,7 +105,10 @@ void InputManager::gameMode(const SDL_Event& event){
                     	this->serverManager.sendAction(Action(
                             this->chellId,ACTION::JIG,0,0));
                     	break;
-                    
+                    case SDLK_r:
+                        this->serverManager.sendAction(Action(
+                            this->chellId,ACTION::RESET_PORTALS,0,0));
+                        break;
 
                     //locales
                     case SDLK_ESCAPE:

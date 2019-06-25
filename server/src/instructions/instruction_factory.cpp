@@ -13,6 +13,7 @@
 #include "../../include/instructions/press_grab_instruction.h"
 #include "../../include/instructions/stop_grab_instruction.h"
 #include "../../include/instructions/jig_instruction.h"
+#include "../../include/instructions/reset_portals_instruction.h"
 #include "../../include/bodies/chell/chell.h"
 #include "../../include/bodies/portal/portal.h"
 #include <map>
@@ -74,6 +75,9 @@ Instruction *InstructionFactory::createInstruction(
             break;
         case ACTION::JIG:
             instruction = new JigInstruction(chell);
+            break;
+        case ACTION::RESET_PORTALS:
+            instruction = new ResetPortalsInstruction(chell);
             break;
         default:
             instruction = new DefaultInstruction();

@@ -24,6 +24,9 @@ public:
     /* Libera los recursos utilizados */
     ~PortalGun();
 
+    /* Resetea los portales */
+    void resetPortals();
+
     /* Devuelve un puntero al primer portal */
     Portal *getPortalOne() const;
 

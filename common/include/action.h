@@ -18,6 +18,7 @@ enum ACTION: uint8_t {
     FIRE1,
     FIRE2,
     PING,
+    RESET_PORTALS
 };
 
 class Action{
