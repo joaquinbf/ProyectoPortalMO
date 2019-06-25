@@ -3,12 +3,14 @@
 
 #include "../include/Area.h"
 #include "../include/SdlTexture.h"
+#include "../include/SdlException.h"
 
-#define DEFAULT_BG "../resources/textures/backgrounds/1.jpg"
+#define DEFAULT_PATH "../resources/textures/backgrounds/"
+#define DEFAULT_BG "1.jpg"
 
 class Background{
 private:
-	SdlTexture backgroundTexture;
+	SdlTexture* backgroundTexture = nullptr;
 	int resx;
 	int resy;
 	uint32_t widthRendered;

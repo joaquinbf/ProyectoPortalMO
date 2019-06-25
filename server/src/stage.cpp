@@ -1,5 +1,4 @@
 #include "../include/stage.h"
-#include <iostream>
 
 Stage::Stage(
 	const std::string& mapName,

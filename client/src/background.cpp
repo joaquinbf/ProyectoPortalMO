@@ -1,10 +1,19 @@
 #include "../include/background.h"
 
-Background::Background(const SdlWindow& window,const std::string& file) :
-backgroundTexture(
-	file == "" ? DEFAULT_BG : file,
-	window) {
-	this->backgroundTexture.getSize(&this->resx,&this->resy);
+Background::Background(const SdlWindow& window,const std::string& file){
+	if(file == ""){
+		this->backgroundTexture = new SdlTexture(std::string(DEFAULT_PATH)+
+			std::string(DEFAULT_BG), window);
+	} else {
+		try{
+			this->backgroundTexture = new SdlTexture(std::string(DEFAULT_PATH)+
+				file, window);	
+		}catch(const SdlException& e){
+			this->backgroundTexture = new SdlTexture(std::string(DEFAULT_PATH)+
+				std::string(DEFAULT_BG), window);
+		}		
+	}
+	this->backgroundTexture->getSize(&this->resx,&this->resy);
 	this->widthRendered = this->resx/4;
 	this->heightRendered = this->resy/4;
 }
@@ -29,18 +38,18 @@ void Background::render(int x, int y, int rx, int ry,float scale){
 	}
 
     Area frameArea(a,b,	this->widthRendered/scale,this->heightRendered/scale);
-	this->backgroundTexture.render(frameArea,renderArea);
+	this->backgroundTexture->render(frameArea,renderArea);
 }
 
 void Background::setColorMod(uint8_t r,uint8_t g,uint8_t b){
 	this->r = r;
 	this->g = g;
 	this->b = b;
-	this->backgroundTexture.setColorMod(this->r,this->g,this->b);
+	this->backgroundTexture->setColorMod(this->r,this->g,this->b);
 }
 void Background::resetColorMod(){
 	this->r = 255;
 	this->g = 255;
 	this->b = 255;
-	this->backgroundTexture.setColorMod(this->r,this->g,this->b);
+	this->backgroundTexture->setColorMod(this->r,this->g,this->b);
 }
