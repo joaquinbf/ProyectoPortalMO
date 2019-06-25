@@ -12,7 +12,7 @@ if [[ $1 == "-ce" ]]; then
     cd build/
     cmake ..
     make
-    ./portal_editor
+    ./portal-editor
     cd ..
     rm -r build/
 fi
@@ -27,7 +27,7 @@ fi
 
 if [[ $1 == "-e" ]]; then
     cd build/
-    ./portal_editor
+    ./portal-editor
     cd ..
 fi
 
