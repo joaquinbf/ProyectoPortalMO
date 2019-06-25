@@ -7,7 +7,7 @@ class Chell;
 
 class LandingState: public ChellState {
 private:
-    unsigned int MAX_STEPS = 2;
+    unsigned int MAX_STEPS = 2 * FPS_FACTOR;
 
 public:
     LandingState(Chell *chell);

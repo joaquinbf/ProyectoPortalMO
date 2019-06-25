@@ -26,7 +26,9 @@ void Stage::run() {
 
 	while(!game_loop->isFinished() && this->running){
 		game_loop->executeExternalInput(inputs);
-		game_loop->step();
+		for (int i = 0; i < FPS_FACTOR; i++) {
+			game_loop->step();
+		}
 		game_loop->fillUpdates(updates);
 		usleep(50000);
 	}
