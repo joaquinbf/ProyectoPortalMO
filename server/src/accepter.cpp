@@ -1,8 +1,7 @@
 #include "../include/accepter.h"
 
-Accepter::Accepter(const char *port):
-    port(port) {
-    this->socket.bindAndListen(this->port);
+Accepter::Accepter(const char *port){
+    this->socket.bindAndListen(port);
     this->keep_running = true;
 }
 
