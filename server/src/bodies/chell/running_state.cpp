@@ -40,12 +40,12 @@ void RunningState::pressUp() {
 }
 
 void RunningState::applyStateAction() {
-    if (this->chell->getLinearVelocity().y < this->FALLING_VELOCITY) {
+    if (this->chell->getLinearVelocity().y < 0) {
         this->chell->changeStateToFalling();
     } else if (!this->chell->hasReachedMaxHorizontalSpeed()) {
-        if (this->chell->isFacingRight()) {
+        if (this->chell->getKeypad()->isBeingPressed(KEY::RIGHT_KEY)) {
             this->chell->applyLinearImpulseToRight();
-        } else {
+        } else if (this->chell->getKeypad()->isBeingPressed(KEY::LEFT_KEY)){
             this->chell->applyLinearImpulseToLeft();
         }
     }

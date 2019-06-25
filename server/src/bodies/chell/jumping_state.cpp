@@ -28,15 +28,17 @@ void JumpingState::releaseRight() {
 }
 
 void JumpingState::land() {
-    if (this->chell->getLinearVelocity().x != 0) {
-        this->chell->changeStateToRunning();
-    } else {
-        this->chell->changeStateToIdle();
-    }
+    this->chell->changeStateToIdle();
 }
 
 void JumpingState::applyStateAction(){
     if (this->chell->getLinearVelocity().y < 0) {
         this->chell->changeStateToFalling();
+    } else if (!this->chell->hasReachedMaxHorizontalSpeed()) {
+        if (this->chell->getKeypad()->isBeingPressed(KEY::RIGHT_KEY)) {
+            this->chell->applyLinearImpulseToRight();
+        } else if (this->chell->getKeypad()->isBeingPressed(KEY::LEFT_KEY)){
+            this->chell->applyLinearImpulseToLeft();
+        }
     }
 }
