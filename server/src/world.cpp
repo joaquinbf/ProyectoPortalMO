@@ -282,10 +282,9 @@ Laser *World::createLaser(float x, float y, ANGLE angle) {
 std::list<Update> World::getNewPlayerUpdates() const {
     std::list<Update> updates;
     for (Body *body: this->bodies) {
-        if (body->isActive()) {
-            Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
-            updates.push_back(update);
-        }
+        Update update = body->createUpdate(COMMAND::CREATE_COMMAND);
+        updates.push_back(update);
+
     }
     return updates;
 }
