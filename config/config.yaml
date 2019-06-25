@@ -9,7 +9,7 @@ button:
     friction: 0.7
  
 chell:
-    jumpspeed: 5
+    jumpspeed: 8
     max_horizontal_speed: 6
     horizontal_speed: 1.0
     ray_zoom: 10000
