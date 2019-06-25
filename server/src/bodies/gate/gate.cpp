@@ -121,8 +121,6 @@ void Gate::shrink() {
     b2Fixture *b2fixture = this->b2body->GetFixtureList();
     b2PolygonShape *b2polygonshape = (b2PolygonShape *) b2fixture->GetShape();
 
-    std::cout << "IT:  " << *it << std::endl;
-
     b2Vec2 vertices[4];
     vertices[0].Set(0.00, 0.00);
     vertices[1].Set(MAX_WIDTH, 0.00);

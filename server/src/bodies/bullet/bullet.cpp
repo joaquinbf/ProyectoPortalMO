@@ -23,7 +23,8 @@ Bullet::Bullet(World *world, float x, float y, DIRECTION direction):
     Body(world, ENTITY::BULLET),
     direction(direction),
     life_steps(0),
-    def(world->getWorldConfig().bullet_def) {
+    def(world->getWorldConfig().bullet_def),
+    is_destroyed(false) {
     b2BodyDef b2bodydef;
     b2bodydef.type = b2_dynamicBody;
     b2bodydef.position.Set(x, y);
@@ -71,6 +72,18 @@ Bullet::~Bullet() {
     }
 }
 
+bool Bullet::isDestroyed() const {
+    return this->is_destroyed;
+}
+
+void Bullet::destroy() {
+    if (!this->isDestroyed()) {
+        this->is_destroyed = true;
+        this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
+        this->world->addInstruction(new DestroyBodyInstruction(this));
+    }
+}
+
 Update Bullet::createUpdate(COMMAND command) const {
     int32_t angle = MathExt::angle(b2Vec2(1, 0), this->getLinearVelocity());
     if (this->getLinearVelocity().y < 0) {
@@ -97,10 +110,8 @@ void Bullet::handleBeginContactWith(Block *block, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
-    this->world->addInstruction(new DestroyBodyInstruction(this));
-    this->world->addInstruction(new DestroyBodyInstruction(bullet));
-    this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
-    this->world->addUpdate(bullet->createUpdate(COMMAND::DESTROY_COMMAND));
+    this->destroy();
+    bullet->destroy();
 }
 
 void Bullet::handleBeginContactWith(Chell *chell, b2Contact *contact) {
@@ -108,12 +119,12 @@ void Bullet::handleBeginContactWith(Chell *chell, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
-    this->world->addInstruction(new DestroyBodyInstruction(this));
+    this->destroy();
 }
 
 void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     receiver->turnOn();
-    this->world->addInstruction(new DestroyBodyInstruction(this));
+    this->destroy();
 }
 
 void Bullet::handleBeginContactWith(Rock *rock, b2Contact *contact) {

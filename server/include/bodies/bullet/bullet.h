@@ -20,6 +20,7 @@ private:
     DIRECTION direction;
     unsigned int life_steps;
     BulletDef def;
+    bool is_destroyed;
     const float WIDTH = 1.00;
     const float HEIGHT = 0.60;
     const float DENSITY = 1;
@@ -32,46 +33,52 @@ public:
     /* Libera los recursos utilizados */
     ~Bullet();
 
-   /* Crea una update con el comando indicado */
-   virtual Update createUpdate(COMMAND command) const;
+    /* Indica si la bala esta destruida */
+    bool isDestroyed() const;
 
-   /* Maneja el inicio de contacto con otro cuerpo */
-   virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
+    /* Destruye a la bala */
+    void destroy();
 
-   /* Muere al chocar con un bloque */
-   virtual void handleBeginContactWith(
+    /* Crea una update con el comando indicado */
+    virtual Update createUpdate(COMMAND command) const;
+
+    /* Maneja el inicio de contacto con otro cuerpo */
+    virtual void handleBeginContactWith(Body *other_body, b2Contact *contact);
+
+    /* Muere al chocar con un bloque */
+    virtual void handleBeginContactWith(
        Block *block, b2Contact *contact) override;
 
-   /* Muere al chocar con otra bala */
-   virtual void handleBeginContactWith(
+    /* Muere al chocar con otra bala */
+    virtual void handleBeginContactWith(
        Bullet *bullet, b2Contact *contact) override;
 
-   /* Mata a chell. */
-   virtual void handleBeginContactWith(
+    /* Mata a chell. */
+    virtual void handleBeginContactWith(
        Chell *chell, b2Contact *contact) override;
 
-   /* Muere al chocar con un lanzador */
-   virtual void handleBeginContactWith(
+    /* Muere al chocar con un lanzador */
+    virtual void handleBeginContactWith(
        Launcher *launcher, b2Contact *contact) override;
 
-   /* Transportaa bullet al otro portal si esta activo */
-    virtual void handleBeginContactWith(
+    /* Transportaa bullet al otro portal si esta activo */
+     virtual void handleBeginContactWith(
         Portal *receiver, b2Contact *contact) override;
 
-   /* Muere y activa el receptor */
-   virtual void handleBeginContactWith(
-       Receiver *receiver, b2Contact *contact) override;
+    /* Muere y activa el receptor */
+    virtual void handleBeginContactWith(
+        Receiver *receiver, b2Contact *contact) override;
 
-   /* Muere y activa el receptor */
-   virtual void handleBeginContactWith(
+    /* Muere y activa el receptor */
+    virtual void handleBeginContactWith(
        Rock *rock, b2Contact *contact) override;
 
-   /* Maneja el fin de contacto con otro cuerpo */
-   virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
+    /* Maneja el fin de contacto con otro cuerpo */
+    virtual void handleEndContactWith(Body *other_body, b2Contact *contact);
 
-   /* Incrementa su contador de life steps.
-    * Si supera MAX_LIFE_STEPS es eliminada de world. */
-   virtual void applyStateAction() override;
+    /* Incrementa su contador de life steps.
+     * Si supera MAX_LIFE_STEPS es eliminada de world. */
+    virtual void applyStateAction() override;
 };
 
 #endif

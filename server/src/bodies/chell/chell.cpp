@@ -325,53 +325,6 @@ Keypad *Chell::getKeypad() {
 
 void Chell::applyStateAction() {
     this->state->applyStateAction();
-    //
-    // std::string status;
-    // switch (this->state->getStatus()) {
-    //     case STATUS::NONE_STATUS:
-    //         status = "none status";
-    //         break;
-    // 	case STATUS::CHELL_IDLE:
-    //         status = "chell idle";
-    //         break;
-    // 	case STATUS::CHELL_RUNNING:
-    //         status = "chell running";
-    //         break;
-    // 	case STATUS::CHELL_TURNING:
-    //         status = "chell turning";
-    //         break;
-    // 	case STATUS::CHELL_STOPING:
-    //         status = "chell stoping";
-    //         break;
-    // 	case STATUS::CHELL_JUMPING:
-    //         status = "chell jumping";
-    //         break;
-    // 	case STATUS::CHELL_JUMPING_APEX:
-    //         status = "chell jumping apex";
-    //         break;
-    // 	case STATUS::CHELL_FALLING:
-    //         status = "chell falling";
-    //         break;
-    //     case STATUS::CHELL_LANDING:
-    //         status = "chell landing";
-    //         break;
-    // 	case STATUS::CHELL_FIRE:
-    //         status = "chell fire";
-    //         break;
-    // 	case STATUS::CHELL_FIRE_TO_IDLE:
-    //         status = "chell fire to idle";
-    //         break;
-    // 	case STATUS::CHELL_JIGING:
-    //         status = "chell jiging";
-    //         break;
-    // 	case STATUS::CHELL_DIE:
-    //         status = "chell die";
-    //         break;
-    //     default:
-    //         status = "default";
-    //         break;
-    // }
-    // std::cout << "CHELL STATUS: " <<  status << std::endl;
 }
 
 void Chell::handleBeginContactWith(Body *other_body, b2Contact *contact) {
