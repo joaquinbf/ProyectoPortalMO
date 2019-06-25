@@ -9,6 +9,7 @@
 class World;
 class Bullet;
 class Chell;
+class Rock;
 
 class Portal: public Body {
 private:
@@ -56,6 +57,10 @@ public:
     /* Teletransporta a chell */
     virtual void handleBeginContactWith(
         Chell *chell, b2Contact *contact) override;
+
+    /* Teletransporta una roca */
+    virtual void handleBeginContactWith(
+        Rock *rock, b2Contact *contact) override;
 };
 
 #endif

@@ -9,6 +9,7 @@
 #include "../../../include/instructions/teleport_body_instruction.h"
 #include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/bodies/chell/chell.h"
+#include "../../../include/bodies/rock/rock.h"
 #include <iostream>
 #include <cmath>
 
@@ -116,4 +117,8 @@ void Portal::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
 
 void Portal::handleBeginContactWith(Chell *chell, b2Contact *contact) {
     chell->handleBeginContactWith(this, contact);
+}
+
+void Portal::handleBeginContactWith(Rock *rock, b2Contact *contact) {
+    rock->handleBeginContactWith(this, contact);
 }

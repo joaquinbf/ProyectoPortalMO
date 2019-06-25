@@ -12,6 +12,7 @@ class World;
 class Laser;
 class Chell;
 class Bullet;
+class Portal;
 
 class Rock: public Body {
 private:
@@ -54,6 +55,9 @@ public:
 
     /* Detruye a la roca */
     virtual void handleBeginContactWith(Laser *laser, b2Contact *contact) override;
+
+    /* Teletransporta a la roca */
+    virtual void handleBeginContactWith(Portal *portal, b2Contact *contact) override;
 
     /* Maneja el fin de contacto con otro cuerpo */
     virtual void handleEndContactWith(Body *other_body, b2Contact *contact);

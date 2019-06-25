@@ -20,37 +20,37 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: true
-    idClass: 3
-    y: 0
-    idObject: 21
-    x: 672
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: true
-    idObject: 27
-    x: 864
-    idClass: 3
-    y: 0
-  - ocupado: false
-  - ocupado: true
-    idClass: 3
-    idObject: 29
-    y: 0
-    x: 928
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - idClass: 12
-    idObject: 35
-    y: 0
-    x: 1120
+  - idObject: 21
     ocupado: true
+    y: 0
+    x: 672
+    idClass: 3
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - idObject: 27
+    ocupado: true
+    idClass: 3
+    x: 864
+    y: 0
+  - ocupado: false
+  - idObject: 29
+    ocupado: true
+    x: 928
+    idClass: 3
+    y: 0
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    x: 1120
+    idObject: 35
+    idClass: 12
+    y: 0
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -97,34 +97,34 @@ celdas:
   - ocupado: false
   - ocupado: false
   - idObject: 81
-    x: 672
-    y: 32
     ocupado: true
     idClass: 3
+    y: 32
+    x: 672
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - idObject: 87
-    ocupado: true
     x: 864
+    y: 32
+    ocupado: true
+    idClass: 3
+  - ocupado: false
+  - idObject: 89
     idClass: 3
     y: 32
-  - ocupado: false
-  - idClass: 3
     ocupado: true
     x: 928
-    y: 32
-    idObject: 89
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - y: 32
-    x: 1120
+  - x: 1120
     ocupado: true
+    y: 32
     idClass: 12
     idObject: 95
   - ocupado: false
@@ -157,11 +157,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: true
-    idClass: 3
-    idObject: 126
+  - idObject: 126
+    ocupado: true
     x: 192
     y: 64
+    idClass: 3
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -176,36 +176,36 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: true
+  - x: 672
+    y: 64
+    ocupado: true
     idClass: 3
     idObject: 141
-    x: 672
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - x: 864
+    ocupado: true
     y: 64
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: true
-    idClass: 3
     idObject: 147
-    x: 864
-    y: 64
+    idClass: 3
   - ocupado: false
-  - idClass: 3
+  - y: 64
     idObject: 149
     x: 928
-    y: 64
     ocupado: true
+    idClass: 3
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - x: 1120
+  - idClass: 12
     ocupado: true
-    idClass: 12
     idObject: 155
+    x: 1120
     y: 64
   - ocupado: false
   - ocupado: false
@@ -232,85 +232,85 @@ celdas:
   - ocupado: false
   - ocupado: false
   - x: 0
+    y: 96
+    idObject: 180
     ocupado: true
     idClass: 3
-    idObject: 180
+  - x: 32
     y: 96
-  - ocupado: true
+    ocupado: true
     idClass: 3
     idObject: 181
-    x: 32
-    y: 96
-  - idClass: 3
+  - x: 64
+    ocupado: true
+    idClass: 3
     idObject: 182
-    x: 64
     y: 96
-    ocupado: true
-  - y: 96
-    ocupado: true
+  - ocupado: true
     idClass: 3
     idObject: 183
     x: 96
+    y: 96
   - ocupado: true
-    idClass: 3
-    idObject: 184
     x: 128
     y: 96
-  - ocupado: true
+    idObject: 184
     idClass: 3
-    idObject: 185
+  - idObject: 185
+    idClass: 3
     x: 160
     y: 96
-  - ocupado: true
-    idClass: 3
+    ocupado: true
+  - x: 192
+    y: 96
+    ocupado: true
     idObject: 186
-    x: 192
-    y: 96
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: true
     idClass: 3
-    idObject: 201
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - idObject: 201
     x: 672
-    y: 96
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: true
-    idClass: 3
-    idObject: 207
-    x: 864
-    y: 96
-  - ocupado: false
-  - x: 928
     y: 96
     ocupado: true
     idClass: 3
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - x: 864
+    y: 96
+    ocupado: true
+    idClass: 3
+    idObject: 207
+  - ocupado: false
+  - idClass: 3
     idObject: 209
+    x: 928
+    y: 96
+    ocupado: true
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: true
-    idClass: 12
-    idObject: 215
+  - idObject: 215
     x: 1120
     y: 96
+    ocupado: true
+    idClass: 12
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -335,11 +335,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: true
+  - y: 128
+    ocupado: true
     idClass: 3
     idObject: 240
     x: 0
-    y: 128
   - y: 128
     ocupado: true
     idClass: 3
@@ -350,11 +350,11 @@ celdas:
     idObject: 242
     x: 64
     y: 128
-  - ocupado: true
-    idClass: 3
+  - idClass: 3
     idObject: 243
     x: 96
     y: 128
+    ocupado: true
   - idClass: 3
     idObject: 244
     x: 128
@@ -365,11 +365,11 @@ celdas:
     idObject: 245
     x: 160
     y: 128
-  - ocupado: true
-    idClass: 3
+  - idObject: 246
     x: 192
     y: 128
-    idObject: 246
+    ocupado: true
+    idClass: 3
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -400,11 +400,11 @@ celdas:
     x: 864
     y: 128
   - ocupado: false
-  - idClass: 3
+  - ocupado: true
+    idClass: 3
     idObject: 269
     x: 928
     y: 128
-    ocupado: true
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -439,17 +439,21 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
-  - x: 192
+  - idObject: 300
+    x: 0
     y: 160
     ocupado: true
     idClass: 3
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
+  - ocupado: true
+    idClass: 3
     idObject: 306
+    x: 192
+    y: 160
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -524,7 +528,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 360
+    x: 0
+    y: 192
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -628,7 +636,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 420
+    x: 0
+    y: 224
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -669,11 +681,11 @@ celdas:
     x: 864
     y: 224
   - ocupado: false
-  - idClass: 3
+  - ocupado: true
+    idClass: 3
     idObject: 449
     x: 928
     y: 224
-    ocupado: true
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -708,7 +720,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 480
+    x: 0
+    y: 256
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -808,7 +824,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 540
+    x: 0
+    y: 288
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -884,7 +904,11 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 600
+    x: 0
+    y: 320
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -961,12 +985,16 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: true
-    idClass: 7
+    idClass: 3
     idObject: 660
     x: 0
     y: 352
+  - ocupado: true
+    idClass: 7
+    idObject: 661
+    x: 32
+    y: 352
     nombre: ""
-  - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -1756,7 +1784,11 @@ celdas:
     idObject: 1201
     x: 32
     y: 640
-  - ocupado: false
+  - ocupado: true
+    idClass: 11
+    idObject: 1202
+    x: 64
+    y: 640
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -1829,13 +1861,25 @@ celdas:
     x: 32
     y: 672
   - ocupado: true
-    idClass: 11
+    idClass: 3
     idObject: 1262
     x: 64
     y: 672
-  - ocupado: false
-  - ocupado: false
-  - ocupado: false
+  - ocupado: true
+    idClass: 3
+    idObject: 1263
+    x: 96
+    y: 672
+  - ocupado: true
+    idClass: 3
+    idObject: 1264
+    x: 128
+    y: 672
+  - ocupado: true
+    idClass: 3
+    idObject: 1265
+    x: 160
+    y: 672
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -1863,36 +1907,16 @@ celdas:
   - ocupado: false
   - ocupado: false
   - ocupado: false
-  - ocupado: true
-    idClass: 21
-    idObject: 1289
-    x: 928
-    y: 672
-  - ocupado: true
-    idClass: 21
-    idObject: 1290
-    x: 960
-    y: 672
+  - ocupado: false
+  - ocupado: false
   - ocupado: true
     idClass: 21
     idObject: 1291
     x: 992
     y: 672
-  - ocupado: true
-    idClass: 21
-    idObject: 1292
-    x: 1024
-    y: 672
-  - ocupado: true
-    idClass: 21
-    idObject: 1293
-    x: 1056
-    y: 672
-  - ocupado: true
-    idClass: 21
-    idObject: 1294
-    x: 1088
-    y: 672
+  - ocupado: false
+  - ocupado: false
+  - ocupado: false
   - ocupado: false
   - ocupado: false
   - ocupado: false
@@ -1929,7 +1953,7 @@ celdas:
     x: 32
     y: 704
   - ocupado: true
-    idClass: 2
+    idClass: 3
     idObject: 1322
     x: 64
     y: 704
@@ -3103,22 +3127,18 @@ celdas:
   - ocupado: false
   - ocupado: false
 escenario:
+  cantidadCeldas: 1980
   tamanioAncho: 1920
   pathFondoEscenario: /home/clases1/Desktop/git-tp-final/TPFinalPortal/resources/textures/backgrounds/bg_glados_01.jpg
-  cantidadCeldas: 1980
   tamanioAlto: 1056
 compuertas:
   988:
     0:
-      idCelda: 660
-      idObject: 660
-      negado: false
-    1:
       idCelda: 315
       idObject: 315
       negado: false
-    2:
+    1:
       idCelda: 1094
       idObject: 1094
       negado: false
-    size: 3
+    size: 2

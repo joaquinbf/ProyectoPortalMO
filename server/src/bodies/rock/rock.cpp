@@ -6,6 +6,7 @@
 #include "../../../include/bodies/button/button.h"
 #include "../../../include/bodies/bullet/bullet.h"
 #include "../../../include/bodies/chell/chell.h"
+#include "../../../include/bodies/portal/portal.h"
 #include "../../../include/instructions/destroy_body_instruction.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2World.h"
 #include "../../../../libs/Box2D-master/Box2D/Dynamics/b2Body.h"
@@ -85,6 +86,12 @@ void Rock::handleBeginContactWith(Chell *chell, b2Contact *contact) {
 
 void Rock::handleBeginContactWith(Laser *laser, b2Contact *contact) {
     laser->handleBeginContactWith(this, contact);
+}
+
+void Rock::handleBeginContactWith(Portal *portal, b2Contact *contact) {
+    bool change_angle = false;
+    float d = std::max(WIDTH/2, HEIGHT/2);
+    portal->teleportToOppositePortal(this, change_angle, d);
 }
 
 void Rock::handleEndContactWith(Body *other_body, b2Contact *contact) {
