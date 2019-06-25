@@ -43,6 +43,10 @@ void Serializer::deserializeMap(World *world, std::string filepath) const {
     }
 
     this->connect(config, gate_logic);
+
+    YAML::Node path = config["escenario"];
+    std::string bg = path["pathFondoEscenario"].as<std::string>();
+    world->setBackGround(bg);
 }
 
 void Serializer::deserializeConfig(World *world, std::string configpath) const {

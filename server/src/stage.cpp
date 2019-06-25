@@ -1,4 +1,5 @@
 #include "../include/stage.h"
+#include <iostream>
 
 Stage::Stage(
 	const std::string& mapName,
@@ -54,6 +55,5 @@ bool Stage::isChellAlive(uint32_t id) const{
 }
 
 std::string Stage::getBackground() const{
-	//completar
-	return "1.jpg";
+	return this->world.getWorldConfig().world_def.background_path;
 }

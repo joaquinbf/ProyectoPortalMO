@@ -232,6 +232,9 @@ public:
 
     std::list<uint32_t> getChellsIdList() const;
 
+    /* Asigna una imagen de background */
+    void setBackGround(const std::string &path);
+
 private:
     /* Libera los recursos utiliados por chell */
     void destroyChells();

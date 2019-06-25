@@ -64,8 +64,8 @@ World::~World() {
     this->deleteB2WorldIfInternal();
     for(auto it : this->pins){
         if(it.second != nullptr){
-            delete it.second;    
-        }        
+            delete it.second;
+        }
     }
 }
 
@@ -329,6 +329,10 @@ std::list<Update> World::getPinUpdateList(){
 
 BooleanBlockFactory *World::getBooleanBlockFactory() {
     return &this->boolean_block_factory;
+}
+
+void World::setBackGround(const std::string &path) {
+    this->config.world_def.background_path = path;
 }
 
 void World::destroyChells() {
