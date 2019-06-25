@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <sstream>
 #include "yaml-cpp/yaml.h"
 #include "../include/world.h"
 #include "../include/bodies/body.h"
@@ -46,7 +47,7 @@ void Serializer::deserializeMap(World *world, std::string filepath) const {
 
     YAML::Node path = config["escenario"];
     std::string bg = path["pathFondoEscenario"].as<std::string>();
-    world->setBackGround(bg);
+    world->setBackGround(this->getBackgroundFile(bg));
 }
 
 void Serializer::deserializeConfig(World *world, std::string configpath) const {
@@ -204,4 +205,15 @@ void Serializer::add(Gate *gate, BooleanSupplier *booleansup, bool negate) const
     }
     Gateable *gateable = (Gateable *) booleansup;
     gateable->setGate(gate);
+}
+
+std::string Serializer::getBackgroundFile(std::string absolute_path) const {
+    std::stringstream ss(absolute_path);
+    std::string slice;
+    const char delim = '/';
+
+    while (std::getline(ss, slice, delim)) {
+    }
+
+    return slice;
 }

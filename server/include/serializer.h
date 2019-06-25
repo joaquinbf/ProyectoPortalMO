@@ -46,6 +46,9 @@ private:
     /* Agrega a una compuerta boolean suppliers.
      * El item puede estar negado */
     void add(Gate *gate, BooleanSupplier *booleansup, bool negate) const;
+
+    /* Obtiene el nombre de un archivo desde una direccion absoluta */
+    std::string getBackgroundFile(std::string absolute_path) const;
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "../include/background.h"
+#include <iostream>
 
 Background::Background(const SdlWindow& window,const std::string& file){
 	if(file == ""){
@@ -7,11 +8,11 @@ Background::Background(const SdlWindow& window,const std::string& file){
 	} else {
 		try{
 			this->backgroundTexture = new SdlTexture(std::string(DEFAULT_PATH)+
-				file, window);	
+				file, window);
 		}catch(const SdlException& e){
 			this->backgroundTexture = new SdlTexture(std::string(DEFAULT_PATH)+
 				std::string(DEFAULT_BG), window);
-		}		
+		}
 	}
 	this->backgroundTexture->getSize(&this->resx,&this->resy);
 	this->widthRendered = this->resx/4;
