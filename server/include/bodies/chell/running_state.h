@@ -7,7 +7,7 @@ class Chell;
 
 class RunningState: public ChellState {
 private:
-    const float FALLING_VELOCITY = -0.5;
+    const float FALLING_VELOCITY = -0.2;
 
 public:
     RunningState(Chell *chell);

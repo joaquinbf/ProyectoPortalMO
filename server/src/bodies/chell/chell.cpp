@@ -104,7 +104,8 @@ void Chell::firePortalTwo(float x, float y) {
 }
 
 bool Chell::hasReachedMaxHorizontalSpeed() const {
-    return std::abs(this->getLinearVelocity().x) > 10;
+    float x_speed = std::abs(this->getLinearVelocity().x);
+    return x_speed > this->def.max_horizontal_speed;
 }
 
 
@@ -285,19 +286,19 @@ void Chell::land() {
 
 void Chell::applyLinearImpulseToLeft() {
     float mass = this->b2body->GetMass();
-    float impx = mass * LEFTSPEED;
+    float impx = mass * this->def.horizontal_speed;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(-impx, 0), true);
 }
 
 void Chell::applyLinearImpulseToRight() {
     float mass = this->b2body->GetMass();
-    float impx = mass * RIGHTSPEED;
+    float impx = mass * this->def.horizontal_speed;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(impx, 0), true);
 }
 
 void Chell::applyLinearImpulseToUp() {
     float mass = this->b2body->GetMass();
-    float impy = mass * JUMPSPEED;
+    float impy = mass * this->def.jumpspeed;
     this->b2body->ApplyLinearImpulseToCenter(b2Vec2(0, impy), true);
 }
 

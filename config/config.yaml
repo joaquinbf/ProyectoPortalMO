@@ -10,8 +10,8 @@ button:
  
 chell:
     jumpspeed: 5
-    max_horizontal_speed: 4
-    horizontal_speed: 1.2
+    max_horizontal_speed: 6
+    horizontal_speed: 1.0
     ray_zoom: 10000
     
 launcher:
