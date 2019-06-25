@@ -28,6 +28,7 @@ protected:
     const uint32_t BODY_ID;
     World *world;
     const ENTITY entity;
+    bool is_destroyed;
     b2Body *b2body;
 
 public:
@@ -35,6 +36,12 @@ public:
 
     /* Libera los recursos utilizados */
     virtual ~Body();
+
+    /* Indica si el cuerpo fue destruido */
+    virtual bool isDestroyed() const;
+
+    /* Intenta destruir el cuerpo si no fue destruido */
+    virtual void tryDestroy();
 
     /* Obtiene la normal del contacto */
     b2Vec2 getNormal(b2Contact *contact) const;

@@ -72,18 +72,6 @@ Bullet::~Bullet() {
     }
 }
 
-bool Bullet::isDestroyed() const {
-    return this->is_destroyed;
-}
-
-void Bullet::destroy() {
-    if (!this->isDestroyed()) {
-        this->is_destroyed = true;
-        this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
-        this->world->addInstruction(new DestroyBodyInstruction(this));
-    }
-}
-
 Update Bullet::createUpdate(COMMAND command) const {
     int32_t angle = MathExt::angle(b2Vec2(1, 0), this->getLinearVelocity());
     if (this->getLinearVelocity().y < 0) {
@@ -110,8 +98,8 @@ void Bullet::handleBeginContactWith(Block *block, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Bullet *bullet, b2Contact *contact) {
-    this->destroy();
-    bullet->destroy();
+    this->tryDestroy();
+    bullet->tryDestroy();
 }
 
 void Bullet::handleBeginContactWith(Chell *chell, b2Contact *contact) {
@@ -119,16 +107,16 @@ void Bullet::handleBeginContactWith(Chell *chell, b2Contact *contact) {
 }
 
 void Bullet::handleBeginContactWith(Launcher *launcher, b2Contact *contact) {
-    this->destroy();
+    this->tryDestroy();
 }
 
 void Bullet::handleBeginContactWith(Receiver *receiver, b2Contact *contact) {
     receiver->turnOn();
-    this->destroy();
+    this->tryDestroy();
 }
 
 void Bullet::handleBeginContactWith(Rock *rock, b2Contact *contact) {
-    this->destroy();
+    this->tryDestroy();
 }
 
 void Bullet::handleBeginContactWith(Portal *portal, b2Contact *contact) {
@@ -144,6 +132,6 @@ void Bullet::handleEndContactWith(Body *other_body, b2Contact *contact) {
 void Bullet::applyStateAction() {
     this->life_steps++;
     if (this->life_steps > this->def.max_life_steps) {
-        this->destroy();
+        this->tryDestroy();
     }
 }

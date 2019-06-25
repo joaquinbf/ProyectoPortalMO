@@ -13,16 +13,31 @@
 #include "../../include/bodies/laser/laser.h"
 #include "../../include/world.h"
 #include "../../include/bodies/cake/cake.h"
+#include "../../include/instructions/destroy_body_instruction.h"
 
 Body::Body(World *world, ENTITY entity):
     BODY_ID(world->getBodyCount()),
     world(world),
-    entity(entity) {
+    entity(entity),
+    is_destroyed(false) {
     world->incBodyCount();
     world->addToBodies(this);
 }
 
 Body::~Body() {
+}
+
+bool Body::isDestroyed() const {
+    return this->is_destroyed;
+}
+
+
+void Body::tryDestroy() {
+    if (!this->isDestroyed()) {
+        this->is_destroyed = true;
+        this->world->addUpdate(this->createUpdate(COMMAND::DESTROY_COMMAND));
+        this->world->addInstruction(new DestroyBodyInstruction(this));
+    }
 }
 
 b2Vec2 Body::getNormal(b2Contact *contact) const {

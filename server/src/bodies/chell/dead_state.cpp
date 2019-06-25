@@ -16,12 +16,12 @@ void DeadState::handleBeginContactWith(Bullet *bullet) {
 
 void DeadState::applyStateAction() {
     this->step_count++;
-    if (this->step_count > this->MAX_STEPS) {
+    if (this->step_count == this->MAX_STEPS) {
         World *world = this->chell->getWorld();
         Update update = this->chell->createUpdate(COMMAND::DESTROY_COMMAND);
         world->addUpdate(update);
         world->removeFromChells(this->chell);
-        world->destroyBody(this->chell);
+        world->addInstruction(new DestroyBodyInstruction(this->chell));
 
         this->addLoseUpdateIfAllChellsAreDead(world);
         this->addWinUpdateIfAllRemainingChellsAteTheCake(world);

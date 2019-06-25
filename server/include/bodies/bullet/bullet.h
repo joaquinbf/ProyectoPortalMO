@@ -33,12 +33,6 @@ public:
     /* Libera los recursos utilizados */
     ~Bullet();
 
-    /* Indica si la bala esta destruida */
-    bool isDestroyed() const;
-
-    /* Destruye a la bala */
-    void destroy();
-
     /* Crea una update con el comando indicado */
     virtual Update createUpdate(COMMAND command) const;
 
